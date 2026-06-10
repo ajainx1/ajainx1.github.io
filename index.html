@@ -12,7 +12,6 @@
     
     <!-- Phosphor Icons (for sleek icons) -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
     <style>
         :root {
             --bg-color: #05050a;
@@ -25,17 +24,14 @@
             --border-color: rgba(0, 229, 255, 0.15);
             --glass-blur: blur(12px);
         }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         html {
             scroll-behavior: smooth;
         }
-
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
@@ -46,7 +42,6 @@
                 radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(0, 255, 65, 0.05), transparent 25%);
         }
-
         /* Animated Grid Background */
         .grid-bg {
             position: fixed;
@@ -62,19 +57,16 @@
             transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
             animation: gridMove 20s linear infinite;
         }
-
         @keyframes gridMove {
             0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
             100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
         }
-
         /* Typography */
         h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
         .mono { font-family: 'Fira Code', monospace; }
         
         .highlight { color: var(--primary); }
         .highlight-green { color: var(--secondary); }
-
         /* Navigation */
         nav {
             position: fixed;
@@ -89,7 +81,6 @@
             justify-content: center;
             gap: 30px;
         }
-
         nav a {
             color: var(--text-muted);
             text-decoration: none;
@@ -99,19 +90,16 @@
             text-transform: uppercase;
             transition: 0.3s;
         }
-
         nav a:hover {
             color: var(--primary);
             text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
         }
-
         /* Layout Container */
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 100px 20px 40px;
         }
-
         /* Hero Section */
         .hero {
             min-height: 80vh;
@@ -121,7 +109,6 @@
             align-items: flex-start;
             position: relative;
         }
-
         .hero-title {
             font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 800;
@@ -131,7 +118,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
         .hero-subtitle {
             font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--primary);
@@ -142,20 +128,17 @@
         }
         
         .hero-subtitle i { font-size: 1.5rem; }
-
         .hero-desc {
             max-width: 700px;
             font-size: 1.1rem;
             color: var(--text-muted);
             margin-bottom: 40px;
         }
-
         .contact-links {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
         }
-
         .btn {
             display: inline-flex;
             align-items: center;
@@ -168,36 +151,30 @@
             transition: 0.3s;
             cursor: pointer;
         }
-
         .btn-primary {
             background: rgba(0, 229, 255, 0.1);
             color: var(--primary);
             border: 1px solid var(--primary);
             box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
         }
-
         .btn-primary:hover {
             background: var(--primary);
             color: var(--bg-color);
             box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
         }
-
         .btn-secondary {
             background: var(--surface-color);
             color: var(--text-main);
             border: 1px solid rgba(255,255,255,0.1);
         }
-
         .btn-secondary:hover {
             background: var(--surface-hover);
             border-color: rgba(255,255,255,0.3);
         }
-
         /* Section Styling */
         section {
             margin-bottom: 100px;
         }
-
         .section-title {
             font-size: 2.5rem;
             margin-bottom: 40px;
@@ -206,14 +183,12 @@
             gap: 15px;
             color: var(--text-main);
         }
-
         .section-title::after {
             content: '';
             height: 1px;
             flex-grow: 1;
             background: linear-gradient(90deg, var(--border-color), transparent);
         }
-
         /* Glass Cards */
         .glass-card {
             background: var(--surface-color);
@@ -225,7 +200,6 @@
             position: relative;
             overflow: hidden;
         }
-
         .glass-card::before {
             content: '';
             position: absolute;
@@ -236,37 +210,31 @@
             opacity: 0;
             transition: 0.3s;
         }
-
         .glass-card:hover {
             transform: translateY(-5px);
             border-color: var(--border-color);
             background: var(--surface-hover);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-
         .glass-card:hover::before {
             opacity: 1;
         }
-
         /* Skills Grid */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-
         .skill-category h3 {
             color: var(--primary);
             margin-bottom: 15px;
             font-size: 1.1rem;
         }
-
         .skill-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .skill-tag {
             background: rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.1);
@@ -276,20 +244,17 @@
             color: var(--text-muted);
             transition: 0.3s;
         }
-
         .skill-tag:hover {
             color: var(--primary);
             border-color: var(--primary);
             background: rgba(0, 229, 255, 0.05);
         }
-
         /* Experience Timeline */
         .timeline {
             display: flex;
             flex-direction: column;
             gap: 30px;
         }
-
         .job-header {
             display: flex;
             justify-content: space-between;
@@ -298,18 +263,15 @@
             flex-wrap: wrap;
             gap: 10px;
         }
-
         .job-title {
             font-size: 1.3rem;
             color: var(--text-main);
         }
-
         .job-company {
             color: var(--secondary);
             font-size: 1rem;
             margin-top: 5px;
         }
-
         .job-date {
             font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
@@ -318,33 +280,28 @@
             padding: 4px 10px;
             border-radius: 4px;
         }
-
         .job-list {
             list-style: none;
             color: var(--text-muted);
             font-size: 0.95rem;
         }
-
         .job-list li {
             position: relative;
             padding-left: 20px;
             margin-bottom: 10px;
         }
-
         .job-list li::before {
             content: '▹';
             position: absolute;
             left: 0;
             color: var(--primary);
         }
-
         /* Certs & Training Grid */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 20px;
         }
-
         .cert-card {
             display: flex;
             align-items: flex-start;
@@ -355,29 +312,24 @@
             border-radius: 12px;
             transition: 0.3s;
         }
-
         .cert-card:hover {
             border-color: var(--secondary);
             background: rgba(0, 255, 65, 0.05);
             transform: translateY(-3px);
         }
-
         .cert-icon {
             font-size: 2rem;
             color: var(--secondary);
         }
-
         .cert-info h4 {
             font-size: 1rem;
             color: var(--text-main);
             margin-bottom: 5px;
         }
-
         .cert-info p {
             font-size: 0.85rem;
             color: var(--text-muted);
         }
-
         .status-badge {
             display: inline-block;
             margin-top: 8px;
@@ -386,11 +338,9 @@
             font-size: 0.75rem;
             font-weight: 600;
         }
-
         .status-active { background: rgba(0, 255, 65, 0.1); color: var(--secondary); }
         .status-target { background: rgba(0, 229, 255, 0.1); color: var(--primary); }
         .status-progress { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
-
         /* Stats Banner */
         .stats-banner {
             display: grid;
@@ -402,7 +352,6 @@
             padding: 40px;
             text-align: center;
         }
-
         .stat-num {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 3rem;
@@ -410,7 +359,6 @@
             color: var(--text-main);
             margin-bottom: 5px;
         }
-
         .stat-label {
             font-size: 0.9rem;
             color: var(--primary);
@@ -418,29 +366,24 @@
             letter-spacing: 1px;
             font-weight: 600;
         }
-
         @media (max-width: 768px) {
             .stats-banner { grid-template-columns: 1fr 1fr; }
             .hero-title { font-size: 2.5rem; }
             nav { gap: 15px; flex-wrap: wrap; padding: 15px; }
         }
-
         @media (max-width: 480px) {
             .stats-banner { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
     <div class="grid-bg"></div>
-
     <nav>
         <a href="#about">About</a>
         <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#training">Training & Certs</a>
     </nav>
-
     <div class="container">
         
         <!-- HERO SECTION -->
@@ -466,7 +409,6 @@
                 </a>
             </div>
         </section>
-
         <!-- STATS / ACHIEVEMENTS -->
         <section class="stats-banner">
             <div>
@@ -490,7 +432,6 @@
                 <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">High-Impact Vuln Patching</div>
             </div>
         </section>
-
         <!-- SKILLS -->
         <section id="skills">
             <h2 class="section-title"><i class="ph ph-terminal-window"></i> Core Technical Skills</h2>
@@ -507,7 +448,6 @@
                         <span class="skill-tag">Directory Attacks</span>
                     </div>
                 </div>
-
                 <div class="glass-card skill-category">
                     <h3>Detection & Monitoring</h3>
                     <div class="skill-tags">
@@ -517,7 +457,6 @@
                         <span class="skill-tag">Wireshark (PCAP)</span>
                     </div>
                 </div>
-
                 <div class="glass-card skill-category">
                     <h3>Network Security & FW</h3>
                     <div class="skill-tags">
@@ -527,7 +466,6 @@
                         <span class="skill-tag">IDS Signature Dev</span>
                     </div>
                 </div>
-
                 <div class="glass-card skill-category">
                     <h3>Scripting & Automation</h3>
                     <div class="skill-tags">
@@ -538,10 +476,8 @@
                         <span class="skill-tag">Claude AI / Copilot</span>
                     </div>
                 </div>
-
             </div>
         </section>
-
         <!-- EXPERIENCE -->
         <section id="experience">
             <h2 class="section-title"><i class="ph ph-briefcase"></i> Professional Experience</h2>
@@ -564,7 +500,6 @@
                         <li>Administered Check Point firewall rules and network traffic policies.</li>
                     </ul>
                 </div>
-
                 <!-- NFC / RRG -->
                 <div class="glass-card">
                     <div class="job-header">
@@ -580,7 +515,6 @@
                         <li>Optimized SIEM correlation rules and EDR policies to boost detection rates by 35%.</li>
                     </ul>
                 </div>
-
                 <!-- E2E -->
                 <div class="glass-card">
                     <div class="job-header">
@@ -596,10 +530,8 @@
                         <li>Conducted email security assessments to improve defense posture.</li>
                     </ul>
                 </div>
-
             </div>
         </section>
-
         <!-- TRAINING & CERTS -->
         <section id="training">
             <h2 class="section-title"><i class="ph ph-certificate"></i> Training & Certifications</h2>
@@ -633,7 +565,6 @@
                     </div>
                 </div>
             </div>
-
             <h3 style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px;">Active Certifications</h3>
             <div class="grid-3">
                 <div class="glass-card" style="padding: 20px;">
@@ -671,15 +602,11 @@
                 </div>
             </div>
         </section>
-
     </div>
-
     <!-- Footer -->
     <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem;">
         <p>Built for <strong style="color: var(--text-main);">Aditya Jain</strong>. Hosted securely.</p>
         <p class="mono" style="margin-top: 10px;">[ ajainx1.github.io ]</p>
     </footer>
-
 </body>
 </html>
-```
