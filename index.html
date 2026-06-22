@@ -1,612 +1,249 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aditya Jain | Offensive Security Engineer</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons (for sleek icons) -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <style>
-        :root {
-            --bg-color: #05050a;
-            --surface-color: rgba(255, 255, 255, 0.03);
-            --surface-hover: rgba(255, 255, 255, 0.06);
-            --primary: #00E5FF;
-            --secondary: #00FF41;
-            --text-main: #FFFFFF;
-            --text-muted: #94A3B8;
-            --border-color: rgba(0, 229, 255, 0.15);
-            --glass-blur: blur(12px);
-        }
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 229, 255, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 255, 65, 0.05), transparent 25%);
-        }
-        /* Animated Grid Background */
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-size: 50px 50px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-            z-index: -1;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
-            animation: gridMove 20s linear infinite;
-        }
-        @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px) translateZ(-200px); }
-        }
-        /* Typography */
-        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
-        .mono { font-family: 'Fira Code', monospace; }
-        
-        .highlight { color: var(--primary); }
-        .highlight-green { color: var(--secondary); }
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 0;
-            background: rgba(5, 5, 10, 0.7);
-            backdrop-filter: var(--glass-blur);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-        }
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        nav a:hover {
-            color: var(--primary);
-            text-shadow: 0 0 10px rgba(0, 229, 255, 0.5);
-        }
-        /* Layout Container */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 100px 20px 40px;
-        }
-        /* Hero Section */
-        .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            position: relative;
-        }
-        .hero-title {
-            font-size: clamp(3rem, 8vw, 5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(90deg, #FFFFFF, #94A3B8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 3vw, 1.8rem);
-            color: var(--primary);
-            margin-bottom: 30px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .hero-subtitle i { font-size: 1.5rem; }
-        .hero-desc {
-            max-width: 700px;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            margin-bottom: 40px;
-        }
-        .contact-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .btn-primary {
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
-        }
-        .btn-primary:hover {
-            background: var(--primary);
-            color: var(--bg-color);
-            box-shadow: 0 0 25px rgba(0, 229, 255, 0.5);
-        }
-        .btn-secondary {
-            background: var(--surface-color);
-            color: var(--text-main);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        .btn-secondary:hover {
-            background: var(--surface-hover);
-            border-color: rgba(255,255,255,0.3);
-        }
-        /* Section Styling */
-        section {
-            margin-bottom: 100px;
-        }
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            color: var(--text-main);
-        }
-        .section-title::after {
-            content: '';
-            height: 1px;
-            flex-grow: 1;
-            background: linear-gradient(90deg, var(--border-color), transparent);
-        }
-        /* Glass Cards */
-        .glass-card {
-            background: var(--surface-color);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            padding: 30px;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .glass-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--primary);
-            opacity: 0;
-            transition: 0.3s;
-        }
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-color);
-            background: var(--surface-hover);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        .glass-card:hover::before {
-            opacity: 1;
-        }
-        /* Skills Grid */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .skill-category h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-        }
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .skill-tag {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            transition: 0.3s;
-        }
-        .skill-tag:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            background: rgba(0, 229, 255, 0.05);
-        }
-        /* Experience Timeline */
-        .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-        }
-        .job-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .job-title {
-            font-size: 1.3rem;
-            color: var(--text-main);
-        }
-        .job-company {
-            color: var(--secondary);
-            font-size: 1rem;
-            margin-top: 5px;
-        }
-        .job-date {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            background: rgba(255,255,255,0.05);
-            padding: 4px 10px;
-            border-radius: 4px;
-        }
-        .job-list {
-            list-style: none;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-        .job-list li {
-            position: relative;
-            padding-left: 20px;
-            margin-bottom: 10px;
-        }
-        .job-list li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-        /* Certs & Training Grid */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
-        .cert-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            padding: 20px;
-            background: var(--surface-color);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-        .cert-card:hover {
-            border-color: var(--secondary);
-            background: rgba(0, 255, 65, 0.05);
-            transform: translateY(-3px);
-        }
-        .cert-icon {
-            font-size: 2rem;
-            color: var(--secondary);
-        }
-        .cert-info h4 {
-            font-size: 1rem;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-        .cert-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .status-badge {
-            display: inline-block;
-            margin-top: 8px;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .status-active { background: rgba(0, 255, 65, 0.1); color: var(--secondary); }
-        .status-target { background: rgba(0, 229, 255, 0.1); color: var(--primary); }
-        .status-progress { background: rgba(255, 170, 0, 0.1); color: #FFAA00; }
-        /* Stats Banner */
-        .stats-banner {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            background: linear-gradient(90deg, rgba(0, 229, 255, 0.05), rgba(0, 255, 65, 0.05));
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-        }
-        .stat-num {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text-main);
-            margin-bottom: 5px;
-        }
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-        }
-        @media (max-width: 768px) {
-            .stats-banner { grid-template-columns: 1fr 1fr; }
-            .hero-title { font-size: 2.5rem; }
-            nav { gap: 15px; flex-wrap: wrap; padding: 15px; }
-        }
-        @media (max-width: 480px) {
-            .stats-banner { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <div class="grid-bg"></div>
-    <nav>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#training">Training & Certs</a>
-    </nav>
-    <div class="container">
-        
-        <!-- HERO SECTION -->
-        <section class="hero" id="about">
-            <p class="mono highlight" style="margin-bottom: 10px;">> whoami</p>
-            <h1 class="hero-title">Aditya Jain</h1>
-            <h2 class="hero-subtitle">
-                <i class="ph-fill ph-shield-check"></i>
-                Offensive Security Engineer & Red Team Aspirant
-            </h2>
-            <p class="hero-desc">
-                Dynamic Cybersecurity Professional with 3+ years of enterprise experience across Security Operations, EDR architecture, and NGFW administration. Transitioning into Offensive Security, leveraging a deep defensive background (securing 750+ government endpoints & CERT-In collaboration) to engineer robust, simulated threat environments.
-            </p>
-            <div class="contact-links">
-                <a href="mailto:aavkjain@hotmail.com" class="btn btn-primary">
-                    <i class="ph ph-envelope-simple"></i> aavkjain@hotmail.com
-                </a>
-                <a href="https://linkedin.com/in/ajainx1" target="_blank" class="btn btn-secondary">
-                    <i class="ph ph-linkedin-logo"></i> LinkedIn
-                </a>
-                <a href="tel:+919897577007" class="btn btn-secondary mono">
-                    <i class="ph ph-phone"></i> +91 9897577007
-                </a>
-            </div>
-        </section>
-        <!-- STATS / ACHIEVEMENTS -->
-        <section class="stats-banner">
-            <div>
-                <div class="stat-num">750+</div>
-                <div class="stat-label">Endpoints Secured</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">SentinelOne EDR Deployment</div>
-            </div>
-            <div>
-                <div class="stat-num">60%</div>
-                <div class="stat-label">Audit Time Cut</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">via PowerShell Automation</div>
-            </div>
-            <div>
-                <div class="stat-num">35%</div>
-                <div class="stat-label">Detection Boost</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">SIEM Rules Optimization</div>
-            </div>
-            <div>
-                <div class="stat-num">CERT-In</div>
-                <div class="stat-label">Collaboration</div>
-                <div style="font-size: 0.8rem; color: var(--text-muted); margin-top:5px;">High-Impact Vuln Patching</div>
-            </div>
-        </section>
-        <!-- SKILLS -->
-        <section id="skills">
-            <h2 class="section-title"><i class="ph ph-terminal-window"></i> Core Technical Skills</h2>
-            <div class="skills-grid">
-                
-                <div class="glass-card skill-category">
-                    <h3>Offensive & Testing</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">OWASP Top 10</span>
-                        <span class="skill-tag">Burp Suite Pro</span>
-                        <span class="skill-tag">Metasploit</span>
-                        <span class="skill-tag">Nmap</span>
-                        <span class="skill-tag">PrivEsc</span>
-                        <span class="skill-tag">Directory Attacks</span>
-                    </div>
-                </div>
-                <div class="glass-card skill-category">
-                    <h3>Detection & Monitoring</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Wazuh SIEM</span>
-                        <span class="skill-tag">SentinelOne EDR</span>
-                        <span class="skill-tag">Event Viewer</span>
-                        <span class="skill-tag">Wireshark (PCAP)</span>
-                    </div>
-                </div>
-                <div class="glass-card skill-category">
-                    <h3>Network Security & FW</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Check Point NGFW</span>
-                        <span class="skill-tag">Sophos Firewall</span>
-                        <span class="skill-tag">WiJungle NGFW</span>
-                        <span class="skill-tag">IDS Signature Dev</span>
-                    </div>
-                </div>
-                <div class="glass-card skill-category">
-                    <h3>Scripting & Automation</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">PowerShell</span>
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">Claude AI / Copilot</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <h2 class="section-title"><i class="ph ph-briefcase"></i> Professional Experience</h2>
-            <div class="timeline">
-                
-                <!-- NIC -->
-                <div class="glass-card">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">Security Administrator</div>
-                            <div class="job-company">Ebix Technologies / National Informatics Centre (NIC) • Noida</div>
-                        </div>
-                        <div class="job-date">Feb 2024 – Present</div>
-                    </div>
-                    <ul class="job-list">
-                        <li>Managed security compliance audits against regulatory and corporate standards.</li>
-                        <li>Managed <strong>SentinelOne EDR</strong> deployment across 750+ NIC state offices.</li>
-                        <li>Coordinated with <strong>CERT-In</strong> and devs to patch critical web & server vulnerabilities.</li>
-                        <li>Built a <strong>PowerShell tool</strong> to automate 120+ CDAC compliance audits, saving 60% effort.</li>
-                        <li>Administered Check Point firewall rules and network traffic policies.</li>
-                    </ul>
-                </div>
-                <!-- NFC / RRG -->
-                <div class="glass-card">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">SOC Analyst — Threat Hunter</div>
-                            <div class="job-company">RRG Engineering Pvt. Ltd. / Nuclear Fuel Complex • Rajasthan</div>
-                        </div>
-                        <div class="job-date">Dec 2022 – Jul 2023</div>
-                    </div>
-                    <ul class="job-list">
-                        <li>Monitored real-time events and detected threats using <strong>Blu Sapphire SIEM</strong>.</li>
-                        <li>Leveraged <strong>Kaspersky EDR</strong> to identify, isolate, and remediate endpoint threats.</li>
-                        <li>Optimized SIEM correlation rules and EDR policies to boost detection rates by 35%.</li>
-                    </ul>
-                </div>
-                <!-- E2E -->
-                <div class="glass-card">
-                    <div class="job-header">
-                        <div>
-                            <div class="job-title">SOC Analyst — IDS & Signature Dev</div>
-                            <div class="job-company">E2E Networks Limited • Tamil Nadu</div>
-                        </div>
-                        <div class="job-date">Aug 2022 – Oct 2022</div>
-                    </div>
-                    <ul class="job-list">
-                        <li>Developed and deployed custom <strong>Snort/Wazuh IDS signatures</strong> for threat detection.</li>
-                        <li>Monitored bandwidth and node telemetry to identify anomalous network behaviors.</li>
-                        <li>Conducted email security assessments to improve defense posture.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <!-- TRAINING & CERTS -->
-        <section id="training">
-            <h2 class="section-title"><i class="ph ph-certificate"></i> Training & Certifications</h2>
-            
-            <div class="grid-3" style="margin-bottom: 30px;">
-                <!-- TryHackMe -->
-                <div class="cert-card">
-                    <i class="ph-fill ph-crosshair cert-icon"></i>
-                    <div class="cert-info">
-                        <h4>TryHackMe</h4>
-                        <p>Jr Penetration Tester Path (Web App, Network Security)</p>
-                        <span class="status-badge status-progress">In Progress</span>
-                    </div>
-                </div>
-                <!-- Hack The Box -->
-                <div class="cert-card">
-                    <i class="ph-fill ph-cube cert-icon"></i>
-                    <div class="cert-info">
-                        <h4>Hack The Box</h4>
-                        <p>Starting Point Machines (Recon & Exploitation)</p>
-                        <span class="status-badge status-active">Active</span>
-                    </div>
-                </div>
-                <!-- OSCP -->
-                <div class="cert-card">
-                    <i class="ph-fill ph-target cert-icon"></i>
-                    <div class="cert-info">
-                        <h4>OSCP (PEN-200)</h4>
-                        <p>Offensive Security Certified Professional</p>
-                        <span class="status-badge status-target">Target Q4 2026</span>
-                    </div>
-                </div>
-            </div>
-            <h3 style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px;">Active Certifications</h3>
-            <div class="grid-3">
-                <div class="glass-card" style="padding: 20px;">
-                    <div style="color: var(--secondary); margin-bottom: 5px;"><i class="ph ph-check-circle"></i> Jan 2026</div>
-                    <strong style="color: var(--text-main);">Fortinet Certified Associate in Cybersecurity (FCAC)</strong>
-                </div>
-                <div class="glass-card" style="padding: 20px;">
-                    <div style="color: var(--secondary); margin-bottom: 5px;"><i class="ph ph-check-circle"></i> Red Hat</div>
-                    <strong style="color: var(--text-main);">Red Hat Certified System Administrator (RHCSA)</strong>
-                </div>
-                <div class="glass-card" style="padding: 20px;">
-                    <div style="color: var(--secondary); margin-bottom: 5px;"><i class="ph ph-check-circle"></i> EC-Council</div>
-                    <strong style="color: var(--text-main);">In the Trenches: Security Operations Center</strong>
-                </div>
-                <div class="glass-card" style="padding: 20px;">
-                    <div style="color: var(--secondary); margin-bottom: 5px;"><i class="ph ph-check-circle"></i> BasisTech</div>
-                    <strong style="color: var(--text-main);">Autopsy Basics and Hands On (Digital Forensics)</strong>
-                </div>
-            </div>
-        </section>
-        
-        <!-- EDUCATION -->
-        <section>
-            <h2 class="section-title"><i class="ph ph-graduation-cap"></i> Education</h2>
-            <div class="grid-3">
-                <div class="glass-card">
-                    <h3 style="color: var(--primary);">MBA in Cybersecurity</h3>
-                    <p style="color: var(--text-main);">Chitkara University, Punjab</p>
-                    <p class="mono" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">Expected Jul 2027</p>
-                </div>
-                <div class="glass-card">
-                    <h3 style="color: var(--primary);">B.Tech in Computer Science</h3>
-                    <p style="color: var(--text-main);">Manipal University Jaipur</p>
-                    <p class="mono" style="color: var(--text-muted); font-size: 0.85rem; margin-top: 10px;">2019 – 2022</p>
-                </div>
-            </div>
-        </section>
-    </div>
-    <!-- Footer -->
-    <footer style="text-align: center; padding: 40px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 0.9rem;">
-        <p>Built for <strong style="color: var(--text-main);">Aditya Jain</strong>. Hosted securely.</p>
-        <p class="mono" style="margin-top: 10px;">[ ajainx1.github.io ]</p>
-    </footer>
-</body>
-</html>
+
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/styles-Dyi8L0jg.css" data-precedence="default"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" data-precedence="default"/><title>Aditya Jain — Cybersecurity Engineer &amp; Red Team Aspirant</title><meta name="author" content="Lovable"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary"/><meta name="twitter:site" content="@Lovable"/><meta name="description" content="Portfolio of Aditya Jain — Cybersecurity Engineer with 3+ years in SecOps, EDR, SIEM, NGFW, and offensive security training across HTB and Vulnlab."/><meta property="og:title" content="Aditya Jain — Cybersecurity Engineer"/><meta property="og:description" content="SecOps, EDR architecture, SIEM engineering, NGFW administration — transitioning into offensive security and red teaming."/><link rel="modulepreload" href="/assets/index-CotXFTW0.js"/><link rel="modulepreload" href="/assets/routes-COvJqN3p.js"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<style>
+	@font-face {
+		font-family: 'CameraPlainVariable';
+		src: url('https://cdn.gpteng.co/mcp-widgets/v1/fonts/CameraPlainVariable.woff2') format('woff2');
+		font-weight: 100 900;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	#lovable-badge {
+		--badge-bg: #1b1b1b;
+		--badge-text: #c5c1b9;
+		--badge-text-hover: #dcdad5;
+		--badge-radius: 6px;
+		--badge-padding: 8px;
+		--badge-gap: 6px;
+		--badge-shadow: 
+			0 0 0 1px rgba(0, 0, 0, 0.88),
+			0 1px 0 0 rgba(0, 0, 0, 0.04),
+			0 2px 2px -1px rgba(0, 0, 0, 0.08),
+			0 4px 4px -2px rgba(0, 0, 0, 0.08),
+			0 8px 8px -4px rgba(0, 0, 0, 0.08),
+			0 16px 16px -8px rgba(0, 0, 0, 0.08);
+		--badge-transition-duration: 0.2s;
+		--badge-transition-easing: cubic-bezier(0.16, 1, 0.32, 1);
+		--focus-color: #575ECF;
+		--focus-offset: 2px;
+		--focus-width: 2px;
+		
+		position: fixed;
+		bottom: 12px;
+		right: 12px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		z-index: 1000000;
+		background-color: var(--badge-bg) !important;
+		color: var(--badge-text) !important;
+		border-radius: var(--badge-radius);
+		box-shadow: var(--badge-shadow) !important;
+		font-size: 12px;
+		font-family: CameraPlainVariable, "CameraPlainVariable Fallback", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+		font-weight: 400 !important;
+		text-transform: none !important;
+		font-feature-settings: normal !important;
+		transform: translateZ(0);
+		will-change: transform, opacity;
+	}
+
+	#lovable-badge-cta {
+		display: flex;
+		align-items: center;
+		gap: var(--badge-gap);
+		padding: 0 var(--badge-padding);
+		height: 100%;
+		color: inherit;
+		text-decoration: none;
+		white-space: nowrap;
+		border-radius: var(--badge-radius) 0 0 var(--badge-radius);
+		transition: 
+			background-color var(--badge-transition-duration) ease,
+			color var(--badge-transition-duration) ease,
+			transform 0.1s ease;
+	}
+
+	#lovable-badge-cta:hover {
+		background: rgba(255, 255, 255, 0.04);
+		color: var(--badge-text-hover);
+	}
+
+	#lovable-badge-cta:active {
+		transform: scale(0.98);
+	}
+
+	#lovable-badge-cta:focus {
+		outline: none;
+	}
+
+	#lovable-badge-cta:focus-visible {
+		outline: var(--focus-width) solid var(--focus-color);
+		outline-offset: var(--focus-offset);
+		z-index: 1;
+	}
+
+	#lovable-badge-text {
+		line-height: 1;
+	}
+
+	#lovable-badge-divider {
+		width: 1px;
+		height: 24px;
+		background-color: rgba(255, 255, 255, 0.04);
+		flex-shrink: 0;
+	}
+
+	#lovable-badge-close {
+		width: 24px;
+		height: 24px;
+		min-width: 24px;
+		min-height: 24px;
+		cursor: pointer;
+		background: none;
+		border: none;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 0 var(--badge-radius) var(--badge-radius) 0;
+		flex-shrink: 0;
+		transition: 
+			background-color var(--badge-transition-duration) ease,
+			transform 0.1s ease;
+	}
+
+	#lovable-badge-close:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+
+	#lovable-badge-close:active {
+		transform: scale(0.92);
+	}
+
+	#lovable-badge-close:focus {
+		outline: none;
+	}
+
+	#lovable-badge-close:focus-visible {
+		outline: var(--focus-width) solid var(--focus-color);
+		outline-offset: calc(var(--focus-offset) * -1);
+		z-index: 1;
+	}
+
+	#lovable-badge-close svg path {
+		fill: var(--badge-text);
+		transition: fill var(--badge-transition-duration) ease;
+	}
+
+	#lovable-badge-close:hover svg path {
+		fill: var(--badge-text-hover);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		#lovable-badge-cta,
+		#lovable-badge-close,
+		#lovable-badge-close svg path {
+			transition: none;
+		}
+		
+		#lovable-badge-cta:active,
+		#lovable-badge-close:active {
+			transform: none;
+		}
+	}
+
+	@media (prefers-contrast: high) {
+		#lovable-badge {
+			--badge-bg: #000;
+			--badge-text: #fff;
+			--badge-text-hover: #fff;
+			border: 2px solid currentColor;
+		}
+		
+		#lovable-badge-cta:focus-visible,
+		#lovable-badge-close:focus-visible {
+			outline-width: 3px;
+		}
+	}
+</style>
+<script defer src="/__l5e/events.js" data-artifact-kind="static_preview" data-artifact-id="ab7edabf90207aacfceef1ae26ccbff080680b63" data-commit-sha="ab7edabf90207aacfceef1ae26ccbff080680b63" data-context-token="v1.eyJwcm9qZWN0X2lkIjoiYTU0Mjc3MzQtZmEzNS00MzE5LWFjZWEtYmJkMDc2OWUzMGY5IiwiYXJ0aWZhY3Rfa2luZCI6InN0YXRpY19wcmV2aWV3IiwiYXJ0aWZhY3RfaWQiOiJhYjdlZGFiZjkwMjA3YWFjZmNlZWYxYWUyNmNjYmZmMDgwNjgwYjYzIiwiY29tbWl0X3NoYSI6ImFiN2VkYWJmOTAyMDdhYWNmY2VlZjFhZTI2Y2NiZmYwODA2ODBiNjMiLCJleHAiOjE3ODIxMTAxNjN9.JTq9mi6QhXXXaVJI3gMH3M0xA1MOVtrQXJ3u4tFRZ_g" data-track-url="/__l5e/trackevents?__lovable_sha=ab7edabf90207aacfceef1ae26ccbff080680b63" data-replay="rrweb" data-replay-sample-rate="1" data-replay-crash-sample-rate="1" data-replay-url="/__l5e/replay?__lovable_sha=ab7edabf90207aacfceef1ae26ccbff080680b63" data-replay-script-url="/__l5e/rrweb-record.js?__lovable_sha=ab7edabf90207aacfceef1ae26ccbff080680b63&amp;__l5e_v=0.1.2-error-event-hardening"></script><meta name="twitter:title" content="Aditya Jain — Cybersecurity Engineer"><meta name="twitter:description" content="SecOps, EDR architecture, SIEM engineering, NGFW administration — transitioning into offensive security and red teaming."><meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cf0b1f3f-04f6-4d55-8838-64d8198e0e8f/id-preview-ab7edabf--a5427734-fa35-4319-acea-bbd0769e30f9.lovable.app-1782106262039.png"><meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/cf0b1f3f-04f6-4d55-8838-64d8198e0e8f/id-preview-ab7edabf--a5427734-fa35-4319-acea-bbd0769e30f9.lovable.app-1782106262039.png"></head><body><!--$--><div class="min-h-screen text-foreground font-sans"><header class="sticky top-0 z-40 backdrop-blur-md border-b border-border bg-background/70"><div class="mx-auto max-w-6xl px-6 md:px-10 h-14 flex items-center justify-between"><a href="#top" class="font-mono text-sm tracking-tight"><span class="text-primary">$</span> aditya<span class="text-muted-foreground">@</span>jain<span class="text-muted-foreground">:~#</span></a><nav class="hidden md:flex gap-6 font-mono text-xs text-muted-foreground"><a href="#about" class="hover:text-primary transition-colors">01 // about</a><a href="#skills" class="hover:text-primary transition-colors">02 // skills</a><a href="#experience" class="hover:text-primary transition-colors">03 // experience</a><a href="#training" class="hover:text-primary transition-colors">04 // training</a><a href="#certs" class="hover:text-primary transition-colors">05 // certs</a><a href="#contact" class="hover:text-primary transition-colors">06 // contact</a></nav><a href="mailto:aavkjain@hotmail.com" class="font-mono text-xs px-3 py-1.5 border border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-colors">./contact.sh</a></div></header><main class="mx-auto max-w-6xl px-6 md:px-10"><section id="top" class="pt-20 pb-24 md:pt-28 md:pb-32 relative"><div class="font-mono text-xs text-primary mb-6"><span class="text-muted-foreground">[</span>SECTOR_00<span class="text-muted-foreground">]</span> // identity</div><h1 class="font-mono font-bold text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">Aditya<br/><span class="text-primary glow-primary">Jain.</span></h1><p class="mt-8 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">Cybersecurity Engineer building <span class="text-foreground">defensive telemetry</span> for government-scale infrastructure — and sharpening <span class="text-foreground">offensive tradecraft</span> <!-- -->through enterprise red-team labs.</p><div class="mt-10 font-mono text-sm text-muted-foreground"><div><span class="text-primary">›</span> role <span class="text-foreground">= SecOps · EDR · SIEM · NGFW</span></div><div><span class="text-primary">›</span> focus <span class="text-foreground">= red team · AD exploitation · vuln research</span></div><div><span class="text-primary">›</span> status <span class="text-accent-amber">open to relocation / remote</span> <span class="caret"></span></div></div><div class="mt-14 grid grid-cols-2 md:grid-cols-5 gap-px bg-border border border-border"><div class="bg-background p-5"><div class="font-mono text-3xl md:text-4xl font-bold text-primary">3+</div><div class="mt-2 text-xs text-muted-foreground uppercase tracking-wider">years in enterprise SecOps</div></div><div class="bg-background p-5"><div class="font-mono text-3xl md:text-4xl font-bold text-primary">750+</div><div class="mt-2 text-xs text-muted-foreground uppercase tracking-wider">endpoints under EDR</div></div><div class="bg-background p-5"><div class="font-mono text-3xl md:text-4xl font-bold text-primary">120+</div><div class="mt-2 text-xs text-muted-foreground uppercase tracking-wider">audits automated</div></div><div class="bg-background p-5"><div class="font-mono text-3xl md:text-4xl font-bold text-primary">60%</div><div class="mt-2 text-xs text-muted-foreground uppercase tracking-wider">compliance effort saved</div></div><div class="bg-background p-5"><div class="font-mono text-3xl md:text-4xl font-bold text-primary">35%</div><div class="mt-2 text-xs text-muted-foreground uppercase tracking-wider">detection rate uplift</div></div></div></section><section id="about" class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->01<span class="text-muted-foreground">]</span> // <!-- -->about</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// whoami</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="grid md:grid-cols-5 gap-10"><div class="md:col-span-3 space-y-5 text-base md:text-lg text-muted-foreground leading-relaxed"><p>I&#x27;m a cybersecurity professional with <span class="text-foreground">3+ years of enterprise experience</span> across Security Operations, EDR architecture, SIEM engineering, NGFW administration, and compliance — most recently deploying security telemetry and automation frameworks for critical Indian government infrastructure.</p><p>I&#x27;m now transitioning into <span class="text-primary">offensive security and red teaming</span>, backed by active penetration testing across Hack The Box and Vulnlab — with hands-on work in vulnerability research, network and web application pentesting, and PowerShell / Python tooling.</p><p>I&#x27;m pursuing an MBA in Cybersecurity, targeting OSCP and CEH v13, and steadily building toward CISSP.</p></div><aside class="md:col-span-2 border border-border bg-card p-6 shadow-terminal relative overflow-hidden scanline"><div class="font-mono text-xs text-muted-foreground mb-4">~/profile.json</div><pre class="font-mono text-sm leading-relaxed text-foreground/90 whitespace-pre-wrap">{
+  &quot;name&quot;:     &quot;Aditya Jain&quot;,
+  &quot;title&quot;:    &quot;Cybersecurity Engineer&quot;,
+  &quot;location&quot;: &quot;India&quot;,
+  &quot;remote&quot;:   true,
+  &quot;current&quot;:  &quot;NIC via Ebix Tech&quot;,
+  &quot;studying&quot;: &quot;MBA · Cybersecurity&quot;,
+  &quot;targets&quot;:  [&quot;OSCP&quot;, &quot;CEH v13&quot;, &quot;CISSP&quot;]
+}</pre></aside></div></section><section id="skills" class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->02<span class="text-muted-foreground">]</span> // <!-- -->skills</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// arsenal</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border"><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Offensive &amp; Testing</h3><span class="font-mono text-xs text-muted-foreground">06</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>OWASP Top 10</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Burp Suite Pro</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Metasploit</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Nmap</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Directory Attacks</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Privilege Escalation</li></ul></div><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Detection &amp; Monitoring</h3><span class="font-mono text-xs text-muted-foreground">05</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Wazuh SIEM</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>SentinelOne EDR</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Event Viewer</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Wireshark</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Packet Drop Triage</li></ul></div><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Network Security &amp; Routing</h3><span class="font-mono text-xs text-muted-foreground">05</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Check Point NGFW</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Sophos / WiJungle</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>OSPF</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>TACACS+ / RADIUS</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>MTU Optimization</li></ul></div><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Scripting &amp; DevOps</h3><span class="font-mono text-xs text-muted-foreground">05</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>PowerShell</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Bash</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Python</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Git</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Copilot / Claude AI</li></ul></div><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Compliance &amp; Audit</h3><span class="font-mono text-xs text-muted-foreground">04</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>CDAC Standards</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>CERT-In Guidelines</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Policy Tuning</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>KACE UEM</li></ul></div><div class="bg-background p-6 hover:bg-card transition-colors group"><div class="flex items-baseline justify-between mb-4"><h3 class="font-mono text-sm font-semibold text-primary">Vulnerability Research</h3><span class="font-mono text-xs text-muted-foreground">04</span></div><ul class="space-y-1.5"><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>CVE Analysis</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Exploit Replication</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Lab Emulation</li><li class="font-mono text-sm text-foreground/85 flex gap-2"><span class="text-primary/60">▸</span>Service Misconfig</li></ul></div></div></section><section id="experience" class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->03<span class="text-muted-foreground">]</span> // <!-- -->experience</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// engagements</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><ol class="relative border-l border-border ml-2"><li class="pl-8 pb-12 last:pb-0 relative"><span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-primary rounded-none rotate-45 shadow-[0_0_12px_var(--color-primary)]"></span><div class="font-mono text-xs text-primary">Feb 2024 — Present</div><h3 class="mt-2 font-mono text-xl md:text-2xl font-bold tracking-tight">Security Administrator</h3><div class="mt-1 text-sm text-muted-foreground">Ebix Technologies / National Informatics Centre (NIC)<!-- --> <span class="text-border">·</span> <!-- -->Noida, India</div><ul class="mt-5 space-y-2.5"><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Manage security compliance audits against regulatory and corporate standards.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Operate SentinelOne EDR deployment across 750+ NIC state offices.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Rolled out UEM KACE across 400+ endpoints for unified device management.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Administer Check Point NGFW, routers and switches; resolve packet drops via deep PCAP analysis.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Coordinate with CERT-In and developers to patch web &amp; server vulnerabilities.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Built a PowerShell tool automating 120+ CDAC compliance audits — 60% effort reduction.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Implemented AAA (TACACS+/RADIUS), tuned OSPF and MTU to eliminate fragmentation.</span></li></ul></li><li class="pl-8 pb-12 last:pb-0 relative"><span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-primary rounded-none rotate-45 shadow-[0_0_12px_var(--color-primary)]"></span><div class="font-mono text-xs text-primary">Dec 2022 — Jul 2023</div><h3 class="mt-2 font-mono text-xl md:text-2xl font-bold tracking-tight">SOC Analyst — Threat Hunter</h3><div class="mt-1 text-sm text-muted-foreground">RRG Engineering / Nuclear Fuel Complex (NFC)<!-- --> <span class="text-border">·</span> <!-- -->Rajasthan, India</div><ul class="mt-5 space-y-2.5"><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Monitored real-time events and triaged threats via Blu Sapphire SIEM.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Used Kaspersky EDR for rapid endpoint threat remediation and IR.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Tuned SIEM rules and EDR policies — boosted detection rate by 35%.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Authored analytics and threat intelligence trend reports.</span></li></ul></li><li class="pl-8 pb-12 last:pb-0 relative"><span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-primary rounded-none rotate-45 shadow-[0_0_12px_var(--color-primary)]"></span><div class="font-mono text-xs text-primary">Aug 2022 — Oct 2022</div><h3 class="mt-2 font-mono text-xl md:text-2xl font-bold tracking-tight">SOC Analyst — IDS &amp; Signature Development</h3><div class="mt-1 text-sm text-muted-foreground">E2E Networks Limited<!-- --> <span class="text-border">·</span> <!-- -->Tamil Nadu, India</div><ul class="mt-5 space-y-2.5"><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Monitored and triaged alerts via Wazuh SIEM in a 24x7 SOC.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Authored Snort and Wazuh IDS signatures for custom detection.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Analyzed bandwidth and telemetry for anomalies, packet drops, routing loops.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Leveraged AbuseIPDB to block malicious sources and harden defenses.</span></li></ul></li><li class="pl-8 pb-12 last:pb-0 relative"><span class="absolute -left-[7px] top-1.5 h-3 w-3 bg-primary rounded-none rotate-45 shadow-[0_0_12px_var(--color-primary)]"></span><div class="font-mono text-xs text-primary">Dec 2021 — May 2022</div><h3 class="mt-2 font-mono text-xl md:text-2xl font-bold tracking-tight">Technical Support Executive</h3><div class="mt-1 text-sm text-muted-foreground">Teleperformance<!-- --> <span class="text-border">·</span> <!-- -->Hybrid</div><ul class="mt-5 space-y-2.5"><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Resolved Microsoft suite issues across phone and chat support channels.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Managed escalations via the Rave ticketing platform.</span></li><li class="flex gap-3 text-sm md:text-base text-foreground/85 leading-relaxed"><span class="font-mono text-primary/70 shrink-0 mt-1">$</span><span>Documented troubleshooting playbooks for the team knowledge base.</span></li></ul></li></ol></section><section id="training" class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->04<span class="text-muted-foreground">]</span> // <!-- -->training</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// offensive labs</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="border border-border overflow-hidden"><div class="grid grid-cols-12 font-mono text-xs uppercase tracking-wider text-muted-foreground bg-card px-5 py-3 border-b border-border"><div class="col-span-3">Platform</div><div class="col-span-7">Focus</div><div class="col-span-2 text-right">Status</div></div><div class="grid grid-cols-12 px-5 py-4 items-start gap-4 bg-card/40 border-b border-border last:border-b-0"><div class="col-span-3 font-mono text-sm font-semibold">Hack The Box</div><div class="col-span-7 text-sm text-muted-foreground">Enterprise &amp; standalone machines — network pentesting, privesc, AD exploitation</div><div class="col-span-2 text-right"><span class="font-mono text-[11px] uppercase tracking-wider px-2 py-1 border border-primary text-primary">Active</span></div></div><div class="grid grid-cols-12 px-5 py-4 items-start gap-4 bg-background border-b border-border last:border-b-0"><div class="col-span-3 font-mono text-sm font-semibold">Vulnlab</div><div class="col-span-7 text-sm text-muted-foreground">Active Directory chains, pivoting, domain controller compromise</div><div class="col-span-2 text-right"><span class="font-mono text-[11px] uppercase tracking-wider px-2 py-1 border border-primary text-primary">Active</span></div></div><div class="grid grid-cols-12 px-5 py-4 items-start gap-4 bg-card/40 border-b border-border last:border-b-0"><div class="col-span-3 font-mono text-sm font-semibold">OSCP (PEN-200)</div><div class="col-span-7 text-sm text-muted-foreground">Lab practice, buffer overflow, Active Directory</div><div class="col-span-2 text-right"><span class="font-mono text-[11px] uppercase tracking-wider px-2 py-1 border border-accent-amber text-accent-amber">Target Q4 2026</span></div></div><div class="grid grid-cols-12 px-5 py-4 items-start gap-4 bg-background border-b border-border last:border-b-0"><div class="col-span-3 font-mono text-sm font-semibold">CEH v13</div><div class="col-span-7 text-sm text-muted-foreground">Core methodology, scanning, footprinting, vulnerabilities</div><div class="col-span-2 text-right"><span class="font-mono text-[11px] uppercase tracking-wider px-2 py-1 border border-accent-amber text-accent-amber">Target Q3 2026</span></div></div><div class="grid grid-cols-12 px-5 py-4 items-start gap-4 bg-card/40 border-b border-border last:border-b-0"><div class="col-span-3 font-mono text-sm font-semibold">CISSP</div><div class="col-span-7 text-sm text-muted-foreground">Security domains and risk management</div><div class="col-span-2 text-right"><span class="font-mono text-[11px] uppercase tracking-wider px-2 py-1 border border-accent-amber text-accent-amber">Target Q1 2027</span></div></div></div></section><section id="certs" class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->05<span class="text-muted-foreground">]</span> // <!-- -->certifications</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// credentials</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="grid sm:grid-cols-2 gap-3"><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Fortinet Certified Associate in Cybersecurity (FCAC)</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Mathematical Foundations for Cryptography — CU Boulder</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Red Hat Certified System Administrator (RHCSA)</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">In the Trenches: SOC — EC-Council</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">CISSP Exam Prep Pathway — CyberFrat</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Introduction to Network Security — University of London</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Security Management &amp; Governance — Royal Holloway</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Ethical Hacking Expert — Star Certification</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Autopsy Basics (Digital Forensics) — BasisTech</span></div><div class="flex items-center gap-3 border border-border bg-card/40 px-4 py-3 hover:border-primary transition-colors"><span class="font-mono text-primary text-sm">[✓]</span><span class="text-sm md:text-base">Fundamental AI Concepts — Microsoft</span></div></div></section><section class="py-20 md:py-28"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->05b<span class="text-muted-foreground">]</span> // <!-- -->academic</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// education</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="grid md:grid-cols-3 gap-px bg-border border border-border"><div class="bg-background p-6"><div class="font-mono text-xs text-primary mb-3">Expected Jul 2027</div><h3 class="font-mono font-semibold text-base leading-snug">MBA in Cybersecurity</h3><div class="mt-2 text-sm text-muted-foreground">Chitkara University</div><div class="text-xs text-muted-foreground/70 mt-1">Punjab, India</div></div><div class="bg-background p-6"><div class="font-mono text-xs text-primary mb-3">2019 — 2022</div><h3 class="font-mono font-semibold text-base leading-snug">B.Tech, Computer Science &amp; Engineering</h3><div class="mt-2 text-sm text-muted-foreground">Manipal University Jaipur</div><div class="text-xs text-muted-foreground/70 mt-1">Jaipur, India</div></div><div class="bg-background p-6"><div class="font-mono text-xs text-primary mb-3">2013 — 2018</div><h3 class="font-mono font-semibold text-base leading-snug">Diploma in Computer Science</h3><div class="mt-2 text-sm text-muted-foreground">Hindu College of Engineering</div><div class="text-xs text-muted-foreground/70 mt-1">Haryana, India</div></div></div></section><section id="contact" class="py-20 md:py-32"><div class="mb-12"><div class="font-mono text-xs text-primary mb-3"><span class="text-muted-foreground">[</span>SECTOR_<!-- -->06<span class="text-muted-foreground">]</span> // <!-- -->contact</div><h2 class="font-mono font-bold text-3xl md:text-5xl tracking-tight">// establish_connection</h2><div class="mt-4 h-px bg-gradient-to-r from-primary via-border to-transparent"></div></div><div class="border border-border bg-card p-8 md:p-12 shadow-terminal relative overflow-hidden"><div class="font-mono text-xs text-muted-foreground mb-6">root@aditya:~# ./initiate_handshake</div><h3 class="font-mono text-3xl md:text-5xl font-bold tracking-tight">Let&#x27;s build <span class="text-primary">resilient systems.</span></h3><p class="mt-5 max-w-xl text-muted-foreground">Looking for SecOps, detection engineering, or red-team roles — open to relocation and remote opportunities worldwide.</p><div class="mt-8 grid sm:grid-cols-2 gap-3 max-w-2xl"><a href="mailto:aavkjain@hotmail.com" rel="noreferrer" class="group border border-border bg-background/60 px-4 py-3 hover:border-primary transition-colors flex items-center justify-between gap-4"><div><div class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">email</div><div class="font-mono text-sm group-hover:text-primary transition-colors break-all">aavkjain@hotmail.com</div></div><span class="font-mono text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span></a><a href="tel:+919897577007" rel="noreferrer" class="group border border-border bg-background/60 px-4 py-3 hover:border-primary transition-colors flex items-center justify-between gap-4"><div><div class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">phone</div><div class="font-mono text-sm group-hover:text-primary transition-colors break-all">+91 98975 77007</div></div><span class="font-mono text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span></a><a href="https://linkedin.com/in/ajainx1" target="_blank" rel="noreferrer" class="group border border-border bg-background/60 px-4 py-3 hover:border-primary transition-colors flex items-center justify-between gap-4"><div><div class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">linkedin</div><div class="font-mono text-sm group-hover:text-primary transition-colors break-all">linkedin.com/in/ajainx1</div></div><span class="font-mono text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span></a><a href="https://ajainx1.github.io" target="_blank" rel="noreferrer" class="group border border-border bg-background/60 px-4 py-3 hover:border-primary transition-colors flex items-center justify-between gap-4"><div><div class="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">github</div><div class="font-mono text-sm group-hover:text-primary transition-colors break-all">ajainx1.github.io</div></div><span class="font-mono text-primary opacity-0 group-hover:opacity-100 transition-opacity">↗</span></a></div></div></section></main><footer class="border-t border-border mt-20"><div class="mx-auto max-w-6xl px-6 md:px-10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 font-mono text-xs text-muted-foreground"><div><span class="text-primary">●</span> session active — © <!-- -->2026<!-- --> Aditya Jain</div><div>built with intent · deployed via github pages</div></div></footer></div><script>(function(t){let s;try{s=JSON.parse(sessionStorage.getItem(t.storageKey)||"{}")}catch(e){console.error(e);return}const c=t.key||window.history.state?.__TSR_key,r=c?s[c]:void 0;if(t.shouldScrollRestoration&&r&&typeof r=="object"&&Object.keys(r).length>0){for(const e in r){const o=r[e];if(!o||typeof o!="object")continue;const l=o.scrollX,i=o.scrollY;if(!(!Number.isFinite(l)||!Number.isFinite(i))){if(e==="window")window.scrollTo({top:i,left:l,behavior:t.behavior});else if(e){let n;try{n=document.querySelector(e)}catch{continue}n&&(n.scrollLeft=l,n.scrollTop=i)}}}return}const a=window.location.hash.split("#",2)[1];if(a){const e=window.history.state?.__hashScrollIntoViewOptions??!0;if(e){const o=document.getElementById(a);o&&o.scrollIntoView(e)}return}window.scrollTo({top:0,left:0,behavior:t.behavior})})({"storageKey":"tsr-scroll-restoration-v1_3","shouldScrollRestoration":true});document.currentScript.remove()</script><!--/$--><script class="$tsr" id="$tsr-stream-barrier">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-CotXFTW0.js"],assets:$R[5]=[$R[6]={tag:"script",attrs:$R[7]={type:"module",async:!0},children:"import(\"/assets/index-CotXFTW0.js\")"}]},"/":$R[8]={preloads:$R[9]=["/assets/routes-COvJqN3p.js"]}}},matches:$R[10]=[$R[11]={i:"__root__",u:1782106563625,s:"success",ssr:!0},$R[12]={i:"",u:1782106563625,s:"success",ssr:!0}],lastMatchId:""})($R["tsr"]);$_TSR.e();document.currentScript.remove()</script><script type="module" async="">import("/assets/index-CotXFTW0.js")</script><script src="https://cdn.gpteng.co/lovable.js" type="module"></script>
+<aside
+	id="lovable-badge"
+	role="complementary"
+	dir="ltr"
+	lang="en"
+	aria-label="Edit with Lovable">
+	<a
+		id="lovable-badge-cta" 
+		target="_blank" 
+		href="https://lovable.dev/projects/a5427734-fa35-4319-acea-bbd0769e30f9?utm_source=lovable-badge"
+		rel="noopener nofollow"
+		aria-label="Edit with Lovable">
+		<span id="lovable-badge-text">Edit with</span>
+		<svg xmlns="http://www.w3.org/2000/svg" width="52" height="16" fill="none" viewBox="0 0 52 16">
+  <path fill="#FCFBF8" fill-rule="evenodd" d="M20.318 5.25c.643 0 1.206.14 1.69.418a2.81 2.81 0 0 1 1.118 1.191c.266.513.4 1.115.4 1.807s-.134 1.296-.4 1.812a2.81 2.81 0 0 1-1.118 1.193c-.484.278-1.047.418-1.69.418s-1.208-.14-1.695-.418a2.85 2.85 0 0 1-1.125-1.193c-.262-.516-.393-1.12-.393-1.812s.131-1.294.393-1.807a2.848 2.848 0 0 1 1.125-1.191c.487-.279 1.052-.418 1.695-.418Zm0 1.425c-.27 0-.504.076-.7.228-.193.147-.34.37-.443.67-.102.295-.153.66-.153 1.093 0 .435.05.801.153 1.1.102.3.25.524.443.676.196.147.43.22.7.22.27 0 .502-.073.694-.22.193-.152.341-.375.443-.67.103-.299.153-.667.153-1.106 0-.65-.112-1.145-.337-1.481a1.08 1.08 0 0 0-.953-.51ZM32.7 5.25c.61 0 1.127.1 1.549.3.422.197.74.48.953.849.217.368.325.809.325 1.32v2.704c0 .29.02.562.062.812.044.245.108.4.19.466V12h-1.935a5.895 5.895 0 0 1-.105-.684 7.745 7.745 0 0 1-.02-.228 2.293 2.293 0 0 1-.151.203c-.205.242-.47.437-.793.584-.32.143-.685.215-1.094.215-.406 0-.77-.08-1.094-.24a1.845 1.845 0 0 1-.756-.682 1.984 1.984 0 0 1-.27-1.045c0-.606.178-1.069.535-1.388.356-.324.87-.534 1.542-.633l1.125-.16c.225-.032.403-.074.534-.123a.622.622 0 0 0 .288-.196.549.549 0 0 0 .093-.327.65.65 0 0 0-.11-.367.702.702 0 0 0-.32-.27c-.14-.07-.31-.105-.51-.105-.32 0-.576.083-.768.251-.193.164-.298.39-.314.676h-1.923c.016-.434.147-.82.393-1.155.25-.34.596-.604 1.039-.792.442-.189.954-.283 1.535-.283Zm.99 3.498a.98.98 0 0 1-.215.14 2.49 2.49 0 0 1-.584.178l-.473.092c-.315.061-.553.156-.713.283-.155.127-.233.305-.233.534 0 .23.084.412.252.547.168.135.383.203.645.203s.494-.058.694-.173c.201-.118.355-.282.461-.49.11-.21.166-.448.166-.714v-.6Zm4.526-2.375c.065-.125.138-.243.221-.349.197-.25.437-.44.719-.571.282-.135.6-.203.952-.203.528 0 .988.138 1.377.412.389.275.688.67.896 1.186.21.512.314 1.12.314 1.824 0 .7-.107 1.309-.32 1.825-.213.512-.518.906-.915 1.18-.393.275-.854.412-1.383.412-.352 0-.667-.062-.946-.184a1.832 1.832 0 0 1-.7-.554 2.2 2.2 0 0 1-.234-.383V12h-1.843V3h1.862v3.373Zm1.284.296c-.274 0-.51.085-.707.253-.192.163-.338.397-.436.7a3.376 3.376 0 0 0-.148 1.05c0 .406.05.759.148 1.058.098.299.243.53.436.694.197.164.433.246.707.246.279 0 .512-.082.7-.246.193-.164.336-.395.43-.694.099-.3.148-.652.148-1.058 0-.405-.05-.757-.147-1.056-.095-.299-.238-.53-.43-.694a1.015 1.015 0 0 0-.7-.253Zm9.416-1.419c.602 0 1.136.131 1.604.393.466.262.829.643 1.086 1.143.263.5.394 1.097.394 1.794 0 .25-.002.449-.006.596H47.51c.018.288.071.538.164.75a1.3 1.3 0 0 0 .491.596c.214.13.465.196.757.196.319 0 .583-.082.792-.246.209-.167.34-.403.393-.706h1.862a2.48 2.48 0 0 1-.485 1.235 2.54 2.54 0 0 1-1.051.805c-.439.188-.949.283-1.53.283-.655 0-1.225-.125-1.708-.375a2.672 2.672 0 0 1-1.13-1.143c-.267-.508-.4-1.137-.4-1.887 0-.712.14-1.327.418-1.843a2.86 2.86 0 0 1 1.155-1.186c.491-.27 1.051-.405 1.678-.405Zm-.044 1.345c-.274 0-.516.068-.725.203a1.29 1.29 0 0 0-.479.59 2.045 2.045 0 0 0-.132.498h2.562a1.873 1.873 0 0 0-.138-.602 1.061 1.061 0 0 0-.418-.516 1.243 1.243 0 0 0-.67-.173Z" clip-rule="evenodd"/>
+  <path fill="#FCFBF8" d="m26.605 9.995 1.342-4.566h1.924L27.628 12h-2.07l-2.33-6.57h1.98l1.397 4.565Zm-13.013.143h2.256c1.632 0 1.421 1.837 1.418 1.861h-5.603V3h1.93v7.138Zm31.516 1.861h-1.862V3h1.862v8.999Z"/>
+  <path fill="url(#a)" fill-rule="evenodd" d="M2.7 3c1.492 0 2.7 1.192 2.7 2.663v1.012h.9c1.49 0 2.7 1.192 2.7 2.662S7.791 12 6.3 12H0V5.663C0 4.193 1.209 3 2.7 3Z" clip-rule="evenodd"/>
+  <defs>
+    <radialGradient id="a" cx="0" cy="0" r="1" gradientTransform="matrix(-1.54236 7.07838 -10.231 -2.15602 4.627 5.022)" gradientUnits="userSpaceOnUse">
+      <stop offset=".106" stop-color="#FE7B02"/>
+      <stop offset=".394" stop-color="#FE3F21"/>
+      <stop offset=".608" stop-color="#F858BC"/>
+      <stop offset=".929" stop-color="#575ECF"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+
+	</a>
+	
+	<span id="lovable-badge-divider" aria-hidden="true"></span>
+	
+	<button 
+		id="lovable-badge-close"
+		aria-label="Dismiss"
+		title="Dismiss"
+		type="button">
+		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" aria-hidden="true">
+			<path d="M10.646 4.646a.5.5 0 1 1 .707.708L8.707 8l2.646 2.646a.5.5 0 1 1-.707.707L8 8.707l-2.646 2.646a.5.5 0 1 1-.708-.707L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708L8 7.293l2.646-2.647Z"/>
+		</svg>
+	</button>
+</aside>
+<script>
+	// Don't show the lovable-badge if the page is in an iframe or if it's being rendered by puppeteer (screenshot service)
+	if (window.self !== window.top || navigator.userAgent.includes('puppeteer')) {
+		var badge = document.getElementById('lovable-badge');
+		if (badge) {
+			badge.style.display = 'none';
+		}
+	}
+
+	// Add click event listener to close button with animation
+	var closeButton = document.getElementById('lovable-badge-close');
+	if (closeButton) {
+		closeButton.addEventListener('click', function(event) {
+			event.preventDefault();
+			event.stopPropagation();
+			var badge = document.getElementById('lovable-badge');
+			if (badge) {
+				badge.classList.add('closing');
+				setTimeout(function() {
+					if (badge) {
+						badge.style.display = 'none';
+					}
+				}, 240);
+			}
+		});
+	}
+</script>
+</body></html>
