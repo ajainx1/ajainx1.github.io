@@ -16,7 +16,7 @@ const PRODUCTS: Product[] = [
     currency: 'INR',
     badge: 'Popular',
     type: 'bot',
-    image: 'https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&q=80&w=600',
+    image: '/js/bot_standard.png',
     specs: [
       'Telegram, WhatsApp & Signal Webhook Alerts',
       'Fully custom strategies implementation',
@@ -33,7 +33,7 @@ const PRODUCTS: Product[] = [
     currency: 'INR',
     badge: 'Best Value',
     type: 'bundle',
-    image: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=600',
+    image: '/js/bot_premium.png',
     specs: [
       'Includes 1 Month Bot Fixed License',
       'Pre-installed on Windows Cloud VM (2GB ECC RAM, 1 vCPU)',
@@ -50,7 +50,7 @@ const PRODUCTS: Product[] = [
     currency: 'INR',
     badge: 'Hardware Import',
     type: 'hotspot',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=600',
+    image: '/js/5g_hotspot.png',
     specs: [
       'High-speed 5G downlink up to 1.8 Gbps',
       'Unlocked multi-band support (JP/CN/IN bands)',
@@ -67,7 +67,7 @@ const PRODUCTS: Product[] = [
     currency: 'INR',
     badge: 'Ultimate Elite',
     type: 'bundle',
-    image: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&q=80&w=600',
+    image: '/js/pro_trader_bundle.png',
     specs: [
       'All Premium VM Bundle benefits (Save ₹1000+!)',
       'Physical 5G SIM Hotspot shipped express',
@@ -126,7 +126,6 @@ export default function ProductCatalog({ onSelectProduct, isDark }: ProductCatal
                   alt={prod.name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   style={{ filter: 'brightness(0.68)' }}
-                  referrerPolicy="no-referrer"
                   loading="lazy"
                 />
                 <div className="absolute inset-0"
