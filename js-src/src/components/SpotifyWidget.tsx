@@ -22,7 +22,7 @@ const PLAYLIST: Track[] = [
   {
     title: 'Midnight City',
     artist: 'M83',
-    album: 'Hurry Up, We\'re Dreaming',
+    album: "Hurry Up, We're Dreaming",
     duration: '4:03',
     imageUrl: 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=200',
     spotifyUrl: 'https://open.spotify.com/track/168gL67S3S688nN13',
@@ -37,30 +37,25 @@ const PLAYLIST: Track[] = [
   },
 ];
 
-export default function SpotifyWidget() {
+interface SpotifyWidgetProps { isDark: boolean; }
+
+export default function SpotifyWidget({ isDark }: SpotifyWidgetProps) {
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const [progress, setProgress] = useState(42); // percentage
-  const [seconds, setSeconds] = useState(84); // 1m 24s
+  const [progress, setProgress] = useState(42);
+  const [seconds, setSeconds] = useState(84);
 
   const currentTrack = PLAYLIST[currentTrackIndex];
-
-  // Parse duration string "m:ss" to total seconds
-  const parseDuration = (dur: string) => {
-    const [m, s] = dur.split(':').map(Number);
-    return m * 60 + s;
-  };
-
+  const parseDuration = (dur: string) => { const [m, s] = dur.split(':').map(Number); return m * 60 + s; };
   const totalSeconds = parseDuration(currentTrack.duration);
 
   useEffect(() => {
     let interval: any = null;
     if (isPlaying) {
       interval = setInterval(() => {
-        setSeconds((prev) => {
+        setSeconds(prev => {
           if (prev >= totalSeconds) {
-            // Loop to next track
-            setCurrentTrackIndex((prevIdx) => (prevIdx + 1) % PLAYLIST.length);
+            setCurrentTrackIndex(pi => (pi + 1) % PLAYLIST.length);
             return 0;
           }
           return prev + 1;
@@ -70,92 +65,103 @@ export default function SpotifyWidget() {
     return () => clearInterval(interval);
   }, [isPlaying, totalSeconds]);
 
-  useEffect(() => {
-    setProgress(Math.floor((seconds / totalSeconds) * 100));
-  }, [seconds, totalSeconds]);
+  useEffect(() => { setProgress(Math.floor((seconds / totalSeconds) * 100)); }, [seconds, totalSeconds]);
 
-  // Reset clock when changing track
-  const handleTrackChange = (index: number) => {
-    setCurrentTrackIndex(index);
-    setSeconds(0);
-    setProgress(0);
-  };
+  const handleTrackChange = (index: number) => { setCurrentTrackIndex(index); setSeconds(0); setProgress(0); };
+  const formatTime = (secs: number) => { const m = Math.floor(secs / 60); const s = secs % 60; return `${m}:${s < 10 ? '0' : ''}${s}`; };
+  const handleNext = () => handleTrackChange((currentTrackIndex + 1) % PLAYLIST.length);
+  const handlePrev = () => handleTrackChange((currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length);
 
-  const formatTime = (secs: number) => {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return `${m}:${s < 10 ? '0' : ''}${s}`;
-  };
-
-  const handleNext = () => {
-    handleTrackChange((currentTrackIndex + 1) % PLAYLIST.length);
-  };
-
-  const handlePrev = () => {
-    handleTrackChange((currentTrackIndex - 1 + PLAYLIST.length) % PLAYLIST.length);
-  };
+  const cardBg = isDark ? '#111111' : '#ffffff';
+  const cardBorder = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)';
+  const deepBg = isDark ? 'rgba(0,0,0,0.55)' : 'rgba(0,0,0,0.03)';
+  const trackBg = isDark ? '#000' : '#f8f8fa';
+  const textPrimary = isDark ? '#fff' : '#111';
+  const textSecondary = isDark ? '#9ca3af' : '#666';
+  const textMuted = isDark ? '#4b5563' : '#aaa';
+  const controlsBg = isDark ? 'rgba(0,0,0,0.35)' : 'rgba(0,0,0,0.04)';
+  const controlsBorder = isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)';
+  const trackItemHover = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.04)';
+  const activeTrackBg = isDark ? 'rgba(59,130,246,0.08)' : 'rgba(59,130,246,0.05)';
 
   return (
-    <div className="bg-[#111111] border border-white/10 rounded-none p-6 text-white shadow-2xl hover:border-white/20 transition-all duration-300">
+    <div
+      className="rounded-sm border p-5 shadow-2xl transition-all duration-300 hover:shadow-blue-500/10"
+      style={{
+        background: cardBg,
+        borderColor: cardBorder,
+        boxShadow: isPlaying ? '0 0 0 1px rgba(59,130,246,0.12), 0 8px 32px rgba(59,130,246,0.08)' : undefined,
+        transition: 'box-shadow 0.4s ease',
+      }}
+    >
+      {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-none bg-blue-600 flex items-center justify-center text-white font-semibold animate-pulse">
-            <Radio size={16} />
+          <div className="w-8 h-8 rounded-sm flex items-center justify-center text-white animate-pulse"
+               style={{ background: 'linear-gradient(135deg, #1d4ed8, #3b82f6)' }}>
+            <Radio size={15} />
           </div>
           <div>
             <h3 className="text-xs font-bold tracking-[0.2em] text-blue-400 uppercase">Recent Listening</h3>
-            <p className="text-[10px] text-neutral-500 font-mono">FOUNDER'S SPOTIFY FEED</p>
+            <p className="text-[9px] font-mono uppercase tracking-wider" style={{ color: textMuted }}>
+              Founder's Spotify Feed
+            </p>
           </div>
         </div>
-        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-none bg-blue-950/40 border border-blue-900/30 text-[10px] font-mono text-blue-400">
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping"></span>
-          LIVE SYNC
+        <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono text-blue-400"
+             style={{ background: 'rgba(59,130,246,0.08)', border: '1px solid rgba(59,130,246,0.2)' }}>
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping" />
+          LIVE
         </div>
       </div>
 
-      {/* Main Player Display */}
-      <div className="bg-black/60 border border-white/5 rounded-none p-4 mb-4 flex flex-col sm:flex-row gap-4 items-center">
-        <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-none overflow-hidden group shadow-lg flex-shrink-0 border border-white/10">
-          <img 
-            src={currentTrack.imageUrl} 
+      {/* Player */}
+      <div
+        className="rounded-sm border p-3 sm:p-4 mb-4 flex flex-col sm:flex-row gap-3 sm:gap-4 items-center"
+        style={{ background: deepBg, borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}
+      >
+        <div className="relative w-16 h-16 sm:w-20 sm:h-20 rounded-sm overflow-hidden group shadow-lg flex-shrink-0"
+             style={{ border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}` }}>
+          <img
+            src={currentTrack.imageUrl}
             alt={currentTrack.album}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-            <Music size={24} className="text-blue-400 animate-bounce" />
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <Music size={20} className="text-blue-400" />
           </div>
         </div>
 
         <div className="flex-1 w-full text-center sm:text-left min-w-0">
-          <div className="flex items-center justify-center sm:justify-between gap-2">
-            <h4 className="text-sm font-bold text-white truncate hover:text-blue-400 transition-colors">
+          <div className="flex items-center justify-center sm:justify-between gap-2 mb-1">
+            <h4 className="text-sm font-bold truncate hover:text-blue-400 transition-colors"
+                style={{ color: textPrimary }}>
               {currentTrack.title}
             </h4>
-            <a 
-              href={currentTrack.spotifyUrl} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-neutral-500 hover:text-blue-400 transition-colors"
-              title="Open in Spotify"
-            >
-              <ExternalLink size={14} />
+            <a href={currentTrack.spotifyUrl} target="_blank" rel="noopener noreferrer"
+               className="hover:text-blue-400 transition-colors flex-shrink-0" title="Open in Spotify"
+               style={{ color: textMuted }}>
+              <ExternalLink size={13} />
             </a>
           </div>
-          <p className="text-xs text-neutral-300 truncate mt-0.5">{currentTrack.artist}</p>
-          <p className="text-[10px] text-neutral-500 truncate mt-1 uppercase tracking-wider">ALBUM: {currentTrack.album}</p>
+          <p className="text-xs truncate" style={{ color: textSecondary }}>{currentTrack.artist}</p>
+          <p className="text-[10px] uppercase tracking-wider truncate mt-0.5" style={{ color: textMuted }}>
+            {currentTrack.album}
+          </p>
 
-          {/* Animated Wave visualizer when playing */}
-          <div className="flex items-end gap-1.5 h-5 mt-3 justify-center sm:justify-start">
-            {[...Array(12)].map((_, i) => (
+          {/* Waveform visualizer */}
+          <div className="flex items-end gap-1 h-5 mt-2 justify-center sm:justify-start">
+            {[...Array(14)].map((_, i) => (
               <span
                 key={i}
-                className="w-1 bg-blue-500 transition-all duration-300"
+                className="w-0.5 rounded-sm"
                 style={{
-                  height: isPlaying ? `${Math.floor(Math.random() * 16) + 4}px` : '4px',
-                  opacity: isPlaying ? 0.4 + (i % 3) * 0.2 : 0.2,
-                  animation: isPlaying ? `bounce 1s ease-in-out infinite alternate` : 'none',
-                  animationDelay: `${i * 0.1}s`
+                  height: isPlaying ? `${6 + ((i * 7) % 16)}px` : '3px',
+                  background: `rgba(59,130,246,${0.3 + (i % 4) * 0.15})`,
+                  animation: isPlaying ? `bounce ${0.6 + (i % 4) * 0.15}s ease-in-out infinite alternate` : 'none',
+                  animationDelay: `${i * 0.07}s`,
+                  transition: 'height 0.3s',
                 }}
               />
             ))}
@@ -163,75 +169,87 @@ export default function SpotifyWidget() {
         </div>
       </div>
 
-      {/* Progress slider bar */}
+      {/* Progress */}
       <div className="mb-4">
-        <div className="w-full bg-neutral-900 h-1 rounded-none overflow-hidden relative group cursor-pointer">
-          <div 
-            className="bg-blue-500 h-full transition-all duration-300 relative" 
-            style={{ width: `${progress}%` }}
+        <div className="w-full h-1 rounded-full overflow-hidden relative cursor-pointer"
+             style={{ background: isDark ? '#1a1a1a' : '#e8e8ed' }}>
+          <div
+            className="h-full rounded-full transition-all duration-1000"
+            style={{
+              width: `${progress}%`,
+              background: 'linear-gradient(90deg, #2563eb, #60a5fa)',
+            }}
           />
         </div>
-        <div className="flex justify-between text-[10px] font-mono text-neutral-500 mt-1.5">
+        <div className="flex justify-between text-[9px] font-mono mt-1.5" style={{ color: textMuted }}>
           <span>{formatTime(seconds)}</span>
           <span>{currentTrack.duration}</span>
         </div>
       </div>
 
-      {/* Media controls bar */}
-      <div className="flex justify-between items-center bg-black/40 p-2.5 rounded-none border border-white/5">
-        <div className="flex items-center gap-1">
-          <Volume2 size={14} className="text-neutral-500" />
-          <div className="w-12 bg-neutral-900 h-0.5 rounded-none overflow-hidden">
-            <div className="bg-neutral-600 h-full w-4/5" />
+      {/* Controls */}
+      <div
+        className="flex justify-between items-center p-2 sm:p-2.5 rounded-sm border"
+        style={{ background: controlsBg, borderColor: controlsBorder }}
+      >
+        <div className="flex items-center gap-1.5">
+          <Volume2 size={13} style={{ color: textMuted }} />
+          <div className="w-10 sm:w-14 h-0.5 rounded-full overflow-hidden" style={{ background: isDark ? '#1f2937' : '#e0e0e5' }}>
+            <div className="h-full w-4/5 rounded-full" style={{ background: isDark ? '#374151' : '#ccc' }} />
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={handlePrev}
-            className="p-1.5 text-neutral-500 hover:text-white rounded-none transition-all"
-          >
-            <SkipBack size={16} />
+        <div className="flex items-center gap-3 sm:gap-4">
+          <button onClick={handlePrev} className="p-1.5 transition-all hover:scale-110"
+                  style={{ color: textMuted }}>
+            <SkipBack size={15} />
           </button>
-          <button 
+          <button
             onClick={() => setIsPlaying(!isPlaying)}
-            className="w-9 h-9 bg-white text-black flex items-center justify-center transition-all transform hover:scale-105 active:scale-95 shadow-md"
+            className="w-9 h-9 flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-md rounded-sm"
+            style={{ background: isDark ? '#fff' : '#111', color: isDark ? '#000' : '#fff' }}
           >
-            {isPlaying ? <Pause size={16} fill="currentColor" /> : <Play size={16} fill="currentColor" className="ml-0.5" />}
+            {isPlaying ? <Pause size={15} fill="currentColor" /> : <Play size={15} fill="currentColor" className="ml-0.5" />}
           </button>
-          <button 
-            onClick={handleNext}
-            className="p-1.5 text-neutral-500 hover:text-white rounded-none transition-all"
-          >
-            <SkipForward size={16} />
+          <button onClick={handleNext} className="p-1.5 transition-all hover:scale-110"
+                  style={{ color: textMuted }}>
+            <SkipForward size={15} />
           </button>
         </div>
 
-        <span className="text-[9px] font-mono text-neutral-500 uppercase tracking-[0.2em] sm:block hidden">
-          {isPlaying ? 'ACTIVE' : 'STANDBY'}
+        <span className="text-[9px] font-mono uppercase tracking-[0.2em] hidden sm:block"
+              style={{ color: textMuted }}>
+          {isPlaying ? 'ACTIVE' : 'PAUSED'}
         </span>
       </div>
 
-      {/* Playlist tracks selection */}
-      <div className="mt-4 pt-4 border-t border-white/5">
-        <p className="text-[10px] font-bold text-neutral-400 mb-2 uppercase tracking-widest">Focus History</p>
-        <div className="space-y-1 max-h-36 overflow-y-auto pr-1 scrollbar-thin">
+      {/* Playlist */}
+      <div className="mt-4 pt-4 border-t" style={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+        <p className="text-[9px] font-bold uppercase tracking-widest mb-2" style={{ color: textMuted }}>
+          Focus History
+        </p>
+        <div className="space-y-1 max-h-36 overflow-y-auto pr-1">
           {PLAYLIST.map((track, index) => (
             <button
               key={index}
               onClick={() => handleTrackChange(index)}
-              className={`w-full text-left flex items-center justify-between p-2 rounded-none text-[11px] transition-all ${
-                index === currentTrackIndex 
-                  ? 'bg-blue-950/20 border-l-2 border-blue-500 text-blue-400 font-medium' 
-                  : 'hover:bg-neutral-900 text-neutral-500 hover:text-neutral-200'
-              }`}
+              className="w-full text-left flex items-center justify-between p-2 rounded-sm text-[11px] transition-all"
+              style={{
+                background: index === currentTrackIndex ? activeTrackBg : 'transparent',
+                borderLeft: index === currentTrackIndex ? '2px solid #3b82f6' : '2px solid transparent',
+                color: index === currentTrackIndex ? '#60a5fa' : textSecondary,
+              }}
             >
               <div className="flex items-center gap-2 truncate">
-                <span className="font-mono text-[9px] w-3 text-neutral-600 text-right">0{index + 1}</span>
-                <span className="truncate">{track.title}</span>
-                <span className="text-[10px] text-neutral-500 truncate">- {track.artist}</span>
+                <span className="font-mono text-[9px] w-4 text-right flex-shrink-0" style={{ color: textMuted }}>
+                  0{index + 1}
+                </span>
+                <span className="truncate font-medium">{track.title}</span>
+                <span className="text-[10px] truncate" style={{ color: textMuted }}>— {track.artist}</span>
               </div>
-              <span className="font-mono text-[9px] text-neutral-500">{track.duration}</span>
+              <span className="font-mono text-[9px] flex-shrink-0 ml-2" style={{ color: textMuted }}>
+                {track.duration}
+              </span>
             </button>
           ))}
         </div>
