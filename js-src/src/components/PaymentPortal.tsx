@@ -289,15 +289,11 @@ export default function PaymentPortal({
                     style={{ color: textSecondary }}>
                 Secure Card Gateway
               </span>
-              {[
-                { label: 'Cardholder Email', value: email, onChange: undefined, disabled: true, placeholder: '' },
-              ].map((_, i) => (
-                <div key={i}>
-                  <label className="block text-[9px] uppercase font-mono mb-1 tracking-wider"
-                         style={{ color: textMuted }}>Cardholder Email</label>
-                  <input type="text" value={email} disabled style={{ ...inputStyle, opacity: 0.5, cursor: 'not-allowed' }} />
-                </div>
-              ))}
+              <div>
+                <label className="block text-[9px] uppercase font-mono mb-1 tracking-wider"
+                       style={{ color: textMuted }}>Cardholder Email</label>
+                <input type="text" value={email} disabled style={{ ...inputStyle, opacity: 0.5, cursor: 'not-allowed' }} />
+              </div>
               <div>
                 <label className="block text-[9px] uppercase font-mono mb-1 tracking-wider"
                        style={{ color: textMuted }}>Card Number</label>

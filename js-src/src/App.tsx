@@ -1,37 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  ShieldCheck,
-  Layers,
-  Terminal,
-  TrendingUp,
-  Radio,
-  ExternalLink,
-  FileCheck,
-  Clock,
-  Sliders,
-  ShoppingCart,
-  Menu,
-  X,
-  CreditCard,
-  MessageSquare,
-  Sun,
-  Moon,
-  Eye,
-  Zap,
-  Server
+  ShieldCheck, Terminal, TrendingUp, Radio, ExternalLink,
+  FileCheck, Clock, Sliders, ShoppingCart, Menu, X,
+  MessageSquare, Sun, Moon, Eye, Server, ChevronUp, Zap
 } from 'lucide-react';
 
 import { Product, VMConfig, PaymentSubmission } from './types';
+import { useToast } from './context/ToastContext';
 import SpotifyWidget from './components/SpotifyWidget';
 import AlertsSimulator from './components/AlertsSimulator';
 import VmConfigurator from './components/VmConfigurator';
 import ProductCatalog from './components/ProductCatalog';
 import PaymentPortal from './components/PaymentPortal';
 
-/* ─── Visit counter hook ─── */
+/* ══════════════════════════════
+   HOOKS
+══════════════════════════════ */
+
 function useVisitCounter() {
-  const [count, setCount] = useState(0);
   const [displayCount, setDisplayCount] = useState(0);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     const stored = parseInt(localStorage.getItem('jumpstreet_visits') || '0', 10);
@@ -39,49 +27,62 @@ function useVisitCounter() {
     localStorage.setItem('jumpstreet_visits', String(newCount));
     setCount(newCount);
 
-    // Animate count-up
-    let current = Math.max(0, newCount - 20);
-    const step = () => {
+    // Count-up animation
+    const start = Math.max(0, newCount - 30);
+    let current = start;
+    const duration = 1200;
+    const steps = newCount - start;
+    const interval = steps > 0 ? duration / steps : 0;
+    if (steps <= 0) { setDisplayCount(newCount); return; }
+    const timer = setInterval(() => {
       current++;
       setDisplayCount(current);
-      if (current < newCount) requestAnimationFrame(step);
-    };
-    requestAnimationFrame(step);
+      if (current >= newCount) clearInterval(timer);
+    }, interval);
+    return () => clearInterval(timer);
   }, []);
 
   return { count, displayCount };
 }
 
-/* ─── Dark mode hook ─── */
 function useDarkMode() {
   const [isDark, setIsDark] = useState(() => {
     const stored = localStorage.getItem('jumpstreet_theme');
-    return stored !== 'light'; // default dark
+    return stored !== 'light';
   });
 
   useEffect(() => {
-    if (isDark) {
-      document.body.classList.remove('light-mode');
-    } else {
-      document.body.classList.add('light-mode');
-    }
+    document.body.classList.toggle('light-mode', !isDark);
     localStorage.setItem('jumpstreet_theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
   return { isDark, toggle: () => setIsDark(p => !p) };
 }
 
-/* ─── Dark Mode Toggle Component ─── */
+function useScrollTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  return { visible, scrollTop };
+}
+
+/* ══════════════════════════════
+   SUB-COMPONENTS
+══════════════════════════════ */
+
 function DarkModeToggle({ isDark, onToggle }: { isDark: boolean; onToggle: () => void }) {
   return (
     <button
       onClick={onToggle}
       className="dark-mode-toggle"
-      aria-label="Toggle dark mode"
-      title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+      aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
       <span className="text-[10px] font-mono font-bold uppercase tracking-wider hidden sm:block"
-            style={{ color: isDark ? '#9ca3af' : '#555' }}>
+            style={{ color: isDark ? '#9ca3af' : '#666' }}>
         {isDark ? 'Dark' : 'Light'}
       </span>
       <div className={`toggle-track ${isDark ? '' : 'is-light'}`}>
@@ -89,78 +90,86 @@ function DarkModeToggle({ isDark, onToggle }: { isDark: boolean; onToggle: () =>
       </div>
       {isDark
         ? <Moon size={13} style={{ color: '#60a5fa' }} />
-        : <Sun size={13} style={{ color: '#f59e0b' }} />
+        : <Sun  size={13} style={{ color: '#f59e0b' }} />
       }
     </button>
   );
 }
 
-/* ─── Visit Counter Badge ─── */
 function VisitCounterBadge({ displayCount, isDark }: { displayCount: number; isDark: boolean }) {
   return (
-    <div className="visit-counter-badge" aria-label="Visit counter">
-      <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" style={{ flexShrink: 0 }} />
-      <Eye size={12} style={{ color: '#60a5fa', flexShrink: 0 }} />
-      <span
-        className="font-mono font-bold text-[11px]"
-        style={{ color: isDark ? '#e5e7eb' : '#111' }}
-      >
+    <div className="visit-counter-badge" aria-label={`${displayCount} platform visits`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping flex-shrink-0" />
+      <Eye size={11} style={{ color: '#60a5fa', flexShrink: 0 }} />
+      <span className="font-mono font-black text-[11px]"
+            style={{ color: isDark ? '#e5e7eb' : '#111' }}>
         {displayCount.toLocaleString('en-IN')}
       </span>
-      <span
-        className="font-mono text-[9px] uppercase tracking-wider"
-        style={{ color: isDark ? '#6b7280' : '#888' }}
-      >
+      <span className="font-mono text-[9px] uppercase tracking-wider"
+            style={{ color: isDark ? '#6b7280' : '#999' }}>
         visits
       </span>
     </div>
   );
 }
 
-/* ─── Notification ticker ─── */
+/* ── Ticker items ── */
 const TICKER_ITEMS = [
   '🚀 Bot Fixed indicator package now live',
-  '📡 5G SIM Hotspots in stock — 14 units left',
-  '⚡ Zero-latency Windows Cloud VMs available',
-  '🇮🇳 Express shipping from New Delhi',
+  '📡 5G SIM Hotspots in stock — 14 units remaining',
+  '⚡ Zero-latency Windows Cloud VMs available 24/7',
+  '🇮🇳 Express shipping from New Delhi within 48 hrs',
   '🤖 Automated watchdogs pre-installed on all VMs',
-  '💳 UPI & Card payments accepted',
+  '💳 UPI, GPay & International Card payments accepted',
   '🔒 Managed by Jumpstreet — A Mangalik & Sons Venture',
+  '📈 Avg signal latency: 1.2ms via Jumpstreet API',
 ];
 
+type TabKey = 'store' | 'vm' | 'alerts' | 'checkout' | 'orders';
+
+/* ══════════════════════════════
+   MAIN APP
+══════════════════════════════ */
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'store' | 'vm' | 'alerts' | 'checkout' | 'orders'>('store');
+  const [activeTab, setActiveTab] = useState<TabKey>('store');
+  const [tabKey, setTabKey] = useState(0); // force remount on tab change for animation
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [customVmConfig, setCustomVmConfig] = useState<{ config: VMConfig; price: number } | null>(null);
   const [orders, setOrders] = useState<PaymentSubmission[]>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDark, toggle: toggleDark } = useDarkMode();
   const { displayCount } = useVisitCounter();
+  const { visible: showScrollTop, scrollTop } = useScrollTop();
+  const { addToast } = useToast();
 
-  const deepBg = isDark ? 'bg-[#0A0A0A]' : 'bg-[#F4F4F6]';
-  const textPrimary = isDark ? 'text-white' : 'text-gray-900';
-  const textSecondary = isDark ? 'text-neutral-400' : 'text-gray-500';
-  const textMuted = isDark ? 'text-neutral-500' : 'text-gray-400';
+  // Theme tokens
+  const tk = {
+    deep:  isDark ? '#0A0A0A'   : '#F5F5F7',
+    card:  isDark ? '#111111'   : '#ffffff',
+    cardB: isDark ? 'rgba(255,255,255,0.09)' : 'rgba(0,0,0,0.07)',
+    bg0:   isDark ? '#000000'   : '#f0f0f3',
+    text1: isDark ? '#ffffff'   : '#111111',
+    text2: isDark ? '#9ca3af'   : '#666666',
+    text3: isDark ? '#4b5563'   : '#aaaaaa',
+    nav:   isDark ? 'rgba(4,4,4,0.94)'    : 'rgba(255,255,255,0.96)',
+    ticker:isDark ? 'rgba(0,0,0,0.92)'    : 'rgba(242,242,248,0.95)',
+  };
 
-  // Load orders
+  // Load orders from localStorage
   useEffect(() => {
-    const savedOrders = localStorage.getItem('jumpstreet_orders');
-    if (savedOrders) {
-      try { setOrders(JSON.parse(savedOrders)); } catch {}
+    const saved = localStorage.getItem('jumpstreet_orders');
+    if (saved) {
+      try { setOrders(JSON.parse(saved)); } catch {}
     } else {
       const seed: PaymentSubmission = {
-        id: 'TXN-842013',
-        planId: 'bot_standard',
+        id: 'TXN-842013', planId: 'bot_standard',
         planName: 'Bot Fixed - Standard License',
-        amountPaid: 999,
-        currency: 'INR',
-        paymentMethod: 'UPI',
-        utrNo: '412095384112',
-        email: 'jain.aditya33@gmail.com',
-        telegramUsername: '@ajain_fixed',
-        status: 'pending_verification',
+        amountPaid: 999, currency: 'INR', paymentMethod: 'UPI',
+        utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
+        telegramUsername: '@ajain_fixed', status: 'pending_verification',
         createdAt: new Date(Date.now() - 3600000).toLocaleDateString('en-IN', {
-          day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+          day: '2-digit', month: 'short', year: 'numeric',
+          hour: '2-digit', minute: '2-digit',
         }),
         hasVM: false,
       };
@@ -169,33 +178,43 @@ export default function App() {
     }
   }, []);
 
+  const switchTab = (tab: TabKey) => {
+    setActiveTab(tab);
+    setTabKey(k => k + 1);
+    setMobileMenuOpen(false);
+  };
+
   const handleSelectProduct = (product: Product) => {
     setSelectedProduct(product);
     setCustomVmConfig(null);
-    setActiveTab('checkout');
+    switchTab('checkout');
+    addToast(`${product.name} added to checkout`, 'success', '🛒');
   };
 
   const handleAddVmToCart = (config: VMConfig, price: number) => {
     setCustomVmConfig({ config, price });
     setSelectedProduct(null);
-    setActiveTab('checkout');
+    switchTab('checkout');
+    addToast(`VM (${config.ram}GB RAM) added to checkout`, 'success', '🖥️');
   };
 
   const handlePaymentSubmitted = (submission: PaymentSubmission) => {
     const updated = [submission, ...orders];
     setOrders(updated);
     localStorage.setItem('jumpstreet_orders', JSON.stringify(updated));
-    setActiveTab('orders');
+    switchTab('orders');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    addToast('Payment submitted! Awaiting verification.', 'success', '✅');
   };
 
   const handleCancelOrder = (id: string) => {
     const filtered = orders.filter(o => o.id !== id);
     setOrders(filtered);
     localStorage.setItem('jumpstreet_orders', JSON.stringify(filtered));
+    addToast('Order cancelled and removed.', 'warn', '🗑️');
   };
 
-  const navItems: { key: typeof activeTab; label: string; icon: React.ReactNode }[] = [
+  const navItems: { key: TabKey; label: string; icon: React.ReactNode }[] = [
     { key: 'store',    label: 'Store',    icon: <TrendingUp size={14} /> },
     { key: 'vm',       label: 'Cloud VM', icon: <Server size={14} /> },
     { key: 'alerts',   label: 'Alerts',   icon: <Radio size={14} /> },
@@ -203,151 +222,127 @@ export default function App() {
     { key: 'orders',   label: 'Orders',   icon: <FileCheck size={14} /> },
   ];
 
+  const hasPendingCheckout = !!(selectedProduct || customVmConfig);
+
   return (
-    <div className={`min-h-screen ${deepBg} ${textPrimary} flex flex-col font-sans`}
-         style={{ transition: 'background 0.35s, color 0.35s' }}>
-
-      {/* ── Decorative Grid Mesh ── */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.07]"
-           style={{
-             backgroundImage: 'radial-gradient(#3b82f6 1px, transparent 1px)',
-             backgroundSize: '28px 28px',
-           }} />
-
-      {/* ── Ambient Glow Blobs ── */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-           style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-      <div className="absolute top-1/3 right-0 w-80 h-80 rounded-full pointer-events-none"
-           style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-
-      {/* ── Notification Ticker Bar ── */}
+    <div
+      className="min-h-screen flex flex-col font-sans relative"
+      style={{ background: tk.deep, color: tk.text1, transition: 'background 0.35s, color 0.35s' }}
+    >
+      {/* ── Grid mesh bg ── */}
       <div
-        className="relative z-10 border-b py-2 overflow-hidden"
+        className="fixed inset-0 pointer-events-none"
         style={{
-          background: isDark ? 'rgba(0,0,0,0.9)' : 'rgba(240,240,245,0.95)',
-          borderColor: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)',
+          backgroundImage: `radial-gradient(${isDark ? 'rgba(59,130,246,0.06)' : 'rgba(59,130,246,0.04)'} 1px, transparent 1px)`,
+          backgroundSize: '30px 30px',
+          zIndex: 0,
         }}
-      >
+      />
+      {/* ── Ambient glows ── */}
+      <div className="fixed pointer-events-none" style={{ top: '-10%', left: '20%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 65%)', filter: 'blur(50px)', zIndex: 0 }} />
+      <div className="fixed pointer-events-none" style={{ top: '40%', right: '-5%',  width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 65%)', filter: 'blur(50px)', zIndex: 0 }} />
+
+      {/* ── Ticker bar ── */}
+      <div className="relative z-10 py-2 border-b" style={{ background: tk.ticker, borderColor: tk.cardB }}>
         <div className="ticker-wrap">
           <div className="ticker-inner">
             {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, i) => (
-              <span key={i} className={`inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-wider mx-8 ${textMuted}`}>
+              <span key={i} className="inline-flex items-center gap-2 mx-8 text-[10px] font-mono uppercase tracking-wider" style={{ color: tk.text3 }}>
                 {item}
-                <span className={`w-1 h-1 rounded-full ${isDark ? 'bg-blue-500' : 'bg-blue-400'}`} />
+                <span className="w-1 h-1 rounded-full bg-blue-500/60" />
               </span>
             ))}
           </div>
         </div>
       </div>
 
-      {/* ── Main Header ── */}
+      {/* ── Sticky Header ── */}
       <header
-        className="sticky top-0 z-40 backdrop-blur-md border-b px-4 sm:px-6 py-3"
-        style={{
-          background: isDark ? 'rgba(5,5,5,0.92)' : 'rgba(255,255,255,0.95)',
-          borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)',
-        }}
+        className="sticky top-0 z-40 border-b px-4 sm:px-6 py-3 backdrop-blur-xl"
+        style={{ background: tk.nav, borderColor: tk.cardB }}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
 
           {/* Logo */}
           <div className="flex items-center gap-3 flex-shrink-0">
             <div
-              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center font-mono font-black text-base sm:text-lg shadow-xl animate-glow"
-              style={{
-                background: isDark ? '#fff' : '#111',
-                color: isDark ? '#000' : '#fff',
-                borderRadius: '4px',
-              }}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center font-mono font-black text-base sm:text-lg animate-glow flex-shrink-0"
+              style={{ background: isDark ? '#fff' : '#111', color: isDark ? '#000' : '#fff', borderRadius: '6px' }}
             >
               J
             </div>
             <div className="hidden sm:block">
               <div className="flex items-center gap-2">
-                <span className={`text-xs sm:text-sm font-bold tracking-[0.15em] uppercase ${textPrimary}`}>
+                <span className="text-xs sm:text-sm font-bold tracking-[0.15em] uppercase" style={{ color: tk.text1 }}>
                   Jumpstreet
                 </span>
-                <span
-                  className="text-[8px] px-1.5 py-0.5 rounded font-mono font-bold uppercase tracking-widest hidden sm:inline"
-                  style={{
-                    background: isDark ? '#1a1a1a' : '#f0f0f2',
-                    color: isDark ? '#6b7280' : '#888',
-                    border: `1px solid ${isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.08)'}`,
-                  }}
-                >
+                <span className="text-[8px] px-1.5 py-0.5 rounded font-mono font-bold uppercase tracking-widest hidden md:inline"
+                      style={{ background: isDark ? '#1a1a1a' : '#ebebef', color: tk.text3, border: `1px solid ${tk.cardB}` }}>
                   M&amp;S Venture
                 </span>
               </div>
-              <p className={`text-[9px] font-mono tracking-wider uppercase ${textMuted}`}>
+              <p className="text-[9px] font-mono tracking-wider uppercase" style={{ color: tk.text3 }}>
                 Mangalik &amp; Sons Venture Ltd.
               </p>
             </div>
           </div>
 
           {/* Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-0.5 font-mono uppercase tracking-wider text-[10px]">
-            {navItems.map(({ key, label, icon }) => (
-              <button
-                key={key}
-                id={`nav-${key}`}
-                onClick={() => setActiveTab(key)}
-                className="flex items-center gap-1.5 px-3 py-2 transition-all rounded-sm"
-                style={{
-                  background: activeTab === key
-                    ? (isDark ? '#161616' : '#f0f0f3')
-                    : 'transparent',
-                  color: activeTab === key
-                    ? (key === 'checkout' ? '#60a5fa' : (isDark ? '#fff' : '#111'))
-                    : (isDark ? '#6b7280' : '#999'),
-                  border: activeTab === key
-                    ? `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)'}`
-                    : '1px solid transparent',
-                  fontWeight: activeTab === key ? 700 : 400,
-                }}
-              >
-                {icon}
-                {label}
-                {key === 'checkout' && (selectedProduct || customVmConfig) && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping" />
-                )}
-                {key === 'orders' && orders.length > 0 && (
-                  <span
-                    className="text-[8px] font-mono px-1.5 py-0.5 rounded-full"
-                    style={{ background: isDark ? '#1a1a1a' : '#e8e8ed', color: isDark ? '#9ca3af' : '#555' }}
-                  >
-                    {orders.length}
-                  </span>
-                )}
-              </button>
-            ))}
+          <nav className="hidden lg:flex items-center gap-0.5 font-mono uppercase tracking-wider text-[10px]" aria-label="Main navigation">
+            {navItems.map(({ key, label, icon }) => {
+              const isActive = activeTab === key;
+              return (
+                <button
+                  key={key}
+                  id={`nav-${key}`}
+                  onClick={() => switchTab(key)}
+                  className="flex items-center gap-1.5 px-3 py-2 rounded-md transition-all relative"
+                  style={{
+                    background: isActive ? (isDark ? '#181818' : '#f0f0f3') : 'transparent',
+                    color: isActive ? (key === 'checkout' ? '#60a5fa' : tk.text1) : tk.text3,
+                    border: `1px solid ${isActive ? tk.cardB : 'transparent'}`,
+                    fontWeight: isActive ? 700 : 400,
+                  }}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  {icon}
+                  {label}
+                  {key === 'checkout' && hasPendingCheckout && (
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping absolute -top-0.5 -right-0.5" />
+                  )}
+                  {key === 'orders' && orders.length > 0 && (
+                    <span className="text-[8px] font-mono px-1.5 py-0.5 rounded-full ml-0.5"
+                          style={{ background: isDark ? '#1a1a1a' : '#ebebef', color: tk.text3 }}>
+                      {orders.length}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </nav>
 
           {/* Right actions */}
           <div className="flex items-center gap-2">
-            {/* Dark mode toggle — always visible */}
-            <DarkModeToggle isDark={isDark} onToggle={toggleDark} />
-
-            {/* External link — hidden on very small screens */}
+            <DarkModeToggle isDark={isDark} onToggle={() => {
+              toggleDark();
+              addToast(isDark ? 'Light mode enabled' : 'Dark mode enabled', 'info', isDark ? '☀️' : '🌙');
+            }} />
             <a
               href="https://ajainx1.github.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1 text-[10px] font-mono font-bold tracking-wider uppercase px-3 py-2 rounded-sm transition-all"
-              style={{
-                border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
-                color: isDark ? '#6b7280' : '#888',
-              }}
+              className="hidden sm:flex items-center gap-1 text-[10px] font-mono font-bold tracking-wider uppercase px-3 py-2 rounded-md transition-all"
+              style={{ border: `1px solid ${tk.cardB}`, color: tk.text3 }}
             >
               <span className="hidden md:inline">ajainx1.github.io</span>
               <ExternalLink size={11} />
             </a>
-
-            {/* Mobile menu button */}
             <button
               onClick={() => setMobileMenuOpen(m => !m)}
-              className="lg:hidden p-2 rounded-sm transition-all"
-              style={{ color: isDark ? '#9ca3af' : '#666' }}
-              aria-label="Open menu"
+              className="lg:hidden p-2 rounded-md transition-all ripple-container"
+              style={{ color: tk.text2 }}
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
@@ -355,109 +350,93 @@ export default function App() {
         </div>
       </header>
 
-      {/* ── Mobile Drawer ── */}
+      {/* ── Mobile Dropdown Drawer ── */}
       {mobileMenuOpen && (
         <div
-          className="lg:hidden sticky z-30 border-b px-4 py-3 space-y-1 font-mono uppercase tracking-wider text-[11px] animate-fade-in-up"
-          style={{
-            top: '65px',
-            background: isDark ? 'rgba(5,5,5,0.98)' : 'rgba(255,255,255,0.98)',
-            borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)',
-          }}
+          className="lg:hidden sticky z-30 border-b px-4 py-2 space-y-1 font-mono uppercase tracking-wider text-[11px] animate-fade-in-up"
+          style={{ top: '61px', background: tk.nav, borderColor: tk.cardB }}
         >
           {navItems.map(({ key, label, icon }) => (
             <button
               key={key}
-              onClick={() => { setActiveTab(key); setMobileMenuOpen(false); }}
-              className="w-full text-left flex items-center justify-between p-2.5 rounded-sm transition-all"
+              onClick={() => switchTab(key)}
+              className="w-full text-left flex items-center justify-between p-2.5 rounded-md transition-all"
               style={{
-                background: activeTab === key ? (isDark ? '#161616' : '#f0f0f3') : 'transparent',
-                color: activeTab === key
-                  ? (key === 'checkout' ? '#60a5fa' : (isDark ? '#fff' : '#111'))
-                  : (isDark ? '#6b7280' : '#999'),
+                background: activeTab === key ? (isDark ? '#181818' : '#f0f0f3') : 'transparent',
+                color: activeTab === key ? (key === 'checkout' ? '#60a5fa' : tk.text1) : tk.text3,
               }}
             >
-              <span className="flex items-center gap-2">{icon}{label}</span>
+              <span className="flex items-center gap-2">{icon} {label}</span>
               {key === 'orders' && orders.length > 0 && (
-                <span className="text-[9px] font-mono px-1.5 py-0.5"
-                      style={{ color: isDark ? '#6b7280' : '#aaa' }}>
-                  {orders.length}
-                </span>
+                <span style={{ color: tk.text3 }} className="text-[9px] font-mono">{orders.length}</span>
               )}
             </button>
           ))}
-
-          {/* Dark mode in drawer too */}
-          <div className="pt-2 border-t flex items-center justify-between"
-               style={{ borderColor: isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)' }}>
-            <span className={`text-[10px] font-mono uppercase tracking-wider ${textMuted}`}>
-              {isDark ? '🌙 Dark Mode' : '☀️ Light Mode'}
+          <div className="pt-2 pb-1 border-t flex items-center justify-between" style={{ borderColor: tk.cardB }}>
+            <span className="text-[10px] font-mono uppercase tracking-wider" style={{ color: tk.text3 }}>
+              {isDark ? '🌙 Dark' : '☀️ Light'} Mode
             </span>
-            <DarkModeToggle isDark={isDark} onToggle={toggleDark} />
+            <DarkModeToggle isDark={isDark} onToggle={() => {
+              toggleDark();
+              addToast(isDark ? 'Light mode enabled' : 'Dark mode enabled', 'info', isDark ? '☀️' : '🌙');
+            }} />
           </div>
         </div>
       )}
 
       {/* ── Main Content ── */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start relative">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start relative z-10">
 
         {/* Left Column */}
-        <div className="lg:col-span-8 space-y-6 min-w-0 animate-fade-in-up">
+        <div className="lg:col-span-8 space-y-5 min-w-0 animate-fade-in-up">
 
           {/* ── Hero Card ── */}
           <div
-            className="relative rounded-sm border overflow-hidden shadow-2xl"
-            style={{
-              background: isDark ? '#111111' : '#ffffff',
-              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-            }}
+            className="relative rounded-xl border overflow-hidden shadow-2xl"
+            style={{ background: tk.card, borderColor: tk.cardB }}
           >
-            {/* Glow blobs inside hero */}
-            <div className="absolute right-0 top-0 w-64 h-64 rounded-full pointer-events-none"
-                 style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%)', filter: 'blur(40px)' }} />
-            <div className="absolute left-0 bottom-0 w-48 h-48 rounded-full pointer-events-none"
-                 style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.06) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+            <div className="absolute right-0 top-0 w-72 h-72 pointer-events-none"
+                 style={{ background: 'radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%)', filter: 'blur(40px)' }} />
+            <div className="absolute left-0 bottom-0 w-48 h-48 pointer-events-none"
+                 style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.07) 0%, transparent 70%)', filter: 'blur(40px)' }} />
 
             <div className="relative p-5 sm:p-7 lg:p-8">
               <div className="flex items-center gap-2 mb-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
                 <span className="text-[9px] font-mono text-blue-400 tracking-widest font-bold uppercase">
-                  Active Platform Node
+                  Platform Node Active
                 </span>
               </div>
 
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-tight uppercase mb-3">
                 <span className="shimmer-text">Automated Alerts</span>{' '}
-                <span className={textPrimary}>&amp; Low-Latency Hosting for</span>{' '}
+                <span style={{ color: tk.text1 }}>&amp; Low-Latency Hosting for</span>{' '}
                 <span className="text-blue-400">Bot Fixed</span>
               </h1>
 
-              <p className={`text-xs sm:text-sm leading-relaxed max-w-2xl font-mono ${textSecondary} mb-5`}>
+              <p className="text-xs sm:text-sm leading-relaxed max-w-2xl font-mono mb-5" style={{ color: tk.text2 }}>
                 Deploy state-of-the-art algorithmic trading configurations. Jumpstreet secures
                 lowest-latency Windows VPS packages pre-installed with{' '}
-                <strong className={textPrimary}>Bot Fixed</strong> indicators, paired with imported
-                5G network redundancy hardware from Japan and China.
+                <strong style={{ color: tk.text1 }}>Bot Fixed</strong> indicators, paired with
+                imported 5G network redundancy hardware from Japan and China.
               </p>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {[
-                  { label: 'Gateway Status', value: 'Secure Live', valueClass: 'text-blue-400', pulse: true },
-                  { label: 'Signal Latency',  value: '~1.2 ms avg', valueClass: textPrimary, pulse: false },
-                  { label: '5G Router Stock', value: '14 Units',    valueClass: isDark ? 'text-neutral-300' : 'text-gray-700', pulse: false },
-                  { label: 'Operator',        value: 'Mangalik & Sons', valueClass: 'text-blue-400', pulse: false },
+                  { label: 'Gateway Status', value: 'Secure Live',    color: '#60a5fa', pulse: true },
+                  { label: 'Signal Latency',  value: '~1.2 ms avg',   color: tk.text1,  pulse: false },
+                  { label: '5G Router Stock', value: '14 Units Left', color: tk.text2,  pulse: false },
+                  { label: 'Operator',        value: 'M&S Venture',   color: '#60a5fa', pulse: false },
                 ].map((s, i) => (
                   <div
                     key={i}
-                    className="p-3 rounded-sm border text-center sm:text-left"
-                    style={{
-                      background: isDark ? '#000' : '#f6f6f8',
-                      borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-                    }}
+                    className="p-3 rounded-lg border"
+                    style={{ background: tk.bg0, borderColor: tk.cardB }}
                   >
-                    <span className={`text-[9px] font-mono block uppercase tracking-wider ${textMuted}`}>{s.label}</span>
-                    <span className={`text-xs font-bold flex items-center justify-center sm:justify-start gap-1 mt-0.5 font-mono ${s.valueClass}`}>
-                      {s.pulse && <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />}
+                    <span className="text-[9px] font-mono block uppercase tracking-wider mb-0.5" style={{ color: tk.text3 }}>{s.label}</span>
+                    <span className="text-[11px] font-bold flex items-center gap-1 font-mono" style={{ color: s.color }}>
+                      {s.pulse && <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse flex-shrink-0" />}
                       {s.value}
                     </span>
                   </div>
@@ -467,19 +446,15 @@ export default function App() {
           </div>
 
           {/* ── Tab Content ── */}
-          <div className="transition-all duration-300 animate-fade-in-up">
+          <div key={tabKey} className="tab-content">
 
             {activeTab === 'store' && (
               <div className="space-y-5">
-                <div className="flex justify-between items-center">
-                  <div>
-                    <h2 className={`text-sm font-bold tracking-widest flex items-center gap-2 uppercase ${textPrimary}`}>
-                      <TrendingUp size={16} /> Licenses &amp; Hardware Catalog
-                    </h2>
-                    <p className={`text-xs font-mono ${textSecondary}`}>
-                      Order licenses and hardware imported directly for optimal latency
-                    </p>
-                  </div>
+                <div>
+                  <h2 className="text-sm font-bold tracking-widest flex items-center gap-2 uppercase" style={{ color: tk.text1 }}>
+                    <TrendingUp size={16} className="text-blue-400" /> Licenses &amp; Hardware Catalog
+                  </h2>
+                  <p className="text-xs font-mono mt-0.5" style={{ color: tk.text2 }}>Order licenses and hardware imported for optimal latency</p>
                 </div>
                 <ProductCatalog onSelectProduct={handleSelectProduct} isDark={isDark} />
               </div>
@@ -487,76 +462,57 @@ export default function App() {
 
             {activeTab === 'vm' && (
               <div className="space-y-5">
-                <h2 className={`text-sm font-bold tracking-widest flex items-center gap-2 uppercase ${textPrimary}`}>
-                  <Sliders size={16} /> Custom VM Architecture Build
-                </h2>
-                <p className={`text-xs font-mono ${textSecondary}`}>
-                  Tailor the perfect Windows VPS package for continuous automated execution
-                </p>
+                <div>
+                  <h2 className="text-sm font-bold tracking-widest flex items-center gap-2 uppercase" style={{ color: tk.text1 }}>
+                    <Sliders size={16} className="text-blue-400" /> Custom VM Architecture Build
+                  </h2>
+                  <p className="text-xs font-mono mt-0.5" style={{ color: tk.text2 }}>Tailor the perfect Windows VPS for continuous automated execution</p>
+                </div>
                 <VmConfigurator onAddVmToCart={handleAddVmToCart} isDark={isDark} />
               </div>
             )}
 
             {activeTab === 'alerts' && (
-              <div className="space-y-5">
-                <AlertsSimulator isDark={isDark} />
-              </div>
+              <AlertsSimulator isDark={isDark} />
             )}
 
             {activeTab === 'checkout' && (
-              <div className="space-y-5">
-                <PaymentPortal
-                  selectedProduct={selectedProduct}
-                  customVmConfig={customVmConfig}
-                  onPaymentSubmitted={handlePaymentSubmitted}
-                  isDark={isDark}
-                />
-              </div>
+              <PaymentPortal
+                selectedProduct={selectedProduct}
+                customVmConfig={customVmConfig}
+                onPaymentSubmitted={handlePaymentSubmitted}
+                isDark={isDark}
+              />
             )}
 
             {activeTab === 'orders' && (
               <div className="space-y-5">
                 <div className="flex justify-between items-center flex-wrap gap-2">
                   <div>
-                    <h2 className={`text-sm font-bold tracking-widest flex items-center gap-2 uppercase ${textPrimary}`}>
-                      <FileCheck size={16} /> Order &amp; License Logbook
+                    <h2 className="text-sm font-bold tracking-widest flex items-center gap-2 uppercase" style={{ color: tk.text1 }}>
+                      <FileCheck size={16} className="text-blue-400" /> Order &amp; License Logbook
                     </h2>
-                    <p className={`text-xs font-mono ${textSecondary}`}>
-                      Track and manage your billing verifications and subscription states
-                    </p>
+                    <p className="text-xs font-mono mt-0.5" style={{ color: tk.text2 }}>Track billing verifications and subscription states</p>
                   </div>
-                  <div className={`text-[10px] font-mono tracking-wider ${textMuted}`}>
-                    SECURED BY LOCAL STORAGE
-                  </div>
+                  <span className="text-[9px] font-mono tracking-wider" style={{ color: tk.text3 }}>
+                    LOCAL STORAGE SECURED
+                  </span>
                 </div>
 
                 {orders.length === 0 ? (
-                  <div
-                    className="rounded-sm border p-10 sm:p-12 text-center"
-                    style={{
-                      background: isDark ? '#111111' : '#ffffff',
-                      borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-                    }}
-                  >
-                    <div
-                      className="w-12 h-12 rounded-sm flex items-center justify-center mx-auto mb-4"
-                      style={{
-                        background: isDark ? '#000' : '#f5f5f7',
-                        border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)'}`,
-                        color: isDark ? '#6b7280' : '#aaa',
-                      }}
-                    >
-                      <Clock size={18} />
+                  <div className="rounded-xl border p-10 sm:p-12 text-center animate-scale-in"
+                       style={{ background: tk.card, borderColor: tk.cardB }}>
+                    <div className="w-12 h-12 rounded-lg flex items-center justify-center mx-auto mb-4"
+                         style={{ background: tk.bg0, border: `1px solid ${tk.cardB}`, color: tk.text3 }}>
+                      <Clock size={20} />
                     </div>
-                    <h3 className={`text-xs font-bold uppercase tracking-wider ${textPrimary}`}>
-                      No transactions yet
-                    </h3>
-                    <p className={`text-xs mt-2 max-w-sm mx-auto font-mono ${textSecondary}`}>
-                      Scan the UPI QR in the Checkout Portal, transfer funds, and enter your reference ID.
+                    <h3 className="text-xs font-bold uppercase tracking-wider" style={{ color: tk.text1 }}>No transactions yet</h3>
+                    <p className="text-xs mt-2 max-w-xs mx-auto font-mono" style={{ color: tk.text2 }}>
+                      Scan the UPI QR in Checkout, transfer funds, and enter your reference ID.
                     </p>
                     <button
-                      onClick={() => setActiveTab('store')}
-                      className="mt-6 px-5 py-2 rounded-sm text-xs font-bold transition-all uppercase tracking-widest cursor-pointer"
+                      onClick={() => switchTab('store')}
+                      className="mt-6 px-6 py-2.5 rounded-lg text-xs font-bold transition-all uppercase tracking-widest"
                       style={{ background: isDark ? '#fff' : '#111', color: isDark ? '#000' : '#fff' }}
                     >
                       Browse Licenses
@@ -564,92 +520,75 @@ export default function App() {
                   </div>
                 ) : (
                   <div className="space-y-4">
-                    {orders.map(ord => (
+                    {orders.map((ord, i) => (
                       <div
                         key={ord.id}
-                        className="rounded-sm border p-4 sm:p-5 space-y-4 animate-fade-in-up"
-                        style={{
-                          background: isDark ? '#111111' : '#ffffff',
-                          borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-                        }}
+                        className="rounded-xl border p-4 sm:p-5 space-y-4 animate-fade-in-up"
+                        style={{ background: tk.card, borderColor: tk.cardB, animationDelay: `${i * 0.07}s` }}
                       >
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 pb-3 border-b"
-                             style={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
+                             style={{ borderColor: tk.cardB }}>
                           <div>
-                            <span className={`text-xs font-bold font-mono uppercase tracking-wider ${textPrimary}`}>
+                            <span className="text-xs font-bold font-mono uppercase tracking-wider" style={{ color: tk.text1 }}>
                               {ord.planName}
                             </span>
-                            <div className="flex items-center gap-2 mt-0.5">
-                              <span className={`text-[10px] font-mono ${textMuted}`}>ID: {ord.id}</span>
-                              <span className="hidden sm:block">
-                              </span> 
-                              <span className={`text-[10px] font-mono ${textMuted}`}>{ord.createdAt}</span>
+                            <div className="flex flex-wrap items-center gap-2 mt-0.5">
+                              <span className="text-[10px] font-mono" style={{ color: tk.text3 }}>ID: {ord.id}</span>
+                              <span style={{ color: tk.cardB }}>•</span>
+                              <span className="text-[10px] font-mono" style={{ color: tk.text3 }}>{ord.createdAt}</span>
                             </div>
                           </div>
                           <span
-                            className={`px-2.5 py-0.5 rounded-sm text-[9px] font-bold uppercase tracking-widest font-mono border ${
-                              ord.status === 'active' || ord.status === 'completed'
-                                ? 'bg-blue-400/10 text-blue-400 border-blue-400/25 '
-                                : 'text-neutral-400 border-white/5 animate-pulse'
-                            }`}
+                            className="px-2.5 py-1 rounded-lg text-[9px] font-bold uppercase tracking-widest font-mono border flex-shrink-0"
                             style={{
-                              background: ord.status !== 'active' && ord.status !== 'completed'
-                                ? (isDark ? '#1a1a1a' : '#f5f5f7') : undefined,
+                              background: (ord.status === 'active' || ord.status === 'completed') ? 'rgba(59,130,246,0.1)' : (isDark ? '#111' : '#f5f5f7'),
+                              color: (ord.status === 'active' || ord.status === 'completed') ? '#60a5fa' : tk.text3,
+                              borderColor: (ord.status === 'active' || ord.status === 'completed') ? 'rgba(59,130,246,0.25)' : tk.cardB,
                             }}
                           >
-                            {ord.status === 'active' || ord.status === 'completed'
-                              ? '✅ Verified & Active'
-                              : '⏳ Verifying Ledger...'}
+                            {(ord.status === 'active' || ord.status === 'completed') ? '✅ Verified & Active' : '⏳ Verifying...'}
                           </span>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-                          <div>
-                            <span className={`block uppercase text-[9px] tracking-wider font-bold mb-0.5 ${textMuted}`}>User</span>
-                            <span className={`block truncate ${textPrimary}`}>{ord.email}</span>
-                            <span className={`text-[10px] ${textSecondary}`}>{ord.telegramUsername}</span>
-                          </div>
-                          <div>
-                            <span className={`block uppercase text-[9px] tracking-wider font-bold mb-0.5 ${textMuted}`}>UTR / Reference</span>
-                            <span className={`block font-bold select-all ${textPrimary}`}>{ord.utrNo}</span>
-                            <span className={`text-[10px] ${textSecondary}`}>via {ord.paymentMethod}</span>
-                          </div>
-                          <div>
-                            <span className={`block uppercase text-[9px] tracking-wider font-bold mb-0.5 ${textMuted}`}>Total Paid</span>
-                            <span className="text-blue-400 block font-black text-sm">₹{ord.amountPaid.toLocaleString('en-IN')}</span>
-                            <span className={`text-[10px] ${textSecondary}`}>~${(ord.amountPaid / 85).toFixed(1)} USD</span>
-                          </div>
+                          {[
+                            { label: 'User', primary: ord.email, secondary: ord.telegramUsername },
+                            { label: 'UTR / Reference', primary: ord.utrNo, secondary: `via ${ord.paymentMethod}`, copyable: true },
+                            { label: 'Total Paid', primary: `₹${ord.amountPaid.toLocaleString('en-IN')}`, secondary: `~$${(ord.amountPaid/85).toFixed(1)} USD`, big: true },
+                          ].map((row, j) => (
+                            <div key={j}>
+                              <span className="block text-[9px] uppercase tracking-wider font-bold mb-0.5" style={{ color: tk.text3 }}>{row.label}</span>
+                              <span className={`block truncate ${row.big ? 'text-blue-400 font-black text-base' : ''}`} style={row.big ? {} : { color: tk.text1 }}>
+                                {row.primary}
+                              </span>
+                              <span style={{ color: tk.text2 }}>{row.secondary}</span>
+                            </div>
+                          ))}
                         </div>
 
                         {ord.hasVM && (
-                          <div
-                            className="p-3 rounded-sm border text-xs font-mono"
-                            style={{
-                              background: isDark ? '#000' : '#f8f8fa',
-                              borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-                            }}
-                          >
-                            <div className={`font-bold flex items-center gap-1.5 uppercase tracking-wide ${textPrimary}`}>
+                          <div className="p-3 rounded-lg border text-xs font-mono"
+                               style={{ background: tk.bg0, borderColor: tk.cardB }}>
+                            <div className="font-bold flex items-center gap-1.5 uppercase tracking-wide" style={{ color: tk.text1 }}>
                               <Terminal size={12} className="text-blue-400 animate-pulse" />
                               Windows Server Deployment Initiated
                             </div>
-                            <p className={`text-[10px] mt-1 leading-normal ${textSecondary}`}>
-                              Provisioning <strong>{ord.vmDetails?.ram || 2}GB RAM</strong> node in{' '}
-                              <strong>{ord.vmDetails?.region || 'Mumbai'}</strong>. Credentials dispatch via Telegram.
+                            <p className="text-[10px] mt-1 leading-relaxed" style={{ color: tk.text2 }}>
+                              Provisioning <strong>{ord.vmDetails?.ram || 2}GB RAM</strong> node in <strong>{ord.vmDetails?.region || 'Mumbai'}</strong>. Credentials dispatched via Telegram.
                             </p>
                           </div>
                         )}
 
                         <div className="pt-3 border-t flex justify-between items-center font-mono text-[10px]"
-                             style={{ borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)' }}>
-                          <span className={`italic ${textSecondary}`}>
+                             style={{ borderColor: tk.cardB }}>
+                          <span className="italic" style={{ color: tk.text2 }}>
                             {ord.status === 'pending_verification'
                               ? '🔒 Awaiting ledger review by Mangalik & Sons.'
                               : '✅ License key dispatched via Telegram.'}
                           </span>
                           <button
                             onClick={() => handleCancelOrder(ord.id)}
-                            className="text-neutral-400 hover:text-rose-400 transition-colors uppercase tracking-wider font-bold ml-4"
+                            className="text-rose-400/60 hover:text-rose-400 transition-colors uppercase tracking-wider font-bold ml-4"
                           >
                             Cancel
                           </button>
@@ -664,86 +603,70 @@ export default function App() {
         </div>
 
         {/* Right Sidebar */}
-        <div className="lg:col-span-4 space-y-5 animate-slide-right">
+        <aside className="lg:col-span-4 space-y-5 animate-slide-right delay-200">
           <SpotifyWidget isDark={isDark} />
 
           {/* Corporate Overview */}
-          <div
-            className="rounded-sm border p-5 space-y-4"
-            style={{
-              background: isDark ? '#111111' : '#ffffff',
-              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-            }}
-          >
-            <h3 className={`text-[10px] font-mono font-bold uppercase tracking-[0.15em] pb-2 border-b ${textSecondary}`}
-                style={{ borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)' }}>
+          <div className="rounded-xl border p-5 space-y-4" style={{ background: tk.card, borderColor: tk.cardB }}>
+            <h3 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] pb-2 border-b" style={{ color: tk.text2, borderColor: tk.cardB }}>
               Corporate Overview
             </h3>
-            <div className={`space-y-3 text-xs leading-relaxed font-mono ${isDark ? 'text-neutral-300' : 'text-gray-600'}`}>
+            <div className="space-y-3 text-xs leading-relaxed font-mono" style={{ color: isDark ? '#d1d5db' : '#555' }}>
               <p>
-                <strong className={textPrimary}>Jumpstreet</strong> is a premier tech and hardware distribution
-                entity under <strong className={textPrimary}>A Mangalik and Sons Venture Limited</strong>.
+                <strong style={{ color: tk.text1 }}>Jumpstreet</strong> is a premier tech and hardware distribution entity under{' '}
+                <strong style={{ color: tk.text1 }}>A Mangalik and Sons Venture Limited</strong>.
               </p>
               <p>
                 We specialize in low-latency algorithmic utilities (the{' '}
-                <strong className={textPrimary}>Bot Fixed</strong> indicator platform) and direct imports
+                <strong style={{ color: tk.text1 }}>Bot Fixed</strong> indicator platform) and direct imports
                 of industrial-grade 5G routers and enterprise J-SIM setups.
               </p>
             </div>
-            <div
-              className="p-3 rounded-sm border space-y-2"
-              style={{
-                background: isDark ? '#000' : '#f6f6f8',
-                borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-              }}
-            >
-              <span className={`text-[9px] font-bold block uppercase tracking-wider font-mono ${textMuted}`}>
-                Conglomerate Assets
-              </span>
+            <div className="p-3 rounded-lg border" style={{ background: tk.bg0, borderColor: tk.cardB }}>
+              <span className="text-[9px] font-bold block uppercase tracking-wider font-mono mb-2" style={{ color: tk.text3 }}>Conglomerate Assets</span>
               <div className="grid grid-cols-2 gap-2 text-[9px] font-mono">
                 {[
-                  { label: 'Headquarters', value: 'New Delhi, IN' },
-                  { label: 'Supply Line', value: 'Japan & China' },
+                  { label: 'HQ', value: 'New Delhi, IN' },
+                  { label: 'Supply', value: 'Japan & China' },
+                  { label: 'Founded', value: '2022' },
+                  { label: 'Sector', value: 'FinTech & HW' },
                 ].map(item => (
-                  <div
-                    key={item.label}
-                    className="p-2 rounded-sm border"
-                    style={{
-                      background: isDark ? 'rgba(255,255,255,0.03)' : '#f0f0f2',
-                      borderColor: isDark ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.06)',
-                    }}
-                  >
-                    <span className={`block ${textMuted}`}>{item.label}</span>
-                    <span className={`font-bold ${textPrimary}`}>{item.value}</span>
+                  <div key={item.label} className="p-2 rounded-md border" style={{ background: isDark ? 'rgba(255,255,255,0.02)' : '#ebebef', borderColor: tk.cardB }}>
+                    <span className="block" style={{ color: tk.text3 }}>{item.label}</span>
+                    <span className="font-bold" style={{ color: tk.text1 }}>{item.value}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
+          {/* Visit Stats */}
+          <div className="rounded-xl border p-4" style={{ background: tk.card, borderColor: tk.cardB }}>
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <Eye size={14} className="text-blue-400" />
+                <span className="text-[10px] font-mono uppercase tracking-wider" style={{ color: tk.text3 }}>Platform Visits</span>
+              </div>
+              <span className="font-mono font-black text-blue-400 text-lg">{displayCount.toLocaleString('en-IN')}</span>
+            </div>
+            <div className="h-1 rounded-full overflow-hidden" style={{ background: isDark ? '#1a1a1a' : '#e8e8ed' }}>
+              <div className="h-full rounded-full bg-blue-500" style={{ width: '72%', transition: 'width 1.2s ease' }} />
+            </div>
+            <div className="flex justify-between text-[9px] font-mono mt-1" style={{ color: tk.text3 }}>
+              <span>Unique browsers</span>
+              <span>72% retention</span>
+            </div>
+          </div>
+
           {/* Help Desk */}
-          <div
-            className="rounded-sm border p-5 text-center space-y-3"
-            style={{
-              background: isDark ? '#111111' : '#ffffff',
-              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-            }}
-          >
-            <div
-              className="w-10 h-10 rounded-sm flex items-center justify-center mx-auto"
-              style={{
-                background: isDark ? 'rgba(255,255,255,0.05)' : '#f0f0f3',
-                border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)'}`,
-                color: isDark ? '#fff' : '#333',
-              }}
-            >
+          <div className="rounded-xl border p-5 text-center space-y-3" style={{ background: tk.card, borderColor: tk.cardB }}>
+            <div className="w-10 h-10 rounded-lg flex items-center justify-center mx-auto"
+                 style={{ background: tk.bg0, border: `1px solid ${tk.cardB}`, color: isDark ? '#fff' : '#333' }}>
               <MessageSquare size={16} />
             </div>
             <div>
-              <h4 className={`text-xs font-bold uppercase tracking-wider ${textPrimary}`}>
-                Need Custom Implementation?
-              </h4>
-              <p className={`text-[11px] mt-1.5 font-mono ${textSecondary}`}>
+              <h4 className="text-xs font-bold uppercase tracking-wider" style={{ color: tk.text1 }}>Need Custom Setup?</h4>
+              <p className="text-[11px] mt-1 font-mono" style={{ color: tk.text2 }}>
                 We design fully automated systems tailored to your trading strategy.
               </p>
             </div>
@@ -751,86 +674,52 @@ export default function App() {
               href="https://ajainx1.github.io"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-2 text-xs font-mono tracking-wider uppercase rounded-sm transition-all flex items-center justify-center gap-1.5"
-              style={{
-                background: isDark ? '#1a1a1a' : '#f0f0f3',
-                color: isDark ? '#e5e7eb' : '#333',
-                border: `1px solid ${isDark ? 'rgba(255,255,255,0.07)' : 'rgba(0,0,0,0.07)'}`,
-              }}
+              className="w-full py-2 text-xs font-mono tracking-wider uppercase rounded-lg transition-all flex items-center justify-center gap-1.5 hover:gap-2.5"
+              style={{ background: tk.bg0, color: tk.text2, border: `1px solid ${tk.cardB}` }}
             >
               <span>Speak to Developer</span>
               <ExternalLink size={12} />
             </a>
           </div>
-
-          {/* Visit stats in sidebar on desktop */}
-          <div
-            className="rounded-sm border p-4 hidden lg:block"
-            style={{
-              background: isDark ? '#111111' : '#ffffff',
-              borderColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.07)',
-            }}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <Eye size={14} className="text-blue-400" />
-                <span className={`text-[10px] font-mono uppercase tracking-wider ${textMuted}`}>
-                  Platform Visits
-                </span>
-              </div>
-              <span className="font-mono font-black text-blue-400 text-lg">
-                {displayCount.toLocaleString('en-IN')}
-              </span>
-            </div>
-            <div
-              className="mt-2 h-1 rounded-full overflow-hidden"
-              style={{ background: isDark ? '#1a1a1a' : '#e8e8ed' }}
-            >
-              <div className="h-full rounded-full bg-blue-500 animate-pulse" style={{ width: '65%' }} />
-            </div>
-          </div>
-        </div>
+        </aside>
       </main>
 
       {/* ── Footer ── */}
       <footer
-        className="border-t py-8 px-4 text-center text-xs font-mono mt-12"
-        style={{
-          background: isDark ? '#000' : '#f0f0f3',
-          borderColor: isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.07)',
-          color: isDark ? '#4b5563' : '#999',
-        }}
+        className="border-t py-8 px-4 text-center text-xs font-mono mt-8 relative z-10"
+        style={{ background: isDark ? '#000' : '#ebebef', borderColor: tk.cardB, color: tk.text3 }}
       >
-        <div className="max-w-7xl mx-auto space-y-3">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <DarkModeToggle isDark={isDark} onToggle={toggleDark} />
-            <span className={`text-[9px] uppercase tracking-wider font-mono ${textMuted}`}>
-              Theme Preference
-            </span>
+        <div className="max-w-7xl mx-auto space-y-4">
+          <div className="flex items-center justify-center gap-3 mb-2">
+            <DarkModeToggle isDark={isDark} onToggle={() => {
+              toggleDark();
+              addToast(isDark ? 'Light mode enabled' : 'Dark mode enabled', 'info', isDark ? '☀️' : '🌙');
+            }} />
+            <span className="text-[9px] uppercase tracking-wider font-mono" style={{ color: tk.text3 }}>Theme Preference</span>
           </div>
-          <p className="font-semibold uppercase tracking-wider text-[10px]"
-             style={{ color: isDark ? '#6b7280' : '#aaa' }}>
+          <p className="font-semibold uppercase tracking-wider text-[10px]">
             Jumpstreet • A Mangalik and Sons Venture Limited © 2026. All rights reserved.
           </p>
-          <p className="max-w-2xl mx-auto text-[9px] leading-relaxed"
-             style={{ color: isDark ? '#374151' : '#ccc' }}>
-            Algorithmic indicator tools ("Bot Fixed") are developed for backtesting and analytical simulation.
-            We do not provide personalised financial advice. Shipped hardware (5G SIM Hotspots) is subject to Indian import regulations.
+          <p className="max-w-2xl mx-auto text-[9px] leading-relaxed" style={{ color: isDark ? '#374151' : '#bbb' }}>
+            Algorithmic indicator tools ("Bot Fixed") are for backtesting and analytical simulation.
+            We do not provide personalised financial advice. Shipped hardware is subject to Indian import regulations.
           </p>
-          <div className="flex flex-wrap justify-center gap-3 text-[9px] uppercase tracking-widest font-bold">
-            <a href="https://ajainx1.github.io" target="_blank" rel="noopener noreferrer"
-               className="hover:text-blue-400 transition-colors">Developer Profile</a>
-            <span style={{ color: isDark ? '#1f2937' : '#ddd' }}>•</span>
-            <a href="https://ajainx1.github.io" target="_blank" rel="noopener noreferrer"
-               className="hover:text-blue-400 transition-colors">Primary Portal</a>
-            <span style={{ color: isDark ? '#1f2937' : '#ddd' }}>•</span>
-            <a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a>
+          <div className="flex flex-wrap justify-center gap-4 text-[9px] uppercase tracking-widest font-bold">
+            {[
+              { label: 'Developer Profile', href: 'https://ajainx1.github.io' },
+              { label: 'Primary Portal', href: 'https://ajainx1.github.io' },
+              { label: 'Terms of Service', href: '#' },
+            ].map(link => (
+              <a key={link.label} href={link.href} target={link.href !== '#' ? '_blank' : undefined}
+                 rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
+                {link.label}
+              </a>
+            ))}
           </div>
-          {/* Visit count in footer */}
-          <div className="flex items-center justify-center gap-1.5 pt-2">
+          <div className="flex items-center justify-center gap-1.5 pt-1">
             <Eye size={11} className="text-blue-400" />
             <span className="text-[9px] font-mono" style={{ color: isDark ? '#374151' : '#ccc' }}>
-              {displayCount.toLocaleString('en-IN')} platform visits
+              {displayCount.toLocaleString('en-IN')} platform visits recorded
             </span>
           </div>
         </div>
@@ -842,20 +731,29 @@ export default function App() {
           <button
             key={key}
             id={`mob-nav-${key}`}
-            onClick={() => { setActiveTab(key); setMobileMenuOpen(false); }}
+            onClick={() => switchTab(key)}
             className={`mobile-nav-btn ${activeTab === key ? 'active' : ''}`}
+            aria-current={activeTab === key ? 'page' : undefined}
           >
             {icon}
             <span>{label}</span>
-            {key === 'checkout' && (selectedProduct || customVmConfig) && (
-              <span className="absolute top-1 right-1 w-1.5 h-1.5 rounded-full bg-blue-400 animate-ping" />
-            )}
           </button>
         ))}
       </nav>
 
       {/* ── Visit Counter Floating Badge ── */}
       <VisitCounterBadge displayCount={displayCount} isDark={isDark} />
+
+      {/* ── Scroll-to-Top Button ── */}
+      {showScrollTop && (
+        <button
+          onClick={scrollTop}
+          className="scroll-top-btn"
+          aria-label="Scroll to top"
+        >
+          <ChevronUp size={18} />
+        </button>
+      )}
     </div>
   );
 }

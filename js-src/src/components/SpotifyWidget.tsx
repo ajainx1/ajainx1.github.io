@@ -127,6 +127,7 @@ export default function SpotifyWidget({ isDark }: SpotifyWidgetProps) {
             alt={currentTrack.album}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             referrerPolicy="no-referrer"
+            loading="lazy"
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
             <Music size={20} className="text-blue-400" />

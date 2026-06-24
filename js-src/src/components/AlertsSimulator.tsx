@@ -211,7 +211,7 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
         {/* Phone Simulator */}
         <div className="lg:col-span-7">
           <div
-            className="border overflow-hidden shadow-2xl flex flex-col rounded-sm"
+            className="relative border overflow-hidden shadow-2xl flex flex-col rounded-sm"
             style={{ height: '320px', background: deepBg, borderColor }}
           >
             {/* Status bar */}
