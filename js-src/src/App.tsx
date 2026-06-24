@@ -137,17 +137,10 @@ export default function App() {
   const { isDark, toggle: toggleDark } = useDarkMode();
   const { displayCount } = useVisitCounter();
 
-  const cardBg = isDark ? 'bg-[#111111]' : 'bg-white';
-  const cardBorder = isDark ? 'border-white/10' : 'border-black/8';
   const deepBg = isDark ? 'bg-[#0A0A0A]' : 'bg-[#F4F4F6]';
   const textPrimary = isDark ? 'text-white' : 'text-gray-900';
   const textSecondary = isDark ? 'text-neutral-400' : 'text-gray-500';
   const textMuted = isDark ? 'text-neutral-500' : 'text-gray-400';
-  const navBg = isDark ? 'bg-black/90' : 'bg-white/95';
-  const inputStyle = isDark
-    ? 'bg-black border-white/10 text-neutral-200 focus:border-white/40'
-    : 'bg-gray-50 border-gray-200 text-gray-900 focus:border-blue-400';
-  const deepCardBg = isDark ? 'bg-black' : 'bg-gray-100';
 
   // Load orders
   useEffect(() => {
@@ -269,7 +262,7 @@ export default function App() {
             >
               J
             </div>
-            <div className="hidden xs:block">
+            <div className="hidden sm:block">
               <div className="flex items-center gap-2">
                 <span className={`text-xs sm:text-sm font-bold tracking-[0.15em] uppercase ${textPrimary}`}>
                   Jumpstreet
@@ -588,7 +581,8 @@ export default function App() {
                             </span>
                             <div className="flex items-center gap-2 mt-0.5">
                               <span className={`text-[10px] font-mono ${textMuted}`}>ID: {ord.id}</span>
-                              <span className={textMuted}>•</span>
+                              <span className="hidden sm:block">
+                              </span> 
                               <span className={`text-[10px] font-mono ${textMuted}`}>{ord.createdAt}</span>
                             </div>
                           </div>

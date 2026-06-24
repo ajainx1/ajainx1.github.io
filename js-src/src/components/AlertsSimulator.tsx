@@ -307,7 +307,7 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
             {/* Platform badge */}
             <div
               className="absolute bottom-2 right-2 px-2.5 py-1 rounded-sm text-[9px] font-mono uppercase tracking-wider"
-              style={{ background: isDark ? '#0a0a0a' : '#f0f0f3', border: `1px solid ${borderColor}`, color: textMuted, position: 'relative' }}
+              style={{ background: isDark ? '#0a0a0a' : '#f0f0f3', border: `1px solid ${borderColor}`, color: textMuted }}
             >
               {getPlatform(activePlatform).name} Feed
             </div>
