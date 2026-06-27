@@ -588,7 +588,7 @@ footer>div{max-width:76rem;margin:0 auto;padding:1.75rem 1.5rem;display:flex;fle
         <div class="hero-btns">
           <a href="#contact" class="btn">./hire_me.sh</a>
           <a href="#experience" class="btn btn-ghost">cat experience.log</a>
-          <a href="mailto:aavkjain@hotmail.com" class="btn btn-ghost" onclick="showToast('Opening mail client…')">↓ download cv</a>
+          <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn btn-ghost" onclick="showToast('Downloading CV…')">↓ download cv</a>
         </div>
         <div class="stats-grid">
           <div class="stat-box"><div class="stat-num" data-target="3" data-suffix="+">0</div><div class="stat-label">years enterprise SecOps</div></div>
@@ -1224,10 +1224,20 @@ async function auditCmd(){
   }
 }
 
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, tag => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    "'": '&#39;',
+    '"': '&quot;'
+  }[tag] || tag));
+}
+
 function appendLine(ps,cmd){
   const d=document.createElement('div');
   d.className='tl';
-  d.innerHTML=`<span class="ps">${ps}</span><span class="cmd">${cmd}</span>`;
+  d.innerHTML=`<span class="ps">${escapeHTML(ps)}</span><span class="cmd">${escapeHTML(cmd)}</span>`;
   termBody.appendChild(d);
   termBody.scrollTop=termBody.scrollHeight;
 }
@@ -1247,7 +1257,7 @@ async function runCmd(raw){
   if(cmd==='audit'){await auditCmd();return}
   const fn=CMDS[cmd];
   if(fn)(fn()).forEach(l=>appendOut(l));
-  else appendOut(`<span class="err">zsh: command not found: ${raw.trim()} — try 'help'</span>`);
+  else appendOut(`<span class="err">zsh: command not found: ${escapeHTML(raw.trim())} — try 'help'</span>`);
 }
 
 // boot messages
