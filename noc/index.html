@@ -1,0 +1,3690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Official Portal for National Informatics Centre (NIC) and National Knowledge Network (NKN) services, Ministry of Electronics and Information Technology, Government of India.">
+    <title>Bihar State NOC | National Informatics Centre</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <!-- Emblem Icon -->
+    <link rel="icon" href="Emblem_of_India.png">
+    
+    <style>
+        :root {
+            /* Light Theme Palette */
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #f1f5f9;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --primary: #0f4c81; /* Deep Royal Blue */
+            --primary-light: #e0f2fe;
+            --primary-hover: #0a3860;
+            --accent: #f97316; /* Vibrant Saffron */
+            --accent-hover: #ea580c;
+            --success: #10b981; /* Emerald Green */
+            --warning: #f59e0b; /* Amber */
+            --danger: #ef4444;
+            
+            --border-color: #e2e8f0;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
+            
+            --font-family-sans: 'Inter', sans-serif;
+            --font-family-title: 'Outfit', sans-serif;
+            --border-radius: 12px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body.dark-mode {
+            /* Dark Theme Palette */
+            --bg-primary: #0b0f19;
+            --bg-secondary: #161e2f;
+            --bg-tertiary: #1f293d;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            
+            --primary: #38bdf8; /* Sky Blue */
+            --primary-light: #0c4a6e;
+            --primary-hover: #7dd3fc;
+            
+            --border-color: #2e3c54;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family-sans);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: var(--transition);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Top Government Bar */
+        .gov-banner {
+            background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #128807 100%);
+            height: 4px;
+            width: 100%;
+        }
+
+        /* Top Header */
+        .top-header {
+            background-color: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+        }
+
+        .emblem-container {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .emblem-container img {
+            height: 45px;
+            object-fit: contain;
+        }
+
+        .emblem-text {
+            font-size: 0.85rem;
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--text-secondary);
+        }
+
+        .emblem-text span {
+            font-family: var(--font-family-title);
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Theme Toggle Button */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: scale(1.08);
+            background: var(--primary-light);
+            color: var(--primary);
+        }
+
+        /* Advisory Alert Marquee Ticker */
+        .alert-ticker {
+            background-color: var(--bg-tertiary);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            font-size: 0.85rem;
+            height: 38px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .ticker-label {
+            background-color: var(--accent);
+            color: #ffffff;
+            padding: 0 16px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            height: 100%;
+            z-index: 10;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            white-space: nowrap;
+        }
+        .ticker-content {
+            flex: 1;
+            padding: 0 15px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Hero Dashboard Section */
+        .hero-dashboard {
+            position: relative;
+            background: linear-gradient(135deg, #0f4c81 0%, #082f50 100%);
+            color: #ffffff;
+            padding: 60px 40px;
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        body.dark-mode .hero-dashboard {
+            background: linear-gradient(135deg, #090d16 0%, #161e2f 100%);
+        }
+
+        /* Abstract Grid Overlay */
+        .hero-dashboard::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .hero-logos a {
+            display: inline-flex;
+            text-decoration: none;
+            transition: var(--transition);
+            border-radius: 8px;
+        }
+
+        .hero-logos img {
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px 18px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: var(--transition);
+        }
+
+        .hero-logos a:hover img {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .hero-dashboard h1 {
+            font-family: var(--font-family-title);
+            font-size: 2.6rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero-dashboard p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-actions-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            padding: 12px 28px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(249, 115, 22, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.5);
+        }
+
+        .btn-secondary {
+            background-color: rgba(255,255,255,0.15);
+            color: #ffffff;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255,255,255,0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container Grid */
+        main {
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.1fr 1.9fr;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+            .top-header {
+                padding: 15px 20px;
+            }
+            .hero-dashboard h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Cards & Container Styling */
+        .glass-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+        .glass-card:hover {
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(15, 76, 129, 0.2);
+            transform: translateY(-4px);
+        }
+
+        body.dark-mode .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        .card-header h2 {
+            font-family: var(--font-family-title);
+            font-size: 1.35rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        .card-header h2 i {
+            color: var(--primary);
+        }
+
+        /* Left Side: Support Directory Cards */
+        .support-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .support-contact {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 16px;
+            transition: var(--transition);
+        }
+
+        .support-contact:hover {
+            transform: translateX(4px);
+            border-color: var(--primary);
+        }
+
+        .support-contact h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .contact-link-item:hover {
+            color: var(--primary);
+        }
+
+        .contact-link-item i {
+            font-size: 0.95rem;
+            width: 18px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        /* Live Network Status Panel */
+        .status-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 18px;
+            background-color: var(--bg-tertiary);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .status-item-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .status-item-name {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .status-dot.online {
+            background-color: var(--success);
+            box-shadow: 0 0 8px var(--success);
+        }
+
+        .status-dot.online::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: var(--success);
+            animation: pulse-ring 1.5s infinite;
+            top: 0;
+            left: 0;
+        }
+
+        .status-dot.warning {
+            background-color: var(--warning);
+            box-shadow: 0 0 8px var(--warning);
+        }
+
+        .status-badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .status-badge.online {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .status-badge.warning {
+            background-color: rgba(245, 158, 11, 0.15);
+            color: var(--warning);
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
+        }
+
+        .status-traffic-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            margin-top: 5px;
+            border: 1px solid transparent;
+        }
+
+        .status-traffic-link:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(15, 76, 129, 0.2);
+        }
+
+        body.dark-mode .status-traffic-link {
+            background-color: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+        }
+
+        body.dark-mode .status-traffic-link:hover {
+            background-color: var(--primary);
+            color: #0b0f19;
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+        }
+
+        /* Right Side: Advanced Document Uploader */
+        .file-upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .input-control {
+            font-family: var(--font-family-sans);
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .input-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .drag-drop-zone {
+            border: 2px dashed var(--border-color);
+            background-color: var(--bg-tertiary);
+            border-radius: var(--border-radius);
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .drag-drop-zone:hover, .drag-drop-zone.dragover {
+            border-color: var(--primary);
+            background-color: var(--primary-light);
+        }
+
+        body.dark-mode .drag-drop-zone:hover, body.dark-mode .drag-drop-zone.dragover {
+            background-color: rgba(56, 189, 248, 0.05);
+        }
+
+        .drag-drop-zone input[type="file"] {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            transition: var(--transition);
+        }
+
+        .drag-drop-zone:hover .upload-icon {
+            transform: translateY(-5px);
+        }
+
+        .drag-drop-text h4 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .drag-drop-text p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        #selectedFileInfo {
+            margin-top: 15px;
+            background-color: var(--bg-secondary);
+            border: 1px dashed var(--border-color);
+            border-radius: 8px;
+            padding: 12px 18px;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .selected-file-details {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .selected-file-details i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .selected-file-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+
+        .selected-file-size {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .clear-file-btn {
+            background: none;
+            border: none;
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
+        /* Toast / Alert Status Notification */
+        .toast-container {
+            margin-bottom: 25px;
+        }
+
+        .custom-toast {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            animation: slideDown 0.3s ease-out;
+            border-left: 5px solid transparent;
+            box-shadow: var(--shadow-md);
+        }
+
+        .custom-toast.toast-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+            border-color: var(--success);
+            border-top: 1px solid #d1fae5;
+            border-right: 1px solid #d1fae5;
+            border-bottom: 1px solid #d1fae5;
+        }
+
+        body.dark-mode .custom-toast.toast-success {
+            background-color: #064e3b;
+            color: #a7f3d0;
+            border-color: var(--success);
+        }
+
+        .custom-toast.toast-error {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border-color: var(--danger);
+            border-top: 1px solid #fee2e2;
+            border-right: 1px solid #fee2e2;
+            border-bottom: 1px solid #fee2e2;
+        }
+
+        body.dark-mode .custom-toast.toast-error {
+            background-color: #7f1d1d;
+            color: #fca5a5;
+            border-color: var(--danger);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Right Side: Dynamic File Explorer */
+        .explorer-filters {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 576px) {
+            .explorer-filters {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .search-wrapper {
+            position: relative;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            padding-left: 40px !important;
+        }
+
+        .files-table-container {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow-x: auto;
+            background-color: var(--bg-tertiary);
+        }
+
+        .files-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        .files-table th, .files-table td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .files-table th {
+            background-color: var(--bg-secondary);
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-family: var(--font-family-title);
+        }
+
+        .files-table tbody tr {
+            background-color: var(--bg-secondary);
+            transition: var(--transition);
+        }
+
+        .files-table tbody tr:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .file-info-col {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .file-icon {
+            font-size: 1.25rem;
+        }
+
+        .file-icon.pdf { color: #ef4444; }
+        .file-icon.word { color: #3b82f6; }
+        .file-icon.excel { color: #10b981; }
+        .file-icon.image { color: #06b6d4; }
+        .file-icon.zip { color: #8b5cf6; }
+        .file-icon.powerpoint { color: #f97316; }
+        .file-icon.fallback { color: #64748b; }
+
+        .file-name-txt {
+            font-weight: 500;
+            color: var(--text-primary);
+            max-width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .badge-district {
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            display: inline-block;
+        }
+
+        .download-btn-col a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: var(--transition);
+        }
+
+        .download-btn-col a:hover {
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .no-files-found {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+        }
+
+        .no-files-found i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Resources Accordion Section */
+        .resources-accordion {
+            grid-column: 1 / -1;
+        }
+
+        .accordion-item {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            margin-bottom: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-family: var(--font-family-title);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            transition: var(--transition);
+        }
+
+        .accordion-trigger:hover {
+            background-color: var(--bg-tertiary);
+        }
+
+        .accordion-trigger i.chevron {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--bg-secondary);
+        }
+
+        .accordion-content-inner {
+            padding: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .resource-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .resource-card {
+            background-color: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        .resource-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-primary);
+        }
+
+        .resource-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .resource-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 20px;
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-metadata {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .footer-metadata span i {
+            margin-right: 5px;
+        }
+
+        /* Skip to content - Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: #fff;
+            padding: 8px 16px;
+            z-index: 200;
+            font-size: 0.9rem;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Responsive Layout Optimization */
+        @media (max-width: 768px) {
+            .hero-dashboard {
+                padding: 40px 20px;
+            }
+            .hero-dashboard h1 {
+                font-size: 1.8rem;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .files-table th:nth-child(3),
+            .files-table td:nth-child(3) {
+                display: none;
+            }
+        }
+
+        /* Floating AI Chatbot Widget Styles */
+        .ai-chatbot-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            font-family: var(--font-family-sans);
+        }
+
+        /* Chatbot Attention Tooltip */
+        .chatbot-attention-tooltip {
+            position: absolute;
+            bottom: 75px;
+            right: 10px;
+            background-color: var(--accent); /* Saffron/Accent color */
+            color: #ffffff;
+            padding: 10px 16px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            white-space: nowrap;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+            animation: tooltip-bounce 2s infinite ease-in-out;
+            pointer-events: none !important;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 9998;
+        }
+
+        .chatbot-attention-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 20px;
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: var(--accent) transparent;
+            display: block;
+            width: 0;
+        }
+
+        @keyframes tooltip-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .chatbot-toggle-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 10000;
+        }
+
+        /* Subtle Attention-Grabbing Pulse for the button */
+        .chatbot-toggle-btn.pulse {
+            animation: button-pulse 2s infinite;
+        }
+
+        @keyframes button-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(15, 76, 129, 0.6);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(15, 76, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(15, 76, 129, 0);
+            }
+        }
+
+        .chatbot-toggle-btn:hover {
+            transform: scale(1.08) rotate(5deg);
+            background-color: var(--primary-hover);
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .chatbot-panel {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            width: 380px;
+            height: 520px;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .chatbot-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .chatbot-header {
+            padding: 16px 20px;
+            background-color: var(--primary);
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .chatbot-header-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-header-title i {
+            font-size: 1.25rem;
+        }
+
+        .chatbot-header-title h3 {
+            font-family: var(--font-family-title);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        .chatbot-header-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .chatbot-header-close:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: var(--bg-primary);
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 10px 14px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            word-wrap: break-word;
+        }
+
+        .chat-msg.bot {
+            align-self: flex-start;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-msg.user {
+            align-self: flex-end;
+            background-color: var(--primary);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-msg.system {
+            align-self: center;
+            background-color: transparent;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            font-style: italic;
+            text-align: center;
+            max-width: 100%;
+        }
+
+        .chatbot-input-area {
+            padding: 15px 20px;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-tertiary);
+            color: var(--text-primary);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--primary);
+        }
+
+        .chatbot-send-btn {
+            background-color: var(--primary);
+            color: #ffffff;
+            border: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .chatbot-send-btn:hover {
+            background-color: var(--primary-hover);
+            transform: scale(1.05);
+        }
+
+        .chatbot-mic-btn {
+            background-color: var(--bg-tertiary);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .chatbot-mic-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .chatbot-mic-btn.recording {
+            background-color: #ef4444;
+            color: #ffffff;
+            border-color: #ef4444;
+            animation: mic-pulse 1.5s infinite;
+        }
+
+        @keyframes mic-pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 8px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--text-muted);
+            border-radius: 50%;
+            animation: typing-bounce 1.4s infinite ease-in-out both;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing-bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        @media (max-width: 480px) {
+            .ai-chatbot-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+            .chatbot-panel {
+                width: calc(100vw - 40px);
+                height: 480px;
+                bottom: 70px;
+            }
+        }
+        /* Bihar District Operations Hub Styling */
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+        .division-block {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        body.dark-mode .division-block {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #1c273c 100%);
+        }
+        .division-block:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-4px);
+        }
+        .division-title {
+            font-family: var(--font-family-title);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--primary);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .division-title i {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        .districts-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .district-node {
+            background-color: rgba(15, 76, 129, 0.03);
+            border: 1px solid rgba(15, 76, 129, 0.08);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            user-select: none;
+            letter-spacing: 0.3px;
+        }
+        body.dark-mode .district-node {
+            background-color: rgba(56, 189, 248, 0.03);
+            border-color: rgba(56, 189, 248, 0.08);
+        }
+        .district-node i {
+            font-size: 0.75rem;
+            opacity: 0.75;
+            transition: var(--transition);
+        }
+        .district-node:hover {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 10px rgba(15, 76, 129, 0.12);
+        }
+        .district-node:hover i {
+            opacity: 1;
+            animation: bounce-marker 0.6s infinite alternate ease-in-out;
+        }
+        @keyframes bounce-marker {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-3px); }
+        }
+        .district-node.active {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 4px 12px rgba(15, 76, 129, 0.25);
+        }
+        .district-node.active i {
+            opacity: 1;
+            color: #ffffff;
+        }
+        body.dark-mode .district-node:hover {
+            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.15);
+        }
+        body.dark-mode .district-node.active {
+            background-color: var(--primary);
+            color: var(--bg-primary);
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+        }
+        body.dark-mode .district-node.active i {
+            color: var(--bg-primary);
+        }
+        
+        .district-details-panel {
+            background: rgba(241, 245, 249, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(15, 76, 129, 0.12);
+            border-radius: 12px;
+            padding: 24px;
+            transition: var(--transition);
+            min-height: 120px;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 8px 32px 0 rgba(15, 76, 129, 0.04);
+        }
+        body.dark-mode .district-details-panel {
+            background: rgba(22, 30, 47, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-color: rgba(56, 189, 248, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+        .bihar-map-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 90%;
+            background-image: url('bihar_map.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: multiply;
+            transition: var(--transition);
+        }
+        body.dark-mode .bihar-map-bg {
+            filter: invert(1) brightness(0.85);
+            mix-blend-mode: screen;
+            opacity: 0.04;
+        }
+        .contact-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 14px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+        .contact-card:hover {
+            transform: translateX(4px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-card.sio-card {
+            border-left: 4px solid var(--primary);
+        }
+        .contact-card.fms-card {
+            border-left: 4px solid var(--accent);
+        }
+        .badge-district-hub {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid transparent;
+            display: inline-block;
+            animation: pulse-glow 2.5s infinite ease-in-out;
+            transition: var(--transition);
+        }
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(15, 76, 129, 0.2); }
+            70% { box-shadow: 0 0 0 8px rgba(15, 76, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(15, 76, 129, 0); }
+        }
+        body.dark-mode .badge-district-hub {
+            animation: pulse-glow-dark 2.5s infinite ease-in-out;
+            background-color: var(--primary-light);
+            color: var(--primary);
+        }
+        @keyframes pulse-glow-dark {
+            0% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.25); }
+            70% { box-shadow: 0 0 0 8px rgba(56, 189, 248, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(56, 189, 248, 0); }
+        }
+        .panel-placeholder {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            padding: 25px;
+        }
+        .panel-placeholder i {
+            display: block;
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
+        .panel-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            animation: fadeIn 0.3s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 768px) {
+            .panel-details-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .details-col h3 {
+            font-family: var(--font-family-title);
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+        .details-col h3 i {
+            color: var(--primary);
+        }
+        
+        .docs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .doc-item-link {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+        .doc-item-link:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background-color: var(--primary-light);
+            transform: translateX(4px);
+        }
+        .doc-item-link i.arrow {
+            font-size: 0.95rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .doc-item-link:hover i.arrow {
+            transform: translateX(3px);
+        }
+        @keyframes float-trophy {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(5deg); }
+        }
+        .celebration-card-wrapper {
+            position: relative;
+            padding: 3px;
+            border-radius: 18px;
+            background: linear-gradient(90deg, #f97316, #38bdf8, #10b981, #ec4899, #f97316);
+            background-size: 300% 300%;
+            animation: rainbow-border 4s infinite linear, float-card 3.5s infinite alternate ease-in-out !important;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+            max-width: 420px;
+            width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 100001;
+        }
+        .celebration-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 35px 30px;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: visible; /* so absolute emojis can pop out */
+        }
+        .neon-text-glow {
+            font-family: var(--font-family-title);
+            font-size: 1.7rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            text-shadow: 0 0 10px rgba(15, 76, 129, 0.4);
+            animation: text-pulse 1.5s infinite alternate ease-in-out;
+        }
+        body.dark-mode .neon-text-glow {
+            text-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+            animation: text-pulse-dark 1.5s infinite alternate ease-in-out;
+        }
+        .glow-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%) !important;
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(15, 76, 129, 0.4) !important;
+            animation: btn-pulse 2s infinite alternate ease-in-out;
+            color: #ffffff !important;
+        }
+        body.dark-mode .glow-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%) !important;
+            color: var(--bg-primary) !important;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4) !important;
+        }
+        @keyframes float-card {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-8px) rotate(1deg); }
+        }
+        @keyframes rainbow-border {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes float-balloon {
+            0% { transform: translateY(0) rotate(-10deg); }
+            100% { transform: translateY(-12px) rotate(10deg); }
+        }
+        @keyframes text-pulse {
+            0% { text-shadow: 0 0 8px rgba(15, 76, 129, 0.3); }
+            100% { text-shadow: 0 0 18px rgba(15, 76, 129, 0.6); }
+        }
+        @keyframes text-pulse-dark {
+            0% { text-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
+            100% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.8); }
+        }
+        @keyframes btn-pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.03); }
+        }
+
+        /* Mobile Layout Optimizations */
+        @media (max-width: 768px) {
+            .divisions-grid {
+                grid-template-columns: 1fr !important;
+                gap: 15px !important;
+            }
+            .division-block {
+                padding: 16px !important;
+            }
+            .district-details-panel {
+                padding: 16px !important;
+            }
+            .dio-common-email-banner {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 8px !important;
+            }
+            .panel-details-grid {
+                grid-template-columns: 1fr !important;
+                gap: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a class="skip-link" href="#upload-card">Skip to main content</a>
+    <!-- Top Gov Tricolor Bar -->
+    <div class="gov-banner"></div>
+
+    <!-- Sticky Navigation / Header -->
+    <header class="top-header">
+        <div class="emblem-container">
+            <img src="Emblem_of_India.png" alt="Emblem of India">
+            <div class="emblem-text">
+                <span>Government of India | भारत सरकार</span><br>
+                Ministry of Electronics & Information Technology
+            </div>
+        </div>
+        <div class="header-actions">
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Advisory Alert Marquee Ticker -->
+    <div class="alert-ticker">
+        <div class="ticker-label"><i class="fas fa-bullhorn"></i> Advisory Alerts:</div>
+        <div class="ticker-content">
+            <marquee behavior="scroll" direction="left" scrollamount="4" onmouseover="this.stop();" onmouseout="this.start();">
+                📢 <strong>Endpoint Security Advisory:</strong> All district nodes are requested to update to the latest FortiClient VPN client immediately. &nbsp;&nbsp;&bull;&nbsp;&nbsp; 📅 <strong>DPR Submission:</strong> Daily Progress Reports must be uploaded by 5:00 PM daily. &nbsp;&nbsp;&bull;&nbsp;&nbsp; 🚀 <strong>Service Status:</strong> Core NKN backbone bandwidth has been upgraded to 10 Gbps. &nbsp;&nbsp;&bull;&nbsp;&nbsp; 🛠️ <strong>FMS Billing & Attendance:</strong> Engineers are advised to log their daily attendance on the FMS portal.
+            </marquee>
+        </div>
+    </div>
+
+    <!-- Professional Hero Header Panel -->
+    <section class="hero-dashboard">
+        <!-- Interactive Network Canvas nodes animation -->
+        <canvas id="networkCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.45;"></canvas>
+        <div class="hero-container">
+            <div class="hero-logos">
+                <a href="https://bihar.example.com" target="_blank" rel="noopener noreferrer" title="National Informatics Centre Bihar Centre">
+                    <img src="NIC_Preview-1.png" alt="National Informatics Centre Logo">
+                </a>
+                <a href="https://nkn.in/" target="_blank" rel="noopener noreferrer" title="National Knowledge Network">
+                    <img src="NKN_H_Preview.png" alt="National Knowledge Network Logo">
+                </a>
+            </div>
+            <h1>Bihar NIC & NKN Support Portal</h1>
+            <p>Bihar State Network Operations Centre (NOC) — Unified document submission, system management, and real-time support platform.</p>
+            <div class="hero-actions-container">
+                <a href="http://dpr.state-noc.org/LoginPage.aspx" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
+                    <i class="fas fa-file-invoice"></i> Daily Progress Report (DPR)
+                </a>
+                <a href="./nic/" class="btn btn-secondary" target="_blank">
+                    <i class="fas fa-globe"></i> Access Intranet Portal
+                </a>
+                <a href="https://taspass.state-noc.org" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-key"></i> Change TACS Password
+                </a>
+                <a href="http://fms.state-noc.org/FMS-attendance/index.php" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-user-check"></i> FMS Billing & Attendance System
+                </a>
+                <a href="/alert/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches & Core Routers">
+                    <i class="fas fa-network-wired"></i> NIC Network Monitor
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <main>
+        
+        <!-- Left Column: Support & Network Health -->
+        <div class="left-column">
+            
+            <!-- Live Status Panel -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <h2>
+                        <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;" title="Open NICNET Live Traffic Monitor">
+                            <i class="fas fa-signal"></i> Service Health <i class="fas fa-external-link-alt" style="font-size: 0.75rem; opacity: 0.6;"></i>
+                        </a>
+                    </h2>
+                    <span class="status-badge online">Active</span>
+                </div>
+                <div class="status-panel">
+                    <div class="status-item">
+                        <div class="status-item-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-item-name">Bihar State NOC (Patna)</span>
+                        </div>
+                        <span class="status-badge online">99.98%</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-item-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-item-name">NKN Core Backbone</span>
+                        </div>
+                        <span class="status-badge online">100%</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-item-info">
+                            <span class="status-dot online"></span>
+                            <span class="status-item-name">NICNET District Links</span>
+                        </div>
+                        <span class="status-badge online">99.95%</span>
+                    </div>
+                    
+                    <!-- Real-time MRTG Network Traffic Link -->
+                    <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" class="status-traffic-link">
+                        <i class="fas fa-chart-line"></i> View Live NICNET Traffic Monitor (MRTG)
+                    </a>
+                    <a href="/alert/" target="_blank" rel="noopener noreferrer" class="status-traffic-link" style="background-color: var(--primary-light); color: var(--primary); margin-top: 10px;">
+                        <i class="fas fa-network-wired"></i> View Live NIC Device Monitor
+                    </a>
+                </div>
+            </div>
+
+            <!-- Support Directory Desk -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-headset"></i> 24×7 NOC Support Desk</h2>
+                    <span class="status-badge online">24×7</span>
+                </div>
+                <div class="support-grid">
+                    <div class="support-contact">
+                        <h3>Bihar State NOC (NIC Bhawan, Patna)</h3>
+                        <div class="contact-links">
+                            <a href="tel:06122547906" class="contact-link-item">
+                                <i class="fas fa-phone"></i>
+                                <span>0612-2547906</span>
+                            </a>
+                            <a href="tel:09102403679" class="contact-link-item">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>09102403679</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="support-contact">
+                        <h3>VoIP Hotlines (Extensions)</h3>
+                        <div class="contact-links">
+                            <a href="tel:06122547198" class="contact-link-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>VoIP: 0612-2547198 Ext. 7089, 7090, 7091</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Live Outages Alert Panel -->
+            <div class="glass-card" id="outages-panel" style="margin-top: 30px;">
+                <div class="card-header" id="outages-card-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; transition: border-color 0.3s;">
+                    <h2 id="outages-title" style="color: var(--text-primary); transition: color 0.3s;"><i class="fas fa-network-wired"></i> Network Link Status</h2>
+                    <span class="status-badge" id="outage-count-badge" style="background-color: var(--bg-tertiary); color: var(--text-secondary); font-weight: 700; transition: all 0.3s;">Loading...</span>
+                </div>
+                <div class="outages-list" id="outages-list" style="display: flex; flex-direction: column; gap: 12px; max-height: 350px; overflow-y: auto; margin-top: 20px;">
+                    <div style="text-align: center; color: var(--text-secondary); padding: 20px 0; font-size: 0.95rem;">
+                        <i class="fas fa-spinner fa-spin" style="font-size: 1.5rem; color: var(--primary); margin-bottom: 10px; display: block;"></i>
+                        Fetching real-time link statuses...
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Right Column: Document Upload & Explorer -->
+        <div class="right-column">
+            
+            <!-- Toast notification messages -->
+            <div id="toastContainer" class="toast-container"></div>
+            
+            <!-- Secure Document Upload Form -->
+            <div class="glass-card" id="upload-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-file-upload"></i> Document Submission</h2>
+                    <span class="badge-district" style="background-color: var(--primary-light); color: var(--primary); border: none;">Max 500MB</span>
+                </div>
+                
+                <form action="upload.php" method="post" enctype="multipart/form-data" class="file-upload-form" id="uploadForm">
+                    <div class="input-group">
+                        <label for="purposeOrDistrict">District Name / Purpose</label>
+                        <input type="text" id="purposeOrDistrict" name="purposeOrDistrict" required class="input-control" placeholder="e.g. Patna - Monthly Inventory Audit">
+                    </div>
+                    
+                    <div class="drag-drop-zone" id="dropZone">
+                        <input type="file" name="fileToUpload" id="fileToUpload" required accept=".pptx,.pdf,.doc,.docx,.xls,.xlsx,image/*,.zip">
+                        <i class="fas fa-cloud-upload-alt upload-icon" id="dropZoneIcon"></i>
+                        <div class="drag-drop-text" id="dropZoneText">
+                            <h4>Drag & Drop file here or click to browse</h4>
+                            <p>Accepted formats: PDF, ZIP, PPTX, Word, Excel, Images</p>
+                        </div>
+                        
+                        <!-- Selected File Info (Revealed dynamically) -->
+                        <div id="selectedFileInfo">
+                            <div class="selected-file-details">
+                                <i class="far fa-file-alt" id="fileTypeIcon"></i>
+                                <div>
+                                    <div class="selected-file-name" id="displayFileName">file_name.pdf</div>
+                                    <div class="selected-file-size" id="displayFileSize">0 KB</div>
+                                </div>
+                            </div>
+                            <button type="button" class="clear-file-btn" id="clearFileBtn" title="Remove selected file"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" name="submit" class="btn btn-primary" style="width: 100%; justify-content: center; height: 50px; font-family: var(--font-family-sans);">
+                        <i class="fas fa-paper-plane"></i> Upload & Register Document
+                    </button>
+                </form>
+            </div>
+
+            <!-- Dynamic File Manager / File Explorer -->
+            <div class="glass-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-folder-open"></i> Document Explorer</h2>
+                </div>
+                
+                <!-- Filters -->
+                <div class="explorer-filters">
+                    <div class="search-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="fileSearch" class="input-control search-input" placeholder="Search files by name...">
+                    </div>
+                    <select id="districtFilter" class="input-control">
+                        <option value="">All Districts</option>
+                    </select>
+                </div>
+                
+                <!-- Dynamic Files Table -->
+                <div class="files-table-container">
+                    <table class="files-table" id="filesTable">
+                        <thead>
+                            <tr>
+                                <th>Document Name</th>
+                                <th>District / Purpose</th>
+                                <th>Size</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filesTableBody">
+                            <tr>
+                                <td colspan="4" class="no-files-found">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading index...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Bihar District Operations Hub -->
+        <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 30px;">
+            <div class="bihar-map-bg"></div>
+            <div class="card-header" style="position: relative; z-index: 1;">
+                <h2><i class="fas fa-map-marked-alt"></i> Bihar District Operations Hub</h2>
+                <span class="badge-district-hub">38 Districts Configured</span>
+            </div>
+            
+            <p style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-secondary); position: relative; z-index: 1;">
+                Select your district below to lookup local SIO/FMS engineers, VoIP Extensions, and instantly access direct download links for the latest <a href="nic/index.php?dir=DISTRICT+AUDIT+-+2025" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">district audit reports</a> and <a href="nic/index.php?dir=MAC+Weekly+UP-Date" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">MAC weekly address sheets</a> hosted locally on the Patna NOC server.
+            </p>
+            
+            <!-- Divisions Grid -->
+            <div class="divisions-grid" style="position: relative; z-index: 1;">
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Patna Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="patna" onclick="showDistrictDetails('patna', 'Patna')"><i class="fas fa-map-marker-alt"></i> Patna</span>
+                        <span class="district-node" data-district="patna du" onclick="showDistrictDetails('patna du', 'Patna DU')"><i class="fas fa-map-marker-alt"></i> Patna DU</span>
+                        <span class="district-node" data-district="nalanda" onclick="showDistrictDetails('nalanda', 'Nalanda')"><i class="fas fa-map-marker-alt"></i> Nalanda</span>
+                        <span class="district-node" data-district="bhojpur" onclick="showDistrictDetails('bhojpur', 'Bhojpur')"><i class="fas fa-map-marker-alt"></i> Bhojpur</span>
+                        <span class="district-node" data-district="buxar" onclick="showDistrictDetails('buxar', 'Buxar')"><i class="fas fa-map-marker-alt"></i> Buxar</span>
+                        <span class="district-node" data-district="rohtas" onclick="showDistrictDetails('rohtas', 'Rohtas')"><i class="fas fa-map-marker-alt"></i> Rohtas</span>
+                        <span class="district-node" data-district="kaimur" onclick="showDistrictDetails('kaimur', 'Kaimur')"><i class="fas fa-map-marker-alt"></i> Kaimur</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Magadh Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="gaya" onclick="showDistrictDetails('gaya', 'Gaya')"><i class="fas fa-map-marker-alt"></i> Gaya</span>
+                        <span class="district-node" data-district="jehanabad" onclick="showDistrictDetails('jehanabad', 'Jehanabad')"><i class="fas fa-map-marker-alt"></i> Jehanabad</span>
+                        <span class="district-node" data-district="arwal" onclick="showDistrictDetails('arwal', 'Arwal')"><i class="fas fa-map-marker-alt"></i> Arwal</span>
+                        <span class="district-node" data-district="nawada" onclick="showDistrictDetails('nawada', 'Nawada')"><i class="fas fa-map-marker-alt"></i> Nawada</span>
+                        <span class="district-node" data-district="aurangabad" onclick="showDistrictDetails('aurangabad', 'Aurangabad')"><i class="fas fa-map-marker-alt"></i> Aurangabad</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Tirhut Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="muzaffarpur" onclick="showDistrictDetails('muzaffarpur', 'Muzaffarpur')"><i class="fas fa-map-marker-alt"></i> Muzaffarpur</span>
+                        <span class="district-node" data-district="east champaran" onclick="showDistrictDetails('east champaran', 'East Champaran')"><i class="fas fa-map-marker-alt"></i> East Champaran</span>
+                        <span class="district-node" data-district="west champaran" onclick="showDistrictDetails('west champaran', 'West Champaran')"><i class="fas fa-map-marker-alt"></i> West Champaran</span>
+                        <span class="district-node" data-district="sitamarhi" onclick="showDistrictDetails('sitamarhi', 'Sitamarhi')"><i class="fas fa-map-marker-alt"></i> Sitamarhi</span>
+                        <span class="district-node" data-district="sheohar" onclick="showDistrictDetails('sheohar', 'Sheohar')"><i class="fas fa-map-marker-alt"></i> Sheohar</span>
+                        <span class="district-node" data-district="vaishali" onclick="showDistrictDetails('vaishali', 'Vaishali')"><i class="fas fa-map-marker-alt"></i> Vaishali</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Saran Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="saran" onclick="showDistrictDetails('saran', 'Saran')"><i class="fas fa-map-marker-alt"></i> Saran</span>
+                        <span class="district-node" data-district="siwan" onclick="showDistrictDetails('siwan', 'Siwan')"><i class="fas fa-map-marker-alt"></i> Siwan</span>
+                        <span class="district-node" data-district="gopalganj" onclick="showDistrictDetails('gopalganj', 'Gopalganj')"><i class="fas fa-map-marker-alt"></i> Gopalganj</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Darbhanga Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="darbhanga" onclick="showDistrictDetails('darbhanga', 'Darbhanga')"><i class="fas fa-map-marker-alt"></i> Darbhanga</span>
+                        <span class="district-node" data-district="madhubani" onclick="showDistrictDetails('madhubani', 'Madhubani')"><i class="fas fa-map-marker-alt"></i> Madhubani</span>
+                        <span class="district-node" data-district="samastipur" onclick="showDistrictDetails('samastipur', 'Samastipur')"><i class="fas fa-map-marker-alt"></i> Samastipur</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Kosi Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="saharsa" onclick="showDistrictDetails('saharsa', 'Saharsa')"><i class="fas fa-map-marker-alt"></i> Saharsa</span>
+                        <span class="district-node" data-district="supaul" onclick="showDistrictDetails('supaul', 'Supaul')"><i class="fas fa-map-marker-alt"></i> Supaul</span>
+                        <span class="district-node" data-district="madhepura" onclick="showDistrictDetails('madhepura', 'Madhepura')"><i class="fas fa-map-marker-alt"></i> Madhepura</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Purnia Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="purnia" onclick="showDistrictDetails('purnia', 'Purnea')"><i class="fas fa-map-marker-alt"></i> Purnea</span>
+                        <span class="district-node" data-district="araria" onclick="showDistrictDetails('araria', 'Araria')"><i class="fas fa-map-marker-alt"></i> Araria</span>
+                        <span class="district-node" data-district="kishanganj" onclick="showDistrictDetails('kishanganj', 'Kishanganj')"><i class="fas fa-map-marker-alt"></i> Kishanganj</span>
+                        <span class="district-node" data-district="katihar" onclick="showDistrictDetails('katihar', 'Katihar')"><i class="fas fa-map-marker-alt"></i> Katihar</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Bhagalpur Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="bhagalpur" onclick="showDistrictDetails('bhagalpur', 'Bhagalpur')"><i class="fas fa-map-marker-alt"></i> Bhagalpur</span>
+                        <span class="district-node" data-district="banka" onclick="showDistrictDetails('banka', 'Banka')"><i class="fas fa-map-marker-alt"></i> Banka</span>
+                    </div>
+                </div>
+                <div class="division-block">
+                    <div class="division-title"><i class="fas fa-layer-group"></i> Munger Division</div>
+                    <div class="districts-list">
+                        <span class="district-node" data-district="munger" onclick="showDistrictDetails('munger', 'Munger')"><i class="fas fa-map-marker-alt"></i> Munger</span>
+                        <span class="district-node" data-district="jamui" onclick="showDistrictDetails('jamui', 'Jamui')"><i class="fas fa-map-marker-alt"></i> Jamui</span>
+                        <span class="district-node" data-district="lakhisarai" onclick="showDistrictDetails('lakhisarai', 'Lakhisarai')"><i class="fas fa-map-marker-alt"></i> Lakhisarai</span>
+                        <span class="district-node" data-district="sheikhpura" onclick="showDistrictDetails('sheikhpura', 'Sheikhpura')"><i class="fas fa-map-marker-alt"></i> Sheikhpura</span>
+                        <span class="district-node" data-district="begusarai" onclick="showDistrictDetails('begusarai', 'Begusarai')"><i class="fas fa-map-marker-alt"></i> Begusarai</span>
+                        <span class="district-node" data-district="khagaria" onclick="showDistrictDetails('khagaria', 'Khagaria')"><i class="fas fa-map-marker-alt"></i> Khagaria</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Details Panel -->
+            <div id="districtDetailsPanel" class="district-details-panel">
+                <div class="panel-placeholder">
+                    <i class="fas fa-mouse-pointer"></i> Select any district above to display support engineer details and audit documents.
+                </div>
+                <div class="panel-content" style="display: none;">
+                    <!-- Populated dynamically by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Row 2 Grid spanning columns: Key Information -->
+        <div class="resources-accordion">
+            <div class="accordion-item" id="resourcesAccordion">
+                <button class="accordion-trigger" onclick="toggleAccordion()">
+                    <span><i class="fas fa-info-circle"></i> Key Network Information & Resources</span>
+                    <i class="fas fa-chevron-down chevron"></i>
+                </button>
+                <div class="accordion-content" id="accordionContent">
+                    <div class="accordion-content-inner">
+                        <div class="resource-links-grid">
+                            <div class="resource-card">
+                                <h3><i class="fas fa-map-marker-alt"></i> State Headquarters</h3>
+                                <p>National Informatics Centre Bihar State Centre, NIC Bhawan, Soochna Bhawan Campus, Nehru Path, Patna – 800015</p>
+                                <a href="tel:06122547964"><i class="fas fa-phone-volume"></i> 0612-2547964</a>
+                            </div>
+                            <div class="resource-card">
+                                <h3><i class="fas fa-link"></i> Useful Portals</h3>
+                                <p>Access complaint logs, state portals, and direct tools hosted on the internal government servers.</p>
+                                <div style="display: flex; flex-direction: column; gap: 8px;">
+                                    <a href="https://servicedesk.state-noc.org" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
+                                    <a href="https://bihar.s3waas.gov.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Bihar S3WaaS Directory</a>
+                                    <a href="./nic/" target="_blank"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
+                                </div>
+                            </div>
+                            <div class="resource-card">
+                                <h3><i class="fas fa-server"></i> NICNET & NKN Core</h3>
+                                <p>NICNET features 10 Gbps core routers with backup channels. NKN features 1000G global network links for high bandwidth government processes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Floating AI Chatbot Widget -->
+    <div class="ai-chatbot-widget">
+        <!-- Attention Tooltip Speech Bubble -->
+        <div class="chatbot-attention-tooltip" id="chatbotTooltip">
+            🤖 Bihar NOC AI is online! Ask me anything.
+        </div>
+        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chatbot-panel" id="chatbotPanel">
+            <div class="chatbot-header">
+                <div class="chatbot-header-title">
+                    <i class="fas fa-robot"></i>
+                    <h3>Bihar NOC Assistant</h3>
+                </div>
+                <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chat-msg bot">
+                    Hello! I am your Bihar NOC Support Assistant. Ask me anything about our support numbers, service status, document submission, or network information!
+                </div>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                <button class="chatbot-mic-btn" id="chatbotMicBtn" aria-label="Voice Input" title="Voice Input" style="display: none;">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">Website Policies</a>
+            <a href="#">Help</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p>&copy; 2026 National Informatics Centre (NIC), Bihar. All Rights Reserved.</p>
+        <div class="footer-metadata">
+            <span><i class="fas fa-eye"></i> Page Views: <strong id="viewCount">Loading...</strong></span>
+            <span><i class="fas fa-history"></i> Portal Updated: <strong id="lastUpdated">N/A</strong></span>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic Scripts -->
+    <script>
+        // --- Dark/Light Mode Theme Toggle ---
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        // Load preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        if (savedTheme === 'dark-mode') {
+            document.body.classList.add('dark-mode');
+            themeIcon.className = 'fas fa-sun';
+        } else {
+            document.body.classList.remove('dark-mode');
+            themeIcon.className = 'fas fa-moon';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.body.classList.contains('dark-mode')) {
+                document.body.classList.remove('dark-mode');
+                themeIcon.className = 'fas fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.add('dark-mode');
+                themeIcon.className = 'fas fa-sun';
+                localStorage.setItem('theme', 'dark-mode');
+            }
+        });
+
+        // --- Accordion Logic ---
+        function toggleAccordion() {
+            const accordion = document.getElementById('resourcesAccordion');
+            const content = document.getElementById('accordionContent');
+            
+            accordion.classList.toggle('active');
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        }
+
+        // --- File Upload UI Interactions ---
+        const fileInput = document.getElementById('fileToUpload');
+        const dropZone = document.getElementById('dropZone');
+        const dropZoneIcon = document.getElementById('dropZoneIcon');
+        const dropZoneText = document.getElementById('dropZoneText');
+        
+        const selectedFileInfo = document.getElementById('selectedFileInfo');
+        const displayFileName = document.getElementById('displayFileName');
+        const displayFileSize = document.getElementById('displayFileSize');
+        const fileTypeIcon = document.getElementById('fileTypeIcon');
+        const clearFileBtn = document.getElementById('clearFileBtn');
+        const uploadForm = document.getElementById('uploadForm');
+
+        // Drag and drop handlers
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            }, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+            }, false);
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                handleFileSelect(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                handleFileSelect(this.files[0]);
+            }
+        });
+
+        // Clear file choice
+        clearFileBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            resetFileInput();
+        });
+
+        function resetFileInput() {
+            fileInput.value = '';
+            selectedFileInfo.style.display = 'none';
+            dropZoneIcon.style.display = 'block';
+            dropZoneText.style.display = 'block';
+        }
+
+        function handleFileSelect(file) {
+            // Check file size (500MB = 524288000 bytes)
+            const maxSize = 524288000;
+            if (file.size > maxSize) {
+                showToast('error', 'File size exceeds 500MB limit. Please choose a smaller file.');
+                resetFileInput();
+                return;
+            }
+
+            // Set icon based on extension
+            const ext = file.name.split('.').pop().toLowerCase();
+            let iconClass = 'far fa-file-alt';
+            if (ext === 'pdf') iconClass = 'far fa-file-pdf file-icon pdf';
+            else if (['doc', 'docx'].includes(ext)) iconClass = 'far fa-file-word file-icon word';
+            else if (['xls', 'xlsx'].includes(ext)) iconClass = 'far fa-file-excel file-icon excel';
+            else if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) iconClass = 'far fa-file-image file-icon image';
+            else if (ext === 'zip') iconClass = 'far fa-file-archive file-icon zip';
+            else if (ext === 'pptx') iconClass = 'far fa-file-powerpoint file-icon powerpoint';
+
+            fileTypeIcon.className = iconClass;
+            displayFileName.textContent = file.name;
+            displayFileSize.textContent = formatBytes(file.size);
+
+            // Hide main drop zone label, show selected file detail row
+            dropZoneIcon.style.display = 'none';
+            dropZoneText.style.display = 'none';
+            selectedFileInfo.style.display = 'flex';
+        }
+
+        // --- Helper: Format bytes to human readable form ---
+        function formatBytes(bytes, decimals = 2) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+        }
+
+        // --- Toast Alerts system ---
+        function showToast(status, message) {
+            const toastContainer = document.getElementById('toastContainer');
+            toastContainer.innerHTML = ''; // Clear existing
+            
+            const toast = document.createElement('div');
+            toast.className = `custom-toast ${status === 'success' ? 'toast-success' : 'toast-error'}`;
+            
+            const icon = document.createElement('i');
+            icon.className = status === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+            
+            const textSpan = document.createElement('span');
+            textSpan.textContent = message;
+            
+            toast.appendChild(icon);
+            toast.appendChild(textSpan);
+            toastContainer.appendChild(toast);
+            
+            // Smooth scroll to toast
+            toast.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            // Auto hide
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => toast.remove(), 500);
+            }, 6000);
+        }
+
+        // --- Document Explorer / Dynamic List Loader ---
+        let uploadedFilesData = [];
+        const filesTableBody = document.getElementById('filesTableBody');
+        const fileSearch = document.getElementById('fileSearch');
+        const districtFilter = document.getElementById('districtFilter');
+
+        function fetchUploadedFiles() {
+            fetch('get_files.php')
+                .then(response => response.json())
+                .then(data => {
+                    uploadedFilesData = data;
+                    populateDistrictFilter(data);
+                    renderFilesTable(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching file list:', error);
+                    filesTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="no-files-found">
+                                <i class="fas fa-exclamation-triangle" style="color: var(--danger);"></i>
+                                Failed to load document explorer.
+                            </td>
+                        </tr>
+                    `;
+                });
+        }
+
+        function populateDistrictFilter(files) {
+            const districts = new Set();
+            files.forEach(file => {
+                if (file.district) {
+                    districts.add(file.district);
+                }
+            });
+
+            // Keep only default
+            districtFilter.innerHTML = '<option value="">All Districts</option>';
+            
+            // Sort and append
+            Array.from(districts).sort().forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.textContent = district;
+                districtFilter.appendChild(option);
+            });
+        }
+
+        function getFileIconClass(ext) {
+            if (ext === 'pdf') return 'far fa-file-pdf file-icon pdf';
+            if (['doc', 'docx'].includes(ext)) return 'far fa-file-word file-icon word';
+            if (['xls', 'xlsx'].includes(ext)) return 'far fa-file-excel file-icon excel';
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(ext)) return 'far fa-file-image file-icon image';
+            if (ext === 'zip') return 'far fa-file-archive file-icon zip';
+            if (ext === 'pptx') return 'far fa-file-powerpoint file-icon powerpoint';
+            return 'far fa-file file-icon fallback';
+        }
+
+        function renderFilesTable(files) {
+            if (files.length === 0) {
+                filesTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="no-files-found">
+                            <i class="far fa-folder-open"></i>
+                            No documents found in the repository.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            filesTableBody.innerHTML = '';
+            files.forEach(file => {
+                const tr = document.createElement('tr');
+                
+                // File info col
+                const tdInfo = document.createElement('td');
+                tdInfo.className = 'file-info-col';
+                const icon = document.createElement('i');
+                icon.className = getFileIconClass(file.extension);
+                const nameSpan = document.createElement('span');
+                nameSpan.className = 'file-name-txt';
+                nameSpan.textContent = file.name;
+                nameSpan.title = file.name;
+                
+                tdInfo.appendChild(icon);
+                tdInfo.appendChild(nameSpan);
+                
+                // District col
+                const tdDistrict = document.createElement('td');
+                const badge = document.createElement('span');
+                badge.className = 'badge-district';
+                badge.textContent = file.district;
+                tdDistrict.appendChild(badge);
+                
+                // Size col
+                const tdSize = document.createElement('td');
+                tdSize.textContent = formatBytes(file.size);
+                
+                // Actions col
+                const tdActions = document.createElement('td');
+                tdActions.className = 'download-btn-col';
+                const dlLink = document.createElement('a');
+                dlLink.href = file.path;
+                dlLink.download = file.name;
+                dlLink.innerHTML = '<i class="fas fa-arrow-alt-circle-down"></i> Download';
+                tdActions.appendChild(dlLink);
+                
+                tr.appendChild(tdInfo);
+                tr.appendChild(tdDistrict);
+                tr.appendChild(tdSize);
+                tr.appendChild(tdActions);
+                
+                filesTableBody.appendChild(tr);
+            });
+        }
+
+        // Filter search input
+        function filterFiles() {
+            const searchTerm = fileSearch.value.toLowerCase();
+            const selectedDistrict = districtFilter.value;
+            
+            const filtered = uploadedFilesData.filter(file => {
+                const matchesSearch = file.name.toLowerCase().includes(searchTerm);
+                const matchesDistrict = selectedDistrict === '' || file.district === selectedDistrict;
+                return matchesSearch && matchesDistrict;
+            });
+            
+            renderFilesTable(filtered);
+        }
+
+        fileSearch.addEventListener('input', filterFiles);
+        districtFilter.addEventListener('change', filterFiles);
+
+        // --- Disable Right-Click Context Menu for Security ---
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            showToast('error', 'Right-click context menu is disabled on this portal for security reasons.');
+        });
+
+        // --- Disable Ctrl+U & Developer Tool Shortcuts for Security ---
+        document.addEventListener('keydown', (e) => {
+            // Disable Ctrl+U (View Source)
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'u') {
+                e.preventDefault();
+                showToast('error', 'Viewing source code is disabled on this portal for security reasons.');
+                return false;
+            }
+
+            // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Developer Tools)
+            if (
+                e.key === 'F12' ||
+                ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i', 'j', 'c'].includes(e.key.toLowerCase()))
+            ) {
+                e.preventDefault();
+                showToast('error', 'Developer tools access is disabled on this portal for security reasons.');
+                return false;
+            }
+        });
+
+        // --- Floating AI Chatbot Widget Logic ---
+        const MODEL_NAME = "qwen2.5:1.5b";
+        let chatbotMessages, chatbotInput;
+        let contactsDatabase = [];
+        let chatHistory = [];
+
+        // --- Web Speech API Voice Input ---
+        let recognition = null;
+        let isRecording = false;
+
+        function initSpeechRecognition() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                console.log("Web Speech API is not supported in this browser.");
+                return;
+            }
+            recognition = new SpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+            recognition.lang = 'en-IN'; // Indian English language support
+
+            recognition.onstart = () => {
+                isRecording = true;
+                const micBtn = document.getElementById('chatbotMicBtn');
+                if (micBtn) {
+                    micBtn.classList.add('recording');
+                    micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
+                    micBtn.title = 'Stop listening';
+                }
+                if (chatbotInput) {
+                    chatbotInput.placeholder = 'Listening... Speak now';
+                }
+            };
+
+            recognition.onend = () => {
+                isRecording = false;
+                const micBtn = document.getElementById('chatbotMicBtn');
+                if (micBtn) {
+                    micBtn.classList.remove('recording');
+                    micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    micBtn.title = 'Voice Input';
+                }
+                if (chatbotInput) {
+                    chatbotInput.placeholder = 'Type your message...';
+                }
+            };
+
+            recognition.onerror = (e) => {
+                console.error("Speech recognition error:", e.error);
+                recognition.stop();
+            };
+
+            recognition.onresult = (e) => {
+                const transcript = e.results[0][0].transcript;
+                if (chatbotInput && transcript) {
+                    if (chatbotInput.value) {
+                        chatbotInput.value += ' ' + transcript;
+                    } else {
+                        chatbotInput.value = transcript;
+                    }
+                    chatbotInput.focus();
+                }
+            };
+        }
+
+        function toggleSpeechRecognition() {
+            if (!recognition) return;
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                try {
+                    recognition.start();
+                } catch (err) {
+                    console.error("Failed to start speech recognition:", err);
+                }
+            }
+        }
+
+        // Client-side synonym dictionary for query expansion
+        const synonymDict = {
+            "attendance": ["fms", "attendance", "billing", "biometric", "taspass", "check-in"],
+            "internet": ["nkn", "internet", "link", "router", "connectivity", "bandwidth", "wan", "lan"],
+            "tacs": ["taspass", "password", "tacacs", "credentials", "tacs"],
+            "taspass": ["taspass", "password", "tacacs", "credentials", "tacs"],
+            "password": ["taspass", "password", "tacacs", "credentials", "tacs"],
+            "sio": ["sio", "rajesh", "head"],
+            "patna": ["patna", "hq", "sio"],
+            "noc": ["patna", "hq", "noc", "server"]
+        };
+
+        async function loadContactsDatabase() {
+            try {
+                const response = await fetch('contacts.json');
+                if (response.ok) {
+                    contactsDatabase = await response.json();
+                    console.log("Contacts database loaded successfully. Count: " + contactsDatabase.length);
+                } else {
+                    console.warn("Failed to load contacts database from contacts.json");
+                }
+            } catch (error) {
+                console.error("Error fetching contacts.json:", error);
+            }
+        }
+
+        function formatMarkdown(text) {
+            if (!text) return "";
+            // Escape HTML tags to protect against XSS
+            let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            
+            // Format Bold: **text**
+            html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+            
+            // Format Inline Code: `code`
+            html = html.replace(/`(.*?)`/g, "<code>$1</code>");
+            
+            // Format Headers: ###, ##, #
+            html = html.replace(/^### (.*?)$/gm, "<h4>$1</h4>");
+            html = html.replace(/^## (.*?)$/gm, "<h5>$1</h5>");
+            html = html.replace(/^# (.*?)$/gm, "<h6>$1</h6>");
+            
+            // Format Lists: lines starting with "- " or "* "
+            html = html.replace(/^(?:\s*[-*]\s+)(.*?)$/gm, "<li>$1</li>");
+            html = html.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>");
+            html = html.replace(/<\/ul>\s*<ul>/g, ""); // Merge adjacent list containers
+            
+            // Convert newlines to br tags
+            html = html.replace(/\n/g, "<br>");
+            
+            // Cleanup stray breaks around list structures
+            html = html.replace(/<br><\/ul>/g, "</ul>").replace(/<\/ul><br>/g, "</ul>");
+            html = html.replace(/<br><li>/g, "<li>").replace(/<\/li><br>/g, "</li>");
+            html = html.replace(/<ul><br>/g, "<ul>").replace(/<br><ul>/g, "<ul>");
+            
+            return html;
+        }
+
+        function appendBotMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('chat-msg', 'bot');
+            msgDiv.innerHTML = formatMarkdown(text);
+            chatbotMessages.appendChild(msgDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        function appendUserMessage(text) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('chat-msg', 'user');
+            msgDiv.textContent = text;
+            chatbotMessages.appendChild(msgDiv);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        async function handleSend() {
+            const text = chatbotInput.value.trim();
+            if (!text) return;
+
+            appendUserMessage(text);
+            chatbotInput.value = '';
+
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'chat-msg bot typing-indicator-msg';
+            typingIndicator.style.alignSelf = 'flex-start';
+            typingIndicator.innerHTML = `
+                <div class="typing-indicator">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            `;
+            chatbotMessages.appendChild(typingIndicator);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+            // Intercept live status verification commands (NOC pinging check)
+            let statusTarget = null;
+            const lowerText = text.toLowerCase().trim();
+
+            if (lowerText.includes("attendance") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
+                statusTarget = "attendance";
+            } else if (lowerText.includes("taspass") || (lowerText.includes("tacs") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach")))) {
+                statusTarget = "taspass";
+            } else if (lowerText.includes("dpr") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
+                statusTarget = "dpr";
+            } else if ((lowerText.includes("noc") || lowerText.includes("patna noc")) && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
+                statusTarget = "patna_noc";
+            }
+
+            if (statusTarget) {
+                try {
+                    const response = await fetch(`ping.php?target=${statusTarget}`);
+                    typingIndicator.remove();
+                    if (response.ok) {
+                        const data = await response.json();
+                        let responseText = "";
+                        if (data.status === "online") {
+                            responseText = `🟢 **${data.name}** is **ONLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Response RTT:** \`${data.rtt_ms} ms\`\n* **Status:** Connection test successful, TCP socket active.`;
+                        } else {
+                            responseText = `🔴 **${data.name}** is **OFFLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Error:** \`${data.message || 'Connection refused'}\`\n* **Status:** Connection failed. Check network routing.`;
+                        }
+                        appendBotMessage(responseText);
+                    } else {
+                        appendBotMessage(`⚠️ Unable to fetch live status. The backend status verification tool returned an error code ${response.status}.`);
+                    }
+                } catch (error) {
+                    console.error("Error pinging status:", error);
+                    typingIndicator.remove();
+                    appendBotMessage("⚠️ Network error occurred while contacting the live status verification script.");
+                }
+                return; // Skip LLM call
+            }
+
+            // Simple client-side RAG: find relevant contacts matching query keywords (with synonym expansion)
+            let matchedContacts = [];
+            if (contactsDatabase.length > 0) {
+                const queryLower = text.toLowerCase();
+                // Extract keywords of length >= 3
+                let keywords = queryLower.split(/[^a-zA-Z0-9]/).filter(w => w.length >= 3);
+                
+                if (keywords.length > 0) {
+                    // Expand keywords using synonym lookup table
+                    const expandedKeywords = [...keywords];
+                    keywords.forEach(kw => {
+                        if (synonymDict[kw]) {
+                            expandedKeywords.push(...synonymDict[kw]);
+                        }
+                    });
+                    keywords = Array.from(new Set(expandedKeywords));
+
+                    matchedContacts = contactsDatabase.map(c => {
+                        let score = 0;
+                        const name = (c.name || "").toLowerCase();
+                        const role = (c.role || "").toLowerCase();
+                        const location = (c.location || "").toLowerCase();
+                        const email = (c.email || "").toLowerCase();
+                        const source = (c.source || "").toLowerCase();
+                        
+                        keywords.forEach(kw => {
+                            if (name === kw) score += 10;
+                            else if (name.includes(kw)) score += 5;
+                            
+                            if (location === kw) score += 8;
+                            else if (location.includes(kw)) score += 4;
+                            
+                            if (role.includes(kw)) score += 2;
+                            if (email.includes(kw)) score += 1;
+                            if (source.includes(kw)) score += 1;
+                        });
+                        
+                        return { contact: c, score: score };
+                    })
+                    .filter(item => item.score > 0)
+                    .sort((a, b) => b.score - a.score)
+                    .map(item => item.contact);
+                }
+            }
+
+            // Limit to top 5 matches to avoid prompt bloat and keep context small
+            matchedContacts = matchedContacts.slice(0, 5);
+
+            let dynamicContext = "";
+            if (matchedContacts.length > 0) {
+                dynamicContext = "\n\nRelevant Contact details for the query:\n" + 
+                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ip ? ', IP/Landline: ' + c.ip : ''}`).join("\n");
+            }
+
+            try {
+                const response = await fetch('chat.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        model: MODEL_NAME,
+                        messages: [
+                            {
+                                role: 'system',
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.state-noc.org and access the FMS Billing & Attendance System at: http://fms.state-noc.org/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Alex Mercer, Security Administrator. If asked about Alex Mercer (including queries like "how is alex mercer" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +91 99999 88888 and email is admin@state-noc.org.' + dynamicContext
+                            },
+                            ...chatHistory,
+                            { role: 'user', content: text }
+                        ],
+                        stream: true,
+                        options: {
+                            num_ctx: 2048,
+                            num_predict: 256,
+                            temperature: 0.7,
+                            num_thread: 8 // Optimized for server's NUMA E5-4610 CPU
+                        },
+                        keep_alive: -1 // Keep model loaded in memory indefinitely to avoid loading delays
+                    })
+                });
+
+                typingIndicator.remove();
+
+                if (!response.ok) {
+                    throw new Error("API call failed");
+                }
+
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('chat-msg', 'bot');
+                chatbotMessages.appendChild(msgDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder("utf-8");
+                let done = false;
+                let botText = "";
+                let buffer = "";
+
+                while (!done) {
+                    const { value, done: readerDone } = await reader.read();
+                    done = readerDone;
+                    if (value) {
+                        buffer += decoder.decode(value, { stream: true });
+                        const lines = buffer.split('\n');
+                        buffer = lines.pop(); // Keep the last partial line in buffer
+
+                        for (const line of lines) {
+                            if (line.trim() !== '') {
+                                try {
+                                    const data = JSON.parse(line);
+                                    if (data.message && data.message.content) {
+                                        botText += data.message.content;
+                                        msgDiv.innerHTML = formatMarkdown(botText);
+                                        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                                    }
+                                } catch (e) {
+                                    console.error("Error parsing JSON chunk", e);
+                                }
+                            }
+                        }
+                    }
+                }
+                
+                if (buffer.trim() !== '') {
+                    try {
+                        const data = JSON.parse(buffer);
+                        if (data.message && data.message.content) {
+                            botText += data.message.content;
+                            msgDiv.innerHTML = formatMarkdown(botText);
+                            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                        }
+                    } catch (e) {}
+                }
+
+                // Save conversation turn to history
+                chatHistory.push({ role: 'user', content: text });
+                chatHistory.push({ role: 'assistant', content: botText });
+                if (chatHistory.length > 8) {
+                    chatHistory = chatHistory.slice(chatHistory.length - 8); // Keep last 4 turns
+                }
+            } catch (error) {
+                console.error(error);
+                typingIndicator.remove();
+                appendBotMessage("Error: Unable to connect to the assistant server. Please ensure Ollama is running and CORS is allowed.");
+            }
+        }
+
+        // --- Bihar District Operations Hub Mappings & Logic ---
+        const auditFiles = {
+            "aurangabad": "DISTRICT AUDIT - 2025/AURANGABAD.xlsx",
+            "araria": "DISTRICT AUDIT - 2025/Araria.xlsx",
+            "arwal": "DISTRICT AUDIT - 2025/Arwal.xlsx",
+            "buxar": "DISTRICT AUDIT - 2025/BUXAR.xlsx",
+            "banka": "DISTRICT AUDIT - 2025/Banka.xlsx",
+            "begusarai": "DISTRICT AUDIT - 2025/Begusarai.xlsx",
+            "kaimur": "DISTRICT AUDIT - 2025/Bhabhua (Kaimur).xlsx",
+            "bhagalpur": "DISTRICT AUDIT - 2025/Bhagalpur.xlsx",
+            "bhojpur": "DISTRICT AUDIT - 2025/Bhojpur.xlsx",
+            "darbhanga": "DISTRICT AUDIT - 2025/DHARBANGA.xlsx",
+            "east champaran": "DISTRICT AUDIT - 2025/EAST CHAMPARAN (MOTIHARI).xlsx",
+            "gaya": "DISTRICT AUDIT - 2025/GAYA JI.xlsx",
+            "gopalganj": "DISTRICT AUDIT - 2025/GOPALGANJ.xlsx",
+            "jamui": "DISTRICT AUDIT - 2025/JAMUI.xlsx",
+            "jehanabad": "DISTRICT AUDIT - 2025/JEHANABAD.xlsx",
+            "katihar": "DISTRICT AUDIT - 2025/KATIHAR.xlsx",
+            "khagaria": "DISTRICT AUDIT - 2025/KHAGARIA.xlsx",
+            "kishanganj": "DISTRICT AUDIT - 2025/KISANGANJ.xlsx",
+            "lakhisarai": "DISTRICT AUDIT - 2025/LAKHISARAI.xlsx",
+            "madhepura": "DISTRICT AUDIT - 2025/MADHEPURA.xlsx",
+            "madhubani": "DISTRICT AUDIT - 2025/MADHUBANI.xlsx",
+            "munger": "DISTRICT AUDIT - 2025/MUNGER.xlsx",
+            "muzaffarpur": "DISTRICT AUDIT - 2025/MUZAFFARPUR.xlsx",
+            "nalanda": "DISTRICT AUDIT - 2025/NALANDA.xlsx",
+            "nawada": "DISTRICT AUDIT - 2025/NAWADA.xlsx",
+            "patna": "DISTRICT AUDIT - 2025/PATNA DU.xlsx",
+            "patna du": "DISTRICT AUDIT - 2025/PATNA DU.xlsx",
+            "purnia": "DISTRICT AUDIT - 2025/PURNEA.xlsx",
+            "rohtas": "DISTRICT AUDIT - 2025/ROHTAS (SASARAM).xlsx",
+            "saharsa": "DISTRICT AUDIT - 2025/SAHARSA.xlsx",
+            "samastipur": "DISTRICT AUDIT - 2025/SAMASTIPUR.xlsx",
+            "saran": "DISTRICT AUDIT - 2025/SARAN (CHAPRA).xlsx",
+            "sheohar": "DISTRICT AUDIT - 2025/SEHEOHAR.xlsx",
+            "sheikhpura": "DISTRICT AUDIT - 2025/SHEKHPURA.xlsx",
+            "sitamarhi": "DISTRICT AUDIT - 2025/SITAMAHARI.xlsx",
+            "siwan": "DISTRICT AUDIT - 2025/SIWAN.xlsx",
+            "supaul": "DISTRICT AUDIT - 2025/SUPAUL.xlsx",
+            "vaishali": "DISTRICT AUDIT - 2025/VAISHALI (HAJIPUR).xlsx",
+            "west champaran": "DISTRICT AUDIT - 2025/WEST CHAMPARAN (BEETIAH).xlsx"
+        };
+
+        const macFiles = {
+            "araria": "MAC Weekly UP-Date/Araria NIC DHQ MAC.xlsx",
+            "aurangabad": "MAC Weekly UP-Date/Aurangabad NIC DHQ MAC.xlsx",
+            "begusarai": "MAC Weekly UP-Date/Begusarai NIC DHQ MAC.xlsx"
+        };
+
+        const dioCommonEmails = {
+            "arwal": "dio-arw@state-noc.org",
+            "araria": "dio-ara-bih@state-noc.org",
+            "aurangabad": "dio-agb@state-noc.org",
+            "banka": "dio-bka@state-noc.org",
+            "begusarai": "dio-bsr@state-noc.org",
+            "kaimur": "dio-kai@state-noc.org",
+            "bhagalpur": "dio-bgo@state-noc.org",
+            "bhojpur": "dio-bjp@state-noc.org",
+            "buxar": "dio-bux@state-noc.org",
+            "darbhanga": "dio-dbg@state-noc.org",
+            "east champaran": "dio-prc@state-noc.org",
+            "gaya": "dio-gay@state-noc.org",
+            "gopalganj": "dio-gpg@state-noc.org",
+            "jamui": "dio-jam@state-noc.org",
+            "jehanabad": "dio-jhb-bih@state-noc.org",
+            "katihar": "dio-ktr@state-noc.org",
+            "khagaria": "dio-kgr-bih@state-noc.org",
+            "kishanganj": "dio-ksg@state-noc.org",
+            "lakhisarai": "dio-lsr@state-noc.org",
+            "madhepura": "dio-mdp@state-noc.org",
+            "madhubani": "dio-mdb-bih@state-noc.org",
+            "munger": "dio-mun@state-noc.org",
+            "muzaffarpur": "dio-muz@state-noc.org",
+            "nalanda": "dio-nld@state-noc.org",
+            "nawada": "dio-naw@state-noc.org",
+            "patna du": "dio-ptn@state-noc.org",
+            "patna": "dio-ptn@state-noc.org",
+            "purnia": "dio-prn@state-noc.org",
+            "rohtas": "dio-rts@state-noc.org",
+            "saharsa": "dio-shs@state-noc.org",
+            "samastipur": "dio-sms@state-noc.org",
+            "saran": "dio-sar@state-noc.org",
+            "sheikhpura": "dio-shh-bih@state-noc.org",
+            "sheohar": "dio-shh@state-noc.org",
+            "sitamarhi": "dio-stm@state-noc.org",
+            "siwan": "dio-swn@state-noc.org",
+            "supaul": "dio-spl@state-noc.org",
+            "vaishali": "dio-vsh@state-noc.org",
+            "west champaran": "dio-psc@state-noc.org"
+        };
+
+        function showDistrictDetails(districtKey, districtDisplayName) {
+            // Remove active classes
+            document.querySelectorAll('.district-node').forEach(node => {
+                node.classList.remove('active');
+                if (node.getAttribute('data-district') === districtKey) {
+                    node.classList.add('active');
+                }
+            });
+
+            const panel = document.getElementById('districtDetailsPanel');
+            const placeholder = panel.querySelector('.panel-placeholder');
+            const content = panel.querySelector('.panel-content');
+
+            // Find matching engineers/contacts
+            const query = districtKey.toLowerCase();
+            const matches = contactsDatabase.filter(c => {
+                const loc = (c.location || "").toLowerCase().trim();
+                if (query === 'patna du') {
+                    return loc === 'patna du' || loc === 'patna';
+                }
+                if (query === 'patna') {
+                    return loc === 'patna hq';
+                }
+                if (query === 'west champaran' && (loc.includes('bettiah') || loc.includes('west'))) return true;
+                if (query === 'kaimur' && (loc.includes('bhabhua') || loc.includes('kaimur'))) return true;
+                if (query === 'rohtas' && (loc.includes('sasaram') || loc.includes('rohtas'))) return true;
+                return loc === query || loc.includes(query);
+            });
+
+            // Build links
+            const auditPath = auditFiles[districtKey];
+            const macPath = macFiles[districtKey];
+
+            let docsHtml = '';
+            if (auditPath) {
+                docsHtml += `
+                    <a href="nic/${auditPath}" class="doc-item-link" download>
+                        <span><i class="far fa-file-excel text-success" style="margin-right: 8px; font-size: 1.1rem;"></i> District Audit Report (2025)</span>
+                        <i class="fas fa-arrow-alt-circle-down arrow"></i>
+                    </a>
+                `;
+            } else {
+                docsHtml += `
+                    <div style="font-size: 0.85rem; padding: 12px; color: var(--text-muted); background: var(--bg-secondary); border: 1px dashed var(--border-color); border-radius: 6px;">
+                        <i class="fas fa-info-circle"></i> No District Audit file uploaded yet.
+                    </div>
+                `;
+            }
+
+            if (macPath) {
+                docsHtml += `
+                    <a href="nic/${macPath}" class="doc-item-link" download>
+                        <span><i class="far fa-file-excel text-success" style="margin-right: 8px; font-size: 1.1rem;"></i> MAC Weekly Update Sheet</span>
+                        <i class="fas fa-arrow-alt-circle-down arrow"></i>
+                    </a>
+                `;
+            }
+
+            // Build contacts HTML
+            let contactsHtml = '';
+            if (matches.length > 0) {
+                matches.forEach(c => {
+                    const isFMS = c.source === 'FMS Engineer';
+                    contactsHtml += `
+                        <div class="contact-card ${isFMS ? 'fms-card' : 'sio-card'}">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                                <strong style="font-size: 0.95rem; color: var(--text-primary);">${c.name}</strong>
+                                <span class="badge-district" style="font-size: 0.7rem; background-color: ${isFMS ? 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 76, 129, 0.15)'}; color: ${isFMS ? 'var(--accent)' : 'var(--primary)'}; border: none; font-weight: 700; padding: 2px 6px;">
+                                    ${c.source}
+                                </span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
+                                <div><i class="fas fa-briefcase" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> ${c.role || 'Staff'}</div>
+                                <div><i class="fas fa-phone" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Mobile: <a href="tel:${c.mobile}" style="color: inherit; text-decoration: none; font-weight: 600;">${c.mobile}</a></div>
+                                ${c.ip ? `<div><i class="fas fa-phone-alt" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> VoIP Ext: ${c.ip}</div>` : ''}
+                                ${c.email ? `<div><i class="fas fa-envelope" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Email: ${c.email.split(',').map(e => `<a href="mailto:${e.trim()}" style="color: inherit; text-decoration: none; font-weight: 500;">${e.trim()}</a>`).join(', ')}</div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                contactsHtml = `
+                    <div style="font-size: 0.85rem; padding: 15px; color: var(--text-muted); text-align: center; border: 1px dashed var(--border-color); border-radius: 6px;">
+                        No FMS or SIO contacts registered in database for this district.
+                    </div>
+                `;
+            }
+
+            const commonEmail = dioCommonEmails[districtKey] || '';
+            const emailHtml = commonEmail ? `
+                <div class="dio-common-email-banner" style="background: rgba(15, 76, 129, 0.08); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 2px;">Official District DIO Email</span>
+                        <a href="mailto:${commonEmail}" style="font-size: 1rem; color: var(--primary); font-weight: 600; text-decoration: none;"><i class="fas fa-envelope-open-text" style="margin-right: 6px;"></i> ${commonEmail}</a>
+                    </div>
+                    <span class="badge-district" style="background-color: rgba(15, 76, 129, 0.15); color: var(--primary); font-size: 0.75rem; border: none; font-weight: 700; padding: 4px 10px;">Official Role ID</span>
+                </div>
+            ` : '';
+
+            content.innerHTML = `
+                ${emailHtml}
+                <div class="panel-details-grid">
+                    <div class="details-col">
+                        <h3><i class="fas fa-headset"></i> Support Contacts (${districtDisplayName})</h3>
+                        <div style="max-height: 250px; overflow-y: auto; padding-right: 5px;">
+                            ${contactsHtml}
+                        </div>
+                    </div>
+                    <div class="details-col">
+                        <h3><i class="fas fa-folder-open"></i> District Audit & MAC Files</h3>
+                        <div class="docs-list">
+                            ${docsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            placeholder.style.display = 'none';
+            content.style.display = 'block';
+            panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // --- Interactive Network Canvas Nodes Animation ---
+        function initNetworkAnimation() {
+            const canvas = document.getElementById('networkCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const hero = document.querySelector('.hero-dashboard');
+
+            let width = canvas.width = hero.offsetWidth;
+            let height = canvas.height = hero.offsetHeight;
+
+            window.addEventListener('resize', () => {
+                if (hero) {
+                    width = canvas.width = hero.offsetWidth;
+                    height = canvas.height = hero.offsetHeight;
+                }
+            });
+
+            const particles = [];
+            const particleCount = 45;
+            const connectionDistance = 110;
+            const mouse = { x: null, y: null, radius: 150 };
+
+            hero.addEventListener('mousemove', (e) => {
+                const rect = hero.getBoundingClientRect();
+                mouse.x = e.clientX - rect.left;
+                mouse.y = e.clientY - rect.top;
+            });
+
+            hero.addEventListener('mouseleave', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.vx = (Math.random() - 0.5) * 0.7;
+                    this.vy = (Math.random() - 0.5) * 0.7;
+                    this.radius = Math.random() * 2.5 + 1.5;
+                }
+
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                    // Mouse interaction: push away particles slightly
+                    if (mouse.x !== null && mouse.y !== null) {
+                        const dx = this.x - mouse.x;
+                        const dy = this.y - mouse.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < mouse.radius) {
+                            const force = (mouse.radius - dist) / mouse.radius;
+                            const angle = Math.atan2(dy, dx);
+                            this.x += Math.cos(angle) * force * 2;
+                            this.y += Math.sin(angle) * force * 2;
+                        }
+                    }
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(56, 189, 248, 0.75)'; // sky blue accent color
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+
+                // Draw lines between close particles
+                for (let i = 0; i < particles.length; i++) {
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const dx = particles[i].x - particles[j].x;
+                        const dy = particles[i].y - particles[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < connectionDistance) {
+                            const alpha = (1 - (dist / connectionDistance)) * 0.25;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[i].x, particles[i].y);
+                            ctx.lineTo(particles[j].x, particles[j].y);
+                            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        }
+
+        // --- Celebration Firecrackers & Rocket System ---
+        function triggerCelebration(visitorNumber) {
+            // 1. Create Modal HTML
+            const modal = document.createElement('div');
+            modal.id = 'celebrationModal';
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(11, 15, 25, 0.65);
+                backdrop-filter: blur(8px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 100000;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            `;
+            
+            const wrapper = document.createElement('div');
+            wrapper.className = 'celebration-card-wrapper';
+            
+            const card = document.createElement('div');
+            card.className = 'celebration-card';
+
+            card.innerHTML = `
+                <!-- Decorative absolute emojis popping out of card -->
+                <div style="position: absolute; left: -35px; top: 10%; font-size: 2.8rem; transform: rotate(-15deg); animation: float-balloon 3s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">🎈</div>
+                <div style="position: absolute; right: -35px; bottom: 20%; font-size: 2.8rem; transform: rotate(15deg); animation: float-balloon 3s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">🎁</div>
+                <div style="position: absolute; left: -30px; bottom: 12%; font-size: 2.2rem; transform: rotate(-10deg); animation: float-balloon 4s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">🥳</div>
+                <div style="position: absolute; right: -30px; top: 15%; font-size: 2.2rem; transform: rotate(10deg); animation: float-balloon 4s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">🎉</div>
+                
+                <div style="margin-bottom: 20px; position: relative; z-index: 2;">
+                    <span style="font-size: 3.8rem; animation: float-trophy 2s infinite alternate ease-in-out; display: inline-block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));">🏆</span>
+                </div>
+                <h2 class="neon-text-glow" style="position: relative; z-index: 2;">Milestone Visitor!</h2>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; position: relative; z-index: 2;">
+                    Congratulations! You are visitor <strong style="color: var(--primary); font-size: 1.3rem; font-weight: 800; text-shadow: 0 0 5px rgba(15, 76, 129, 0.15);">#${visitorNumber.toLocaleString('en-IN')}</strong> to the Bihar NOC Support Portal.
+                </p>
+                <button id="dismissCelebrationBtn" class="btn glow-btn" style="padding: 12px 24px; border-radius: 20px; font-weight: 700; width: 100%; cursor: pointer; position: relative; z-index: 2;">
+                    Continue to Portal
+                </button>
+            `;
+            
+            wrapper.appendChild(card);
+            modal.appendChild(wrapper);
+            document.body.appendChild(modal);
+            
+            // Animate Wrapper In
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                wrapper.style.transform = 'scale(1)';
+            }, 10);
+
+            // 2. Create Canvas
+            const canvas = document.createElement('canvas');
+            canvas.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 100002;
+            `;
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            let width = canvas.width = window.innerWidth;
+            let height = canvas.height = window.innerHeight;
+            
+            window.addEventListener('resize', () => {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            });
+
+            const rockets = [];
+            const particles = [];
+            const confetti = [];
+            const emojis = [];
+            
+            const colors = [
+                '#f97316', // Saffron
+                '#0f4c81', // Royal Blue
+                '#10b981', // Emerald Green
+                '#f59e0b', // Amber
+                '#38bdf8', // Sky Blue
+                '#ec4899', // Pink
+                '#8b5cf6'  // Purple
+            ];
+
+            const emojiList = ['🎉', '✨', '🥳', '🏆', '💥', '🎈', '🌟', '👏', '👑'];
+
+            class Rocket {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = height;
+                    this.tx = Math.random() * width;
+                    this.ty = Math.random() * (height * 0.4) + height * 0.1;
+                    this.speed = Math.random() * 4 + 7;
+                    this.angle = Math.atan2(this.ty - this.y, this.tx - this.x);
+                    this.vx = Math.cos(this.angle) * this.speed;
+                    this.vy = Math.sin(this.angle) * this.speed;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    // ascending sparkles trail
+                    if (Math.random() < 0.45) {
+                        particles.push(new Particle(this.x, this.y, this.color, true));
+                    }
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+                shouldExplode() {
+                    return this.y <= this.ty || this.vy >= 0;
+                }
+                explode() {
+                    const count = Math.floor(Math.random() * 40) + 50; // denser bursts!
+                    for (let i = 0; i < count; i++) {
+                        particles.push(new Particle(this.x, this.y, this.color, false));
+                    }
+                }
+            }
+
+            class Particle {
+                constructor(x, y, color, isTrail = false) {
+                    this.x = x;
+                    this.y = y;
+                    this.isTrail = isTrail;
+                    if (isTrail) {
+                        this.vx = (Math.random() - 0.5) * 2;
+                        this.vy = (Math.random() * 2); // drifts down slowly
+                        this.decay = Math.random() * 0.05 + 0.03;
+                    } else {
+                        this.vx = (Math.random() - 0.5) * 12; // wider bursts!
+                        this.vy = (Math.random() - 0.5) * 12 - 2;
+                        this.decay = Math.random() * 0.015 + 0.008;
+                    }
+                    this.gravity = isTrail ? 0.02 : 0.15;
+                    this.friction = 0.95;
+                    this.color = color;
+                    this.alpha = 1;
+                    this.size = isTrail ? Math.random() * 1.5 + 1 : Math.random() * 3 + 2;
+                }
+                update() {
+                    this.vx *= this.friction;
+                    this.vy *= this.friction;
+                    this.vy += this.gravity;
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.alpha -= this.decay;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    if (!this.isTrail) {
+                        ctx.shadowBlur = 10;
+                        ctx.shadowColor = this.color;
+                    }
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+
+            class ConfettiPiece {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = -20;
+                    this.size = Math.random() * 6 + 6;
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.speedY = Math.random() * 2 + 2;
+                    this.speedX = Math.random() * 2 - 1;
+                    this.rotation = Math.random() * 360;
+                    this.rotationSpeed = Math.random() * 10 - 5;
+                    this.wobble = Math.random() * 10;
+                }
+                update() {
+                    this.y += this.speedY;
+                    this.x += Math.sin(this.y / 30 + this.wobble) * 0.8 + this.speedX;
+                    this.rotation += this.rotationSpeed;
+                }
+                draw() {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.rotate(this.rotation * Math.PI / 180);
+                    ctx.fillStyle = this.color;
+                    ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
+                    ctx.restore();
+                }
+            }
+
+            class FloatingEmoji {
+                constructor() {
+                    this.x = Math.random() * width;
+                    this.y = height + 30;
+                    this.text = emojiList[Math.floor(Math.random() * emojiList.length)];
+                    this.speedY = Math.random() * 1.5 + 1.5;
+                    this.size = Math.floor(Math.random() * 14) + 22;
+                    this.alpha = 1;
+                    this.wobble = Math.random() * 100;
+                }
+                update() {
+                    this.y -= this.speedY;
+                    this.x += Math.sin(this.y / 40 + this.wobble) * 0.5;
+                    if (this.y < height * 0.3) {
+                        this.alpha -= 0.015;
+                    }
+                }
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = Math.max(0, this.alpha);
+                    ctx.font = `${this.size}px Arial`;
+                    ctx.fillText(this.text, this.x, this.y);
+                    ctx.restore();
+                }
+            }
+
+            let animationFrameId;
+            let launchTimer = 0;
+            
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                
+                launchTimer++;
+                // Higher rocket frequency!
+                if (launchTimer % 15 === 0 && rockets.length < 8) {
+                    rockets.push(new Rocket());
+                }
+                
+                // Spawn confetti!
+                if (launchTimer % 5 === 0 && confetti.length < 100) {
+                    confetti.push(new ConfettiPiece());
+                }
+
+                // Spawn floating emojis!
+                if (launchTimer % 25 === 0 && emojis.length < 15) {
+                    emojis.push(new FloatingEmoji());
+                }
+                
+                for (let i = rockets.length - 1; i >= 0; i--) {
+                    rockets[i].update();
+                    if (rockets[i].shouldExplode()) {
+                        rockets[i].explode();
+                        rockets.splice(i, 1);
+                    }
+                }
+                
+                for (let i = particles.length - 1; i >= 0; i--) {
+                    particles[i].update();
+                    if (particles[i].alpha <= 0) {
+                        particles.splice(i, 1);
+                    } else {
+                        particles[i].draw();
+                    }
+                }
+
+                for (let i = confetti.length - 1; i >= 0; i--) {
+                    confetti[i].update();
+                    if (confetti[i].y > height + 20) {
+                        confetti.splice(i, 1);
+                    } else {
+                        confetti[i].draw();
+                    }
+                }
+
+                for (let i = emojis.length - 1; i >= 0; i--) {
+                    emojis[i].update();
+                    if (emojis[i].y < -40 || emojis[i].alpha <= 0) {
+                        emojis.splice(i, 1);
+                    } else {
+                        emojis[i].draw();
+                    }
+                }
+                
+                animationFrameId = requestAnimationFrame(animate);
+            }
+            
+            animate();
+
+            function dismiss() {
+                modal.style.opacity = '0';
+                wrapper.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    cancelAnimationFrame(animationFrameId);
+                    modal.remove();
+                    canvas.remove();
+                }, 500);
+            }
+
+            document.getElementById('dismissCelebrationBtn').addEventListener('click', dismiss);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) dismiss();
+            });
+            setTimeout(dismiss, 12000); // dismiss after 12s of celebration
+        }
+
+        // --- On Page Load Initializations ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // Start network animation
+            initNetworkAnimation();
+
+            // Assign chatbot DOM refs at module scope so helper functions can use them
+            chatbotMessages = document.getElementById('chatbotMessages');
+            chatbotInput    = document.getElementById('chatbotInput');
+
+            const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
+            const chatbotCloseBtn  = document.getElementById('chatbotCloseBtn');
+            const chatbotPanel     = document.getElementById('chatbotPanel');
+            const chatbotSendBtn   = document.getElementById('chatbotSendBtn');
+            const chatbotTooltip   = document.getElementById('chatbotTooltip');
+
+            if (chatbotToggleBtn) {
+                chatbotToggleBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    chatbotPanel.classList.toggle('active');
+                    if (chatbotPanel.classList.contains('active')) {
+                        chatbotInput.focus();
+                        if (chatbotTooltip) chatbotTooltip.style.opacity = '0';
+                        chatbotToggleBtn.classList.remove('pulse');
+                    }
+                });
+            }
+
+            if (chatbotCloseBtn) {
+                chatbotCloseBtn.addEventListener('click', () => {
+                    chatbotPanel.classList.remove('active');
+                });
+            }
+
+            if (chatbotSendBtn) chatbotSendBtn.addEventListener('click', handleSend);
+            if (chatbotInput) chatbotInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSend();
+            });
+
+            // Initialize Voice Input if supported
+            const chatbotMicBtn = document.getElementById('chatbotMicBtn');
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (chatbotMicBtn && SpeechRecognition) {
+                chatbotMicBtn.style.display = 'flex';
+                initSpeechRecognition();
+                chatbotMicBtn.addEventListener('click', toggleSpeechRecognition);
+            }
+
+            // Load file list
+            fetchUploadedFiles();
+
+            // Load contacts database for chatbot RAG
+            loadContactsDatabase();
+
+            // True Page View Counter
+            const viewCountElement = document.getElementById('viewCount');
+            fetch('counter.php')
+                .then(response => response.text())
+                .then(count => {
+                    const numCount = parseInt(count);
+                    if (!isNaN(numCount)) {
+                        viewCountElement.textContent = numCount.toLocaleString('en-IN');
+                        if (numCount > 0 && numCount % 10 === 0) {
+                            triggerCelebration(numCount);
+                        }
+                    } else {
+                        viewCountElement.textContent = count;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching view count:', error);
+                    viewCountElement.textContent = 'N/A';
+                });
+
+            // Last Updated Date
+            const lastUpdatedElement = document.getElementById('lastUpdated');
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            lastUpdatedElement.textContent = today.toLocaleDateString('en-IN', options);
+
+            // Display success/error status toast from query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const status = urlParams.get('status');
+            const msg = urlParams.get('msg');
+            if (status && msg) {
+                const decodedMsg = decodeURIComponent(msg.replace(/\+/g, ' '));
+                showToast(status, decodedMsg);
+                
+                // Clean browser history URL to prevent showing status alerts on page refreshes
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+
+            // --- Real-time Outages Monitor Panel ---
+            const outagesList = document.getElementById("outages-list");
+            const outageBadge = document.getElementById("outage-count-badge");
+            const outagesTitle = document.getElementById("outages-title");
+            const outagesHeader = document.getElementById("outages-card-header");
+
+            function checkOutages() {
+                fetch("alert/api.php?endpoint=status")
+                    .then(res => {
+                        if (!res.ok) throw new Error("API Offline");
+                        return res.json();
+                    })
+                    .then(data => {
+                        if (data.status === "success" && data.hosts) {
+                            const downHosts = data.hosts.filter(h => h.status === "DOWN");
+                            
+                            if (downHosts.length > 0) {
+                                // Outages exist
+                                outagesHeader.style.borderColor = "var(--danger)";
+                                outagesTitle.style.color = "var(--danger)";
+                                outagesTitle.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Active Link Outages`;
+                                
+                                outageBadge.textContent = `${downHosts.length} DOWN`;
+                                outageBadge.style.backgroundColor = "rgba(239, 68, 68, 0.15)";
+                                outageBadge.style.color = "var(--danger)";
+                                
+                                outagesList.innerHTML = downHosts.map(h => `
+                                    <div class="outage-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background-color: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; transition: all 0.2s;">
+                                        <div style="display: flex; align-items: flex-start; gap: 10px; text-align: left;">
+                                            <span style="font-size: 1.1rem; margin-top: 2px;">🚨</span>
+                                            <div>
+                                                <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">${h.description}</div>
+                                                <div style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">${h.ip}</div>
+                                            </div>
+                                        </div>
+                                        <a href="alert/?search=${h.ip}" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.75rem; background-color: var(--danger); color: white; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" target="_blank">
+                                            Take Action <i class="fas fa-angle-double-right"></i>
+                                        </a>
+                                    </div>
+                                `).join('');
+                            } else {
+                                // All systems online
+                                outagesHeader.style.borderColor = "var(--success)";
+                                outagesTitle.style.color = "var(--success)";
+                                outagesTitle.innerHTML = `<i class="fas fa-check-circle"></i> Network Link Status`;
+                                
+                                outageBadge.textContent = "All UP";
+                                outageBadge.style.backgroundColor = "rgba(16, 185, 129, 0.15)";
+                                outageBadge.style.color = "var(--success)";
+                                
+                                outagesList.innerHTML = `
+                                    <div style="text-align: center; color: var(--text-secondary); padding: 20px 0; font-size: 0.95rem;">
+                                        <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--success); margin-bottom: 10px; display: block;"></i>
+                                        All 117 network switches and routers are fully reachable.
+                                    </div>
+                                `;
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        console.error("Outages status fetch error:", err);
+                        outagesHeader.style.borderColor = "var(--warning)";
+                        outagesTitle.style.color = "var(--warning)";
+                        outagesTitle.innerHTML = `<i class="fas fa-exclamation-circle"></i> Monitor Status`;
+                        
+                        outageBadge.textContent = "Offline";
+                        outageBadge.style.backgroundColor = "rgba(245, 158, 11, 0.15)";
+                        outageBadge.style.color = "var(--warning)";
+                        
+                        outagesList.innerHTML = `
+                            <div style="text-align: center; color: var(--text-secondary); padding: 20px 0; font-size: 0.95rem;">
+                                <i class="fas fa-exclamation-circle" style="font-size: 2rem; color: var(--warning); margin-bottom: 10px; display: block;"></i>
+                                Failed to connect to the Network Monitor.
+                            </div>
+                        `;
+                    });
+            }
+
+            // Run check immediately and poll every 10 seconds
+            checkOutages();
+            setInterval(checkOutages, 10000);
+        });
+    </script>
+</body>
+</html>
