@@ -115,13 +115,13 @@ function VisitCounterBadge({ displayCount, isDark }: { displayCount: number; isD
 
 /* ── Ticker items ── */
 const TICKER_ITEMS = [
-  '🚀 Bot Fixed indicator package now live',
-  '📡 5G SIM Hotspots in stock — 14 units remaining',
-  '⚡ Zero-latency Windows Cloud VMs available 24/7',
+  '🚀 HFT Signal Suite (Bot Fixed v4.0) indicator package now live',
+  '📡 High-Availability 5G Redundancy Nodes in stock — 14 units remaining',
+  '⚡ Sub-millisecond Windows Cloud VMs available 24/7',
   '🇮🇳 Express shipping from New Delhi within 48 hrs',
   '🤖 Automated watchdogs pre-installed on all VMs',
   '💳 UPI, GPay & International Card payments accepted',
-  '🔒 Managed by Jumpstreet — A Mangalik & Sons Venture',
+  '🔒 Managed by Jumpstreet — A Mangalik & Sons Securities Securities',
   '📈 Avg signal latency: 1.2ms via Jumpstreet API',
 ];
 
@@ -163,7 +163,7 @@ export default function App() {
     } else {
       const seed: PaymentSubmission = {
         id: 'TXN-842013', planId: 'bot_standard',
-        planName: 'Bot Fixed - Standard License',
+        planName: 'HFT Signal Suite (Bot Fixed v4.0) - Standard License',
         amountPaid: 999, currency: 'INR', paymentMethod: 'UPI',
         utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
         telegramUsername: '@ajain_fixed', status: 'pending_verification',
@@ -410,15 +410,15 @@ export default function App() {
 
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-tight uppercase mb-3">
                 <span className="shimmer-text">Automated Alerts</span>{' '}
-                <span style={{ color: tk.text1 }}>&amp; Low-Latency Hosting for</span>{' '}
-                <span className="text-blue-400">Bot Fixed</span>
+                <span style={{ color: tk.text1 }}>&amp; Proximity Hosting & HFT Pipelines for</span>{' '}
+                <span className="text-blue-400">HFT Signal Suite (Bot Fixed v4.0)</span>
               </h1>
 
               <p className="text-xs sm:text-sm leading-relaxed max-w-2xl font-mono mb-5" style={{ color: tk.text2 }}>
                 Deploy state-of-the-art algorithmic trading configurations. Jumpstreet secures
                 lowest-latency Windows VPS packages pre-installed with{' '}
-                <strong style={{ color: tk.text1 }}>Bot Fixed</strong> indicators, paired with
-                imported 5G network redundancy hardware from Japan and China.
+                <strong style={{ color: tk.text1 }}>HFT Signal Suite (Bot Fixed v4.0)</strong> indicators, paired with
+                imported path-redundant telecommunications hardware from Japan and China.
               </p>
 
               {/* Stats Grid */}
@@ -426,8 +426,8 @@ export default function App() {
                 {[
                   { label: 'Gateway Status', value: 'Secure Live',    color: '#60a5fa', pulse: true },
                   { label: 'Signal Latency',  value: '~1.2 ms avg',   color: tk.text1,  pulse: false },
-                  { label: '5G Router Stock', value: '14 Units Left', color: tk.text2,  pulse: false },
-                  { label: 'Operator',        value: 'M&S Venture',   color: '#60a5fa', pulse: false },
+                  { label: 'Dual-Homed Node Stock', value: '14 Units Left', color: tk.text2,  pulse: false },
+                  { label: 'Operator',        value: 'M&S Securities',   color: '#60a5fa', pulse: false },
                 ].map((s, i) => (
                   <div
                     key={i}
@@ -583,7 +583,7 @@ export default function App() {
                              style={{ borderColor: tk.cardB }}>
                           <span className="italic" style={{ color: tk.text2 }}>
                             {ord.status === 'pending_verification'
-                              ? '🔒 Awaiting ledger review by Mangalik & Sons.'
+                              ? '🔒 Awaiting ledger review by Mangalik & Sons Securities.'
                               : '✅ License key dispatched via Telegram.'}
                           </span>
                           <button
@@ -614,11 +614,11 @@ export default function App() {
             <div className="space-y-3 text-xs leading-relaxed font-mono" style={{ color: isDark ? '#d1d5db' : '#555' }}>
               <p>
                 <strong style={{ color: tk.text1 }}>Jumpstreet</strong> is a premier tech and hardware distribution entity under{' '}
-                <strong style={{ color: tk.text1 }}>A Mangalik and Sons Venture Limited</strong>.
+                <strong style={{ color: tk.text1 }}>A Mangalik and Sons Securities Limited</strong>.
               </p>
               <p>
-                We specialize in low-latency algorithmic utilities (the{' '}
-                <strong style={{ color: tk.text1 }}>Bot Fixed</strong> indicator platform) and direct imports
+                We specialize in FPGA-accelerated latency-critical trading utilities (the{' '}
+                <strong style={{ color: tk.text1 }}>HFT Signal Suite (Bot Fixed v4.0)</strong> indicator platform) and direct imports
                 of industrial-grade 5G routers and enterprise J-SIM setups.
               </p>
             </div>
@@ -698,10 +698,10 @@ export default function App() {
             <span className="text-[9px] uppercase tracking-wider font-mono" style={{ color: tk.text3 }}>Theme Preference</span>
           </div>
           <p className="font-semibold uppercase tracking-wider text-[10px]">
-            Jumpstreet • A Mangalik and Sons Venture Limited © 2026. All rights reserved.
+            Jumpstreet • A Mangalik and Sons Securities Limited © 2026. All rights reserved.
           </p>
           <p className="max-w-2xl mx-auto text-[9px] leading-relaxed" style={{ color: isDark ? '#374151' : '#bbb' }}>
-            Algorithmic indicator tools ("Bot Fixed") are for backtesting and analytical simulation.
+            Algorithmic quantitative signals ("HFT Signal Suite (Bot Fixed v4.0)") are for backtesting and analytical simulation.
             We do not provide personalised financial advice. Shipped hardware is subject to Indian import regulations.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-[9px] uppercase tracking-widest font-bold">

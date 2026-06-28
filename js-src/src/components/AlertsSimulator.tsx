@@ -3,9 +3,9 @@ import { Send, MessageSquare, BellRing, Smartphone, Check } from 'lucide-react';
 import { AlertNotification } from '../types';
 
 const INITIAL_ALERTS: AlertNotification[] = [
-  { id: 'a1', type: 'telegram', pair: 'BTC/USDT', signalType: 'BUY',  price: '92,450.50', indicator: 'EMA Golden Cross (50/200)', timestamp: 'Just now' },
-  { id: 'a2', type: 'whatsapp', pair: 'ETH/USDT', signalType: 'SELL', price: '3,840.15',  indicator: 'RSI Overbought (74.8)',    timestamp: '2 mins ago' },
-  { id: 'a3', type: 'signal',   pair: 'SOL/USDT', signalType: 'BUY',  price: '184.20',    indicator: 'MACD Bullish Cross',       timestamp: '5 mins ago' },
+  { id: 'a1', type: 'telegram', pair: 'BTC/USDT', signalType: 'BUY',  price: '92,450.50', indicator: 'Order Book Imbalance (Microstructural Buy Signal)', timestamp: 'Just now' },
+  { id: 'a2', type: 'whatsapp', pair: 'ETH/USDT', signalType: 'SELL', price: '3,840.15',  indicator: 'BBO Spread Flap (Volatility Sell Signal)',    timestamp: '2 mins ago' },
+  { id: 'a3', type: 'signal',   pair: 'SOL/USDT', signalType: 'BUY',  price: '184.20',    indicator: 'Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)',       timestamp: '5 mins ago' },
 ];
 
 interface AlertsSimulatorProps { isDark: boolean; }
@@ -15,7 +15,7 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
   const [activePlatform, setActivePlatform] = useState<'telegram' | 'whatsapp' | 'signal'>('telegram');
   const [customPair, setCustomPair] = useState('BTC/USDT');
   const [customSignal, setCustomSignal] = useState<'BUY' | 'SELL'>('BUY');
-  const [customIndicator, setCustomIndicator] = useState('RSI Oversold (28.5)');
+  const [customIndicator, setCustomIndicator] = useState('Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)');
   const [lastDelivered, setLastDelivered] = useState<string | null>(null);
 
   const playNotificationSound = () => {
@@ -93,7 +93,7 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
             Live Alert Tester
           </h3>
           <p className="text-xs mt-1 font-mono" style={{ color: textSecondary }}>
-            Test how Bot Fixed generates alerts on WhatsApp, Telegram, or Signal
+            Simulate telemetry webhook triggers for microstructural trade indicators to external alerts endpoints
           </p>
         </div>
         <div
@@ -181,10 +181,10 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
                 4. Indicator
               </label>
               <select value={customIndicator} onChange={e => setCustomIndicator(e.target.value)} style={{ ...inputStyle, height: '38px' }}>
-                <option value="RSI Oversold (28.5)">RSI Oversold</option>
-                <option value="EMA Golden Cross (50/200)">EMA Golden Cross</option>
-                <option value="MACD Bullish Cross">MACD Bullish Cross</option>
-                <option value="S/R Bounce Confirm">S/R Bounce</option>
+                <option value="Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)">RSI Oversold</option>
+                <option value="Order Book Imbalance (Microstructural Buy Signal)">EMA Golden Cross</option>
+                <option value="Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)">Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)</option>
+                <option value="S/R Breakthrough (Volume Spike Confirm)">S/R Breakthrough</option>
               </select>
             </div>
           </div>

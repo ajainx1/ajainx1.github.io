@@ -138,7 +138,7 @@ export default function VmConfigurator({ onAddVmToCart, isDark }: VmConfigurator
                     style={{ color: textSecondary }}>
                 <Layers size={13} style={{ color: textMuted }} /> System RAM
               </span>
-              <span className="text-[11px] font-mono" style={{ color: textSecondary }}>{ram} GB DDR4 ECC</span>
+              <span className="text-[11px] font-mono" style={{ color: textSecondary }}>{ram} GB DDR5 ECC 5600MHz (Sub-10ns Latency)</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {[
@@ -158,7 +158,7 @@ export default function VmConfigurator({ onAddVmToCart, isDark }: VmConfigurator
                     style={{ color: textSecondary }}>
                 <Cpu size={13} style={{ color: textMuted }} /> Processor Cores
               </span>
-              <span className="text-[11px] font-mono" style={{ color: textSecondary }}>{cpu} vCPU Xeon Skylake</span>
+              <span className="text-[11px] font-mono" style={{ color: textSecondary }}>{cpu} vCPU Xeon Scalable Gen 4 (Optimized High-Freq Core-Pinning)</span>
             </div>
             <div className="grid grid-cols-3 gap-2">
               {[
@@ -176,7 +176,7 @@ export default function VmConfigurator({ onAddVmToCart, isDark }: VmConfigurator
             <div className="flex justify-between items-center mb-2">
               <span className="text-[10px] font-bold uppercase tracking-[0.15em] flex items-center gap-1.5"
                     style={{ color: textSecondary }}>
-                <HardDrive size={13} style={{ color: textMuted }} /> SSD NVMe Storage
+                <HardDrive size={13} style={{ color: textMuted }} /> PCIe Gen5 NVMe Storage (RAID-10 Array)
               </span>
               <span className="text-[11px] font-mono" style={{ color: textSecondary }}>{storage} GB NVMe</span>
             </div>
@@ -222,7 +222,7 @@ export default function VmConfigurator({ onAddVmToCart, isDark }: VmConfigurator
                   style={{ accentColor: '#3b82f6' }}
                 />
                 <span className="text-xs font-mono" style={{ color: isDark ? '#d1d5db' : '#555' }}>
-                  Pre-install "Bot Fixed"
+                  Pre-install HFT Signal Suite
                 </span>
               </label>
             </div>
@@ -247,7 +247,7 @@ export default function VmConfigurator({ onAddVmToCart, isDark }: VmConfigurator
                 Premium Integration Techniques &amp; Tricks (+₹250)
               </label>
               <p className="text-[11px] mt-1 leading-relaxed font-mono" style={{ color: textSecondary }}>
-                Automated watchdogs, low-latency API proxy techniques, custom indicator setup, and 1-on-1 trick guide by Jumpstreet.
+                Automated watchdog tasks, kernel-bypass Solarflare drivers, raw exchange BGP optimization, and 1-on-1 performance tuning by Jumpstreet.
               </p>
             </div>
           </div>
