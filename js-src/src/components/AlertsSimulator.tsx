@@ -183,7 +183,7 @@ export default function AlertsSimulator({ isDark }: AlertsSimulatorProps) {
               <select value={customIndicator} onChange={e => setCustomIndicator(e.target.value)} style={{ ...inputStyle, height: '38px' }}>
                 <option value="Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)">RSI Oversold</option>
                 <option value="Order Book Imbalance (Microstructural Buy Signal)">EMA Golden Cross</option>
-                <option value="Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)">Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)</option>
+                <option value="Mean Reversion Z-Score Arbitrage Buy (Z < -2.5)">Mean Reversion Z-Score Arbitrage Buy (Z &lt; -2.5)</option>
                 <option value="S/R Breakthrough (Volume Spike Confirm)">S/R Breakthrough</option>
               </select>
             </div>
