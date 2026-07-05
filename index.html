@@ -1820,7 +1820,7 @@ ADITYA'S RESUME DATA:
     
     // Simple markdown formatting (replace links and linebreaks)
     let formatted = text.replace(/\n/g, '<br>');
-    formatted = formatted.replace(/\\[([^\\]]+)\\]\\(([^\\)]+)\\)/g, '<a href="$2" target="_blank">$1</a>');
+    formatted = formatted.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href=\"$2\" target=\"_blank\">$1</a>');
     formatted = formatted.replace(/•/g, '<span style="color:var(--green)">•</span>');
     msg.innerHTML = formatted;
     
