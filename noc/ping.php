@@ -1,84 +1,52 @@
 <?php
+// ping.php - Secure NOC Network Status verification tool
 header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
-$target = isset($_GET['target']) ? trim($_GET['target']) : '';
+// Pre-approved list of safe server endpoints to prevent arbitrary host scanning
+$safe_hosts = array(
+    'patna_noc' => array('host' => '10.133.22.8', 'port' => 80, 'name' => 'Patna NOC Web Server'),
+    'attendance' => array('host' => '10.133.0.51', 'port' => 8080, 'name' => 'FMS Attendance Server'),
+    'dpr' => array('host' => '10.133.0.51', 'port' => 80, 'name' => 'Daily Progress Report Portal'),
+    'taspass' => array('host' => 'taspass.nic.in', 'port' => 8443, 'name' => 'TACS Password Server')
+);
 
-if (empty($target)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Invalid or missing target host parameter.'
-    ]);
-    exit;
+$target = $_GET['target'] ?? '';
+
+if (empty($target) || !array_key_exists($target, $safe_hosts)) {
+    http_response_code(400);
+    echo json_encode(array("status" => "error", "message" => "Invalid or missing target host parameter."));
+    exit();
 }
 
-$targetsMap = [
-    'attendance' => [
-        'name' => 'FMS Attendance System',
-        'host' => 'fms.state-noc.org',
-        'port' => 8080
-    ],
-    'taspass' => [
-        'name' => 'TASPASS TACACS Portal',
-        'host' => 'taspass.state-noc.org',
-        'port' => 8443
-    ],
-    'dpr' => [
-        'name' => 'DPR Progress Portal',
-        'host' => 'dpr.state-noc.org',
-        'port' => 443
-    ],
-    'patna_noc' => [
-        'name' => 'Patna State NOC Core',
-        'host' => 'core.state-noc.org',
-        'port' => 80
-    ]
-];
+$hostData = $safe_hosts[$target];
+$ip = $hostData['host'];
+$port = $hostData['port'];
+$name = $hostData['name'];
 
-if (!array_key_exists($target, $targetsMap)) {
-    echo json_encode([
-        'status' => 'error',
-        'message' => 'Unknown target host.'
-    ]);
-    exit;
-}
-
-$info = $targetsMap[$target];
-
-// Perform a real socket check on localhost to see if it responds,
-// otherwise simulate a successful response with realistic RTT for demo purposes.
-// This ensures the demo is highly interactive and never breaks due to firewall/routing issues.
+// Perform a TCP socket connection test (more reliable and permission-safe than command line ping)
 $startTime = microtime(true);
-$isOnline = false;
-$errorMessage = '';
+$connection = @fsockopen($ip, $port, $errno, $errstr, 2.0); // 2 second timeout
+$endTime = microtime(true);
 
-// Try checking localhost first to see if there's any local web server running,
-// but for the demo, we default to "online" with random RTT to show a working system.
-$connection = @fsockopen('127.0.0.1', $_SERVER['SERVER_PORT'] ?? 80, $errno, $errstr, 0.5);
-
-if ($connection) {
+if (is_resource($connection)) {
+    $rtt = round(($endTime - $startTime) * 1000, 1);
     fclose($connection);
-    $isOnline = true;
-    $rtt = round((microtime(true) - $startTime) * 1000, 2);
+    echo json_encode(array(
+        "status" => "online",
+        "name" => $name,
+        "host" => $ip,
+        "port" => $port,
+        "rtt_ms" => $rtt,
+        "message" => "Server $name ($ip:$port) is ONLINE. Response time: {$rtt}ms."
+    ));
 } else {
-    // If not local web server, let's simulate online status with realistic stats
-    $isOnline = true;
-    $rtt = round(rand(800, 3200) / 100, 2); // 8ms to 32ms
+    echo json_encode(array(
+        "status" => "offline",
+        "name" => $name,
+        "host" => $ip,
+        "port" => $port,
+        "message" => "Server $name ($ip:$port) is OFFLINE. Error: $errstr ($errno)."
+    ));
 }
-
-if ($isOnline) {
-    echo json_encode([
-        'status' => 'online',
-        'name' => $info['name'],
-        'host' => $info['host'],
-        'port' => $info['port'],
-        'rtt_ms' => $rtt
-    ]);
-} else {
-    echo json_encode([
-        'status' => 'offline',
-        'name' => $info['name'],
-        'host' => $info['host'],
-        'port' => $info['port'],
-        'message' => 'Connection timed out or host unreachable.'
-    ]);
-}
+?>
