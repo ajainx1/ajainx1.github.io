@@ -1,21 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aditya Jain — Cybersecurity Engineer & Red Team Aspirant</title>
-  <meta name="description" content="Portfolio of Aditya Jain — 3+ years enterprise SecOps, EDR, SIEM, NGFW, government infrastructure security, and offensive security training on HTB & Vulnlab." />
-  <meta property="og:title" content="Aditya Jain — Cybersecurity Engineer" />
-  <meta property="og:description" content="SecOps · EDR · SIEM · NGFW · Red Team Aspirant — open to relocation & remote worldwide." />
+  <title>Aditya Jain â€” Cybersecurity Engineer & Subject Matter Expert (SME)</title>
+  <meta name="description" content="Portfolio of Aditya Jain â€” 5+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, Government Infrastructure Security, Active Directory Exploitation, and AI Automation." />
+  <meta property="og:title" content="Aditya Jain â€” Cybersecurity Engineer & SME" />
+  <meta property="og:description" content="SecOps Â· Purple Teaming Â· EDR/SIEM SME Â· AD Exploitation Â· Red Team Aspirant â€” open to relocation & remote worldwide." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://ajainx1.github.io" />
+  <meta property="og:url" content="https://adityasec32.systems" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="robots" content="index, follow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-<link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -39,26 +38,29 @@
 <div id="toast"></div>
 
 <!-- BACK TO TOP -->
-<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ top</button>
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">â†‘ top</button>
 
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HEADER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <header id="hdr">
   <div>
-    <a href="#top" class="logo"><span class="text-green">$</span> aditya<span class="text-muted">@</span>jain<span class="text-muted">:~#</span></a>
+    <a href="#top" class="logo">
+      <span class="logo-badge">AJ</span>
+      <span class="logo-text">Aditya<span class="text-muted">.</span>Jain</span>
+    </a>
     <nav id="main-nav">
-      <a href="#about" data-section="about">01 // about</a>
-      <a href="#skills" data-section="skills">02 // skills</a>
-      <a href="#experience" data-section="experience">03 // experience</a>
-      <a href="#training" data-section="training">04 // training</a>
-      <a href="/js/" target="_blank" rel="noreferrer" style="color:var(--green);text-shadow:0 0 14px var(--green-glow)">05 // jumpstreet ↗</a>
-      <a href="#certs" data-section="certs">06 // certs</a>
-      <a href="#contact" data-section="contact">07 // contact</a>
+      <a href="#about" data-section="about">About</a>
+      <a href="#skills" data-section="skills">Competencies</a>
+      <a href="#experience" data-section="experience">Experience</a>
+      <a href="#projects" data-section="projects">Projects</a>
+      <a href="#certs" data-section="certs">Credentials</a>
+      <a href="#contact" data-section="contact">Contact</a>
     </nav>
     <div class="hdr-right">
       <div class="vpill" id="hdr-vcount">
         <span class="vdot"></span>
-        <span id="vnum">…</span>&nbsp;<span style="color:var(--border2)">|</span>&nbsp;visitors
+        <span id="vnum">â€¦</span>&nbsp;<span style="color:var(--border2)">|</span>&nbsp;visitors
       </div>
-      <a href="mailto:aavkjain@hotmail.com" class="btn" onclick="showToast('📬 Opening mail client…')">./contact.sh</a>
+      <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn" onclick="showToast('ðŸ“„ Downloading Resumeâ€¦')">Download CV</a>
       <button class="hamburger" id="ham" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -68,456 +70,420 @@
 
 <!-- MOBILE NAV -->
 <nav class="mob-nav" id="mob-nav">
-  <a href="#about"      onclick="closeNav()">01 // about</a>
-  <a href="#skills"     onclick="closeNav()">02 // skills</a>
-  <a href="#experience" onclick="closeNav()">03 // experience</a>
-  <a href="#training"   onclick="closeNav()">04 // training</a>
-  <a href="/js/" target="_blank" rel="noreferrer" style="color:var(--green)">05 // jumpstreet ↗</a>
-  <a href="#certs"      onclick="closeNav()">06 // certs</a>
-  <a href="#contact"    onclick="closeNav()">07 // contact</a>
+  <a href="#about"      onclick="closeNav()">About</a>
+  <a href="#skills"     onclick="closeNav()">Competencies</a>
+  <a href="#experience" onclick="closeNav()">Experience</a>
+  <a href="#projects"   onclick="closeNav()">Projects</a>
+  <a href="#certs"      onclick="closeNav()">Credentials</a>
+  <a href="#contact"    onclick="closeNav()">Contact</a>
 </nav>
 
 <main>
 
-  <!-- ═══ HERO ═══ -->
-  <section id="top">
+  <!-- â•â•â• HERO â•â•â• -->
+  <section id="top" class="hero-section">
     <div class="hero-grid">
 
       <!-- LEFT -->
-      <div>
-        <div class="sector"><span class="mu">[</span>SECTOR_00<span class="mu">]</span> // identity</div>
+      <div class="hero-left">
+        <div class="hero-badge-row">
+          <span class="status-badge pulse">SME Cybersecurity Engineer</span>
+          <span class="status-badge ghost">Open to Roles / Remote / Relocation</span>
+        </div>
         <h1>
-          Aditya<br>
-          <span class="glitch text-green glow" data-text="Jain.">Jain.</span>
+          <span class="hero-greeting">Cybersecurity Engineer & Subject Matter Expert</span>
+          Aditya <span class="text-green glow">Jain</span>
         </h1>
-        <p class="lead" id="lead-text"></p>
-        <div class="status-list">
-          <div><span class="text-green">›</span> role <span>= SecOps · EDR · SIEM · NGFW</span></div>
-          <div><span class="text-green">›</span> focus <span>= red team · AD exploitation · vuln research</span></div>
-          <div><span class="text-green">›</span> status <span class="text-amber">open to relocation / remote</span> <span class="caret"></span></div>
+        <p class="hero-subtitle" id="lead-text">Results-driven Cybersecurity SME with <strong>5+ years of enterprise experience</strong> in SecOps, Purple Teaming, and network defense â€” managing EDR/SIEM solutions across 750+ government offices and automating compliance auditing to reduce cycles by 60%.</p>
+
+        <div class="hero-tags">
+          <span class="hero-tag"><span class="tag-dot"></span>SecOps SME</span>
+          <span class="hero-tag"><span class="tag-dot"></span>Purple Teaming</span>
+          <span class="hero-tag"><span class="tag-dot"></span>SentinelOne & Trend Micro Deep Security</span>
+          <span class="hero-tag"><span class="tag-dot"></span>Wazuh & Blu Sapphire SIEM</span>
+          <span class="hero-tag"><span class="tag-dot"></span>Active Directory Exploitation</span>
         </div>
+
         <div class="hero-btns">
-          <a href="#contact" class="btn">./hire_me.sh</a>
-          <a href="#experience" class="btn btn-ghost">cat experience.log</a>
-          <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn btn-ghost" onclick="showToast('Downloading CV…')">↓ download cv</a>
+          <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <a href="#experience" class="btn btn-ghost">View Experience</a>
+          <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn btn-ghost" onclick="showToast('ðŸ“„ Downloading CVâ€¦')">â†“ Download CV</a>
         </div>
+
         <div class="stats-grid">
-          <div class="stat-box"><div class="stat-num" data-target="3" data-suffix="+">0</div><div class="stat-label">years enterprise SecOps</div></div>
-          <div class="stat-box"><div class="stat-num" data-target="750" data-suffix="+">0</div><div class="stat-label">endpoints under EDR</div></div>
-          <div class="stat-box"><div class="stat-num" data-target="120" data-suffix="+">0</div><div class="stat-label">audits automated</div></div>
-          <div class="stat-box"><div class="stat-num" data-target="60" data-suffix="%">0</div><div class="stat-label">compliance effort saved</div></div>
-          <div class="stat-box"><div class="stat-num" data-target="35" data-suffix="%">0</div><div class="stat-label">detection rate uplift</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="5" data-suffix="+">0</div><div class="stat-label">Years SecOps Experience</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="750" data-suffix="+">0</div><div class="stat-label">Government Endpoints</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="120" data-suffix="+">0</div><div class="stat-label">Audits Automated</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="60" data-suffix="%">0</div><div class="stat-label">Audit Effort Saved</div></div>
+          <div class="stat-box"><div class="stat-num" data-target="35" data-suffix="%">0</div><div class="stat-label">Detection Rate Boost</div></div>
         </div>
       </div>
 
       <!-- RIGHT: TERMINAL -->
-      <div>
+      <div class="hero-right">
         <div class="term-wrap">
           <div class="term-hdr">
             <div class="tdot r"></div>
             <div class="tdot y"></div>
             <div class="tdot g"></div>
-            <div class="term-title">aditya@secops:~ — audit_node v2.6</div>
+            <div class="term-title">aditya@secops:~ â€” audit_node v2.6</div>
           </div>
           <div class="term-body" id="term-body"></div>
           <div class="term-input-row">
             <span class="ps">aditya@jain:~#</span>
-            <input class="term-input" id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command…" />
+            <input class="term-input" id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a commandâ€¦" />
           </div>
         </div>
         <div class="term-hints">
           try:
-          <span class="c" onclick="runCmd('help')">help</span> ·
-          <span class="c" onclick="runCmd('audit')">audit</span> ·
-          <span class="c" onclick="runCmd('chat')">chat 💬</span> ·
-          <span class="c" onclick="runCmd('skills')">skills</span> ·
-          <span class="c" onclick="runCmd('whoami')">whoami</span>
+          <span class="c" onclick="runCmd('help')">help</span> Â·
+          <span class="c" onclick="runCmd('audit')">audit</span> Â·
+          <span class="c" onclick="runCmd('chat')">chat ðŸ’¬</span> Â·
+          <span class="c" onclick="runCmd('theme')">theme ðŸŽ¨</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ AUDIT SCORE ═══ -->
-  <section id="audit-score" class="fi fi-delay-1">
-    <div class="sector"><span class="mu">[</span>SECTOR_00B<span class="mu">]</span> // SME_professional_audit</div>
-    <h2>// professional audit — rated 10/10</h2>
-    <div class="divider"></div>
-    <div class="audit-banner">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.25rem">
-        <div>
-          <div style="font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-bottom:.5rem;letter-spacing:.06em">SUBJECT MATTER EXPERT REVIEW — ENTERPRISE CYBERSECURITY</div>
-          <div style="font-family:var(--mono);font-size:3.5rem;font-weight:700;color:var(--green);line-height:1">10<span style="font-size:1.25rem;color:var(--muted)">/10</span></div>
-          <div style="font-size:.8rem;color:var(--muted);margin-top:.25rem">Overall Portfolio Rating — Elite Tier</div>
-        </div>
-        <div style="font-family:var(--mono);font-size:.72rem;color:var(--muted);max-width:28rem;line-height:1.8">
-          Exceptional breadth across defense and offense. Verifiable government-scale impact metrics, CDAC automation, and nuclear-sector SOC experience position this candidate in the <span style="color:var(--green)">top 5%</span> of cybersecurity professionals globally.
-        </div>
-      </div>
-      <div class="ascores">
-        <div class="ascore-item">
-          <div class="ascore-num" style="color:var(--green)">10</div>
-          <div class="ascore-label">Technical Depth</div>
-          <div class="abar-wrap"><div class="abar-fill" data-width="100" style="background:var(--green)"></div></div>
-        </div>
-        <div class="ascore-item">
-          <div class="ascore-num" style="color:var(--green)">9.5</div>
-          <div class="ascore-label">Impact Clarity</div>
-          <div class="abar-wrap"><div class="abar-fill" data-width="95" style="background:var(--green)"></div></div>
-        </div>
-        <div class="ascore-item">
-          <div class="ascore-num" style="color:var(--amber)">9.0</div>
-          <div class="ascore-label">Offensive Posture</div>
-          <div class="abar-wrap"><div class="abar-fill" data-width="90" style="background:var(--amber)"></div></div>
-        </div>
-        <div class="ascore-item">
-          <div class="ascore-num" style="color:var(--green)">10</div>
-          <div class="ascore-label">Presentation</div>
-          <div class="abar-wrap"><div class="abar-fill" data-width="100" style="background:var(--green)"></div></div>
-        </div>
-      </div>
-      <div style="font-family:var(--mono);font-size:.62rem;color:var(--muted);margin-top:1.25rem;border-top:1px solid var(--border);padding-top:.875rem;display:flex;flex-wrap:wrap;gap:.75rem">
-        <span><span class="text-green">✓</span> CERT-In alignment verified</span>
-        <span><span class="text-green">✓</span> CDAC automation documented</span>
-        <span><span class="text-green">✓</span> Nuclear-sector SOC experience</span>
-        <span><span class="text-green">✓</span> HTB + Vulnlab offensive labs active</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ ABOUT ═══ -->
+  <!-- â•â•â• ABOUT â•â•â• -->
   <section id="about" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_01<span class="mu">]</span> // about</div>
-    <h2>// whoami</h2>
-    <div class="divider"></div>
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <h2>Professional Summary</h2>
+      <div class="divider"></div>
+    </div>
     <div class="grid-2" style="margin-top:2.5rem">
-      <div style="color:var(--muted);font-size:1.05rem;line-height:1.8">
-        <p style="margin-bottom:1.25rem">I'm a cybersecurity professional with <span style="color:var(--fg);font-weight:500">3+ years of enterprise experience</span> across Security Operations, EDR architecture, SIEM engineering, NGFW administration, and compliance — most recently deploying security telemetry and automation frameworks for critical Indian government infrastructure.</p>
-        <p style="margin-bottom:1.25rem">I'm now transitioning into <span style="color:var(--green);font-weight:500">offensive security and red teaming</span>, backed by active penetration testing across Hack The Box and Vulnlab — with hands-on work in vulnerability research, network and web application pentesting, and PowerShell / Python tooling.</p>
-        <p>Pursuing an MBA in Cybersecurity, targeting <strong style="color:var(--fg)">OSCP, CEH v13</strong>, and steadily building toward <strong style="color:var(--fg)">CISSP</strong>.</p>
+      <div class="about-text">
+        <p>Results-driven <strong>Cybersecurity Engineer and Subject Matter Expert (SME)</strong> with <strong>5+ years of enterprise experience</strong> in Security Operations (SecOps), Purple Teaming, and network defense. Proven track record of architecting and managing EDR/SIEM solutions across 750+ government offices, automating compliance auditing to reduce audit cycles by 60%, and building custom security tools using generative AI.</p>
+        <p>Strong background in <strong>Active Directory exploitation</strong>, threat hunting, and vulnerability research. Passionate about bridging offensive and defensive techniques to harden enterprise environments.</p>
+        <p>Currently pursuing <strong class="text-green">CISSP</strong> and <strong class="text-green">OSCP</strong> to deepen technical and strategic expertise.</p>
       </div>
-      <aside class="profile-card">
+      <aside class="profile-card glass-card">
         <div class="ptag">~/profile.json</div>
-        <pre style="font-family:var(--mono);font-size:.85rem;line-height:1.75;color:rgba(231,239,233,.9);white-space:pre-wrap;overflow-wrap:break-word">{
+        <pre>{
   <span class="text-green">"name"</span>:     "Aditya Jain",
-  <span class="text-green">"title"</span>:    "Cybersecurity Engineer",
+  <span class="text-green">"title"</span>:    "Cybersecurity Engineer & SME",
+  <span class="text-green">"exp"</span>:      "5+ Years Enterprise SecOps",
   <span class="text-green">"location"</span>: "India",
-  <span class="text-green">"remote"</span>:   true,
-  <span class="text-green">"current"</span>:  "NIC via Ebix Tech",
-  <span class="text-green">"studying"</span>: "MBA · Cybersecurity",
-  <span class="text-green">"targets"</span>:  [
-    "OSCP", "CEH v13", "CISSP"
-  ]
+  <span class="text-green">"contact"</span>:  "adityasec32@gmail.com",
+  <span class="text-green">"phone"</span>:    "+91 740 058 8896",
+  <span class="text-green">"current"</span>:  "Security Administrator @ NIC",
+  <span class="text-green">"studying"</span>: "MBA Â· Cybersecurity",
+  <span class="text-green">"pursuing"</span>: [ "OSCP", "CISSP", "CEH v13" ]
 }</pre>
       </aside>
     </div>
   </section>
 
-  <!-- ═══ SKILLS ═══ -->
+  <!-- â•â•â• SKILLS / COMPETENCIES â•â•â• -->
   <section id="skills" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_02<span class="mu">]</span> // skills</div>
-    <h2>// arsenal</h2>
-    <div class="divider"></div>
-    <div class="skills-grid">
-      <div class="skill-card">
-        <h3>Offensive &amp; Testing</h3>
-        <div class="ski"><div class="ski-top"><span class="nm">OWASP Top 10</span><span class="pc">88%</span></div><div class="sbar"><div class="sbar-fill" data-width="88" style="background:var(--green)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Burp Suite Pro</span><span class="pc">83%</span></div><div class="sbar"><div class="sbar-fill" data-width="83" style="background:var(--green)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Metasploit</span><span class="pc">76%</span></div><div class="sbar"><div class="sbar-fill" data-width="76" style="background:var(--green)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Nmap / Enum</span><span class="pc">92%</span></div><div class="sbar"><div class="sbar-fill" data-width="92" style="background:var(--green)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Privilege Escalation</span><span class="pc">79%</span></div><div class="sbar"><div class="sbar-fill" data-width="79" style="background:var(--green)"></div></div></div>
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <h2>Core Competencies</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="skills-grid-6">
+      <div class="skill-card glass-card">
+        <div class="skill-icon">ðŸ—¡ï¸</div>
+        <h3>Offensive Security & Red Teaming</h3>
+        <p class="skill-desc">Active Directory Exploitation (Kerberoasting, Pass-the-Hash, DCSync, Kerberos Delegation), Network Pivoting, OWASP Top 10, Burp Suite Pro, Metasploit, Nmap, BloodHound, Impacket, Mimikatz.</p>
       </div>
-      <div class="skill-card">
-        <h3>Detection &amp; Monitoring</h3>
-        <div class="ski"><div class="ski-top"><span class="nm">SentinelOne EDR</span><span class="pc">93%</span></div><div class="sbar"><div class="sbar-fill" data-width="93" style="background:var(--blue)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Wazuh SIEM</span><span class="pc">88%</span></div><div class="sbar"><div class="sbar-fill" data-width="88" style="background:var(--blue)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Wireshark / PCAP</span><span class="pc">86%</span></div><div class="sbar"><div class="sbar-fill" data-width="86" style="background:var(--blue)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Kaspersky EDR</span><span class="pc">81%</span></div><div class="sbar"><div class="sbar-fill" data-width="81" style="background:var(--blue)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Snort IDS Signatures</span><span class="pc">78%</span></div><div class="sbar"><div class="sbar-fill" data-width="78" style="background:var(--blue)"></div></div></div>
+      <div class="skill-card glass-card">
+        <div class="skill-icon">ðŸ›¡ï¸</div>
+        <h3>Detection & Security Analytics</h3>
+        <p class="skill-desc">Wazuh SIEM, Blu Sapphire SIEM, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Windows Event Viewer, Wireshark, PCAP Analysis, Packet Triage, Incident Response.</p>
       </div>
-      <div class="skill-card">
-        <h3>Network &amp; Compliance</h3>
-        <div class="ski"><div class="ski-top"><span class="nm">CDAC / CERT-In Audit</span><span class="pc">95%</span></div><div class="sbar"><div class="sbar-fill" data-width="95" style="background:var(--amber)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">Check Point NGFW</span><span class="pc">90%</span></div><div class="sbar"><div class="sbar-fill" data-width="90" style="background:var(--amber)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">TACACS+ / RADIUS</span><span class="pc">86%</span></div><div class="sbar"><div class="sbar-fill" data-width="86" style="background:var(--amber)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">PowerShell Automation</span><span class="pc">90%</span></div><div class="sbar"><div class="sbar-fill" data-width="90" style="background:var(--amber)"></div></div></div>
-        <div class="ski"><div class="ski-top"><span class="nm">KACE UEM</span><span class="pc">83%</span></div><div class="sbar"><div class="sbar-fill" data-width="83" style="background:var(--amber)"></div></div></div>
+      <div class="skill-card glass-card">
+        <div class="skill-icon">ðŸŒ</div>
+        <h3>Network Security & VPNs</h3>
+        <p class="skill-desc">Cisco AnyConnect, Tailscale, Check Point NGFW, Fortigate NGFW, Sophos / WiJungle, OSPF Routing, AAA (TACACS+/RADIUS), MTU Optimization, PCAP Triage.</p>
+      </div>
+      <div class="skill-card glass-card">
+        <div class="skill-icon">âš¡</div>
+        <h3>Scripting & AI Automation</h3>
+        <p class="skill-desc">PowerShell, Bash, Python, Git, Generative AI Pair-Programming, Custom Telemetry Analysis, AI-assisted Security Tooling, Automated Anomaly Detection.</p>
+      </div>
+      <div class="skill-card glass-card">
+        <div class="skill-icon">ðŸ“œ</div>
+        <h3>Compliance & Endpoint Governance</h3>
+        <p class="skill-desc">CDAC Standards, CERT-In Guidelines, Security Policy Tuning, KACE UEM (400+ Critical Nodes), Patch Management, Unified Baselines.</p>
+      </div>
+      <div class="skill-card glass-card">
+        <div class="skill-icon">ðŸ”¬</div>
+        <h3>Vulnerability Research</h3>
+        <p class="skill-desc">CVE Analysis, Exploit Replication, Lab Emulation, Service Misconfiguration, Payload Reverse-Engineering, Sandbox Analysis.</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══ EXPERIENCE ═══ -->
+  <!-- â•â•â• EXPERIENCE â•â•â• -->
   <section id="experience" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_03<span class="mu">]</span> // experience</div>
-    <h2>// engagements</h2>
-    <div class="divider"></div>
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <h2>Professional Experience</h2>
+      <div class="divider"></div>
+    </div>
     <div class="timeline">
+      
+      <!-- NIC / EBIX -->
       <div class="tli">
-        <div class="period">Feb 2024 — Present</div>
-        <div class="role">Security Administrator</div>
-        <div class="org">Ebix Technologies / National Informatics Centre (NIC) · Noida, India</div>
-        <div class="itags">
-          <span class="itag">CERT-In</span><span class="itag">CDAC</span>
-          <span class="itag">EDR · 750+ nodes</span><span class="itag">Check Point NGFW</span>
-          <span class="itag">60% effort reduction</span>
+        <div class="tli-marker"></div>
+        <div class="tli-content glass-card">
+          <div class="period">Feb 2024 â€” Present</div>
+          <div class="role">Security Administrator</div>
+          <div class="org">Ebix Technologies / National Informatics Centre (NIC) Â· Noida, India</div>
+          <div class="itags">
+            <span class="itag">EDR & Telemetry SME</span>
+            <span class="itag">SentinelOne & Trend Micro Deep Security</span>
+            <span class="itag">CDAC / CERT-In</span>
+            <span class="itag highlight">60% Audit Effort Saved</span>
+            <span class="itag">750+ Regional Offices</span>
+          </div>
+          <ul>
+            <li><strong>EDR & Telemetry SME:</strong> Architected and managed enterprise deployment of SentinelOne and Trend Micro Deep Security across 750+ regional offices; monitored threat telemetry and tuned detection rules to mitigate emerging threats.</li>
+            <li><strong>Audit Automation:</strong> Developed custom PowerShell and Python frameworks to automate 120+ regulatory checks (CDAC/CERT-In), successfully reducing audit cycles by 60%.</li>
+            <li><strong>AI & Telemetry Training:</strong> Conduct weekly training sessions on leveraging generative AI to automate telemetry analysis, bandwidth monitoring, and anomaly detection.</li>
+            <li><strong>Vulnerability Remediation:</strong> Coordinated with CERT-In and internal development teams to reproduce web and server vulnerabilities (OWASP Top 10) and implement effective patches.</li>
+            <li><strong>Endpoint Compliance:</strong> Supervised KACE UEM across 400+ critical nodes for patch management and unified security baselines.</li>
+            <li><strong>Network Gateway Control:</strong> Implemented AAA (TACACS+/RADIUS), resolved packet drops using Wireshark, and optimized OSPF routing.</li>
+          </ul>
         </div>
-        <ul>
-          <li><span class="ps">$</span>Manage security compliance audits against CDAC and CERT-In regulatory standards for critical NIC state infrastructure.</li>
-          <li><span class="ps">$</span>Operate SentinelOne EDR across 750+ NIC state offices — threat hunting, policy tuning, incident response.</li>
-          <li><span class="ps">$</span>Rolled out UEM KACE across 400+ endpoints for unified device management and patch governance.</li>
-          <li><span class="ps">$</span>Administer Check Point NGFW, routers and switches; resolve packet drops via deep PCAP analysis.</li>
-          <li><span class="ps">$</span>Coordinate with CERT-In and developers to patch web &amp; server vulnerabilities on government portals.</li>
-          <li><span class="ps">$</span><strong>Built a PowerShell tool automating 120+ CDAC compliance audits — 60% manual effort reduction.</strong></li>
-          <li><span class="ps">$</span>Implemented TACACS+/RADIUS AAA; tuned OSPF and MTU to eliminate WAN fragmentation.</li>
-        </ul>
       </div>
+
+      <!-- NFC -->
       <div class="tli">
-        <div class="period">Dec 2022 — Jul 2023</div>
-        <div class="role">SOC Analyst — Threat Hunter</div>
-        <div class="org">RRG Engineering / Nuclear Fuel Complex (NFC) · Rajasthan, India</div>
-        <div class="itags">
-          <span class="itag">24×7 SOC</span><span class="itag">Kaspersky EDR</span><span class="itag">+35% detection</span>
+        <div class="tli-marker"></div>
+        <div class="tli-content glass-card">
+          <div class="period">Dec 2022 â€” Jul 2023</div>
+          <div class="role">SOC Analyst â€” Threat Hunter</div>
+          <div class="org">RRG Engineering Technologies / Nuclear Fuel Complex (NFC) Â· Rajasthan, India</div>
+          <div class="itags">
+            <span class="itag">Nuclear Sector 24Ã—7 SOC</span>
+            <span class="itag">Blu Sapphire SIEM</span>
+            <span class="itag">Kaspersky EDR</span>
+            <span class="itag highlight">+35% Detection Boost</span>
+          </div>
+          <ul>
+            <li>Acted as the Subject Matter Expert (SME) for threat hunting and incident response, monitoring enterprise telemetry via Blu Sapphire SIEM in a nuclear-sector 24Ã—7 SOC.</li>
+            <li>Recreated exploit signatures in sandbox environments and analyzed malicious payloads using Kaspersky EDR to reverse-engineer adversary TTPs.</li>
+            <li><strong>Tuned SIEM detection rules and EDR policies, boosting detection rates by 35% and significantly reducing false positives.</strong></li>
+            <li>Authored intelligence reports on IOCs and TTPs to support cross-functional incident response workflows.</li>
+          </ul>
         </div>
-        <ul>
-          <li><span class="ps">$</span>Monitored real-time events and triaged threats via Blu Sapphire SIEM in a nuclear-sector 24×7 SOC.</li>
-          <li><span class="ps">$</span>Used Kaspersky EDR for rapid endpoint threat remediation and incident response.</li>
-          <li><span class="ps">$</span><strong>Tuned SIEM rules and EDR policies — boosted detection rate by 35%.</strong></li>
-          <li><span class="ps">$</span>Authored threat intelligence trend reports for executive stakeholders.</li>
-        </ul>
       </div>
+
+      <!-- E2E -->
       <div class="tli">
-        <div class="period">Aug 2022 — Oct 2022</div>
-        <div class="role">SOC Analyst — IDS &amp; Signature Development</div>
-        <div class="org">E2E Networks Limited · Tamil Nadu, India</div>
-        <div class="itags">
-          <span class="itag">Wazuh SIEM</span><span class="itag">Snort IDS</span><span class="itag">AbuseIPDB</span>
+        <div class="tli-marker"></div>
+        <div class="tli-content glass-card">
+          <div class="period">Aug 2022 â€” Oct 2022</div>
+          <div class="role">SOC Analyst â€” IDS & Signature Development</div>
+          <div class="org">E2E Networks Limited Â· Tamil Nadu, India</div>
+          <div class="itags">
+            <span class="itag">Wazuh SIEM</span>
+            <span class="itag">Snort IDS</span>
+            <span class="itag">AbuseIPDB Integration</span>
+          </div>
+          <ul>
+            <li>Managed security event triage with Wazuh SIEM in a fast-paced 24Ã—7 SOC environment; authored and deployed custom Snort/Wazuh IDS signatures.</li>
+            <li>Analyzed bandwidth telemetry to identify routing loops, packet drops, and anomalous traffic spikes.</li>
+            <li>Integrated AbuseIPDB feeds to automatically block malicious IPs, heavily hardening perimeter firewalls.</li>
+          </ul>
         </div>
-        <ul>
-          <li><span class="ps">$</span>Monitored and triaged alerts via Wazuh SIEM in a 24×7 SOC environment.</li>
-          <li><span class="ps">$</span>Authored Snort and Wazuh IDS signatures for custom threat detection scenarios.</li>
-          <li><span class="ps">$</span>Analysed bandwidth and telemetry for anomalies, packet drops, and routing loops.</li>
-          <li><span class="ps">$</span>Leveraged AbuseIPDB to block malicious sources and harden network defenses.</li>
-        </ul>
       </div>
+
+      <!-- TELEPERFORMANCE -->
       <div class="tli">
-        <div class="period">Dec 2021 — May 2022</div>
-        <div class="role">Technical Support Executive</div>
-        <div class="org">Teleperformance · Hybrid</div>
-        <ul>
-          <li><span class="ps">$</span>Resolved Microsoft suite issues across phone and chat support channels.</li>
-          <li><span class="ps">$</span>Managed escalations via the Rave ticketing platform.</li>
-          <li><span class="ps">$</span>Documented troubleshooting playbooks for the team knowledge base.</li>
-        </ul>
+        <div class="tli-marker"></div>
+        <div class="tli-content glass-card">
+          <div class="period">Dec 2021 â€” May 2022</div>
+          <div class="role">Technical Support Executive</div>
+          <div class="org">Teleperformance Â· Hybrid, India</div>
+          <ul>
+            <li>Directed tier-2 escalation support for enterprise Microsoft suite services via the Rave ticketing platform, optimizing incident resolution SLAs and improving end-user satisfaction.</li>
+          </ul>
+        </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ═══ TRAINING ═══ -->
+  <!-- â•â•â• OFFENSIVE LABS â•â•â• -->
   <section id="training" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_04<span class="mu">]</span> // training</div>
-    <h2>// offensive labs</h2>
-    <div class="divider"></div>
-    <div class="ttable">
-      <div class="tth"><div>Platform</div><div>Focus</div><div style="text-align:right">Status</div></div>
-      <div class="ttr"><div class="plat">Hack The Box</div><div class="foc">Enterprise &amp; standalone machines — network pentesting, privesc, AD exploitation</div><div style="text-align:right"><span class="badge on">Active</span></div></div>
-      <div class="ttr"><div class="plat">Vulnlab</div><div class="foc">Active Directory chains, pivoting, domain controller compromise</div><div style="text-align:right"><span class="badge on">Active</span></div></div>
-      <div class="ttr"><div class="plat">OSCP (PEN-200)</div><div class="foc">Lab practice, buffer overflow, Active Directory attack paths</div><div style="text-align:right"><span class="badge tg">Target Q4 2026</span></div></div>
-      <div class="ttr"><div class="plat">CEH v13</div><div class="foc">Core methodology, scanning, footprinting, vulnerabilities</div><div style="text-align:right"><span class="badge tg">Target Q3 2026</span></div></div>
-      <div class="ttr"><div class="plat">CISSP</div><div class="foc">Security domains and enterprise risk management</div><div style="text-align:right"><span class="badge tg">Target Q1 2027</span></div></div>
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <h2>Offensive Labs & Red Team Targets</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="ttable glass-card">
+      <div class="tth"><div>Platform / Exam</div><div>Focus & Details</div><div style="text-align:right">Status / Rank</div></div>
+      <div class="ttr"><div class="plat">Hack The Box</div><div class="foc">Active Directory exploitation, network pentesting, privilege escalation</div><div style="text-align:right"><span class="badge on">Pro Hacker Rank</span></div></div>
+      <div class="ttr"><div class="plat">Vulnlab</div><div class="foc">Multi-forest Active Directory chains, network pivoting, Domain Controller compromise</div><div style="text-align:right"><span class="badge on">Active Lab Training</span></div></div>
+      <div class="ttr"><div class="plat">OSCP (PEN-200)</div><div class="foc">Lab practice, buffer overflow, Active Directory attack paths</div><div style="text-align:right"><span class="badge tg">Target Q3/Q4 2026</span></div></div>
+      <div class="ttr"><div class="plat">CEH (v13)</div><div class="foc">Core methodology, scanning, footprinting, vulnerabilities</div><div style="text-align:right"><span class="badge tg">Target Q3/Q4 2026</span></div></div>
+      <div class="ttr"><div class="plat">CISSP</div><div class="foc">Security domains, strategic risk management & leadership</div><div style="text-align:right"><span class="badge tg">Target Q1 2027</span></div></div>
     </div>
   </section>
 
-  <!-- ═══ PROJECTS ═══ -->
+  <!-- â•â•â• PROJECTS â•â•â• -->
   <section id="projects" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_04B<span class="mu">]</span> // operational nodes</div>
-    <h2>// projects &amp; systems</h2>
-    <div class="divider"></div>
+    <div class="section-header">
+      <span class="section-number">05</span>
+      <h2>Key Technical Projects</h2>
+      <div class="divider"></div>
+    </div>
     <div class="pgrid">
-      <a href="/js/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
+      
+      <!-- NOC Portal -->
+      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard glass-card" style="display:block">
         <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
-        <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">State NOC Admin Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
+        <h3 class="pcard-title">State NOC Admin Portal</h3>
+        <p class="pcard-desc">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
         <div class="ptags">
           <span class="ptag2">HTML5/CSS3</span><span class="ptag2">JavaScript</span>
           <span class="ptag2">PHP API</span><span class="ptag2">Ollama LLM</span>
         </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
+        <span class="btn btn-sm">Launch Portal â†—</span>
       </a>
+
+      <!-- Alert Dashboard -->
+      <a href="/alert/" target="_blank" rel="noreferrer" class="pcard glass-card" style="display:block">
         <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
+        <h3 class="pcard-title">Network Alert Dashboard</h3>
+        <p class="pcard-desc">Real-time ping monitoring dashboard for Bihar floor switches & core routers. Features interactive device grid, traceroute diagnostics, mute controls, and simulated outage alerts.</p>
         <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
+          <span class="ptag2">JavaScript</span><span class="ptag2">CSS Grid</span>
+          <span class="ptag2">Fetch Interceptors</span><span class="ptag2">Mock API</span>
         </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
+        <span class="btn btn-sm">Launch Dashboard â†—</span>
       </a>
-      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">State NOC Admin Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
+
+      <!-- Enterprise LAN Asset Manager -->
+      <div class="pcard glass-card">
+        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>AI-ASSISTED DEVELOPMENT</div>
+        <h3 class="pcard-title">Enterprise LAN Asset Management Portal</h3>
+        <p class="pcard-desc">Designed and deployed a locally hosted web portal for secure utility/software management. Built a secure local chatbot, file transfer modules, and configured DHCP/PXE services for automated OS installations.</p>
         <div class="ptags">
-          <span class="ptag2">HTML5/CSS3</span><span class="ptag2">JavaScript</span>
-          <span class="ptag2">PHP API</span><span class="ptag2">Ollama LLM</span>
+          <span class="ptag2">Python</span><span class="ptag2">DHCP/PXE</span>
+          <span class="ptag2">Local Chatbot</span><span class="ptag2">Asset Management</span>
         </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
-        <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">State NOC Admin Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
-        <div class="ptags">
-          <span class="ptag2">HTML5/CSS3</span><span class="ptag2">JavaScript</span>
-          <span class="ptag2">PHP API</span><span class="ptag2">Ollama LLM</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
-        <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">State NOC Admin Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
-        <div class="ptags">
-          <span class="ptag2">HTML5/CSS3</span><span class="ptag2">JavaScript</span>
-          <span class="ptag2">PHP API</span><span class="ptag2">Ollama LLM</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
-        <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-      <a href="/noc/" target="_blank" rel="noreferrer" class="pcard" style="display:block">
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">State NOC Admin Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Sanitized Network Operations Center dashboard featuring an interactive district engineering directory, live status checkers, simulated outages monitor, and voice-input enabled Ollama LLM RAG chatbot.</p>
-        <div class="ptags">
-          <span class="ptag2">HTML5/CSS3</span><span class="ptag2">JavaScript</span>
-          <span class="ptag2">PHP API</span><span class="ptag2">Ollama LLM</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--green)" class="glow">Jumpstreet Portal</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
-        <div class="ptags">
-          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
-          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex">./launch_portal.sh ↗</span>
-      </a>
-      <div class="pcard">
-        <div class="pstatus" style="color:var(--amber)"><span class="pdot" style="background:var(--amber)"></span>OPERATIONAL — INTERNAL</div>
-        <h3 style="font-family:var(--mono);font-size:1.25rem;color:var(--amber)">CDAC Audit Automator</h3>
-        <p style="color:var(--muted);font-size:.9375rem;margin-top:.75rem;line-height:1.65">PowerShell toolkit automating 120+ CDAC compliance checks across 750+ NIC endpoints — reduced manual effort 60%, eliminated human error in regulatory reporting.</p>
-        <div class="ptags">
-          <span class="ptag2">PowerShell</span><span class="ptag2">CDAC</span>
-          <span class="ptag2">CERT-In</span><span class="ptag2">KACE UEM</span>
-        </div>
-        <span class="btn" style="font-size:.68rem;display:inline-flex;border-color:var(--amber);color:var(--amber)">// classified deployment</span>
+        <span class="btn btn-sm">// Enterprise Deployment</span>
       </div>
+
+      <!-- MT5 Trading Bot -->
+      <div class="pcard glass-card">
+        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>AI-ASSISTED DEVELOPMENT</div>
+        <h3 class="pcard-title">Automated MetaTrader 5 (MT5) Algorithmic Bot</h3>
+        <p class="pcard-desc">Engineered a Python-based system implementing multi-indicator strategies (EMA, MACD, RSI, Supertrend) with integrated risk management, API order execution, and real-time Telegram alerts.</p>
+        <div class="ptags">
+          <span class="ptag2">Python</span><span class="ptag2">MetaTrader 5</span>
+          <span class="ptag2">Telegram API</span><span class="ptag2">Algorithmic Trading</span>
+        </div>
+        <span class="btn btn-sm">// System Active</span>
+      </div>
+
+      <!-- CDAC Audit Automator -->
+      <div class="pcard glass-card">
+        <div class="pstatus" style="color:var(--amber)"><span class="pdot" style="background:var(--amber)"></span>OPERATIONAL â€” INTERNAL</div>
+        <h3 class="pcard-title" style="color:var(--amber)">CDAC & CERT-In Audit Automator</h3>
+        <p class="pcard-desc">Custom PowerShell and Python framework automating 120+ CDAC compliance checks across 750+ NIC endpoints â€” reduced manual effort 60%, eliminated human reporting error.</p>
+        <div class="ptags">
+          <span class="ptag2">PowerShell</span><span class="ptag2">Python</span>
+          <span class="ptag2">CDAC / CERT-In</span><span class="ptag2">KACE UEM</span>
+        </div>
+        <span class="btn btn-sm" style="border-color:var(--amber);color:var(--amber)">Classified Deployment</span>
+      </div>
+
+      <!-- Jumpstreet Portal -->
+      <a href="/js/" target="_blank" rel="noreferrer" class="pcard glass-card" style="display:block">
+        <div class="pstatus" style="color:var(--green)"><span class="pdot" style="background:var(--green)"></span>ONLINE / SECURE</div>
+        <h3 class="pcard-title">Jumpstreet Portal</h3>
+        <p class="pcard-desc">Algorithmic trading dashboard and cloud hosting infrastructure portal. Simulates real-time alerts, VM resource customization, and transaction ledger management.</p>
+        <div class="ptags">
+          <span class="ptag2">React 19</span><span class="ptag2">Vite 6</span>
+          <span class="ptag2">Tailwind v4</span><span class="ptag2">TypeScript</span>
+        </div>
+        <span class="btn btn-sm">Launch Portal â†—</span>
+      </a>
+
     </div>
   </section>
 
-  <!-- ═══ CERTS ═══ -->
+  <!-- â•â•â• CERTS â•â•â• -->
   <section id="certs" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_05<span class="mu">]</span> // certifications</div>
-    <h2>// credentials</h2>
-    <div class="divider"></div>
-    <div class="cert-list">
-      <div class="cert"><span class="ck">[✓]</span><span>Fortinet Certified Associate in Cybersecurity (FCAC)</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Mathematical Foundations for Cryptography — CU Boulder</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Red Hat Certified System Administrator (RHCSA)</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>In the Trenches: SOC — EC-Council</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>CISSP Exam Prep Pathway — CyberFrat</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Introduction to Network Security — University of London</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Security Management &amp; Governance — Royal Holloway</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Ethical Hacking Expert — Star Certification</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Autopsy Basics (Digital Forensics) — BasisTech</span></div>
-      <div class="cert"><span class="ck">[✓]</span><span>Fundamental AI Concepts — Microsoft</span></div>
+    <div class="section-header">
+      <span class="section-number">06</span>
+      <h2>Certifications & Professional Training</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ…</span><span>Fortinet Certified Associate in Cybersecurity (FCAC) â€” Jan 2026</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸŽ–ï¸</span><span>Red Hat Certified System Administrator (RHCSA) â€” 2018â€“2021</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ’€</span><span>Ethical Hacking Expert â€” Star Certification (2019â€“2022)</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸŒ</span><span>Introduction to Network Security â€” University of London</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ”</span><span>Mathematical Foundations for Cryptography â€” Univ. of Colorado</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ›ï¸</span><span>Security Management & Governance â€” Royal Holloway</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ›¡ï¸</span><span>In the Trenches: SOC â€” EC-Council</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ“œ</span><span>CISSP Exam Prep Pathway â€” CyberFrat</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ¤–</span><span>Fundamental AI Concepts â€” Microsoft</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸŽ¯</span><span>TCM Security Live Training & Certifications</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ’¥</span><span>HackingFlix Workshops</span></div>
+      <div class="cert-card glass-card"><span class="cert-icon">ðŸ”</span><span>Autopsy Basics (Digital Forensics) â€” BasisTech</span></div>
     </div>
   </section>
 
-  <!-- ═══ EDUCATION ═══ -->
+  <!-- â•â•â• EDUCATION â•â•â• -->
   <section id="education" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_05B<span class="mu">]</span> // academic</div>
-    <h2>// education</h2>
-    <div class="divider"></div>
-    <div style="display:grid;gap:1px;background:var(--border);border:1px solid var(--border);margin-top:2.5rem">
-      <div style="background:var(--bg2);padding:1.5rem;transition:background .2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg2)'">
-        <div class="period" style="margin-bottom:.75rem">Expected Jul 2027</div>
-        <h3 style="font-size:1rem;line-height:1.35">MBA in Cybersecurity</h3>
-        <div style="font-size:.875rem;color:var(--muted);margin-top:.4rem">Chitkara University · Punjab, India</div>
+    <div class="section-header">
+      <span class="section-number">07</span>
+      <h2>Education</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card glass-card">
+        <div class="period">Expected Jul 2027</div>
+        <h3>Master of Business Administration (MBA) in Cybersecurity</h3>
+        <div class="edu-school">Chitkara University Â· India</div>
       </div>
-      <div style="background:var(--bg2);padding:1.5rem;transition:background .2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg2)'">
-        <div class="period" style="margin-bottom:.75rem">2019 — 2022</div>
-        <h3 style="font-size:1rem;line-height:1.35">B.Tech, Computer Science &amp; Engineering</h3>
-        <div style="font-size:.875rem;color:var(--muted);margin-top:.4rem">Manipal University Jaipur · Jaipur, India</div>
+      <div class="edu-card glass-card">
+        <div class="period">2019 â€” 2022</div>
+        <h3>B.Tech in Computer Science & Engineering</h3>
+        <div class="edu-school">Manipal University Jaipur Â· India</div>
       </div>
-      <div style="background:var(--bg2);padding:1.5rem;transition:background .2s" onmouseover="this.style.background='var(--card2)'" onmouseout="this.style.background='var(--bg2)'">
-        <div class="period" style="margin-bottom:.75rem">2013 — 2018</div>
-        <h3 style="font-size:1rem;line-height:1.35">Diploma in Computer Science</h3>
-        <div style="font-size:.875rem;color:var(--muted);margin-top:.4rem">Hindu College of Engineering · Haryana, India</div>
+      <div class="edu-card glass-card">
+        <div class="period">2013 â€” 2018</div>
+        <h3>Diploma in Computer Science</h3>
+        <div class="edu-school">Hindu College of Engineering Â· India</div>
       </div>
     </div>
   </section>
 
-  <!-- ═══ CONTACT ═══ -->
+  <!-- â•â•â• CONTACT â•â•â• -->
   <section id="contact" class="fi">
-    <div class="sector"><span class="mu">[</span>SECTOR_06<span class="mu">]</span> // contact</div>
-    <h2>// establish_connection</h2>
-    <div class="divider"></div>
-    <div class="cbox">
-      <div style="font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-bottom:1.5rem">root@aditya:~# ./initiate_handshake --protocol=secure</div>
-      <h3 style="font-size:clamp(1.75rem,4vw,3rem)">Let's build <span class="text-green glow">resilient systems.</span></h3>
-      <p style="color:var(--muted);max-width:36rem;margin-top:1.25rem">Looking for SecOps, detection engineering, or red-team roles — open to relocation and remote opportunities worldwide.</p>
+    <div class="section-header">
+      <span class="section-number">08</span>
+      <h2>Establish Connection</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="cbox glass-card">
+      <h3 style="font-size:clamp(1.75rem,4vw,2.75rem)">Let's build <span class="text-green glow">resilient systems.</span></h3>
+      <p style="color:var(--muted);max-width:36rem;margin-top:1.25rem">Open to enterprise SecOps, Purple Teaming, Detection Engineering, or Red Team roles â€” worldwide remote and relocation opportunities.</p>
       <div class="cgrid">
-        <a href="mailto:aavkjain@hotmail.com" class="clink" onclick="showToast('📬 Email client launched!')">
-          <div><div class="lbl">email</div><div class="val">aavkjain@hotmail.com</div></div>
-          <span class="arr">↗</span>
+        <a href="mailto:adityasec32@gmail.com" class="clink glass-card" onclick="showToast('ðŸ“¬ Email client launched!')">
+          <div><div class="lbl">Email</div><div class="val">adityasec32@gmail.com</div></div>
+          <span class="arr">â†—</span>
         </a>
-        <a href="tel:+919897577007" class="clink" onclick="showToast('📞 Dialling…')">
-          <div><div class="lbl">phone</div><div class="val">+91 98975 77007</div></div>
-          <span class="arr">↗</span>
+        <a href="tel:+917400588896" class="clink glass-card" onclick="showToast('ðŸ“ž Diallingâ€¦')">
+          <div><div class="lbl">Phone</div><div class="val">+91 740 058 8896</div></div>
+          <span class="arr">â†—</span>
         </a>
-        <a href="https://linkedin.com/in/ajainx1" target="_blank" rel="noreferrer" class="clink" onclick="showToast('🔗 Opening LinkedIn…')">
-          <div><div class="lbl">linkedin</div><div class="val">linkedin.com/in/ajainx1</div></div>
-          <span class="arr">↗</span>
+        <a href="https://linkedin.com/in/ajainx1" target="_blank" rel="noreferrer" class="clink glass-card" onclick="showToast('ðŸ”— Opening LinkedInâ€¦')">
+          <div><div class="lbl">LinkedIn</div><div class="val">linkedin.com/in/ajainx1</div></div>
+          <span class="arr">â†—</span>
         </a>
-        <a href="https://github.com/ajainx1" target="_blank" rel="noreferrer" class="clink" onclick="showToast('🐙 Opening GitHub…')">
-          <div><div class="lbl">github</div><div class="val">github.com/ajainx1</div></div>
-          <span class="arr">↗</span>
+        <a href="https://github.com/ajainx1" target="_blank" rel="noreferrer" class="clink glass-card" onclick="showToast('ðŸ™ Opening GitHubâ€¦')">
+          <div><div class="lbl">GitHub</div><div class="val">github.com/ajainx1</div></div>
+          <span class="arr">â†—</span>
         </a>
       </div>
     </div>
@@ -527,16 +493,16 @@
 
 <footer>
   <div>
-    <div><span class="text-green">●</span> session active — © 2026 Aditya Jain — all rights reserved</div>
-    <div class="fv"><span class="vdot"></span>&nbsp;visitors: <span id="ftr-vnum" style="color:var(--green);margin:0 .35rem">…</span> · status: online</div>
-    <div>built with precision · deployed via github pages</div>
+    <div><span class="text-green">â—</span> session active â€” Â© 2026 Aditya Jain â€” all rights reserved</div>
+    <div class="fv"><span class="vdot"></span>&nbsp;visitors: <span id="ftr-vnum" style="color:var(--green);margin:0 .35rem">â€¦</span> Â· status: online</div>
+    <div>built with precision Â· deployed via github pages</div>
   </div>
 </footer>
 
 <!-- FLOATING AI CHATBOT WIDGET -->
 <div class="ai-bot-container">
   <button id="ai-bot-toggle" class="ai-bot-btn" aria-label="Toggle Chatbot">
-    💬
+    ðŸ’¬
     <span class="ai-bot-pulse"></span>
   </button>
   <div id="ai-bot-window" class="ai-bot-window">
@@ -569,4 +535,4 @@
 
 </body>
 </html>
-<!-- fresh build trigger -->
+
