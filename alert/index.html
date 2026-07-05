@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIC Bihar State NOC Dashboard</title>
+    <link rel="icon" type="image/png" href="../Emblem_of_India.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="static/style.css?v=3.0">
+    <link rel="stylesheet" href="static/chatbot.css?v=1.1">
+    <script>
+        function adjustZoom() {
+            const width = window.innerWidth;
+            let zoomLevel = 1.0;
+            if (width >= 1920) {
+                zoomLevel = 0.95;
+            } else if (width >= 1600) {
+                zoomLevel = 0.91;
+            } else if (width >= 1366) {
+                zoomLevel = 0.8;
+            } else if (width >= 1024) {
+                zoomLevel = 0.72;
+            } else {
+                zoomLevel = 1.0;
+            }
+            if (document.body) {
+                document.body.style.zoom = zoomLevel;
+            }
+        }
+        window.addEventListener('resize', adjustZoom);
+        window.addEventListener('DOMContentLoaded', adjustZoom);
+        window.addEventListener('load', adjustZoom);
+    </script>
+</head>
+<body>
+    <canvas id="networkCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; opacity: 0.65;"></canvas>
+    <script src="static/script.js?v=3.5"></script>
+    
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header" style="position: relative; z-index: 9999;">
+            <div class="logo-area">
+                <a href="http://10.133.22.8/" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
+                    <img src="../NIC_Preview-1.png" alt="NIC Logo" class="nic-logo-img" style="height: 38px; width: auto; max-width: 180px; object-fit: contain; display: block;">
+                </a>
+                <div class="logo-divider" style="width: 1px; height: 32px; background: var(--border-color); margin: 0 4px;"></div>
+                <div class="logo-title">
+                    <h1>BIHAR STATE NOC</h1>
+                    <p>National Informatics Centre | Network Operations Center</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="http://10.133.22.8/" class="home-portal-btn" title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
+                    <i class="fas fa-home"></i> Home Portal
+                </a>
+                <div class="digital-clock" id="digital-clock">--:--:--</div>
+                
+                <style>
+                    .voice-settings-wrapper { position: relative; display: flex; align-items: center; gap: 8px; }
+                    .voice-settings-dropdown { visibility: hidden; opacity: 0; position: absolute; top: calc(100% + 12px); right: 0; background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 12px; padding: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 1000; min-width: 220px; transform: translateY(-10px); transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; gap: 12px; }
+                    .voice-settings-wrapper:hover .voice-settings-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+                    .settings-gear-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-color); background: rgba(14, 165, 233, 0.05); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
+                    .settings-gear-btn:hover { background: rgba(14, 165, 233, 0.15); color: var(--text-primary); transform: rotate(45deg); border-color: rgba(14, 165, 233, 0.4); }
+                    .voice-dropdown-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+                </style>
+                <div class="voice-settings-wrapper">
+                    <button class="voice-alert-toggle" id="voice-alert-toggle" title="Toggle Voice Alerts">
+                        <i class="fas fa-volume-mute" id="voice-alert-icon"></i>
+                        <span id="voice-alert-label">Voice Off</span>
+                    </button>
+                    <div class="settings-gear-btn" title="Voice & Audio Settings">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    <div class="voice-settings-dropdown">
+                        <div>
+                            <div class="voice-dropdown-label"><i class="fas fa-microphone-alt"></i> Voice Character</div>
+                            <div class="voice-gender-selector" id="voice-gender-selector" style="background: transparent; border: none; padding: 0; display: flex; gap: 8px;">
+                                <button class="voice-gender-btn active" data-gender="female" id="voice-btn-female" title="Female Voice" style="flex: 1; justify-content: center; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <i class="fas fa-venus"></i> Female
+                                </button>
+                                <button class="voice-gender-btn" data-gender="male" id="voice-btn-male" title="Male Voice" style="flex: 1; justify-content: center; border-radius: 8px; border: 1px solid var(--border-color);">
+                                    <i class="fas fa-mars"></i> Male
+                                </button>
+                            </div>
+                        </div>
+                        <div style="border-top: 1px solid var(--border-color); padding-top: 12px;">
+                            <div class="voice-dropdown-label"><i class="fas fa-tachometer-alt"></i> Speech Rate</div>
+                            <button class="voice-speed-btn" id="voice-btn-speed" title="Adjust Speech Rate (Speed)" style="width: 100%; justify-content: center; border-radius: 8px; padding: 8px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.03);">
+                                Normal (1.0x)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="theme-switch-container" title="Toggle Light/Dark Theme">
+                    <label class="theme-switch" for="theme-toggle">
+                        <input type="checkbox" id="theme-toggle">
+                        <span class="theme-slider">
+                            <span class="theme-icon-container">
+                                <i class="fas fa-moon moon-icon"></i>
+                                <i class="fas fa-sun sun-icon"></i>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+                
+                <style>
+                    .active-viewers-wrapper { 
+                        position: relative; 
+                        display: flex; 
+                        align-items: center; 
+                        gap: 6px; 
+                        border: 1px solid rgba(16, 185, 129, 0.3); 
+                        background: rgba(16, 185, 129, 0.05); 
+                        padding: 4px 10px; 
+                        border-radius: 6px; 
+                        cursor: pointer; 
+                        transition: all 0.25s ease; 
+                    }
+                    .active-viewers-wrapper:hover { 
+                        background: rgba(16, 185, 129, 0.1); 
+                        border-color: rgba(16, 185, 129, 0.55); 
+                        box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+                    }
+                    .active-viewers-dropdown { 
+                        visibility: hidden; 
+                        opacity: 0; 
+                        position: absolute; 
+                        top: calc(100% + 8px); 
+                        right: 0; 
+                        background: var(--bg-card) !important; 
+                        backdrop-filter: blur(12px) !important; 
+                        border: 1px solid rgba(16, 185, 129, 0.25); 
+                        border-radius: 12px; 
+                        padding: 14px; 
+                        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.12), var(--shadow-main); 
+                        z-index: 1000; 
+                        min-width: 220px; 
+                        transform: translateY(-10px); 
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                    }
+                    .active-viewers-wrapper:hover .active-viewers-dropdown { 
+                        visibility: visible; 
+                        opacity: 1; 
+                        transform: translateY(0); 
+                    }
+                    
+                    /* Upgraded Glowing Active Connection List Items */
+                    .active-connection-item {
+                        padding: 8px 12px;
+                        background: rgba(16, 185, 129, 0.04);
+                        border: 1px solid rgba(16, 185, 129, 0.15);
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        color: var(--color-up) !important;
+                        font-weight: 600;
+                        font-size: 0.78rem;
+                        transition: all 0.25s ease;
+                        box-shadow: 0 0 10px rgba(16, 185, 129, 0.05);
+                    }
+                    .active-connection-item:hover {
+                        background: rgba(16, 185, 129, 0.08);
+                        border-color: rgba(16, 185, 129, 0.4);
+                        box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+                        transform: translateX(3px);
+                    }
+                    .active-connection-item i {
+                        color: var(--color-up);
+                        opacity: 0.85;
+                        font-size: 0.75rem;
+                        transition: all 0.25s ease;
+                    }
+                    .active-connection-item:hover i {
+                        opacity: 1;
+                        transform: scale(1.2);
+                        text-shadow: 0 0 8px var(--color-up);
+                    }
+                </style>
+                <div class="active-viewers-wrapper">
+                    <span class="ping-indicator-dot pulse-green"></span>
+                    <i class="fas fa-users" style="font-size: 10px; color: var(--color-up);"></i>
+                    <div style="display: flex; align-items: baseline; gap: 4px;">
+                        <span id="active-viewers-count" style="font-weight: 800; color: var(--color-up); font-size: 13px;">1</span> 
+                        <span style="font-size: 9px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">ACTIVE</span>
+                    </div>
+                    <div class="active-viewers-dropdown">
+                        <div style="display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-color); padding-bottom: 6px;">
+                            <i class="fas fa-network-wired"></i> Live Connections
+                        </div>
+                        <div id="active-viewers-ips" style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--color-up); display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="status-badge active-state" id="service-status">
+                    <span class="pulse-green"></span>
+                    <span>NOC MONITOR ACTIVE</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Horizontal Alert Ticker Banner -->
+        <div class="alert-ticker-banner" id="ticker-banner-bar">
+            <div class="ticker-label-badge" id="ticker-label-badge">
+                <i class="fas fa-bullhorn"></i> Advisory Alerts
+            </div>
+            <div class="ticker-marquee-wrapper">
+                <div class="ticker-marquee-text" id="ticker-marquee-content">
+                    All network links are currently operational. Monitoring 117 devices in real-time...
+                </div>
+            </div>
+        </div>
+
+        <section class="stats-overview">
+            <div class="stat-card">
+                <div class="stat-icon-wrapper blue-icon"><i class="fas fa-server"></i></div>
+                <div class="stat-info">
+                    <div class="stat-title">Total Registry</div>
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-sub">Configured Devices</div>
+                </div>
+            </div>
+            <div class="stat-card status-up-card">
+                <div class="stat-icon-wrapper green-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <div class="stat-title">Online</div>
+                    <div class="stat-value text-success" id="stat-up">0</div>
+                    <div class="stat-sub"><i class="fas fa-circle" style="color: var(--color-up); font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Reachable Hosts</div>
+                </div>
+            </div>
+            <div class="stat-card status-down-card">
+                <div class="stat-icon-wrapper red-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="stat-info">
+                    <div class="stat-title">Offline</div>
+                    <div class="stat-value text-danger" id="stat-down">0</div>
+                    <div class="stat-sub"><i class="fas fa-circle" style="color: var(--color-down); font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Unreachable Hosts</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper orange-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-info">
+                    <div class="stat-title">Uptime Ratio</div>
+                    <div class="stat-value text-primary" id="stat-uptime">0%</div>
+                    <div class="stat-sub">Network Stability Index</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon-wrapper purple-icon"><i class="fas fa-thermometer-half"></i></div>
+                <div class="stat-info">
+                    <div class="stat-title">Environment Temperatures</div>
+                    <div class="stat-value text-purple" id="stat-temp" style="font-size: 22px;">--</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Layout Split Grid -->
+        <div class="main-layout">
+            <!-- Left Side: Host Grid Container & Filter Header -->
+            <main class="hosts-panel">
+                <div class="panel-controls-header">
+                    <div class="search-bar-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="input-search" placeholder="Search devices by IP, name or floor...">
+                    </div>
+                    <div class="filters-btn-group" style="display: flex; align-items: center; gap: 8px;">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="up">Online</button>
+                        <button class="filter-btn" data-filter="down">Offline</button>
+                        <button class="filter-btn" data-filter="muted">Muted</button>
+                    </div>
+                    <span class="last-checked" id="last-checked-time">Last Checked: --:--:--</span>
+                </div>
+                
+                <div class="hosts-sections-container">
+                    <!-- SHQ Section -->
+                    <div class="hosts-section" id="shq-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-server"></i> State Headquarters Core (SHQ)</h2>
+                            <span class="section-badge" id="shq-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-shq">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing SHQ core links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DHQ Section -->
+                    <div class="hosts-section" id="dhq-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-network-wired"></i> District Headquarters Links (DHQ)</h2>
+                            <span class="section-badge" id="dhq-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-dhq">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing DHQ links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interdistrict Section -->
+                    <div class="hosts-section" id="intd-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-route"></i> Interdistrict Links (INTD)</h2>
+                            <span class="section-badge" id="intd-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-intd">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing INTD links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interstate Section -->
+                    <div class="hosts-section" id="ints-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-globe"></i> Interstate Links (INTS)</h2>
+                            <span class="section-badge" id="ints-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ints">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing INTS links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPS Section -->
+                    <div class="hosts-section" id="ups-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-battery-full"></i> UPS Monitoring (UPS)</h2>
+                            <span class="section-badge" id="ups-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ups">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing UPS links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AP Section -->
+                    <div class="hosts-section" id="ap-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-wifi"></i> Access Points (AP)</h2>
+                            <span class="section-badge" id="ap-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ap">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing AP links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SSB Section -->
+                    <div class="hosts-section" id="ssb-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-shield-alt"></i> SSB Links (SSB)</h2>
+                            <span class="section-badge" id="ssb-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ssb">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing SSB links, please wait...
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PAC Section -->
+                    <div class="hosts-section" id="pac-section">
+                        <div class="section-header-title">
+                            <h2><i class="fas fa-fan"></i> Precision AC (PAC)</h2>
+                            <span class="section-badge" id="pac-badge">0 / 0 Online</span>
+                        </div>
+                        <div class="hosts-grid" id="hosts-grid-pac">
+                            <div class="loading-state">
+                                <i class="fas fa-circle-notch fa-spin"></i> Initializing PAC units, please wait...
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right Side: Charts + Logs + Actions -->
+            <aside class="side-panel">
+                <!-- System Dashboard Charts Panel -->
+                <div class="glass-card chart-card">
+                    <h3><i class="fas fa-chart-area"></i> NOC Health Analytics</h3>
+                    <div class="chart-container">
+                        <canvas id="uptimeChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Active Down Links Alert Card -->
+                <div class="glass-card down-links-card" style="padding: 0; overflow: hidden; border: 1px solid var(--border-color); gap: 0;">
+                    <!-- The Advisory Alerts style banner at the top of the card -->
+                    <div class="ticker-banner" style="display: flex; align-items: center; background: rgba(249, 115, 22, 0.05); border-bottom: 1px solid var(--border-color); height: 40px;">
+                        <div class="ticker-label" id="side-ticker-label" style="background: var(--accent-saffron); color: #ffffff; padding: 0 16px; font-weight: 700; font-size: 11px; display: flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.8px; height: 100%; white-space: nowrap; transition: background-color 0.3s;">
+                            <i class="fas fa-bullhorn"></i> Down Links
+                        </div>
+                        <div class="ticker-summary-badge" id="down-links-summary" style="padding: 0 16px; font-weight: 700; font-size: 11px; color: var(--text-secondary); white-space: nowrap;">
+                            0 Active Outages
+                        </div>
+                    </div>
+                    <div class="down-links-container" id="side-down-links-list" style="padding: 16px; display: flex; flex-direction: column; gap: 10px; max-height: 250px; overflow-y: auto;">
+                        <div style="text-align: center; color: var(--text-muted); padding: 10px 0; font-size: 0.85rem;">
+                            <i class="fas fa-check-circle" style="color: var(--color-up); font-size: 1.2rem; margin-bottom: 6px; display: block;"></i>
+                            All systems normal. No down links.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Alert Sign-up Card -->
+                <div class="glass-card enrollment-card" style="padding: 16px; border: 1px solid var(--border-color); display: flex; flex-direction: column; gap: 12px;">
+                    <div style="display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 4px;">
+                        <i class="fab fa-whatsapp" style="color: #25d366; font-size: 18px;"></i>
+                        <h3 style="font-family: var(--font-title); font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-primary); margin: 0; letter-spacing: 0.8px;">WhatsApp Alert Sign-up</h3>
+                    </div>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; margin: 0;">
+                        Scan the QR code below on your phone to subscribe your number to real-time outage alerts from the Twilio Sandbox.
+                    </p>
+                    <div style="display: flex; justify-content: center; align-items: center; background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); width: 140px; height: 140px; margin: 4px auto;">
+                        <img id="enrollment-qr-img" src="" alt="Twilio Enroll QR Code" style="width: 100%; height: 100%; object-fit: contain; display: block; filter: contrast(1.1);">
+                    </div>
+                    <div style="font-size: 0.72rem; text-align: center; color: var(--text-muted); line-height: 1.45; border-top: 1px dashed var(--border-color); padding-top: 10px; margin-top: 4px; margin-bottom: 8px;">
+                        Or manually text <strong style="color: var(--text-primary); font-family: var(--font-mono); background: rgba(255,255,255,0.06); padding: 2px 4px; border-radius: 4px;" id="enrollment-msg-text">join at-cath</strong> to <br style="margin-bottom: 4px;">
+                        <strong style="color: var(--text-primary); font-family: var(--font-mono); background: rgba(255,255,255,0.06); padding: 2px 4px; border-radius: 4px;" id="enrollment-phone-text">+14155238886</strong>
+                    </div>
+                    
+                    <!-- Spam & Subscription Policy Callout -->
+                    <div style="background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.15); border-radius: 8px; padding: 10px 12px; font-size: 0.68rem; line-height: 1.45; color: var(--text-secondary); text-align: left; display: flex; flex-direction: column; gap: 4px;">
+                        <div style="color: #10b981; font-weight: 700; display: flex; align-items: center; gap: 6px; text-transform: uppercase; font-size: 0.65rem; letter-spacing: 0.3px;">
+                            <i class="fas fa-shield-alt"></i> Spam-Free Alerts Policy
+                        </div>
+                        <p style="margin: 0; color: var(--text-secondary);">
+                            We strictly <strong>do not send spam</strong>. You will receive real-time status alerts <strong>only</strong> for your assigned routers and switches, enabling immediate troubleshooting action.
+                        </p>
+                        <span style="font-size: 0.65rem; color: var(--text-muted); font-weight: 600; margin-top: 2px; border-top: 1px solid rgba(16, 185, 129, 0.1); padding-top: 4px; display: block;">
+                            <i class="fas fa-user-shield"></i> Exclusively for DHQ NIC Employees & FMS Engineers
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Terminal & WhatsApp Logs Panel -->
+                <div class="glass-card logs-card" style="display: flex; flex-direction: column;">
+                    <div class="panel-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between;">
+                        <div class="log-tabs" style="display: flex; gap: 8px;">
+                            <button class="log-tab-btn active" data-tab="system" style="background: none; border: none; font-family: var(--font-title); font-weight: 700; font-size: 11px; text-transform: uppercase; color: var(--text-primary); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid var(--accent); transition: all 0.3s ease;">
+                                <i class="fas fa-terminal" style="margin-right: 4px;"></i> System Logs
+                            </button>
+                            <button class="log-tab-btn" data-tab="whatsapp" style="background: none; border: none; font-family: var(--font-title); font-weight: 700; font-size: 11px; text-transform: uppercase; color: var(--text-muted); cursor: pointer; padding-bottom: 4px; border-bottom: 2px solid transparent; transition: all 0.3s ease;">
+                                <i class="fab fa-whatsapp" style="margin-right: 4px;"></i> WhatsApp Logs
+                            </button>
+                        </div>
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="chk-autoscroll" checked>
+                            <span class="checkmark"></span>
+                            Auto-scroll
+                        </label>
+                    </div>
+                    <!-- System Logs Panel -->
+                    <div class="terminal" id="terminal-logs">
+                        <div class="terminal-line system-msg">Loading connection log stream...</div>
+                    </div>
+                    <!-- WhatsApp Notification Logs Panel -->
+                    <div class="terminal" id="whatsapp-logs" style="display: none;">
+                        <div style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 0.85rem;">
+                            <i class="fab fa-whatsapp" style="font-size: 1.5rem; color: var(--text-muted); margin-bottom: 8px; display: block;"></i>
+                            No WhatsApp transmissions recorded in this session.
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Diagnostics Details Modal -->
+    <div class="modal-overlay" id="diagnostics-modal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <span class="modal-badge-status" id="modal-status-badge">UP</span>
+                <h2 id="modal-title-desc">Device Diagnostics</h2>
+                <p id="modal-title-ip" class="font-mono">10.133.11.254</p>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Quick Info Stats Grid -->
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-box">
+                        <span class="box-label">Latency</span>
+                        <span class="box-val" id="modal-stat-latency">--</span>
+                    </div>
+                    <div class="modal-stat-box">
+                        <span class="box-label">Last Pinged</span>
+                        <span class="box-val font-mono" id="modal-stat-last-ping">--</span>
+                    </div>
+                    <div class="modal-stat-box">
+                        <span class="box-label">Monitoring Status</span>
+                        <span class="box-val text-success" id="modal-stat-monitoring">Active</span>
+                    </div>
+                </div>
+
+                <!-- Recent Uptime Sparkline History -->
+                <div class="diagnostics-section">
+                    <h4>Uptime Diagnostics (Last 10 Checks)</h4>
+                    <div class="sparkline-history" id="modal-sparkline-history">
+                        <!-- Sparks rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Diagnostics Actions Row -->
+                <div class="diagnostics-actions-row">
+                    <button class="diag-action-btn primary-action" id="modal-btn-ping">
+                        <i class="fas fa-sync-alt"></i> Ping Now
+                    </button>
+                    <button class="diag-action-btn secondary-action" id="modal-btn-mute">
+                        <i class="fas fa-bell-slash"></i> Mute Alerts
+                    </button>
+                    <button class="diag-action-btn danger-action" id="modal-btn-tracert">
+                        <i class="fas fa-route"></i> Trace Route Path
+                    </button>
+                </div>
+
+                <!-- Command Stdout Block -->
+                <div class="diagnostics-section">
+                    <h4>Console Output</h4>
+                    <pre class="console-box" id="modal-console-stdout">Running baseline checks...</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Alerts container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="static/script.js?v=3.5"></script>
+
+<!-- Floating AI Chatbot Widget -->
+    <div class="ai-chatbot-widget">
+        <!-- Attention Tooltip Speech Bubble -->
+        <div class="chatbot-attention-tooltip" id="chatbotTooltip" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+            <span><i class="fas fa-robot" style="color: var(--primary-color); margin-right: 6px;"></i> Bihar NOC AI is online! Ask me anything.</span>
+            <button id="chatbotTooltipCloseBtn" style="background: none; border: none; color: inherit; font-size: 14px; cursor: pointer; padding: 0 4px; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=0.7"><i class="fas fa-times"></i></button>
+        </div>
+        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chatbot-panel" id="chatbotPanel">
+            <div class="chatbot-header">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div class="chatbot-header-title">
+                        <i class="fas fa-robot"></i>
+                        <h3>Bihar NOC Assistant</h3>
+                    </div>
+                    <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="chat-msg bot">
+                    Hello! I am your Bihar NOC Support Assistant. Ask me anything about our support numbers, service status, document submission, or network information!
+                </div>
+            </div>
+            <!-- Suggestion Chips -->
+            <div class="chatbot-chips">
+                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
+                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
+                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
+                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
+            </div>
+            <div class="chatbot-input-area">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
+                <button class="chatbot-mic-btn" id="chatbotMicBtn" aria-label="Voice Input" title="Voice Input" style="display: none;">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+            <!-- Credit line at bottom-right of the panel -->
+            <div style="text-align: right; padding: 6px 20px; font-size: 8.5px; color: var(--text-muted); opacity: 0.85; border-top: 1px solid var(--border-color); background: var(--bg-secondary);">
+                Created by <strong style="color: #38bdf8;">Aditya Jain</strong> (Security Administrator) <em>selflessly</em>
+            </div>
+            <!-- Footer -->
+            <div class="chatbot-footer">
+                <span>For internal use only.</span>
+                <span>Built with ❤️ for the team.</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/chatbot.js?v=1.1"></script>
+
+
+
+
+
+
+
