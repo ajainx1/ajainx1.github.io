@@ -65,6 +65,8 @@ function landingGo(dest) {
       startAnimations();
       if (dest === 'projects') {
         window.open('/js/', '_blank');
+      } else if (dest === 'noc') {
+        window.open('/noc/', '_blank');
       } else if (dest === 'whoami') {
         var el = document.getElementById('about');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
