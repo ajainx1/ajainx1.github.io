@@ -1,63 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<script>
-// Fetch Interceptor for Static Deployment on GitHub Pages
-(() => {
-  const originalFetch = window.fetch;
-  window.fetch = async function(url, options) {
-    if (typeof url === 'string') {
-      if (url.startsWith('ping.php')) {
-        return new Response(JSON.stringify({ status: 'online', rtt: '8ms' }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (url.startsWith('chat.php')) {
-        let body;
-        try { body = JSON.parse(options.body); } catch(e) { body = { message: '' }; }
-        const q = (body.message || '').toLowerCase();
-        let reply = "I am the Bihar State NOC AI assistant. Ask me anything about support contacts, service uptimes, or network status.";
-        if (q.includes('aditya') || q.includes('founder') || q.includes('who built')) {
-          reply = "Aditya Jain is the Security Administrator and founder of this bot. His profile includes tuning SentinelOne EDR, Check Point NGFW, and automation. His email is seca1.shq.br@nic.in.";
-        } else if (q.includes('contact') || q.includes('phone') || q.includes('number')) {
-          reply = "State NOC Support Desk: 0612-2547964. FMS Engineers and VoIP extensions are listed in the District Directory on this portal.";
-        } else if (q.includes('status') || q.includes('uptime')) {
-          reply = "Bihar NOC Patna: 99.98% | NKN Core: 100% | District links: 99.95%.";
-        }
-        return new Response(JSON.stringify({ response: reply }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (url.includes('get_files.php')) {
-        const files = [
-          { name: "Patna_Audit_Report_2025.pdf", size: "14.2 MB", path: "#" },
-          { name: "Gaya_Audit_Report_2025.pdf", size: "11.5 MB", path: "#" },
-          { name: "Muzaffarpur_Audit_Report_2025.pdf", size: "12.8 MB", path: "#" },
-          { name: "NOC_Compliance_Framework.pdf", size: "5.4 MB", path: "#" }
-        ];
-        return new Response(JSON.stringify(files), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (url.includes('counter.php') || url.includes('network_boot_counter.php')) {
-        return new Response(JSON.stringify({ count: 48201 }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (url.includes('alert/api.php?endpoint=status')) {
-        return originalFetch('alert/monitor_data.json');
-      }
-    }
-    return originalFetch(url, options);
-  };
-})();
-</script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Official Portal for National Informatics Centre (NIC) and National Knowledge Network (NKN) services, Ministry of Electronics and Information Technology, Government of India.">
@@ -74,29 +17,6 @@
     <!-- Emblem Icon -->
     <link rel="icon" href="Emblem_of_India.png">
     
-    <script>
-        function adjustZoom() {
-            const width = window.innerWidth;
-            let zoomLevel = 1.0;
-            if (width >= 1920) {
-                zoomLevel = 0.95;
-            } else if (width >= 1600) {
-                zoomLevel = 0.91;
-            } else if (width >= 1366) {
-                zoomLevel = 0.8;
-            } else if (width >= 1024) {
-                zoomLevel = 0.72;
-            } else {
-                zoomLevel = 1.0;
-            }
-            if (document.body) {
-                document.body.style.zoom = zoomLevel;
-            }
-        }
-        window.addEventListener('resize', adjustZoom);
-        window.addEventListener('DOMContentLoaded', adjustZoom);
-        window.addEventListener('load', adjustZoom);
-    </script>
     <style>
         :root {
             /* Light Theme Palette */
@@ -153,7 +73,6 @@
         }
 
         body {
-            zoom: 0.91;
             font-family: var(--font-family-sans);
             background-color: var(--bg-primary);
             color: var(--text-primary);
@@ -337,15 +256,11 @@
 
         .hero-dashboard h1 {
             font-family: var(--font-family-title);
-            font-size: 2.8rem;
+            font-size: 2.6rem;
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 12px;
-            color: #ffffff;
-            background: linear-gradient(90deg, #ffffff 10%, #a5f3fc 50%, #6ee7b7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
         }
 
         .hero-dashboard p {
@@ -400,114 +315,6 @@
         .btn-secondary:hover {
             background-color: rgba(255,255,255,0.25);
             transform: translateY(-2px);
-        }
-
-        .btn-portal {
-            background-color: rgba(14, 165, 233, 0.12);
-            color: #e0f2fe;
-            border: 1px solid rgba(14, 165, 233, 0.35);
-            backdrop-filter: blur(8px);
-        }
-
-        .btn-portal:hover {
-            background-color: rgba(14, 165, 233, 0.25);
-            border-color: #38bdf8;
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.25);
-        }
-
-        .btn-tacs {
-            background-color: rgba(245, 158, 11, 0.1);
-            color: #fef3c7;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            backdrop-filter: blur(8px);
-        }
-
-        .btn-tacs:hover {
-            background-color: rgba(245, 158, 11, 0.2);
-            border-color: #fbbf24;
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(251, 191, 36, 0.25);
-        }
-
-        .btn-fms {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #ecfdf5;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            backdrop-filter: blur(8px);
-        }
-
-        .btn-fms:hover {
-            background-color: rgba(16, 185, 129, 0.2);
-            border-color: #34d399;
-            color: #ffffff;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(52, 211, 153, 0.25);
-        }
-
-        /* Premium Gold Highlight Button */
-        @keyframes gold-pulse {
-            0% {
-                box-shadow: 0 4px 15px rgba(245, 192, 35, 0.4), 0 0 0 0 rgba(245, 192, 35, 0.35);
-            }
-            70% {
-                box-shadow: 0 4px 15px rgba(245, 192, 35, 0.4), 0 0 0 8px rgba(245, 192, 35, 0);
-            }
-            100% {
-                box-shadow: 0 4px 15px rgba(245, 192, 35, 0.4), 0 0 0 0 rgba(245, 192, 35, 0);
-            }
-        }
-
-        @keyframes sheen-sweep {
-            0% {
-                left: -150%;
-            }
-            15% {
-                left: 150%;
-            }
-            100% {
-                left: 150%;
-            }
-        }
-
-        .btn-gold {
-            background: linear-gradient(135deg, #ffe066 0%, #f5c023 50%, #cf9700 100%);
-            color: #0c1a30 !important;
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            position: relative;
-            overflow: hidden;
-            animation: gold-pulse 2s infinite ease-in-out;
-        }
-
-        .btn-gold:hover {
-            background: linear-gradient(135deg, #fff0aa 0%, #f7ca3e 50%, #e0a700 100%);
-            color: #050e1a !important;
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(245, 192, 35, 0.7);
-        }
-
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0) 100%);
-            transform: skewX(-25deg);
-            animation: sheen-sweep 4.5s infinite ease-in-out;
-        }
-
-        /* Interactive icon micro-animation on hover */
-        .btn-gold i {
-            display: inline-block;
-            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .btn-gold:hover i {
-            transform: scale(1.2) rotate(15deg);
         }
 
         /* Main Container Grid */
@@ -1351,7 +1158,7 @@
             bottom: 75px;
             right: 0;
             width: 380px;
-            height: 550px;
+            height: 520px;
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
             border-radius: 20px;
@@ -1462,51 +1269,6 @@
             display: flex;
             gap: 10px;
             align-items: center;
-        }
-
-        .chatbot-footer {
-            padding: 10px 20px;
-            background-color: var(--bg-tertiary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 9px;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
-
-        .chatbot-chips {
-            display: flex;
-            gap: 6px;
-            padding: 8px 18px 10px 18px;
-            background-color: transparent;
-            flex-wrap: wrap;
-            justify-content: flex-start;
-        }
-
-        .chatbot-chip-btn {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            border-radius: 20px;
-            padding: 6px 12px;
-            font-size: 0.76rem;
-            font-family: inherit;
-            cursor: pointer;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .chatbot-chip-btn:hover {
-            background-color: var(--primary);
-            color: #ffffff;
-            border-color: var(--primary);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 10px rgba(15, 76, 129, 0.15);
         }
 
         .chatbot-input {
@@ -1997,46 +1759,6 @@
                 gap: 20px !important;
             }
         }
-        @media (max-width: 768px) {
-            /* Mobile Optimization Block */
-            .top-header {
-                padding: 12px 15px;
-                flex-direction: column;
-                gap: 12px;
-                align-items: center;
-            }
-            .header-actions {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .hero-dashboard {
-                padding: 30px 15px;
-            }
-            .hero-dashboard h1 {
-                font-size: 1.6rem;
-            }
-            .hero-logos {
-                gap: 15px;
-            }
-            .hero-logos img {
-                height: 45px;
-                padding: 6px 12px;
-            }
-            .software-grid, .explorer-filters, .divisions-grid, .districts-grid {
-                grid-template-columns: 1fr !important;
-            }
-            .main-container {
-                padding: 0 10px;
-            }
-            .modal-content {
-                width: 95%;
-                margin: 20px auto;
-                padding: 20px;
-            }
-            .contact-cards-container {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 <body>
@@ -2046,15 +1768,13 @@
 
     <!-- Sticky Navigation / Header -->
     <header class="top-header">
-        <a href="http://10.xx.xx.8/" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
-            <div class="emblem-container">
-                <img src="Emblem_of_India.png" alt="Emblem of India">
-                <div class="emblem-text">
-                    <span>Government of India | भारत सरकार</span><br>
-                    Ministry of Electronics & Information Technology
-                </div>
+        <div class="emblem-container">
+            <img src="Emblem_of_India.png" alt="Emblem of India">
+            <div class="emblem-text">
+                <span>Government of India | भारत सरकार</span><br>
+                Ministry of Electronics & Information Technology
             </div>
-        </a>
+        </div>
         <div class="header-actions">
             <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
                 <i class="fas fa-moon" id="themeIcon"></i>
@@ -2072,29 +1792,13 @@
         </div>
     </div>
 
-    <!-- Official Network Boot Announcement Banner -->
-    <div class="network-boot-announcement" style="margin: 20px 40px -10px 40px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; gap: 15px; position: relative; z-index: 10; backdrop-filter: blur(10px); box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05); transition: all 0.3s ease;">
-        <div style="display: flex; align-items: center; gap: 12px; text-align: left;">
-            <div style="width: 36px; height: 36px; background: rgba(56, 189, 248, 0.15); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
-                <i class="fas fa-desktop" style="font-size: 16px;"></i>
-            </div>
-            <div>
-                <strong style="color: var(--text-primary); font-size: 0.9rem; font-family: var(--font-family-title);">Newly Integrated Network Boot Menu <span id="network-boot-click-count-badge" style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; font-size: 0.7rem; padding: 2px 7px; border-radius: 20px; font-weight: 700; margin-left: 8px; vertical-align: middle; display: inline-flex; align-items: center; gap: 4px;"><i class="far fa-eye" style="font-size: 0.65rem;"></i> <span id="network-boot-click-val">0</span> views</span></strong>
-                <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 2px;">Clean install Windows 11 directly from the local NOC Network Boot Menu over network connection.</p>
-            </div>
-        </div>
-        <a href="javascript:void(0);" onclick="openNetworkBootGuide();" class="btn-learn-more" style="background: var(--accent); color: #ffffff; text-decoration: none; padding: 8px 16px; border-radius: 6px; font-weight: 600; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(249, 115, 22, 0.35);" onmouseover="this.style.transform='translateY(-1px)'; this.style.boxShadow='0 6px 16px rgba(249, 115, 22, 0.5)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 12px rgba(249, 115, 22, 0.35)';">
-            Learn More <i class="fas fa-arrow-right" style="font-size: 0.75rem;"></i>
-        </a>
-    </div>
-
     <!-- Professional Hero Header Panel -->
     <section class="hero-dashboard">
         <!-- Interactive Network Canvas nodes animation -->
         <canvas id="networkCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.45;"></canvas>
         <div class="hero-container">
             <div class="hero-logos">
-                <a href="https://bihar.nic.in" target="_blank" rel="noopener noreferrer" title="National Informatics Centre Bihar Centre">
+                <a href="https://bihar.example.com" target="_blank" rel="noopener noreferrer" title="National Informatics Centre Bihar Centre">
                     <img src="NIC_Preview-1.png" alt="National Informatics Centre Logo">
                 </a>
                 <a href="https://nkn.in/" target="_blank" rel="noopener noreferrer" title="National Knowledge Network">
@@ -2104,19 +1808,19 @@
             <h1>Bihar NIC & NKN Support Portal</h1>
             <p>Bihar State Network Operations Centre (NOC) — Unified document submission, system management, and real-time support platform.</p>
             <div class="hero-actions-container">
-                <a href="http://10.133.0.51/ProgressReport/LoginPage.aspx" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
+                <a href="http://dpr.state-noc.org/LoginPage.aspx" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
                     <i class="fas fa-file-invoice"></i> Daily Progress Report (DPR)
                 </a>
-                <a href="http://10.xx.xx.8/nic/" class="btn btn-portal" target="_blank">
+                <a href="./nic/" class="btn btn-secondary" target="_blank">
                     <i class="fas fa-globe"></i> Access Intranet Portal
                 </a>
-                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" class="btn btn-tacs" target="_blank" rel="noopener noreferrer">
+                <a href="https://taspass.state-noc.org" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-key"></i> Change TACS Password
                 </a>
-                <a href="http://10.133.0.51:8080/FMS-attendance/index.php" class="btn btn-fms" target="_blank" rel="noopener noreferrer">
+                <a href="http://fms.state-noc.org/FMS-attendance/index.php" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-user-check"></i> FMS Billing & Attendance System
                 </a>
-                <a href="alert/" class="btn btn-gold" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches & Core Routers">
+                <a href="/alert/" class="btn btn-secondary" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches & Core Routers">
                     <i class="fas fa-network-wired"></i> NIC Network Monitor
                 </a>
             </div>
@@ -2133,7 +1837,7 @@
             <div class="glass-card">
                 <div class="card-header">
                     <h2>
-                        <a href="https://traffic.nic.in/index2.php" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;" title="Open NICNET Live Traffic Monitor">
+                        <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;" title="Open NICNET Live Traffic Monitor">
                             <i class="fas fa-signal"></i> Service Health <i class="fas fa-external-link-alt" style="font-size: 0.75rem; opacity: 0.6;"></i>
                         </a>
                     </h2>
@@ -2163,10 +1867,10 @@
                     </div>
                     
                     <!-- Real-time MRTG Network Traffic Link -->
-                    <a href="https://traffic.nic.in/index2.php" target="_blank" rel="noopener noreferrer" class="status-traffic-link">
+                    <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" class="status-traffic-link">
                         <i class="fas fa-chart-line"></i> View Live NICNET Traffic Monitor (MRTG)
                     </a>
-                    <a href="alert/" target="_blank" rel="noopener noreferrer" class="status-traffic-link" style="background-color: var(--primary-light); color: var(--primary); margin-top: 10px;">
+                    <a href="/alert/" target="_blank" rel="noopener noreferrer" class="status-traffic-link" style="background-color: var(--primary-light); color: var(--primary); margin-top: 10px;">
                         <i class="fas fa-network-wired"></i> View Live NIC Device Monitor
                     </a>
                 </div>
@@ -2304,6 +2008,53 @@
                     </table>
                 </div>
             </div>
+
+            <!-- System Specifications & Professional Tech Stack Card -->
+            <div class="glass-card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <h2><i class="fas fa-server"></i> System Spec &amp; Tech Stack</h2>
+                </div>
+                <div class="tech-spec-container" style="margin-top: 20px; display: flex; flex-direction: column; gap: 16px;">
+                    <!-- Frontend Segment -->
+                    <div class="tech-segment" style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                            <span style="font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary);">
+                                <i class="fas fa-desktop" style="margin-right: 6px;"></i> Frontend Interface
+                            </span>
+                            <span class="badge-district" style="background-color: var(--primary-light); color: var(--primary); font-size: 0.7rem; padding: 2px 6px; border: none; margin-left: auto;">Client-side</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                            Built using semantic <strong>HTML5</strong> structure, modular styling with <strong>CSS3 variables/design tokens</strong>, and reactive DOM management through vanilla <strong>ES6+ JavaScript</strong>. Highly optimized vector SVG asset rendering.
+                        </p>
+                    </div>
+
+                    <!-- Backend Segment -->
+                    <div class="tech-segment" style="border-bottom: 1px solid var(--border-color); padding-bottom: 12px;">
+                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                            <span style="font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent);">
+                                <i class="fas fa-code-branch" style="margin-right: 6px;"></i> Backend APIs
+                            </span>
+                            <span class="badge-district" style="background-color: #fef3c7; color: #d97706; font-size: 0.7rem; padding: 2px 6px; border: none; margin-left: auto;">Server-side</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                            Powered by modular <strong>PHP 8.x</strong> APIs. Features path-traversal sanitization algorithms, secure remote socket host validation checkpoints, dynamic simulated outages generator, and secure file uploads tracker.
+                        </p>
+                    </div>
+
+                    <!-- LLM/AI Segment -->
+                    <div class="tech-segment">
+                        <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                            <span style="font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--success);">
+                                <i class="fas fa-brain" style="margin-right: 6px;"></i> AI Chatbot &amp; LLM
+                            </span>
+                            <span class="badge-district" style="background-color: #d1fae5; color: #059669; font-size: 0.7rem; padding: 2px 6px; border: none; margin-left: auto;">Local AI / RAG</span>
+                        </div>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                            Integrates <strong>Ollama LLM (llama3 / mistral / gemma)</strong> on server nodes. Implements client-side <strong>Web Speech API</strong> voice triggers and a dynamic JavaScript <strong>RAG</strong> workflow injecting `contacts.json` contexts into LLM streams.
+                        </p>
+                    </div>
+                </div>
+            </div>
             
         </div>
 
@@ -2437,9 +2188,9 @@
                                 <h3><i class="fas fa-link"></i> Useful Portals</h3>
                                 <p>Access complaint logs, state portals, and direct tools hosted on the internal government servers.</p>
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <a href="https://servicedesk.nic.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
+                                    <a href="https://servicedesk.state-noc.org" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
                                     <a href="https://bihar.s3waas.gov.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Bihar S3WaaS Directory</a>
-                                    <a href="http://10.xx.xx.8/nic/" target="_blank"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
+                                    <a href="./nic/" target="_blank"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
                                 </div>
                             </div>
                             <div class="resource-card">
@@ -2464,32 +2215,17 @@
             <i class="fas fa-robot"></i>
         </button>
         <div class="chatbot-panel" id="chatbotPanel">
-            <div class="chatbot-header" style="display: flex; flex-direction: column; align-items: flex-start; gap: 4px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <div class="chatbot-header-title">
-                        <i class="fas fa-robot"></i>
-                        <h3>Bihar NOC Assistant</h3>
-                    </div>
-                    <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
+            <div class="chatbot-header">
+                <div class="chatbot-header-title">
+                    <i class="fas fa-robot"></i>
+                    <h3>Bihar NOC Assistant</h3>
                 </div>
-                <div style="font-size: 9px; opacity: 0.9; color: rgba(255, 255, 255, 0.9); font-weight: 500; letter-spacing: 0.2px; margin-left: 28px; line-height: 1.3; margin-top: 3px;">
-                    Created by <strong style="color: #ffd700;">Aditya Jain</strong> (Security Administrator)
-                </div>
-                <div style="font-size: 8.5px; opacity: 0.8; color: rgba(255, 255, 255, 0.85); font-style: italic; margin-left: 28px; margin-top: 2px; line-height: 1.3;">
-                    Instant, AI-driven support for Bihar's Network Operations.
-                </div>
+                <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
             </div>
             <div class="chatbot-messages" id="chatbotMessages">
                 <div class="chat-msg bot">
                     Hello! I am your Bihar NOC Support Assistant. Ask me anything about our support numbers, service status, document submission, or network information!
                 </div>
-            </div>
-            <!-- Suggestion Chips -->
-            <div class="chatbot-chips">
-                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
-                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
-                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
-                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
             </div>
             <div class="chatbot-input-area">
                 <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
@@ -2499,10 +2235,6 @@
                 <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message">
                     <i class="fas fa-paper-plane"></i>
                 </button>
-            </div>
-            <div class="chatbot-footer">
-                <span>For internal use only.</span>
-                <span>Built with ❤️ for the team.</span>
             </div>
         </div>
     </div>
@@ -2931,7 +2663,7 @@
             "tacs": ["taspass", "password", "tacacs", "credentials", "tacs"],
             "taspass": ["taspass", "password", "tacacs", "credentials", "tacs"],
             "password": ["taspass", "password", "tacacs", "credentials", "tacs"],
-            "sio": ["sio", "ajay", "head"],
+            "sio": ["sio", "rajesh", "head"],
             "patna": ["patna", "hq", "sio"],
             "noc": ["patna", "hq", "noc", "server"]
         };
@@ -2988,13 +2720,6 @@
             msgDiv.innerHTML = formatMarkdown(text);
             chatbotMessages.appendChild(msgDiv);
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        function sendSuggestionChip(message) {
-            if (chatbotInput) {
-                chatbotInput.value = message;
-                handleSend();
-            }
         }
 
         function appendUserMessage(text) {
@@ -3126,7 +2851,7 @@
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: http://10.133.0.51:8080/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Aditya Jain, Security Administrator. If asked about Aditya Jain (including queries like "how is aditya jain" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +919897577007 and email is seca1.shq.br@nic.in.' + dynamicContext
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.state-noc.org and access the FMS Billing & Attendance System at: http://fms.state-noc.org/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Alex Mercer, Security Administrator. If asked about Alex Mercer (including queries like "how is alex mercer" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +91 99999 88888 and email is admin@state-noc.org.' + dynamicContext
                             },
                             ...chatHistory,
                             { role: 'user', content: text }
@@ -3258,45 +2983,45 @@
         };
 
         const dioCommonEmails = {
-            "arwal": "dio-arw@nic.in",
-            "araria": "dio-ara-bih@nic.in",
-            "aurangabad": "dio-agb@nic.in",
-            "banka": "dio-bka@nic.in",
-            "begusarai": "dio-bsr@nic.in",
-            "kaimur": "dio-kai@nic.in",
-            "bhagalpur": "dio-bgo@nic.in",
-            "bhojpur": "dio-bjp@nic.in",
-            "buxar": "dio-bux@nic.in",
-            "darbhanga": "dio-dbg@nic.in",
-            "east champaran": "dio-prc@nic.in",
-            "gaya": "dio-gay@nic.in",
-            "gopalganj": "dio-gpg@nic.in",
-            "jamui": "dio-jam@nic.in",
-            "jehanabad": "dio-jhb-bih@nic.in",
-            "katihar": "dio-ktr@nic.in",
-            "khagaria": "dio-kgr-bih@nic.in",
-            "kishanganj": "dio-ksg@nic.in",
-            "lakhisarai": "dio-lsr@nic.in",
-            "madhepura": "dio-mdp@nic.in",
-            "madhubani": "dio-mdb-bih@nic.in",
-            "munger": "dio-mun@nic.in",
-            "muzaffarpur": "dio-muz@nic.in",
-            "nalanda": "dio-nld@nic.in",
-            "nawada": "dio-naw@nic.in",
-            "patna du": "dio-ptn@nic.in",
-            "patna": "dio-ptn@nic.in",
-            "purnia": "dio-prn@nic.in",
-            "rohtas": "dio-rts@nic.in",
-            "saharsa": "dio-shs@nic.in",
-            "samastipur": "dio-sms@nic.in",
-            "saran": "dio-sar@nic.in",
-            "sheikhpura": "dio-shh-bih@nic.in",
-            "sheohar": "dio-shh@nic.in",
-            "sitamarhi": "dio-stm@nic.in",
-            "siwan": "dio-swn@nic.in",
-            "supaul": "dio-spl@nic.in",
-            "vaishali": "dio-vsh@nic.in",
-            "west champaran": "dio-psc@nic.in"
+            "arwal": "dio-arw@state-noc.org",
+            "araria": "dio-ara-bih@state-noc.org",
+            "aurangabad": "dio-agb@state-noc.org",
+            "banka": "dio-bka@state-noc.org",
+            "begusarai": "dio-bsr@state-noc.org",
+            "kaimur": "dio-kai@state-noc.org",
+            "bhagalpur": "dio-bgo@state-noc.org",
+            "bhojpur": "dio-bjp@state-noc.org",
+            "buxar": "dio-bux@state-noc.org",
+            "darbhanga": "dio-dbg@state-noc.org",
+            "east champaran": "dio-prc@state-noc.org",
+            "gaya": "dio-gay@state-noc.org",
+            "gopalganj": "dio-gpg@state-noc.org",
+            "jamui": "dio-jam@state-noc.org",
+            "jehanabad": "dio-jhb-bih@state-noc.org",
+            "katihar": "dio-ktr@state-noc.org",
+            "khagaria": "dio-kgr-bih@state-noc.org",
+            "kishanganj": "dio-ksg@state-noc.org",
+            "lakhisarai": "dio-lsr@state-noc.org",
+            "madhepura": "dio-mdp@state-noc.org",
+            "madhubani": "dio-mdb-bih@state-noc.org",
+            "munger": "dio-mun@state-noc.org",
+            "muzaffarpur": "dio-muz@state-noc.org",
+            "nalanda": "dio-nld@state-noc.org",
+            "nawada": "dio-naw@state-noc.org",
+            "patna du": "dio-ptn@state-noc.org",
+            "patna": "dio-ptn@state-noc.org",
+            "purnia": "dio-prn@state-noc.org",
+            "rohtas": "dio-rts@state-noc.org",
+            "saharsa": "dio-shs@state-noc.org",
+            "samastipur": "dio-sms@state-noc.org",
+            "saran": "dio-sar@state-noc.org",
+            "sheikhpura": "dio-shh-bih@state-noc.org",
+            "sheohar": "dio-shh@state-noc.org",
+            "sitamarhi": "dio-stm@state-noc.org",
+            "siwan": "dio-swn@state-noc.org",
+            "supaul": "dio-spl@state-noc.org",
+            "vaishali": "dio-vsh@state-noc.org",
+            "west champaran": "dio-psc@state-noc.org"
         };
 
         function showDistrictDetails(districtKey, districtDisplayName) {
@@ -3577,7 +3302,7 @@
             
             wrapper.appendChild(card);
             modal.appendChild(wrapper);
-            document.documentElement.appendChild(modal);
+            document.body.appendChild(modal);
             
             // Animate Wrapper In
             setTimeout(() => {
@@ -3834,204 +3559,10 @@
             setTimeout(dismiss, 12000); // dismiss after 12s of celebration
         }
 
-        // --- Windows 11 Network Boot Guide Modal ---
-        function openNetworkBootGuide() {
-            if (document.getElementById('networkBootGuideModal')) return;
-
-            // Increment count on click
-            fetch('network_boot_counter.php', { method: 'POST' })
-                .then(res => res.json())
-                .then(data => {
-                    const valEl = document.getElementById('network-boot-click-val');
-                    if (valEl && data.count !== undefined) {
-                        valEl.textContent = data.count;
-                    }
-                })
-                .catch(err => console.error('Error incrementing counter:', err));
-
-            const isDark = document.body.classList.contains('dark-mode');
-
-            const modal = document.createElement('div');
-            modal.id = 'networkBootGuideModal';
-            modal.style.cssText = `
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100vw;
-                height: 100vh;
-                background: ${isDark ? 'rgba(8, 10, 16, 0.45)' : 'rgba(241, 245, 249, 0.45)'};
-                backdrop-filter: blur(20px) saturate(190%);
-                -webkit-backdrop-filter: blur(20px) saturate(190%);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 99999;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            `;
-
-            // Floating background glow orbs behind the glass card for 3D depth
-            const orb1 = document.createElement('div');
-            orb1.style.cssText = `
-                position: absolute;
-                width: 320px;
-                height: 320px;
-                border-radius: 50%;
-                background: radial-gradient(circle, rgba(14, 165, 233, 0.12) 0%, rgba(14, 165, 233, 0) 70%);
-                top: 25%;
-                left: 35%;
-                filter: blur(60px);
-                pointer-events: none;
-                z-index: 1;
-            `;
-            const orb2 = document.createElement('div');
-            orb2.style.cssText = `
-                position: absolute;
-                width: 280px;
-                height: 280px;
-                border-radius: 50%;
-                background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0) 70%);
-                bottom: 25%;
-                right: 35%;
-                filter: blur(60px);
-                pointer-events: none;
-                z-index: 1;
-            `;
-            modal.appendChild(orb1);
-            modal.appendChild(orb2);
-
-            const card = document.createElement('div');
-            card.style.cssText = `
-                background: ${isDark ? 'rgba(22, 30, 49, 0.65)' : 'rgba(255, 255, 255, 0.65)'};
-                border: 1px solid ${isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)'};
-                border-radius: 20px;
-                width: 90%;
-                max-width: 580px;
-                padding: 35px 30px 30px 30px;
-                box-shadow: ${isDark ? '0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1)' : '0 24px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)'};
-                position: relative;
-                transform: translateY(-20px);
-                transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                color: var(--text-primary);
-                text-align: left;
-                z-index: 2;
-                overflow: hidden;
-            `;
-
-            // Top gradient border sheen
-            const topBar = document.createElement('div');
-            topBar.style.cssText = `
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 4px;
-                background: linear-gradient(90deg, #38bdf8 0%, #10b981 100%);
-            `;
-            card.appendChild(topBar);
-
-            const badgeBg = isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.06)';
-            const badgeBorder = isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)';
-            const badgeColor = isDark ? '#38bdf8' : '#0284c7';
-
-            const kbdBg = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)';
-            const kbdBorder = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
-
-            let html = `
-                <button onclick="closeNetworkBootGuide()" style="position: absolute; top: 20px; right: 20px; background: ${isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}; border: 1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-times"></i></button>
-                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
-                    <div style="width: 42px; height: 42px; background: rgba(56, 189, 248, 0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
-                        <i class="fas fa-network-wired" style="font-size: 20px;"></i>
-                    </div>
-                    <div>
-                        <h2 style="font-family: var(--font-family-title, sans-serif); font-size: 1.25rem; font-weight: 700; margin: 0;">Windows 11 Network Boot Guide</h2>
-                        <span style="font-size: 0.75rem; color: #10b981; font-weight: 600; display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; background-color: #10b981; border-radius: 50%; display: inline-block;"></span> Active on State NOC Server</span>
-                    </div>
-                </div>
-                
-                <p style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; margin-bottom: 20px;">
-                    You can install Windows 11 directly from the local Patna NOC server without needing any USB drive. This ensures a secure clean install with automated configurations.
-                </p>
-
-                <div style="display: flex; flex-direction: column; gap: 18px; margin-bottom: 25px;">
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <span style="width: 26px; height: 26px; background: ${badgeBg}; border: 1px solid ${badgeBorder}; color: ${badgeColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">1</span>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 2px;">Enter Device Boot Menu</strong>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;">Turn on your device and repeatedly press the Boot Hotkey (usually <kbd style="background: ${kbdBg}; border: 1px solid ${kbdBorder}; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; color: var(--text-primary);">F12</kbd>, <kbd style="background: ${kbdBg}; border: 1px solid ${kbdBorder}; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; color: var(--text-primary);">F11</kbd> or <kbd style="background: ${kbdBg}; border: 1px solid ${kbdBorder}; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; color: var(--text-primary);">Enter</kbd>).</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <span style="width: 26px; height: 26px; background: ${badgeBg}; border: 1px solid ${badgeBorder}; color: ${badgeColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">2</span>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 2px;">Select Network Boot (PXE)</strong>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;">Select the option labeled <strong>Network Boot</strong>, <strong>PXE IPv4</strong>, or <strong>UEFI: IP4 Network Boot</strong>.</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <span style="width: 26px; height: 26px; background: ${badgeBg}; border: 1px solid ${badgeBorder}; color: ${badgeColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">3</span>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 2px;">Establish Connection & Confirm</strong>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;">Your device will contact the NOC WDS server. When the prompt appears, press the <kbd style="background: ${kbdBg}; border: 1px solid ${kbdBorder}; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 0.75rem; color: var(--text-primary);">Enter</kbd> key immediately to start network boot.</span>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <span style="width: 26px; height: 26px; background: ${badgeBg}; border: 1px solid ${badgeBorder}; color: ${badgeColor}; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">4</span>
-                        <div>
-                            <strong style="font-size: 0.9rem; display: block; margin-bottom: 2px;">Launch Windows 11 Setup</strong>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45;">Select <strong>Clean Install Windows 11</strong> from the menu. Follow the standard Windows installation setup steps. Files stream directly at 10 Gbps NOC speeds.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div style="background: ${isDark ? 'rgba(16, 185, 129, 0.05)' : 'rgba(16, 185, 129, 0.03)'}; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 12px 15px; font-size: 0.78rem; color: #10b981; display: flex; align-items: flex-start; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-                    <i class="fas fa-info-circle" style="margin-top: 2px; font-size: 14px;"></i>
-                    <span><strong>Note:</strong> Ensure your device is connected to the local district intranet / NKN network via Ethernet cable. Wi-Fi network booting is not supported.</span>
-                </div>
-            `;
-
-            card.innerHTML = html;
-            modal.appendChild(card);
-            document.documentElement.appendChild(modal);
-
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 50);
-
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) closeNetworkBootGuide();
-            });
-        }
-
-        function closeNetworkBootGuide() {
-            const modal = document.getElementById('networkBootGuideModal');
-            if (!modal) return;
-            const card = modal.querySelector('div[style*="position: relative"]');
-            
-            modal.style.opacity = '0';
-            if (card) card.style.transform = 'translateY(-20px)';
-            
-            setTimeout(() => {
-                modal.remove();
-            }, 300);
-        }
-
         // --- On Page Load Initializations ---
         window.addEventListener('DOMContentLoaded', () => {
             // Start network animation
             initNetworkAnimation();
-
-            // Fetch network boot click count on load
-            fetch('network_boot_counter.php')
-                .then(res => res.json())
-                .then(data => {
-                    const valEl = document.getElementById('network-boot-click-val');
-                    if (valEl && data.count !== undefined) {
-                        valEl.textContent = data.count;
-                    }
-                })
-                .catch(err => console.error('Error fetching counter:', err));
 
             // Assign chatbot DOM refs at module scope so helper functions can use them
             chatbotMessages = document.getElementById('chatbotMessages');
