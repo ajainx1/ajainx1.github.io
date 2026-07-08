@@ -27,6 +27,7 @@ export class CharityQuiz {
     this.userAvatar = document.getElementById('user-avatar');
     this.userName = document.getElementById('user-name');
     this.logoutBtn = document.getElementById('logout-btn');
+    this.demoLoginBtn = document.getElementById('demo-login-btn');
     this.currentUser = null;
     
     // Phone Auth Modal Elements
@@ -50,6 +51,9 @@ export class CharityQuiz {
     }
     if(this.phoneLoginBtn) {
       this.phoneLoginBtn.addEventListener('click', () => this.openPhoneModal());
+    }
+    if(this.demoLoginBtn) {
+      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
     }
     if(this.closePhoneModal) {
       this.closePhoneModal.addEventListener('click', () => { this.phoneModal.style.display = 'none'; });
@@ -135,6 +139,10 @@ export class CharityQuiz {
     }
   }
 
+  handleDemoLogin() {
+    this.loginUser("Aditya Jain (Demo)", "demo@adityasec32.systems", "https://ui-avatars.com/api/?name=Aditya+Jain&background=33ff00&color=000");
+  }
+
   loginUser(name, id, picture) {
     this.currentUser = { name, email: id, picture };
     localStorage.setItem('charityQuizUser', JSON.stringify(this.currentUser));
@@ -170,12 +178,14 @@ export class CharityQuiz {
     if (this.currentUser) {
       if(this.gLoginBtn) this.gLoginBtn.style.display = 'none';
       if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'none';
+      if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'none';
       this.userProfile.style.display = 'flex';
       if (this.userName) this.userName.textContent = this.currentUser.name;
       if (this.userAvatar) this.userAvatar.src = this.currentUser.picture;
     } else {
       if(this.gLoginBtn) this.gLoginBtn.style.display = 'block';
       if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'flex';
+      if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'flex';
       this.userProfile.style.display = 'none';
     }
   }
