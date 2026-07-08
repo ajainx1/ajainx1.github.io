@@ -60,6 +60,13 @@
           <span>Bihar State NOC Admin Portal (Sanitized &amp; Mocked)</span>
         </span>
       </button>
+      <button class="landing-btn" id="land-charity">
+        <span class="landing-btn-icon">&lt;3</span>
+        <span class="landing-btn-text">
+          <strong>Support Charities</strong>
+          <span>Organizations making an impact in cybersecurity</span>
+        </span>
+      </button>
     </div>
   </div>
 </div>
@@ -514,8 +521,17 @@
   document.addEventListener('DOMContentLoaded', () => {
     const charityModal = new CharityModal();
     const charityLink = document.getElementById('charity-trigger-btn');
+    const landingCharityLink = document.getElementById('land-charity');
+    
     if (charityLink) {
         charityLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            charityModal.open();
+        });
+    }
+    
+    if (landingCharityLink) {
+        landingCharityLink.addEventListener('click', (e) => {
             e.preventDefault();
             charityModal.open();
         });
