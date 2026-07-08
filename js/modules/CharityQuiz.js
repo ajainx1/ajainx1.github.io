@@ -55,6 +55,9 @@ export class CharityQuiz {
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
     }
+    if(this.demoLoginBtn) {
+      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
+    }
     if(this.closePhoneModal) {
       this.closePhoneModal.addEventListener('click', () => { this.phoneModal.style.display = 'none'; });
     }
@@ -137,6 +140,10 @@ export class CharityQuiz {
         alert("Invalid code: " + error.message);
       });
     }
+  }
+
+  handleDemoLogin() {
+    this.loginUser("Aditya Jain (Demo)", "demo@adityasec32.systems", "https://ui-avatars.com/api/?name=Aditya+Jain&background=33ff00&color=000");
   }
 
   handleDemoLogin() {
