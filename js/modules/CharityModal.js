@@ -133,6 +133,12 @@ export class CharityModal {
         <button class="charity-close-btn" id="charity-close" aria-label="Close Modal">&times;</button>
         <h2 class="charity-title">Support a Cause</h2>
         <p style="font-size: 0.95rem; color: #ccc; margin-bottom: 20px;">If you find my work valuable, consider supporting these organizations making an impact in cybersecurity and digital rights.</p>
+        
+        <a href="charity-quiz.html" class="charity-item" style="border-color: #33ff00; background: rgba(51,255,0,0.1); margin-bottom: 15px; text-align: center;">
+          <h3 style="color: #33ff00;">🕹️ Play Cyber FreeRice</h3>
+          <p style="color: #eee;">Test your SecOps knowledge and donate rice to those in need!</p>
+        </a>
+
         <div class="charity-list">
           ${listHtml}
         </div>

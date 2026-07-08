@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber FreeRice - Support Charities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background-color: #050505;
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    .header-bar {
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+    }
+    .back-btn {
+      color: #33ff00;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      text-shadow: 0 0 8px rgba(51, 255, 0, 0.5);
+    }
+    
+    .quiz-container {
+      max-width: 800px;
+      width: 90%;
+      margin: 40px auto;
+      text-align: center;
+    }
+    
+    .score-board {
+      margin-bottom: 30px;
+    }
+    .score-board h2 {
+      font-size: 1.5rem;
+      color: #aaa;
+      margin-bottom: 5px;
+    }
+    .score-board .score-number {
+      font-size: 4rem;
+      font-weight: 800;
+      color: #33ff00;
+      font-family: 'JetBrains Mono', monospace;
+      text-shadow: 0 0 20px rgba(51, 255, 0, 0.4);
+    }
+
+    .question-card {
+      background: #111;
+      border: 1px solid #33ff00;
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(51, 255, 0, 0.1);
+      margin-bottom: 40px;
+      position: relative;
+    }
+    .question-text {
+      font-size: 1.3rem;
+      margin-bottom: 25px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+    @media(min-width: 600px) {
+      .options-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .quiz-option-btn {
+      background: #1a1a1a;
+      border: 1px solid #444;
+      color: #ddd;
+      padding: 15px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      border-color: #33ff00;
+      background: rgba(51, 255, 0, 0.1);
+    }
+    .quiz-option-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.8;
+    }
+    .quiz-option-btn.correct {
+      background: rgba(51, 255, 0, 0.2);
+      border-color: #33ff00;
+      color: #fff;
+    }
+    .quiz-option-btn.incorrect {
+      background: rgba(255, 51, 51, 0.2);
+      border-color: #ff3333;
+      color: #fff;
+    }
+
+    .quiz-feedback {
+      margin-top: 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      min-height: 25px;
+    }
+    .quiz-feedback.success { color: #33ff00; }
+    .quiz-feedback.error { color: #ff3333; }
+
+    /* Visual Bowl */
+    .rice-bowl-container {
+      width: 150px;
+      height: 150px;
+      margin: 0 auto;
+      border: 4px solid #555;
+      border-top: none;
+      border-radius: 0 0 75px 75px;
+      position: relative;
+      overflow: hidden;
+      background: #0a0a0a;
+    }
+    .rice-bowl-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0%;
+      background: #fff;
+      transition: height 0.5s ease-out;
+      opacity: 0.9;
+    }
+    .rice-drop {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 8px;
+      height: 12px;
+      background: #fff;
+      border-radius: 50%;
+      animation: drop 0.5s forwards;
+    }
+    @keyframes drop {
+      0% { top: -10px; opacity: 1; }
+      100% { top: 90%; opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header-bar">
+    <a href="index.html" class="back-btn">&lt;_ return_to_portfolio</a>
+    <div style="font-family: 'JetBrains Mono'; color: #888;">Cyber FreeRice v1.0</div>
+  </header>
+
+  <div class="quiz-container" id="quiz-container">
+    <div class="score-board">
+      <h2>Rice Grains Donated</h2>
+      <div class="score-number" id="rice-score">0</div>
+    </div>
+    
+    <div class="rice-bowl-container" id="rice-bowl-container">
+      <div class="rice-bowl-fill" id="rice-bowl-fill"></div>
+    </div>
+    <p style="color: #666; font-size: 0.85rem; margin-top: 10px; margin-bottom: 40px;">*Conceptual portfolio project - logic simulated*</p>
+
+    <div class="question-card">
+      <div class="question-text" id="quiz-question">Loading question...</div>
+      <div class="options-grid" id="quiz-options">
+        <!-- Buttons injected here -->
+      </div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+    </div>
+  </div>
+
+  <script type="module" src="js/modules/CharityQuiz.js"></script>
+</body>
+</html>
