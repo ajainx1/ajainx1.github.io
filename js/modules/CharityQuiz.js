@@ -22,11 +22,23 @@ export class CharityQuiz {
     
     // Auth Elements
     this.gLoginBtn = document.getElementById('g-login-btn');
+    this.phoneLoginBtn = document.getElementById('phone-login-btn');
     this.userProfile = document.getElementById('user-profile');
     this.userAvatar = document.getElementById('user-avatar');
     this.userName = document.getElementById('user-name');
     this.logoutBtn = document.getElementById('logout-btn');
     this.currentUser = null;
+    
+    // Phone Auth Modal Elements
+    this.phoneModal = document.getElementById('phone-auth-modal');
+    this.closePhoneModal = document.getElementById('close-phone-modal');
+    this.stepPhone = document.getElementById('step-phone');
+    this.stepOtp = document.getElementById('step-otp');
+    this.phoneInput = document.getElementById('phone-input');
+    this.sendCodeBtn = document.getElementById('send-code-btn');
+    this.otpInput = document.getElementById('otp-input');
+    this.verifyCodeBtn = document.getElementById('verify-code-btn');
+    this.confirmationResult = null;
     
     this.init();
     
@@ -35,6 +47,18 @@ export class CharityQuiz {
     
     if(this.logoutBtn) {
       this.logoutBtn.addEventListener('click', () => this.handleLogout());
+    }
+    if(this.phoneLoginBtn) {
+      this.phoneLoginBtn.addEventListener('click', () => this.openPhoneModal());
+    }
+    if(this.closePhoneModal) {
+      this.closePhoneModal.addEventListener('click', () => { this.phoneModal.style.display = 'none'; });
+    }
+    if(this.sendCodeBtn) {
+      this.sendCodeBtn.addEventListener('click', () => this.sendSmsCode());
+    }
+    if(this.verifyCodeBtn) {
+      this.verifyCodeBtn.addEventListener('click', () => this.verifyOtp());
     }
 
   init() {
@@ -60,24 +84,63 @@ export class CharityQuiz {
   handleGoogleLogin(response) {
     const payload = this.parseJwt(response.credential);
     if (payload) {
-      this.currentUser = {
-        name: payload.name,
-        email: payload.email,
-        picture: payload.picture
-      };
-      
-      // Save session
-      localStorage.setItem('charityQuizUser', JSON.stringify(this.currentUser));
-      
-      // Load user specific score if we want to, for now we will just use the global score but save it under their email
-      const userScore = localStorage.getItem(`charityRiceScore_${this.currentUser.email}`);
-      if (userScore) {
-        this.score = parseInt(userScore, 10);
-      }
-      
-      this.updateAuthUI();
-      this.updateScoreDisplay();
+      this.loginUser(payload.name, payload.email, payload.picture);
     }
+  }
+
+  // --- Phone Auth Logic ---
+  openPhoneModal() {
+    this.phoneModal.style.display = 'flex';
+    this.stepPhone.style.display = 'block';
+    this.stepOtp.style.display = 'none';
+    
+    if (!window.recaptchaVerifier && window.firebaseDependencies) {
+      try {
+        window.recaptchaVerifier = new window.firebaseDependencies.RecaptchaVerifier(window.firebaseAuth, 'recaptcha-container', {
+          'size': 'normal',
+          'callback': (response) => { }
+        });
+        window.recaptchaVerifier.render();
+      } catch(e) { console.log('Firebase not fully configured yet'); }
+    }
+  }
+
+  sendSmsCode() {
+    const phoneNumber = this.phoneInput.value;
+    if (!phoneNumber) return alert('Please enter a phone number');
+    
+    if (!window.firebaseAuth) return alert('Firebase keys missing! (Placeholder logic blocked)');
+    
+    window.firebaseDependencies.signInWithPhoneNumber(window.firebaseAuth, phoneNumber, window.recaptchaVerifier)
+      .then((confirmationResult) => {
+        this.confirmationResult = confirmationResult;
+        this.stepPhone.style.display = 'none';
+        this.stepOtp.style.display = 'block';
+      }).catch((error) => {
+        alert("SMS failed: " + error.message);
+      });
+  }
+
+  verifyOtp() {
+    const code = this.otpInput.value;
+    if (this.confirmationResult && code) {
+      this.confirmationResult.confirm(code).then((result) => {
+        const user = result.user;
+        this.phoneModal.style.display = 'none';
+        this.loginUser("Phone User", user.phoneNumber, "https://ui-avatars.com/api/?name=Phone+User&background=33ff00&color=000");
+      }).catch((error) => {
+        alert("Invalid code: " + error.message);
+      });
+    }
+  }
+
+  loginUser(name, id, picture) {
+    this.currentUser = { name, email: id, picture };
+    localStorage.setItem('charityQuizUser', JSON.stringify(this.currentUser));
+    const userScore = localStorage.getItem(`charityRiceScore_${id}`);
+    if (userScore) this.score = parseInt(userScore, 10);
+    this.updateAuthUI();
+    this.updateScoreDisplay();
   }
 
   handleLogout() {
@@ -101,15 +164,17 @@ export class CharityQuiz {
   }
 
   updateAuthUI() {
-    if (!this.gLoginBtn || !this.userProfile) return;
+    if (!this.userProfile) return;
     
     if (this.currentUser) {
-      this.gLoginBtn.style.display = 'none';
+      if(this.gLoginBtn) this.gLoginBtn.style.display = 'none';
+      if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'none';
       this.userProfile.style.display = 'flex';
       if (this.userName) this.userName.textContent = this.currentUser.name;
       if (this.userAvatar) this.userAvatar.src = this.currentUser.picture;
     } else {
-      this.gLoginBtn.style.display = 'block';
+      if(this.gLoginBtn) this.gLoginBtn.style.display = 'block';
+      if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'flex';
       this.userProfile.style.display = 'none';
     }
   }

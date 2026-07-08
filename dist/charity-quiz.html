@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber FreeRice - Support Charities</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    body {
+      background-color: #050505;
+      background-image: radial-gradient(circle at top right, rgba(51, 255, 0, 0.05), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(51, 255, 0, 0.05), transparent 40%);
+      color: #e0e0e0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+    
+    /* Header */
+    .header-bar {
+      width: 100%;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(10, 10, 10, 0.8);
+      backdrop-filter: blur(10px);
+      box-sizing: border-box;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .back-btn {
+      color: #33ff00;
+      text-decoration: none;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .back-btn:hover {
+      text-shadow: 0 0 8px rgba(51, 255, 0, 0.5);
+    }
+    .logo-area {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-area span { color: #33ff00; }
+
+    /* Main Container */
+    .quiz-container {
+      max-width: 900px;
+      width: 95%;
+      margin: 50px auto;
+      text-align: center;
+      flex-grow: 1;
+    }
+    
+    /* Score Board */
+    .score-board {
+      margin-bottom: 40px;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: inline-block;
+      min-width: 300px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .score-board h2 {
+      font-size: 1.1rem;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 0 0 10px 0;
+    }
+    .score-number-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+    .score-number {
+      font-size: 4.5rem;
+      font-weight: 800;
+      color: #33ff00;
+      font-family: 'JetBrains Mono', monospace;
+      text-shadow: 0 0 20px rgba(51, 255, 0, 0.3);
+      line-height: 1;
+    }
+    .rice-icon {
+      font-size: 3.5rem;
+      filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+    }
+    
+    .streak-badge {
+      font-size: 1rem;
+      color: #ffaa00;
+      font-weight: 600;
+      height: 24px;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .streak-badge.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Category Selector */
+    .category-selector {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .category-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .category-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .category-pill.active {
+      background: rgba(51, 255, 0, 0.15);
+      border-color: #33ff00;
+      color: #33ff00;
+      box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
+    }
+
+    /* Appreciation Visual */
+    .appreciation-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+      height: 60px;
+      position: relative;
+    }
+    .plate-icon {
+      font-size: 2.5rem;
+      transition: transform 0.2s;
+    }
+    .plate-icon.bump {
+      transform: scale(1.2) translateY(-5px);
+    }
+    .floating-heart {
+      position: absolute;
+      top: 20px;
+      font-size: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(1.5);
+      }
+    }
+    .floating-heart.animate {
+      animation: floatUp 1s ease-out forwards;
+    }
+
+    /* Question Card */
+    .question-card {
+      background: rgba(20, 20, 20, 0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(51, 255, 0, 0.3);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+      margin-bottom: 40px;
+      position: relative;
+      animation: slideFadeIn 0.4s ease-out forwards;
+    }
+    @keyframes slideFadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .question-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, transparent, #33ff00, transparent);
+      border-radius: 16px 16px 0 0;
+      opacity: 0.5;
+    }
+    .question-text {
+      font-size: 1.4rem;
+      margin-bottom: 35px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #fff;
+    }
+    
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media(min-width: 768px) {
+      .options-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .quiz-option-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ccc;
+      padding: 20px;
+      font-size: 1.05rem;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .quiz-option-btn:hover:not(:disabled) {
+      border-color: #33ff00;
+      background: rgba(51, 255, 0, 0.05);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(51, 255, 0, 0.1);
+    }
+    .quiz-option-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+    .quiz-option-btn.correct {
+      background: rgba(51, 255, 0, 0.15);
+      border-color: #33ff00;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
+    }
+    .quiz-option-btn.incorrect {
+      background: rgba(255, 51, 51, 0.15);
+      border-color: #ff3333;
+      color: #fff;
+    }
+
+    .quiz-feedback {
+      margin-top: 25px;
+      font-weight: 600;
+      font-size: 1.15rem;
+      min-height: 28px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .quiz-feedback.show { opacity: 1; }
+    .quiz-feedback.success { color: #33ff00; }
+    .quiz-feedback.error { color: #ff3333; }
+
+    /* Footer */
+    .footer-bar {
+      width: 100%;
+      padding: 30px 20px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      margin-top: auto;
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .footer-bar a {
+      color: #33ff00;
+      text-decoration: none;
+    }
+    .footer-bar a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+  <header class="header-bar">
+    <a href="index.html" class="back-btn">&larr; Return to Portfolio</a>
+    <div class="logo-area" id="quiz-header-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">Cyber<span>FreeRice</span></div>
+    
+    <div class="auth-area" style="display: flex; align-items: center; justify-content: flex-end; min-width: 200px;">
+      <div id="g_id_onload"
+           data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+           data-context="signin"
+           data-ux_mode="popup"
+           data-callback="handleCredentialResponse"
+           data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin" id="g-login-btn"
+           data-type="standard"
+           data-shape="pill"
+           data-theme="filled_black"
+           data-text="signin_with"
+           data-size="large"
+           data-logo_alignment="left">
+      </div>
+      
+      <div id="user-profile" style="display: none; align-items: center; gap: 12px; color: #fff; font-family: 'Inter', sans-serif;">
+         <img id="user-avatar" src="" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid #33ff00; object-fit: cover;">
+         <span id="user-name" style="font-weight: 600; font-size: 0.9rem;"></span>
+         <button id="logout-btn" style="background: rgba(255, 51, 51, 0.1); border: 1px solid rgba(255, 51, 51, 0.4); color: #ff3333; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s;">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="quiz-container" id="quiz-container">
+    <div class="category-selector" id="category-selector" style="flex-wrap: wrap;">
+      <button class="category-pill active" data-category="cybersecurity">Cybersecurity</button>
+      <button class="category-pill" data-category="trading">Algorithmic Trading</button>
+      <button class="category-pill" data-category="english">English Vocab</button>
+      <button class="category-pill" data-category="math">Basic Math</button>
+      <button class="category-pill" data-category="general">General Knowledge</button>
+    </div>
+
+    <div class="score-board">
+      <h2>Rice Grains Donated</h2>
+      <div class="score-number-wrap">
+        <span class="rice-icon">🍚</span>
+        <span class="score-number" id="rice-score">0</span>
+      </div>
+      <div class="appreciation-container">
+        <div class="floating-heart" id="floating-heart">💚</div>
+        <div class="plate-icon" id="plate-icon">🤲🥣</div>
+      </div>
+      <div class="streak-badge" id="streak-badge">🔥 3 Correct in a Row!</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-text" id="quiz-question">Loading question...</div>
+      <div class="options-grid" id="quiz-options">
+        <!-- Buttons injected here -->
+      </div>
+      <div class="quiz-feedback" id="quiz-feedback"></div>
+    </div>
+  </div>
+
+  <footer class="footer-bar">
+    <strong>How it works:</strong> For every correct answer, 10 grains of rice are financially supported and donated to global food programs.<br>
+    <em>An initiative supported by Aditya Jain and our sponsors. <a href="index.html#contact">Partner with us</a>.</em>
+  </footer>
+
+  <script type="module" src="js/modules/CharityQuiz.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cyber FreeRice</string>
+    <string name="title_activity_main">Cyber FreeRice</string>
+    <string name="package_name">com.adityasec32.freerice</string>
+    <string name="custom_url_scheme">com.adityasec32.freerice</string>
+</resources>
