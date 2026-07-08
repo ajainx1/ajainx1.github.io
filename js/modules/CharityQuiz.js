@@ -20,13 +20,98 @@ export class CharityQuiz {
     this.plateIcon = document.getElementById('plate-icon');
     this.floatingHeart = document.getElementById('floating-heart');
     
+    // Auth Elements
+    this.gLoginBtn = document.getElementById('g-login-btn');
+    this.userProfile = document.getElementById('user-profile');
+    this.userAvatar = document.getElementById('user-avatar');
+    this.userName = document.getElementById('user-name');
+    this.logoutBtn = document.getElementById('logout-btn');
+    this.currentUser = null;
+    
     this.init();
-  }
+    
+    // Attach Google Auth callback to window
+    window.handleCredentialResponse = (response) => this.handleGoogleLogin(response);
+    
+    if(this.logoutBtn) {
+      this.logoutBtn.addEventListener('click', () => this.handleLogout());
+    }
 
   init() {
+    this.loadUserSession();
     this.updateScoreDisplay();
     this.attachCategoryListeners();
     this.setCategory(this.currentCategory);
+  }
+
+  parseJwt(token) {
+    try {
+      const base64Url = token.split('.')[1];
+      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
+          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      }).join(''));
+      return JSON.parse(jsonPayload);
+    } catch(e) {
+      return null;
+    }
+  }
+
+  handleGoogleLogin(response) {
+    const payload = this.parseJwt(response.credential);
+    if (payload) {
+      this.currentUser = {
+        name: payload.name,
+        email: payload.email,
+        picture: payload.picture
+      };
+      
+      // Save session
+      localStorage.setItem('charityQuizUser', JSON.stringify(this.currentUser));
+      
+      // Load user specific score if we want to, for now we will just use the global score but save it under their email
+      const userScore = localStorage.getItem(`charityRiceScore_${this.currentUser.email}`);
+      if (userScore) {
+        this.score = parseInt(userScore, 10);
+      }
+      
+      this.updateAuthUI();
+      this.updateScoreDisplay();
+    }
+  }
+
+  handleLogout() {
+    this.currentUser = null;
+    localStorage.removeItem('charityQuizUser');
+    this.score = 0; // Reset active score for guest
+    this.updateAuthUI();
+    this.updateScoreDisplay();
+  }
+
+  loadUserSession() {
+    const savedUser = localStorage.getItem('charityQuizUser');
+    if (savedUser) {
+      this.currentUser = JSON.parse(savedUser);
+      const userScore = localStorage.getItem(`charityRiceScore_${this.currentUser.email}`);
+      if (userScore) {
+        this.score = parseInt(userScore, 10);
+      }
+      this.updateAuthUI();
+    }
+  }
+
+  updateAuthUI() {
+    if (!this.gLoginBtn || !this.userProfile) return;
+    
+    if (this.currentUser) {
+      this.gLoginBtn.style.display = 'none';
+      this.userProfile.style.display = 'flex';
+      if (this.userName) this.userName.textContent = this.currentUser.name;
+      if (this.userAvatar) this.userAvatar.src = this.currentUser.picture;
+    } else {
+      this.gLoginBtn.style.display = 'block';
+      this.userProfile.style.display = 'none';
+    }
   }
 
   attachCategoryListeners() {
@@ -107,7 +192,12 @@ export class CharityQuiz {
       this.score += 10;
       this.streak += 1;
       
+      // Save score for guest or user
       localStorage.setItem('charityRiceScore', this.score);
+      if (this.currentUser) {
+        localStorage.setItem(`charityRiceScore_${this.currentUser.email}`, this.score);
+      }
+      
       this.updateScoreDisplay();
       
       this.feedbackElement.textContent = 'Correct! +10 grains of rice donated.';
