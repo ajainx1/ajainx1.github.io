@@ -27,7 +27,7 @@ export class CharityModal {
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 9999;
+        z-index: 999999;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.3s ease;
