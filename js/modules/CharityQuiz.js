@@ -1,9 +1,10 @@
-import { quizQuestions } from '../data/quiz-questions.js';
+import { quizData } from '../data/quiz-questions.js';
 
 export class CharityQuiz {
   constructor() {
     this.score = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
     this.streak = 0; // Track consecutive correct answers
+    this.currentCategory = 'cybersecurity'; // Default category
     this.currentQuestion = null;
     
     // DOM Elements
@@ -12,19 +13,60 @@ export class CharityQuiz {
     this.scoreElement = document.getElementById('rice-score');
     this.feedbackElement = document.getElementById('quiz-feedback');
     this.streakBadge = document.getElementById('streak-badge');
+    this.headerLogo = document.getElementById('quiz-header-logo');
+    this.categoryPills = document.querySelectorAll('.category-pill');
     
     this.init();
   }
 
   init() {
     this.updateScoreDisplay();
+    this.attachCategoryListeners();
+    this.setCategory(this.currentCategory);
+  }
+
+  attachCategoryListeners() {
+    this.categoryPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const selectedCat = e.target.getAttribute('data-category');
+        
+        // Update active class on pills
+        this.categoryPills.forEach(p => p.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        this.setCategory(selectedCat);
+      });
+    });
+  }
+
+  setCategory(categoryKey) {
+    if (!quizData[categoryKey]) return;
+    this.currentCategory = categoryKey;
+    
+    // Update Header Logo text
+    const categoryInfo = quizData[categoryKey];
+    if (this.headerLogo) {
+      // e.g., "Cyber FreeRice" -> Cyber<span>FreeRice</span>
+      const parts = categoryInfo.title.split(' ');
+      if (parts.length >= 2) {
+        this.headerLogo.innerHTML = `${parts[0]}<span>${parts.slice(1).join(' ')}</span>`;
+      } else {
+        this.headerLogo.textContent = categoryInfo.title;
+      }
+    }
+    
+    // Reset streak on category change
+    this.streak = 0;
+    this.updateStreakDisplay();
+    
     this.loadNextQuestion();
   }
 
   loadNextQuestion() {
-    // Pick a random question
-    const randomIndex = Math.floor(Math.random() * quizQuestions.length);
-    this.currentQuestion = quizQuestions[randomIndex];
+    const questions = quizData[this.currentCategory].questions;
+    // Pick a random question from the active category
+    const randomIndex = Math.floor(Math.random() * questions.length);
+    this.currentQuestion = questions[randomIndex];
     
     this.renderQuestion();
   }
@@ -110,8 +152,7 @@ export class CharityQuiz {
   }
 
   animateRiceBowl() {
-    // Optional additional animation logic if we re-introduce the bowl,
-    // For now, the nice rice emoji and the score pop handle the feedback.
+    // The rice emoji and the score pop handle the feedback effectively.
   }
 }
 

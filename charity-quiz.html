@@ -121,6 +121,35 @@
       transform: translateY(0);
     }
 
+    /* Category Selector */
+    .category-selector {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .category-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #aaa;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .category-pill:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+    }
+    .category-pill.active {
+      background: rgba(51, 255, 0, 0.15);
+      border-color: #33ff00;
+      color: #33ff00;
+      box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
+    }
+
     /* Question Card */
     .question-card {
       background: rgba(20, 20, 20, 0.6);
@@ -231,10 +260,15 @@
 
   <header class="header-bar">
     <a href="index.html" class="back-btn">&larr; Return to Portfolio</a>
-    <div class="logo-area">Cyber<span>FreeRice</span></div>
+    <div class="logo-area" id="quiz-header-logo">Cyber<span>FreeRice</span></div>
   </header>
 
   <div class="quiz-container" id="quiz-container">
+    <div class="category-selector" id="category-selector">
+      <button class="category-pill active" data-category="cybersecurity">Cybersecurity</button>
+      <button class="category-pill" data-category="trading">Algorithmic Trading</button>
+    </div>
+
     <div class="score-board">
       <h2>Rice Grains Donated</h2>
       <div class="score-number-wrap">
