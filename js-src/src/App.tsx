@@ -115,13 +115,13 @@ function VisitCounterBadge({ displayCount, isDark }: { displayCount: number; isD
 
 /* ── Ticker items ── */
 const TICKER_ITEMS = [
-  '🚀 HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) indicator package now live',
+  '🚀 HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) indicator package now live',
   '📡 High-Availability 5G Redundancy Nodes in stock — 14 units remaining',
   '⚡ Sub-millisecond Windows Cloud VMs available 24/7',
   '🇮🇳 Express shipping from New Delhi within 48 hrs',
   '🤖 Automated watchdogs pre-installed on all VMs',
   '💳 UPI, GPay & International Card payments accepted',
-  '🔒 Managed by Jumpstreet — A Mangalik & Sons Securities Securities Securities Securities Securities Securities Securities Securities',
+  '🔒 Managed by Jumpstreet — A Mangalik & Sons Securities Securities Securities Securities Securities Securities Securities Securities Securities',
   '📈 Avg signal latency: 1.2ms via Jumpstreet API',
 ];
 
@@ -163,7 +163,7 @@ export default function App() {
     } else {
       const seed: PaymentSubmission = {
         id: 'TXN-842013', planId: 'bot_standard',
-        planName: 'HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) - Standard License',
+        planName: 'HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) - Standard License',
         amountPaid: 999, currency: 'INR', paymentMethod: 'UPI',
         utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
         telegramUsername: '@ajain_fixed', status: 'pending_verification',
@@ -411,13 +411,13 @@ export default function App() {
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-tight leading-tight uppercase mb-3">
                 <span className="shimmer-text">Automated Alerts</span>{' '}
                 <span style={{ color: tk.text1 }}>&amp; Proximity Hosting & HFT Pipelines for</span>{' '}
-                <span className="text-blue-400">HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</span>
+                <span className="text-blue-400">HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</span>
               </h1>
 
               <p className="text-xs sm:text-sm leading-relaxed max-w-2xl font-mono mb-5" style={{ color: tk.text2 }}>
                 Deploy state-of-the-art algorithmic trading configurations. Jumpstreet secures
                 lowest-latency Windows VPS packages pre-installed with{' '}
-                <strong style={{ color: tk.text1 }}>HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</strong> indicators, paired with
+                <strong style={{ color: tk.text1 }}>HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</strong> indicators, paired with
                 imported path-redundant telecommunications hardware from Japan and China.
               </p>
 
@@ -583,7 +583,7 @@ export default function App() {
                              style={{ borderColor: tk.cardB }}>
                           <span className="italic" style={{ color: tk.text2 }}>
                             {ord.status === 'pending_verification'
-                              ? '🔒 Awaiting ledger review by Mangalik & Sons Securities Securities Securities Securities Securities Securities Securities.'
+                              ? '🔒 Awaiting ledger review by Mangalik & Sons Securities Securities Securities Securities Securities Securities Securities Securities.'
                               : '✅ License key dispatched via Telegram.'}
                           </span>
                           <button
@@ -618,7 +618,7 @@ export default function App() {
               </p>
               <p>
                 We specialize in FPGA-accelerated latency-critical trading utilities (the{' '}
-                <strong style={{ color: tk.text1 }}>HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</strong> indicator platform) and direct imports
+                <strong style={{ color: tk.text1 }}>HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)</strong> indicator platform) and direct imports
                 of industrial-grade 5G routers and enterprise J-SIM setups.
               </p>
             </div>
@@ -701,7 +701,7 @@ export default function App() {
             Jumpstreet • A Mangalik and Sons Securities Limited © 2026. All rights reserved.
           </p>
           <p className="max-w-2xl mx-auto text-[9px] leading-relaxed" style={{ color: isDark ? '#374151' : '#bbb' }}>
-            Algorithmic quantitative signals ("HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)") are for backtesting and analytical simulation.
+            Algorithmic quantitative signals ("HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (HFT Signal Suite (Bot Fixed v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0) v4.0)") are for backtesting and analytical simulation.
             We do not provide personalised financial advice. Shipped hardware is subject to Indian import regulations.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-[9px] uppercase tracking-widest font-bold">
