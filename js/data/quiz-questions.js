@@ -1,4 +1,65 @@
 export const quizData = {
+  story: {
+    title: "Incident Story Mode",
+    description: "Navigate high-priority incident scenarios. Solve them to donate rice!",
+    questions: [
+      {
+        scenario: "[INCIDENT REPORT - BIHAR STATE NOC]\nAn alert triggers on a treasury office endpoint. Security logs show an active PowerShell process spawning from Excel attempting to execute remote payloads.",
+        question: "What is the most likely initial access vector and execution path?",
+        options: [
+          "Phishing with macro-enabled attachment running local shell commands",
+          "SQL Injection on the payroll server spawning cmd.exe",
+          "Zero-day browser vulnerability causing remote execution",
+          "Brute force of SSH service leading to local compromise"
+        ],
+        answer: 0
+      },
+      {
+        scenario: "[ACTIVE DIRECTORY INTRUSION - TARGET: FOREST-DC]\nDuring network threat hunting, you observe a massive burst of Kerberos TGS-REQ requests targeting multiple service account names (SPNs), followed by offline ticket cracking telemetry.",
+        question: "What Active Directory exploitation technique is being executed by the adversary?",
+        options: [
+          "DCSync Attack",
+          "Kerberoasting",
+          "Pass-the-Hash",
+          "Golden Ticket Forgery"
+        ],
+        answer: 1
+      },
+      {
+        scenario: "[JUMPSTREET GATEWAY ALARM - CO-LOCATED NODE]\nYour low-latency order router experiences a sudden packet drop storm. A TCP socket trace shows massive queues building up on the kernel-bypass Solarflare network interface card.",
+        question: "Which kernel-bypass driver suite should you verify to ensure raw trading traffic bypasses standard OS protocol stack?",
+        options: [
+          "Solarflare OpenOnload",
+          "Linux Netfilter iptables",
+          "Standard BIND9 DNS caching",
+          "OSPF Routing Daemon"
+        ],
+        answer: 0
+      },
+      {
+        scenario: "[NOC RISK MITIGATION - THREAT LEVEL: CRITICAL]\nMultiple campus switches report bandwidth saturation. Host event logs show user directories are being encrypted to '.crypt' extension and ransom notes dropped.",
+        question: "What is the immediate SecOps triage action to halt network-based encryption propagation?",
+        options: [
+          "Re-initialize the main Active Directory database",
+          "Disconnect affected VLANs and trigger EDR host isolation",
+          "Run an aggressive vulnerability scan across all subnets",
+          "Re-route BGP network path to a secondary ISP"
+        ],
+        answer: 1
+      },
+      {
+        scenario: "[WEB SECURITY AUDIT - PATH: get_files.php]\nYou are performing code audit on the state engineering directory utility. The API accepts a raw file path query parameter without sanitization, e.g. '?file=../../../../etc/passwd'.",
+        question: "What class of vulnerability is present in the get_files.php endpoint?",
+        options: [
+          "SQL Injection (SQLi)",
+          "Path Traversal / Local File Inclusion (LFI)",
+          "Stored Cross-Site Scripting (XSS)",
+          "Cross-Site Request Forgery (CSRF)"
+        ],
+        answer: 1
+      }
+    ]
+  },
   cybersecurity: {
     title: "Cyber FreeRice",
     description: "Test your SecOps knowledge and donate rice to those in need!",

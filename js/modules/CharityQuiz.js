@@ -4,7 +4,7 @@ export class CharityQuiz {
   constructor() {
     this.score = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
     this.streak = 0; // Track consecutive correct answers
-    this.currentCategory = 'cybersecurity'; // Default category
+    this.currentCategory = 'story'; // Default category
     this.currentQuestion = null;
     
     // DOM Elements
@@ -51,6 +51,9 @@ export class CharityQuiz {
     }
     if(this.phoneLoginBtn) {
       this.phoneLoginBtn.addEventListener('click', () => this.openPhoneModal());
+    }
+    if(this.demoLoginBtn) {
+      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
     }
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
@@ -254,6 +257,32 @@ export class CharityQuiz {
     // Reset feedback
     this.feedbackElement.textContent = '';
     this.feedbackElement.className = 'quiz-feedback';
+    
+    // Remove any existing scenario box
+    const oldScenario = this.questionElement.previousElementSibling;
+    if (oldScenario && oldScenario.classList.contains('quiz-scenario-box')) {
+      oldScenario.remove();
+    }
+    
+    // Add scenario box if available
+    if (this.currentQuestion.scenario) {
+      const scenarioDiv = document.createElement('pre');
+      scenarioDiv.className = 'quiz-scenario-box';
+      scenarioDiv.style.background = 'rgba(51, 255, 0, 0.04)';
+      scenarioDiv.style.border = '1px solid rgba(51, 255, 0, 0.15)';
+      scenarioDiv.style.borderRadius = '8px';
+      scenarioDiv.style.padding = '15px';
+      scenarioDiv.style.marginBottom = '20px';
+      scenarioDiv.style.color = '#33ff00';
+      scenarioDiv.style.fontFamily = '"JetBrains Mono", monospace';
+      scenarioDiv.style.fontSize = '0.85rem';
+      scenarioDiv.style.whiteSpace = 'pre-wrap';
+      scenarioDiv.style.textAlign = 'left';
+      scenarioDiv.style.lineHeight = '1.5';
+      scenarioDiv.style.boxShadow = 'inset 0 0 10px rgba(51, 255, 0, 0.05)';
+      scenarioDiv.textContent = this.currentQuestion.scenario;
+      this.questionElement.parentNode.insertBefore(scenarioDiv, this.questionElement);
+    }
     
     // Set question text
     this.questionElement.textContent = this.currentQuestion.question;
