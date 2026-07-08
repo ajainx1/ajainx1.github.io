@@ -60,6 +60,7 @@ export class CharityQuiz {
     if(this.verifyCodeBtn) {
       this.verifyCodeBtn.addEventListener('click', () => this.verifyOtp());
     }
+  }
 
   init() {
     this.loadUserSession();
