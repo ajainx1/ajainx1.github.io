@@ -16,6 +16,10 @@ export class CharityQuiz {
     this.headerLogo = document.getElementById('quiz-header-logo');
     this.categoryPills = document.querySelectorAll('.category-pill');
     
+    // Appreciation Visual
+    this.plateIcon = document.getElementById('plate-icon');
+    this.floatingHeart = document.getElementById('floating-heart');
+    
     this.init();
   }
 
@@ -152,7 +156,26 @@ export class CharityQuiz {
   }
 
   animateRiceBowl() {
-    // The rice emoji and the score pop handle the feedback effectively.
+    if (this.plateIcon && this.floatingHeart) {
+      // Bump the plate
+      this.plateIcon.classList.add('bump');
+      
+      // Float the heart
+      // Clone it to allow overlapping animations if they answer really fast
+      const heartClone = this.floatingHeart.cloneNode(true);
+      heartClone.classList.add('animate');
+      heartClone.style.opacity = '1';
+      this.plateIcon.parentElement.appendChild(heartClone);
+
+      setTimeout(() => {
+        this.plateIcon.classList.remove('bump');
+      }, 200);
+
+      // Remove clone after animation ends
+      setTimeout(() => {
+        heartClone.remove();
+      }, 1000);
+    }
   }
 }
 

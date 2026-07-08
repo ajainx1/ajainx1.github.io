@@ -59,5 +59,53 @@ export const quizData = {
       { question: "In backtesting, what does 'Overfitting' mean?", options: ["Using too much historical data", "When a model is tailored too closely to past data and fails in live trading", "Running a script that crashes the server", "Having too many variables in a spreadsheet"], answer: 1 },
       { question: "What is 'Market Making'?", options: ["Providing liquidity by simultaneously offering to buy and sell at publicly quoted prices", "Manipulating the market through false news", "Creating new cryptocurrency tokens", "Regulating financial markets"], answer: 0 }
     ]
+  },
+  english: {
+    title: "Global FreeRice",
+    description: "Test your English Vocabulary and donate rice to those in need!",
+    questions: [
+      { question: "Which word means 'to improve or make better'?", options: ["Ameliorate", "Aggravate", "Appease", "Alienate"], answer: 0 },
+      { question: "What is a synonym for 'Ephemeral'?", options: ["Eternal", "Fleeting", "Solid", "Glowing"], answer: 1 },
+      { question: "Which word means 'a state of physical or mental weariness'?", options: ["Lassitude", "Fortitude", "Aptitude", "Platitude"], answer: 0 },
+      { question: "What does 'Ubiquitous' mean?", options: ["Rare", "Found everywhere", "Hidden", "Expensive"], answer: 1 },
+      { question: "What is an antonym for 'Cacophony'?", options: ["Harmony", "Noise", "Disaster", "Symphony"], answer: 0 },
+      { question: "Which word describes someone who is 'talkative'?", options: ["Taciturn", "Loquacious", "Reticent", "Stoic"], answer: 1 },
+      { question: "What does 'Mitigate' mean?", options: ["To make less severe", "To instigate", "To copy", "To confuse"], answer: 0 },
+      { question: "What is a synonym for 'Lucid'?", options: ["Opaque", "Clear", "Confusing", "Dark"], answer: 1 },
+      { question: "Which word means 'stubbornly refusing to change one's opinion'?", options: ["Obdurate", "Pliable", "Fickle", "Docile"], answer: 0 },
+      { question: "What does 'Pragmatic' mean?", options: ["Idealistic", "Practical", "Emotional", "Theoretical"], answer: 1 }
+    ]
+  },
+  math: {
+    title: "Global FreeRice",
+    description: "Test your Basic Mathematics and donate rice to those in need!",
+    questions: [
+      { question: "What is 15% of 200?", options: ["15", "20", "30", "45"], answer: 2 },
+      { question: "If 3x + 5 = 20, what is x?", options: ["3", "5", "10", "15"], answer: 1 },
+      { question: "What is the square root of 144?", options: ["10", "11", "12", "14"], answer: 2 },
+      { question: "What is 7 cubed (7³)?", options: ["21", "49", "343", "490"], answer: 2 },
+      { question: "What is the next prime number after 7?", options: ["8", "9", "10", "11"], answer: 3 },
+      { question: "If a triangle has a base of 4 and a height of 6, what is its area?", options: ["10", "12", "24", "48"], answer: 1 },
+      { question: "What is 25 * 12?", options: ["250", "275", "300", "325"], answer: 2 },
+      { question: "Solve: (8 + 2) * 5 - 10", options: ["0", "40", "50", "90"], answer: 1 },
+      { question: "If a circle has a radius of 5, what is its diameter?", options: ["2.5", "5", "10", "15"], answer: 2 },
+      { question: "What is 1000 divided by 8?", options: ["110", "125", "150", "175"], answer: 1 }
+    ]
+  },
+  general: {
+    title: "Global FreeRice",
+    description: "Test your General Knowledge and donate rice to those in need!",
+    questions: [
+      { question: "What is the capital of Australia?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], answer: 2 },
+      { question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], answer: 2 },
+      { question: "Which planet is known as the Red Planet?", options: ["Venus", "Jupiter", "Saturn", "Mars"], answer: 3 },
+      { question: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], answer: 3 },
+      { question: "In which year did the Titanic sink?", options: ["1905", "1912", "1920", "1931"], answer: 1 },
+      { question: "What is the chemical symbol for Gold?", options: ["Ag", "Au", "Gd", "Go"], answer: 1 },
+      { question: "Who wrote 'Romeo and Juliet'?", options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"], answer: 1 },
+      { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Quartz"], answer: 2 },
+      { question: "Which continent is the Sahara Desert located on?", options: ["Asia", "South America", "Africa", "Australia"], answer: 2 },
+      { question: "How many continents are there on Earth?", options: ["5", "6", "7", "8"], answer: 2 }
+    ]
   }
 };

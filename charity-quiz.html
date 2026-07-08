@@ -150,6 +150,44 @@
       box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
     }
 
+    /* Appreciation Visual */
+    .appreciation-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 15px;
+      height: 60px;
+      position: relative;
+    }
+    .plate-icon {
+      font-size: 2.5rem;
+      transition: transform 0.2s;
+    }
+    .plate-icon.bump {
+      transform: scale(1.2) translateY(-5px);
+    }
+    .floating-heart {
+      position: absolute;
+      top: 20px;
+      font-size: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+    }
+    @keyframes floatUp {
+      0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(-40px) scale(1.5);
+      }
+    }
+    .floating-heart.animate {
+      animation: floatUp 1s ease-out forwards;
+    }
+
     /* Question Card */
     .question-card {
       background: rgba(20, 20, 20, 0.6);
@@ -264,9 +302,12 @@
   </header>
 
   <div class="quiz-container" id="quiz-container">
-    <div class="category-selector" id="category-selector">
+    <div class="category-selector" id="category-selector" style="flex-wrap: wrap;">
       <button class="category-pill active" data-category="cybersecurity">Cybersecurity</button>
       <button class="category-pill" data-category="trading">Algorithmic Trading</button>
+      <button class="category-pill" data-category="english">English Vocab</button>
+      <button class="category-pill" data-category="math">Basic Math</button>
+      <button class="category-pill" data-category="general">General Knowledge</button>
     </div>
 
     <div class="score-board">
@@ -275,7 +316,11 @@
         <span class="rice-icon">🍚</span>
         <span class="score-number" id="rice-score">0</span>
       </div>
-      <div class="streak-badge" id="streak-badge"></div>
+      <div class="appreciation-container">
+        <div class="floating-heart" id="floating-heart">💚</div>
+        <div class="plate-icon" id="plate-icon">🤲🥣</div>
+      </div>
+      <div class="streak-badge" id="streak-badge">🔥 3 Correct in a Row!</div>
     </div>
 
     <div class="question-card">
