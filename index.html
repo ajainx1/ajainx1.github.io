@@ -135,6 +135,7 @@
           <a href="#contact" class="btn btn-primary">Get in Touch</a>
           <a href="#experience" class="btn btn-ghost">View Experience</a>
           <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn btn-ghost" onclick="showToast('Downloading CV...')">Download CV</a>
+          <a href="#" id="charity-trigger-btn" class="btn btn-ghost" style="border-color: #33ff00; color: #33ff00;">Support Charities</a>
         </div>
         <div class="stats-grid">
           <div class="stat-box"><div class="stat-num" data-target="5" data-suffix="+">0</div><div class="stat-label">Years SecOps</div></div>
@@ -508,5 +509,18 @@
 </div>
 
 <script src="script.js"></script>
+<script type="module">
+  import { CharityModal } from './js/modules/CharityModal.js';
+  document.addEventListener('DOMContentLoaded', () => {
+    const charityModal = new CharityModal();
+    const charityLink = document.getElementById('charity-trigger-btn');
+    if (charityLink) {
+        charityLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            charityModal.open();
+        });
+    }
+  });
+</script>
 </body>
 </html>
