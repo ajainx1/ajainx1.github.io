@@ -171,6 +171,51 @@
       color: #33ff00;
       box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
     }
+    
+    /* Recipient Selector */
+    .recipient-section {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .recipient-title {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .recipient-selector {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 5px;
+      backdrop-filter: blur(10px);
+    }
+    .recipient-btn {
+      background: transparent;
+      border: none;
+      color: #888;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .recipient-btn:hover {
+      color: #ddd;
+    }
+    .recipient-btn.active {
+      background: rgba(51, 255, 0, 0.15);
+      color: #33ff00;
+      box-shadow: 0 4px 15px rgba(51, 255, 0, 0.15), inset 0 0 0 1px rgba(51, 255, 0, 0.3);
+    }
 
     /* Appreciation Visual */
     .appreciation-container {
@@ -344,16 +389,12 @@
            data-logo_alignment="left">
       </div>
       
+      <button class="theme-toggle-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+        ☀️ Light Mode
+      </button>
+
       <button id="phone-login-btn" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
         📱 Phone Sign-In
-      </button>
-      
-      <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
-        🔑 Demo Sign-In
-      </button>
-      
-      <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
-        🔑 Demo Sign-In
       </button>
       
       <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
@@ -399,6 +440,15 @@
       <button class="category-pill" data-category="general">General Knowledge</button>
     </div>
 
+    <div class="recipient-section">
+      <div class="recipient-title">Who are we feeding today?</div>
+      <div class="recipient-selector" id="recipient-selector">
+        <button class="recipient-btn active" data-recipient="human">🤲 Humans</button>
+        <button class="recipient-btn" data-recipient="birds">🕊️ Birds</button>
+        <button class="recipient-btn" data-recipient="cows">🐄 Cows</button>
+      </div>
+    </div>
+
     <div class="score-board">
       <h2>Rice Grains Donated</h2>
       <div class="score-number-wrap">
@@ -427,5 +477,6 @@
   </footer>
 
   <script type="module" src="js/modules/CharityQuiz.js"></script>
+  <script type="module" src="js/modules/ThemeToggle.js"></script>
 </body>
 </html>

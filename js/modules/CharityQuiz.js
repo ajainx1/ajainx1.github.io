@@ -16,6 +16,15 @@ export class CharityQuiz {
     this.headerLogo = document.getElementById('quiz-header-logo');
     this.categoryPills = document.querySelectorAll('.category-pill');
     
+    // Recipient State
+    this.currentRecipient = 'human';
+    this.recipientBtns = document.querySelectorAll('.recipient-btn');
+    this.recipientIcons = {
+      'human': { base: '🤲🥣', float: '💚' },
+      'birds': { base: '🕊️🌾', float: '✨' },
+      'cows': { base: '🐄🌿', float: '🌾' }
+    };
+    
     // Appreciation Visual
     this.plateIcon = document.getElementById('plate-icon');
     this.floatingHeart = document.getElementById('floating-heart');
@@ -79,7 +88,30 @@ export class CharityQuiz {
     this.loadUserSession();
     this.updateScoreDisplay();
     this.attachCategoryListeners();
+    this.attachRecipientListeners();
     this.setCategory(this.currentCategory);
+  }
+
+  attachRecipientListeners() {
+    if (!this.recipientBtns) return;
+    this.recipientBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const recipient = e.target.getAttribute('data-recipient');
+        if (!recipient || !this.recipientIcons[recipient]) return;
+        
+        // Update UI state
+        this.recipientBtns.forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        // Update data state
+        this.currentRecipient = recipient;
+        
+        // Update icon visually
+        if (this.plateIcon) {
+          this.plateIcon.textContent = this.recipientIcons[recipient].base;
+        }
+      });
+    });
   }
 
   parseJwt(token) {
@@ -366,19 +398,21 @@ export class CharityQuiz {
 
   animateRiceBowl() {
     if (this.plateIcon && this.floatingHeart) {
+      // Set the correct floating emoji for the current recipient
+      const currentIcons = this.recipientIcons[this.currentRecipient];
+      this.floatingHeart.textContent = currentIcons.float;
+      
       // Bump the plate
       this.plateIcon.classList.add('bump');
-      
-      // Float the heart
-      // Clone it to allow overlapping animations if they answer really fast
+      setTimeout(() => {
+        this.plateIcon.classList.remove('bump');
+      }, 200);
+
+      // Clone the heart for the animation so multiple can overlap if answered fast
       const heartClone = this.floatingHeart.cloneNode(true);
       heartClone.classList.add('animate');
       heartClone.style.opacity = '1';
       this.plateIcon.parentElement.appendChild(heartClone);
-
-      setTimeout(() => {
-        this.plateIcon.classList.remove('bump');
-      }, 200);
 
       // Remove clone after animation ends
       setTimeout(() => {
