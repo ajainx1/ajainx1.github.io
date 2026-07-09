@@ -160,6 +160,26 @@ img { max-width: 100%; }
   border-radius: 2px; 
 }
 
+.landing-btn {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.2rem;
+  margin-bottom: 0.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  cursor: pointer;
+}
+.landing-btn:hover {
+  background: var(--card2);
+  border-color: var(--border2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
 .landing-btn.primary { border-color: var(--border2); background: var(--card2); }
 .landing-btn.primary:hover { background: var(--green-dim); border-color: var(--green); }
 
