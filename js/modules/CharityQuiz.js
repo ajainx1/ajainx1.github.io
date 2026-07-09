@@ -22,7 +22,8 @@ export class CharityQuiz {
     this.recipientIcons = {
       'human': { base: '🤲🥣', float: '💚' },
       'birds': { base: '🕊️🌾', float: '✨' },
-      'cows': { base: '🐄🌿', float: '🌾' }
+      'cows': { base: '🐄🌿', float: '🌾' },
+      'dogs': { base: '🐕🦴', float: '🦴' }
     };
     
     // Appreciation Visual

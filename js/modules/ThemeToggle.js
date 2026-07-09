@@ -49,7 +49,11 @@ export class ThemeToggle {
   }
 }
 
-// Auto-initialize on load so we don't need to change every single HTML page individually if we just import it
-document.addEventListener('DOMContentLoaded', () => {
+// Auto-initialize on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    new ThemeToggle();
+  });
+} else {
   new ThemeToggle();
-});
+}
