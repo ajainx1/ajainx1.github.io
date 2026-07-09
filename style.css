@@ -38,13 +38,19 @@ body.theme-light {
   --border2: rgba(22, 163, 74, 0.4);
   --muted: #64746a;
 }
-/* Ensure dark mode colors remain for hero banner */
+/* Ensure dark mode colors remain for hero banner and landing overlay */
 body.theme-light .hero-section, 
-body.theme-light .hero-section * {
+body.theme-light .hero-section *,
+body.theme-light #landing,
+body.theme-light #landing * {
   --bg: #060a07;
   --card: #0d140f;
   --fg: #e7efe9;
   --green: #4ade80;
+  --border: rgba(74, 222, 128, 0.15);
+  --border2: rgba(74, 222, 128, 0.28);
+  --card2: #121c15;
+  --green-dim: rgba(74, 222, 128, 0.12);
 }
 
 /* ═══════════════════════════════════════
