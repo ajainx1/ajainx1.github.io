@@ -37,6 +37,7 @@ body.theme-light {
   --border: rgba(22, 163, 74, 0.25);
   --border2: rgba(22, 163, 74, 0.4);
   --muted: #64746a;
+}
 /* Ensure dark mode colors remain for hero banner */
 body.theme-light .hero-section, 
 body.theme-light .hero-section * {
@@ -548,7 +549,7 @@ section { margin-bottom: 6.5rem; }
   box-shadow: 0 0 6px var(--green); animation: pulse 1.8s infinite;
 }
 .status-badge.ghost { background: rgba(255,255,255,.04); border-color: var(--border); color: var(--muted); }
-
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)} }
 
 .hero-left h1 { font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 800; line-height: 1.1; margin-bottom: 1rem; letter-spacing: -1px; }
 .hero-greeting { display: block; font-size: .95rem; font-family: var(--mono); color: var(--muted); font-weight: 500; margin-bottom: .25rem; letter-spacing: 0; }
