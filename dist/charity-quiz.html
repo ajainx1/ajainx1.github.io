@@ -29,10 +29,12 @@
     /* Header */
     .header-bar {
       width: 100%;
-      padding: 20px 40px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
       border-bottom: 1px solid var(--border);
       background: var(--bg);
       backdrop-filter: blur(10px);
@@ -42,7 +44,7 @@
       z-index: 100;
     }
     .back-btn {
-      color: #33ff00;
+      color: var(--green);
       text-decoration: none;
       font-family: 'JetBrains Mono', monospace;
       font-size: 1rem;
@@ -52,18 +54,61 @@
       gap: 8px;
     }
     .back-btn:hover {
-      text-shadow: 0 0 8px rgba(51, 255, 0, 0.5);
+      text-shadow: 0 0 8px var(--green-glow);
     }
     .logo-area {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
       font-size: 1.2rem;
-      color: #fff;
+      color: var(--fg);
       display: flex;
       align-items: center;
       gap: 10px;
     }
-    .logo-area span { color: #33ff00; }
+    .logo-area span { color: var(--green); }
+    
+    .auth-area {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 200px;
+    }
+    .header-action-btn {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--fg);
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .header-action-btn:hover {
+      background: var(--border);
+    }
+    .ai-btn {
+      color: #9333ea;
+      background: rgba(147, 51, 234, 0.1);
+      border-color: rgba(147, 51, 234, 0.3);
+    }
+    .ai-btn:hover {
+      background: rgba(147, 51, 234, 0.2);
+    }
+    .demo-btn {
+      color: var(--green);
+      background: var(--green-dim);
+      border-color: var(--green-glow);
+    }
+    .demo-btn:hover {
+      background: rgba(45, 179, 45, 0.2);
+    }
 
     /* Main Container */
     .quiz-container {
@@ -101,9 +146,9 @@
     .score-number {
       font-size: 4.5rem;
       font-weight: 800;
-      color: #33ff00;
+      color: var(--green);
       font-family: 'JetBrains Mono', monospace;
-      text-shadow: 0 0 20px rgba(51, 255, 0, 0.3);
+      text-shadow: 0 0 20px var(--green-glow);
       line-height: 1;
     }
     .rice-icon {
@@ -149,10 +194,10 @@
       color: var(--fg);
     }
     .category-pill.active {
-      background: rgba(51, 255, 0, 0.15);
-      border-color: #33ff00;
-      color: #33ff00;
-      box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--green);
+      box-shadow: 0 0 10px var(--green-glow);
     }
     
     /* Recipient Selector */
@@ -195,9 +240,9 @@
       color: var(--fg);
     }
     .recipient-btn.active {
-      background: rgba(51, 255, 0, 0.15);
-      color: #33ff00;
-      box-shadow: 0 4px 15px rgba(51, 255, 0, 0.15), inset 0 0 0 1px rgba(51, 255, 0, 0.3);
+      background: var(--green-dim);
+      color: var(--green);
+      box-shadow: 0 4px 15px var(--green-glow), inset 0 0 0 1px var(--green-glow);
     }
 
     /* Appreciation Visual */
@@ -258,7 +303,7 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; height: 4px;
-      background: linear-gradient(90deg, transparent, #33ff00, transparent);
+      background: linear-gradient(90deg, transparent, var(--green), transparent);
       border-radius: 16px 16px 0 0;
       opacity: 0.5;
     }
@@ -310,7 +355,7 @@
       background: var(--green-dim);
       border-color: var(--green);
       color: var(--fg);
-      box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
+      box-shadow: 0 0 20px var(--green-glow);
     }
     .quiz-option-btn.incorrect {
       background: rgba(255, 51, 51, 0.15);
@@ -327,7 +372,7 @@
       transition: opacity 0.3s;
     }
     .quiz-feedback.show { opacity: 1; }
-    .quiz-feedback.success { color: #33ff00; }
+    .quiz-feedback.success { color: var(--green); }
     .quiz-feedback.error { color: #ff3333; }
 
     /* Footer */
@@ -357,7 +402,7 @@
     <a href="index.html" class="back-btn">&larr; Return to Portfolio</a>
     <div class="logo-area" id="quiz-header-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">Cyber<span>FreeRice</span></div>
     
-    <div class="auth-area" style="display: flex; align-items: center; justify-content: flex-end; min-width: 200px;">
+    <div class="auth-area">
       <div id="g_id_onload"
            data-client_id="712067331579-nm8pi4bhp4efd7h81sjpltsiou9dfab5.apps.googleusercontent.com"
            data-context="signin"
@@ -374,26 +419,26 @@
            data-logo_alignment="left">
       </div>
       
-      <button class="theme-toggle-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+      <button class="theme-toggle-btn header-action-btn">
         ☀️ Light Mode
       </button>
 
-      <button id="phone-login-btn" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+      <button id="phone-login-btn" class="header-action-btn">
         📱 Phone Sign-In
       </button>
       
-      <button id="ai-settings-btn" style="background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.4); color: #c084fc; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;" aria-label="Set Gemini API Key">
+      <button id="ai-settings-btn" class="header-action-btn ai-btn" aria-label="Set Gemini API Key">
         ✨ AI Mode
       </button>
       
-      <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+      <button id="demo-login-btn" class="header-action-btn demo-btn">
         🔑 Demo Sign-In
       </button>
       
-      <div id="user-profile" style="display: none; align-items: center; gap: 12px; color: #fff; font-family: 'Inter', sans-serif;">
-         <img id="user-avatar" src="" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid #33ff00; object-fit: cover;">
-         <span id="user-name" style="font-weight: 600; font-size: 0.9rem;"></span>
-         <button id="logout-btn" style="background: rgba(255, 51, 51, 0.1); border: 1px solid rgba(255, 51, 51, 0.4); color: #ff3333; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s;">Logout</button>
+      <div id="user-profile" style="display: none; align-items: center; gap: 12px; color: var(--fg); font-family: 'Inter', sans-serif;">
+         <img id="user-avatar" src="" style="width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--green); object-fit: cover;">
+         <span id="user-name" style="font-weight: 600; font-size: 0.85rem;"></span>
+         <button id="logout-btn" style="background: rgba(255, 51, 51, 0.1); border: 1px solid rgba(255, 51, 51, 0.4); color: #ff3333; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.75rem; font-weight: 600; transition: all 0.2s;">Logout</button>
       </div>
     </div>
   </header>
