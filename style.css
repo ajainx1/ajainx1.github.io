@@ -40,7 +40,9 @@ body.theme-light {
 }
 /* Ensure dark mode colors remain for hero banner */
 body.theme-light .hero-section, 
-body.theme-light .hero-section * {
+body.theme-light .hero-section *,
+body.theme-light #landing,
+body.theme-light #landing * {
   --bg: #060a07;
   --card: #0d140f;
   --fg: #e7efe9;
