@@ -57,6 +57,7 @@ function showLanding() {
 }
 
 function landingGo(dest) {
+  if (window.triggerHaptic) window.triggerHaptic('LIGHT');
   var landing = document.getElementById('landing');
   if (landing) {
     landing.classList.add('landing-fadeout');
@@ -390,6 +391,7 @@ setTimeout(function() {
 if (termInput) {
   termInput.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
+      if (window.triggerHaptic) window.triggerHaptic('LIGHT');
       var v = termInput.value;
       termInput.value = '';
       histIdx = -1;
@@ -481,6 +483,7 @@ if (termBody) {
     if (!inputEl) return;
     var text = inputEl.value.trim();
     if (!text) return;
+    if (window.triggerHaptic) window.triggerHaptic('MEDIUM');
     appendMessage('user', text);
     inputEl.value = '';
     var typing = document.createElement('div');
@@ -490,11 +493,13 @@ if (termBody) {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     getAIResponse(text).then(function(reply) {
       typing.remove();
+      if (window.triggerHaptic) window.triggerHaptic('LIGHT');
       appendMessage('bot', reply);
     });
   }
 
   toggleBtn.addEventListener('click', function() {
+    if (window.triggerHaptic) window.triggerHaptic('LIGHT');
     windowEl.classList.toggle('active');
     if (windowEl.classList.contains('active') && inputEl) inputEl.focus();
   });

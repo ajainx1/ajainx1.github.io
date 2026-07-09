@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://securetoken.googleapis.com https://identitytoolkit.googleapis.com https://generativelanguage.googleapis.com; frame-src 'self' https://accounts.google.com;">
   <title>Cyber FreeRice - Support Charities</title>
   <link rel="icon" type="image/png" href="/assets/charity_favicon-BoHAXqhK.png">
@@ -378,7 +378,7 @@
     /* Footer */
     .footer-bar {
       width: 100%;
-      padding: 30px 20px;
+      padding: 30px 20px calc(30px + env(safe-area-inset-bottom)) 20px;
       text-align: center;
       border-top: 1px solid var(--border);
       margin-top: auto;
@@ -392,9 +392,9 @@
     }
     .footer-bar a:hover { text-decoration: underline; }
   </style>
-  <script type="module" crossorigin src="/assets/charityQuiz-ByTzWBxX.js"></script>
-  <link rel="modulepreload" crossorigin href="/assets/ThemeToggle-Cko5oU7n.js">
-  <link rel="stylesheet" crossorigin href="/assets/ThemeToggle-DoLluhal.css">
+  <script type="module" crossorigin src="/assets/charityQuiz-DOp2cyxA.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/ThemeToggle-B1JrYqQ4.js">
+  <link rel="stylesheet" crossorigin href="/assets/ThemeToggle-CYlStNB4.css">
 </head>
 <body>
 
@@ -515,6 +515,6 @@
     <strong>How it works:</strong> For every correct answer, 10 grains of rice are financially supported and donated to global food programs.<br>
     <em>An initiative supported by Aditya Jain and our sponsors. <a href="index.html#contact">Partner with us</a>.</em>
   </footer>
-
+
 </body>
 </html>

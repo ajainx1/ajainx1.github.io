@@ -22,6 +22,9 @@
   "homepage": "https://github.com/ajainx1/ajainx1.github.io#readme",
   "dependencies": {
     "@capacitor/core": "^8.4.1",
+    "@capacitor/haptics": "^8.0.2",
+    "@capacitor/splash-screen": "^8.0.1",
+    "@capacitor/status-bar": "^8.0.2",
     "@google/generative-ai": "^0.24.1"
   },
   "devDependencies": {

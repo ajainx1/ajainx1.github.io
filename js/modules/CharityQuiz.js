@@ -376,6 +376,7 @@ export class CharityQuiz {
     allButtons.forEach(b => b.disabled = true);
 
     if (selectedIndex === this.currentQuestion.answer) {
+      if (window.triggerHaptic) window.triggerHaptic('MEDIUM');
       // Correct Answer
       btnElement.classList.add('correct');
       this.score += 10;
@@ -395,6 +396,7 @@ export class CharityQuiz {
       this.updateStreakDisplay();
       this.animateRiceBowl();
     } else {
+      if (window.triggerHaptic) window.triggerHaptic('HEAVY');
       // Incorrect Answer
       this.streak = 0; // Reset streak
       this.updateStreakDisplay();
