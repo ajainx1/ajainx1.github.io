@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://securetoken.googleapis.com https://identitytoolkit.googleapis.com; frame-src 'self' https://accounts.google.com;">
   <title>Aditya Jain — Cybersecurity Engineer & Subject Matter Expert</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="description" content="Portfolio of Aditya Jain — 5+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, Government Infrastructure Security, Active Directory Exploitation, and AI Automation." />
@@ -40,7 +41,7 @@
     <div class="landing-divider"></div>
     <p class="landing-prompt">Select a destination:</p>
     <div class="landing-options">
-      <button class="landing-btn" id="land-projects" onclick="landingGo('projects')">
+      <button class="landing-btn" id="land-projects" onclick="landingGo('projects')" aria-label="Open Jumpstreet Portal">
         <span class="landing-btn-icon">&gt;_</span>
         <span class="landing-btn-text">
           <strong>Jumpstreet Portal</strong>
@@ -48,7 +49,7 @@
         </span>
         <span class="landing-btn-meta">HFT Gateway</span>
       </button>
-      <button class="landing-btn" id="land-whoami" onclick="landingGo('enter')">
+      <button class="landing-btn" id="land-whoami" onclick="landingGo('enter')" aria-label="View Full Portfolio">
         <span class="landing-btn-icon">$~</span>
         <span class="landing-btn-text">
           <strong>Full Experience, Projects &amp; Certifications</strong>
@@ -56,7 +57,7 @@
         </span>
         <span class="landing-btn-meta">Portfolio</span>
       </button>
-      <button class="landing-btn primary" id="land-enter" onclick="landingGo('noc')">
+      <button class="landing-btn primary" id="land-enter" onclick="landingGo('noc')" aria-label="Open NOC Monitor">
         <span class="landing-btn-icon">::</span>
         <span class="landing-btn-text">
           <strong>NOC Monitor</strong>
@@ -64,7 +65,7 @@
         </span>
         <span class="landing-btn-meta">Live Link</span>
       </button>
-      <button class="landing-btn game-highlight" id="land-charity">
+      <button class="landing-btn game-highlight" id="land-charity" aria-label="Play Cyber FreeRice Game">
         <span class="landing-btn-icon">🎮</span>
         <span class="landing-btn-text">
           <strong>Play Cyber FreeRice</strong>
@@ -557,7 +558,7 @@
   </div>
 </div>
 
-<script src="script.js"></script>
+<script type="module" src="script.js"></script>
 <script type="module">
   document.addEventListener('DOMContentLoaded', () => {
     const charityLink = document.getElementById('charity-trigger-btn');
@@ -578,6 +579,6 @@
     }
   });
 </script>
-<script src="js/modules/ThemeToggle.js?v=2"></script>
+<script type="module" src="js/modules/ThemeToggle.js"></script>
 </body>
 </html>

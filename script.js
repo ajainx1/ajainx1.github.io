@@ -509,3 +509,7 @@ if (termBody) {
     localStorage.setItem('GEMINI_API_KEY', key); return 'Key saved.';
   };
 })();
+
+window.landingGo = landingGo;
+window.showLanding = showLanding;
+window.startAnimations = startAnimations;

@@ -43,7 +43,9 @@ export class CharityQuiz {
     this.userName = document.getElementById('user-name');
     this.logoutBtn = document.getElementById('logout-btn');
     this.demoLoginBtn = document.getElementById('demo-login-btn');
+    this.aiSettingsBtn = document.getElementById('ai-settings-btn');
     this.currentUser = null;
+    this.geminiAI = null;
     
     // Phone Auth Modal Elements
     this.phoneModal = document.getElementById('phone-auth-modal');
@@ -70,11 +72,8 @@ export class CharityQuiz {
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
     }
-    if(this.demoLoginBtn) {
-      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
-    }
-    if(this.demoLoginBtn) {
-      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
+    if(this.aiSettingsBtn) {
+      this.aiSettingsBtn.addEventListener('click', () => this.handleAiSettings());
     }
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
@@ -282,7 +281,40 @@ export class CharityQuiz {
     this.loadNextQuestion();
   }
 
-  loadNextQuestion() {
+  handleAiSettings() {
+    const key = prompt("Enter your Gemini API Key for dynamic AI questions:\n(This will be stored securely in your local browser only.)");
+    if (key) {
+      localStorage.setItem('geminiApiKey', key.trim());
+      alert("API Key saved! AI Mode enabled.");
+      this.geminiAI = null;
+      this.loadNextQuestion();
+    } else if (key === "") {
+      localStorage.removeItem('geminiApiKey');
+      alert("API Key removed. Reverting to static questions.");
+      this.loadNextQuestion();
+    }
+  }
+
+  async loadNextQuestion() {
+    this.questionElement.textContent = "Loading question...";
+    this.optionsElement.innerHTML = '';
+    
+    let apiKey = localStorage.getItem('geminiApiKey');
+    if (apiKey) {
+      try {
+        if (!this.geminiAI) {
+           const module = await import('./GeminiAI.js');
+           this.geminiAI = new module.GeminiAI(apiKey);
+        }
+        const aiQuestion = await this.geminiAI.generateQuestion(this.currentCategory);
+        this.currentQuestion = aiQuestion;
+        this.renderQuestion();
+        return;
+      } catch (err) {
+        console.error("Failed to load from Gemini, falling back to static:", err);
+      }
+    }
+    
     const questions = quizData[this.currentCategory].questions;
     // Pick a random question from the active category
     const randomIndex = Math.floor(Math.random() * questions.length);

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://accounts.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://securetoken.googleapis.com https://identitytoolkit.googleapis.com https://generativelanguage.googleapis.com; frame-src 'self' https://accounts.google.com;">
   <title>Cyber FreeRice - Support Charities</title>
   <link rel="icon" type="image/png" href="charity_favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -396,6 +397,10 @@
         📱 Phone Sign-In
       </button>
       
+      <button id="ai-settings-btn" style="background: rgba(147, 51, 234, 0.1); border: 1px solid rgba(147, 51, 234, 0.4); color: #c084fc; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;" aria-label="Set Gemini API Key">
+        ✨ AI Mode
+      </button>
+      
       <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
         🔑 Demo Sign-In
       </button>
@@ -442,19 +447,19 @@
     <div class="recipient-section">
       <div class="recipient-title">Choose Your Karmic Path</div>
       <div class="recipient-selector" id="recipient-selector" style="flex-wrap: wrap; justify-content: center; gap: 8px;">
-        <button class="recipient-btn active" data-recipient="human">🤲 Humans</button>
-        <button class="recipient-btn" data-recipient="birds">🕊️ Birds</button>
-        <button class="recipient-btn" data-recipient="cows">🐄 Cows</button>
-        <button class="recipient-btn" data-recipient="dogs">🐕 Dogs</button>
-        <button class="recipient-btn" data-recipient="moon">🌕 Moon (2) - Mothers & Women</button>
-        <button class="recipient-btn" data-recipient="jupiter">🪐 Jupiter (3) - Students & Education</button>
-        <button class="recipient-btn" data-recipient="rahu">🌑 Rahu (4) - Sick & Homeless</button>
-        <button class="recipient-btn" data-recipient="venus">✨ Venus (6) - Women's Shelters</button>
-        <button class="recipient-btn" data-recipient="saturn">🪐 Saturn (8) - Elderly & Disabled</button>
+        <button class="recipient-btn active" data-recipient="human" aria-label="Donate to Humans">🤲 Humans</button>
+        <button class="recipient-btn" data-recipient="birds" aria-label="Donate to Birds">🕊️ Birds</button>
+        <button class="recipient-btn" data-recipient="cows" aria-label="Donate to Cows">🐄 Cows</button>
+        <button class="recipient-btn" data-recipient="dogs" aria-label="Donate to Dogs">🐕 Dogs</button>
+        <button class="recipient-btn" data-recipient="moon" aria-label="Donate to Moon Mothers and Women">🌕 Moon (2) - Mothers & Women</button>
+        <button class="recipient-btn" data-recipient="jupiter" aria-label="Donate to Jupiter Students and Education">🪐 Jupiter (3) - Students & Education</button>
+        <button class="recipient-btn" data-recipient="rahu" aria-label="Donate to Rahu Sick and Homeless">🌑 Rahu (4) - Sick & Homeless</button>
+        <button class="recipient-btn" data-recipient="venus" aria-label="Donate to Venus Women Shelters">✨ Venus (6) - Women's Shelters</button>
+        <button class="recipient-btn" data-recipient="saturn" aria-label="Donate to Saturn Elderly and Disabled">🪐 Saturn (8) - Elderly & Disabled</button>
       </div>
     </div>
 
-    <div class="score-board">
+    <div class="score-board" aria-live="polite">
       <h2>Karmic Impact Generated</h2>
       <div class="score-number-wrap">
         <span class="rice-icon">🌟</span>
@@ -482,6 +487,6 @@
   </footer>
 
   <script type="module" src="js/modules/CharityQuiz.js"></script>
-  <script src="js/modules/ThemeToggle.js?v=2"></script>
+  <script type="module" src="js/modules/ThemeToggle.js"></script>
 </body>
 </html>
