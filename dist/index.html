@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aditya Jain — Cybersecurity Engineer & Subject Matter Expert</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <meta name="description" content="Portfolio of Aditya Jain — 5+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, Government Infrastructure Security, Active Directory Exploitation, and AI Automation." />
   <meta property="og:title" content="Aditya Jain — Cybersecurity Engineer & SME" />
   <meta property="og:description" content="SecOps · Purple Teaming · EDR/SIEM SME · AD Exploitation · Red Team Aspirant — open to relocation & remote worldwide." />
@@ -45,6 +46,7 @@
           <strong>Jumpstreet Portal</strong>
           <span>Algorithmic Trading &amp; Cloud Infrastructure</span>
         </span>
+        <span class="landing-btn-meta">HFT Gateway</span>
       </button>
       <button class="landing-btn" id="land-whoami" onclick="landingGo('enter')">
         <span class="landing-btn-icon">$~</span>
@@ -52,6 +54,7 @@
           <strong>Full Experience, Projects &amp; Certifications</strong>
           <span>Professional Profile &amp; Career Summary</span>
         </span>
+        <span class="landing-btn-meta">Portfolio</span>
       </button>
       <button class="landing-btn primary" id="land-enter" onclick="landingGo('noc')">
         <span class="landing-btn-icon">::</span>
@@ -59,17 +62,53 @@
           <strong>NOC Monitor</strong>
           <span>Bihar State NOC Admin Portal (Sanitized &amp; Mocked)</span>
         </span>
+        <span class="landing-btn-meta">Live Link</span>
       </button>
-      <button class="landing-btn" id="land-charity">
-        <span class="landing-btn-icon">&lt;3</span>
+      <button class="landing-btn game-highlight" id="land-charity">
+        <span class="landing-btn-icon">🎮</span>
         <span class="landing-btn-text">
-          <strong>Support Charities</strong>
-          <span>Organizations making an impact in cybersecurity</span>
+          <strong>Play Cyber FreeRice</strong>
+          <span>Test your knowledge & donate rice to food programs</span>
         </span>
+        <span class="landing-btn-meta">Community</span>
       </button>
+    </div>
+    
+    <div class="landing-telemetry">
+      <div class="landing-telemetry-item">
+        <span class="landing-telemetry-dot"></span>
+        <span>SEC_CORE: ACTIVE</span>
+      </div>
+      <div class="landing-telemetry-item">
+        <span class="landing-telemetry-dot"></span>
+        <span>AD_HARDENED: TRUE</span>
+      </div>
+      <div class="landing-telemetry-item">
+        <span class="landing-telemetry-dot"></span>
+        <span>BGP_RTT: 18.2ms</span>
+      </div>
+      <div class="landing-telemetry-item">
+        <span class="landing-telemetry-dot"></span>
+        <span>SSL: SECURE</span>
+      </div>
     </div>
   </div>
 </div>
+
+<script>
+  (function() {
+    const landing = document.getElementById('landing');
+    if (landing) {
+      landing.addEventListener('mousemove', function(e) {
+        const rect = landing.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        landing.style.setProperty('--mouse-x', x + '%');
+        landing.style.setProperty('--mouse-y', y + '%');
+      });
+    }
+  })();
+</script>
 
 
 <!-- TOAST -->
@@ -98,6 +137,9 @@
         <span class="vdot"></span>
         <span id="vnum"></span>&nbsp;<span style="color:var(--border2)">|</span>&nbsp;visitors
       </div>
+      <button class="theme-toggle-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem; font-family: 'Inter', sans-serif; transition: all 0.2s; margin-right: 10px;">
+        ☀️ Light Mode
+      </button>
       <a href="Aditya_Jain_Cybersecurity_Resume_Professional.pdf" download class="btn" onclick="showToast('Downloading Resume...')">Download CV</a>
       <button class="hamburger" id="ham" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -517,26 +559,25 @@
 
 <script src="script.js"></script>
 <script type="module">
-  import { CharityModal } from './js/modules/CharityModal.js';
   document.addEventListener('DOMContentLoaded', () => {
-    const charityModal = new CharityModal();
     const charityLink = document.getElementById('charity-trigger-btn');
     const landingCharityLink = document.getElementById('land-charity');
     
     if (charityLink) {
         charityLink.addEventListener('click', (e) => {
             e.preventDefault();
-            charityModal.open();
+            window.location.href = 'charity-quiz.html';
         });
     }
     
     if (landingCharityLink) {
         landingCharityLink.addEventListener('click', (e) => {
             e.preventDefault();
-            charityModal.open();
+            window.location.href = 'charity-quiz.html';
         });
     }
   });
 </script>
+<script src="js/modules/ThemeToggle.js?v=2"></script>
 </body>
 </html>

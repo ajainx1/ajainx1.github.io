@@ -4,9 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cyber FreeRice - Support Charities</title>
+  <link rel="icon" type="image/png" href="charity_favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css">
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  
+  <!-- Firebase Scripts (Modular) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    
+    // Placeholder config - User will replace this
+    const firebaseConfig = {
+      apiKey: "YOUR_FIREBASE_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    // We expose these so CharityQuiz.js can use them
+    window.firebaseDependencies = { initializeApp, getAuth, RecaptchaVerifier, signInWithPhoneNumber, firebaseConfig };
+  </script>
+  
   <style>
     body {
       background-color: #050505;
@@ -149,6 +170,51 @@
       border-color: #33ff00;
       color: #33ff00;
       box-shadow: 0 0 10px rgba(51, 255, 0, 0.2);
+    }
+    
+    /* Recipient Selector */
+    .recipient-section {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .recipient-title {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-bottom: 10px;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .recipient-selector {
+      display: inline-flex;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 5px;
+      backdrop-filter: blur(10px);
+    }
+    .recipient-btn {
+      background: transparent;
+      border: none;
+      color: #888;
+      padding: 8px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .recipient-btn:hover {
+      color: #ddd;
+    }
+    .recipient-btn.active {
+      background: rgba(51, 255, 0, 0.15);
+      color: #33ff00;
+      box-shadow: 0 4px 15px rgba(51, 255, 0, 0.15), inset 0 0 0 1px rgba(51, 255, 0, 0.3);
     }
 
     /* Appreciation Visual */
@@ -308,7 +374,7 @@
     
     <div class="auth-area" style="display: flex; align-items: center; justify-content: flex-end; min-width: 200px;">
       <div id="g_id_onload"
-           data-client_id="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
+           data-client_id="712067331579-nm8pi4bhp4efd7h81sjpltsiou9dfab5.apps.googleusercontent.com"
            data-context="signin"
            data-ux_mode="popup"
            data-callback="handleCredentialResponse"
@@ -323,6 +389,18 @@
            data-logo_alignment="left">
       </div>
       
+      <button class="theme-toggle-btn" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+        ☀️ Light Mode
+      </button>
+
+      <button id="phone-login-btn" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); color: #fff; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+        📱 Phone Sign-In
+      </button>
+      
+      <button id="demo-login-btn" style="background: rgba(51, 255, 0, 0.1); border: 1px solid rgba(51, 255, 0, 0.2); color: #33ff00; padding: 10px 16px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; font-family: 'Inter', sans-serif; display: flex; align-items: center; gap: 8px; margin-left: 10px; transition: all 0.2s;">
+        🔑 Demo Sign-In
+      </button>
+      
       <div id="user-profile" style="display: none; align-items: center; gap: 12px; color: #fff; font-family: 'Inter', sans-serif;">
          <img id="user-avatar" src="" style="width: 36px; height: 36px; border-radius: 50%; border: 2px solid #33ff00; object-fit: cover;">
          <span id="user-name" style="font-weight: 600; font-size: 0.9rem;"></span>
@@ -330,6 +408,28 @@
       </div>
     </div>
   </header>
+
+  <!-- Phone Auth Modal -->
+  <div id="phone-auth-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 100000; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+    <div style="background: #111; padding: 40px; border-radius: 16px; border: 1px solid #33ff00; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 10px 30px rgba(51, 255, 0, 0.1);">
+      <h3 style="color: #33ff00; margin-top: 0; font-size: 1.5rem;">Phone Login</h3>
+      <p style="color: #aaa; font-size: 0.9rem; margin-bottom: 20px;">Enter your phone number to sign in or create an account.</p>
+      
+      <div id="step-phone">
+        <input type="tel" id="phone-input" placeholder="+1 234 567 8900" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 20px; font-size: 1.1rem; box-sizing: border-box; text-align: center;">
+        <div id="recaptcha-container" style="margin-bottom: 15px; display: flex; justify-content: center;"></div>
+        <button id="send-code-btn" style="background: #33ff00; color: #000; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.2s;">Send SMS Code</button>
+      </div>
+
+      <div id="step-otp" style="display: none;">
+        <p style="color: #ccc; font-size: 0.8rem; margin-bottom: 15px;">We sent a 6-digit code to your phone.</p>
+        <input type="text" id="otp-input" placeholder="123456" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #333; background: #222; color: #fff; margin-bottom: 20px; font-size: 1.5rem; letter-spacing: 5px; text-align: center; box-sizing: border-box;">
+        <button id="verify-code-btn" style="background: #33ff00; color: #000; width: 100%; padding: 12px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1.1rem; transition: all 0.2s;">Verify Code</button>
+      </div>
+
+      <button id="close-phone-modal" style="background: transparent; color: #ff3333; border: none; margin-top: 20px; cursor: pointer; font-size: 0.9rem; text-decoration: underline;">Cancel</button>
+    </div>
+  </div>
 
   <div class="quiz-container" id="quiz-container">
     <div class="category-selector" id="category-selector" style="flex-wrap: wrap;">
@@ -340,10 +440,25 @@
       <button class="category-pill" data-category="general">General Knowledge</button>
     </div>
 
+    <div class="recipient-section">
+      <div class="recipient-title">Choose Your Karmic Path</div>
+      <div class="recipient-selector" id="recipient-selector" style="flex-wrap: wrap; justify-content: center; gap: 8px;">
+        <button class="recipient-btn active" data-recipient="human">🤲 Humans</button>
+        <button class="recipient-btn" data-recipient="birds">🕊️ Birds</button>
+        <button class="recipient-btn" data-recipient="cows">🐄 Cows</button>
+        <button class="recipient-btn" data-recipient="dogs">🐕 Dogs</button>
+        <button class="recipient-btn" data-recipient="moon">🌕 Moon (2) - Mothers & Women</button>
+        <button class="recipient-btn" data-recipient="jupiter">🪐 Jupiter (3) - Students & Education</button>
+        <button class="recipient-btn" data-recipient="rahu">🌑 Rahu (4) - Sick & Homeless</button>
+        <button class="recipient-btn" data-recipient="venus">✨ Venus (6) - Women's Shelters</button>
+        <button class="recipient-btn" data-recipient="saturn">🪐 Saturn (8) - Elderly & Disabled</button>
+      </div>
+    </div>
+
     <div class="score-board">
-      <h2>Rice Grains Donated</h2>
+      <h2>Karmic Impact Generated</h2>
       <div class="score-number-wrap">
-        <span class="rice-icon">🍚</span>
+        <span class="rice-icon">🌟</span>
         <span class="score-number" id="rice-score">0</span>
       </div>
       <div class="appreciation-container">
@@ -368,5 +483,6 @@
   </footer>
 
   <script type="module" src="js/modules/CharityQuiz.js"></script>
+  <script src="js/modules/ThemeToggle.js?v=2"></script>
 </body>
 </html>
