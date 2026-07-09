@@ -30,10 +30,10 @@
   
   <style>
     body {
-      background-color: #050505;
-      background-image: radial-gradient(circle at top right, rgba(51, 255, 0, 0.05), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(51, 255, 0, 0.05), transparent 40%);
-      color: #e0e0e0;
+      background-color: var(--bg);
+      background-image: radial-gradient(circle at top right, var(--green-dim), transparent 40%),
+                        radial-gradient(circle at bottom left, var(--green-dim), transparent 40%);
+      color: var(--fg);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -50,8 +50,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(10, 10, 10, 0.8);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
       backdrop-filter: blur(10px);
       box-sizing: border-box;
       position: sticky;
@@ -96,15 +96,15 @@
       margin-bottom: 40px;
       padding: 20px;
       border-radius: 12px;
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: var(--card);
+      border: 1px solid var(--border);
       display: inline-block;
       min-width: 300px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
     .score-board h2 {
       font-size: 1.1rem;
-      color: #888;
+      color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 2px;
       margin: 0 0 10px 0;
@@ -151,9 +151,9 @@
       margin-bottom: 30px;
     }
     .category-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #aaa;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      color: var(--muted);
       padding: 8px 16px;
       border-radius: 20px;
       font-family: 'JetBrains Mono', monospace;
@@ -162,8 +162,8 @@
       transition: all 0.2s;
     }
     .category-pill:hover {
-      background: rgba(255, 255, 255, 0.1);
-      color: #fff;
+      background: var(--border);
+      color: var(--fg);
     }
     .category-pill.active {
       background: rgba(51, 255, 0, 0.15);
@@ -179,7 +179,7 @@
     }
     .recipient-title {
       font-size: 0.9rem;
-      color: #aaa;
+      color: var(--muted);
       margin-bottom: 10px;
       font-family: 'JetBrains Mono', monospace;
       text-transform: uppercase;
@@ -187,8 +187,8 @@
     }
     .recipient-selector {
       display: inline-flex;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 30px;
       padding: 5px;
       backdrop-filter: blur(10px);
@@ -196,7 +196,7 @@
     .recipient-btn {
       background: transparent;
       border: none;
-      color: #888;
+      color: var(--muted);
       padding: 8px 20px;
       border-radius: 25px;
       cursor: pointer;
@@ -209,7 +209,7 @@
       gap: 6px;
     }
     .recipient-btn:hover {
-      color: #ddd;
+      color: var(--fg);
     }
     .recipient-btn.active {
       background: rgba(51, 255, 0, 0.15);
@@ -255,15 +255,14 @@
       animation: floatUp 1s ease-out forwards;
     }
 
-    /* Question Card */
     .question-card {
-      background: rgba(20, 20, 20, 0.6);
+      background: var(--card);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(51, 255, 0, 0.3);
+      border: 1px solid var(--border2);
       border-radius: 16px;
       padding: 40px;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255,255,255,0.05);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), inset 0 0 0 1px var(--border);
       margin-bottom: 40px;
       position: relative;
       animation: slideFadeIn 0.4s ease-out forwards;
@@ -285,7 +284,7 @@
       margin-bottom: 35px;
       font-weight: 600;
       line-height: 1.5;
-      color: #fff;
+      color: var(--fg);
     }
     
     .options-grid {
@@ -298,9 +297,9 @@
     }
 
     .quiz-option-btn {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #ccc;
+      background: var(--card2);
+      border: 1px solid var(--border);
+      color: var(--muted);
       padding: 20px;
       font-size: 1.05rem;
       border-radius: 10px;
@@ -314,26 +313,26 @@
       text-align: center;
     }
     .quiz-option-btn:hover:not(:disabled) {
-      border-color: #33ff00;
-      background: rgba(51, 255, 0, 0.05);
-      color: #fff;
+      border-color: var(--green);
+      background: var(--green-dim);
+      color: var(--fg);
       transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(51, 255, 0, 0.1);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
     .quiz-option-btn:disabled {
       cursor: not-allowed;
       opacity: 0.7;
     }
     .quiz-option-btn.correct {
-      background: rgba(51, 255, 0, 0.15);
-      border-color: #33ff00;
-      color: #fff;
+      background: var(--green-dim);
+      border-color: var(--green);
+      color: var(--fg);
       box-shadow: 0 0 20px rgba(51, 255, 0, 0.2);
     }
     .quiz-option-btn.incorrect {
       background: rgba(255, 51, 51, 0.15);
       border-color: #ff3333;
-      color: #fff;
+      color: var(--fg);
     }
 
     .quiz-feedback {
@@ -353,9 +352,9 @@
       width: 100%;
       padding: 30px 20px;
       text-align: center;
-      border-top: 1px solid rgba(255,255,255,0.05);
+      border-top: 1px solid var(--border);
       margin-top: auto;
-      color: #666;
+      color: var(--muted);
       font-size: 0.9rem;
       line-height: 1.6;
     }
