@@ -64,11 +64,11 @@
         </span>
         <span class="landing-btn-meta">Live Link</span>
       </button>
-      <button class="landing-btn" id="land-charity">
-        <span class="landing-btn-icon">&lt;3</span>
+      <button class="landing-btn game-highlight" id="land-charity">
+        <span class="landing-btn-icon">🎮</span>
         <span class="landing-btn-text">
-          <strong>Support Charities</strong>
-          <span>Organizations making an impact in cybersecurity</span>
+          <strong>Play Cyber FreeRice</strong>
+          <span>Test your knowledge & donate rice to food programs</span>
         </span>
         <span class="landing-btn-meta">Community</span>
       </button>
@@ -556,23 +556,21 @@
 
 <script src="script.js"></script>
 <script type="module">
-  import { CharityModal } from './js/modules/CharityModal.js';
   document.addEventListener('DOMContentLoaded', () => {
-    const charityModal = new CharityModal();
     const charityLink = document.getElementById('charity-trigger-btn');
     const landingCharityLink = document.getElementById('land-charity');
     
     if (charityLink) {
         charityLink.addEventListener('click', (e) => {
             e.preventDefault();
-            charityModal.open();
+            window.location.href = 'charity-quiz.html';
         });
     }
     
     if (landingCharityLink) {
         landingCharityLink.addEventListener('click', (e) => {
             e.preventDefault();
-            charityModal.open();
+            window.location.href = 'charity-quiz.html';
         });
     }
   });

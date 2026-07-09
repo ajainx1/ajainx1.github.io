@@ -129,13 +129,40 @@ img { max-width: 100%; }
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
-
 .landing-divider { 
   width: 80px; 
   height: 3px; 
   background: var(--green); 
   margin: 0 auto 1.5rem; 
   border-radius: 2px; 
+}
+
+.landing-btn.primary { border-color: var(--border2); background: var(--card2); }
+.landing-btn.primary:hover { background: var(--green-dim); border-color: var(--green); }
+
+.landing-btn.game-highlight { 
+  border-color: var(--green); 
+  background: var(--green-dim); 
+}
+.landing-btn.game-highlight:hover { 
+  background: rgba(51, 255, 0, 0.15); 
+  box-shadow: 0 0 20px var(--green-glow); 
+}
+.landing-btn.game-highlight .landing-btn-icon { 
+  background: rgba(51, 255, 0, 0.2); 
+  color: #fff; 
+  border-color: var(--green); 
+}
+.landing-btn.game-highlight .landing-btn-text strong { 
+  color: var(--green); 
+  text-shadow: 0 0 8px var(--green-glow); 
+}
+
+.landing-btn-icon {
+  display: flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+  background: var(--green-dim); border: 1px solid var(--border);
+  font-family: var(--mono); font-size: .9rem; font-weight: 700; color: var(--green);
 }
 
 .landing-prompt { 
