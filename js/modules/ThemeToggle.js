@@ -1,4 +1,4 @@
-export class ThemeToggle {
+class ThemeToggle {
   constructor() {
     this.themeBtns = document.querySelectorAll('.theme-toggle-btn');
     this.init();
