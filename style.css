@@ -37,12 +37,9 @@ body.theme-light {
   --border: rgba(22, 163, 74, 0.25);
   --border2: rgba(22, 163, 74, 0.4);
   --muted: #64746a;
-}
-/* Ensure dark mode colors remain for hero banner and landing overlay */
+/* Ensure dark mode colors remain for hero banner */
 body.theme-light .hero-section, 
-body.theme-light .hero-section *,
-body.theme-light #landing,
-body.theme-light #landing * {
+body.theme-light .hero-section * {
   --bg: #060a07;
   --card: #0d140f;
   --fg: #e7efe9;
@@ -104,10 +101,10 @@ img { max-width: 100%; }
    ═══════════════════════════════════════ */
 #landing {
   position: fixed; inset: 0; 
-  background-color: #050806;
+  background-color: var(--bg);
   background-image: 
-    linear-gradient(rgba(74, 222, 128, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(74, 222, 128, 0.02) 1px, transparent 1px);
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
   background-size: 30px 30px;
   z-index: 99998;
   display: flex; align-items: center; justify-content: center;
@@ -463,8 +460,12 @@ img { max-width: 100%; }
    HEADER & NAVIGATION
 ═══════════════════════════════════════ */
 #hdr {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(6,10,7,.92); border-bottom: 1px solid var(--border);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 99999;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 #hdr > div {
   max-width: 1240px; margin: 0 auto; padding: .85rem 1.5rem;

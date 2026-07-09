@@ -23,7 +23,12 @@ export class CharityQuiz {
       'human': { base: '🤲🥣', float: '💚' },
       'birds': { base: '🕊️🌾', float: '✨' },
       'cows': { base: '🐄🌿', float: '🌾' },
-      'dogs': { base: '🐕🦴', float: '🦴' }
+      'dogs': { base: '🐕🦴', float: '🦴' },
+      'moon': { base: '🍚🥛', float: '🤍' },
+      'jupiter': { base: '📚💻', float: '💛' },
+      'rahu': { base: '💊🧣', float: '⚕️' },
+      'venus': { base: '👗🌸', float: '💖' },
+      'saturn': { base: '🦯🤝', float: '🖤' }
     };
     
     // Appreciation Visual

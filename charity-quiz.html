@@ -441,19 +441,24 @@
     </div>
 
     <div class="recipient-section">
-      <div class="recipient-title">Who are we feeding today?</div>
-      <div class="recipient-selector" id="recipient-selector">
+      <div class="recipient-title">Choose Your Karmic Path</div>
+      <div class="recipient-selector" id="recipient-selector" style="flex-wrap: wrap; justify-content: center; gap: 8px;">
         <button class="recipient-btn active" data-recipient="human">🤲 Humans</button>
         <button class="recipient-btn" data-recipient="birds">🕊️ Birds</button>
         <button class="recipient-btn" data-recipient="cows">🐄 Cows</button>
         <button class="recipient-btn" data-recipient="dogs">🐕 Dogs</button>
+        <button class="recipient-btn" data-recipient="moon">🌕 Moon (2) - Mothers & Women</button>
+        <button class="recipient-btn" data-recipient="jupiter">🪐 Jupiter (3) - Students & Education</button>
+        <button class="recipient-btn" data-recipient="rahu">🌑 Rahu (4) - Sick & Homeless</button>
+        <button class="recipient-btn" data-recipient="venus">✨ Venus (6) - Women's Shelters</button>
+        <button class="recipient-btn" data-recipient="saturn">🪐 Saturn (8) - Elderly & Disabled</button>
       </div>
     </div>
 
     <div class="score-board">
-      <h2>Rice Grains Donated</h2>
+      <h2>Karmic Impact Generated</h2>
       <div class="score-number-wrap">
-        <span class="rice-icon">🍚</span>
+        <span class="rice-icon">🌟</span>
         <span class="score-number" id="rice-score">0</span>
       </div>
       <div class="appreciation-container">
@@ -478,6 +483,6 @@
   </footer>
 
   <script type="module" src="js/modules/CharityQuiz.js"></script>
-  <script src="js/modules/ThemeToggle.js"></script>
+  <script src="js/modules/ThemeToggle.js?v=2"></script>
 </body>
 </html>
