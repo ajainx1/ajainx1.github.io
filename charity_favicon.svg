@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Dark Circular Background -->
+  <circle cx="64" cy="64" r="64" fill="#0b0f19" />
+  
+  <!-- Cyber Shield (Mercury Green) -->
+  <path d="M32 32 L96 32 L96 64 C96 90 64 112 64 112 C64 112 32 90 32 64 Z" 
+        fill="none" 
+        stroke="#16a34a" 
+        stroke-width="8" 
+        stroke-linejoin="round" />
+        
+  <!-- Inner Shield Glow -->
+  <path d="M32 32 L96 32 L96 64 C96 90 64 112 64 112 C64 112 32 90 32 64 Z" 
+        fill="rgba(22, 163, 74, 0.15)" />
+
+  <!-- Stylized Rice Grain (Saturn Saffron) -->
+  <path d="M64 46 C74 46 80 64 64 82 C48 64 54 46 64 46 Z" 
+        fill="#ff9933" />
+</svg>
