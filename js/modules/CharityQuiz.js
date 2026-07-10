@@ -7,6 +7,7 @@ export class CharityQuiz {
     this.currentCategory = 'network'; // Default category
     this.currentDifficulty = 'beginner'; // Default difficulty
     this.currentQuestion = null;
+    this.lastAnswerTime = 0; // For rate limiting
     
     // DOM Elements
     this.questionElement = document.getElementById('quiz-question');
@@ -454,9 +455,17 @@ export class CharityQuiz {
   }
 
   handleAnswer(selectedIndex, btnElement) {
+    // Frontend Rate Limiting: Prevent spamming
+    const now = performance.now();
+    if (now - this.lastAnswerTime < 1000) {
+      return; // Reject if less than 1 second since last answer
+    }
+    this.lastAnswerTime = now;
+    
     // Disable all buttons to prevent multiple clicks
     const allButtons = this.optionsElement.querySelectorAll('.quiz-option-btn');
     allButtons.forEach(b => b.disabled = true);
+    if(this.hintBtn) this.hintBtn.disabled = true;
 
     if (selectedIndex === this.currentQuestion.answer) {
       if (window.triggerHaptic) window.triggerHaptic('MEDIUM');
@@ -491,10 +500,10 @@ export class CharityQuiz {
       this.feedbackElement.classList.add('error', 'show');
     }
 
-    // Load next question after a short delay
+    // Load next question after a longer delay for rhythm and rate limiting
     setTimeout(() => {
       this.loadNextQuestion();
-    }, 2000);
+    }, 2500);
   }
 
   updateScoreDisplay() {
@@ -598,16 +607,33 @@ export class CharityQuiz {
         this.plateIcon.classList.remove('bump');
       }, 200);
 
-      // Clone the heart for the animation so multiple can overlap if answered fast
+      // Heart float animation
       const heartClone = this.floatingHeart.cloneNode(true);
       heartClone.classList.add('animate');
       heartClone.style.opacity = '1';
       this.plateIcon.parentElement.appendChild(heartClone);
-
-      // Remove clone after animation ends
-      setTimeout(() => {
-        heartClone.remove();
-      }, 1000);
+      setTimeout(() => { heartClone.remove(); }, 1000);
+      
+      // Falling Rice Animation (burst of 5 grains)
+      for (let i = 0; i < 5; i++) {
+        const riceGrain = document.createElement('span');
+        riceGrain.className = 'falling-rice';
+        riceGrain.textContent = currentIcons.float === '✨' ? '🌾' : '🍚'; // Default to rice bowl or wheat
+        
+        // Randomize starting position and delay
+        const leftOffset = (Math.random() - 0.5) * 60; // -30px to 30px
+        const delay = Math.random() * 0.2; // 0 to 0.2s delay
+        
+        riceGrain.style.left = `calc(50% + ${leftOffset}px)`;
+        riceGrain.style.animationDelay = `${delay}s`;
+        
+        this.plateIcon.parentElement.appendChild(riceGrain);
+        
+        // Cleanup after animation completes
+        setTimeout(() => {
+          riceGrain.remove();
+        }, (0.8 + delay) * 1000);
+      }
     }
   }
 }
