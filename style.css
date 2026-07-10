@@ -111,18 +111,43 @@ img { max-width: 100%; }
 #landing {
   position: fixed; inset: 0; 
   background-color: var(--bg);
-  background-image: 
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 30px 30px;
   z-index: 99998;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--sans); transition: opacity .6s ease;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #landing::before {
-  display: none;
+  content: "";
+  position: fixed;
+  top: -30px; left: -30px; width: calc(100% + 60px); height: calc(100% + 60px);
+  background-image: 
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: scrollGrid 8s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+#landing::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 50% 40%, var(--green-dim) 0%, transparent 60%);
+  animation: pulseGlow 6s ease-in-out infinite alternate;
+  z-index: -2;
+  pointer-events: none;
+}
+
+@keyframes scrollGrid {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(30px, 30px); }
+}
+@keyframes pulseGlow {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.1); }
 }
 
 #landing.landing-hidden { opacity: 0; pointer-events: none; }
