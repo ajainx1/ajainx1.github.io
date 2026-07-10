@@ -7,8 +7,14 @@ class ThemeToggle {
   init() {
     // Check local storage for theme
     const savedTheme = localStorage.getItem('siteTheme');
-    if (savedTheme === 'light') {
-      document.body.classList.add('theme-light');
+    
+    // Default is light. If user explicitly saved dark, add dark-mode
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      this.updateIcon('dark');
+    } else {
+      // Light is default
+      document.body.classList.remove('dark-mode');
       this.updateIcon('light');
     }
 
@@ -22,28 +28,28 @@ class ThemeToggle {
   }
 
   toggleTheme() {
-    const isLight = document.body.classList.contains('theme-light');
-    if (isLight) {
-      document.body.classList.remove('theme-light');
-      localStorage.setItem('siteTheme', 'dark');
-      this.updateIcon('dark');
-    } else {
-      document.body.classList.add('theme-light');
+    const isDark = document.body.classList.contains('dark-mode');
+    if (isDark) {
+      document.body.classList.remove('dark-mode');
       localStorage.setItem('siteTheme', 'light');
       this.updateIcon('light');
+    } else {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('siteTheme', 'dark');
+      this.updateIcon('dark');
     }
   }
 
   updateIcon(theme) {
     this.themeBtns.forEach(btn => {
-      if (theme === 'light') {
-        btn.innerHTML = '🌙 Dark Mode';
-        btn.style.color = 'var(--fg)';
-        btn.style.borderColor = 'var(--border)';
-      } else {
+      if (theme === 'dark') {
         btn.innerHTML = '☀️ Light Mode';
         btn.style.color = '#fff';
         btn.style.borderColor = 'rgba(255,255,255,0.2)';
+      } else {
+        btn.innerHTML = '🌙 Dark Mode';
+        btn.style.color = 'var(--fg)';
+        btn.style.borderColor = 'var(--border)';
       }
     });
   }
