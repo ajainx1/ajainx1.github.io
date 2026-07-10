@@ -4,7 +4,7 @@ export class CharityQuiz {
   constructor() {
     this.score = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
     this.streak = 0; // Track consecutive correct answers
-    this.currentCategory = 'story'; // Default category
+    this.currentCategory = 'cybersecurity'; // Default category
     this.currentQuestion = null;
     
     // DOM Elements
