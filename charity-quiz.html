@@ -442,7 +442,9 @@
 
   <header class="header-bar">
     <a href="index.html" class="back-btn">&larr; Return to Portfolio</a>
-    <div class="logo-area" id="quiz-header-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">Cyber<span>FreeRice</span></div>
+    <div class="logo-area" id="quiz-header-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">
+      <img src="charity_favicon.png" alt="Logo" style="height: 24px; border-radius: 4px;"> Cyber<span>FreeRice</span>
+    </div>
     
     <div class="auth-area">
       <div id="g_id_onload"
@@ -560,8 +562,24 @@
   </div>
 
   <footer class="footer-bar">
-    <strong>How it works:</strong> For every correct answer, 10 grains of rice are financially supported and donated to global food programs.<br>
-    <em>An initiative supported by Aditya Jain and our sponsors. <a href="index.html#contact">Partner with us</a>.</em>
+    <div style="margin-bottom: 20px;">
+      <div style="margin-bottom: 15px;">
+        <span style="display: inline-block; padding: 6px 14px; background: var(--green-dim); border: 1px solid var(--green); border-radius: 20px; color: var(--green); font-size: 0.85rem; font-weight: 700; font-family: 'Inter', sans-serif; box-shadow: 0 0 10px var(--green-glow);">
+          🛡️ 100% of proceeds go to feeding the hungry.
+        </span>
+      </div>
+      <p style="margin: 0 0 10px 0; font-size: 0.95rem; color: var(--fg);">
+        <strong>How it works:</strong> For every correct answer, 10 grains of rice are financially supported and donated to global food programs.
+      </p>
+      <p style="margin: 0; font-size: 0.85rem; color: var(--muted);">
+        In partnership with <strong>Akshaya Patra Foundation</strong> &amp; local shelters. <a href="index.html#contact">Partner with us</a>.
+      </p>
+    </div>
+    
+    <div style="border-top: 1px solid var(--border); padding-top: 15px; font-size: 0.85rem; font-family: 'JetBrains Mono', monospace; color: var(--muted);">
+      <span style="color: var(--fg); font-weight: 600;">Powered by JumpStreet Systems</span><br>
+      <span style="display: inline-block; margin-top: 5px;">Built with ❤️ for the community</span>
+    </div>
   </footer>
 
   <script type="module" src="js/modules/MobileApp.js"></script>

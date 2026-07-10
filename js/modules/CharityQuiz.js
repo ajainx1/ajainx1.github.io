@@ -268,9 +268,9 @@ export class CharityQuiz {
       // e.g., "Cyber FreeRice" -> Cyber<span>FreeRice</span>
       const parts = categoryInfo.title.split(' ');
       if (parts.length >= 2) {
-        this.headerLogo.innerHTML = `${parts[0]}<span>${parts.slice(1).join(' ')}</span>`;
+        this.headerLogo.innerHTML = `<img src="charity_favicon.png" alt="Logo" style="height: 24px; border-radius: 4px;"> ${parts[0]}<span>${parts.slice(1).join(' ')}</span>`;
       } else {
-        this.headerLogo.textContent = categoryInfo.title;
+        this.headerLogo.innerHTML = `<img src="charity_favicon.png" alt="Logo" style="height: 24px; border-radius: 4px;"> ${categoryInfo.title}`;
       }
     }
     
