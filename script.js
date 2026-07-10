@@ -1,7 +1,7 @@
 // Load saved UI theme
 (function() {
   var t = localStorage.getItem('portfolio_theme');
-  if (t && ['amber','blue','red'].indexOf(t) !== -1) document.body.classList.add('theme-' + t);
+  if (t === 'dark') document.body.classList.add('dark-mode');
 })();
 
 /* ===== BOOT SEQUENCE ===== */
@@ -291,25 +291,19 @@ var CMDS = {
     }, 600);
     return ['<span class="warn">Initialising AI Chatbot...</span>', '<span class="ok">Opening chat window</span>'];
   },
-  theme: function(t) {
-    var themes = ['green', 'amber', 'blue', 'red'];
-    if (!t) return [
-      '<span class="hi">Color Themes:</span>',
-      '  <span class="ok">green</span>  - Default hacker',
-      '  <span class="ok">amber</span>  - Fallout CRT',
-      '  <span class="ok">blue</span>   - Cyber Blue',
-      '  <span class="ok">red</span>    - Crimson threat-intel',
-      '',
-      'Usage: <span class="warn">theme [name]</span>'
-    ];
-    var cleanT = t.toLowerCase().trim();
-    if (themes.indexOf(cleanT) === -1) {
-      return ['<span class="err">Unknown theme "' + t + '". Available: ' + themes.join(', ') + '</span>'];
+  theme: function() {
+    var isDark = document.body.classList.contains('dark-mode');
+    if (isDark) {
+      document.body.classList.remove('dark-mode');
+      localStorage.setItem('portfolio_theme', 'light');
+      updateThemeIcon(false);
+      return ['<span class="ok">Switched to Light Theme</span>'];
+    } else {
+      document.body.classList.add('dark-mode');
+      localStorage.setItem('portfolio_theme', 'dark');
+      updateThemeIcon(true);
+      return ['<span class="ok">Switched to Dark Theme</span>'];
     }
-    document.body.classList.remove('theme-amber', 'theme-blue', 'theme-red');
-    if (cleanT !== 'green') document.body.classList.add('theme-' + cleanT);
-    localStorage.setItem('portfolio_theme', cleanT);
-    return ['<span class="ok">Theme switched to ' + cleanT + '!</span>'];
   }
 };
 
@@ -518,3 +512,18 @@ if (termBody) {
 window.landingGo = landingGo;
 window.showLanding = showLanding;
 window.startAnimations = startAnimations;
+
+// Theme Toggle Button Logic
+var themeBtn = document.getElementById('theme-toggle-btn');
+function updateThemeIcon(isDark) {
+  if (themeBtn) themeBtn.textContent = isDark ? '☀' : '🌙';
+}
+if (themeBtn) {
+  updateThemeIcon(document.body.classList.contains('dark-mode'));
+  themeBtn.addEventListener('click', function() {
+    var isDark = document.body.classList.toggle('dark-mode');
+    localStorage.setItem('portfolio_theme', isDark ? 'dark' : 'light');
+    updateThemeIcon(isDark);
+    if (window.triggerHaptic) window.triggerHaptic('LIGHT');
+  });
+}
