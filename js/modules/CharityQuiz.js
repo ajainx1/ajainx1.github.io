@@ -38,8 +38,8 @@ export class CharityQuiz {
     this.floatingHeart = document.getElementById('floating-heart');
     
     // Auth Elements
-    this.gLoginBtn = document.getElementById('g-login-btn');
-    this.phoneLoginBtn = document.getElementById('phone-login-btn');
+    // Auth Elements
+    this.emailLoginBtn = document.getElementById('email-login-btn');
     this.userProfile = document.getElementById('user-profile');
     this.userAvatar = document.getElementById('user-avatar');
     this.userName = document.getElementById('user-name');
@@ -49,16 +49,13 @@ export class CharityQuiz {
     this.currentUser = null;
     this.geminiAI = null;
     
-    // Phone Auth Modal Elements
-    this.phoneModal = document.getElementById('phone-auth-modal');
-    this.closePhoneModal = document.getElementById('close-phone-modal');
-    this.stepPhone = document.getElementById('step-phone');
-    this.stepOtp = document.getElementById('step-otp');
-    this.phoneInput = document.getElementById('phone-input');
-    this.sendCodeBtn = document.getElementById('send-code-btn');
-    this.otpInput = document.getElementById('otp-input');
-    this.verifyCodeBtn = document.getElementById('verify-code-btn');
-    this.confirmationResult = null;
+    // Email Auth Modal Elements (Supabase)
+    this.emailModal = document.getElementById('email-auth-modal');
+    this.closeEmailModal = document.getElementById('close-email-modal');
+    this.stepEmail = document.getElementById('step-email');
+    this.stepSent = document.getElementById('step-sent');
+    this.emailInput = document.getElementById('email-input');
+    this.sendLinkBtn = document.getElementById('send-link-btn');
     
     // Gamification Elements
     this.progressBar = document.getElementById('milestone-progress');
@@ -72,14 +69,11 @@ export class CharityQuiz {
     
     this.init();
     
-    // Attach Google Auth callback to window
-    window.handleCredentialResponse = (response) => this.handleGoogleLogin(response);
-    
     if(this.logoutBtn) {
       this.logoutBtn.addEventListener('click', () => this.handleLogout());
     }
-    if(this.phoneLoginBtn) {
-      this.phoneLoginBtn.addEventListener('click', () => this.openPhoneModal());
+    if(this.emailLoginBtn) {
+      this.emailLoginBtn.addEventListener('click', () => this.openEmailModal());
     }
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
@@ -87,17 +81,11 @@ export class CharityQuiz {
     if(this.aiSettingsBtn) {
       this.aiSettingsBtn.addEventListener('click', () => this.handleAiSettings());
     }
-    if(this.demoLoginBtn) {
-      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
+    if(this.closeEmailModal) {
+      this.closeEmailModal.addEventListener('click', () => { this.emailModal.style.display = 'none'; });
     }
-    if(this.closePhoneModal) {
-      this.closePhoneModal.addEventListener('click', () => { this.phoneModal.style.display = 'none'; });
-    }
-    if(this.sendCodeBtn) {
-      this.sendCodeBtn.addEventListener('click', () => this.sendSmsCode());
-    }
-    if(this.verifyCodeBtn) {
-      this.verifyCodeBtn.addEventListener('click', () => this.verifyOtp());
+    if(this.sendLinkBtn) {
+      this.sendLinkBtn.addEventListener('click', () => this.sendMagicLink());
     }
     if(this.shareBtn) {
       this.shareBtn.addEventListener('click', () => this.handleShareScore());
@@ -107,8 +95,8 @@ export class CharityQuiz {
     }
   }
 
-  init() {
-    this.loadUserSession();
+  async init() {
+    await this.loadUserSession();
     this.updateScoreDisplay();
     this.attachCategoryListeners();
     this.attachDifficultyListeners();
@@ -138,69 +126,73 @@ export class CharityQuiz {
     });
   }
 
-  parseJwt(token) {
-    try {
-      const base64Url = token.split('.')[1];
-      const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-      const jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {
-          return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      }).join(''));
-      return JSON.parse(jsonPayload);
-    } catch(e) {
-      return null;
-    }
-  }
-
-  handleGoogleLogin(response) {
-    const payload = this.parseJwt(response.credential);
-    if (payload) {
-      this.loginUser(payload.name, payload.email, payload.picture);
-    }
-  }
-
-  // --- Phone Auth Logic ---
-  openPhoneModal() {
-    this.phoneModal.style.display = 'flex';
-    this.stepPhone.style.display = 'block';
-    this.stepOtp.style.display = 'none';
-    
-    if (!window.recaptchaVerifier && window.firebaseDependencies) {
-      try {
-        window.recaptchaVerifier = new window.firebaseDependencies.RecaptchaVerifier(window.firebaseAuth, 'recaptcha-container', {
-          'size': 'normal',
-          'callback': (response) => { }
-        });
-        window.recaptchaVerifier.render();
-      } catch(e) { console.log('Firebase not fully configured yet'); }
-    }
-  }
-
-  sendSmsCode() {
-    const phoneNumber = this.phoneInput.value;
-    if (!phoneNumber) return alert('Please enter a phone number');
-    
-    if (!window.firebaseAuth) return alert('Firebase keys missing! (Placeholder logic blocked)');
-    
-    window.firebaseDependencies.signInWithPhoneNumber(window.firebaseAuth, phoneNumber, window.recaptchaVerifier)
-      .then((confirmationResult) => {
-        this.confirmationResult = confirmationResult;
-        this.stepPhone.style.display = 'none';
-        this.stepOtp.style.display = 'block';
-      }).catch((error) => {
-        alert("SMS failed: " + error.message);
+  // --- Supabase Auth Logic ---
+  
+  async loadUserSession() {
+    // Check if Supabase is initialized
+    if (window.supabaseClient) {
+      // Get current session
+      const { data, error } = await window.supabaseClient.auth.getSession();
+      if (data && data.session) {
+        const email = data.session.user.email;
+        this.loginUser(email.split('@')[0], email, `https://ui-avatars.com/api/?name=${email}&background=33ff00&color=000`);
+      }
+      
+      // Listen for auth changes (like clicking the magic link)
+      window.supabaseClient.auth.onAuthStateChange((event, session) => {
+        if (event === 'SIGNED_IN' && session) {
+          const email = session.user.email;
+          this.loginUser(email.split('@')[0], email, `https://ui-avatars.com/api/?name=${email}&background=33ff00&color=000`);
+        } else if (event === 'SIGNED_OUT') {
+          this.currentUser = null;
+          this.updateAuthUI();
+        }
       });
+    } else {
+      // Fallback local storage for UI testing
+      const savedUser = localStorage.getItem('charityQuizUser');
+      if (savedUser) {
+        this.currentUser = JSON.parse(savedUser);
+        const userScore = localStorage.getItem(`charityRiceScore_${this.currentUser.email}`);
+        if (userScore) this.score = parseInt(userScore, 10);
+      }
+      this.updateAuthUI();
+    }
   }
 
-  verifyOtp() {
-    const code = this.otpInput.value;
-    if (this.confirmationResult && code) {
-      this.confirmationResult.confirm(code).then((result) => {
-        const user = result.user;
-        this.phoneModal.style.display = 'none';
-        this.loginUser("Phone User", user.phoneNumber, "https://ui-avatars.com/api/?name=Phone+User&background=33ff00&color=000");
-      }).catch((error) => {
-        alert("Invalid code: " + error.message);
-      });
+  openEmailModal() {
+    this.emailModal.style.display = 'flex';
+    this.stepEmail.style.display = 'block';
+    this.stepSent.style.display = 'none';
+  }
+
+  async sendMagicLink() {
+    const email = this.emailInput.value;
+    if (!email || !email.includes('@')) return alert('Please enter a valid email address');
+    
+    if (!window.supabaseClient) {
+      return alert('Supabase keys missing! Please follow the setup guide to link your database.');
+    }
+    
+    // Disable button to prevent spam
+    this.sendLinkBtn.disabled = true;
+    this.sendLinkBtn.innerText = "Sending...";
+    
+    const { data, error } = await window.supabaseClient.auth.signInWithOtp({
+      email: email,
+      options: {
+        emailRedirectTo: window.location.href // Redirect back to this page
+      }
+    });
+
+    if (error) {
+      alert("Error sending magic link: " + error.message);
+      this.sendLinkBtn.disabled = false;
+      this.sendLinkBtn.innerText = "Send Magic Link";
+    } else {
+      // Show success step
+      this.stepEmail.style.display = 'none';
+      this.stepSent.style.display = 'block';
     }
   }
 
@@ -225,40 +217,29 @@ export class CharityQuiz {
     this.updateScoreDisplay();
   }
 
-  handleLogout() {
+  async handleLogout() {
+    if (window.supabaseClient) {
+      await window.supabaseClient.auth.signOut();
+    }
     this.currentUser = null;
     localStorage.removeItem('charityQuizUser');
-    this.score = 0; // Reset active score for guest
     this.updateAuthUI();
-    this.updateScoreDisplay();
-  }
-
-  loadUserSession() {
-    const savedUser = localStorage.getItem('charityQuizUser');
-    if (savedUser) {
-      this.currentUser = JSON.parse(savedUser);
-      const userScore = localStorage.getItem(`charityRiceScore_${this.currentUser.email}`);
-      if (userScore) {
-        this.score = parseInt(userScore, 10);
-      }
-      this.updateAuthUI();
-    }
   }
 
   updateAuthUI() {
     if (!this.userProfile) return;
     
     if (this.currentUser) {
-      if(this.gLoginBtn) this.gLoginBtn.style.display = 'none';
-      if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'none';
+      if(this.emailLoginBtn) this.emailLoginBtn.style.display = 'none';
       if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'none';
+      
       this.userProfile.style.display = 'flex';
-      if (this.userName) this.userName.textContent = this.currentUser.name;
-      if (this.userAvatar) this.userAvatar.src = this.currentUser.picture;
+      this.userAvatar.src = this.currentUser.picture || '';
+      this.userName.textContent = this.currentUser.name || 'User';
     } else {
-      if(this.gLoginBtn) this.gLoginBtn.style.display = 'block';
-      if(this.phoneLoginBtn) this.phoneLoginBtn.style.display = 'flex';
+      if(this.emailLoginBtn) this.emailLoginBtn.style.display = 'flex';
       if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'flex';
+      
       this.userProfile.style.display = 'none';
     }
   }
