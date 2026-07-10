@@ -39,7 +39,7 @@ body.dark-mode {
   --green-glow: rgba(56, 189, 248, 0.25);
   --border: rgba(56, 189, 248, 0.15);
   --border2: rgba(56, 189, 248, 0.28);
-  --muted: #94a3b8;
+  --muted: #cbd5e1; /* slate-300 for better WCAG contrast */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4);
