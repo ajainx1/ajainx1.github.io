@@ -436,6 +436,125 @@
       text-decoration: none;
     }
     .footer-bar a:hover { text-decoration: underline; }
+    /* Hero Banner */
+    .hero-banner {
+      background: linear-gradient(135deg, var(--green-dim) 0%, rgba(0,0,0,0) 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px 20px;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-banner h1 {
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--fg);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -1px;
+    }
+    .hero-banner p {
+      margin: 0;
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background: var(--bg);
+      border-radius: 10px;
+      margin: 25px 0 10px 0;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--green);
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px var(--green-glow);
+    }
+    .progress-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      text-align: right;
+      display: block;
+    }
+
+    /* Share Button */
+    .share-btn {
+      background: transparent;
+      border: 1px solid var(--green);
+      color: var(--green);
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 15px;
+    }
+    .share-btn:hover {
+      background: var(--green-dim);
+      box-shadow: 0 0 10px var(--green-glow);
+    }
+
+    /* Leaderboard */
+    .leaderboard-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      margin-top: 20px;
+      text-align: left;
+    }
+    .leaderboard-section h3 {
+      margin: 0 0 15px 0;
+      color: var(--fg);
+      font-size: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .leaderboard-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .leaderboard-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 15px;
+      background: var(--card2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+    .leaderboard-item.top-1 { border-color: #ffd700; background: rgba(255, 215, 0, 0.05); }
+    .leaderboard-item.top-2 { border-color: #c0c0c0; background: rgba(192, 192, 192, 0.05); }
+    .leaderboard-item.top-3 { border-color: #cd7f32; background: rgba(205, 127, 50, 0.05); }
+    .lb-rank { font-weight: 800; width: 30px; font-family: 'JetBrains Mono', monospace; }
+    .lb-name { flex-grow: 1; font-weight: 600; color: var(--fg); }
+    .lb-score { font-weight: 700; color: var(--green); display: flex; align-items: center; gap: 5px; }
   </style>
 </head>
 <body>
@@ -510,6 +629,11 @@
   </div>
 
   <div class="quiz-container" id="quiz-container">
+    <div class="hero-banner">
+      <h1>Cyber FreeRice — Play. Learn. Feed.</h1>
+      <p>For every correct answer, we donate <strong>10 grains of rice</strong> to families in need. Answer correctly and watch your impact grow!</p>
+    </div>
+
     <div class="category-selector" id="category-selector" style="flex-wrap: wrap;">
       <button class="category-pill active" data-category="cybersecurity">Cybersecurity</button>
       <button class="category-pill" data-category="trading">Algorithmic Trading</button>
@@ -549,7 +673,19 @@
         <div class="floating-heart" id="floating-heart">💚</div>
         <div class="plate-icon" id="plate-icon">🤲🥣</div>
       </div>
-      <div class="streak-badge" id="streak-badge">🔥 3 Correct in a Row!</div>
+      
+      <div class="progress-container" aria-label="Donation milestone progress">
+        <div class="progress-bar" id="milestone-progress"></div>
+      </div>
+      <span class="progress-text" id="milestone-text">0 / 500 grains for a full bowl</span>
+
+      <div style="display: flex; gap: 15px; justify-content: center; align-items: center;">
+        <div class="streak-badge" id="streak-badge">🔥 3 Correct in a Row!</div>
+        <button class="share-btn" id="share-score-btn" aria-label="Share your score">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
+          Share Impact
+        </button>
+      </div>
     </div>
 
     <div class="question-card">
@@ -558,6 +694,38 @@
         <!-- Buttons injected here -->
       </div>
       <div class="quiz-feedback" id="quiz-feedback"></div>
+    </div>
+
+    <!-- Leaderboard Section -->
+    <div class="leaderboard-section">
+      <h3>👑 Top Scorers of the Week</h3>
+      <ul class="leaderboard-list">
+        <li class="leaderboard-item top-1">
+          <span class="lb-rank">#1</span>
+          <span class="lb-name">Hacker_0x</span>
+          <span class="lb-score">14,500 <span style="font-size: 1.2rem;">🌟</span></span>
+        </li>
+        <li class="leaderboard-item top-2">
+          <span class="lb-rank">#2</span>
+          <span class="lb-name">CyberKnight</span>
+          <span class="lb-score">12,200 <span style="font-size: 1.2rem;">🌟</span></span>
+        </li>
+        <li class="leaderboard-item top-3">
+          <span class="lb-rank">#3</span>
+          <span class="lb-name">DataNinja</span>
+          <span class="lb-score">9,800 <span style="font-size: 1.2rem;">🌟</span></span>
+        </li>
+        <li class="leaderboard-item">
+          <span class="lb-rank">#4</span>
+          <span class="lb-name">CodeSamurai</span>
+          <span class="lb-score">7,100 <span style="font-size: 1.2rem;">🌟</span></span>
+        </li>
+        <li class="leaderboard-item">
+          <span class="lb-rank">#5</span>
+          <span class="lb-name">Anonymous</span>
+          <span class="lb-score">5,500 <span style="font-size: 1.2rem;">🌟</span></span>
+        </li>
+      </ul>
     </div>
   </div>
 

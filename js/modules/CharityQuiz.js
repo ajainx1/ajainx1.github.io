@@ -58,6 +58,11 @@ export class CharityQuiz {
     this.verifyCodeBtn = document.getElementById('verify-code-btn');
     this.confirmationResult = null;
     
+    // New Gamification Elements
+    this.progressBar = document.getElementById('milestone-progress');
+    this.progressText = document.getElementById('milestone-text');
+    this.shareBtn = document.getElementById('share-score-btn');
+    
     this.init();
     
     // Attach Google Auth callback to window
@@ -86,6 +91,9 @@ export class CharityQuiz {
     }
     if(this.verifyCodeBtn) {
       this.verifyCodeBtn.addEventListener('click', () => this.verifyOtp());
+    }
+    if(this.shareBtn) {
+      this.shareBtn.addEventListener('click', () => this.handleShareScore());
     }
   }
 
@@ -437,10 +445,26 @@ export class CharityQuiz {
       
       this.scoreElement.textContent = currentScore;
       
+      // Update Progress Bar
+      if (this.progressBar && this.progressText) {
+        const milestoneGoal = 500;
+        const currentMilestone = currentScore % milestoneGoal;
+        const percentage = Math.min((currentMilestone / milestoneGoal) * 100, 100);
+        this.progressBar.style.width = `${percentage}%`;
+        this.progressText.textContent = `${currentMilestone} / ${milestoneGoal} grains for a full bowl`;
+      }
+      
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
         this.scoreElement.textContent = targetScore;
+        // Ensure progress is exactly synced at the end
+        if (this.progressBar && this.progressText) {
+           const finalMilestone = targetScore % 500;
+           this.progressBar.style.width = `${Math.min((finalMilestone / 500) * 100, 100)}%`;
+           this.progressText.textContent = `${finalMilestone} / 500 grains for a full bowl`;
+        }
+        
         // Add a pop animation at the end
         this.scoreElement.style.transform = 'scale(1.15)';
         this.scoreElement.style.color = 'var(--fg)';
@@ -452,6 +476,28 @@ export class CharityQuiz {
     };
     
     requestAnimationFrame(animate);
+  }
+
+  handleShareScore() {
+    const text = `I just generated ${this.score} grains of rice by playing Cyber FreeRice! Join me in learning and feeding the hungry:`;
+    const url = window.location.href;
+    
+    if (navigator.share) {
+      navigator.share({
+        title: 'Cyber FreeRice',
+        text: text,
+        url: url
+      }).catch(console.error);
+    } else {
+      // Fallback to clipboard
+      navigator.clipboard.writeText(`${text} ${url}`).then(() => {
+        const originalText = this.shareBtn.innerHTML;
+        this.shareBtn.innerHTML = `✅ Copied to Clipboard!`;
+        setTimeout(() => {
+          this.shareBtn.innerHTML = originalText;
+        }, 2000);
+      }).catch(console.error);
+    }
   }
 
   updateStreakDisplay() {
