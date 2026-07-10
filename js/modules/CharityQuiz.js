@@ -45,9 +45,7 @@ export class CharityQuiz {
     this.userName = document.getElementById('user-name');
     this.logoutBtn = document.getElementById('logout-btn');
     this.demoLoginBtn = document.getElementById('demo-login-btn');
-    this.aiSettingsBtn = document.getElementById('ai-settings-btn');
     this.currentUser = null;
-    this.geminiAI = null;
     
     // Email Auth Modal Elements (Supabase)
     this.emailModal = document.getElementById('email-auth-modal');
@@ -77,9 +75,6 @@ export class CharityQuiz {
     }
     if(this.demoLoginBtn) {
       this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
-    }
-    if(this.aiSettingsBtn) {
-      this.aiSettingsBtn.addEventListener('click', () => this.handleAiSettings());
     }
     if(this.closeEmailModal) {
       this.closeEmailModal.addEventListener('click', () => { this.emailModal.style.display = 'none'; });
@@ -297,39 +292,9 @@ export class CharityQuiz {
     this.loadNextQuestion();
   }
 
-  handleAiSettings() {
-    const key = prompt("Enter your Gemini API Key for dynamic AI questions:\n(This will be stored securely in your local browser only.)");
-    if (key) {
-      localStorage.setItem('geminiApiKey', key.trim());
-      alert("API Key saved! AI Mode enabled.");
-      this.geminiAI = null;
-      this.loadNextQuestion();
-    } else if (key === "") {
-      localStorage.removeItem('geminiApiKey');
-      alert("API Key removed. Reverting to static questions.");
-      this.loadNextQuestion();
-    }
-  }
-
   async loadNextQuestion() {
     this.questionElement.textContent = "Loading question...";
     this.optionsElement.innerHTML = '';
-    
-    let apiKey = localStorage.getItem('geminiApiKey');
-    if (apiKey) {
-      try {
-        if (!this.geminiAI) {
-           const module = await import('./GeminiAI.js');
-           this.geminiAI = new module.GeminiAI(apiKey);
-        }
-        const aiQuestion = await this.geminiAI.generateQuestion(this.currentCategory);
-        this.currentQuestion = aiQuestion;
-        this.renderQuestion();
-        return;
-      } catch (err) {
-        console.error("Failed to load from Gemini, falling back to static:", err);
-      }
-    }
     
     const allQuestions = quizData[this.currentCategory].questions;
     // Filter by difficulty
