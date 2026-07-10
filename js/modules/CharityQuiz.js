@@ -338,18 +338,18 @@ export class CharityQuiz {
     if (this.currentQuestion.scenario) {
       const scenarioDiv = document.createElement('pre');
       scenarioDiv.className = 'quiz-scenario-box';
-      scenarioDiv.style.background = 'rgba(51, 255, 0, 0.04)';
-      scenarioDiv.style.border = '1px solid rgba(51, 255, 0, 0.15)';
+      scenarioDiv.style.background = 'var(--green-dim)';
+      scenarioDiv.style.border = '1px solid var(--green)';
       scenarioDiv.style.borderRadius = '8px';
       scenarioDiv.style.padding = '15px';
       scenarioDiv.style.marginBottom = '20px';
-      scenarioDiv.style.color = '#33ff00';
+      scenarioDiv.style.color = 'var(--green)';
       scenarioDiv.style.fontFamily = '"JetBrains Mono", monospace';
       scenarioDiv.style.fontSize = '0.85rem';
       scenarioDiv.style.whiteSpace = 'pre-wrap';
       scenarioDiv.style.textAlign = 'left';
       scenarioDiv.style.lineHeight = '1.5';
-      scenarioDiv.style.boxShadow = 'inset 0 0 10px rgba(51, 255, 0, 0.05)';
+      scenarioDiv.style.boxShadow = 'inset 0 0 10px var(--green-glow)';
       scenarioDiv.textContent = this.currentQuestion.scenario;
       this.questionElement.parentNode.insertBefore(scenarioDiv, this.questionElement);
     }
