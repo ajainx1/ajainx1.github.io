@@ -4,7 +4,8 @@ export class CharityQuiz {
   constructor() {
     this.score = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
     this.streak = 0; // Track consecutive correct answers
-    this.currentCategory = 'cybersecurity'; // Default category
+    this.currentCategory = 'network'; // Default category
+    this.currentDifficulty = 'beginner'; // Default difficulty
     this.currentQuestion = null;
     
     // DOM Elements
@@ -58,10 +59,15 @@ export class CharityQuiz {
     this.verifyCodeBtn = document.getElementById('verify-code-btn');
     this.confirmationResult = null;
     
-    // New Gamification Elements
+    // Gamification Elements
     this.progressBar = document.getElementById('milestone-progress');
     this.progressText = document.getElementById('milestone-text');
     this.shareBtn = document.getElementById('share-score-btn');
+    
+    // New Feature Elements
+    this.difficultyPills = document.querySelectorAll('.difficulty-pill');
+    this.hintBtn = document.getElementById('use-hint-btn');
+    this.hintBox = document.getElementById('quiz-hint-box');
     
     this.init();
     
@@ -95,12 +101,16 @@ export class CharityQuiz {
     if(this.shareBtn) {
       this.shareBtn.addEventListener('click', () => this.handleShareScore());
     }
+    if(this.hintBtn) {
+      this.hintBtn.addEventListener('click', () => this.handleUseHint());
+    }
   }
 
   init() {
     this.loadUserSession();
     this.updateScoreDisplay();
     this.attachCategoryListeners();
+    this.attachDifficultyListeners();
     this.attachRecipientListeners();
     this.setCategory(this.currentCategory);
   }
@@ -266,6 +276,22 @@ export class CharityQuiz {
     });
   }
 
+  attachDifficultyListeners() {
+    if(!this.difficultyPills) return;
+    this.difficultyPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        const selectedDiff = e.target.getAttribute('data-difficulty');
+        
+        // Update active class
+        this.difficultyPills.forEach(p => p.classList.remove('active'));
+        e.target.classList.add('active');
+        
+        this.currentDifficulty = selectedDiff;
+        this.loadNextQuestion();
+      });
+    });
+  }
+
   setCategory(categoryKey) {
     if (!quizData[categoryKey]) return;
     this.currentCategory = categoryKey;
@@ -323,8 +349,16 @@ export class CharityQuiz {
       }
     }
     
-    const questions = quizData[this.currentCategory].questions;
-    // Pick a random question from the active category
+    const allQuestions = quizData[this.currentCategory].questions;
+    // Filter by difficulty
+    const questions = allQuestions.filter(q => q.difficulty === this.currentDifficulty);
+    
+    if (questions.length === 0) {
+        this.questionElement.textContent = "No questions available for this difficulty yet. Check back soon!";
+        return;
+    }
+    
+    // Pick a random question from the filtered category
     const randomIndex = Math.floor(Math.random() * questions.length);
     this.currentQuestion = questions[randomIndex];
     
@@ -376,6 +410,47 @@ export class CharityQuiz {
       btn.addEventListener('click', () => this.handleAnswer(index, btn));
       this.optionsElement.appendChild(btn);
     });
+    
+    // Reset Hint UI
+    if (this.hintBox && this.hintBtn) {
+      this.hintBox.style.display = 'none';
+      if (this.currentQuestion.hint) {
+        this.hintBox.textContent = `💡 Hint: ${this.currentQuestion.hint}`;
+        this.hintBtn.style.display = 'inline-block';
+        this.hintBtn.disabled = this.score < 5;
+      } else {
+        this.hintBtn.style.display = 'none';
+      }
+    }
+  }
+
+  handleUseHint() {
+    if (this.score >= 5 && this.currentQuestion && this.currentQuestion.hint) {
+      // Deduct score
+      this.score -= 5;
+      localStorage.setItem('charityRiceScore', this.score);
+      if (this.currentUser) {
+        localStorage.setItem(`charityRiceScore_${this.currentUser.email}`, this.score);
+      }
+      
+      // Flash red to indicate deduction
+      this.scoreElement.style.color = '#ff3333';
+      setTimeout(() => {
+        this.scoreElement.style.color = 'var(--green)';
+      }, 500);
+      
+      this.updateScoreDisplay();
+      
+      // Show Hint UI
+      this.hintBox.style.display = 'block';
+      this.hintBtn.disabled = true;
+      
+      this.feedbackElement.textContent = 'Hint revealed! -5 grains.';
+      this.feedbackElement.className = 'quiz-feedback show';
+    } else if (this.score < 5) {
+      this.feedbackElement.textContent = 'Not enough grains! You need 5 to use a hint.';
+      this.feedbackElement.className = 'quiz-feedback error show';
+    }
   }
 
   handleAnswer(selectedIndex, btnElement) {

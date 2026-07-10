@@ -1,172 +1,46 @@
 export const quizData = {
-  story: {
-    title: "Incident Story Mode",
-    description: "Navigate high-priority incident scenarios. Solve them to donate rice!",
+  network: {
+    title: "Network Security",
+    description: "Defend the perimeter. Feed the hungry.",
     questions: [
-      {
-        scenario: "[INCIDENT REPORT - BIHAR STATE NOC]\nAn alert triggers on a treasury office endpoint. Security logs show an active PowerShell process spawning from Excel attempting to execute remote payloads.",
-        question: "What is the most likely initial access vector and execution path?",
-        options: [
-          "Phishing with macro-enabled attachment running local shell commands",
-          "SQL Injection on the payroll server spawning cmd.exe",
-          "Zero-day browser vulnerability causing remote execution",
-          "Brute force of SSH service leading to local compromise"
-        ],
-        answer: 0
-      },
-      {
-        scenario: "[ACTIVE DIRECTORY INTRUSION - TARGET: FOREST-DC]\nDuring network threat hunting, you observe a massive burst of Kerberos TGS-REQ requests targeting multiple service account names (SPNs), followed by offline ticket cracking telemetry.",
-        question: "What Active Directory exploitation technique is being executed by the adversary?",
-        options: [
-          "DCSync Attack",
-          "Kerberoasting",
-          "Pass-the-Hash",
-          "Golden Ticket Forgery"
-        ],
-        answer: 1
-      },
-      {
-        scenario: "[JUMPSTREET GATEWAY ALARM - CO-LOCATED NODE]\nYour low-latency order router experiences a sudden packet drop storm. A TCP socket trace shows massive queues building up on the kernel-bypass Solarflare network interface card.",
-        question: "Which kernel-bypass driver suite should you verify to ensure raw trading traffic bypasses standard OS protocol stack?",
-        options: [
-          "Solarflare OpenOnload",
-          "Linux Netfilter iptables",
-          "Standard BIND9 DNS caching",
-          "OSPF Routing Daemon"
-        ],
-        answer: 0
-      },
-      {
-        scenario: "[NOC RISK MITIGATION - THREAT LEVEL: CRITICAL]\nMultiple campus switches report bandwidth saturation. Host event logs show user directories are being encrypted to '.crypt' extension and ransom notes dropped.",
-        question: "What is the immediate SecOps triage action to halt network-based encryption propagation?",
-        options: [
-          "Re-initialize the main Active Directory database",
-          "Disconnect affected VLANs and trigger EDR host isolation",
-          "Run an aggressive vulnerability scan across all subnets",
-          "Re-route BGP network path to a secondary ISP"
-        ],
-        answer: 1
-      },
-      {
-        scenario: "[WEB SECURITY AUDIT - PATH: get_files.php]\nYou are performing code audit on the state engineering directory utility. The API accepts a raw file path query parameter without sanitization, e.g. '?file=../../../../etc/passwd'.",
-        question: "What class of vulnerability is present in the get_files.php endpoint?",
-        options: [
-          "SQL Injection (SQLi)",
-          "Path Traversal / Local File Inclusion (LFI)",
-          "Stored Cross-Site Scripting (XSS)",
-          "Cross-Site Request Forgery (CSRF)"
-        ],
-        answer: 1
-      }
+      { difficulty: 'beginner', question: "Which port is typically used for SSH?", options: ["21", "22", "23", "443"], answer: 1, hint: "It is one higher than FTP's control port." },
+      { difficulty: 'beginner', question: "What port is associated with RDP (Remote Desktop Protocol)?", options: ["3389", "8080", "445", "139"], answer: 0, hint: "It's in the 3000 range." },
+      { difficulty: 'intermediate', question: "What does 'Zero Trust' architecture mean?", options: ["Never trust, always verify every access request", "Trust local network traffic only", "Eliminate all user passwords", "Block all inbound internet traffic"], answer: 0, hint: "Verification is required regardless of location." },
+      { difficulty: 'intermediate', question: "Which DNS record type maps a domain name to an IPv4 address?", options: ["MX", "CNAME", "A", "TXT"], answer: 2, hint: "It's the first letter of the alphabet." },
+      { difficulty: 'advanced', question: "What is the primary purpose of a BGP blackhole?", options: ["To speed up routing", "To drop traffic directed to a specific IP during a DDoS", "To encrypt internal traffic", "To compress HTTP responses"], answer: 1, hint: "It is often used as a defense mechanism against volumetric attacks." }
     ]
   },
-  cybersecurity: {
-    title: "Cyber FreeRice",
-    description: "Test your SecOps knowledge and donate rice to those in need!",
+  web: {
+    title: "Web Security",
+    description: "Secure the application layer. Feed the hungry.",
     questions: [
-      // Fundamentals
-      { question: "What does the 'A' in the CIA triad stand for?", options: ["Authentication", "Authorization", "Availability", "Accountability"], answer: 2 },
-      { question: "Which HTTP status code indicates 'Forbidden'?", options: ["200", "401", "403", "404"], answer: 2 },
-      { question: "What is 'Purple Teaming' in cybersecurity?", options: ["When red and blue teams collaborate to improve defenses", "A team dedicated to physical security testing", "Automated vulnerability scanning", "Writing malware for research"], answer: 0 },
-      { question: "What does 'Zero Trust' architecture mean?", options: ["Never trust, always verify every access request", "Trust local network traffic only", "Eliminate all user passwords", "Block all inbound internet traffic"], answer: 0 },
-      
-      // Encryption & Cryptography
-      { question: "Which of the following is a symmetric encryption algorithm?", options: ["RSA", "AES", "DSA", "ECC"], answer: 1 },
-      { question: "What is the function of a 'salt' in password hashing?", options: ["To encrypt the password for later decryption", "To add random data to defend against rainbow tables", "To make the password easier to remember", "To compress the password hash"], answer: 1 },
-      { question: "Which protocol is designed to provide communication security over a computer network?", options: ["HTTP", "TLS", "FTP", "Telnet"], answer: 1 },
-      { question: "What does PKI stand for?", options: ["Public Key Infrastructure", "Private Key Interchange", "Pre-shared Key Initialization", "Personal Key Identifier"], answer: 0 },
-      
-      // Enterprise SecOps & Infrastructure
-      { question: "What does SIEM stand for in cybersecurity?", options: ["System Information and Event Monitoring", "Security Information and Event Management", "Secure Integration of Enterprise Modules", "System Incident and Event Management"], answer: 1 },
-      { question: "What is the primary purpose of an EDR solution?", options: ["To encrypt data at rest", "To filter incoming network traffic", "To monitor and respond to threats on endpoints", "To provide VPN access"], answer: 2 },
-      { question: "Which tool is commonly used for network protocol analysis?", options: ["Metasploit", "Burp Suite", "Wireshark", "John the Ripper"], answer: 2 },
-      { question: "What is the main function of a WAF (Web Application Firewall)?", options: ["Protect against physical tampering", "Filter and monitor HTTP traffic to a web application", "Encrypt hard drives", "Manage active directory users"], answer: 1 },
-      
-      // Active Directory & Windows
-      { question: "In Active Directory, what is a 'Golden Ticket' attack?", options: ["Forging a TGT using the krbtgt hash", "Stealing a user's password from the SAM database", "Bypassing MFA on a domain controller", "Creating a rogue domain admin account"], answer: 0 },
-      { question: "Which protocol does Active Directory primarily use for authentication?", options: ["NTLM", "RADIUS", "Kerberos", "SAML"], answer: 2 },
-      { question: "What is 'BloodHound' primarily used for?", options: ["Antivirus scanning", "Mapping complex Active Directory relationships", "Packet sniffing", "DDoS mitigation"], answer: 1 },
-      
-      // Attacks & Vulnerabilities
-      { question: "Which attack tricks a user into clicking a malicious link by masquerading as a trustworthy entity?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Phishing", "Man-in-the-Middle (MitM)"], answer: 2 },
-      { question: "What vulnerability occurs when an application includes untrusted data in a web page without proper validation?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Buffer Overflow", "CSRF"], answer: 1 },
-      { question: "What is a 'Supply Chain Attack'?", options: ["Attacking the logistics of hardware delivery", "Compromising a third-party vendor to access the primary target", "Stealing physical inventory", "Flooding an e-commerce site with traffic"], answer: 1 },
-      { question: "What kind of attack uses a botnet to overwhelm a target server with traffic?", options: ["DDoS", "Phishing", "Ransomware", "SQL Injection"], answer: 0 },
-      
-      // Networking
-      { question: "Which port is typically used for SSH?", options: ["21", "22", "23", "443"], answer: 1 },
-      { question: "What port is associated with RDP (Remote Desktop Protocol)?", options: ["3389", "8080", "445", "139"], answer: 0 },
-      { question: "Which DNS record type maps a domain name to an IPv4 address?", options: ["MX", "CNAME", "A", "TXT"], answer: 2 },
-      
-      // General & Policy
-      { question: "What does the Principle of Least Privilege dictate?", options: ["Give everyone admin rights for efficiency", "Users get only the access rights necessary for their job", "All access is denied by default", "Use passwords with fewer characters"], answer: 1 },
-      { question: "What is a honeypot used for?", options: ["Storing legitimate user passwords securely", "Decoying attackers to study their tactics", "Increasing network throughput", "Patching vulnerabilities automatically"], answer: 1 },
-      { question: "What is OSINT?", options: ["Open Source Intelligence", "Operating System Interface", "Outbound System Interception", "Open Standard Interoperability"], answer: 0 },
-      { question: "What does MFA stand for?", options: ["Multi-Factor Authentication", "Main Firewall Access", "Malware Filtering Application", "Master File Allocation"], answer: 0 }
+      { difficulty: 'beginner', question: "Which HTTP status code indicates 'Forbidden'?", options: ["200", "401", "403", "404"], answer: 2, hint: "It's in the 400 range, but not 'Not Found'." },
+      { difficulty: 'beginner', question: "What vulnerability occurs when an application includes untrusted data in a web page without proper validation?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Buffer Overflow", "CSRF"], answer: 1, hint: "The acronym has two 'S's." },
+      { difficulty: 'intermediate', question: "Which attack tricks a user into clicking a malicious link by masquerading as a trustworthy entity?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Phishing", "Man-in-the-Middle (MitM)"], answer: 2, hint: "It sounds like a popular outdoor activity with a rod." },
+      { difficulty: 'intermediate', question: "What is the main function of a WAF (Web Application Firewall)?", options: ["Protect against physical tampering", "Filter and monitor HTTP traffic to a web application", "Encrypt hard drives", "Manage active directory users"], answer: 1, hint: "It acts as a shield specifically for HTTP/S traffic." },
+      { difficulty: 'advanced', question: "What class of vulnerability is present when an API accepts a raw file path query parameter without sanitization, e.g. '?file=../../../../etc/passwd'?", options: ["SQL Injection (SQLi)", "Path Traversal / Local File Inclusion (LFI)", "Stored Cross-Site Scripting (XSS)", "Cross-Site Request Forgery (CSRF)"], answer: 1, hint: "It involves moving 'up' directories." }
     ]
   },
-  trading: {
-    title: "Trader FreeRice",
-    description: "Test your Algorithmic Trading knowledge and donate rice to those in need!",
+  crypto: {
+    title: "Cryptography",
+    description: "Master encryption. Feed the hungry.",
     questions: [
-      { question: "What does 'VWAP' stand for in trading?", options: ["Volume Weighted Average Price", "Value With Accumulated Price", "Volatility Weighted Asset Price", "Volume Weekly Average Price"], answer: 0 },
-      { question: "Which of the following is considered a 'momentum' indicator?", options: ["Bollinger Bands", "Relative Strength Index (RSI)", "Simple Moving Average", "Fibonacci Retracement"], answer: 1 },
-      { question: "In algorithmic trading, what does 'latency' refer to?", options: ["The time a market stays open", "The delay before a transfer of data begins following an instruction", "The spread between bid and ask", "The total daily trading volume"], answer: 1 },
-      { question: "What is 'Slippage'?", options: ["A sudden market crash", "The difference between the expected price of a trade and the actual price", "A type of moving average crossover", "A glitch in the trading algorithm"], answer: 1 },
-      { question: "Which of 'The Greeks' measures the sensitivity of an option's price to changes in the price of the underlying asset?", options: ["Delta", "Gamma", "Theta", "Vega"], answer: 0 },
-      { question: "What does 'High-Frequency Trading' (HFT) primarily rely on to be profitable?", options: ["Holding assets long-term", "Fundamental analysis of quarterly earnings", "Microsecond execution speed and tiny margins", "Manual execution by traders"], answer: 2 },
-      { question: "What is a 'Short Squeeze'?", options: ["When a heavily shorted stock rapidly rises, forcing short sellers to buy back shares", "When a stock's price drops suddenly", "A trading strategy focusing on short-term bonds", "When margin requirements are tightened"], answer: 0 },
-      { question: "What is meant by 'Arbitrage'?", options: ["Relying on luck to make trades", "Simultaneously buying and selling an asset in different markets to exploit price differences", "Holding a stock through a dividend payout", "Using a random number generator for trade signals"], answer: 1 },
-      { question: "In backtesting, what does 'Overfitting' mean?", options: ["Using too much historical data", "When a model is tailored too closely to past data and fails in live trading", "Running a script that crashes the server", "Having too many variables in a spreadsheet"], answer: 1 },
-      { question: "What is 'Market Making'?", options: ["Providing liquidity by simultaneously offering to buy and sell at publicly quoted prices", "Manipulating the market through false news", "Creating new cryptocurrency tokens", "Regulating financial markets"], answer: 0 }
+      { difficulty: 'beginner', question: "Which of the following is a symmetric encryption algorithm?", options: ["RSA", "AES", "DSA", "ECC"], answer: 1, hint: "Advanced Encryption Standard." },
+      { difficulty: 'beginner', question: "Which protocol is designed to provide communication security over a computer network?", options: ["HTTP", "TLS", "FTP", "Telnet"], answer: 1, hint: "It replaced SSL." },
+      { difficulty: 'intermediate', question: "What is the function of a 'salt' in password hashing?", options: ["To encrypt the password for later decryption", "To add random data to defend against rainbow tables", "To make the password easier to remember", "To compress the password hash"], answer: 1, hint: "It prevents pre-computed dictionary attacks." },
+      { difficulty: 'intermediate', question: "What does PKI stand for?", options: ["Public Key Infrastructure", "Private Key Interchange", "Pre-shared Key Initialization", "Personal Key Identifier"], answer: 0, hint: "It manages digital certificates." },
+      { difficulty: 'advanced', question: "In elliptic curve cryptography (ECC), what provides the security advantage over RSA?", options: ["It uses symmetric keys", "It offers equivalent security with significantly smaller key sizes", "It cannot be decrypted by quantum computers", "It is faster for bulk data encryption"], answer: 1, hint: "It requires less computational power and storage for the same strength." }
     ]
   },
-  english: {
-    title: "Global FreeRice",
-    description: "Test your English Vocabulary and donate rice to those in need!",
+  compliance: {
+    title: "Compliance",
+    description: "Navigate policies. Feed the hungry.",
     questions: [
-      { question: "Which word means 'to improve or make better'?", options: ["Ameliorate", "Aggravate", "Appease", "Alienate"], answer: 0 },
-      { question: "What is a synonym for 'Ephemeral'?", options: ["Eternal", "Fleeting", "Solid", "Glowing"], answer: 1 },
-      { question: "Which word means 'a state of physical or mental weariness'?", options: ["Lassitude", "Fortitude", "Aptitude", "Platitude"], answer: 0 },
-      { question: "What does 'Ubiquitous' mean?", options: ["Rare", "Found everywhere", "Hidden", "Expensive"], answer: 1 },
-      { question: "What is an antonym for 'Cacophony'?", options: ["Harmony", "Noise", "Disaster", "Symphony"], answer: 0 },
-      { question: "Which word describes someone who is 'talkative'?", options: ["Taciturn", "Loquacious", "Reticent", "Stoic"], answer: 1 },
-      { question: "What does 'Mitigate' mean?", options: ["To make less severe", "To instigate", "To copy", "To confuse"], answer: 0 },
-      { question: "What is a synonym for 'Lucid'?", options: ["Opaque", "Clear", "Confusing", "Dark"], answer: 1 },
-      { question: "Which word means 'stubbornly refusing to change one's opinion'?", options: ["Obdurate", "Pliable", "Fickle", "Docile"], answer: 0 },
-      { question: "What does 'Pragmatic' mean?", options: ["Idealistic", "Practical", "Emotional", "Theoretical"], answer: 1 }
-    ]
-  },
-  math: {
-    title: "Global FreeRice",
-    description: "Test your Basic Mathematics and donate rice to those in need!",
-    questions: [
-      { question: "What is 15% of 200?", options: ["15", "20", "30", "45"], answer: 2 },
-      { question: "If 3x + 5 = 20, what is x?", options: ["3", "5", "10", "15"], answer: 1 },
-      { question: "What is the square root of 144?", options: ["10", "11", "12", "14"], answer: 2 },
-      { question: "What is 7 cubed (7³)?", options: ["21", "49", "343", "490"], answer: 2 },
-      { question: "What is the next prime number after 7?", options: ["8", "9", "10", "11"], answer: 3 },
-      { question: "If a triangle has a base of 4 and a height of 6, what is its area?", options: ["10", "12", "24", "48"], answer: 1 },
-      { question: "What is 25 * 12?", options: ["250", "275", "300", "325"], answer: 2 },
-      { question: "Solve: (8 + 2) * 5 - 10", options: ["0", "40", "50", "90"], answer: 1 },
-      { question: "If a circle has a radius of 5, what is its diameter?", options: ["2.5", "5", "10", "15"], answer: 2 },
-      { question: "What is 1000 divided by 8?", options: ["110", "125", "150", "175"], answer: 1 }
-    ]
-  },
-  general: {
-    title: "Global FreeRice",
-    description: "Test your General Knowledge and donate rice to those in need!",
-    questions: [
-      { question: "What is the capital of Australia?", options: ["Sydney", "Melbourne", "Canberra", "Perth"], answer: 2 },
-      { question: "Who painted the Mona Lisa?", options: ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"], answer: 2 },
-      { question: "Which planet is known as the Red Planet?", options: ["Venus", "Jupiter", "Saturn", "Mars"], answer: 3 },
-      { question: "What is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], answer: 3 },
-      { question: "In which year did the Titanic sink?", options: ["1905", "1912", "1920", "1931"], answer: 1 },
-      { question: "What is the chemical symbol for Gold?", options: ["Ag", "Au", "Gd", "Go"], answer: 1 },
-      { question: "Who wrote 'Romeo and Juliet'?", options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"], answer: 1 },
-      { question: "What is the hardest natural substance on Earth?", options: ["Gold", "Iron", "Diamond", "Quartz"], answer: 2 },
-      { question: "Which continent is the Sahara Desert located on?", options: ["Asia", "South America", "Africa", "Australia"], answer: 2 },
-      { question: "How many continents are there on Earth?", options: ["5", "6", "7", "8"], answer: 2 }
+      { difficulty: 'beginner', question: "What does the Principle of Least Privilege dictate?", options: ["Give everyone admin rights for efficiency", "Users get only the access rights necessary for their job", "All access is denied by default", "Use passwords with fewer characters"], answer: 1, hint: "Only give them what they need." },
+      { difficulty: 'beginner', question: "What does MFA stand for?", options: ["Multi-Factor Authentication", "Main Firewall Access", "Malware Filtering Application", "Master File Allocation"], answer: 0, hint: "It requires more than just a password." },
+      { difficulty: 'intermediate', question: "What does SIEM stand for in cybersecurity?", options: ["System Information and Event Monitoring", "Security Information and Event Management", "Secure Integration of Enterprise Modules", "System Incident and Event Management"], answer: 1, hint: "It manages security events." },
+      { difficulty: 'intermediate', question: "Which framework is commonly used as a standard for information security management systems (ISMS)?", options: ["ISO 27001", "PCI DSS", "HIPAA", "GDPR"], answer: 0, hint: "It is an International Organization for Standardization framework." },
+      { difficulty: 'advanced', question: "Under GDPR, what is the maximum fine for a severe violation?", options: ["10 Million Euros", "20 Million Euros or 4% of global turnover", "500,000 Euros", "1% of annual profit"], answer: 1, hint: "It is the higher of a specific monetary amount or a percentage of global revenue." }
     ]
   }
 };

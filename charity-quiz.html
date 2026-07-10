@@ -245,6 +245,35 @@
       box-shadow: 0 0 10px var(--green-glow);
     }
     
+    .difficulty-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
+    .difficulty-pill {
+      background: var(--card2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .difficulty-pill:hover {
+      background: var(--border);
+      color: var(--fg);
+    }
+    .difficulty-pill.active {
+      background: rgba(51, 255, 0, 0.15);
+      border-color: var(--green);
+      color: var(--fg);
+      box-shadow: 0 0 8px var(--green-glow);
+    }
+    
     /* Recipient Selector */
     .recipient-section {
       text-align: center;
@@ -406,6 +435,42 @@
       background: rgba(255, 51, 51, 0.15);
       border-color: #ff3333;
       color: var(--fg);
+    }
+    
+    .hint-btn {
+      background: transparent;
+      border: 1px dashed #ffaa00;
+      color: #ffaa00;
+      padding: 8px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      margin-top: 15px;
+      transition: all 0.2s;
+    }
+    .hint-btn:hover:not(:disabled) {
+      background: rgba(255, 170, 0, 0.1);
+      box-shadow: 0 0 10px rgba(255, 170, 0, 0.3);
+    }
+    .hint-btn:disabled {
+      border-color: var(--border2);
+      color: var(--muted);
+      cursor: not-allowed;
+    }
+    
+    .hint-text-box {
+      background: rgba(255, 170, 0, 0.1);
+      border: 1px solid rgba(255, 170, 0, 0.3);
+      color: #ffaa00;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      display: none;
+      text-align: left;
     }
 
     .quiz-feedback {
@@ -631,15 +696,20 @@
   <div class="quiz-container" id="quiz-container">
     <div class="hero-banner">
       <h1>Cyber FreeRice — Play. Learn. Feed.</h1>
-      <p>For every correct answer, we donate <strong>10 grains of rice</strong> to families in need. Answer correctly and watch your impact grow!</p>
+      <p>Welcome to Cyber FreeRice — where your cybersecurity knowledge feeds the hungry. For every correct answer, we donate <strong>10 grains of rice</strong> to families in need!</p>
     </div>
 
-    <div class="category-selector" id="category-selector" style="flex-wrap: wrap;">
-      <button class="category-pill active" data-category="cybersecurity">Cybersecurity</button>
-      <button class="category-pill" data-category="trading">Algorithmic Trading</button>
-      <button class="category-pill" data-category="english">English Vocab</button>
-      <button class="category-pill" data-category="math">Basic Math</button>
-      <button class="category-pill" data-category="general">General Knowledge</button>
+    <div class="category-selector" id="category-selector" style="flex-wrap: wrap; margin-bottom: 15px;">
+      <button class="category-pill active" data-category="network">Network Security</button>
+      <button class="category-pill" data-category="web">Web Security</button>
+      <button class="category-pill" data-category="crypto">Cryptography</button>
+      <button class="category-pill" data-category="compliance">Compliance</button>
+    </div>
+
+    <div class="difficulty-selector" id="difficulty-selector">
+      <button class="difficulty-pill active" data-difficulty="beginner">Beginner</button>
+      <button class="difficulty-pill" data-difficulty="intermediate">Intermediate</button>
+      <button class="difficulty-pill" data-difficulty="advanced">Advanced</button>
     </div>
 
     <div class="recipient-section">
@@ -690,8 +760,12 @@
 
     <div class="question-card">
       <div class="question-text" id="quiz-question">Loading question...</div>
+      <div class="hint-text-box" id="quiz-hint-box"></div>
       <div class="options-grid" id="quiz-options">
         <!-- Buttons injected here -->
+      </div>
+      <div style="text-align: center;">
+        <button class="hint-btn" id="use-hint-btn">💡 Use Hint (-5 Grains)</button>
       </div>
       <div class="quiz-feedback" id="quiz-feedback"></div>
     </div>
