@@ -1,47 +1,330 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JumpStreet Bot — AI Trading Engine</title>
 
-    <!-- Primary SEO -->
-    <title>Jumpstreet — JumpStreet Bot Platform | Mangalik &amp; Sons Venture</title>
-    <meta name="description" content="Official billing, configuration, and product marketplace for JumpStreet Bot — automated trading alerts, Windows Cloud VMs, and Trading Infrastructures. A Jumpstreet / Mangalik &amp; Sons Venture." />
-    <meta name="author" content="Aditya Jain — ajainx1" />
-    <meta name="keywords" content="jumpstreet bot, jumpstreet bot, ai trading bot, hft signal suite, algorithmic trading india, cloud vm trading, mangalik sons" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <!-- Favicon (inline SVG data URI — no external file needed) -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23000'/><text x='50' y='72' font-size='60' font-family='monospace' font-weight='900' text-anchor='middle' fill='white'>J</text></svg>" />
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23000'/><text x='50' y='72' font-size='60' font-family='monospace' font-weight='900' text-anchor='middle' fill='white'>J</text></svg>" />
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #f8faf8;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 24px;
+    }
 
-    <!-- Open Graph (WhatsApp, Telegram, Facebook previews) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ajainx1.github.io/js" />
-    <meta property="og:title" content="Jumpstreet — JumpStreet Bot Platform | Mangalik &amp; Sons Venture" />
-    <meta property="og:description" content="Deploy automated trading bots, configure Windows Cloud VMs, and order imported 5G SIM Hotspots. India's premier algorithmic trading infrastructure." />
-    <meta property="og:image" content="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&q=80&w=1200" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_IN" />
-    <meta property="og:site_name" content="Jumpstreet" />
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 40px 48px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
+    }
 
-    <!-- Twitter / X Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ajainx1.github.io/js" />
-    <meta name="twitter:title" content="Jumpstreet — JumpStreet Bot Platform" />
-    <meta name="twitter:description" content="Deploy automated trading bots, Cloud VMs, and Trading Infrastructures. A Mangalik &amp; Sons Venture." />
-    <meta name="twitter:image" content="https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&q=80&w=1200" />
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #e6f0e6;
+      padding-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
-    <!-- PWA / Mobile App Meta -->
-    <meta name="theme-color" content="#2E7D32" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Jumpstreet" />
-    <script type="module" crossorigin src="./assets/index-BHm-A0It.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-Df3jWT3w.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    .logo h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: #1a3b2e;
+    }
+
+    .logo h1 span {
+      color: #b8860b;
+    }
+
+    .logo .sub {
+      font-size: 13px;
+      color: #5a6b5e;
+      font-weight: 400;
+      letter-spacing: 0.3px;
+    }
+
+    .badge {
+      background: #e6f0e6;
+      color: #1a3b2e;
+      padding: 6px 16px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 0 32px;
+    }
+
+    .hero h2 {
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      color: #1a3b2e;
+      line-height: 1.2;
+    }
+
+    .hero h2 em {
+      color: #b8860b;
+      font-style: normal;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: #3a4b3e;
+      max-width: 600px;
+      margin: 12px auto 0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+      margin: 40px 0;
+      padding: 32px 0;
+      border-top: 1px solid #e6f0e6;
+      border-bottom: 1px solid #e6f0e6;
+    }
+
+    .feature-item {
+      background: #f5f9f5;
+      padding: 20px 18px;
+      border-radius: 16px;
+      text-align: center;
+    }
+
+    .feature-item .icon {
+      font-size: 28px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .feature-item h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #1a3b2e;
+      margin-bottom: 4px;
+    }
+
+    .feature-item p {
+      font-size: 14px;
+      color: #4a5b4e;
+      margin: 0;
+    }
+
+    .pricing {
+      background: #f5f9f5;
+      border-radius: 18px;
+      padding: 28px 32px;
+      margin: 32px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .pricing .price-left h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #1a3b2e;
+    }
+
+    .pricing .price-left .amount {
+      font-size: 28px;
+      font-weight: 700;
+      color: #b8860b;
+      margin-top: 2px;
+    }
+
+    .pricing .price-left .amount small {
+      font-size: 15px;
+      font-weight: 400;
+      color: #4a5b4e;
+      margin-left: 6px;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #1a3b2e;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #0f2a20;
+      transform: scale(1.02);
+    }
+
+    .btn-secondary {
+      background: #e6f0e6;
+      color: #1a3b2e;
+    }
+
+    .btn-secondary:hover {
+      background: #d0dfd0;
+    }
+
+    .infra {
+      background: #fafcfa;
+      border-radius: 18px;
+      padding: 24px 28px;
+      margin: 24px 0 32px;
+      border: 1px solid #e6f0e6;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .infra .tag {
+      background: #f0f5f0;
+      padding: 4px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #2a4b3e;
+    }
+
+    .contact {
+      text-align: center;
+      padding: 16px 0 4px;
+      font-size: 15px;
+      color: #4a5b4e;
+      border-top: 1px solid #e6f0e6;
+      margin-top: 8px;
+    }
+
+    .contact a {
+      color: #1a3b2e;
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px dotted #b8860b;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      color: #6a7b6e;
+      padding-top: 20px;
+      margin-top: 16px;
+      border-top: 1px solid #e6f0e6;
+    }
+
+    .footer span {
+      color: #b8860b;
+    }
+
+    @media (max-width: 700px) {
+      .container { padding: 24px 18px; }
+      .hero h2 { font-size: 28px; }
+      .pricing { flex-direction: column; text-align: center; }
+      .btn-group { justify-content: center; width: 100%; }
+      .btn { width: 100%; text-align: center; }
+      .infra { flex-direction: column; align-items: flex-start; }
+      .header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <div class="logo">
+      <h1>JumpStreet <span>Bot</span></h1>
+      <div class="sub">by JumpStreet Systems — a Mangalik & Sons venture</div>
+    </div>
+    <div class="badge">🚀 14 VMs remaining</div>
+  </div>
+
+  <div class="hero">
+    <h2>AI-Powered Trading.<br><em>Engineered for Speed.</em></h2>
+    <p>High-frequency signal suite with 7‑indicator confluence &amp; real‑time Telegram alerts.</p>
+  </div>
+
+  <div class="features">
+    <div class="feature-item">
+      <span class="icon">📊</span>
+      <h4>7‑Indicator Engine</h4>
+      <p>EMA, MACD, RSI, Supertrend &amp; more — confluence-based signals.</p>
+    </div>
+    <div class="feature-item">
+      <span class="icon">⚡</span>
+      <h4>Sub‑ms Latency</h4>
+      <p>Avg 1.2ms signal delivery via JumpStreet API — built for HFT.</p>
+    </div>
+    <div class="feature-item">
+      <span class="icon">🤖</span>
+      <h4>MT5 + Telegram</h4>
+      <p>Auto‑trade with trailing stop‑loss &amp; instant alerts to your phone.</p>
+    </div>
+    <div class="feature-item">
+      <span class="icon">🛡️</span>
+      <h4>Enterprise‑Grade</h4>
+      <p>Windows VMs with anti‑crash watchdogs &amp; 5‑min provisioning.</p>
+    </div>
+  </div>
+
+  <div class="pricing">
+    <div class="price-left">
+      <h3>💰 Standard License</h3>
+      <div class="amount">₹999 <small>or ₹1,499 with VM bundle</small></div>
+    </div>
+    <div class="btn-group">
+      <a href="#" class="btn btn-primary">Buy Now — UPI / GPay</a>
+      <a href="#" class="btn btn-secondary">View VM Bundle</a>
+    </div>
+  </div>
+
+  <div class="infra">
+    <span>🖥️ <strong>Infrastructure:</strong> High‑Availability Windows VMs · 5‑min provisioning</span>
+    <span class="tag">⚡ 1.2ms avg latency</span>
+    <span class="tag">🔁 Instant license delivery</span>
+  </div>
+
+  <div class="contact">
+    📞 Questions? Reach us on <a href="#">Telegram</a> or email <a href="#">support@jumpstreet.systems</a>
+  </div>
+
+  <div class="footer">
+    Managed by JumpStreet Systems — a Mangalik &amp; Sons Securities venture.<br>
+    © 2026 · Built with <span>❤️</span> for traders.
+  </div>
+
+</div>
+
+</body>
 </html>
