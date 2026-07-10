@@ -655,14 +655,48 @@
     .lb-rank { font-weight: 800; width: 30px; font-family: 'JetBrains Mono', monospace; }
     .lb-name { flex-grow: 1; font-weight: 600; color: var(--fg); }
     .lb-score { font-weight: 700; color: var(--green); display: flex; align-items: center; gap: 5px; }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .header-bar {
+        flex-direction: column;
+        justify-content: center;
+        gap: 15px;
+        padding: 15px;
+      }
+      .logo-area {
+        position: static !important;
+        transform: none !important;
+        text-align: center;
+      }
+      .auth-area {
+        justify-content: center;
+      }
+      .hero-banner h1 {
+        font-size: 1.5rem;
+      }
+      .quiz-container {
+        margin: 20px auto;
+      }
+      .score-board {
+        min-width: 100%;
+        padding: 20px 15px;
+      }
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+      .plate-icon {
+        font-size: 4rem;
+      }
+    }
   </style>
 </head>
 <body>
 
   <header class="header-bar">
     <a href="index.html" class="back-btn">&larr; Return to Portfolio</a>
-    <div class="logo-area" id="quiz-header-logo" style="position: absolute; left: 50%; transform: translateX(-50%);">
-      <img src="charity_favicon.png" alt="Logo" style="height: 24px; border-radius: 4px;"> Cyber<span>FreeRice</span>
+    <div class="logo-area" id="quiz-header-logo">
+      <img src="charity_favicon.svg" alt="Logo" style="height: 24px; border-radius: 4px;"> Cyber<span>FreeRice</span>
     </div>
     
     <div class="auth-area">
