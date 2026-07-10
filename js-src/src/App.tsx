@@ -7,7 +7,7 @@ import {
 
 import { Product, VMConfig, PaymentSubmission } from './types';
 import { useToast } from './context/ToastContext';
-import SpotifyWidget from './components/SpotifyWidget';
+
 import AlertsSimulator from './components/AlertsSimulator';
 import VmConfigurator from './components/VmConfigurator';
 import ProductCatalog from './components/ProductCatalog';
@@ -604,7 +604,7 @@ export default function App() {
 
         {/* Right Sidebar */}
         <aside className="lg:col-span-4 space-y-5 animate-slide-right delay-200">
-          <SpotifyWidget isDark={isDark} />
+
 
           {/* Corporate Overview */}
           <div className="rounded-xl border p-5 space-y-4" style={{ background: tk.card, borderColor: tk.cardB }}>
