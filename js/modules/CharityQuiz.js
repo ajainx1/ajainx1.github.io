@@ -415,14 +415,43 @@ export class CharityQuiz {
   }
 
   updateScoreDisplay() {
-    if (this.scoreElement) {
-      this.scoreElement.textContent = this.score;
-      // Add a pop animation
-      this.scoreElement.style.transform = 'scale(1.2)';
-      setTimeout(() => {
-        this.scoreElement.style.transform = 'scale(1)';
-      }, 200);
+    if (!this.scoreElement) return;
+    
+    const startScore = parseInt(this.scoreElement.textContent) || 0;
+    const targetScore = this.score;
+    if (startScore === targetScore) {
+      this.scoreElement.textContent = targetScore;
+      return;
     }
+    
+    const duration = 800; // ms
+    const startTime = performance.now();
+    
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      // Easing out function for smoother stop
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentScore = Math.floor(startScore + (targetScore - startScore) * easeOut);
+      
+      this.scoreElement.textContent = currentScore;
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        this.scoreElement.textContent = targetScore;
+        // Add a pop animation at the end
+        this.scoreElement.style.transform = 'scale(1.15)';
+        this.scoreElement.style.color = 'var(--fg)';
+        setTimeout(() => {
+          this.scoreElement.style.transform = 'scale(1)';
+          this.scoreElement.style.color = 'var(--green)';
+        }, 150);
+      }
+    };
+    
+    requestAnimationFrame(animate);
   }
 
   updateStreakDisplay() {
