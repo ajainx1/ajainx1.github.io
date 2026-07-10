@@ -140,7 +140,7 @@ img { max-width: 100%; }
 .landing-logo {
   display: inline-flex; align-items: center; justify-content: center;
   width: 80px; height: 80px; border-radius: 20px; font-family: var(--mono);
-  font-size: 1.8rem; font-weight: 800; color: #ffffff;
+  font-size: 1.8rem; font-weight: 800; color: var(--green);
   background: var(--card); 
   border: 2px solid var(--green);
   margin-bottom: 1.25rem; 
@@ -152,7 +152,7 @@ img { max-width: 100%; }
   font-weight: 800; 
   letter-spacing: -1px; 
   margin-bottom: .4rem; 
-  color: #ffffff;
+  color: var(--fg);
   font-family: var(--title);
 }
 
@@ -167,7 +167,7 @@ img { max-width: 100%; }
 .landing-divider { 
   width: 80px; 
   height: 3px; 
-  background: var(--green); 
+  background: var(--amber); 
   margin: 0 auto 1.5rem; 
   border-radius: 2px; 
 }
@@ -242,7 +242,7 @@ img { max-width: 100%; }
 .landing-btn-meta {
   font-family: var(--mono);
   font-size: 0.75rem;
-  color: var(--green);
+  color: var(--amber);
   opacity: 0.8;
   white-space: nowrap;
 }
@@ -250,7 +250,7 @@ img { max-width: 100%; }
 .landing-prompt { 
   font-family: var(--mono); 
   font-size: 0.8rem; 
-  color: var(--green); 
+  color: var(--amber); 
   margin-bottom: 1.5rem; 
   text-transform: uppercase; 
   letter-spacing: 0.15em; 
