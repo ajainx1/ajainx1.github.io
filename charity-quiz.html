@@ -496,11 +496,17 @@
         <button class="recipient-btn" data-recipient="birds" aria-label="Donate to Birds">🕊️ Birds</button>
         <button class="recipient-btn" data-recipient="cows" aria-label="Donate to Cows">🐄 Cows</button>
         <button class="recipient-btn" data-recipient="dogs" aria-label="Donate to Dogs">🐕 Dogs</button>
-        <button class="recipient-btn" data-recipient="moon" aria-label="Donate to Moon Mothers and Women">🌕 Moon (2) - Mothers & Women</button>
-        <button class="recipient-btn" data-recipient="jupiter" aria-label="Donate to Jupiter Students and Education">🪐 Jupiter (3) - Students & Education</button>
-        <button class="recipient-btn" data-recipient="rahu" aria-label="Donate to Rahu Sick and Homeless">🌑 Rahu (4) - Sick & Homeless</button>
-        <button class="recipient-btn" data-recipient="venus" aria-label="Donate to Venus Women Shelters">✨ Venus (6) - Women's Shelters</button>
-        <button class="recipient-btn" data-recipient="saturn" aria-label="Donate to Saturn Elderly and Disabled">🪐 Saturn (8) - Elderly & Disabled</button>
+        <button class="recipient-btn" style="background: var(--card2); border: 1px dashed var(--border); font-size: 0.8rem;" onclick="const el = document.getElementById('astro-options'); el.style.display = el.style.display === 'none' ? 'flex' : 'none';">
+          🌌 Astro Science (Advanced)
+        </button>
+      </div>
+      
+      <div id="astro-options" class="recipient-selector" style="display: none; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 15px; padding: 10px; border-color: var(--green-glow);">
+        <button class="recipient-btn" data-recipient="moon" aria-label="Donate to Moon Mothers and Women">🌕 Moon (2)</button>
+        <button class="recipient-btn" data-recipient="jupiter" aria-label="Donate to Jupiter Students and Education">🪐 Jupiter (3)</button>
+        <button class="recipient-btn" data-recipient="rahu" aria-label="Donate to Rahu Sick and Homeless">🌑 Rahu (4)</button>
+        <button class="recipient-btn" data-recipient="venus" aria-label="Donate to Venus Women Shelters">✨ Venus (6)</button>
+        <button class="recipient-btn" data-recipient="saturn" aria-label="Donate to Saturn Elderly and Disabled">🪐 Saturn (8)</button>
       </div>
     </div>
 
