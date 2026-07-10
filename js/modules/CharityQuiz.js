@@ -44,7 +44,6 @@ export class CharityQuiz {
     this.userAvatar = document.getElementById('user-avatar');
     this.userName = document.getElementById('user-name');
     this.logoutBtn = document.getElementById('logout-btn');
-    this.demoLoginBtn = document.getElementById('demo-login-btn');
     this.currentUser = null;
     
     // Email Auth Modal Elements (Supabase)
@@ -72,9 +71,6 @@ export class CharityQuiz {
     }
     if(this.emailLoginBtn) {
       this.emailLoginBtn.addEventListener('click', () => this.openEmailModal());
-    }
-    if(this.demoLoginBtn) {
-      this.demoLoginBtn.addEventListener('click', () => this.handleDemoLogin());
     }
     if(this.closeEmailModal) {
       this.closeEmailModal.addEventListener('click', () => { this.emailModal.style.display = 'none'; });
@@ -191,18 +187,6 @@ export class CharityQuiz {
     }
   }
 
-  handleDemoLogin() {
-    this.loginUser("Aditya Jain (Demo)", "demo@adityasec32.systems", "https://ui-avatars.com/api/?name=Aditya+Jain&background=33ff00&color=000");
-  }
-
-  handleDemoLogin() {
-    this.loginUser("Aditya Jain (Demo)", "demo@adityasec32.systems", "https://ui-avatars.com/api/?name=Aditya+Jain&background=33ff00&color=000");
-  }
-
-  handleDemoLogin() {
-    this.loginUser("Aditya Jain (Demo)", "demo@adityasec32.systems", "https://ui-avatars.com/api/?name=Aditya+Jain&background=33ff00&color=000");
-  }
-
   loginUser(name, id, picture) {
     this.currentUser = { name, email: id, picture };
     localStorage.setItem('charityQuizUser', JSON.stringify(this.currentUser));
@@ -226,14 +210,12 @@ export class CharityQuiz {
     
     if (this.currentUser) {
       if(this.emailLoginBtn) this.emailLoginBtn.style.display = 'none';
-      if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'none';
       
       this.userProfile.style.display = 'flex';
       this.userAvatar.src = this.currentUser.picture || '';
       this.userName.textContent = this.currentUser.name || 'User';
     } else {
       if(this.emailLoginBtn) this.emailLoginBtn.style.display = 'flex';
-      if(this.demoLoginBtn) this.demoLoginBtn.style.display = 'flex';
       
       this.userProfile.style.display = 'none';
     }
