@@ -1,0 +1,14 @@
+# Dependency directories
+js/node_modules/
+js/dist/
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
