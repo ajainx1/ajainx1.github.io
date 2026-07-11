@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export type ToastType = 'success' | 'info' | 'warn';
+export type ToastType = 'success' | 'info' | 'warn' | 'error';
 
 interface Toast {
   id: string;
@@ -51,7 +51,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
               className="flex items-center gap-3 px-4 py-3 rounded-lg border backdrop-blur-md text-xs font-mono font-medium shadow-xl shadow-black/20"
               style={{
                 backgroundColor: 'rgba(11, 15, 25, 0.9)',
-                borderColor: t.type === 'success' ? 'rgba(56, 189, 248, 0.3)' : t.type === 'warn' ? 'rgba(251, 191, 36, 0.3)' : 'rgba(156, 163, 175, 0.2)',
+                borderColor: t.type === 'success' ? 'rgba(56, 189, 248, 0.3)' : t.type === 'warn' ? 'rgba(251, 191, 36, 0.3)' : t.type === 'error' ? 'rgba(244, 63, 94, 0.3)' : 'rgba(156, 163, 175, 0.2)',
                 color: '#f8fafc',
               }}
               role="alert"
@@ -64,7 +64,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
                 animate={{ width: "0%" }}
                 transition={{ duration: 3, ease: "linear" }}
                 style={{
-                   backgroundColor: t.type === 'success' ? '#38bdf8' : t.type === 'warn' ? '#fbbf24' : '#9ca3af'
+                   backgroundColor: t.type === 'success' ? '#38bdf8' : t.type === 'warn' ? '#fbbf24' : t.type === 'error' ? '#f43f5e' : '#9ca3af'
                 }}
               />
             </motion.div>
