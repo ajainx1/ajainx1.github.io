@@ -1,16 +1,16 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NIC Bihar State NOC Dashboard</title>
-    <link rel="icon" type="image/png" href="../Emblem_of_India.png">
+    <link rel="icon" type="image/png" href="static/favicon.png?v=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="static/style.css?v=3.0">
+    <link rel="stylesheet" href="static/style.css?v=1.9">
     <link rel="stylesheet" href="static/chatbot.css?v=1.1">
     <script>
         function adjustZoom() {
@@ -37,14 +37,25 @@
     </script>
 </head>
 <body>
+    <!-- Demo Watermark Elements -->
+    <div class="demo-top-banner">
+        <i class="fas fa-info-circle"></i>
+        <span>DEMO PORTAL &mdash; SANITIZED INTERFACE & SIMULATED NETWORK DATA FOR PORTFOLIO DISPLAY</span>
+    </div>
+    <div class="demo-watermark-bg">DEMO VERSION</div>
+    <div class="demo-badge">
+        <span class="dot"></span>
+        <span>DEMO / MOCKED ENVIRONMENT</span>
+    </div>
+
     <canvas id="networkCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; opacity: 0.65;"></canvas>
-    <script src="static/script.js?v=3.5"></script>
     
+
     <div class="app-container">
         <!-- Header -->
         <header class="app-header" style="position: relative; z-index: 9999;">
             <div class="logo-area">
-                <a href="http://10.133.22.8/" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
+                <a href="../" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
                     <img src="../NIC_Preview-1.png" alt="NIC Logo" class="nic-logo-img" style="height: 38px; width: auto; max-width: 180px; object-fit: contain; display: block;">
                 </a>
                 <div class="logo-divider" style="width: 1px; height: 32px; background: var(--border-color); margin: 0 4px;"></div>
@@ -54,7 +65,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="http://10.133.22.8/" class="home-portal-btn" title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
+                <a href="../" class="home-portal-btn" title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
                     <i class="fas fa-home"></i> Home Portal
                 </a>
                 <div class="digital-clock" id="digital-clock">--:--:--</div>
@@ -66,7 +77,91 @@
                     .settings-gear-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-color); background: rgba(14, 165, 233, 0.05); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
                     .settings-gear-btn:hover { background: rgba(14, 165, 233, 0.15); color: var(--text-primary); transform: rotate(45deg); border-color: rgba(14, 165, 233, 0.4); }
                     .voice-dropdown-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-                </style>
+                
+/* Professional Demo Watermark Styles */
+.demo-watermark-bg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    font-size: 8rem;
+    font-weight: 900;
+    color: rgba(148, 163, 184, 0.04) !important;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    white-space: nowrap;
+    font-family: 'Outfit', sans-serif;
+}
+body.dark-mode .demo-watermark-bg {
+    color: rgba(255, 255, 255, 0.02) !important;
+}
+
+.demo-top-banner {
+    background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    text-align: center;
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+.demo-top-banner i {
+    color: #f59e0b;
+    animation: demo-pulse 2s infinite;
+}
+@keyframes demo-pulse {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+.demo-badge {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 14px;
+    border-radius: 30px;
+    color: #f8fafc;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 99999;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+.demo-badge:hover {
+    transform: translateY(-2px);
+    background: rgba(15, 23, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.demo-badge .dot {
+    width: 6px;
+    height: 6px;
+    background-color: #10b981;
+    border-radius: 50%;
+    animation: demo-flash 1.5s infinite;
+}
+@keyframes demo-flash {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+}
+</style>
                 <div class="voice-settings-wrapper">
                     <button class="voice-alert-toggle" id="voice-alert-toggle" title="Toggle Voice Alerts">
                         <i class="fas fa-volume-mute" id="voice-alert-icon"></i>
@@ -212,29 +307,30 @@
             </div>
             <div class="ticker-marquee-wrapper">
                 <div class="ticker-marquee-text" id="ticker-marquee-content">
-                    All network links are currently operational. Monitoring 117 devices in real-time...
+                    All network links are currently operational. Monitoring devices in real-time...
                 </div>
             </div>
         </div>
 
+        <!-- Dynamic Summary Metrics Cards -->
         <section class="stats-overview">
             <div class="stat-card">
-                <div class="stat-icon-wrapper blue-icon"><i class="fas fa-server"></i></div>
+                <div class="stat-icon-wrapper blue-icon"><i class="fas fa-network-wired"></i></div>
                 <div class="stat-info">
-                    <div class="stat-title">Total Registry</div>
-                    <div class="stat-value" id="stat-total">0</div>
-                    <div class="stat-sub">Configured Devices</div>
+                    <div class="stat-title">Monitored Devices</div>
+                    <div class="stat-value text-primary" id="stat-total">0</div>
+                    <div class="stat-sub">Total Managed Endpoints</div>
                 </div>
             </div>
-            <div class="stat-card status-up-card">
+            <div class="stat-card">
                 <div class="stat-icon-wrapper green-icon"><i class="fas fa-check-circle"></i></div>
                 <div class="stat-info">
                     <div class="stat-title">Online</div>
                     <div class="stat-value text-success" id="stat-up">0</div>
-                    <div class="stat-sub"><i class="fas fa-circle" style="color: var(--color-up); font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Reachable Hosts</div>
+                    <div class="stat-sub"><i class="fas fa-circle" style="color: var(--color-up); font-size: 8px; vertical-align: middle; margin-right: 4px;"></i> Active Connections</div>
                 </div>
             </div>
-            <div class="stat-card status-down-card">
+            <div class="stat-card">
                 <div class="stat-icon-wrapper red-icon"><i class="fas fa-exclamation-triangle"></i></div>
                 <div class="stat-info">
                     <div class="stat-title">Offline</div>
@@ -243,18 +339,22 @@
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon-wrapper orange-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-icon-wrapper purple-icon" style="background: rgba(168, 85, 247, 0.15); color: #a855f7;"><i class="fas fa-chart-line"></i></div>
                 <div class="stat-info">
                     <div class="stat-title">Uptime Ratio</div>
-                    <div class="stat-value text-primary" id="stat-uptime">0%</div>
-                    <div class="stat-sub">Network Stability Index</div>
+                    <div class="stat-value" id="stat-uptime" style="color: #a855f7;">0%</div>
+                    <div class="stat-sub">Network Reliability</div>
                 </div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon-wrapper purple-icon"><i class="fas fa-thermometer-half"></i></div>
-                <div class="stat-info">
-                    <div class="stat-title">Environment Temperatures</div>
-                    <div class="stat-value text-purple" id="stat-temp" style="font-size: 22px;">--</div>
+                <div class="stat-icon-wrapper orange-icon"><i class="fas fa-thermometer-half"></i></div>
+                <div class="stat-info" style="width: 100%;">
+                    <div class="stat-title" style="display: flex; justify-content: space-between; align-items: center;">
+                        Environment
+                        <button id="env-view-toggle" style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 2px; font-size: 11px; transition: color 0.2s;" title="Toggle Compact View"><i class="fas fa-compress-alt"></i></button>
+                    </div>
+                    <div class="stat-value" id="stat-temp" style="font-size: 16px; margin-top: 4px;">--</div>
+                    <div class="stat-sub">Datacenter Climate</div>
                 </div>
             </div>
         </section>
@@ -274,112 +374,149 @@
                         <button class="filter-btn" data-filter="down">Offline</button>
                         <button class="filter-btn" data-filter="muted">Muted</button>
                     </div>
+                    
+                    <div class="inline-env-bar" id="inline-env-bar">
+                        <div class="env-item" title="Server Room Temperature">
+                            <div class="env-icon-wrapper"><i class="fas fa-thermometer-half"></i></div>
+                            <span id="inline-env-room" class="env-value highlight">--&deg;C</span>
+                        </div>
+                        <div class="env-divider"></div>
+                        <div class="env-item" title="UPS Temperatures">
+                            <span class="env-label">UPS</span>
+                            <span id="inline-env-ups" class="env-value">--</span>
+                        </div>
+                        <div class="env-divider"></div>
+                        <div class="env-item" title="PAC Temperatures">
+                            <span class="env-label">PAC</span>
+                            <span id="inline-env-pac" class="env-value">--</span>
+                        </div>
+                    </div>
+
+                    <div class="view-toggle-group">
+                        <select id="sort-select" class="filter-dropdown" title="Arrange options">
+                            <option value="default">Default</option>
+                            <option value="status">By Status</option>
+                            <option value="ip">By IP</option>
+                            <option value="name">By Name</option>
+                        </select>
+                        <div class="speed-control-wrapper" title="Adjust Auto-Scroll Speed">
+                            <i class="fas fa-gauge-high speed-icon"></i>
+                            <input type="range" id="scroll-speed-slider" class="premium-slider" min="0.1" max="2.0" step="0.1" value="0.6">
+                        </div>
+                        <div style="width: 1px; height: 18px; background: var(--border-color); margin: 0 4px;"></div>
+                        <button class="view-btn" id="btn-zoom-out" title="Zoom Out (Ctrl -)">
+                            <i class="fas fa-search-minus"></i>
+                        </button>
+                        <button class="view-btn" id="btn-zoom-in" title="Zoom In (Ctrl +)">
+                            <i class="fas fa-search-plus"></i>
+                        </button>
+                        <div style="width: 1px; height: 18px; background: var(--border-color); margin: 0 4px;"></div>
+                        <button class="view-btn" id="btn-export-dpr" title="Export Outages (DPR)">
+                            <i class="fas fa-file-csv"></i>
+                        </button>
+                        <button class="view-btn" id="btn-fullscreen" title="Toggle Kiosk Mode">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                        <button class="view-btn" id="btn-autoscroll" title="Toggle Auto-Scroll">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="view-btn active" id="view-btn-grid" title="Grid View">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" id="view-btn-list" title="Compact List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
                     <span class="last-checked" id="last-checked-time">Last Checked: --:--:--</span>
                 </div>
                 
-                <div class="hosts-sections-container">
+                <div class="hosts-sections-container" id="hosts-sections-container">
                     <!-- SHQ Section -->
                     <div class="hosts-section" id="shq-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-server"></i> State Headquarters Core (SHQ)</h2>
-                            <span class="section-badge" id="shq-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="SHQ">
+                                State Headquarters Core (SHQ)
+                                <div class="section-badge" id="shq-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-shq">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing SHQ core links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-shq"></div>
                     </div>
 
                     <!-- DHQ Section -->
                     <div class="hosts-section" id="dhq-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-network-wired"></i> District Headquarters Links (DHQ)</h2>
-                            <span class="section-badge" id="dhq-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="DHQ">
+                                District Headquarters Links (DHQ)
+                                <div class="section-badge" id="dhq-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-dhq">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing DHQ links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-dhq"></div>
                     </div>
 
                     <!-- Interdistrict Section -->
                     <div class="hosts-section" id="intd-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-route"></i> Interdistrict Links (INTD)</h2>
-                            <span class="section-badge" id="intd-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="INTD">
+                                Interdistrict Links
+                                <div class="section-badge" id="intd-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-intd">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing INTD links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-intd"></div>
                     </div>
 
                     <!-- Interstate Section -->
                     <div class="hosts-section" id="ints-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-globe"></i> Interstate Links (INTS)</h2>
-                            <span class="section-badge" id="ints-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="INTS">
+                                Interstate Links
+                                <div class="section-badge" id="ints-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-ints">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing INTS links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ints"></div>
                     </div>
 
                     <!-- UPS Section -->
                     <div class="hosts-section" id="ups-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-battery-full"></i> UPS Monitoring (UPS)</h2>
-                            <span class="section-badge" id="ups-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="UPS">
+                                UPS Monitoring System
+                                <div class="section-badge" id="ups-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-ups">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing UPS links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ups"></div>
                     </div>
 
                     <!-- AP Section -->
                     <div class="hosts-section" id="ap-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-wifi"></i> Access Points (AP)</h2>
-                            <span class="section-badge" id="ap-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="AP">
+                                Access Points Links
+                                <div class="section-badge" id="ap-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-ap">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing AP links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ap"></div>
                     </div>
 
                     <!-- SSB Section -->
                     <div class="hosts-section" id="ssb-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-shield-alt"></i> SSB Links (SSB)</h2>
-                            <span class="section-badge" id="ssb-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="SSB">
+                                SSB Security Links
+                                <div class="section-badge" id="ssb-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-ssb">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing SSB links, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-ssb"></div>
                     </div>
 
                     <!-- PAC Section -->
                     <div class="hosts-section" id="pac-section">
-                        <div class="section-header-title">
-                            <h2><i class="fas fa-fan"></i> Precision AC (PAC)</h2>
-                            <span class="section-badge" id="pac-badge">0 / 0 Online</span>
+                        <div class="section-header">
+                            <h2 class="section-header-title" data-category="PAC">
+                                Precision AC Units
+                                <div class="section-badge" id="pac-badge">0 / 0 Online</div>
+                            </h2>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-pac">
-                            <div class="loading-state">
-                                <i class="fas fa-circle-notch fa-spin"></i> Initializing PAC units, please wait...
-                            </div>
-                        </div>
+                        <div class="hosts-grid" id="hosts-grid-pac"></div>
                     </div>
                 </div>
             </main>
@@ -484,7 +621,20 @@
             <div class="modal-header">
                 <span class="modal-badge-status" id="modal-status-badge">UP</span>
                 <h2 id="modal-title-desc">Device Diagnostics</h2>
-                <p id="modal-title-ip" class="font-mono">10.133.11.254</p>
+                <div class="modal-ip-actions-container">
+                    <p id="modal-title-ip" class="font-mono">10.99.11.254</p>
+                    <div class="modal-ip-quick-links">
+                        <button class="modal-ip-btn" id="modal-ip-copy" title="Copy IP Address">
+                            <i class="far fa-copy"></i> Copy
+                        </button>
+                        <a href="#" id="modal-ip-http" target="_blank" class="modal-ip-btn" title="Login via Web (HTTP)">
+                            <i class="fas fa-external-link-alt"></i> HTTP
+                        </a>
+                        <a href="#" id="modal-ip-https" target="_blank" class="modal-ip-btn secure" title="Login via Secure Web (HTTPS)">
+                            <i class="fas fa-shield-alt"></i> HTTPS
+                        </a>
+                    </div>
+                </div>
             </div>
             
             <div class="modal-body">
@@ -534,10 +684,65 @@
         </div>
     </div>
 
+    <!-- Category Overview & Group Actions Modal -->
+    <div class="modal-overlay" id="category-modal">
+        <div class="modal-card category-modal-card">
+            <button class="modal-close-btn" id="category-modal-close"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <span class="modal-badge-status" id="category-modal-status-badge">HEALTHY</span>
+                <h2 id="category-modal-title">Category Title</h2>
+                <p class="font-mono text-muted" id="category-modal-subtitle">Sub-category Label</p>
+            </div>
+            
+            <div class="modal-body">
+                <!-- Group Info Stats Grid -->
+                <div class="modal-stats-grid">
+                    <div class="modal-stat-box">
+                        <span class="box-label">Total Devices</span>
+                        <span class="box-val" id="category-stat-total">--</span>
+                    </div>
+                    <div class="modal-stat-box">
+                        <span class="box-label">Online</span>
+                        <span class="box-val text-success" id="category-stat-up">--</span>
+                    </div>
+                    <div class="modal-stat-box">
+                        <span class="box-label">Offline</span>
+                        <span class="box-val text-danger" id="category-stat-down">--</span>
+                    </div>
+                    <div class="modal-stat-box">
+                        <span class="box-label">Uptime Ratio</span>
+                        <span class="box-val text-primary" id="category-stat-uptime">--%</span>
+                    </div>
+                </div>
+
+                <!-- Group Actions Row -->
+                <div class="diagnostics-actions-row category-actions-row">
+                    <button class="diag-action-btn primary-action" id="category-btn-ping-all">
+                        <i class="fas fa-sync-alt"></i> Ping All in Category
+                    </button>
+                    <button class="diag-action-btn secondary-action" id="category-btn-mute-all">
+                        <i class="fas fa-bell-slash"></i> Mute Group Alerts
+                    </button>
+                </div>
+
+                <!-- Isolated Group Outages -->
+                <div class="diagnostics-section">
+                    <h4 style="margin-bottom: 12px; display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--color-down); font-size: 11px;"></i>
+                        Active Outages in Category
+                    </h4>
+                    <div class="category-outages-list-container" id="category-outages-list">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Alerts container -->
     <div class="toast-container" id="toast-container"></div>
 
-    <script src="static/script.js?v=3.5"></script>
+    <script src="static/script.js?v=5.0"></script>
 
 <!-- Floating AI Chatbot Widget -->
     <div class="ai-chatbot-widget">
@@ -566,10 +771,10 @@
             </div>
             <!-- Suggestion Chips -->
             <div class="chatbot-chips">
-                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
-                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
-                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
-                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
+                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">ð Support Numbers</button>
+                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">ð Doc Submission</button>
+                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">ð Service Status</button>
+                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">ð Network Info</button>
             </div>
             <div class="chatbot-input-area">
                 <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
@@ -587,7 +792,7 @@
             <!-- Footer -->
             <div class="chatbot-footer">
                 <span>For internal use only.</span>
-                <span>Built with ❤️ for the team.</span>
+                <span>Built with â¤ï¸ for the team.</span>
             </div>
         </div>
     </div>
@@ -599,4 +804,8 @@
 
 
 
+
+
+</body>
+</html>
 

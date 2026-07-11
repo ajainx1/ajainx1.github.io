@@ -1,49 +1,3 @@
-// Fetch Interceptor for Static Deployment on GitHub Pages
-(() => {
-  const originalFetch = window.fetch;
-  window.fetch = async function(url, options) {
-    if (typeof url === 'string' && url.includes('api.php')) {
-      const params = new URLSearchParams(url.split('?')[1] || '');
-      const endpoint = params.get('endpoint');
-      
-      if (endpoint && endpoint.startsWith('status')) {
-        return originalFetch('monitor_data.json');
-      }
-      if (endpoint && endpoint.startsWith('trigger-active-outages')) {
-        return new Response(JSON.stringify({ success: true, active_outages: [] }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (endpoint && endpoint.startsWith('hosts/ping')) {
-        return new Response(JSON.stringify({ success: true, status: 'UP', latency_ms: Math.floor(Math.random() * 20) + 5 }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (endpoint && endpoint.startsWith('hosts/mute')) {
-        return new Response(JSON.stringify({ success: true, message: 'Host muted successfully' }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-      if (endpoint && endpoint.startsWith('diagnostics/tracert')) {
-        const ip = params.get('ip') || '10.xx.xx.8';
-        const hops = [
-          `1  1ms  1ms  1ms  10.0.0.1`,
-          `2  5ms  4ms  4ms  10.xx.xx.1`,
-          `3  12ms  11ms  10ms  ${ip}`
-        ];
-        return new Response(JSON.stringify({ success: true, output: hops.join('\n') }), {
-          status: 200,
-          headers: { 'Content-Type': 'application/json' }
-        });
-      }
-    }
-    return originalFetch(url, options);
-  };
-})();
-
 document.addEventListener("DOMContentLoaded", () => {
     // DOM Elements Cache
     const shqGrid = document.getElementById("hosts-grid-shq");
@@ -171,10 +125,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalBtnMute = document.getElementById("modal-btn-mute");
     const modalBtnTracert = document.getElementById("modal-btn-tracert");
 
+    // Category Modal Elements
+    const categoryModal = document.getElementById("category-modal");
+    const categoryModalClose = document.getElementById("category-modal-close");
+    const categoryModalStatusBadge = document.getElementById("category-modal-status-badge");
+    const categoryModalTitle = document.getElementById("category-modal-title");
+    const categoryModalSubtitle = document.getElementById("category-modal-subtitle");
+    const categoryStatTotal = document.getElementById("category-stat-total");
+    const categoryStatUp = document.getElementById("category-stat-up");
+    const categoryStatDown = document.getElementById("category-stat-down");
+    const categoryStatUptime = document.getElementById("category-stat-uptime");
+    const categoryBtnPingAll = document.getElementById("category-btn-ping-all");
+    const categoryBtnMuteAll = document.getElementById("category-btn-mute-all");
+    const categoryOutagesList = document.getElementById("category-outages-list");
+
+    // View Toggle Elements
+    const viewBtnGrid = document.getElementById("view-btn-grid");
+    const viewBtnList = document.getElementById("view-btn-list");
+    const hostsSectionsContainer = document.getElementById("hosts-sections-container");
+    const sortSelect = document.getElementById("sort-select");
+    const btnAutoscroll = document.getElementById("btn-autoscroll");
+    const inlineEnvRoom = document.getElementById("inline-env-room");
+    const inlineEnvUps = document.getElementById("inline-env-ups");
+    const inlineEnvPac = document.getElementById("inline-env-pac");
+    const scrollSpeedSlider = document.getElementById("scroll-speed-slider");
+    const btnZoomIn = document.getElementById("btn-zoom-in");
+    const btnZoomOut = document.getElementById("btn-zoom-out");
+    const btnFullscreen = document.getElementById("btn-fullscreen");
+    const btnExportDpr = document.getElementById("btn-export-dpr");
+
     // Local Variables
     let currentHostsState = {};
     let allHostsData = [];
     let activeHostIp = null;
+    let envCompactView = false;
+    let currentStatsCache = {};
+    let currentGridZoom = 1.0;
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
     window.searchQuery = searchParam ? searchParam.trim() : "";
@@ -186,8 +172,20 @@ document.addEventListener("DOMContentLoaded", () => {
     let isFirstLoad = true;
 
     // ==========================================
+    // ==========================================================================
     // Voice Alert Engine (Web Speech API)
-    // ==========================================
+    // --------------------------------------------------------------------------
+    // Module: Real-time Text-to-Speech announcements for NOC state transitions
+    // Author: NIC Bihar NOC Team
+    // Features:
+    //   - Gender-selectable Indian English (en-IN) voice synthesis
+    //   - Configurable playback speed (0.85x to 1.5x)
+    //   - FIFO speech queue with O(1) deduplication
+    //   - Anti-spam governor: per-host flap limit (max 3 announcements)
+    //   - Mass outage batch limiter (max 3 per polling cycle)
+    //   - 2-second cooldown to prevent duplicate reads
+    //   - Automatic TTS text cleaning for NIC/NOC nomenclature
+    // ==========================================================================
     let voiceAlertsEnabled = localStorage.getItem('voiceAlerts') === 'true';
     let selectedGender = localStorage.getItem('voiceGender') || 'female';
     let selectedSpeed = parseFloat(localStorage.getItem('voiceSpeed') || '1.0');
@@ -214,37 +212,81 @@ document.addEventListener("DOMContentLoaded", () => {
         window.speechSynthesis.onvoiceschanged = loadVoices;
     }
 
-    // Clean description specifically for Text-to-Speech (TTS) pronunciation
+    /**
+     * cleanDescriptionForSpeech - Transforms raw host descriptions into
+     * natural-sounding sentences for TTS. Expands acronyms, strips model
+     * numbers, and normalizes whitespace.
+     */
     function cleanDescriptionForSpeech(desc) {
         if (!desc) return '';
-        let speechText = desc;
-        
-        // Expand abbreviations common in NIC NOC
-        speechText = speechText.replace(/\bW\.(?=\w)/gi, 'West ');
-        speechText = speechText.replace(/\bE\.(?=\w)/gi, 'East ');
-        speechText = speechText.replace(/\bW\.Champaran\b/gi, 'West Champaran');
-        speechText = speechText.replace(/\bE\.Champaran\b/gi, 'East Champaran');
-        
-        // Normalize word separations (replace underscores, slashes, dashes with spaces)
-        speechText = speechText.replace(/[_\-\/]+/g, ' ');
-        
-        // Map common technical acronyms to spoken words
-        speechText = speechText.replace(/\b(ASR1002|ASR1001|ASR)\b/gi, 'Router');
-        
-        // Remove specific tech specs/model numbers that sound ugly in TTS
-        speechText = speechText.replace(/\b(2960X|2960S|2960|3560|3750|3850|9200|9300|C2960|2960plus|MX480|MX960|EX4300|EX4200)\b/gi, '');
-        
-        // Remove extra spaces
-        speechText = speechText.replace(/\s+/g, ' ').trim();
-        
-        return speechText;
+        try {
+            let speechText = desc;
+
+            // Strip preceding sub-routing numbering (e.g. "3.92 Purnea" -> "Purnea")
+            speechText = speechText.replace(/^\d+\.\d+\s+/g, '');
+
+            // Expand Bihar-specific geographic abbreviations
+            speechText = speechText.replace(/\bW\.(?=\w)/gi, 'West ');
+            speechText = speechText.replace(/\bE\.(?=\w)/gi, 'East ');
+            speechText = speechText.replace(/\bW\.Champaran\b/gi, 'West Champaran');
+            speechText = speechText.replace(/\bE\.Champaran\b/gi, 'East Champaran');
+
+            // Normalize word separations (underscores, slashes, dashes -> spaces)
+            speechText = speechText.replace(/[_\-\/]+/g, ' ');
+
+            // Map router model families to spoken word
+            speechText = speechText.replace(/\b(ASR1002[- ]?X|ASR1002|ASR1001|ASR)\b/gi, 'Router');
+
+            // Expand NIC/NOC-specific acronyms for natural pronunciation
+            speechText = speechText.replace(/\bNKN\b/g, 'N.K.N.');
+            speechText = speechText.replace(/\bBSNL\b/g, 'B.S.N.L.');
+            speechText = speechText.replace(/\bOLT\b/g, 'O.L.T.');
+            speechText = speechText.replace(/\bSDH\b/g, 'S.D.H.');
+            speechText = speechText.replace(/\bDWDM\b/g, 'D.W.D.M.');
+            speechText = speechText.replace(/\bMPLS\b/g, 'M.P.L.S.');
+            speechText = speechText.replace(/\bVPN\b/g, 'V.P.N.');
+            speechText = speechText.replace(/\bPoP\b/gi, 'Point of Presence');
+            speechText = speechText.replace(/\bHQ\b/gi, 'Headquarters');
+            speechText = speechText.replace(/\bDC\b/g, 'Data Center');
+            speechText = speechText.replace(/\bDR\b/g, 'Disaster Recovery');
+            speechText = speechText.replace(/\bUPS\b/g, 'U.P.S.');
+            speechText = speechText.replace(/\bPAC\b/g, 'P.A.C.');
+
+            // Strip hardware model numbers that sound ugly in TTS
+            speechText = speechText.replace(/\b(1002x|1002|7206VXR|7206|CISCO2851|2851|2960X|2960S|2960|3560|3750|3850|9200|9300|C2960|2960plus|MX480|MX960|EX4300|EX4200|X)\b/gi, '');
+
+            // Collapse extra whitespace
+            speechText = speechText.replace(/\s+/g, ' ').trim();
+
+            return speechText;
+        } catch (err) {
+            console.error('[Voice Engine] cleanDescriptionForSpeech() failed:', err);
+            return desc; // Graceful fallback
+        }
     }
 
-    // Find best matching voice for the selected gender, prioritizing Indian accents for local names
+    /**
+     * findVoiceByPatterns - Helper to search voice list by name patterns and locale filter.
+     */
+    function findVoiceByPatterns(patterns, localeFilter) {
+        for (const pattern of patterns) {
+            const match = availableVoices.find(v =>
+                v.name.toLowerCase().includes(pattern) && (!localeFilter || localeFilter(v))
+            );
+            if (match) return match;
+        }
+        return null;
+    }
+
+    /**
+     * getVoiceForGender - 5-tier cascading voice selector.
+     * Prioritizes Indian English (en-IN) for accurate district name pronunciation.
+     * @param {string} gender - 'male' or 'female'
+     * @returns {SpeechSynthesisVoice|null}
+     */
     function getVoiceForGender(gender) {
         if (availableVoices.length === 0) return null;
 
-        // Native / high quality Indian and English voices
         const femalePatterns = ['heera', 'neerja', 'kalpana', 'veena', 'swara', 'madhur', 'zira', 'female', 'woman', 'susan', 'hazel', 'linda', 'samantha', 'victoria', 'karen', 'moira', 'fiona', 'google us english', 'google uk english female'];
         const malePatterns = ['ravi', 'hemant', 'rishi', 'harsh', 'david', 'male', 'man', 'mark', 'james', 'daniel', 'richard', 'alex', 'fred', 'google uk english male'];
 
@@ -336,6 +378,8 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             window.speechSynthesis.cancel();
             speechQueue.length = 0;
+            speechQueueSet.clear();
+            currentSpeechText = '';
             isSpeaking = false;
             showToast('🔇 Voice Alerts Disabled', 'info');
         }
@@ -372,19 +416,54 @@ document.addEventListener("DOMContentLoaded", () => {
         showToast(`⚡ Voice Speed: ${selectedSpeed}x`, 'info');
     });
 
+    let currentSpeechText = '';
+    const speechQueueSet = new Set(); // O(1) deduplication lookup
+
+    /**
+     * isBlackoutWindowActive - Checks if the current time falls within the 
+     * end-of-day device shutdown window (17:40 - 18:10) to suppress alert storms.
+     */
+    function isBlackoutWindowActive() {
+        const now = new Date();
+        const timeVal = now.getHours() * 100 + now.getMinutes();
+        return timeVal >= 1740 && timeVal <= 1810; // 5:40 PM to 6:10 PM
+    }
+
+    /**
+     * speakAlert - Enqueues a text string for TTS playback.
+     * Applies deduplication and blackout window gates before accepting.
+     */
     function speakAlert(text) {
         if (!voiceAlertsEnabled || !('speechSynthesis' in window)) return;
+        
+        // Option 3: Volume Dampening. 
+        // We do not suppress alerts during the blackout window anymore.
+        // We lower the volume dynamically inside processQueue.
+        
+        if (currentSpeechText === text) return;
+        if (speechQueueSet.has(text)) return;
         speechQueue.push(text);
+        speechQueueSet.add(text);
         processQueue();
     }
 
+    /** processQueue - Processes the FIFO speech queue one utterance at a time. */
     function processQueue() {
         if (isSpeaking || speechQueue.length === 0) return;
         isSpeaking = true;
         const text = speechQueue.shift();
+        speechQueueSet.delete(text); // Remove from dedup Set
+        currentSpeechText = text;
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.rate = selectedSpeed;
-        utterance.volume = 1.0;
+        
+        // Dynamically dampen volume to 20% during Quiet Hours
+        if (isBlackoutWindowActive()) {
+            utterance.volume = 0.2;
+        } else {
+            utterance.volume = 1.0;
+        }
+        
         utterance.lang = 'en-IN';
 
         // Set gender-specific voice and pitch
@@ -396,18 +475,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
         utterance.onend = () => {
             isSpeaking = false;
+            setTimeout(() => { currentSpeechText = ''; }, 2000); // 2-sec cooldown prevents duplicate reads
             processQueue();
         };
         utterance.onerror = () => {
             isSpeaking = false;
+            currentSpeechText = '';
             processQueue();
         };
-        window.speechSynthesis.speak(utterance);
+        try {
+            window.speechSynthesis.speak(utterance);
+        } catch (err) {
+            console.error('[Voice Engine] speechSynthesis.speak() failed:', err);
+            isSpeaking = false;
+            currentSpeechText = '';
+            processQueue();
+        }
     }
 
+    // ==========================================================
+    // Anti-Spam Governor: Flap Protection & Mass Outage Limiter
+    // - announcementCounts: Tracks per-IP DOWN announcement count
+    //   (max 3 per host before permanent suppression)
+    // - currentlySuppressed: Tracks if a host's last DOWN was
+    //   silenced, so the matching RECOVERY is also silenced
+    // ==========================================================
+    const announcementCounts = {};
+    const currentlySuppressed = {};
+
+    /**
+     * detectStateTransitions - Core state engine. Compares live host data
+     * against previousHostStates map and triggers voice alerts on transitions.
+     * Governed by: flap limit (3 per IP), batch limit (3 per cycle), dedup.
+     * @param {Array} hosts - Array of host objects from the backend API.
+     */
     function detectStateTransitions(hosts) {
+      try {
         if (!voiceInitialized) {
-            // First cycle: just record states, don't announce
             hosts.forEach(h => { previousHostStates[h.ip] = h.status; });
             voiceInitialized = true;
             return;
@@ -419,32 +523,61 @@ document.addEventListener("DOMContentLoaded", () => {
         hosts.forEach(h => {
             const prevStatus = previousHostStates[h.ip];
             if (prevStatus && prevStatus !== h.status && h.category !== 'SSB') {
+                if (!announcementCounts[h.ip]) announcementCounts[h.ip] = 0;
                 if (h.status === 'DOWN') {
-                    downTransitions.push(h.description);
+                    if (announcementCounts[h.ip] < 3) {
+                        downTransitions.push(h.description);
+                        announcementCounts[h.ip]++;
+                        currentlySuppressed[h.ip] = false;
+                    } else {
+                        currentlySuppressed[h.ip] = true;
+                    }
                 } else if (h.status === 'UP') {
-                    upTransitions.push(h.description);
+                    if (!currentlySuppressed[h.ip]) {
+                        upTransitions.push(h.description);
+                    } else {
+                        currentlySuppressed[h.ip] = false;
+                    }
                 }
             }
             previousHostStates[h.ip] = h.status;
         });
 
-        // Announce DOWN transitions with clean speech pronunciation
-        downTransitions.forEach(desc => {
+        // Batch limit: Only announce first 3 DOWN links per cycle (prevents audio storms)
+        downTransitions.slice(0, 3).forEach(desc => {
             const cleanDesc = cleanDescriptionForSpeech(desc);
             speakAlert(`Alert! Link down. ${cleanDesc} is now offline. Please check the device.`);
         });
 
-        // Announce UP transitions with clean speech pronunciation
-        upTransitions.forEach(desc => {
+        // Batch limit: Only announce first 3 RECOVERY links per cycle
+        upTransitions.slice(0, 3).forEach(desc => {
             const cleanDesc = cleanDescriptionForSpeech(desc);
             speakAlert(`Link recovered. ${cleanDesc} is now back online.`);
         });
+      } catch (err) {
+          console.error('[Voice Engine] detectStateTransitions() failed:', err);
+      }
     }
 
     // Clock
     function updateClock() {
         const now = new Date();
         clockElement.textContent = now.toLocaleTimeString();
+        
+        if (typeof isBlackoutWindowActive === "function") {
+            const blackoutActive = isBlackoutWindowActive();
+            if (blackoutActive) {
+                if (voiceLabel) {
+                    voiceLabel.innerHTML = '<i class="fas fa-moon"></i> Quiet Hours';
+                    voiceLabel.style.color = 'var(--color-warning)';
+                }
+            } else {
+                if (voiceLabel) {
+                    voiceLabel.textContent = voiceAlertsEnabled ? "Voice Alerts ON" : "Voice Alerts OFF";
+                    voiceLabel.style.color = '';
+                }
+            }
+        }
     }
     updateClock();
     setInterval(updateClock, 1000);
@@ -542,6 +675,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update Stats
     function updateStats(stats, hosts = []) {
+        currentStatsCache = stats; // Cache for the toggle button
+        
         statTotal.textContent = stats.total || 0;
         statUp.textContent = stats.up || 0;
         statDown.textContent = stats.down || 0;
@@ -561,8 +696,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (h.battery_status !== undefined && h.battery_status !== null) {
                     let label = "";
-                    if (h.ip === "10.133.15.42") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
-                    else if (h.ip === "10.133.15.45") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
+                    if (h.ip === "10.99.15.42") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
+                    else if (h.ip === "10.99.15.45") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
                     
                     let batText = label + (h.battery_status == 2 ? "<span style='color:var(--color-up);'>Normal</span>" : 
                                   h.battery_status == 3 ? "<span style='color:var(--color-warning);'>Low</span>" : 
@@ -575,43 +710,58 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let camTempStr = "";
             hosts.forEach(h => {
-                if (h.ip === "10.133.15.18" && h.temp !== undefined) {
+                if (h.ip === "10.99.15.18" && h.temp !== undefined) {
                     camTempStr = h.temp;
                 }
             });
             
-            if (camTempStr !== "" || upsTemps.length > 0 || pacTemps.length > 0) {
-                html += '<div style="display: flex; flex-direction: column; gap: 6px;">';
+            if (envCompactView) {
                 if (camTempStr !== "") {
-                    html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">`;
-                    html += `<div style="display: flex; flex-direction: column;">`;
-                    html += `<span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Room Temp</span>`;
-                    html += `<span style="font-size: 8px; color: var(--color-up); font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; margin-top: 1px; display: inline-flex; align-items: center; gap: 3px;"><i class="fas fa-camera" style="font-size: 7.5px;"></i> Server Room Camera OCR</span>`;
+                    html += `<div style="display: flex; flex-direction: column; gap: 2px;">`;
+                    html += `<div style="font-size: 18px; color: var(--color-warning); font-weight: 800; display: flex; align-items: center; gap: 8px;"><span class="pulse-green"></span>${camTempStr}&deg;C</div>`;
+                    html += `<div style="font-size: 10px; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">Server Room</div>`;
                     html += `</div>`;
-                    html += `<span style="font-size: 13.5px; color: var(--color-warning); font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">`;
-                    html += `<span class="pulse-green" style="display: inline-block;"></span>`;
-                    html += `${camTempStr}&deg;C</span></div>`;
+                } else {
+                    html += `<div style="font-size: 18px; font-weight: 800;">--</div>`;
                 }
-                if (upsTemps.length > 0) {
-                    html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 1px;">UPS Temps</span> <span style="font-size: 12.5px; color: var(--text-primary); font-weight: 700; text-align: right; line-height: 1.3;">${upsTemps.join(', ')}</span></div>`;
+            } else {
+                if (camTempStr !== "" || upsTemps.length > 0 || pacTemps.length > 0) {
+                    html += '<div style="display: flex; flex-direction: column; gap: 6px;">';
+                    if (camTempStr !== "") {
+                        html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;">`;
+                        html += `<div style="display: flex; flex-direction: column;">`;
+                        html += `<span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px;">Room Temp</span>`;
+                        html += `<span style="font-size: 8px; color: var(--color-up); font-weight: 600; text-transform: uppercase; letter-spacing: 0.2px; margin-top: 1px; display: inline-flex; align-items: center; gap: 3px;"><i class="fas fa-camera" style="font-size: 7.5px;"></i> Server Room Camera OCR</span>`;
+                        html += `</div>`;
+                        html += `<span style="font-size: 13.5px; color: var(--color-warning); font-weight: 700; display: inline-flex; align-items: center; gap: 6px;">`;
+                        html += `<span class="pulse-green" style="display: inline-block;"></span>`;
+                        html += `${camTempStr}&deg;C</span></div>`;
+                    }
+                    if (upsTemps.length > 0) {
+                        html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 1px;">UPS Temps</span> <span style="font-size: 12.5px; color: var(--text-primary); font-weight: 700; text-align: right; line-height: 1.3;">${upsTemps.join(', ')}</span></div>`;
+                    }
+                    if (pacTemps.length > 0) {
+                        html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 1px;">PAC Temps</span> <span style="font-size: 12.5px; color: var(--text-primary); font-weight: 700; text-align: right; line-height: 1.3;">${pacTemps.join(', ')}</span></div>`;
+                    }
+                    html += '</div>';
                 }
-                if (pacTemps.length > 0) {
-                    html += `<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;"><span style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 1px;">PAC Temps</span> <span style="font-size: 12.5px; color: var(--text-primary); font-weight: 700; text-align: right; line-height: 1.3;">${pacTemps.join(', ')}</span></div>`;
+                if (batteryStatuses.length > 0) {
+                    html += '<div style="border-top: 1px solid var(--border-color); margin-top: 6px; padding-top: 8px; display: flex; flex-direction: column; gap: 6px;">';
+                    html += `<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px;">Battery Status</div>`;
+                    batteryStatuses.forEach(b => {
+                        html += `<div style="font-size: 12px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; width: 100%;">${b}</div>`;
+                    });
+                    html += '</div>';
                 }
-                html += '</div>';
-            }
-            
-            if (batteryStatuses.length > 0) {
-                html += '<div style="border-top: 1px solid var(--border-color); margin-top: 6px; padding-top: 8px; display: flex; flex-direction: column; gap: 6px;">';
-                html += `<div style="font-size: 10.5px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 2px;">Battery Status</div>`;
-                batteryStatuses.forEach(b => {
-                    html += `<div style="font-size: 12px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; width: 100%;">${b}</div>`;
-                });
-                html += '</div>';
             }
             
             html += '</div>';
             statTemp.innerHTML = (camTempStr !== "" || upsTemps.length > 0 || pacTemps.length > 0 || batteryStatuses.length > 0) ? html : "--";
+            
+            // Update inline env bar
+            if (inlineEnvRoom) inlineEnvRoom.innerHTML = camTempStr !== "" ? `${camTempStr}&deg;C` : "--&deg;C";
+            if (inlineEnvUps) inlineEnvUps.textContent = upsTemps.length > 0 ? upsTemps.join(', ') : "--";
+            if (inlineEnvPac) inlineEnvPac.textContent = pacTemps.length > 0 ? pacTemps.join(', ') : "--";
         }
     }
 
@@ -724,6 +874,17 @@ document.addEventListener("DOMContentLoaded", () => {
         modalConsoleStdout.textContent = host.last_stdout || "No stdout captured yet.";
         modalConsoleStdout.scrollTop = 0;
 
+        // Bind copy and web portal actions next to the IP
+        const modalBtnCopy = document.getElementById("modal-ip-copy");
+        const modalBtnHttp = document.getElementById("modal-ip-http");
+        const modalBtnHttps = document.getElementById("modal-ip-https");
+        if (modalBtnCopy && modalBtnHttp && modalBtnHttps) {
+            const safeDesc = (host.description || "").replace(/'/g, "\\'");
+            modalBtnCopy.onclick = () => copyTextToClipboard(host.ip, safeDesc);
+            modalBtnHttp.href = `http://${host.ip}`;
+            modalBtnHttps.href = `https://${host.ip}`;
+        }
+
         diagnosticsModal.classList.add("open");
     }
 
@@ -758,11 +919,23 @@ document.addEventListener("DOMContentLoaded", () => {
             tempHtml = `<div class="card-temp-badge" style="font-size: 11px; margin-left: 8px; ${tempColor}"><i class="fas fa-thermometer-half"></i> ${host.temp} &deg;C</div>`;
         }
 
+        const safeDesc = (host.description || "").replace(/'/g, "\\'");
+
         card.innerHTML = `
             ${host.muted ? '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
             <div class="card-top-row">
                 <div class="card-title-area">
-                    <span class="card-ip">${host.ip}</span>
+                    <div class="card-ip-wrapper">
+                        <span class="card-ip">${host.ip}</span>
+                        <div class="card-ip-actions">
+                            <button class="ip-action-btn" title="Copy IP Address" onclick="event.stopPropagation(); copyTextToClipboard('${host.ip}', '${safeDesc}')">
+                                <i class="far fa-copy"></i>
+                            </button>
+                            <a href="http://${host.ip}" target="_blank" class="ip-action-btn" title="Open Web Portal" onclick="event.stopPropagation()">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
                     <span class="card-desc" title="${host.description}">${host.description}</span>
                 </div>
                 <span class="card-status-pill">${host.status}</span>
@@ -824,18 +997,41 @@ document.addEventListener("DOMContentLoaded", () => {
         if (pacBadge && pacHosts) pacBadge.textContent = `${pacOnline} / ${pacHosts.length} Online`;
     }
 
+    function sortHosts(hostsArray) {
+        if (!sortSelect) return hostsArray;
+        const sortType = sortSelect.value;
+        const sorted = [...hostsArray];
+        
+        if (sortType === "status") {
+            sorted.sort((a, b) => {
+                if (a.status === "DOWN" && b.status === "UP") return -1;
+                if (a.status === "UP" && b.status === "DOWN") return 1;
+                return 0;
+            });
+        } else if (sortType === "name") {
+            sorted.sort((a, b) => (a.description || "").localeCompare(b.description || ""));
+        } else if (sortType === "ip") {
+            sorted.sort((a, b) => {
+                const numA = a.ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0);
+                const numB = b.ip.split('.').reduce((acc, octet) => (acc << 8) + parseInt(octet, 10), 0);
+                return numA - numB;
+            });
+        }
+        return sorted;
+    }
+
     // Render Host Grids (Smooth, updates in-place)
     function renderHostsGrid(hosts) {
         allHostsData = hosts;
 
-        const shqHosts = hosts.filter(h => h.category === "SHQ");
-        const dhqHosts = hosts.filter(h => h.category === "DHQ" || (!h.category && h.category !== "INTD" && h.category !== "INTS" && h.category !== "UPS" && h.category !== "AP" && h.category !== "SSB" && h.category !== "PAC"));
-        const intdHosts = hosts.filter(h => h.category === "INTD");
-        const intsHosts = hosts.filter(h => h.category === "INTS");
-        const upsHosts = hosts.filter(h => h.category === "UPS");
-        const apHosts = hosts.filter(h => h.category === "AP");
-        const ssbHosts = hosts.filter(h => h.category === "SSB");
-        const pacHosts = hosts.filter(h => h.category === "PAC");
+        const shqHosts = sortHosts(hosts.filter(h => h.category === "SHQ"));
+        const dhqHosts = sortHosts(hosts.filter(h => h.category === "DHQ" || (!h.category && h.category !== "INTD" && h.category !== "INTS" && h.category !== "UPS" && h.category !== "AP" && h.category !== "SSB" && h.category !== "PAC")));
+        const intdHosts = sortHosts(hosts.filter(h => h.category === "INTD"));
+        const intsHosts = sortHosts(hosts.filter(h => h.category === "INTS"));
+        const upsHosts = sortHosts(hosts.filter(h => h.category === "UPS"));
+        const apHosts = sortHosts(hosts.filter(h => h.category === "AP"));
+        const ssbHosts = sortHosts(hosts.filter(h => h.category === "SSB"));
+        const pacHosts = sortHosts(hosts.filter(h => h.category === "PAC"));
 
         // If card count differs or first load, rebuild DOM
         const shqCountMatches = shqGrid ? shqGrid.querySelectorAll(".host-card").length === shqHosts.length : false;
@@ -948,11 +1144,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     tempHtml = `<div class="card-temp-badge" style="font-size: 11px; margin-left: 8px; ${tempColor}"><i class="fas fa-thermometer-half"></i> ${host.temp} &deg;C</div>`;
                 }
 
+                const safeDesc = (host.description || "").replace(/'/g, "\\'");
+
                 card.innerHTML = `
                     ${host.muted ? '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
                     <div class="card-top-row">
                         <div class="card-title-area">
-                            <span class="card-ip">${host.ip}</span>
+                            <div class="card-ip-wrapper">
+                                <span class="card-ip">${host.ip}</span>
+                                <div class="card-ip-actions">
+                                    <button class="ip-action-btn" title="Copy IP Address" onclick="event.stopPropagation(); copyTextToClipboard('${host.ip}', '${safeDesc}')">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                    <a href="http://${host.ip}" target="_blank" class="ip-action-btn" title="Open Web Portal" onclick="event.stopPropagation()">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                </div>
+                            </div>
                             <span class="card-desc" title="${host.description}">${host.description}</span>
                         </div>
                         <span class="card-status-pill">${host.status}</span>
@@ -1329,7 +1537,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run first fetch, then schedule updates every 5 seconds
     fetchStatus();
     setInterval(fetchStatus, 5000);
-});
 
 // Live network nodes background animation function
 function initNetworkBackground() {
@@ -1436,12 +1643,490 @@ function initNetworkBackground() {
     }
 
     animate();
-
-
 }
 
+    // ==========================================================
+    // Clipboard Utility
+    // ==========================================================
+    function copyTextToClipboard(text, entity = "IP Address") {
+        if (!navigator.clipboard) {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                showToast(`Copied ${entity} to clipboard!`, "success");
+            } catch (err) {
+                showToast("Failed to copy.", "error");
+            }
+            document.body.removeChild(textarea);
+            return;
+        }
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                showToast(`Copied ${entity} (${text}) to clipboard!`, "success");
+            })
+            .catch(() => {
+                showToast("Failed to copy.", "error");
+            });
+    }
+    window.copyTextToClipboard = copyTextToClipboard;
 
+    // ==========================================================
+    // Category Overview & Group Actions Pop-up
+    // ==========================================================
+    const categoryDescriptions = {
+        "SHQ": { title: "State Headquarters Core", key: "SHQ" },
+        "DHQ": { title: "District Headquarters Links", key: "DHQ" },
+        "INTD": { title: "Interdistrict Links", key: "INTD" },
+        "INTS": { title: "Interstate Links", key: "INTS" },
+        "UPS": { title: "UPS Monitoring System", key: "UPS" },
+        "AP": { title: "Access Points Links", key: "AP" },
+        "SSB": { title: "SSB Security Links", key: "SSB" },
+        "PAC": { title: "Precision AC Units", key: "PAC" }
+    };
+    
+    let activeCategoryKey = null;
 
+    function openCategoryModal(categoryKey) {
+        activeCategoryKey = categoryKey;
+        const config = categoryDescriptions[categoryKey] || { title: categoryKey, key: categoryKey };
+        
+        if (categoryModalTitle) categoryModalTitle.textContent = config.title;
+        if (categoryModalSubtitle) categoryModalSubtitle.textContent = `Category Group: ${config.key}`;
+        
+        const catHosts = allHostsData.filter(h => {
+            if (categoryKey === "DHQ") {
+                return h.category === "DHQ" || (!h.category && h.category !== "INTD" && h.category !== "INTS" && h.category !== "UPS" && h.category !== "AP" && h.category !== "SSB" && h.category !== "PAC");
+            }
+            return h.category === categoryKey;
+        });
+        
+        const total = catHosts.length;
+        const up = catHosts.filter(h => h.status === "UP").length;
+        const down = catHosts.filter(h => h.status === "DOWN").length;
+        
+        let totalChecks = 0;
+        let upChecks = 0;
+        catHosts.forEach(h => {
+            const history = h.ping_history || [];
+            history.forEach(state => {
+                totalChecks++;
+                if (state === "UP") upChecks++;
+            });
+        });
+        const uptimeRatio = totalChecks > 0 ? Math.round((upChecks / totalChecks) * 100) : (up > 0 ? 100 : 0);
+        
+        if (categoryStatTotal) categoryStatTotal.textContent = total;
+        if (categoryStatUp) categoryStatUp.textContent = up;
+        if (categoryStatDown) categoryStatDown.textContent = down;
+        if (categoryStatUptime) categoryStatUptime.textContent = `${uptimeRatio}%`;
+        
+        if (categoryModalStatusBadge) {
+            if (down > 0) {
+                categoryModalStatusBadge.textContent = `${down} OUTAGE${down > 1 ? 'S' : ''}`;
+                categoryModalStatusBadge.className = "category-modal-status-badge down";
+                categoryModalStatusBadge.style.backgroundColor = "var(--color-down)";
+                categoryModalStatusBadge.style.color = "#ffffff";
+            } else {
+                categoryModalStatusBadge.textContent = "HEALTHY";
+                categoryModalStatusBadge.className = "category-modal-status-badge healthy";
+                categoryModalStatusBadge.style.backgroundColor = "var(--color-up)";
+                categoryModalStatusBadge.style.color = "var(--bg-main)";
+            }
+        }
+        
+        if (categoryOutagesList) {
+            categoryOutagesList.innerHTML = "";
+            const offlineHosts = catHosts.filter(h => h.status === "DOWN");
+            if (offlineHosts.length > 0) {
+                offlineHosts.forEach(h => {
+                    const row = document.createElement("div");
+                    row.className = "category-outage-row";
+                    row.innerHTML = `
+                        <div style="min-width: 0; flex-grow: 1;">
+                            <span style="font-weight: 700; font-size: 12px; color: var(--text-primary); display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${h.description}</span>
+                            <span style="font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); display: block; margin-top: 2px;">${h.ip}</span>
+                        </div>
+                        <button class="diag-action-btn danger-action" style="padding: 4px 10px; font-size: 10px; border-radius: 4px; border: none; cursor: pointer; white-space: nowrap;" onclick="event.stopPropagation(); closeCategoryModal(); openHostModal('${h.ip}')">
+                            Diagnose
+                        </button>
+                    `;
+                    categoryOutagesList.appendChild(row);
+                });
+            } else {
+                categoryOutagesList.innerHTML = `
+                    <div style="text-align: center; color: var(--text-muted); padding: 20px 0; font-size: 0.85rem;">
+                        <i class="fas fa-check-circle" style="color: var(--color-up); font-size: 1.5rem; margin-bottom: 8px; display: block;"></i>
+                        All devices in this category are online.
+                    </div>
+                `;
+            }
+        }
+        
+        if (categoryBtnMuteAll) {
+            const anyUnmuted = catHosts.some(h => !h.muted);
+            if (!anyUnmuted && total > 0) {
+                categoryBtnMuteAll.innerHTML = `<i class="fas fa-bell"></i> Unmute Group Alerts`;
+                categoryBtnMuteAll.classList.add("active-mute");
+            } else {
+                categoryBtnMuteAll.innerHTML = `<i class="fas fa-bell-slash"></i> Mute Group Alerts`;
+                categoryBtnMuteAll.classList.remove("active-mute");
+            }
+        }
+        
+        if (categoryModal) {
+            categoryModal.classList.add("open");
+        }
+    }
+    
+    function closeCategoryModal() {
+        if (categoryModal) {
+            categoryModal.classList.remove("open");
+        }
+        activeCategoryKey = null;
+    }
+    
+    window.closeCategoryModal = closeCategoryModal;
+    
+    if (categoryModalClose) {
+        categoryModalClose.addEventListener("click", closeCategoryModal);
+    }
+    if (categoryModal) {
+        categoryModal.addEventListener("click", (e) => {
+            if (e.target === categoryModal) closeCategoryModal();
+        });
+    }
 
+    // Mute/Unmute Group
+    if (categoryBtnMuteAll) {
+        categoryBtnMuteAll.addEventListener("click", () => {
+            if (!activeCategoryKey) return;
+            
+            const catHosts = allHostsData.filter(h => {
+                if (activeCategoryKey === "DHQ") {
+                    return h.category === "DHQ" || (!h.category && h.category !== "INTD" && h.category !== "INTS" && h.category !== "UPS" && h.category !== "AP" && h.category !== "SSB" && h.category !== "PAC");
+                }
+                return h.category === activeCategoryKey;
+            });
+            
+            if (catHosts.length === 0) return;
+            
+            const anyUnmuted = catHosts.some(h => !h.muted);
+            const action = anyUnmuted ? "mute" : "unmute";
+            const ips = catHosts.map(h => h.ip);
+            
+            categoryBtnMuteAll.disabled = true;
+            const origText = categoryBtnMuteAll.innerHTML;
+            categoryBtnMuteAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Processing...`;
+            
+            fetch("api.php?endpoint=hosts/mute_bulk", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ ips: ips, action: action })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    const actionLabel = action === "mute" ? "MUTED" : "UNMUTED";
+                    showToast(`Alert notifications ${actionLabel} for all ${categoryDescriptions[activeCategoryKey]?.title || activeCategoryKey} links.`, action === "mute" ? "warning" : "success");
+                    catHosts.forEach(h => { h.muted = (action === "mute"); });
+                    renderHostsGrid(allHostsData);
+                    openCategoryModal(activeCategoryKey);
+                } else {
+                    showToast(`Failed to update alerts: ${data.message}`, "error");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                showToast("Server error during group mute execution.", "error");
+            })
+            .finally(() => {
+                categoryBtnMuteAll.disabled = false;
+                categoryBtnMuteAll.innerHTML = origText;
+            });
+        });
+    }
 
+    // Ping All Group Hosts
+    if (categoryBtnPingAll) {
+        categoryBtnPingAll.addEventListener("click", () => {
+            if (!activeCategoryKey) return;
+            
+            const catHosts = allHostsData.filter(h => {
+                if (activeCategoryKey === "DHQ") {
+                    return h.category === "DHQ" || (!h.category && h.category !== "INTD" && h.category !== "INTS" && h.category !== "UPS" && h.category !== "AP" && h.category !== "SSB" && h.category !== "PAC");
+                }
+                return h.category === activeCategoryKey;
+            });
+            
+            if (catHosts.length === 0) return;
+            
+            categoryBtnPingAll.disabled = true;
+            const origText = categoryBtnPingAll.innerHTML;
+            showToast(`Starting bulk ping verification for ${catHosts.length} devices...`, "info");
+            
+            let completed = 0;
+            let successCount = 0;
+            
+            categoryBtnPingAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Pinging (0/${catHosts.length})...`;
+            
+            catHosts.forEach(host => {
+                fetch(`api.php?endpoint=diagnostics/ping&ip=${host.ip}`)
+                .then(res => res.json())
+                .then(data => {
+                    completed++;
+                    if (data.status === "success" && data.device_status === "UP") {
+                        successCount++;
+                    }
+                    
+                    categoryBtnPingAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Pinging (${completed}/${catHosts.length})...`;
+                    
+                    if (completed === catHosts.length) {
+                        showToast(`Bulk ping completed: ${successCount} online, ${catHosts.length - successCount} offline.`, successCount === catHosts.length ? "success" : "warning");
+                        fetch("api.php?endpoint=hosts")
+                        .then(res => res.json())
+                        .then(freshHosts => {
+                            renderHostsGrid(freshHosts);
+                            openCategoryModal(activeCategoryKey);
+                        });
+                        categoryBtnPingAll.disabled = false;
+                        categoryBtnPingAll.innerHTML = origText;
+                    }
+                })
+                .catch(() => {
+                    completed++;
+                    if (completed === catHosts.length) {
+                        showToast("Bulk ping finished with errors.", "error");
+                        categoryBtnPingAll.disabled = false;
+                        categoryBtnPingAll.innerHTML = origText;
+                    }
+                });
+            });
+        });
+    }
 
+    // Bind Category Click listeners
+    function bindCategoryHeaderClicks() {
+        const headers = document.querySelectorAll(".section-header-title");
+        headers.forEach(header => {
+            const catKey = header.dataset.category;
+            if (catKey) {
+                header.addEventListener("click", () => openCategoryModal(catKey));
+            }
+        });
+    }
+    bindCategoryHeaderClicks();
+
+    // ==========================================================
+    // Sorting & Arrange By
+    // ==========================================================
+    function initSorting() {
+        if (!sortSelect) return;
+        const savedSort = localStorage.getItem("dashboardSortMode") || "default";
+        sortSelect.value = savedSort;
+        
+        sortSelect.addEventListener("change", () => {
+            localStorage.setItem("dashboardSortMode", sortSelect.value);
+            if (shqGrid) shqGrid.innerHTML = "";
+            if (dhqGrid) dhqGrid.innerHTML = "";
+            if (intdGrid) intdGrid.innerHTML = "";
+            if (intsGrid) intsGrid.innerHTML = "";
+            if (upsGrid) upsGrid.innerHTML = "";
+            if (apGrid) apGrid.innerHTML = "";
+            if (ssbGrid) ssbGrid.innerHTML = "";
+            if (pacGrid) pacGrid.innerHTML = "";
+            currentHostsState = {};
+            if (allHostsData.length > 0) {
+                renderHostsGrid(allHostsData);
+            }
+        });
+    }
+    initSorting();
+
+    // ==========================================================
+    // Auto-Scroll Engine for Compact List View
+    // ==========================================================
+    function initAutoScroll() {
+        if (!btnAutoscroll) return;
+        
+        let autoScrollEnabled = false;
+        let isHovering = false;
+        let scrollSpeed = 0.6; 
+        let animationFrameId;
+
+        btnAutoscroll.addEventListener("click", () => {
+            autoScrollEnabled = !autoScrollEnabled;
+            if (autoScrollEnabled) {
+                btnAutoscroll.classList.add("autoscroll-active");
+                btnAutoscroll.innerHTML = '<i class="fas fa-pause"></i>';
+                showToast("Auto-Scroll Enabled. Hover to pause.", "info");
+                startAutoScroll();
+            } else {
+                btnAutoscroll.classList.remove("autoscroll-active");
+                btnAutoscroll.innerHTML = '<i class="fas fa-play"></i>';
+                showToast("Auto-Scroll Disabled.", "info");
+                stopAutoScroll();
+            }
+        });
+        
+        if (scrollSpeedSlider) {
+            scrollSpeedSlider.addEventListener("input", (e) => {
+                scrollSpeed = parseFloat(e.target.value);
+            });
+        }
+
+        document.addEventListener("mouseenter", () => isHovering = true, true);
+        document.addEventListener("mouseleave", () => isHovering = false, true);
+
+        function startAutoScroll() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            
+            function step() {
+                if (autoScrollEnabled && !isHovering) {
+                    const grids = document.querySelectorAll(".hosts-grid");
+                    grids.forEach(grid => {
+                        // Skip grids that don't have enough content to scroll
+                        if (grid.scrollHeight <= grid.clientHeight) return;
+                        
+                        if (grid._scrollDir === undefined) grid._scrollDir = 1;
+                        if (grid._scrollAccumulator === undefined) grid._scrollAccumulator = 0;
+                        
+                        // Accumulate fractional pixels
+                        grid._scrollAccumulator += scrollSpeed * grid._scrollDir;
+                        
+                        // When accumulated enough for at least 1 pixel, apply it
+                        if (Math.abs(grid._scrollAccumulator) >= 1) {
+                            const scrollPixels = Math.trunc(grid._scrollAccumulator);
+                            grid.scrollTop += scrollPixels;
+                            grid._scrollAccumulator -= scrollPixels;
+                        }
+                        
+                        // Check if hit bottom
+                        if (grid._scrollDir === 1 && (grid.clientHeight + grid.scrollTop) >= grid.scrollHeight - 1) {
+                            grid._scrollDir = -1;
+                        }
+                        // Check if hit top
+                        else if (grid._scrollDir === -1 && grid.scrollTop <= 0) {
+                            grid._scrollDir = 1;
+                        }
+                    });
+                }
+                if (autoScrollEnabled) {
+                    animationFrameId = requestAnimationFrame(step);
+                }
+            }
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        function stopAutoScroll() {
+            if (animationFrameId) {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+            }
+        }
+    }
+    initAutoScroll();
+
+    // ==========================================================
+    // View Mode Toggle Manager (Grid vs Compact List View)
+    // ==========================================================
+    function initViewToggle() {
+        if (!viewBtnGrid || !viewBtnList || !hostsSectionsContainer) return;
+        
+        const savedViewMode = localStorage.getItem("dashboardViewMode") || "grid";
+        setViewMode(savedViewMode);
+        
+        viewBtnGrid.addEventListener("click", () => setViewMode("grid"));
+        viewBtnList.addEventListener("click", () => setViewMode("list"));
+        
+        function setViewMode(mode) {
+            if (mode === "list") {
+                hostsSectionsContainer.classList.add("list-view-active");
+                viewBtnList.classList.add("active");
+                viewBtnGrid.classList.remove("active");
+            } else {
+                hostsSectionsContainer.classList.remove("list-view-active");
+                viewBtnGrid.classList.add("active");
+                viewBtnList.classList.remove("active");
+            }
+            localStorage.setItem("dashboardViewMode", mode);
+        }
+        
+        // Environment Card Toggle Listener
+        const envViewToggle = document.getElementById("env-view-toggle");
+        if (envViewToggle) {
+            envViewToggle.addEventListener("click", () => {
+                envCompactView = !envCompactView;
+                envViewToggle.innerHTML = envCompactView ? '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>';
+                envViewToggle.style.color = envCompactView ? 'var(--color-primary)' : 'var(--text-muted)';
+                updateStats(currentStatsCache, allHostsData);
+            });
+        }
+        
+        // Zoom Controls Logic
+        if (btnZoomIn && btnZoomOut && hostsSectionsContainer) {
+            btnZoomIn.addEventListener("click", () => {
+                if (currentGridZoom < 2.5) {
+                    currentGridZoom += 0.1;
+                    hostsSectionsContainer.style.zoom = currentGridZoom;
+                    showToast(`Zoomed In to ${Math.round(currentGridZoom * 100)}%`, "info");
+                }
+            });
+            btnZoomOut.addEventListener("click", () => {
+                if (currentGridZoom > 0.5) {
+                    currentGridZoom -= 0.1;
+                    hostsSectionsContainer.style.zoom = currentGridZoom;
+                    showToast(`Zoomed Out to ${Math.round(currentGridZoom * 100)}%`, "info");
+                }
+            });
+        }
+
+        // Fullscreen Toggle Logic
+        if (btnFullscreen) {
+            btnFullscreen.addEventListener("click", () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen().catch(err => {
+                        showToast(`Error attempting to enable fullscreen: ${err.message}`, "error");
+                    });
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                }
+            });
+        }
+        
+        // Export DPR CSV Logic
+        if (btnExportDpr) {
+            btnExportDpr.addEventListener("click", () => {
+                const downHosts = allHostsData.filter(h => h.status === "DOWN");
+                if (downHosts.length === 0) {
+                    showToast("No outages to export! All links are UP.", "success");
+                    return;
+                }
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "IP Address,Category,Location / Description,Current Status,Time Generated\r\n";
+                const nowStr = new Date().toLocaleTimeString();
+                downHosts.forEach(h => {
+                    const safeDesc = (h.description || "").replace(/"/g, '""');
+                    const safeCat = (h.category || "").replace(/"/g, '""');
+                    csvContent += `"${h.ip}","${safeCat}","${safeDesc}","${h.status}","${nowStr}"\r\n`;
+                });
+                const encodedUri = encodeURI(csvContent);
+                const link = document.createElement("a");
+                link.setAttribute("href", encodedUri);
+                link.setAttribute("download", `DPR_Outages_${new Date().toISOString().slice(0,10)}.csv`);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                showToast(`Exported ${downHosts.length} outages to CSV for DPR.`, "success");
+            });
+        }
+    }
+    initViewToggle();
+
+});
