@@ -229,7 +229,7 @@ export default function AlertsSimulator() {
                           key={alert.id}
                           initial={{ opacity: 0, y: 20, scale: 0.95 }}
                           animate={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                          transition={{ type: "spring" as const, stiffness: 400, damping: 25 }}
                           className={`p-4 rounded-xl border transition-all duration-300 relative overflow-hidden ${
                             isNewest 
                               ? 'bg-[var(--card)] border-[var(--primary)]/50 shadow-[0_0_15px_rgba(56,189,248,0.1)]' 

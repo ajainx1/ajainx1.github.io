@@ -99,7 +99,7 @@ type TabKey = 'store' | 'vm' | 'alerts' | 'checkout' | 'orders';
 
 const tabVariants = {
   hidden: { opacity: 0, y: 15, scale: 0.98 },
-  visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring', stiffness: 400, damping: 25 } },
+  visible: { opacity: 1, y: 0, scale: 1, transition: { type: 'spring' as const, stiffness: 400, damping: 25 } },
   exit: { opacity: 0, y: -15, scale: 0.98, transition: { duration: 0.15 } }
 };
 

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Cpu, HardDrive, MapPin, Layers, Server, ShieldCheck, Terminal } from 'lucide-react';
+import { Cpu, HardDrive, MapPin, Layers, Server, ShieldCheck, Terminal, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VMConfig } from './types';
 
