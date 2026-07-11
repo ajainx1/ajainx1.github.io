@@ -1,13 +1,13 @@
 "use client";
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon } from 'lucide-react';
+import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 
-// Use same env variables as the HTML script, or fallback to the hardcoded ones if not in env
+// Initialize Supabase client
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhraGdjY3hpbWNyc2RwZGxza3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ0OTksImV4cCI6MjA5OTI0MDQ5OX0.R9t0QNG0voJPyxhZkXO2hQtD4_Gr2xdnGyI8AlTOk5g';
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -24,11 +24,29 @@ const recipientIcons: Record<string, { base: string; float: string; label: strin
   saturn: { base: '🦯🤝', float: '🖤', label: 'Saturn (8)' },
 };
 
+const levelTitles = [
+  { minLvl: 1, title: "Chandra Novice" },
+  { minLvl: 3, title: "Budha Auditor" },
+  { minLvl: 5, title: "Mangala Sentinel" },
+  { minLvl: 8, title: "Brihaspati Sage" },
+  { minLvl: 12, title: "Shukra Guardian" },
+  { minLvl: 16, title: "Shani Elder" },
+  { minLvl: 20, title: "Rahu Illusionist" },
+  { minLvl: 25, title: "Ketu Supreme Architect" }
+];
+
 export default function CharityQuizClient() {
   // State
   const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
-  const [category, setCategory] = useState<CategoryKey>('network');
+  
+  // Daily Streak & Shields State
+  const [dailyStreak, setDailyStreak] = useState(0);
+  const [streakShields, setStreakShields] = useState(0);
+  const [lastPlayedDate, setLastPlayedDate] = useState('');
+  const [dailyPlanetBonus, setDailyPlanetBonus] = useState({ name: '', targetRecipient: '', message: '' });
+  
+  const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('network');
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [recipient, setRecipient] = useState('human');
@@ -48,6 +66,16 @@ export default function CharityQuizClient() {
   const [isSendingMagicLink, setIsSendingMagicLink] = useState(false);
   const [magicLinkSent, setMagicLinkSent] = useState(false);
 
+  // Custom AI Quiz States
+  const [showAIModal, setShowAIModal] = useState(false);
+  const [aiTopic, setAiTopic] = useState('');
+  const [aiKey, setAiKey] = useState('');
+  const [isGeneratingAI, setIsGeneratingAI] = useState(false);
+  const [aiQuestions, setAiQuestions] = useState<Question[]>([]);
+  const [aiIndex, setAiIndex] = useState(0);
+  const [aiCorrectCount, setAiCorrectCount] = useState(0);
+  const [showAICompletion, setShowAICompletion] = useState(false);
+
   // Theme
   const [isDark, setIsDark] = useState(true);
 
@@ -59,8 +87,12 @@ export default function CharityQuizClient() {
     setIsDark(isDarkMode);
     document.body.classList.toggle('light-mode', !isDarkMode);
     
-    // Auth Check
-    const checkSession = async () => {
+    // Calculate daily planet alignment bonus
+    calculateDailyPlanetBonus();
+    
+    // Auth & Game states Check
+    const checkSessionAndStates = async () => {
+      // Load Supabase session
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user?.email) {
         handleUserLogin(session.user.email);
@@ -68,8 +100,41 @@ export default function CharityQuizClient() {
         const localScore = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
         setScore(localScore);
       }
+      
+      // Load daily streaks & shields from local storage
+      const localStreak = parseInt(localStorage.getItem('charityQuizStreak') || '0', 10);
+      const localShields = parseInt(localStorage.getItem('charityQuizShields') || '0', 10);
+      const localLastPlayed = localStorage.getItem('charityQuizLastPlayedDate') || '';
+      const savedAIKey = localStorage.getItem('GEMINI_API_KEY') || '';
+      
+      setDailyStreak(localStreak);
+      setStreakShields(localShields);
+      setLastPlayedDate(localLastPlayed);
+      setAiKey(savedAIKey);
+      
+      // Validate streak
+      if (localLastPlayed) {
+        const todayStr = new Date().toISOString().split('T')[0];
+        const lastDate = new Date(localLastPlayed);
+        const todayDate = new Date(todayStr);
+        const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        
+        if (diffDays > 1) {
+          // Missed a day! check shields
+          if (localShields > 0) {
+            const updatedShields = localShields - 1;
+            setStreakShields(updatedShields);
+            localStorage.setItem('charityQuizShields', String(updatedShields));
+            addToast(`🛡️ Your streak of ${localStreak} days was saved by a Streak Shield!`, 'info');
+          } else {
+            setDailyStreak(0);
+            localStorage.setItem('charityQuizStreak', '0');
+          }
+        }
+      }
     };
-    checkSession();
+    checkSessionAndStates();
     
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user?.email) {
@@ -98,8 +163,62 @@ export default function CharityQuizClient() {
     }
   };
 
+  // Calculate daily planet alignment bonus
+  const calculateDailyPlanetBonus = () => {
+    const day = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const bonuses = {
+      0: { name: "Sunday (Sun Day)", targetRecipient: "dogs", message: "☀️ Today is Sun Day! Feed the Dogs for 2X Grains!" },
+      1: { name: "Monday (Moon Day)", targetRecipient: "moon", message: "🌕 Today is Moon Day! Feed the Moon Mothers for 2X Grains!" },
+      2: { name: "Tuesday (Mars Day)", targetRecipient: "cows", message: "🔥 Today is Mars Day! Feed the Cows for 2X Grains!" },
+      3: { name: "Wednesday (Mercury Day)", targetRecipient: "birds", message: "✨ Today is Mercury Day! Feed the Birds for 2X Grains!" },
+      4: { name: "Thursday (Jupiter Day)", targetRecipient: "jupiter", message: "🪐 Today is Jupiter Day! Support Jupiter's Scholars for 2X Grains!" },
+      5: { name: "Friday (Venus Day)", targetRecipient: "venus", message: "💖 Today is Venus Day! Support Venus Women Shelters for 2X Grains!" },
+      6: { name: "Saturday (Saturn Day)", targetRecipient: "saturn", message: "🛡️ Today is Saturday! Help Saturn's Disabled for 2X Grains!" }
+    };
+    setDailyPlanetBonus(bonuses[day as keyof typeof bonuses]);
+  };
+
+  // Record daily streak activity
+  const recordDailyActivity = () => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    
+    if (lastPlayedDate !== todayStr) {
+      let newStreak = 1;
+      if (lastPlayedDate) {
+        const lastDate = new Date(lastPlayedDate);
+        const todayDate = new Date(todayStr);
+        const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        if (diffDays === 1) {
+          newStreak = dailyStreak + 1;
+        }
+      }
+      
+      setDailyStreak(newStreak);
+      setLastPlayedDate(todayStr);
+      localStorage.setItem('charityQuizLastPlayedDate', todayStr);
+      localStorage.setItem('charityQuizStreak', String(newStreak));
+    }
+  };
+
+  const handleBuyShield = () => {
+    if (score >= 500) {
+      const newScore = score - 500;
+      const newShields = streakShields + 1;
+      
+      saveScore(newScore);
+      setStreakShields(newShields);
+      localStorage.setItem('charityQuizShields', String(newShields));
+      
+      setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 grains.', type: 'success' });
+      addToast('Streak Shield Purchased! 🛡️', 'success');
+    }
+  };
+
   // Question Logic
   const loadNextQuestion = useCallback(() => {
+    if (category === 'custom-ai') return; // Handled separately by AI state flow
+    
     const allQ = quizData[category].questions;
     const filteredQ = allQ.filter(q => q.difficulty === difficulty);
     if (filteredQ.length === 0) {
@@ -116,8 +235,82 @@ export default function CharityQuizClient() {
 
   useEffect(() => {
     loadNextQuestion();
-    setStreak(0);
+    if (category !== 'custom-ai') {
+      setStreak(0);
+      setAiQuestions([]);
+      setShowAICompletion(false);
+    }
   }, [category, difficulty, loadNextQuestion]);
+
+  // Generate Custom AI Quiz
+  const handleGenerateAIQuiz = async () => {
+    if (!aiTopic.trim()) {
+      addToast('Please enter a topic', 'error');
+      return;
+    }
+    if (!aiKey.trim()) {
+      addToast('Please enter a Gemini API Key', 'error');
+      return;
+    }
+
+    setIsGeneratingAI(true);
+    localStorage.setItem('GEMINI_API_KEY', aiKey);
+    setFeedback(null);
+
+    const promptText = `Generate exactly 5 multiple choice questions on the topic: "${aiTopic}".
+Return the output ONLY as a valid JSON array matching the structure:
+[
+  {
+    "question": "question text",
+    "options": ["option 1", "option 2", "option 3", "option 4"],
+    "answer": 0,
+    "hint": "helpful hint",
+    "scenario": "brief context"
+  }
+]
+Ensure the JSON output is raw, without any markdown formatting, backticks, or wrapping. Keep it strictly educational and correct.`;
+
+    try {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${aiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: {
+            responseMimeType: "application/json"
+          }
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('API key is invalid or request blocked.');
+      }
+
+      const data = await response.json();
+      const textResponse = data.candidates[0].content.parts[0].text;
+      const parsedQuestions = JSON.parse(textResponse) as Question[];
+
+      if (parsedQuestions.length === 0) {
+        throw new Error('No questions returned.');
+      }
+
+      setAiQuestions(parsedQuestions);
+      setAiIndex(0);
+      setAiCorrectCount(0);
+      setCategory('custom-ai');
+      setCurrentQuestion(parsedQuestions[0]);
+      setIsAnswered(false);
+      setSelectedAnswer(null);
+      setShowHint(false);
+      setShowAIModal(false);
+      setShowAICompletion(false);
+      addToast('AI Quiz Generated!', 'success');
+    } catch (err: any) {
+      addToast(`AI Generation Failed: ${err.message || err}`, 'error');
+    } finally {
+      setIsGeneratingAI(false);
+    }
+  };
 
   const toggleTheme = () => {
     const newDark = !isDark;
@@ -131,11 +324,26 @@ export default function CharityQuizClient() {
     setIsAnswered(true);
     setSelectedAnswer(index);
 
-    if (index === currentQuestion.answer) {
+    const isCorrect = (index === currentQuestion.answer);
+
+    if (isCorrect) {
       // Correct
-      saveScore(score + 10);
+      const isPlanetBonus = (recipient === dailyPlanetBonus.targetRecipient);
+      const points = isPlanetBonus ? 20 : 10;
+      
+      saveScore(score + points);
       setStreak(s => s + 1);
-      setFeedback({ text: 'Correct! +10 grains of rice donated.', type: 'success' });
+      if (category === 'custom-ai') {
+        setAiCorrectCount(c => c + 1);
+      }
+      recordDailyActivity();
+      
+      if (isPlanetBonus) {
+        setFeedback({ text: `Correct! +20 grains of rice donated (PLANET BONUS 2X!).`, type: 'success' });
+      } else {
+        setFeedback({ text: `Correct! +${points} grains of rice donated.`, type: 'success' });
+      }
+      
       triggerRiceAnimation();
       
       if ('vibrate' in navigator) navigator.vibrate(50);
@@ -147,7 +355,23 @@ export default function CharityQuizClient() {
     }
 
     setTimeout(() => {
-      loadNextQuestion();
+      if (category === 'custom-ai') {
+        const nextIndex = aiIndex + 1;
+        if (nextIndex < aiQuestions.length) {
+          setAiIndex(nextIndex);
+          setCurrentQuestion(aiQuestions[nextIndex]);
+          setIsAnswered(false);
+          setSelectedAnswer(null);
+          setFeedback(null);
+          setShowHint(false);
+        } else {
+          // Finished AI Quiz
+          setShowAICompletion(true);
+          setCurrentQuestion(null);
+        }
+      } else {
+        loadNextQuestion();
+      }
     }, 2500);
   };
 
@@ -196,7 +420,7 @@ export default function CharityQuizClient() {
   };
 
   const handleShare = () => {
-    const text = `I just generated ${score} grains of rice by playing Cyber FreeRice! Join me in learning and feeding the hungry:`;
+    const text = `I just reached Level ${level} and generated ${score} grains of rice on Cyber FreeRice! Join me:`;
     if (navigator.share) {
       navigator.share({ title: 'Cyber FreeRice', text, url: window.location.href }).catch(console.error);
     } else {
@@ -205,8 +429,28 @@ export default function CharityQuizClient() {
     }
   };
 
+  // Share AI Custom Quiz Accomplishment (Viral Booster)
+  const handleShareAIResult = () => {
+    const text = `🧠 I just scored ${aiCorrectCount}/5 in a custom AI-generated quiz on "${aiTopic}" on Cyber FreeRice, donating ${aiCorrectCount * 10} grains of rice! Try any topic here:`;
+    if (navigator.share) {
+      navigator.share({ title: 'Cyber FreeRice AI Quiz', text, url: window.location.href }).catch(console.error);
+    } else {
+      navigator.clipboard.writeText(`${text} ${window.location.href}`);
+      addToast('Copied to clipboard!', 'success');
+    }
+  };
+
+  // XP Calculations
   const milestone = score % 500;
   const progressPct = Math.min((milestone / 500) * 100, 100);
+  
+  const level = Math.floor(score / 200) + 1;
+  let currentLevelTitle = "Chandra Novice";
+  for (const item of levelTitles) {
+    if (level >= item.minLvl) {
+      currentLevelTitle = item.title;
+    }
+  }
 
   return (
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'bg-[#0a0f0d] text-emerald-50' : 'bg-emerald-50 text-emerald-950'}`}>
@@ -230,6 +474,12 @@ export default function CharityQuizClient() {
         </div>
 
         <div className="flex items-center gap-3">
+          {dailyStreak > 0 && (
+            <div className="flex items-center gap-1 text-xs font-mono font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1.5 rounded-lg border border-amber-500/20">
+              🔥 {dailyStreak} Days
+            </div>
+          )}
+
           <button onClick={toggleTheme} className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-emerald-900/30 text-emerald-400 hover:bg-emerald-900/50' : 'bg-emerald-200 text-emerald-700 hover:bg-emerald-300'}`}>
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
@@ -260,6 +510,14 @@ export default function CharityQuizClient() {
           </p>
         </motion.div>
 
+        {/* Daily Planetary alignment multiplier info */}
+        {dailyPlanetBonus.message && (
+          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full max-w-xl bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 text-center mb-6 text-xs font-bold text-amber-500 flex items-center justify-center gap-2">
+            <Zap size={14} />
+            <span>{dailyPlanetBonus.message}</span>
+          </motion.div>
+        )}
+
         {/* Categories & Difficulty */}
         <div className="w-full flex flex-col sm:flex-row justify-center gap-4 mb-8">
           <div className={`flex flex-wrap justify-center gap-2 p-1.5 rounded-xl border ${isDark ? 'bg-[#0a0f0d] border-emerald-900/50' : 'bg-white border-emerald-200 shadow-sm'}`}>
@@ -272,19 +530,29 @@ export default function CharityQuizClient() {
                 {cat}
               </button>
             ))}
+            
+            {/* Custom AI Quiz Button */}
+            <button
+              onClick={() => setShowAIModal(true)}
+              className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 border border-purple-500/30 text-purple-400 hover:bg-purple-500/10 ${category === 'custom-ai' ? 'bg-purple-500 text-white border-purple-400 shadow-[0_0_10px_rgba(147,51,234,0.3)]' : ''}`}
+            >
+              <Cpu size={12} /> Custom AI Quiz
+            </button>
           </div>
           
-          <div className={`flex flex-wrap justify-center gap-2 p-1.5 rounded-xl border ${isDark ? 'bg-[#0a0f0d] border-emerald-900/50' : 'bg-white border-emerald-200 shadow-sm'}`}>
-            {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
-              <button
-                key={diff}
-                onClick={() => setDifficulty(diff)}
-                className={`px-3 py-2 rounded-lg text-xs font-bold capitalize transition-all ${difficulty === diff ? (isDark ? 'bg-emerald-900/40 text-emerald-400 border border-emerald-700' : 'bg-emerald-100 text-emerald-700 border border-emerald-300') : (isDark ? 'text-emerald-500/50 hover:text-emerald-400' : 'text-emerald-600/60 hover:text-emerald-600')}`}
-              >
-                {diff}
-              </button>
-            ))}
-          </div>
+          {category !== 'custom-ai' && (
+            <div className={`flex flex-wrap justify-center gap-2 p-1.5 rounded-xl border ${isDark ? 'bg-[#0a0f0d] border-emerald-900/50' : 'bg-white border-emerald-200 shadow-sm'}`}>
+              {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
+                <button
+                  key={diff}
+                  onClick={() => setDifficulty(diff)}
+                  className={`px-3 py-2 rounded-lg text-xs font-bold capitalize transition-all ${difficulty === diff ? (isDark ? 'bg-emerald-900/40 text-emerald-400 border border-emerald-700' : 'bg-emerald-100 text-emerald-700 border border-emerald-300') : (isDark ? 'text-emerald-500/50 hover:text-emerald-400' : 'text-emerald-600/60 hover:text-emerald-600')}`}
+                >
+                  {diff}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Recipients */}
@@ -325,6 +593,12 @@ export default function CharityQuizClient() {
         {/* Score Board */}
         <motion.div layout className={`w-full max-w-sm rounded-3xl border p-8 text-center relative overflow-hidden mb-8 shadow-2xl ${isDark ? 'bg-gradient-to-b from-emerald-900/20 to-[#0a0f0d] border-emerald-800/50 shadow-emerald-900/20' : 'bg-white border-emerald-200 shadow-emerald-200/50'}`}>
           <div className="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/20 blur-[50px] rounded-full pointer-events-none" />
+          
+          {/* Level Indicator */}
+          <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-bold text-emerald-400">
+            <span>🛡️ Level {level}: {currentLevelTitle}</span>
+          </div>
+
           <h2 className={`text-[10px] font-mono font-bold uppercase tracking-[0.3em] mb-4 ${isDark ? 'text-emerald-500/70' : 'text-emerald-600/70'}`}>Impact Generated</h2>
           
           <div className="flex items-center justify-center gap-4 mb-2">
@@ -368,6 +642,18 @@ export default function CharityQuizClient() {
           </div>
           <span className={`text-[9px] font-mono mt-2 block ${isDark ? 'text-emerald-500/50' : 'text-emerald-600/70'}`}>{milestone} / 500 grains for a full bowl</span>
 
+          {/* Streak Shields Shop */}
+          <div className="flex items-center justify-between gap-2 border-t border-b border-dashed border-emerald-800/40 py-2.5 my-4 text-xs font-mono">
+            <span className="text-emerald-500/70">🛡️ Shields: {streakShields}</span>
+            <button 
+              onClick={handleBuyShield}
+              disabled={score < 500}
+              className="px-2.5 py-1 rounded bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold transition-all disabled:opacity-30 disabled:pointer-events-none"
+            >
+              Buy Shield (500 Grains)
+            </button>
+          </div>
+
           <div className="mt-6 flex flex-col gap-3 items-center">
             <AnimatePresence>
               {streak >= 3 && (
@@ -385,6 +671,26 @@ export default function CharityQuizClient() {
         {/* Quiz Area */}
         <div className="w-full">
           <AnimatePresence mode="wait">
+            {showAICompletion && (
+              <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className={`w-full p-8 rounded-2xl border text-center shadow-xl ${isDark ? 'bg-[#0d1310]/80 border-purple-800/40' : 'bg-white/80 border-purple-200'}`}>
+                <div className="w-16 h-16 bg-purple-500/10 border border-purple-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award size={32} className="text-purple-400" />
+                </div>
+                <h3 className="text-xl font-bold font-mono text-purple-400 mb-2">Custom AI Quiz Completed!</h3>
+                <p className={`text-sm mb-6 ${isDark ? 'text-emerald-50/60' : 'text-emerald-950/60'}`}>
+                  You answered {aiCorrectCount} of 5 questions correctly on the topic: <strong>{aiTopic}</strong>. This generated <strong>{aiCorrectCount * 10} grains</strong> of charitable rice!
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <button onClick={handleShareAIResult} className="px-5 py-2.5 rounded-xl font-bold bg-purple-600 hover:bg-purple-500 text-white flex items-center gap-2 transition-colors">
+                    <Share2 size={16} /> Share & Brag on LinkedIn/X
+                  </button>
+                  <button onClick={() => setShowAIModal(true)} className={`px-5 py-2.5 rounded-xl font-bold border transition-colors ${isDark ? 'border-emerald-800 text-emerald-400 hover:bg-emerald-900/25' : 'border-emerald-200 text-emerald-700 hover:bg-emerald-50'}`}>
+                    Play New Topic
+                  </button>
+                </div>
+              </motion.div>
+            )}
+
             {currentQuestion ? (
               <motion.div
                 key={currentQuestion.question}
@@ -396,6 +702,12 @@ export default function CharityQuizClient() {
                 {/* Decorative top border line */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50 rounded-t-2xl" />
                 
+                {category === 'custom-ai' && (
+                  <div className="text-[10px] font-mono text-purple-400 font-bold mb-4 uppercase tracking-widest">
+                    🤖 AI Quiz: Question {aiIndex + 1} of {aiQuestions.length} ({aiTopic})
+                  </div>
+                )}
+
                 {currentQuestion.scenario && (
                   <div className={`p-4 rounded-xl border mb-6 text-sm font-mono leading-relaxed ${isDark ? 'bg-emerald-900/20 border-emerald-800/60 text-emerald-300' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
                     {currentQuestion.scenario}
@@ -462,13 +774,87 @@ export default function CharityQuizClient() {
                 </div>
               </motion.div>
             ) : (
-              <motion.div className={`p-8 text-center rounded-2xl border ${isDark ? 'bg-emerald-900/10 border-emerald-800/50 text-emerald-500/60' : 'bg-emerald-50 border-emerald-200 text-emerald-600'}`}>
-                <p>Loading questions or no questions available for this difficulty.</p>
-              </motion.div>
+              !showAICompletion && (
+                <motion.div className={`p-8 text-center rounded-2xl border ${isDark ? 'bg-emerald-900/10 border-emerald-800/50 text-emerald-500/60' : 'bg-emerald-50 border-emerald-200 text-emerald-600'}`}>
+                  <p>Loading questions or no questions available for this difficulty.</p>
+                </motion.div>
+              )
             )}
           </AnimatePresence>
         </div>
+
+        {/* Sponsored Placement Section (Monetization Demo) */}
+        <div className={`w-full p-6 rounded-2xl border text-center mt-8 ${isDark ? 'bg-purple-950/5 border-purple-900/20' : 'bg-purple-50/50 border-purple-200'}`}>
+          <span className="text-[9px] font-mono font-bold text-purple-500 uppercase tracking-widest block mb-2">Sponsored Placement</span>
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="text-left max-w-xl">
+              <h4 className="text-sm font-mono font-bold">Upgrade your skills with OffSec (OSCP)</h4>
+              <p className={`text-xs mt-1 ${isDark ? 'text-emerald-50/50' : 'text-emerald-950/50'}`}>
+                OffSec has pledged to match up to 100,000 grains of rice today! Learn advanced penetration testing and support global food programs.
+              </p>
+            </div>
+            <a href="https://www.offsec.com/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-xs font-bold bg-purple-600 text-white hover:bg-purple-500 transition-colors shrink-0">
+              Visit OffSec
+            </a>
+          </div>
+        </div>
+
       </main>
+
+      {/* AI Quiz Settings Modal */}
+      <AnimatePresence>
+        {showAIModal && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className={`w-full max-w-md p-8 rounded-3xl border shadow-2xl text-center ${isDark ? 'bg-[#0d1310] border-purple-500/30 shadow-[0_0_50px_rgba(147,51,234,0.1)]' : 'bg-white border-emerald-200 shadow-emerald-500/20'}`}>
+              <h3 className="text-xl font-bold text-purple-400 mb-2">Create Custom AI Quiz</h3>
+              <p className={`text-xs mb-6 ${isDark ? 'text-emerald-200/50' : 'text-emerald-700/60'}`}>
+                Enter any topic (e.g. World History, Indian Cuisine, JavaScript) and feed charities by answering AI-crafted questions!
+              </p>
+
+              <div className="text-left mb-4">
+                <label className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-widest block mb-2">1. Choose Your Topic</label>
+                <input
+                  type="text"
+                  value={aiTopic}
+                  onChange={e => setAiTopic(e.target.value)}
+                  placeholder="e.g., Space Exploration"
+                  disabled={isGeneratingAI}
+                  className={`w-full p-3 rounded-xl border text-center outline-none transition-all ${isDark ? 'bg-[#0a0f0d] border-purple-900/50 focus:border-purple-500 text-emerald-50' : 'bg-gray-50 border-purple-200 focus:border-purple-400 text-emerald-950'}`}
+                />
+              </div>
+
+              <div className="text-left mb-6">
+                <label className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-widest block mb-1">2. Enter Gemini API Key</label>
+                <span className={`text-[9px] block mb-2 ${isDark ? 'text-emerald-500/40' : 'text-emerald-700/50'}`}>
+                  Get a free API key instantly at <a href="https://aistudio.google.com/" target="_blank" rel="noreferrer" className="underline text-emerald-500 hover:text-emerald-400">Google AI Studio</a>.
+                </span>
+                <input
+                  type="password"
+                  value={aiKey}
+                  onChange={e => setAiKey(e.target.value)}
+                  placeholder="Paste AI key here..."
+                  disabled={isGeneratingAI}
+                  className={`w-full p-3 rounded-xl border text-center outline-none transition-all ${isDark ? 'bg-[#0a0f0d] border-purple-900/50 focus:border-purple-500 text-emerald-50' : 'bg-gray-50 border-purple-200 focus:border-purple-400 text-emerald-950'}`}
+                />
+              </div>
+
+              <button
+                onClick={handleGenerateAIQuiz}
+                disabled={isGeneratingAI}
+                className="w-full py-3.5 rounded-xl font-bold bg-purple-600 text-white hover:bg-purple-500 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(147,51,234,0.3)]"
+              >
+                {isGeneratingAI ? (
+                  <>🤖 Crafting Questions...</>
+                ) : (
+                  <>🔮 Generate custom Quiz</>
+                )}
+              </button>
+
+              <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className={`mt-6 text-xs font-semibold ${isDark ? 'text-rose-500/80 hover:text-rose-400' : 'text-rose-600 hover:text-rose-500'}`}>Cancel</button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Auth Modal */}
       <AnimatePresence>
