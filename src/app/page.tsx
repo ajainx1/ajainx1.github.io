@@ -44,10 +44,16 @@ export default function Home() {
             <span>JumpStreet Portal</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
+
+          <Link href="/charity-quiz" className="group relative px-6 py-3 font-semibold text-white bg-emerald-600 rounded-lg overflow-hidden transition-transform hover:scale-105 active:scale-95 shadow-[0_4px_20px_rgba(16,185,129,0.3)] hover:bg-emerald-500 shadow-lg flex items-center gap-2">
+            <span className="text-xl">🎮</span>
+            <span>Play Charity Quiz</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
           
-          <a href="#about" className="px-6 py-3 font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm">
+          <Link href="/live.html" className="px-6 py-3 font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm">
             View Full Portfolio
-          </a>
+          </Link>
         </div>
 
         <motion.div 
