@@ -152,7 +152,13 @@ export default function Home() {
             <a href="#about" className="hover:text-[var(--fg)] transition-colors">About</a>
             <a href="#skills" className="hover:text-[var(--fg)] transition-colors">Competencies</a>
             <a href="#experience" className="hover:text-[var(--fg)] transition-colors">Experience</a>
-            <a href="#projects" className="hover:text-[var(--fg)] transition-colors">Projects</a>
+            <a href="#projects" className="hover:text-[var(--fg)] transition-colors flex items-center gap-1.5">
+              Projects
+              <span className="relative flex h-1.5 w-1.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--primary)] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-[var(--primary)]"></span>
+              </span>
+            </a>
             <a href="#certs" className="hover:text-[var(--fg)] transition-colors">Credentials</a>
             <a href="#contact" className="hover:text-[var(--fg)] transition-colors">Contact</a>
           </nav>
@@ -219,12 +225,12 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <Link href="/js" className="group px-5 py-2.5 text-sm font-semibold text-[var(--bg)] bg-[var(--primary)] rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[var(--primary-glow)] shadow-md">
+              <Link href="/js" className="group px-5 py-2.5 text-sm font-semibold text-[var(--bg)] bg-[var(--primary)] rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[var(--primary-glow)] shadow-md animate-pulse-glow-primary">
                 <TermIcon className="w-4 h-4" />
                 <span>JumpStreet Portal</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/charity-quiz" className="group px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500">
+              <Link href="/charity-quiz" className="group px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500 animate-pulse-glow-emerald">
                 <span>🎮</span>
                 <span>Play Charity Quiz</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
