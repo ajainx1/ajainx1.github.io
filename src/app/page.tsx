@@ -86,12 +86,21 @@ export default function Home() {
     ""
   ]);
   const [terminalInput, setTerminalInput] = useState("");
-  const [visitorCount, setVisitorCount] = useState(1337);
+  const [visitorCount, setVisitorCount] = useState(2143);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
-  // Simulated visitor count
+  // Persistent client-side visitor tracker starting at 2143
   useEffect(() => {
-    setVisitorCount(Math.floor(1000 + Math.random() * 9000));
+    const storedCount = localStorage.getItem("portfolio_visitor_count");
+    if (storedCount) {
+      const current = parseInt(storedCount, 10);
+      const updated = current + 1;
+      localStorage.setItem("portfolio_visitor_count", updated.toString());
+      setVisitorCount(updated);
+    } else {
+      localStorage.setItem("portfolio_visitor_count", "2143");
+      setVisitorCount(2143);
+    }
   }, []);
 
   // Auto-scroll terminal
