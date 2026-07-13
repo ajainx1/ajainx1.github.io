@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
@@ -80,6 +80,14 @@ export default function CharityQuizClient() {
   // Visitor count
   const [quizVisitorCount, setQuizVisitorCount] = useState(1437);
 
+  // Level up states
+  const [showLevelUpModal, setShowLevelUpModal] = useState(false);
+  const [levelUpData, setLevelUpData] = useState({ level: 1, title: '' });
+
+  // Refs to track recently shown questions to prevent repeats
+  const questionHistoryRef = useRef<string[]>([]);
+  const currentQuestionRef = useRef<Question | null>(null);
+
   // Theme
   const [isDark, setIsDark] = useState(true);
 
@@ -115,6 +123,9 @@ export default function CharityQuizClient() {
       } else {
         const localScore = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
         setScore(localScore);
+        // Initialize level storage so we don't trigger modal on mount
+        const calculatedLevel = Math.floor(localScore / 200) + 1;
+        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
       
       // Load daily streaks & shields from local storage
@@ -169,6 +180,9 @@ export default function CharityQuizClient() {
     setUser({ email, name, avatar });
     const userScore = parseInt(localStorage.getItem(`charityRiceScore_${email}`) || '0', 10);
     setScore(userScore);
+    // Initialize level storage so we don't trigger modal on mount
+    const calculatedLevel = Math.floor(userScore / 200) + 1;
+    localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
   };
 
   const saveScore = (newScore: number) => {
@@ -241,8 +255,35 @@ export default function CharityQuizClient() {
       setCurrentQuestion(null);
       return;
     }
-    const rand = Math.floor(Math.random() * filteredQ.length);
-    setCurrentQuestion(filteredQ[rand]);
+    
+    // Filter out recently seen questions from history
+    let pool = filteredQ.filter(q => !questionHistoryRef.current.includes(q.question));
+    
+    // If all questions in the category/difficulty have been seen, reset history for this pool
+    if (pool.length === 0) {
+      pool = filteredQ;
+      // Keep only the last question in history to prevent back-to-back repeats
+      const lastQ = currentQuestionRef.current;
+      questionHistoryRef.current = lastQ ? [lastQ.question] : [];
+    }
+    
+    // If there's more than 1 option, ensure we don't repeat the current question back-to-back
+    if (pool.length > 1 && currentQuestionRef.current) {
+      pool = pool.filter(q => q.question !== currentQuestionRef.current?.question);
+    }
+    
+    const rand = Math.floor(Math.random() * pool.length);
+    const selected = pool[rand];
+    
+    setCurrentQuestion(selected);
+    currentQuestionRef.current = selected;
+    
+    // Add to history
+    questionHistoryRef.current.push(selected.question);
+    if (questionHistoryRef.current.length > 5) {
+      questionHistoryRef.current.shift();
+    }
+    
     setIsAnswered(false);
     setSelectedAnswer(null);
     setFeedback(null);
@@ -257,6 +298,55 @@ export default function CharityQuizClient() {
       setShowAICompletion(false);
     }
   }, [category, difficulty, loadNextQuestion]);
+
+  // Hook to track and celebrate Level Up achievements
+  useEffect(() => {
+    if (score > 0) {
+      const calculatedLevel = Math.floor(score / 200) + 1;
+      const storedLvl = parseInt(localStorage.getItem('charityQuizLastLevel') || '1', 10);
+      
+      if (calculatedLevel > storedLvl) {
+        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
+        
+        let title = "Chandra Novice";
+        for (const item of levelTitles) {
+          if (calculatedLevel >= item.minLvl) {
+            title = item.title;
+          }
+        }
+        
+        setLevelUpData({ level: calculatedLevel, title });
+        setShowLevelUpModal(true);
+        addToast(`🎉 Level Up! You reached Level ${calculatedLevel}!`, 'success');
+        
+        // Play level-up sound effect (ascending arpeggio)
+        try {
+          const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const playNote = (freq: number, delay: number, duration: number) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+            osc.start(audioCtx.currentTime + delay);
+            osc.stop(audioCtx.currentTime + delay + duration);
+          };
+          
+          playNote(261.63, 0, 0.2); // C4
+          playNote(329.63, 0.15, 0.2); // E4
+          playNote(392.00, 0.3, 0.2); // G4
+          playNote(523.25, 0.45, 0.5); // C5
+        } catch (e) {
+          console.error(e);
+        }
+      } else if (calculatedLevel < storedLvl) {
+        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
+      }
+    }
+  }, [score, addToast]);
 
   // Generate Custom AI Quiz
   const handleGenerateAIQuiz = async () => {
@@ -908,6 +998,55 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </>
               )}
               <button onClick={() => setShowEmailModal(false)} className={`mt-6 text-xs font-semibold ${isDark ? 'text-rose-500/80 hover:text-rose-400' : 'text-rose-600 hover:text-rose-500'}`}>Cancel</button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Level Up Announcement Modal */}
+      <AnimatePresence>
+        {showLevelUpModal && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+          >
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.5, opacity: 0 }}
+              className={`w-full max-w-sm rounded-3xl border p-8 text-center relative overflow-hidden shadow-2xl ${isDark ? 'bg-gradient-to-b from-amber-950/40 to-[#0b0f19] border-amber-500/30' : 'bg-white border-amber-300'}`}
+            >
+              {/* Glowing Amber Light Background */}
+              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-amber-500/20 blur-[50px] rounded-full pointer-events-none" />
+
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                className="text-6xl mb-4 inline-block drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
+              >
+                🌟
+              </motion.div>
+
+              <h3 className="text-2xl font-black font-title text-amber-500 mb-2">Rank Up!</h3>
+              <p className={`text-xs mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
+                Incredible knowledge! Your answers are generating high impact for global charities.
+              </p>
+
+              <div className={`p-4 rounded-2xl mb-6 border ${isDark ? 'bg-amber-950/20 border-amber-500/20' : 'bg-amber-50 border-amber-200'}`}>
+                <div className="text-[10px] font-mono uppercase tracking-wider text-amber-500 mb-1">New Title Earned</div>
+                <div className="text-lg font-bold font-title text-[var(--fg)]">
+                  Level {levelUpData.level}: {levelUpData.title}
+                </div>
+              </div>
+
+              <button
+                onClick={() => setShowLevelUpModal(false)}
+                className="w-full py-3 px-6 rounded-xl bg-amber-500 text-black font-bold hover:bg-amber-400 active:scale-95 transition-all shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+              >
+                Continue Feeding
+              </button>
             </motion.div>
           </motion.div>
         )}

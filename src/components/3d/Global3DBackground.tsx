@@ -67,6 +67,29 @@ function ParticleField() {
   );
 }
 
+function NetworkGrid() {
+  const meshRef = useRef<THREE.Mesh>(null!);
+
+  useFrame((state) => {
+    if (!meshRef.current) return;
+    meshRef.current.rotation.y = state.clock.elapsedTime * 0.015;
+    meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.008) * 0.15;
+  });
+
+  return (
+    <mesh ref={meshRef} scale={[14, 14, 14]}>
+      <sphereGeometry args={[1, 18, 18]} />
+      <meshBasicMaterial
+        color="#38bdf8"
+        wireframe
+        transparent
+        opacity={0.065}
+        depthWrite={false}
+      />
+    </mesh>
+  );
+}
+
 export default function Global3DBackground() {
   return (
     <div
@@ -81,6 +104,7 @@ export default function Global3DBackground() {
       >
         <ambientLight intensity={0.3} />
         <ParticleField />
+        <NetworkGrid />
       </Canvas>
     </div>
   );
