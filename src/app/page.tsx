@@ -225,17 +225,19 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <Link href="/js" className="group px-5 py-2.5 text-sm font-semibold text-[var(--bg)] bg-[var(--primary)] rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[var(--primary-glow)] shadow-md animate-pulse-glow-primary">
-                <TermIcon className="w-4 h-4" />
+              <Link href="/js" className="group px-5 py-2.5 text-sm font-semibold text-[var(--bg)] bg-[var(--primary)] rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[var(--primary-glow)] shadow-md animate-pulse-glow-primary btn-shimmer">
+                <span className="font-mono text-xs flex items-center select-none mr-0.5">
+                  &gt;<span className="animate-cursor-blink">_</span>
+                </span>
                 <span>JumpStreet Portal</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/charity-quiz" className="group px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500 animate-pulse-glow-emerald">
+              <Link href="/charity-quiz" className="group px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500 animate-pulse-glow-emerald btn-shimmer">
                 <span>🎮</span>
                 <span>Play Charity Quiz</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a href="#about" className="px-5 py-2.5 text-sm font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm">
+              <a href="#about" className="px-5 py-2.5 text-sm font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm btn-shimmer">
                 View Full Portfolio
               </a>
             </div>
