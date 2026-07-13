@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Send, MessageSquare, BellRing, Smartphone, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { AlertNotification } from './types';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 const INITIAL_ALERTS: AlertNotification[] = [
   { id: 'a1', type: 'telegram', pair: 'BTC/USDT', signalType: 'BUY',  price: '92,450.50', indicator: 'Order Book Imbalance (Microstructural Buy Signal)', timestamp: 'Just now' },
@@ -64,6 +65,7 @@ export default function AlertsSimulator() {
   const inputClass = "w-full bg-[var(--card2)] border border-[var(--border)] text-[var(--fg)] outline-none px-3 py-2.5 text-xs font-mono rounded-lg focus:border-[var(--primary)] transition-colors";
 
   return (
+    <TiltWrapper>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -297,5 +299,6 @@ export default function AlertsSimulator() {
         </div>
       </div>
     </motion.div>
+    </TiltWrapper>
   );
 }

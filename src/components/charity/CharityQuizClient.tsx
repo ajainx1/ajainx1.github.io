@@ -6,6 +6,7 @@ import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 // Initialize Supabase client
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
@@ -453,6 +454,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   }
 
   return (
+    <TiltWrapper tiltDeg={6}>
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'bg-[#0a0f0d] text-emerald-50' : 'bg-emerald-50 text-emerald-950'}`}>
       
       {/* Background Gradients */}
@@ -891,5 +893,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         )}
       </AnimatePresence>
     </div>
+    </TiltWrapper>
   );
 }

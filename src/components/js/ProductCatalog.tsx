@@ -3,6 +3,7 @@ import React from 'react';
 import { Zap, ShoppingCart, ArrowRight, Radio } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Product } from './types';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 interface ProductCatalogProps {
   onSelectProduct: (product: Product) => void;
@@ -106,6 +107,7 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
           const isHardware = prod.type === 'hotspot';
 
           return (
+            <TiltWrapper tiltDeg={6}>
             <motion.div
               key={prod.id}
               variants={itemVariants}
@@ -205,6 +207,7 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
                 </div>
               </div>
             </motion.div>
+            </TiltWrapper>
           );
         })}
       </motion.div>

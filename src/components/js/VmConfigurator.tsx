@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Cpu, HardDrive, MapPin, Layers, Server, ShieldCheck, Terminal, Zap } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { VMConfig } from './types';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 interface VmConfiguratorProps {
   onAddVmToCart: (config: VMConfig, price: number) => void;
@@ -64,6 +65,7 @@ export default function VmConfigurator({ onAddVmToCart }: VmConfiguratorProps) {
   );
 
   return (
+    <TiltWrapper tiltDeg={5}>
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -294,5 +296,6 @@ export default function VmConfigurator({ onAddVmToCart }: VmConfiguratorProps) {
         </div>
       </div>
     </motion.div>
+    </TiltWrapper>
   );
 }

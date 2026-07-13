@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { CreditCard, QrCode, CheckCircle2, Shield, Upload, Info, ExternalLink, Clipboard } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product, PaymentSubmission, VMConfig } from './types';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 interface PaymentPortalProps {
   selectedProduct: Product | null;
@@ -105,6 +106,7 @@ export default function PaymentPortal({
   const inputClass = "w-full bg-[var(--card2)] border border-[var(--border)] text-[var(--fg)] outline-none px-3 py-2.5 text-xs font-mono rounded-lg focus:border-[var(--primary)] transition-colors";
 
   return (
+    <TiltWrapper tiltDeg={5}>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -458,5 +460,6 @@ export default function PaymentPortal({
         </form>
       </div>
     </motion.div>
+    </TiltWrapper>
   );
 }
