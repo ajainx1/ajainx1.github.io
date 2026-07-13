@@ -154,7 +154,7 @@ export default function Home() {
               <span>{visitorCount} visitors</span>
             </div>
             <a 
-              href="/Aditya_Jain_Cybersecurity_Resume_Professional.pdf" 
+              href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" 
               download 
               className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-[var(--card2)] border border-[var(--border2)] text-[var(--fg)] hover:bg-[var(--card)] transition-all flex items-center gap-1.5"
             >
