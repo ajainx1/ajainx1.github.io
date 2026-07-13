@@ -77,6 +77,9 @@ export default function CharityQuizClient() {
   const [aiCorrectCount, setAiCorrectCount] = useState(0);
   const [showAICompletion, setShowAICompletion] = useState(false);
 
+  // Visitor count
+  const [quizVisitorCount, setQuizVisitorCount] = useState(1437);
+
   // Theme
   const [isDark, setIsDark] = useState(true);
 
@@ -86,6 +89,18 @@ export default function CharityQuizClient() {
   useEffect(() => {
     const isDarkMode = localStorage.getItem('jumpstreet_theme') !== 'light';
     setIsDark(isDarkMode);
+    
+    // Persistent client-side visitor tracker starting at 1437
+    const storedQuizCount = localStorage.getItem("charity_quiz_visitor_count");
+    if (storedQuizCount) {
+      const current = parseInt(storedQuizCount, 10);
+      const updated = current + 1;
+      localStorage.setItem("charity_quiz_visitor_count", updated.toString());
+      setQuizVisitorCount(updated);
+    } else {
+      localStorage.setItem("charity_quiz_visitor_count", "1437");
+      setQuizVisitorCount(1437);
+    }
     document.body.classList.toggle('light-mode', !isDarkMode);
     
     // Calculate daily planet alignment bonus
@@ -476,6 +491,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-mono text-emerald-500">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>{quizVisitorCount} quiz visits</span>
+          </div>
+
           {dailyStreak > 0 && (
             <div className="flex items-center gap-1 text-xs font-mono font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1.5 rounded-lg border border-amber-500/20">
               🔥 {dailyStreak} Days
