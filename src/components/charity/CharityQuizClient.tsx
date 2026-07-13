@@ -560,7 +560,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
   return (
     <TiltWrapper tiltDeg={6}>
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'bg-[#0a0f0d] text-emerald-50' : 'bg-emerald-50 text-emerald-950'}`}>
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'bg-[#0a0f0d]/50 text-emerald-50' : 'bg-emerald-50/50 text-emerald-950'}`}>
       
       {/* Background Gradients */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
@@ -570,7 +570,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       </div>
 
       {/* Header */}
-      <header className={`sticky top-0 z-50 border-b px-4 sm:px-6 py-3 backdrop-blur-xl flex items-center justify-between ${isDark ? 'bg-[#0a0f0d]/80 border-emerald-900/50' : 'bg-emerald-50/80 border-emerald-200'}`}>
+      <header className={`sticky top-0 z-50 border-b px-4 sm:px-6 py-3 backdrop-blur-xl flex items-center justify-between ${isDark ? 'bg-[#0a0f0d]/50 border-emerald-900/50' : 'bg-emerald-50/50 border-emerald-200'}`}>
         <Link href="/" className="flex items-center gap-2 text-sm font-mono font-medium text-emerald-500 hover:text-emerald-400 transition-colors">
           <ArrowLeft size={16} /> Return
         </Link>
