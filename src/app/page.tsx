@@ -221,7 +221,7 @@ export default function Home() {
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a href="#about" className="px-5 py-2.5 text-sm font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm">
-                View Profile Details
+                View Full Portfolio
               </a>
             </div>
           </div>
