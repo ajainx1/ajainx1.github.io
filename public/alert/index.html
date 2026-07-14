@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NIC Bihar State NOC Dashboard</title>
-    <link rel="icon" type="image/png" href="static/favicon.png?v=1.0">
+    <link rel="icon" type="image/png" href="/NIC_Preview-1.png?v=2.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="static/style.css?v=1.9">
+    <link rel="stylesheet" href="static/style.css?v=2.0">
     <link rel="stylesheet" href="static/chatbot.css?v=1.1">
     <script>
         function adjustZoom() {
@@ -37,25 +37,14 @@
     </script>
 </head>
 <body>
-    <!-- Demo Watermark Elements -->
-    <div class="demo-top-banner">
-        <i class="fas fa-info-circle"></i>
-        <span>DEMO PORTAL &mdash; SANITIZED INTERFACE & SIMULATED NETWORK DATA FOR PORTFOLIO DISPLAY</span>
-    </div>
-    <div class="demo-watermark-bg">DEMO VERSION</div>
-    <div class="demo-badge">
-        <span class="dot"></span>
-        <span>DEMO / MOCKED ENVIRONMENT</span>
-    </div>
-
-    <canvas id="networkCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: -1; opacity: 0.65;"></canvas>
+    <div id="vanta-bg" style="position: fixed; z-index: -1; top: 0; left: 0; width: 100vw; height: 100vh;"></div>
     
 
     <div class="app-container">
         <!-- Header -->
         <header class="app-header" style="position: relative; z-index: 9999;">
             <div class="logo-area">
-                <a href="../noc/" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
+                <a href="http://10.133.22.8/" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
                     <img src="../NIC_Preview-1.png" alt="NIC Logo" class="nic-logo-img" style="height: 38px; width: auto; max-width: 180px; object-fit: contain; display: block;">
                 </a>
                 <div class="logo-divider" style="width: 1px; height: 32px; background: var(--border-color); margin: 0 4px;"></div>
@@ -65,7 +54,7 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="../noc/" class="home-portal-btn" title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
+                <a href="http://10.133.22.8/" class="home-portal-btn" title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
                     <i class="fas fa-home"></i> Home Portal
                 </a>
                 <div class="digital-clock" id="digital-clock">--:--:--</div>
@@ -77,91 +66,7 @@
                     .settings-gear-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-color); background: rgba(14, 165, 233, 0.05); color: var(--text-secondary); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; }
                     .settings-gear-btn:hover { background: rgba(14, 165, 233, 0.15); color: var(--text-primary); transform: rotate(45deg); border-color: rgba(14, 165, 233, 0.4); }
                     .voice-dropdown-label { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
-                
-/* Professional Demo Watermark Styles */
-.demo-watermark-bg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(148, 163, 184, 0.04) !important;
-    pointer-events: none;
-    z-index: 0;
-    user-select: none;
-    white-space: nowrap;
-    font-family: 'Outfit', sans-serif;
-}
-body.dark-mode .demo-watermark-bg {
-    color: rgba(255, 255, 255, 0.02) !important;
-}
-
-.demo-top-banner {
-    background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    text-align: center;
-    padding: 6px 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-.demo-top-banner i {
-    color: #f59e0b;
-    animation: demo-pulse 2s infinite;
-}
-@keyframes demo-pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
-
-.demo-badge {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 14px;
-    border-radius: 30px;
-    color: #f8fafc;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 99999;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    pointer-events: auto;
-    transition: all 0.3s ease;
-}
-.demo-badge:hover {
-    transform: translateY(-2px);
-    background: rgba(15, 23, 42, 0.9);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-.demo-badge .dot {
-    width: 6px;
-    height: 6px;
-    background-color: #10b981;
-    border-radius: 50%;
-    animation: demo-flash 1.5s infinite;
-}
-@keyframes demo-flash {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
-</style>
+                </style>
                 <div class="voice-settings-wrapper">
                     <button class="voice-alert-toggle" id="voice-alert-toggle" title="Toggle Voice Alerts">
                         <i class="fas fa-volume-mute" id="voice-alert-icon"></i>
@@ -420,6 +325,9 @@ body.dark-mode .demo-watermark-bg {
                         <button class="view-btn" id="btn-autoscroll" title="Toggle Auto-Scroll">
                             <i class="fas fa-play"></i>
                         </button>
+                        <button class="view-btn" id="btn-reset-layout" title="Reset Dashboard Layout">
+                            <i class="fas fa-undo"></i>
+                        </button>
                         <button class="view-btn active" id="view-btn-grid" title="Grid View">
                             <i class="fas fa-th-large"></i>
                         </button>
@@ -431,93 +339,104 @@ body.dark-mode .demo-watermark-bg {
                 </div>
                 
                 <div class="hosts-sections-container" id="hosts-sections-container">
-                    <!-- SHQ Section -->
-                    <div class="hosts-section" id="shq-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="SHQ">
-                                State Headquarters Core (SHQ)
-                                <div class="section-badge" id="shq-badge">0 / 0 Online</div>
-                            </h2>
+                    
+                    <!-- COLUMN 1: LEFT -->
+                    <div class="hosts-column left-column" style="display: flex; flex-direction: column; gap: 24px;">
+                        <!-- SHQ Section -->
+                        <div class="hosts-section" id="shq-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="SHQ">
+                                    State Headquarters Core (SHQ)
+                                    <div class="section-badge" id="shq-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-shq"></div>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-shq"></div>
+
+                        <!-- Interdistrict Section -->
+                        <div class="hosts-section" id="intd-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="INTD">
+                                    Interdistrict Links
+                                    <div class="section-badge" id="intd-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-intd"></div>
+                        </div>
                     </div>
 
-                    <!-- DHQ Section -->
-                    <div class="hosts-section" id="dhq-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="DHQ">
-                                District Headquarters Links (DHQ)
-                                <div class="section-badge" id="dhq-badge">0 / 0 Online</div>
-                            </h2>
+                    <!-- COLUMN 2: CENTER -->
+                    <div class="hosts-column center-column" style="display: flex; flex-direction: column; gap: 24px;">
+                        <!-- Interstate Section -->
+                        <div class="hosts-section" id="ints-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="INTS">
+                                    Interstate Links
+                                    <div class="section-badge" id="ints-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-ints"></div>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-dhq"></div>
+                        
+                        <!-- UPS Section -->
+                        <div class="hosts-section" id="ups-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="UPS">
+                                    UPS Monitoring System
+                                    <div class="section-badge" id="ups-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-ups"></div>
+                        </div>
+
+                        <!-- PAC Section -->
+                        <div class="hosts-section" id="pac-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="PAC">
+                                    Precision AC Units
+                                    <div class="section-badge" id="pac-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-pac"></div>
+                        </div>
+
+                        <!-- AP Section -->
+                        <div class="hosts-section" id="ap-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="AP">
+                                    Access Points Links
+                                    <div class="section-badge" id="ap-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-ap"></div>
+                        </div>
+
+                        <!-- SSB Section -->
+                        <div class="hosts-section" id="ssb-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="SSB">
+                                    SSB Security Links
+                                    <div class="section-badge" id="ssb-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-ssb"></div>
+                        </div>
                     </div>
 
-                    <!-- Interdistrict Section -->
-                    <div class="hosts-section" id="intd-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="INTD">
-                                Interdistrict Links
-                                <div class="section-badge" id="intd-badge">0 / 0 Online</div>
-                            </h2>
+                    <!-- COLUMN 3: RIGHT -->
+                    <div class="hosts-column right-column" style="display: flex; flex-direction: column; gap: 24px;">
+                        <!-- DHQ Section -->
+                        <div class="hosts-section" id="dhq-section">
+                            <div class="section-header">
+                                <h2 class="section-header-title" data-category="DHQ">
+                                    District Headquarters Links (DHQ)
+                                    <div class="section-badge" id="dhq-badge">0 / 0 Online</div>
+                                </h2>
+                            </div>
+                            <div class="hosts-grid" id="hosts-grid-dhq"></div>
                         </div>
-                        <div class="hosts-grid" id="hosts-grid-intd"></div>
                     </div>
 
-                    <!-- Interstate Section -->
-                    <div class="hosts-section" id="ints-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="INTS">
-                                Interstate Links
-                                <div class="section-badge" id="ints-badge">0 / 0 Online</div>
-                            </h2>
-                        </div>
-                        <div class="hosts-grid" id="hosts-grid-ints"></div>
-                    </div>
-
-                    <!-- UPS Section -->
-                    <div class="hosts-section" id="ups-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="UPS">
-                                UPS Monitoring System
-                                <div class="section-badge" id="ups-badge">0 / 0 Online</div>
-                            </h2>
-                        </div>
-                        <div class="hosts-grid" id="hosts-grid-ups"></div>
-                    </div>
-
-                    <!-- AP Section -->
-                    <div class="hosts-section" id="ap-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="AP">
-                                Access Points Links
-                                <div class="section-badge" id="ap-badge">0 / 0 Online</div>
-                            </h2>
-                        </div>
-                        <div class="hosts-grid" id="hosts-grid-ap"></div>
-                    </div>
-
-                    <!-- SSB Section -->
-                    <div class="hosts-section" id="ssb-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="SSB">
-                                SSB Security Links
-                                <div class="section-badge" id="ssb-badge">0 / 0 Online</div>
-                            </h2>
-                        </div>
-                        <div class="hosts-grid" id="hosts-grid-ssb"></div>
-                    </div>
-
-                    <!-- PAC Section -->
-                    <div class="hosts-section" id="pac-section">
-                        <div class="section-header">
-                            <h2 class="section-header-title" data-category="PAC">
-                                Precision AC Units
-                                <div class="section-badge" id="pac-badge">0 / 0 Online</div>
-                            </h2>
-                        </div>
-                        <div class="hosts-grid" id="hosts-grid-pac"></div>
-                    </div>
                 </div>
             </main>
 
@@ -622,7 +541,7 @@ body.dark-mode .demo-watermark-bg {
                 <span class="modal-badge-status" id="modal-status-badge">UP</span>
                 <h2 id="modal-title-desc">Device Diagnostics</h2>
                 <div class="modal-ip-actions-container">
-                    <p id="modal-title-ip" class="font-mono">10.99.11.254</p>
+                    <p id="modal-title-ip" class="font-mono">10.133.11.254</p>
                     <div class="modal-ip-quick-links">
                         <button class="modal-ip-btn" id="modal-ip-copy" title="Copy IP Address">
                             <i class="far fa-copy"></i> Copy
@@ -652,6 +571,11 @@ body.dark-mode .demo-watermark-bg {
                         <span class="box-label">Monitoring Status</span>
                         <span class="box-val text-success" id="modal-stat-monitoring">Active</span>
                     </div>
+                </div>
+
+                <!-- UPS Details Section -->
+                <div id="modal-ups-details" style="display:none; margin-bottom: 20px; padding: 14px; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: 10px; box-shadow: inset 0 0 12px rgba(0,0,0,0.2);">
+                    <!-- Rendered dynamically -->
                 </div>
 
                 <!-- Recent Uptime Sparkline History -->
@@ -741,9 +665,6 @@ body.dark-mode .demo-watermark-bg {
 
     <!-- Toast Alerts container -->
     <div class="toast-container" id="toast-container"></div>
-
-    <script src="static/script.js?v=5.0"></script>
-
 <!-- Floating AI Chatbot Widget -->
     <div class="ai-chatbot-widget">
         <!-- Attention Tooltip Speech Bubble -->
@@ -771,10 +692,10 @@ body.dark-mode .demo-watermark-bg {
             </div>
             <!-- Suggestion Chips -->
             <div class="chatbot-chips">
-                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">�??? Support Numbers</button>
-                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">�??? Doc Submission</button>
-                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">�??? Service Status</button>
-                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">�??� Network Info</button>
+                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
+                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
+                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
+                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
             </div>
             <div class="chatbot-input-area">
                 <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
@@ -805,161 +726,22 @@ body.dark-mode .demo-watermark-bg {
 
 
 
+    <!-- UPS Critical Alert Banner -->
+    <div id="ups-ack-banner">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div class="ups-msg">
+            <strong id="ups-banner-title">CRITICAL: UPS OFFLINE</strong>
+            <span>Datacenter power at risk. Acknowledge to silence alarm.</span>
+        </div>
+        <button id="btn-ups-ack">Acknowledge</button>
+    </div>
 
-<!-- Three.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-  (function() {
-    // 3D Particles Background Canvas
-    const canvas = document.createElement('canvas');
-    canvas.id = 'canvas-3d';
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.zIndex = '-1';
-    canvas.style.pointerEvents = 'none';
-    document.body.appendChild(canvas);
+    <!-- 3D WebGL and Parallax Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-    // Sync html background with body theme so transparent body works
-    const syncTheme = () => {
-      const isLight = document.body.classList.contains('light-mode') || document.body.classList.contains('theme-light');
-      document.documentElement.style.backgroundColor = isLight ? '#f8fafc' : '#0b0f19';
-      document.body.style.background = 'transparent';
-      document.body.style.backgroundColor = 'transparent';
-    };
-    syncTheme();
-    
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particlesCount = 300;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particlesCount * 3);
-    const colors = new Float32Array(particlesCount * 3);
-
-    const colorPalette = [
-      new THREE.Color('#38bdf8'), // sky blue
-      new THREE.Color('#10b981'), // emerald green
-      new THREE.Color('#8b5cf6')  // purple
-    ];
-
-    for(let i = 0; i < particlesCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 15;
-      positions[i+1] = (Math.random() - 0.5) * 15;
-      positions[i+2] = (Math.random() - 0.5) * 15;
-
-      const clr = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-      colors[i] = clr.r;
-      colors[i+1] = clr.g;
-      colors[i+2] = clr.b;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const canvasTexture = document.createElement('canvas');
-    canvasTexture.width = 16;
-    canvasTexture.height = 16;
-    const ctx = canvasTexture.getContext('2d');
-    const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-    grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 16, 16);
-    const texture = new THREE.CanvasTexture(canvasTexture);
-
-    const material = new THREE.PointsMaterial({
-      size: 0.08,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
-      map: texture,
-      depthWrite: false
-    });
-
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-
-    // Add rotating wireframe network sphere
-    const sphereGeo = new THREE.SphereGeometry(7, 18, 18);
-    const sphereMat = new THREE.MeshBasicMaterial({
-      color: '#38bdf8',
-      wireframe: true,
-      transparent: true,
-      opacity: 0.065,
-      depthWrite: false
-    });
-    const networkSphere = new THREE.Mesh(sphereGeo, sphereMat);
-    scene.add(networkSphere);
-
-    camera.position.z = 5;
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) - 0.5;
-      mouseY = (e.clientY / window.innerHeight) - 0.5;
-    });
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      
-      particles.rotation.y += 0.0008;
-      particles.rotation.x += 0.0004;
-      
-      networkSphere.rotation.y += 0.0015;
-      networkSphere.rotation.x += 0.0008;
-
-      camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // 3D Tilt Effect on Cards
-    const tiltElements = document.querySelectorAll(
-      '.card, .glass-card, .metric-card, .pcard, .skill-card, .network-stats-card, .stat-card, .node-card, .control-btn, .map-section, .chart-card, .log-panel, .info-card, .detail-card, .quick-action, .panel'
-    );
-
-    tiltElements.forEach(el => {
-      el.style.transformStyle = 'preserve-3d';
-      el.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
-      
-      el.addEventListener('mousemove', e => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / (rect.height / 2)) * 6; // max 6 deg
-        const rotateY = (x / (rect.width / 2)) * 6;   // max 6 deg
-        
-        el.style.transform = perspective(1000px) rotateX(\deg) rotateY(\deg);
-      });
-
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-        el.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
-      });
-    });
-  })();
-</script>
+    <script src="static/script.js?v=5.1"></script>
+    <script src="static/dnd-engine.js?v=1.0"></script>
 </body>
 </html>
-

@@ -1,111 +1,116 @@
 "use client";
-import React, { useRef, useMemo } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import * as THREE from "three";
-
-function ParticleField() {
-  const meshRef = useRef<THREE.Points>(null!);
-  const count = 600;
-
-  const [positions, colors] = useMemo(() => {
-    const pos = new Float32Array(count * 3);
-    const col = new Float32Array(count * 3);
-    for (let i = 0; i < count; i++) {
-      pos[i * 3] = (Math.random() - 0.5) * 30;
-      pos[i * 3 + 1] = (Math.random() - 0.5) * 30;
-      pos[i * 3 + 2] = (Math.random() - 0.5) * 30;
-
-      // Palette: cyan, blue, purple tones
-      const palette = [
-        [0.22, 0.74, 0.97], // cyan
-        [0.38, 0.51, 0.97], // blue
-        [0.58, 0.38, 0.97], // purple
-        [0.15, 0.85, 0.85], // teal
-      ];
-      const c = palette[Math.floor(Math.random() * palette.length)];
-      col[i * 3] = c[0];
-      col[i * 3 + 1] = c[1];
-      col[i * 3 + 2] = c[2];
-    }
-    return [pos, col];
-  }, []);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.y = state.clock.elapsedTime * 0.02;
-    meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.01) * 0.1;
-    const posAttr = meshRef.current.geometry.attributes.position;
-    const arr = posAttr.array as Float32Array;
-    for (let i = 0; i < count; i++) {
-      arr[i * 3 + 1] += Math.sin(state.clock.elapsedTime * 0.3 + i) * 0.002;
-    }
-    posAttr.needsUpdate = true;
-  });
-
-  return (
-    <points ref={meshRef}>
-      <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
-      </bufferGeometry>
-      <pointsMaterial
-        size={0.06}
-        vertexColors
-        transparent
-        opacity={0.7}
-        sizeAttenuation
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-      />
-    </points>
-  );
-}
-
-function NetworkGrid() {
-  const meshRef = useRef<THREE.Mesh>(null!);
-
-  useFrame((state) => {
-    if (!meshRef.current) return;
-    meshRef.current.rotation.y = state.clock.elapsedTime * 0.015;
-    meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.008) * 0.15;
-  });
-
-  return (
-    <mesh ref={meshRef} scale={[14, 14, 14]}>
-      <sphereGeometry args={[1, 18, 18]} />
-      <meshBasicMaterial
-        color="#38bdf8"
-        wireframe
-        transparent
-        opacity={0.065}
-        depthWrite={false}
-      />
-    </mesh>
-  );
-}
+import React, { useEffect, useRef, useState } from "react";
 
 export default function Global3DBackground() {
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const [vantaEffect, setVantaEffect] = useState<any>(null);
+
+  useEffect(() => {
+    // 1. Add Three.js script to document body if not present
+    let threeScript = document.querySelector('script[src*="three.min.js"]') as HTMLScriptElement;
+    if (!threeScript) {
+      threeScript = document.createElement("script");
+      threeScript.src = "https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js";
+      threeScript.async = true;
+      document.body.appendChild(threeScript);
+    }
+
+    const initVanta = () => {
+      // 2. Add Vanta.net script to document body if not present
+      let vantaScript = document.querySelector('script[src*="vanta.net.min.js"]') as HTMLScriptElement;
+      if (!vantaScript) {
+        vantaScript = document.createElement("script");
+        vantaScript.src = "https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js";
+        vantaScript.async = true;
+        document.body.appendChild(vantaScript);
+      }
+
+      const tryInit = () => {
+        const VANTA = (window as any).VANTA;
+        if (VANTA && VANTA.NET && vantaRef.current) {
+          const isLight = document.body.classList.contains("light-mode") || document.body.classList.contains("theme-light");
+          try {
+            const effect = VANTA.NET({
+              el: vantaRef.current,
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.0,
+              minWidth: 200.0,
+              scale: 1.0,
+              scaleMobile: 1.0,
+              color: isLight ? 0x0f4c81 : 0x38bdf8,
+              backgroundColor: isLight ? 0xf8fafc : 0x0b0f19,
+              points: 15.0,
+              maxDistance: 24.0,
+              spacing: 18.0,
+              showDots: true,
+            });
+            setVantaEffect(effect);
+          } catch (err) {
+            console.error("Vanta initialization error:", err);
+          }
+        } else {
+          // Retry in case loading takes a brief moment
+          setTimeout(tryInit, 100);
+        }
+      };
+
+      if (threeScript.onload) {
+        // Scripts are ready or already loading
+        tryInit();
+      } else {
+        vantaScript.onload = tryInit;
+      }
+    };
+
+    if (window.hasOwnProperty("THREE")) {
+      initVanta();
+    } else {
+      threeScript.onload = initVanta;
+    }
+
+    return () => {
+      if (vantaEffect) {
+        try {
+          vantaEffect.destroy();
+        } catch (e) {
+          // ignore destroy errors on unmount
+        }
+      }
+    };
+  }, []);
+
+  // Sync Vanta theme configuration when light/dark mode changes on body class list
+  useEffect(() => {
+    if (vantaEffect) {
+      const updateVantaTheme = () => {
+        const isLight = document.body.classList.contains("light-mode") || document.body.classList.contains("theme-light");
+        try {
+          vantaEffect.setOptions({
+            color: isLight ? 0x0f4c81 : 0x38bdf8,
+            backgroundColor: isLight ? 0xf8fafc : 0x0b0f19,
+          });
+        } catch (e) {
+          // Vanta effect might be destroyed or in transition
+        }
+      };
+
+      const observer = new MutationObserver(updateVantaTheme);
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+
+      // Trigger initial sync
+      updateVantaTheme();
+
+      return () => observer.disconnect();
+    }
+  }, [vantaEffect]);
+
   return (
     <div
-      className="fixed inset-0 -z-10"
+      ref={vantaRef}
+      className="fixed inset-0 -z-10 w-screen h-screen transition-opacity duration-700"
       style={{ pointerEvents: "none" }}
-    >
-      <Canvas
-        camera={{ position: [0, 0, 8], fov: 60 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
-        style={{ background: "transparent" }}
-      >
-        <ambientLight intensity={0.3} />
-        <ParticleField />
-        <NetworkGrid />
-      </Canvas>
-    </div>
+    />
   );
 }

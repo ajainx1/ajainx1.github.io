@@ -6,6 +6,7 @@ import {
   MessageSquare, Sun, Moon, Eye, Server, ChevronUp, Zap
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 import { Product, VMConfig, PaymentSubmission } from '@/components/js/types';
 import { useToast, ToastProvider } from '@/components/js/ToastContext';
@@ -276,15 +277,13 @@ function AppContent() {
 
           {/* Right actions */}
           <div className="flex items-center gap-3">
-            <a
-              href="https://ajainx1.github.io"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/portfolio"
               className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-2 rounded-lg transition-all border border-[var(--border)] text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 group"
             >
-              <span className="hidden md:inline">ajainx1.github.io</span>
+              <span className="hidden md:inline">Aditya Portfolio</span>
               <ExternalLink size={12} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            </Link>
             <button
               onClick={() => setMobileMenuOpen(m => !m)}
               className="lg:hidden p-2.5 rounded-lg transition-all bg-[var(--card2)] text-[var(--muted)] border border-[var(--border)] hover:bg-[var(--card)]"
@@ -633,15 +632,13 @@ function AppContent() {
                 We design fully automated systems tailored to your trading strategy.
               </p>
             </div>
-            <a
-              href="https://ajainx1.github.io"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/portfolio#contact"
               className="w-full py-3 mt-2 text-xs font-mono font-bold tracking-widest uppercase rounded-xl transition-all flex items-center justify-center gap-2 bg-[var(--card2)] text-[var(--fg)] border border-[var(--border)] hover:bg-[var(--fg)] hover:text-[var(--bg)] hover:shadow-lg group"
             >
               <span>Speak to Developer</span>
               <ExternalLink size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            </Link>
           </motion.div>
         </aside>
       </main>
@@ -658,14 +655,13 @@ function AppContent() {
           </p>
           <div className="flex flex-wrap justify-center gap-5 sm:gap-8 text-[9px] uppercase tracking-widest font-bold text-[var(--muted)]">
             {[
-              { label: 'Developer Profile', href: 'https://ajainx1.github.io' },
-              { label: 'Primary Portal', href: 'https://ajainx1.github.io' },
+              { label: 'Developer Profile', href: '/portfolio' },
+              { label: 'Primary Portal', href: '/' },
               { label: 'Terms of Service', href: '#' },
             ].map(link => (
-              <a key={link.label} href={link.href} target={link.href !== '#' ? '_blank' : undefined}
-                 rel="noopener noreferrer" className="hover:text-[var(--primary)] transition-colors">
+              <Link key={link.label} href={link.href} className="hover:text-[var(--primary)] transition-colors">
                 {link.label}
-              </a>
+              </Link>
             ))}
           </div>
         </div>

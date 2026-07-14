@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -98,7 +98,7 @@
         body {
             zoom: 0.91;
             font-family: var(--font-family-sans);
-            background-color: var(--bg-primary);
+            background-color: transparent;
             color: var(--text-primary);
             transition: var(--transition);
             min-height: 100vh;
@@ -214,16 +214,16 @@
         /* Hero Dashboard Section */
         .hero-dashboard {
             position: relative;
-            background: linear-gradient(135deg, #0f4c81 0%, #082f50 100%);
-            color: #ffffff;
+            background: transparent;
+            color: var(--text-primary);
             padding: 60px 40px;
             text-align: center;
             overflow: hidden;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .hero-dashboard {
-            background: linear-gradient(135deg, #090d16 0%, #161e2f 100%);
+            background: transparent;
         }
 
         /* Abstract Grid Overlay */
@@ -284,11 +284,16 @@
             font-weight: 800;
             letter-spacing: -0.5px;
             margin-bottom: 12px;
-            color: #ffffff;
-            background: linear-gradient(90deg, #ffffff 10%, #a5f3fc 50%, #6ee7b7 100%);
+            color: var(--text-primary);
+            background: linear-gradient(90deg, var(--primary) 10%, var(--accent) 50%, var(--success) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        body.dark-mode .hero-dashboard h1 {
+            background: linear-gradient(90deg, #ffffff 10%, #a5f3fc 50%, #6ee7b7 100%);
+            -webkit-background-clip: text;
         }
 
         .hero-dashboard p {
@@ -335,9 +340,13 @@
 
         .btn-secondary {
             background-color: rgba(255,255,255,0.15);
-            color: #ffffff;
+            color: var(--text-primary);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid var(--border-color);
+        }
+        body.dark-mode .btn-secondary {
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.2);
         }
 
         .btn-secondary:hover {
@@ -347,9 +356,12 @@
 
         .btn-portal {
             background-color: rgba(14, 165, 233, 0.12);
-            color: #e0f2fe;
+            color: var(--primary);
             border: 1px solid rgba(14, 165, 233, 0.35);
             backdrop-filter: blur(8px);
+        }
+        body.dark-mode .btn-portal {
+            color: #e0f2fe;
         }
 
         .btn-portal:hover {
@@ -362,9 +374,12 @@
 
         .btn-tacs {
             background-color: rgba(245, 158, 11, 0.1);
-            color: #fef3c7;
+            color: var(--warning);
             border: 1px solid rgba(245, 158, 11, 0.3);
             backdrop-filter: blur(8px);
+        }
+        body.dark-mode .btn-tacs {
+            color: #fef3c7;
         }
 
         .btn-tacs:hover {
@@ -377,9 +392,12 @@
 
         .btn-fms {
             background-color: rgba(16, 185, 129, 0.1);
-            color: #ecfdf5;
+            color: var(--success);
             border: 1px solid rgba(16, 185, 129, 0.3);
             backdrop-filter: blur(8px);
+        }
+        body.dark-mode .btn-fms {
+            color: #ecfdf5;
         }
 
         .btn-fms:hover {
@@ -477,16 +495,19 @@
 
         /* Cards & Container Styling */
         .glass-card {
-            background-color: var(--bg-secondary);
-            border: 1px solid var(--border-color);
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--border-radius);
             padding: 30px;
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
             transition: var(--transition);
             margin-bottom: 30px;
             position: relative;
-            overflow: hidden;
-            transform: translateY(0);
+            overflow: visible;
+            transform-style: preserve-3d;
+            transform: perspective(1000px);
         }
 
         .glass-card:hover {
@@ -1980,111 +2001,17 @@
                 grid-template-columns: 1fr;
             }
         }
-    
-/* Professional Demo Watermark Styles */
-.demo-watermark-bg {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) rotate(-45deg);
-    font-size: 8rem;
-    font-weight: 900;
-    color: rgba(148, 163, 184, 0.04) !important;
-    pointer-events: none;
-    z-index: 0;
-    user-select: none;
-    white-space: nowrap;
-    font-family: 'Outfit', sans-serif;
-}
-body.dark-mode .demo-watermark-bg {
-    color: rgba(255, 255, 255, 0.02) !important;
-}
-
-.demo-top-banner {
-    background: linear-gradient(90deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    color: #e2e8f0;
-    text-align: center;
-    padding: 6px 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    position: relative;
-    z-index: 10000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
-.demo-top-banner i {
-    color: #f59e0b;
-    animation: demo-pulse 2s infinite;
-}
-@keyframes demo-pulse {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
-
-.demo-badge {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: rgba(15, 23, 42, 0.75);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 14px;
-    border-radius: 30px;
-    color: #f8fafc;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    z-index: 99999;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    pointer-events: auto;
-    transition: all 0.3s ease;
-}
-.demo-badge:hover {
-    transform: translateY(-2px);
-    background: rgba(15, 23, 42, 0.9);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-.demo-badge .dot {
-    width: 6px;
-    height: 6px;
-    background-color: #10b981;
-    border-radius: 50%;
-    animation: demo-flash 1.5s infinite;
-}
-@keyframes demo-flash {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
-}
-</style>
+    </style>
 </head>
 <body>
-    <!-- Demo Watermark Elements -->
-    <div class="demo-top-banner">
-        <i class="fas fa-info-circle"></i>
-        <span>DEMO PORTAL &mdash; SANITIZED INTERFACE & SIMULATED NETWORK DATA FOR PORTFOLIO DISPLAY</span>
-    </div>
-    <div class="demo-watermark-bg">DEMO VERSION</div>
-    <div class="demo-badge">
-        <span class="dot"></span>
-        <span>DEMO / MOCKED ENVIRONMENT</span>
-    </div>
-
+    <div id="vanta-bg" style="position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100%;"></div>
     <a class="skip-link" href="#upload-card">Skip to main content</a>
     <!-- Top Gov Tricolor Bar -->
     <div class="gov-banner"></div>
 
     <!-- Sticky Navigation / Header -->
     <header class="top-header">
-        <a href="./" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
+        <a href="http://10.133.22.8/" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
             <div class="emblem-container">
                 <img src="Emblem_of_India.png" alt="Emblem of India">
                 <div class="emblem-text">
@@ -2118,7 +2045,7 @@ body.dark-mode .demo-watermark-bg {
         <canvas id="networkCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; opacity: 0.45;"></canvas>
         <div class="hero-container">
             <div class="hero-logos">
-                <a href="https://bihar.example.com" target="_blank" rel="noopener noreferrer" title="National Informatics Centre Bihar Centre">
+                <a href="https://bihar.nic.in" target="_blank" rel="noopener noreferrer" title="National Informatics Centre Bihar Centre">
                     <img src="NIC_Preview-1.png" alt="National Informatics Centre Logo">
                 </a>
                 <a href="https://nkn.in/" target="_blank" rel="noopener noreferrer" title="National Knowledge Network">
@@ -2128,16 +2055,16 @@ body.dark-mode .demo-watermark-bg {
             <h1>Bihar NIC & NKN Support Portal</h1>
             <p>Bihar State Network Operations Centre (NOC) — Unified document submission, system management, and real-time support platform.</p>
             <div class="hero-actions-container">
-                <a href="http://dpr.state-noc.org/LoginPage.aspx" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
+                <a href="http://10.133.0.51/ProgressReport/LoginPage.aspx" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
                     <i class="fas fa-file-invoice"></i> Daily Progress Report (DPR)
                 </a>
-                <a href="./nic/" class="btn btn-portal" target="_blank">
+                <a href="http://10.133.22.8/nic/" class="btn btn-portal" target="_blank">
                     <i class="fas fa-globe"></i> Access Intranet Portal
                 </a>
-                <a href="https://taspass.state-noc.org" class="btn btn-tacs" target="_blank" rel="noopener noreferrer">
+                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" class="btn btn-tacs" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-key"></i> Change TACS Password
                 </a>
-                <a href="http://fms.state-noc.org/FMS-attendance/index.php" class="btn btn-fms" target="_blank" rel="noopener noreferrer">
+                <a href="http://10.133.0.51:8080/FMS-attendance/index.php" class="btn btn-fms" target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-user-check"></i> FMS Billing & Attendance System
                 </a>
                 <a href="/alert/" class="btn btn-gold" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches & Core Routers">
@@ -2154,10 +2081,10 @@ body.dark-mode .demo-watermark-bg {
         <div class="left-column">
             
             <!-- Live Status Panel -->
-            <div class="glass-card">
+            <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <div class="card-header">
                     <h2>
-                        <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;" title="Open NICNET Live Traffic Monitor">
+                        <a href="https://traffic.nic.in/index2.php" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: inline-flex; align-items: center; gap: 8px;" title="Open NICNET Live Traffic Monitor">
                             <i class="fas fa-signal"></i> Service Health <i class="fas fa-external-link-alt" style="font-size: 0.75rem; opacity: 0.6;"></i>
                         </a>
                     </h2>
@@ -2187,7 +2114,7 @@ body.dark-mode .demo-watermark-bg {
                     </div>
                     
                     <!-- Real-time MRTG Network Traffic Link -->
-                    <a href="https://traffic.state-noc.org" target="_blank" rel="noopener noreferrer" class="status-traffic-link">
+                    <a href="https://traffic.nic.in/index2.php" target="_blank" rel="noopener noreferrer" class="status-traffic-link">
                         <i class="fas fa-chart-line"></i> View Live NICNET Traffic Monitor (MRTG)
                     </a>
                     <a href="/alert/" target="_blank" rel="noopener noreferrer" class="status-traffic-link" style="background-color: var(--primary-light); color: var(--primary); margin-top: 10px;">
@@ -2197,10 +2124,10 @@ body.dark-mode .demo-watermark-bg {
             </div>
 
             <!-- Support Directory Desk -->
-            <div class="glass-card">
+            <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <div class="card-header">
-                    <h2><i class="fas fa-headset"></i> 24Ã7 NOC Support Desk</h2>
-                    <span class="status-badge online">24Ã7</span>
+                    <h2><i class="fas fa-headset"></i> 24×7 NOC Support Desk</h2>
+                    <span class="status-badge online">24×7</span>
                 </div>
                 <div class="support-grid">
                     <div class="support-contact">
@@ -2229,7 +2156,7 @@ body.dark-mode .demo-watermark-bg {
             </div>
             
             <!-- Live Outages Alert Panel -->
-            <div class="glass-card" id="outages-panel" style="margin-top: 30px;">
+            <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2" id="outages-panel" style="margin-top: 30px;">
                 <div class="card-header" id="outages-card-header" style="border-bottom: 1px solid var(--border-color); padding-bottom: 15px; transition: border-color 0.3s;">
                     <h2 id="outages-title" style="color: var(--text-primary); transition: color 0.3s;"><i class="fas fa-network-wired"></i> Network Link Status</h2>
                     <span class="status-badge" id="outage-count-badge" style="background-color: var(--bg-tertiary); color: var(--text-secondary); font-weight: 700; transition: all 0.3s;">Loading...</span>
@@ -2251,7 +2178,7 @@ body.dark-mode .demo-watermark-bg {
             <div id="toastContainer" class="toast-container"></div>
             
             <!-- Secure Document Upload Form -->
-            <div class="glass-card" id="upload-card">
+            <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2" id="upload-card">
                 <div class="card-header">
                     <h2><i class="fas fa-file-upload"></i> Document Submission</h2>
                     <span class="badge-district" style="background-color: var(--primary-light); color: var(--primary); border: none;">Max 500MB</span>
@@ -2291,7 +2218,7 @@ body.dark-mode .demo-watermark-bg {
             </div>
 
             <!-- Dynamic File Manager / File Explorer -->
-            <div class="glass-card">
+            <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2">
                 <div class="card-header">
                     <h2><i class="fas fa-folder-open"></i> Document Explorer</h2>
                 </div>
@@ -2332,7 +2259,7 @@ body.dark-mode .demo-watermark-bg {
         </div>
 
         <!-- Bihar District Operations Hub -->
-        <div class="glass-card" style="grid-column: 1 / -1; margin-bottom: 30px;">
+        <div class="glass-card" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-perspective="1000" data-tilt-glare="true" data-tilt-max-glare="0.2" style="grid-column: 1 / -1; margin-bottom: 30px;">
             <div class="bihar-map-bg"></div>
             <div class="card-header" style="position: relative; z-index: 1;">
                 <h2><i class="fas fa-map-marked-alt"></i> Bihar District Operations Hub</h2>
@@ -2461,9 +2388,9 @@ body.dark-mode .demo-watermark-bg {
                                 <h3><i class="fas fa-link"></i> Useful Portals</h3>
                                 <p>Access complaint logs, state portals, and direct tools hosted on the internal government servers.</p>
                                 <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <a href="https://servicedesk.state-noc.org" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
+                                    <a href="https://servicedesk.nic.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
                                     <a href="https://bihar.s3waas.gov.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Bihar S3WaaS Directory</a>
-                                    <a href="./nic/" target="_blank"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
+                                    <a href="http://10.133.22.8/nic/" target="_blank"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
                                 </div>
                             </div>
                             <div class="resource-card">
@@ -2482,7 +2409,7 @@ body.dark-mode .demo-watermark-bg {
     <div class="ai-chatbot-widget">
         <!-- Attention Tooltip Speech Bubble -->
         <div class="chatbot-attention-tooltip" id="chatbotTooltip">
-            ð¤ Bihar NOC AI is online! Ask me anything.
+            🤖 Bihar NOC AI is online! Ask me anything.
         </div>
         <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant">
             <i class="fas fa-robot"></i>
@@ -2510,10 +2437,10 @@ body.dark-mode .demo-watermark-bg {
             </div>
             <!-- Suggestion Chips -->
             <div class="chatbot-chips">
-                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">ð Support Numbers</button>
-                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">ð Doc Submission</button>
-                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">ð Service Status</button>
-                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">ð Network Info</button>
+                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
+                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
+                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
+                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
             </div>
             <div class="chatbot-input-area">
                 <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
@@ -2526,7 +2453,7 @@ body.dark-mode .demo-watermark-bg {
             </div>
             <div class="chatbot-footer">
                 <span>For internal use only.</span>
-                <span>Built with â¤ï¸ for the team.</span>
+                <span>Built with ❤️ for the team.</span>
             </div>
         </div>
     </div>
@@ -3130,18 +3057,18 @@ body.dark-mode .demo-watermark-bg {
                         const data = await response.json();
                         let responseText = "";
                         if (data.status === "online") {
-                            responseText = `ð¢ **${data.name}** is **ONLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Response RTT:** \`${data.rtt_ms} ms\`\n* **Status:** Connection test successful, TCP socket active.`;
+                            responseText = `🟢 **${data.name}** is **ONLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Response RTT:** \`${data.rtt_ms} ms\`\n* **Status:** Connection test successful, TCP socket active.`;
                         } else {
-                            responseText = `ð´ **${data.name}** is **OFFLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Error:** \`${data.message || 'Connection refused'}\`\n* **Status:** Connection failed. Check network routing.`;
+                            responseText = `🔴 **${data.name}** is **OFFLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Error:** \`${data.message || 'Connection refused'}\`\n* **Status:** Connection failed. Check network routing.`;
                         }
                         appendBotMessage(responseText);
                     } else {
-                        appendBotMessage(`â ï¸ Unable to fetch live status. The backend status verification tool returned an error code ${response.status}.`);
+                        appendBotMessage(`⚠️ Unable to fetch live status. The backend status verification tool returned an error code ${response.status}.`);
                     }
                 } catch (error) {
                     console.error("Error pinging status:", error);
                     typingIndicator.remove();
-                    appendBotMessage("â ï¸ Network error occurred while contacting the live status verification script.");
+                    appendBotMessage("⚠️ Network error occurred while contacting the live status verification script.");
                 }
                 return; // Skip LLM call
             }
@@ -3209,7 +3136,7 @@ body.dark-mode .demo-watermark-bg {
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.state-noc.org and access the FMS Billing & Attendance System at: http://fms.state-noc.org/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Aditya Jain, Security Administrator. If asked about Aditya Jain (including queries like "how is aditya jain" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +91 99999 88888 and email is seca1.shq.br@state-noc.org.' + dynamicContext
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: http://10.133.0.51:8080/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Aditya Jain, Security Administrator. If asked about Aditya Jain (including queries like "how is aditya jain" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +919897577007 and email is seca1.shq.br@nic.in.' + dynamicContext
                             },
                             ...chatHistory,
                             { role: 'user', content: text }
@@ -3341,45 +3268,45 @@ body.dark-mode .demo-watermark-bg {
         };
 
         const dioCommonEmails = {
-            "arwal": "dio-arw@state-noc.org",
-            "araria": "dio-ara-bih@state-noc.org",
-            "aurangabad": "dio-agb@state-noc.org",
-            "banka": "dio-bka@state-noc.org",
-            "begusarai": "dio-bsr@state-noc.org",
-            "kaimur": "dio-kai@state-noc.org",
-            "bhagalpur": "dio-bgo@state-noc.org",
-            "bhojpur": "dio-bjp@state-noc.org",
-            "buxar": "dio-bux@state-noc.org",
-            "darbhanga": "dio-dbg@state-noc.org",
-            "east champaran": "dio-prc@state-noc.org",
-            "gaya": "dio-gay@state-noc.org",
-            "gopalganj": "dio-gpg@state-noc.org",
-            "jamui": "dio-jam@state-noc.org",
-            "jehanabad": "dio-jhb-bih@state-noc.org",
-            "katihar": "dio-ktr@state-noc.org",
-            "khagaria": "dio-kgr-bih@state-noc.org",
-            "kishanganj": "dio-ksg@state-noc.org",
-            "lakhisarai": "dio-lsr@state-noc.org",
-            "madhepura": "dio-mdp@state-noc.org",
-            "madhubani": "dio-mdb-bih@state-noc.org",
-            "munger": "dio-mun@state-noc.org",
-            "muzaffarpur": "dio-muz@state-noc.org",
-            "nalanda": "dio-nld@state-noc.org",
-            "nawada": "dio-naw@state-noc.org",
-            "patna du": "dio-ptn@state-noc.org",
-            "patna": "dio-ptn@state-noc.org",
-            "purnia": "dio-prn@state-noc.org",
-            "rohtas": "dio-rts@state-noc.org",
-            "saharsa": "dio-shs@state-noc.org",
-            "samastipur": "dio-sms@state-noc.org",
-            "saran": "dio-sar@state-noc.org",
-            "sheikhpura": "dio-shh-bih@state-noc.org",
-            "sheohar": "dio-shh@state-noc.org",
-            "sitamarhi": "dio-stm@state-noc.org",
-            "siwan": "dio-swn@state-noc.org",
-            "supaul": "dio-spl@state-noc.org",
-            "vaishali": "dio-vsh@state-noc.org",
-            "west champaran": "dio-psc@state-noc.org"
+            "arwal": "dio-arw@nic.in",
+            "araria": "dio-ara-bih@nic.in",
+            "aurangabad": "dio-agb@nic.in",
+            "banka": "dio-bka@nic.in",
+            "begusarai": "dio-bsr@nic.in",
+            "kaimur": "dio-kai@nic.in",
+            "bhagalpur": "dio-bgo@nic.in",
+            "bhojpur": "dio-bjp@nic.in",
+            "buxar": "dio-bux@nic.in",
+            "darbhanga": "dio-dbg@nic.in",
+            "east champaran": "dio-prc@nic.in",
+            "gaya": "dio-gay@nic.in",
+            "gopalganj": "dio-gpg@nic.in",
+            "jamui": "dio-jam@nic.in",
+            "jehanabad": "dio-jhb-bih@nic.in",
+            "katihar": "dio-ktr@nic.in",
+            "khagaria": "dio-kgr-bih@nic.in",
+            "kishanganj": "dio-ksg@nic.in",
+            "lakhisarai": "dio-lsr@nic.in",
+            "madhepura": "dio-mdp@nic.in",
+            "madhubani": "dio-mdb-bih@nic.in",
+            "munger": "dio-mun@nic.in",
+            "muzaffarpur": "dio-muz@nic.in",
+            "nalanda": "dio-nld@nic.in",
+            "nawada": "dio-naw@nic.in",
+            "patna du": "dio-ptn@nic.in",
+            "patna": "dio-ptn@nic.in",
+            "purnia": "dio-prn@nic.in",
+            "rohtas": "dio-rts@nic.in",
+            "saharsa": "dio-shs@nic.in",
+            "samastipur": "dio-sms@nic.in",
+            "saran": "dio-sar@nic.in",
+            "sheikhpura": "dio-shh-bih@nic.in",
+            "sheohar": "dio-shh@nic.in",
+            "sitamarhi": "dio-stm@nic.in",
+            "siwan": "dio-swn@nic.in",
+            "supaul": "dio-spl@nic.in",
+            "vaishali": "dio-vsh@nic.in",
+            "west champaran": "dio-psc@nic.in"
         };
 
         function showDistrictDetails(districtKey, districtDisplayName) {
@@ -3641,13 +3568,13 @@ body.dark-mode .demo-watermark-bg {
 
             card.innerHTML = `
                 <!-- Decorative absolute emojis popping out of card -->
-                <div style="position: absolute; left: -35px; top: 10%; font-size: 2.8rem; transform: rotate(-15deg); animation: float-balloon 3s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">ð</div>
-                <div style="position: absolute; right: -35px; bottom: 20%; font-size: 2.8rem; transform: rotate(15deg); animation: float-balloon 3s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">ð</div>
-                <div style="position: absolute; left: -30px; bottom: 12%; font-size: 2.2rem; transform: rotate(-10deg); animation: float-balloon 4s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">ð¥³</div>
-                <div style="position: absolute; right: -30px; top: 15%; font-size: 2.2rem; transform: rotate(10deg); animation: float-balloon 4s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">ð</div>
+                <div style="position: absolute; left: -35px; top: 10%; font-size: 2.8rem; transform: rotate(-15deg); animation: float-balloon 3s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">🎈</div>
+                <div style="position: absolute; right: -35px; bottom: 20%; font-size: 2.8rem; transform: rotate(15deg); animation: float-balloon 3s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">🎁</div>
+                <div style="position: absolute; left: -30px; bottom: 12%; font-size: 2.2rem; transform: rotate(-10deg); animation: float-balloon 4s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">🥳</div>
+                <div style="position: absolute; right: -30px; top: 15%; font-size: 2.2rem; transform: rotate(10deg); animation: float-balloon 4s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">🎉</div>
                 
                 <div style="margin-bottom: 20px; position: relative; z-index: 2;">
-                    <span style="font-size: 3.8rem; animation: float-trophy 2s infinite alternate ease-in-out; display: inline-block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));">ð</span>
+                    <span style="font-size: 3.8rem; animation: float-trophy 2s infinite alternate ease-in-out; display: inline-block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));">🏆</span>
                 </div>
                 <h2 class="neon-text-glow" style="position: relative; z-index: 2;">Milestone Visitor!</h2>
                 <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; position: relative; z-index: 2;">
@@ -3705,7 +3632,7 @@ body.dark-mode .demo-watermark-bg {
                 '#8b5cf6'  // Purple
             ];
 
-            const emojiList = ['ð', 'â¨', 'ð¥³', 'ð', 'ð¥', 'ð', 'ð', 'ð', 'ð'];
+            const emojiList = ['🎉', '✨', '🥳', '🏆', '💥', '🎈', '🌟', '👏', '👑'];
 
             class Rocket {
                 constructor() {
@@ -4235,7 +4162,7 @@ body.dark-mode .demo-watermark-bg {
                                 outagesList.innerHTML = downHosts.map(h => `
                                     <div class="outage-item" style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; background-color: rgba(239, 68, 68, 0.05); border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 8px; transition: all 0.2s;">
                                         <div style="display: flex; align-items: flex-start; gap: 10px; text-align: left;">
-                                            <span style="font-size: 1.1rem; margin-top: 2px;">ð¨</span>
+                                            <span style="font-size: 1.1rem; margin-top: 2px;">🚨</span>
                                             <div>
                                                 <div style="font-weight: 600; font-size: 0.9rem; color: var(--text-primary);">${h.description}</div>
                                                 <div style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">${h.ip}</div>
@@ -4289,160 +4216,57 @@ body.dark-mode .demo-watermark-bg {
             setInterval(checkOutages, 10000);
         });
     </script>
-<!-- Three.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script>
-  (function() {
-    // 3D Particles Background Canvas
-    const canvas = document.createElement('canvas');
-    canvas.id = 'canvas-3d';
-    canvas.style.position = 'fixed';
-    canvas.style.top = '0';
-    canvas.style.left = '0';
-    canvas.style.width = '100vw';
-    canvas.style.height = '100vh';
-    canvas.style.zIndex = '-1';
-    canvas.style.pointerEvents = 'none';
-    document.body.appendChild(canvas);
 
-    // Sync html background with body theme so transparent body works
-    const syncTheme = () => {
-      const isLight = document.body.classList.contains('light-mode') || document.body.classList.contains('theme-light');
-      document.documentElement.style.backgroundColor = isLight ? '#f8fafc' : '#0b0f19';
-      document.body.style.background = 'transparent';
-      document.body.style.backgroundColor = 'transparent';
-    };
-    syncTheme();
+    <!-- 3D WebGL and Parallax Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     
-    const observer = new MutationObserver(syncTheme);
-    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-    const particlesCount = 300;
-    const geometry = new THREE.BufferGeometry();
-    const positions = new Float32Array(particlesCount * 3);
-    const colors = new Float32Array(particlesCount * 3);
-
-    const colorPalette = [
-      new THREE.Color('#38bdf8'), // sky blue
-      new THREE.Color('#10b981'), // emerald green
-      new THREE.Color('#8b5cf6')  // purple
-    ];
-
-    for(let i = 0; i < particlesCount * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 15;
-      positions[i+1] = (Math.random() - 0.5) * 15;
-      positions[i+2] = (Math.random() - 0.5) * 15;
-
-      const clr = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-      colors[i] = clr.r;
-      colors[i+1] = clr.g;
-      colors[i+2] = clr.b;
-    }
-
-    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-
-    const canvasTexture = document.createElement('canvas');
-    canvasTexture.width = 16;
-    canvasTexture.height = 16;
-    const ctx = canvasTexture.getContext('2d');
-    const grad = ctx.createRadialGradient(8, 8, 0, 8, 8, 8);
-    grad.addColorStop(0, 'rgba(255,255,255,1)');
-    grad.addColorStop(1, 'rgba(255,255,255,0)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, 16, 16);
-    const texture = new THREE.CanvasTexture(canvasTexture);
-
-    const material = new THREE.PointsMaterial({
-      size: 0.08,
-      vertexColors: true,
-      transparent: true,
-      opacity: 0.7,
-      map: texture,
-      depthWrite: false
-    });
-
-    const particles = new THREE.Points(geometry, material);
-    scene.add(particles);
-
-    // Add rotating wireframe network sphere
-    const sphereGeo = new THREE.SphereGeometry(7, 18, 18);
-    const sphereMat = new THREE.MeshBasicMaterial({
-      color: '#38bdf8',
-      wireframe: true,
-      transparent: true,
-      opacity: 0.065,
-      depthWrite: false
-    });
-    const networkSphere = new THREE.Mesh(sphereGeo, sphereMat);
-    scene.add(networkSphere);
-
-    camera.position.z = 5;
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) - 0.5;
-      mouseY = (e.clientY / window.innerHeight) - 0.5;
-    });
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      
-      particles.rotation.y += 0.0008;
-      particles.rotation.x += 0.0004;
-      
-      networkSphere.rotation.y += 0.0015;
-      networkSphere.rotation.x += 0.0008;
-
-      camera.position.x += (mouseX * 1.5 - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-
-      renderer.render(scene, camera);
-    };
-
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
-    // 3D Tilt Effect on Cards
-    const tiltElements = document.querySelectorAll(
-      '.card, .glass-card, .metric-card, .pcard, .skill-card, .network-stats-card, .stat-card, .node-card, .control-btn, .map-section, .chart-card, .log-panel, .info-card, .detail-card, .quick-action, .panel'
-    );
-
-    tiltElements.forEach(el => {
-      el.style.transformStyle = 'preserve-3d';
-      el.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
-      
-      el.addEventListener('mousemove', e => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const rotateX = -(y / (rect.height / 2)) * 6; // max 6 deg
-        const rotateY = (x / (rect.width / 2)) * 6;   // max 6 deg
-        
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-      });
-
-      el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-        el.style.transition = 'transform 0.5s ease, box-shadow 0.5s ease';
-      });
-    });
-  })();
-</script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initialize 3D Background Engine
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            window.vantaEffect = VANTA.NET({
+              el: "#vanta-bg",
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              scale: 1.00,
+              scaleMobile: 1.00,
+              color: isDarkMode ? 0x38bdf8 : 0x0f4c81,
+              backgroundColor: isDarkMode ? 0x090d16 : 0xf8fafc,
+              points: 15.00,
+              maxDistance: 24.00,
+              spacing: 18.00,
+              showDots: true
+            });
+            
+            // Re-init colors on theme toggle
+            const themeBtn = document.getElementById('themeToggleBtn');
+            if(themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    setTimeout(() => {
+                        const dark = document.body.classList.contains('dark-mode');
+                        if (window.vantaEffect) {
+                            window.vantaEffect.setOptions({
+                                color: dark ? 0x38bdf8 : 0x0f4c81,
+                                backgroundColor: dark ? 0x090d16 : 0xf8fafc
+                            });
+                        }
+                    }, 50);
+                });
+            }
+        });
+    </script>
 </body>
+
 </html>
 
+<style>
+.glass-card h2, .glass-card img, .glass-card .support-contact, .glass-card .status-item {
+    transform: translateZ(40px);
+}
+</style>
