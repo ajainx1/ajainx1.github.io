@@ -87,6 +87,7 @@ export default function Home() {
   ]);
   const [terminalInput, setTerminalInput] = useState("");
   const [visitorCount, setVisitorCount] = useState(2143);
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   // Persistent client-side visitor tracker starting at 2143
@@ -101,6 +102,17 @@ export default function Home() {
       localStorage.setItem("portfolio_visitor_count", "2143");
       setVisitorCount(2143);
     }
+  }, []);
+
+  // Sync wallet connection state
+  useEffect(() => {
+    const checkWallet = () => {
+      const savedWallet = localStorage.getItem("web3_wallet_address");
+      setWalletAddress(savedWallet);
+    };
+    checkWallet();
+    window.addEventListener("storage", checkWallet);
+    return () => window.removeEventListener("storage", checkWallet);
   }, []);
 
   // Auto-scroll terminal
@@ -164,8 +176,14 @@ export default function Home() {
           </nav>
 
           <div className="flex items-center gap-3">
+            {walletAddress && (
+              <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-mono">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+              </div>
+            )}
             <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--card)]/40 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
               <span>{visitorCount} visitors</span>
             </div>
             <a 

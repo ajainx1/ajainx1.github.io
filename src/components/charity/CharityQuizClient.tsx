@@ -93,6 +93,35 @@ export default function CharityQuizClient() {
 
   const { addToast } = useToast();
 
+  // Web3 States
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [isMinting, setIsMinting] = useState(false);
+  const [nftMinted, setNftMinted] = useState(false);
+
+  // Sync wallet connection state
+  useEffect(() => {
+    const checkWallet = () => {
+      const savedWallet = localStorage.getItem("web3_wallet_address");
+      setWalletAddress(savedWallet);
+    };
+    checkWallet();
+    window.addEventListener("storage", checkWallet);
+    return () => window.removeEventListener("storage", checkWallet);
+  }, []);
+
+  const handleMintSoulboundNFT = () => {
+    if (!walletAddress) {
+      addToast("No connected Web3 node. Please connect your wallet in the gateway hub.", "info");
+      return;
+    }
+    setIsMinting(true);
+    setTimeout(() => {
+      setNftMinted(true);
+      setIsMinting(false);
+      addToast("Proof-of-Impact Soulbound Badge cryptographically minted!", "success");
+    }, 2500);
+  };
+
   // Initialize
   useEffect(() => {
     const isDarkMode = localStorage.getItem('jumpstreet_theme') !== 'light';
@@ -581,8 +610,14 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         </div>
 
         <div className="flex items-center gap-3">
+          {walletAddress && (
+            <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+            </div>
+          )}
           <div className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-mono text-emerald-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>{quizVisitorCount} quiz visits</span>
           </div>
 
@@ -777,6 +812,20 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             <button onClick={handleShare} className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold transition-all border ${isDark ? 'border-emerald-700 text-emerald-400 hover:bg-emerald-900/30' : 'border-emerald-300 text-emerald-700 hover:bg-emerald-50'}`}>
               <Share2 size={12} /> Share Impact
             </button>
+            {level >= 3 && (
+              <button
+                onClick={handleMintSoulboundNFT}
+                disabled={isMinting || nftMinted}
+                className={`w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all border ${
+                  nftMinted 
+                    ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-400 cursor-default' 
+                    : 'border-[#38bdf8]/30 bg-[#38bdf8]/10 text-[#38bdf8] hover:bg-[#38bdf8]/20 shadow-[0_0_10px_rgba(56,189,248,0.2)]'
+                }`}
+              >
+                <Award size={14} />
+                <span>{isMinting ? "Minting SBT..." : nftMinted ? "SBT Badge Minted! ✓" : "Mint Proof-of-Impact SBT"}</span>
+              </button>
+            )}
           </div>
         </motion.div>
 

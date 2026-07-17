@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from 'react';
-import { CreditCard, QrCode, CheckCircle2, Shield, Upload, Info, ExternalLink, Clipboard } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { CreditCard, QrCode, CheckCircle2, Shield, Upload, Info, ExternalLink, Clipboard, Wallet } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Product, PaymentSubmission, VMConfig } from './types';
 import TiltWrapper from '@/components/3d/TiltWrapper';
@@ -20,7 +20,7 @@ export default function PaymentPortal({
 }: PaymentPortalProps) {
   const [email, setEmail] = useState(userEmail);
   const [telegram, setTelegram] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState<'UPI' | 'Card'>('UPI');
+  const [paymentMethod, setPaymentMethod] = useState<'UPI' | 'Card' | 'Web3'>('UPI');
   const [utrNo, setUtrNo] = useState('');
   const [deliveryAddress, setDeliveryAddress] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -30,6 +30,52 @@ export default function PaymentPortal({
   const [isUploading, setIsUploading] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCopied, setIsCopied] = useState(false);
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+
+  // Sync wallet connection state
+  useEffect(() => {
+    const checkWallet = () => {
+      const savedWallet = localStorage.getItem("web3_wallet_address");
+      setWalletAddress(savedWallet);
+    };
+    checkWallet();
+    window.addEventListener("storage", checkWallet);
+    return () => window.removeEventListener("storage", checkWallet);
+  }, []);
+
+  const triggerConnectWallet = () => {
+    const mockAddress = "0x7a2d71100f2e82500000000000000000000093B8";
+    localStorage.setItem("web3_wallet_address", mockAddress);
+    localStorage.setItem("web3_wallet_balance", "1.42 ETH");
+    window.dispatchEvent(new Event("storage"));
+  };
+
+  const handleWeb3PaymentSubmit = () => {
+    setIsSubmitting(true);
+    setTimeout(() => {
+      const mockHash = "0x" + Array.from({length: 40}).map(() => Math.floor(Math.random()*16).toString(16)).join("");
+      const submission: PaymentSubmission = {
+        id: 'TXN-' + Math.floor(100000 + Math.random() * 900000),
+        planId: selectedProduct?.id || 'custom_vm',
+        planName: payableTitle,
+        amountPaid: payableTotal,
+        currency: 'INR',
+        paymentMethod: 'Web3',
+        utrNo: mockHash,
+        email,
+        telegramUsername: telegram.startsWith('@') ? telegram : '@' + telegram,
+        deliveryAddress: requiresShipping ? deliveryAddress : undefined,
+        status: 'pending_verification',
+        createdAt: new Date().toLocaleDateString('en-IN', {
+          day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit',
+        }),
+        hasVM,
+        vmDetails: customVmConfig?.config,
+      };
+      onPaymentSubmitted(submission);
+      setIsSubmitting(false);
+    }, 2000);
+  };
 
   const getPayableDetails = () => {
     if (selectedProduct) {
@@ -143,7 +189,7 @@ export default function PaymentPortal({
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 relative z-10">
         {/* Left: Summary & Payment Options */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className={paymentMethod === 'Web3' ? "lg:col-span-12 max-w-xl mx-auto w-full space-y-6" : "lg:col-span-5 space-y-6"}>
           {/* Item summary */}
           <div className="p-5 rounded-xl border border-[var(--border)] space-y-4 bg-[var(--card2)]/50 shadow-inner">
             <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-[var(--muted)]">
@@ -171,82 +217,83 @@ export default function PaymentPortal({
             <label className="block text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--muted)]">
               Payment Route
             </label>
-            <div className="grid grid-cols-2 gap-2 p-1.5 rounded-lg bg-[var(--card2)] border border-[var(--border)]">
-              {(['UPI', 'Card'] as const).map(method => (
+            <div className="grid grid-cols-3 gap-2 p-1.5 rounded-lg bg-[var(--card2)] border border-[var(--border)]">
+              {(['UPI', 'Card', 'Web3'] as const).map(method => (
                 <button
                   key={method}
                   type="button"
                   onClick={() => setPaymentMethod(method)}
-                  className={`py-2 rounded-md text-xs font-bold tracking-wider transition-all flex items-center justify-center gap-1.5 uppercase ${
+                  className={`py-2 rounded-md text-[10px] font-bold tracking-wider transition-all flex items-center justify-center gap-1 uppercase ${
                     paymentMethod === method 
                       ? 'bg-[var(--fg)] text-[var(--bg)] shadow-md' 
                       : 'text-[var(--muted)] hover:bg-[var(--card)]'
                   }`}
                 >
-                  {method === 'UPI' ? <QrCode size={14} /> : <CreditCard size={14} />}
-                  {method === 'UPI' ? 'India UPI' : 'Intl. Card'}
+                  {method === 'UPI' && <QrCode size={12} />}
+                  {method === 'Card' && <CreditCard size={12} />}
+                  {method === 'Web3' && <Wallet size={12} />}
+                  {method === 'UPI' && 'UPI'}
+                  {method === 'Card' && 'Card'}
+                  {method === 'Web3' && 'Web3'}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* UPI QR */}
+          {/* Payment panels */}
           <AnimatePresence mode="wait">
-            {paymentMethod === 'UPI' ? (
+            {paymentMethod === 'UPI' && (
               <motion.div
                 key="upi"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="rounded-xl border border-[var(--border)] p-6 text-center space-y-5 bg-[var(--card2)]"
+                className="rounded-xl border border-[var(--border)] p-6 space-y-4 bg-[var(--card2)]"
               >
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] block text-[var(--muted)]">
-                  Scan &amp; Pay via any UPI App
-                </span>
-
-                {/* QR Code mock */}
-                <div className="w-48 h-48 mx-auto p-4 shadow-xl flex items-center justify-center bg-white border-2 border-[var(--primary)]/30 rounded-xl relative group">
-                  <div className="absolute inset-0 bg-[var(--primary)]/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
-                  <div className="w-full h-full border-4 border-dashed border-[#1a1a1a] flex items-center justify-center relative">
-                    <div className="grid grid-cols-5 gap-1.5 w-32 h-32 p-1.5 opacity-90">
-                      {[...Array(25)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="rounded-sm"
-                          style={{
-                            background: (i % 3 === 0 || i < 5 || i > 20 || (i % 5 === 0 && i < 15))
-                              ? '#111' : '#e5e5e5',
-                          }}
-                        />
-                      ))}
-                    </div>
-                    <div className="absolute text-[8px] font-mono font-black px-1.5 py-0.5 bg-white text-[#111] border border-[#111]">
-                      JUMPSTREET
-                    </div>
-                  </div>
+                <div className="flex items-center justify-between text-xs font-mono border-b border-[var(--border)] pb-2 mb-2">
+                  <span className="text-[var(--muted)]">Amount:</span>
+                  <span className="text-[var(--fg)] font-bold">₹{payableTotal.toLocaleString('en-IN')}</span>
                 </div>
-
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center gap-2">
-                    <span className="text-xs font-mono select-all text-[var(--fg)] font-medium">
-                      pay@jumpstreet
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => copyToClipboard('pay@jumpstreet')}
-                      className="p-1.5 rounded-md text-[var(--muted)] hover:bg-[var(--card)] hover:text-[var(--primary)] transition-colors"
-                      title="Copy UPI ID"
-                    >
-                      <Clipboard size={14} />
-                    </button>
+                <div className="flex flex-col items-center gap-3">
+                  <div className="bg-white p-2.5 rounded-lg border border-[var(--border)] shadow-sm">
+                    <img
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=jain.aditya33@okaxis%26pn=Aditya%2520Jain%26am=${payableTotal}%26cu=INR`}
+                      alt="UPI QR Code"
+                      width={150}
+                      height={150}
+                    />
                   </div>
+                  <span className="text-[10px] font-mono text-[var(--muted)] uppercase tracking-wider">
+                    Scan &amp; Pay via any UPI App
+                  </span>
+                  
+                  <div className="w-full border-t border-[var(--border)] pt-3 flex flex-col gap-1.5">
+                    <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
+                      <span className="text-[var(--muted)]">VPA:</span>
+                      <span className="text-[var(--fg)] font-bold">jain.aditya33@okaxis</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
+                      <span className="text-[var(--fg)] font-bold">Merchant:</span>
+                      <span className="text-[var(--fg)] font-bold">Aditya Jain</span>
+                    </div>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => copyToClipboard('jain.aditya33@okaxis')}
+                    className="w-full mt-2 py-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 border border-[var(--border)] text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10"
+                    title="Copy UPI ID"
+                  >
+                    <Clipboard size={12} />
+                    <span>Copy UPI ID</span>
+                  </button>
                   <AnimatePresence>
                     {isCopied && (
-                      <motion.span 
+                      <motion.span
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0 }}
-                        className="text-[10px] text-[var(--primary)] block font-mono font-bold"
+                        className="text-[9px] font-mono text-emerald-400 font-bold"
                       >
                         UPI ID copied!
                       </motion.span>
@@ -257,7 +304,9 @@ export default function PaymentPortal({
                   </span>
                 </div>
               </motion.div>
-            ) : (
+            )}
+
+            {paymentMethod === 'Card' && (
               <motion.div
                 key="card"
                 initial={{ opacity: 0, x: 20 }}
@@ -309,14 +358,98 @@ export default function PaymentPortal({
                 </div>
               </motion.div>
             )}
+
+            {paymentMethod === 'Web3' && (
+              <motion.div
+                key="web3"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                className="rounded-xl border border-[var(--border)] p-6 space-y-4 bg-[var(--card2)]"
+              >
+                <span className="text-[10px] font-bold uppercase tracking-[0.15em] block mb-2 text-[#38bdf8]">
+                  Smart Contract Gateway
+                </span>
+                
+                {walletAddress ? (
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[var(--muted)]">Payable Amount:</span>
+                      <span className="text-white font-bold">{(payableTotal / 300000).toFixed(5)} ETH</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs font-mono">
+                      <span className="text-[var(--muted)]">Connected Wallet:</span>
+                      <span className="text-emerald-400 font-bold">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+                    </div>
+
+                    <div className="space-y-1.5 pt-2">
+                      <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Delivery Email</label>
+                      <input 
+                        type="email" 
+                        value={email} 
+                        onChange={e => setEmail(e.target.value)} 
+                        placeholder="you@example.com" 
+                        className={inputClass} 
+                      />
+                    </div>
+                    <div className="space-y-1.5">
+                      <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Telegram Username</label>
+                      <input 
+                        type="text" 
+                        value={telegram} 
+                        onChange={e => setTelegram(e.target.value)} 
+                        placeholder="@username_fixed" 
+                        className={inputClass} 
+                      />
+                    </div>
+
+                    {requiresShipping && (
+                      <div className="space-y-1.5">
+                        <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Shipping Address</label>
+                        <textarea 
+                          rows={2} 
+                          value={deliveryAddress} 
+                          onChange={e => setDeliveryAddress(e.target.value)} 
+                          placeholder="Enter physical address for shipment" 
+                          className={inputClass} 
+                        />
+                      </div>
+                    )}
+
+                    <button
+                      type="button"
+                      onClick={handleWeb3PaymentSubmit}
+                      disabled={isSubmitting || !email || !telegram}
+                      className="w-full py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-widest bg-[#38bdf8] text-black hover:bg-sky-400 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(56,189,248,0.3)] disabled:opacity-50"
+                    >
+                      {isSubmitting ? "Executing Contract..." : "Authorize Web3 Payment"}
+                    </button>
+                  </div>
+                ) : (
+                  <div className="text-center py-6 space-y-4">
+                    <p className="text-xs font-mono text-[var(--muted)] leading-relaxed">
+                      No connected Web3 node detected. Please connect your wallet in the header to execute this transaction.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={triggerConnectWallet}
+                      className="px-5 py-2 rounded-lg font-mono text-[10px] font-bold uppercase tracking-wider bg-[#38bdf8] text-black hover:bg-sky-400 transition-colors"
+                    >
+                      Connect Wallet
+                    </button>
+                  </div>
+                )}
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
 
         {/* Right: Submission Form */}
-        <form onSubmit={handleSubmitPayment} className="lg:col-span-7 space-y-5 sm:space-y-6">
-          <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] pb-2 border-b border-[var(--border)] text-[var(--muted)]">
-            Submit Transaction Reference
-          </h4>
+        {paymentMethod !== 'Web3' && (
+          <form onSubmit={handleSubmitPayment} className="lg:col-span-7 space-y-5 sm:space-y-6">
+            <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] pb-2 border-b border-[var(--border)] text-[var(--muted)]">
+              Submit Transaction Reference
+            </h4>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="space-y-1.5">
@@ -457,7 +590,8 @@ export default function PaymentPortal({
               Expect confirmation within <strong className="text-[var(--fg)] font-medium">15 minutes</strong>.
             </p>
           </div>
-        </form>
+          </form>
+        )}
       </div>
     </motion.div>
     </TiltWrapper>

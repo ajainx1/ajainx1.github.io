@@ -113,6 +113,18 @@ function AppContent() {
   const [customVmConfig, setCustomVmConfig] = useState<{ config: VMConfig; price: number } | null>(null);
   const [orders, setOrders] = useState<PaymentSubmission[]>([]);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [walletAddress, setWalletAddress] = useState<string | null>(null);
+
+  // Sync wallet connection state
+  useEffect(() => {
+    const checkWallet = () => {
+      const savedWallet = localStorage.getItem("web3_wallet_address");
+      setWalletAddress(savedWallet);
+    };
+    checkWallet();
+    window.addEventListener("storage", checkWallet);
+    return () => window.removeEventListener("storage", checkWallet);
+  }, []);
   
   const { displayCount } = useVisitCounter();
   const { visible: showScrollTop, scrollTop } = useScrollTop();
@@ -277,6 +289,12 @@ function AppContent() {
 
           {/* Right actions */}
           <div className="flex items-center gap-3">
+            {walletAddress && (
+              <div className="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+              </div>
+            )}
             <Link
               href="/portfolio"
               className="hidden sm:flex items-center gap-1.5 text-[10px] font-mono font-bold tracking-wider uppercase px-4 py-2 rounded-lg transition-all border border-[var(--border)] text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10 group"

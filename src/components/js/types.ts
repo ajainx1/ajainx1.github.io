@@ -24,7 +24,7 @@ export interface PaymentSubmission {
   planName: string;
   amountPaid: number;
   currency: 'INR' | 'USD';
-  paymentMethod: 'UPI' | 'Card';
+  paymentMethod: 'UPI' | 'Card' | 'Web3';
   utrNo: string; // transaction hash / UTR
   email: string;
   telegramUsername: string;
