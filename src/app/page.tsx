@@ -193,7 +193,7 @@ export default function GatewayPage() {
             <span>🔒 256-bit encrypted node provisioning. Zero-knowledge identity contracts.</span>
           </div>
           
-          <Link href="/js" className="mb-10 px-8 py-4 rounded-full bg-[#00A86B] text-white font-black tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,168,107,0.5)] flex items-center gap-2 z-20 relative">
+          <Link href="https://jumpstreet.tech" className="mb-10 px-8 py-4 rounded-full bg-[#00A86B] text-white font-black tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,168,107,0.5)] flex items-center gap-2 z-20 relative" target="_blank" rel="noopener noreferrer">
             <span className="w-2 h-2 rounded-full bg-white animate-pulse" /> START TRADING WITH ORCA6
           </Link>
           
@@ -202,7 +202,7 @@ export default function GatewayPage() {
             <Link href="/portfolio" className="px-6 py-3 rounded-full bg-white text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform flex items-center gap-2 shadow-lg">
               <User className="w-4 h-4" /> Identity Contract
             </Link>
-            <Link href="/js" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2">
+            <Link href="https://jumpstreet.tech" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2" target="_blank" rel="noopener noreferrer">
               <Cpu className="w-4 h-4" /> JS Store
             </Link>
             <Link href="/projects" className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2 border-2 border-emerald-400">
@@ -283,7 +283,7 @@ export default function GatewayPage() {
               <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
                 Quantitative high-frequency alert webhooks, trading bot nodes, and low-latency cloud-based backtesting & execution nodes.
               </p>
-              <Link href="/js" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-500 text-white font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]">
+              <Link href="https://jumpstreet.tech" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-500 text-white font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]" target="_blank" rel="noopener noreferrer">
                 Deploy Node <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
