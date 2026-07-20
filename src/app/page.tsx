@@ -155,12 +155,17 @@ export default function GatewayPage() {
         <div className="w-px h-4 bg-white/10" />
         <div className="flex items-center gap-2 px-4">
           <span className="opacity-50">Load</span>
-          <span className="text-indigo-400 font-bold">{netLoad}%</span>
+          <span className="text-indigo-400 font-bold">{netLoad}% (Nominal)</span>
+        </div>
+        <div className="w-px h-4 bg-white/10" />
+        <div className="flex items-center gap-2 px-4">
+          <span className="opacity-50">Uptime</span>
+          <span className="text-white font-bold">99.99%</span>
         </div>
         <div className="w-px h-4 bg-white/10" />
         <div className="flex items-center gap-2 px-4">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-400 font-bold">Online</span>
+          <span className="text-emerald-400 font-bold">SECURE</span>
         </div>
       </div>
 
@@ -170,13 +175,16 @@ export default function GatewayPage() {
           style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
           className="text-center px-4 flex flex-col items-center z-10 sticky top-[30vh]"
         >
-          <h1 className="text-5xl md:text-7xl lg:text-[8rem] font-black tracking-tighter leading-none mb-6">
-            <span className="block bg-gradient-to-r from-white via-slate-300 to-slate-500 bg-clip-text text-transparent">Mind-blowing.</span>
-            <span className="block bg-gradient-to-r from-slate-500 via-slate-300 to-white bg-clip-text text-transparent">Architectural Perfection.</span>
+          <h1 className="text-5xl md:text-7xl lg:text-[7rem] font-black tracking-tighter leading-none mb-6">
+            <span className="block bg-gradient-to-r from-emerald-400 via-white to-slate-400 bg-clip-text text-transparent">ORCA6 — Cybersecurity.</span>
+            <span className="block bg-gradient-to-r from-slate-400 via-white to-emerald-400 bg-clip-text text-transparent">Infrastructure. Precision.</span>
           </h1>
-          <p className="text-lg md:text-2xl font-medium tracking-tight opacity-70 max-w-4xl mb-10 leading-relaxed">
-            Next-generation engineering meets decentralized web infrastructure. Dive into an ecosystem featuring gamified threat intelligence, automated node provisioning, and cryptographically verified identities. Welcome to the new standard.
+          <p className="text-lg md:text-2xl font-medium tracking-tight opacity-70 max-w-4xl mb-6 leading-relaxed">
+            Next-generation engineering meets decentralized trading infrastructure. Gamified threat intelligence, automated node provisioning, and cryptographically verified identities. Built for traders who demand zero compromise.
           </p>
+          <div className="flex items-center justify-center gap-2 mb-10 text-emerald-400 font-mono text-sm tracking-wider">
+            <span>🔒 256-bit encrypted node provisioning. Zero-knowledge identity contracts.</span>
+          </div>
           
           {/* Quick Access Links */}
           <div className="flex flex-wrap justify-center gap-4 relative z-20">
@@ -186,8 +194,8 @@ export default function GatewayPage() {
             <Link href="/js" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2">
               <Cpu className="w-4 h-4" /> JS Store
             </Link>
-            <Link href="/charity-quiz" className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2">
-              <Award className="w-4 h-4" /> Charity Quiz
+            <Link href="/projects" className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2 border-2 border-emerald-400">
+              <Award className="w-4 h-4" /> Projects
             </Link>
           </div>
 
@@ -329,6 +337,13 @@ export default function GatewayPage() {
         </section>
 
       </div>
+
+      {/* Brand Footer */}
+      <footer className="w-full py-8 border-t border-white/10 bg-black text-center relative z-20">
+        <p className="font-mono text-xs text-slate-500 uppercase tracking-widest">
+          Managed by Jumpstreet — A Mangalik & Sons Venture
+        </p>
+      </footer>
 
       {/* Wallet Connection Modal */}
       {showWalletModal && (
