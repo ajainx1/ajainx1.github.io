@@ -257,10 +257,9 @@ export default function PaymentPortal({
                 <div className="flex flex-col items-center gap-4">
                   <div className="bg-white p-4 rounded-[20px] border border-black/5 shadow-md">
                     <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=jain.aditya33@okaxis%26pn=Aditya%2520Jain%26am=${payableTotal}%26cu=INR`}
+                      src="/js/upi_qr.jpg"
                       alt="UPI QR Code"
-                      width={180}
-                      height={180}
+                      className="w-[180px] h-auto object-contain rounded-xl"
                     />
                   </div>
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-2">
@@ -270,7 +269,7 @@ export default function PaymentPortal({
                   <div className="w-full border-t border-black/5 pt-4 mt-2 flex flex-col gap-2.5">
                     <div className="flex items-center justify-between gap-3 text-xs font-medium">
                       <span className="text-slate-500 uppercase tracking-widest font-bold">VPA:</span>
-                      <span className="text-slate-900 font-bold">jain.aditya33@okaxis</span>
+                      <span className="text-slate-900 font-bold">9897577007@upi</span>
                     </div>
                     <div className="flex items-center justify-between gap-3 text-xs font-medium">
                       <span className="text-slate-500 uppercase tracking-widest font-bold">Merchant:</span>
@@ -280,7 +279,7 @@ export default function PaymentPortal({
 
                   <button
                     type="button"
-                    onClick={() => copyToClipboard('jain.aditya33@okaxis')}
+                    onClick={() => copyToClipboard('9897577007@upi')}
                     className="w-full mt-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-black/5 bg-white text-slate-500 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 shadow-sm"
                     title="Copy UPI ID"
                   >
