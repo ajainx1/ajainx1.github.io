@@ -1,5 +1,5 @@
 export type Difficulty = 'beginner' | 'intermediate' | 'advanced';
-export type CategoryKey = 'network' | 'web' | 'crypto' | 'compliance' | 'gk' | 'science' | 'history';
+export type CategoryKey = 'animals' | 'nature' | 'humanities' | 'science' | 'gk';
 
 export interface Question {
   difficulty: Difficulty;
@@ -17,81 +17,79 @@ export interface CategoryData {
 }
 
 export const quizData: Record<CategoryKey, CategoryData> = {
-  network: {
-    title: "Network Security",
-    description: "Defend the perimeter. Feed the hungry.",
+  animals: {
+    title: "Animal Welfare",
+    description: "Learn about the animal kingdom to help feed rescue dogs and street animals today.",
     questions: [
-      { difficulty: 'beginner', question: "Which port is typically used for SSH?", options: ["21", "22", "23", "443"], answer: 1, hint: "It is one higher than FTP's control port." },
-      { difficulty: 'beginner', question: "What port is associated with RDP (Remote Desktop Protocol)?", options: ["3389", "8080", "445", "139"], answer: 0, hint: "It's in the 3000 range." },
-      { difficulty: 'intermediate', question: "What does 'Zero Trust' architecture mean?", options: ["Never trust, always verify every access request", "Trust local network traffic only", "Eliminate all user passwords", "Block all inbound internet traffic"], answer: 0, hint: "Verification is required regardless of location." },
-      { difficulty: 'intermediate', question: "Which DNS record type maps a domain name to an IPv4 address?", options: ["MX", "CNAME", "A", "TXT"], answer: 2, hint: "It's the first letter of the alphabet." },
-      { difficulty: 'advanced', question: "What is the primary purpose of a BGP blackhole?", options: ["To speed up routing", "To drop traffic directed to a specific IP during a DDoS", "To encrypt internal traffic", "To compress HTTP responses"], answer: 1, hint: "It is often used as a defense mechanism against volumetric attacks." }
+      { difficulty: 'beginner', question: "What is a group of lions called?", options: ["A pack", "A pride", "A herd", "A flock"], answer: 1, hint: "It implies dignity and self-respect." },
+      { difficulty: 'beginner', question: "Which animal is known as man's best friend?", options: ["Cat", "Horse", "Dog", "Parrot"], answer: 2, hint: "They have a powerful sense of smell and bark." },
+      { difficulty: 'beginner', question: "What do pandas primarily eat?", options: ["Insects", "Fish", "Bamboo", "Berries"], answer: 2, hint: "It's a fast-growing grass native to Asia." },
+      { difficulty: 'intermediate', question: "How many compartments does a cow's stomach have?", options: ["One", "Two", "Three", "Four"], answer: 3, hint: "They are ruminants, requiring complex digestion." },
+      { difficulty: 'intermediate', question: "Which mammal is known to have the most powerful bite?", options: ["Hippopotamus", "Lion", "Gorilla", "Hyena"], answer: 0, hint: "Despite their diet, these massive river animals have enormous jaws." },
+      { difficulty: 'intermediate', question: "What is the only mammal capable of true sustained flight?", options: ["Flying Squirrel", "Bat", "Lemur", "Glider"], answer: 1, hint: "They navigate using echolocation." },
+      { difficulty: 'advanced', question: "What is the scientific term for the study of animal behavior?", options: ["Entomology", "Ethology", "Ornithology", "Zoology"], answer: 1, hint: "It starts with 'Etho'." },
+      { difficulty: 'advanced', question: "Which species of bird is known to migrate the longest distance?", options: ["Arctic Tern", "Albatross", "Swallow", "Hummingbird"], answer: 0, hint: "It travels from pole to pole." },
+      { difficulty: 'advanced', question: "What unique sensory organ do sharks use to detect electrical fields?", options: ["Lateral line", "Ampullae of Lorenzini", "Olfactory bulb", "Nictitating membrane"], answer: 1, hint: "Named after an Italian anatomist." }
     ]
   },
-  web: {
-    title: "Web Security",
-    description: "Secure the application layer. Feed the hungry.",
+  nature: {
+    title: "Nature & Environment",
+    description: "Every correct answer plants a seed of hope and provides nourishment to the hungry.",
     questions: [
-      { difficulty: 'beginner', question: "Which HTTP status code indicates 'Forbidden'?", options: ["200", "401", "403", "404"], answer: 2, hint: "It's in the 400 range, but not 'Not Found'." },
-      { difficulty: 'beginner', question: "What vulnerability occurs when an application includes untrusted data in a web page without proper validation?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Buffer Overflow", "CSRF"], answer: 1, hint: "The acronym has two 'S's." },
-      { difficulty: 'intermediate', question: "Which attack tricks a user into clicking a malicious link by masquerading as a trustworthy entity?", options: ["SQL Injection", "Cross-Site Scripting (XSS)", "Phishing", "Man-in-the-Middle (MitM)"], answer: 2, hint: "It sounds like a popular outdoor activity with a rod." },
-      { difficulty: 'intermediate', question: "What is the main function of a WAF (Web Application Firewall)?", options: ["Protect against physical tampering", "Filter and monitor HTTP traffic to a web application", "Encrypt hard drives", "Manage active directory users"], answer: 1, hint: "It acts as a shield specifically for HTTP/S traffic." },
-      { difficulty: 'advanced', question: "What class of vulnerability is present when an API accepts a raw file path query parameter without sanitization, e.g. '?file=../../../../etc/passwd'?", options: ["SQL Injection (SQLi)", "Path Traversal / Local File Inclusion (LFI)", "Stored Cross-Site Scripting (XSS)", "Cross-Site Request Forgery (CSRF)"], answer: 1, hint: "It involves moving 'up' directories." }
+      { difficulty: 'beginner', question: "What gas do plants absorb from the atmosphere during photosynthesis?", options: ["Oxygen", "Carbon Dioxide", "Nitrogen", "Hydrogen"], answer: 1, hint: "It is what humans exhale." },
+      { difficulty: 'beginner', question: "What is the largest rainforest in the world?", options: ["Congo", "Daintree", "Amazon", "Tongass"], answer: 2, hint: "Located largely in South America." },
+      { difficulty: 'beginner', question: "Which part of the plant conducts photosynthesis?", options: ["Root", "Stem", "Leaf", "Flower"], answer: 2, hint: "They are usually flat and green." },
+      { difficulty: 'intermediate', question: "What is the term for a community of living organisms interacting with their physical environment?", options: ["Biosphere", "Ecosystem", "Habitat", "Biome"], answer: 1, hint: "It ends in 'system'." },
+      { difficulty: 'intermediate', question: "What is the hardest naturally occurring mineral on Earth?", options: ["Quartz", "Topaz", "Diamond", "Corundum"], answer: 2, hint: "Made of pure carbon." },
+      { difficulty: 'intermediate', question: "Which layer of the atmosphere contains the ozone layer?", options: ["Troposphere", "Stratosphere", "Mesosphere", "Thermosphere"], answer: 1, hint: "It is the second layer, just above the troposphere." },
+      { difficulty: 'advanced', question: "What is the name of the process by which soil loses its fertility and turns into desert?", options: ["Deforestation", "Erosion", "Desertification", "Salinization"], answer: 2, hint: "The name literally implies becoming a desert." },
+      { difficulty: 'advanced', question: "Which biome is characterized by permafrost?", options: ["Taiga", "Tundra", "Savanna", "Chaparral"], answer: 1, hint: "It's a cold, treeless region." },
+      { difficulty: 'advanced', question: "What natural phenomenon is measured using the Saffir-Simpson scale?", options: ["Earthquakes", "Tornadoes", "Hurricanes", "Tsunamis"], answer: 2, hint: "It categorizes them from 1 to 5 based on wind speed." }
     ]
   },
-  crypto: {
-    title: "Cryptography",
-    description: "Master encryption. Feed the hungry.",
+  humanities: {
+    title: "Humanities & Care",
+    description: "Explore the kindness of humanity. Play daily to transform a life in need with a hot meal.",
     questions: [
-      { difficulty: 'beginner', question: "Which of the following is a symmetric encryption algorithm?", options: ["RSA", "AES", "DSA", "ECC"], answer: 1, hint: "Advanced Encryption Standard." },
-      { difficulty: 'beginner', question: "Which protocol is designed to provide communication security over a computer network?", options: ["HTTP", "TLS", "FTP", "Telnet"], answer: 1, hint: "It replaced SSL." },
-      { difficulty: 'intermediate', question: "What is the function of a 'salt' in password hashing?", options: ["To encrypt the password for later decryption", "To add random data to defend against rainbow tables", "To make the password easier to remember", "To compress the password hash"], answer: 1, hint: "It prevents pre-computed dictionary attacks." },
-      { difficulty: 'intermediate', question: "What does PKI stand for?", options: ["Public Key Infrastructure", "Private Key Interchange", "Pre-shared Key Initialization", "Personal Key Identifier"], answer: 0, hint: "It manages digital certificates." },
-      { difficulty: 'advanced', question: "In elliptic curve cryptography (ECC), what provides the security advantage over RSA?", options: ["It uses symmetric keys", "It offers equivalent security with significantly smaller key sizes", "It cannot be decrypted by quantum computers", "It is faster for bulk data encryption"], answer: 1, hint: "It requires less computational power and storage for the same strength." }
+      { difficulty: 'beginner', question: "Who won the Nobel Peace Prize for her work in the slums of Calcutta?", options: ["Florence Nightingale", "Mother Teresa", "Rosa Parks", "Marie Curie"], answer: 1, hint: "She founded the Missionaries of Charity." },
+      { difficulty: 'beginner', question: "Which international organization's primary symbol is a red cross on a white background?", options: ["UNICEF", "WHO", "Red Cross", "Amnesty International"], answer: 2, hint: "The name is literally its symbol." },
+      { difficulty: 'beginner', question: "What is the universal gesture that signifies happiness and friendliness?", options: ["A wave", "A nod", "A smile", "A handshake"], answer: 2, hint: "It uses the muscles of the mouth." },
+      { difficulty: 'intermediate', question: "Which document was adopted by the UN in 1948 to protect human rights globally?", options: ["The Magna Carta", "The Bill of Rights", "Universal Declaration of Human Rights", "The Geneva Conventions"], answer: 2, hint: "It declares rights for the universe of humans." },
+      { difficulty: 'intermediate', question: "What does the humanitarian organization 'Doctors Without Borders' primarily do?", options: ["Build hospitals", "Provide medical aid where it's needed most", "Train local nurses", "Distribute vaccines only"], answer: 1, hint: "They focus on immediate medical assistance in crisis zones." },
+      { difficulty: 'intermediate', question: "Which historical figure is known for leading the Civil Rights Movement using nonviolent civil disobedience?", options: ["Malcolm X", "Nelson Mandela", "Martin Luther King Jr.", "Frederick Douglass"], answer: 2, hint: "He had a famous 'Dream'." },
+      { difficulty: 'advanced', question: "In ethical philosophy, what is the principle of maximizing overall happiness called?", options: ["Deontology", "Utilitarianism", "Nihilism", "Existentialism"], answer: 1, hint: "Associated with John Stuart Mill and Jeremy Bentham." },
+      { difficulty: 'advanced', question: "What term describes the psychological phenomenon where people are less likely to offer help to a victim when other people are present?", options: ["Bystander Effect", "Halo Effect", "Placebo Effect", "Hawthorne Effect"], answer: 0, hint: "It involves people standing by." },
+      { difficulty: 'advanced', question: "Which ancient Greek concept refers to a deep, unconditional love for humanity?", options: ["Eros", "Philia", "Agape", "Storge"], answer: 2, hint: "It is often translated as 'charity' in biblical texts." }
     ]
   },
-  compliance: {
-    title: "Compliance",
-    description: "Navigate policies. Feed the hungry.",
+  science: {
+    title: "Science & Health",
+    description: "Empower your mind. Every right answer turns into tangible support for vulnerable families.",
     questions: [
-      { difficulty: 'beginner', question: "What does the Principle of Least Privilege dictate?", options: ["Give everyone admin rights for efficiency", "Users get only the access rights necessary for their job", "All access is denied by default", "Use passwords with fewer characters"], answer: 1, hint: "Only give them what they need." },
-      { difficulty: 'beginner', question: "What does MFA stand for?", options: ["Multi-Factor Authentication", "Main Firewall Access", "Malware Filtering Application", "Master File Allocation"], answer: 0, hint: "It requires more than just a password." },
-      { difficulty: 'intermediate', question: "What does SIEM stand for in cybersecurity?", options: ["System Information and Event Monitoring", "Security Information and Event Management", "Secure Integration of Enterprise Modules", "System Incident and Event Management"], answer: 1, hint: "It manages security events." },
-      { difficulty: 'intermediate', question: "Which framework is commonly used as a standard for information security management systems (ISMS)?", options: ["ISO 27001", "PCI DSS", "HIPAA", "GDPR"], answer: 0, hint: "It is an Information Security standard." },
-      { difficulty: 'advanced', question: "Under GDPR, what is the maximum fine for a severe violation?", options: ["10 Million Euros", "20 Million Euros or 4% of global turnover", "500,000 Euros", "1% of annual profit"], answer: 1, hint: "It is the higher of a specific monetary amount or a percentage of global revenue." }
+      { difficulty: 'beginner', question: "What organ is responsible for pumping blood throughout the human body?", options: ["Brain", "Liver", "Lungs", "Heart"], answer: 3, hint: "It beats continuously." },
+      { difficulty: 'beginner', question: "Which vitamin is primarily produced in the skin when exposed to sunlight?", options: ["Vitamin A", "Vitamin B", "Vitamin C", "Vitamin D"], answer: 3, hint: "Often called the 'sunshine vitamin'." },
+      { difficulty: 'beginner', question: "What is the boiling point of water at sea level in Celsius?", options: ["50", "90", "100", "120"], answer: 2, hint: "It is the basis for the Celsius scale." },
+      { difficulty: 'intermediate', question: "Which scientist is famous for the theory of relativity (E=mc^2)?", options: ["Isaac Newton", "Nikola Tesla", "Albert Einstein", "Galileo Galilei"], answer: 2, hint: "He had iconic wild hair." },
+      { difficulty: 'intermediate', question: "What part of the cell is known as the powerhouse?", options: ["Nucleus", "Ribosome", "Mitochondria", "Endoplasmic Reticulum"], answer: 2, hint: "It starts with 'Mito'." },
+      { difficulty: 'intermediate', question: "What is the most abundant gas in the Earth's atmosphere?", options: ["Oxygen", "Carbon Dioxide", "Hydrogen", "Nitrogen"], answer: 3, hint: "It makes up about 78%." },
+      { difficulty: 'advanced', question: "What is the name of the process by which cells break down glucose to produce ATP without oxygen?", options: ["Photosynthesis", "Aerobic Respiration", "Anaerobic Respiration", "Transpiration"], answer: 2, hint: "The prefix 'an-' means without." },
+      { difficulty: 'advanced', question: "In physics, what principle states that the exact position and momentum of an electron cannot be simultaneously known?", options: ["Pauli Exclusion Principle", "Heisenberg Uncertainty Principle", "Bohr Model", "Schrödinger's Cat"], answer: 1, hint: "Named after Werner." },
+      { difficulty: 'advanced', question: "What is the rarest blood type among the general human population?", options: ["O positive", "A negative", "B positive", "AB negative"], answer: 3, hint: "It lacks both A and B antigens and the Rh factor." }
     ]
   },
   gk: {
     title: "General Knowledge",
-    description: "Test your general trivia. Feed the hungry.",
+    description: "Small trivia, massive impact. Help us achieve a hunger-free world, one question at a time.",
     questions: [
-      { difficulty: 'beginner', question: "Which is the largest ocean on Earth?", options: ["Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Arctic Ocean"], answer: 2, hint: "It covers more than 30% of the Earth's surface." },
-      { difficulty: 'beginner', question: "How many colors are there in a rainbow?", options: ["5", "6", "7", "8"], answer: 2, hint: "VIBGYOR color sequence." },
-      { difficulty: 'intermediate', question: "Which country is the native home of the Kangaroo?", options: ["South Africa", "Australia", "New Zealand", "Austria"], answer: 1, hint: "It is both a continent and a country." },
-      { difficulty: 'intermediate', question: "What is the capital city of Japan?", options: ["Kyoto", "Osaka", "Seoul", "Tokyo"], answer: 3, hint: "It is the most populous metropolitan area in the world." },
-      { difficulty: 'advanced', question: "What is the smallest country in the world by land area?", options: ["Monaco", "Vatican City", "San Marino", "Liechtenstein"], answer: 1, hint: "It is an independent city-state enclaved within Rome, Italy." }
-    ]
-  },
-  science: {
-    title: "Science & Space",
-    description: "Explore the universe. Feed the hungry.",
-    questions: [
-      { difficulty: 'beginner', question: "Which planet in our solar system is known as the Red Planet?", options: ["Venus", "Jupiter", "Mars", "Saturn"], answer: 2, hint: "It is named after the Roman god of war." },
-      { difficulty: 'beginner', question: "What gas do humans need to breathe in to survive?", options: ["Carbon Dioxide", "Nitrogen", "Oxygen", "Hydrogen"], answer: 2, hint: "It makes up about 21% of Earth's atmosphere." },
-      { difficulty: 'intermediate', question: "What is the chemical formula for water?", options: ["H2O", "CO2", "O2", "NaCl"], answer: 0, hint: "Two parts hydrogen, one part oxygen." },
-      { difficulty: 'intermediate', question: "Which is the closest star to Earth?", options: ["Alpha Centauri", "Sirius", "The Sun", "Betelgeuse"], answer: 2, hint: "It dominates our daylight sky." },
-      { difficulty: 'advanced', question: "What is the speed of light in a vacuum?", options: ["150,000 km/s", "299,792 km/s", "500,000 km/s", "1,000,000 km/s"], answer: 1, hint: "It is approximately 300,000 kilometers per second." }
-    ]
-  },
-  history: {
-    title: "History & Culture",
-    description: "Learn about the past. Feed the hungry.",
-    questions: [
-      { difficulty: 'beginner', question: "Who was the first President of the United States?", options: ["Abraham Lincoln", "Thomas Jefferson", "George Washington", "John Adams"], answer: 2, hint: "He is featured on the US one-dollar bill." },
-      { difficulty: 'beginner', question: "Which ancient civilization built the Great Pyramids?", options: ["Romans", "Greeks", "Egyptians", "Mayans"], answer: 2, hint: "They lived along the Nile River." },
-      { difficulty: 'intermediate', question: "In which year did World War II end?", options: ["1918", "1939", "1945", "1950"], answer: 2, hint: "It ended in 1945." },
-      { difficulty: 'intermediate', question: "Who painted the famous Mona Lisa?", options: ["Michelangelo", "Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso"], answer: 2, hint: "He was a famous Italian Renaissance polymath." },
-      { difficulty: 'advanced', question: "Which empire was ruled by Julius Caesar?", options: ["Ottoman Empire", "Roman Empire", "British Empire", "Mongol Empire"], answer: 1, hint: "It originated in the Italian peninsula and expanded across the Mediterranean." }
+      { difficulty: 'beginner', question: "How many continents are there on Earth?", options: ["5", "6", "7", "8"], answer: 2, hint: "Africa, Antarctica, Asia, Australia, Europe, North America, South America." },
+      { difficulty: 'beginner', question: "What is the capital city of France?", options: ["Rome", "Berlin", "Madrid", "Paris"], answer: 3, hint: "Home to the Eiffel Tower." },
+      { difficulty: 'beginner', question: "Which planet is known as the 'Red Planet'?", options: ["Venus", "Mars", "Jupiter", "Saturn"], answer: 1, hint: "Named after the Roman god of war." },
+      { difficulty: 'intermediate', question: "Which author wrote the 'Harry Potter' series?", options: ["J.R.R. Tolkien", "George R.R. Martin", "J.K. Rowling", "Stephen King"], answer: 2, hint: "Her first name is Joanne." },
+      { difficulty: 'intermediate', question: "What is the longest river in the world?", options: ["Amazon", "Nile", "Yangtze", "Mississippi"], answer: 1, hint: "Located in Africa." },
+      { difficulty: 'intermediate', question: "In what year did the Titanic sink?", options: ["1905", "1912", "1920", "1931"], answer: 1, hint: "It was early in the 20th century." },
+      { difficulty: 'advanced', question: "What is the smallest country in the world by land area?", options: ["Monaco", "San Marino", "Vatican City", "Liechtenstein"], answer: 2, hint: "It is an enclave within Rome, Italy." },
+      { difficulty: 'advanced', question: "Who was the first woman to win a Nobel Prize?", options: ["Rosalind Franklin", "Marie Curie", "Jane Addams", "Mother Teresa"], answer: 1, hint: "She won it in two different scientific fields." },
+      { difficulty: 'advanced', question: "What is the main ingredient in traditional Japanese miso soup?", options: ["Tofu", "Seaweed", "Fermented soybean paste", "Fish broth"], answer: 2, hint: "It involves fermentation." }
     ]
   }
 };

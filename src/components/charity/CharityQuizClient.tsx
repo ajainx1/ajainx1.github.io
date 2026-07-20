@@ -47,7 +47,7 @@ export default function CharityQuizClient() {
   const [lastPlayedDate, setLastPlayedDate] = useState('');
   const [dailyPlanetBonus, setDailyPlanetBonus] = useState({ name: '', targetRecipient: '', message: '' });
   
-  const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('network');
+  const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('animals');
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
   const [recipient, setRecipient] = useState('human');
@@ -610,197 +610,181 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   }
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-300 ${isDark ? 'bg-[#0a0f0d]/50 text-emerald-50' : 'bg-emerald-50/50 text-emerald-950'}`}>
+    <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 overflow-hidden relative ${isDark ? 'text-white' : 'text-slate-800'}`}>
       
-      {/* Background Gradients */}
-      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-        <div className={`absolute top-0 right-0 w-96 h-96 blur-[100px] rounded-full mix-blend-screen opacity-30 ${isDark ? 'bg-emerald-600/20' : 'bg-emerald-400/40'}`} />
-        <div className={`absolute bottom-0 left-0 w-96 h-96 blur-[100px] rounded-full mix-blend-screen opacity-30 ${isDark ? 'bg-emerald-600/20' : 'bg-emerald-400/40'}`} />
-        <div className={`absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] ${isDark ? 'invert-0' : 'invert'}`} />
+      {/* Professional iCloud Style Animated Background */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className={`absolute inset-0 transition-colors duration-700 ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`} />
+        
+        {/* Soft, Professional Animated Orbs */}
+        <motion.div 
+          animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full blur-[140px] opacity-40 ${isDark ? 'bg-indigo-900/50' : 'bg-sky-200/60'}`} 
+        />
+        <motion.div 
+          animate={{ x: [0, -50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
+          transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] rounded-full blur-[150px] opacity-40 ${isDark ? 'bg-slate-800/60' : 'bg-blue-100/70'}`} 
+        />
+        <motion.div 
+          animate={{ x: [0, 30, 0], y: [0, -50, 0], scale: [1, 1.05, 1] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute top-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full blur-[130px] opacity-30 ${isDark ? 'bg-sky-950/40' : 'bg-indigo-100/50'}`} 
+        />
+        <div className="absolute inset-0 backdrop-blur-[80px]" />
       </div>
 
       {/* Header */}
-      <header className={`sticky top-0 z-50 border-b px-4 sm:px-6 py-3 backdrop-blur-xl flex items-center justify-between ${isDark ? 'bg-[#0a0f0d]/50 border-emerald-900/50' : 'bg-emerald-50/50 border-emerald-200'}`}>
-        <Link href="/" className="flex items-center gap-2 text-sm font-mono font-medium text-emerald-500 hover:text-emerald-400 transition-colors">
-          <ArrowLeft size={16} /> Return
+      <header className={`sticky top-0 z-50 px-4 sm:px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
+        <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity">
+          <ArrowLeft size={16} /> Dashboard
         </Link>
         
-        <div className="flex items-center gap-2 font-mono font-bold text-lg tracking-tight">
-          <div className="w-6 h-6 rounded bg-emerald-500 text-white flex items-center justify-center text-xs">C</div>
-          <span className={isDark ? 'text-emerald-50' : 'text-emerald-950'}>Cyber<span className="text-emerald-500">FreeRice</span></span>
+        <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white flex items-center justify-center text-sm shadow-md">C</div>
+          <span>Charity Quiz</span>
         </div>
 
         <div className="flex items-center gap-3">
-          {walletAddress && (
-            <div className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-[10px] font-mono font-bold uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
-            </div>
-          )}
-          <div className="hidden md:flex items-center gap-2 px-2.5 py-1.5 rounded-lg border border-emerald-500/20 bg-emerald-500/5 text-[10px] font-mono text-emerald-500">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>{quizVisitorCount} quiz visits</span>
-          </div>
-
           {dailyStreak > 0 && (
-            <div className="flex items-center gap-1 text-xs font-mono font-bold text-amber-500 bg-amber-500/10 px-2.5 py-1.5 rounded-lg border border-amber-500/20">
-              🔥 {dailyStreak} Days
+            <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
+              🔥 {dailyStreak}
             </div>
           )}
 
-          <button onClick={toggleTheme} className={`p-2 rounded-lg transition-colors ${isDark ? 'bg-emerald-900/30 text-emerald-400 hover:bg-emerald-900/50' : 'bg-emerald-200 text-emerald-700 hover:bg-emerald-300'}`}>
+          <button onClick={toggleTheme} className="p-2 rounded-full bg-white/20 border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all shadow-sm">
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           {user ? (
-            <div className={`flex items-center gap-3 px-3 py-1.5 rounded-full border ${isDark ? 'bg-emerald-900/20 border-emerald-800' : 'bg-emerald-100 border-emerald-300'}`}>
-              <img src={user.avatar} alt="User" className="w-6 h-6 rounded-full border border-emerald-500" />
+            <div className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
+              <img src={user.avatar} alt="User" className="w-6 h-6 rounded-full shadow-sm" />
               <span className="text-xs font-semibold hidden sm:block">{user.name}</span>
               <button onClick={handleLogout} className="text-rose-500 hover:text-rose-400"><LogOut size={14} /></button>
             </div>
           ) : (
-            <button onClick={() => setShowEmailModal(true)} className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-500 text-white hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)]">
-              <User size={14} /> Login
+            <button onClick={() => setShowEmailModal(true)} className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-800 hover:bg-gray-50 transition-all shadow-md">
+              <User size={16} /> Sign In
             </button>
           )}
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-8">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-6">
         
         {/* Banner */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className={`w-full p-6 sm:p-8 rounded-3xl border text-center overflow-hidden relative ${isDark ? 'bg-[#0c1510]/50 border-emerald-950/60 shadow-lg shadow-emerald-950/10' : 'bg-emerald-100/50 border-emerald-200'}`}>
-          <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[40px] rounded-full" />
-          <h1 className="text-2xl sm:text-3xl font-black font-title tracking-tight mb-2 bg-gradient-to-r from-emerald-400 to-white bg-clip-text text-transparent">Play. Learn. Feed.</h1>
-          <p className={`text-xs sm:text-sm max-w-2xl mx-auto font-mono ${isDark ? 'text-emerald-200/50' : 'text-emerald-700/80'}`}>
-            Welcome to Cyber FreeRice — where your threat intelligence knowledge feeds global communities. For every correct answer, we stake <strong className="text-emerald-400">10 grains of rice</strong> to charities!
+        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className={`w-full p-8 rounded-[32px] text-center overflow-hidden relative shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Every Answer Saves a Life.</h1>
+          <p className="text-sm sm:text-base max-w-2xl mx-auto opacity-90 leading-relaxed">
+            Play daily to transform a life. For every correct answer, we donate <strong>10 grains of rice</strong> to feed rescue animals and vulnerable families globally. Your knowledge creates real-world miracles.
           </p>
         </motion.div>
 
-        {/* Daily Planetary alignment multiplier info */}
-        {dailyPlanetBonus.message && (
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="w-full bg-amber-500/10 border border-amber-500/20 rounded-xl p-3 text-center text-xs font-bold text-amber-500 flex items-center justify-center gap-2">
-            <Zap size={14} />
-            <span>{dailyPlanetBonus.message}</span>
-          </motion.div>
-        )}
-
         {/* Dynamic Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
           {/* Left Column: Active Quiz Panel */}
           <div className="lg:col-span-8 space-y-6">
             
-            {/* Categories & Difficulty */}
-            <div className="w-full flex flex-col sm:flex-row gap-4">
-              <div className={`flex flex-wrap gap-2 p-1.5 rounded-xl border w-full justify-between items-center ${isDark ? 'bg-[#0a0f0d] border-emerald-900/50' : 'bg-white border-emerald-200 shadow-sm'}`}>
-                <div className="flex flex-wrap gap-2">
+            {/* Categories & Difficulty Container */}
+            <div className={`p-2 rounded-[24px] backdrop-blur-2xl shadow-lg border flex flex-col sm:flex-row gap-2 justify-between items-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+                <div className="flex flex-wrap gap-1 w-full sm:w-auto p-1 bg-black/5 rounded-[20px]">
                   {(Object.keys(quizData) as CategoryKey[]).map(cat => (
                     <button
                       key={cat}
                       onClick={() => setCategory(cat)}
-                      className={`px-4 py-2 rounded-lg text-xs font-mono font-bold capitalize transition-all ${category === cat ? 'bg-emerald-500 text-white shadow-[0_0_10px_rgba(16,185,129,0.3)]' : isDark ? 'text-emerald-400 hover:bg-emerald-900/30' : 'text-emerald-600 hover:bg-emerald-50'}`}
+                      className={`px-4 py-2 rounded-[16px] text-sm font-medium capitalize transition-all ${category === cat ? 'bg-white text-slate-900 shadow-md' : 'opacity-70 hover:opacity-100 hover:bg-white/10'}`}
                     >
                       {cat}
                     </button>
                   ))}
-                  
-                  {/* Custom AI Quiz Button */}
                   <button
                     onClick={() => setShowAIModal(true)}
-                    className={`px-4 py-2 rounded-lg text-xs font-mono font-bold transition-all flex items-center gap-1.5 border border-purple-500/30 text-purple-400 hover:bg-purple-500/10 ${category === 'custom-ai' ? 'bg-purple-500 text-white border-purple-400 shadow-[0_0_10px_rgba(147,51,234,0.3)]' : ''}`}
+                    className={`px-4 py-2 rounded-[16px] text-sm font-medium transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : 'opacity-80 hover:opacity-100 hover:bg-white/10'}`}
                   >
-                    <Cpu size={12} /> Custom AI Quiz
+                    <Cpu size={14} /> AI Quiz
                   </button>
                 </div>
 
                 {category !== 'custom-ai' && (
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 p-1 bg-black/5 rounded-[20px]">
                     {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
                       <button
                         key={diff}
                         onClick={() => setDifficulty(diff)}
-                        className={`px-3 py-1.5 rounded-lg text-[10px] font-mono font-bold capitalize transition-all ${difficulty === diff ? (isDark ? 'bg-emerald-900/40 text-emerald-400 border border-emerald-700' : 'bg-emerald-100 text-emerald-700 border border-emerald-300') : (isDark ? 'text-emerald-500/50 hover:text-emerald-400' : 'text-emerald-600/60 hover:text-emerald-600')}`}
+                        className={`px-3 py-1.5 rounded-[14px] text-xs font-semibold capitalize transition-all ${difficulty === diff ? 'bg-blue-500 text-white shadow-md' : 'opacity-60 hover:opacity-100'}`}
                       >
                         {diff}
                       </button>
                     ))}
                   </div>
                 )}
-              </div>
             </div>
 
             {/* Quiz Area */}
             <div className="w-full">
               <AnimatePresence mode="wait">
                 {showAICompletion && (
-                  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className={`w-full p-8 rounded-2xl border text-center shadow-xl ${isDark ? 'bg-[#0d1310]/80 border-purple-800/40' : 'bg-white/80 border-purple-200'}`}>
-                    <div className="w-16 h-16 bg-purple-500/10 border border-purple-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                      <Award size={32} className="text-purple-400" />
+                  <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className={`w-full p-10 rounded-[32px] text-center shadow-xl backdrop-blur-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
+                    <div className="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                      <Award size={40} className="text-white" />
                     </div>
-                    <h3 className="text-xl font-bold font-mono text-purple-400 mb-2">Custom AI Quiz Completed!</h3>
-                    <p className={`text-sm mb-6 ${isDark ? 'text-emerald-50/60' : 'text-emerald-950/60'}`}>
-                      You answered {aiCorrectCount} of 5 questions correctly on the topic: <strong>{aiTopic}</strong>. This generated <strong>{aiCorrectCount * 10} grains</strong> of charitable rice!
+                    <h3 className="text-2xl font-bold mb-3">Quiz Completed!</h3>
+                    <p className="text-base opacity-80 mb-8">
+                      You answered {aiCorrectCount} of 5 questions correctly on <strong>{aiTopic}</strong>. <br/>You generated <strong>{aiCorrectCount * 10} grains</strong> of rice!
                     </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                      <button onClick={handleShareAIResult} className="px-5 py-2.5 rounded-xl font-bold bg-purple-600 hover:bg-purple-500 text-white flex items-center gap-2 transition-colors">
-                        <Share2 size={16} /> Share & Brag on LinkedIn/X
+                    <div className="flex justify-center gap-4">
+                      <button onClick={handleShareAIResult} className="px-6 py-3 rounded-full font-semibold bg-white text-slate-800 shadow-md hover:scale-105 transition-transform flex items-center gap-2">
+                        <Share2 size={18} /> Share Result
                       </button>
-                      <button onClick={() => setShowAIModal(true)} className={`px-5 py-2.5 rounded-xl font-bold border transition-colors ${isDark ? 'border-emerald-800 text-emerald-400 hover:bg-emerald-900/25' : 'border-emerald-200 text-emerald-700 hover:bg-emerald-50'}`}>
-                        Play New Topic
+                      <button onClick={() => setShowAIModal(true)} className="px-6 py-3 rounded-full font-semibold bg-black/10 hover:bg-black/20 transition-colors">
+                        New Topic
                       </button>
                     </div>
                   </motion.div>
                 )}
 
                 {currentQuestion ? (
-                  <TiltWrapper tiltDeg={4}>
                     <motion.div
                       key={currentQuestion.question}
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: -20 }}
-                      className={`w-full rounded-3xl border p-6 sm:p-8 shadow-xl relative overflow-hidden ${isDark ? 'bg-[#0d1310]/80 border-emerald-900/30 backdrop-blur-md' : 'bg-white/85 border-emerald-200 shadow-sm'}`}
+                      className={`w-full rounded-[32px] border p-8 sm:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl relative overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}
                     >
-                      {/* Sheen sweep */}
-                      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-emerald-500/5 to-transparent -translate-x-full hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-                      
-                      {/* Decorative top border line */}
-                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-emerald-500 to-transparent opacity-50 rounded-t-3xl" />
-                      
                       {category === 'custom-ai' && (
-                        <div className="text-[10px] font-mono text-purple-400 font-bold mb-4 uppercase tracking-widest">
-                          🤖 AI Quiz: Question {aiIndex + 1} of {aiQuestions.length} ({aiTopic})
+                        <div className="text-xs font-bold text-purple-500 uppercase tracking-wide mb-5 flex items-center gap-2">
+                          <Cpu size={14}/> AI Quiz: Question {aiIndex + 1} of {aiQuestions.length} ({aiTopic})
                         </div>
                       )}
 
                       {currentQuestion.scenario && (
-                        <div className={`p-4 rounded-2xl border mb-6 text-xs sm:text-sm font-mono leading-relaxed ${isDark ? 'bg-[#060a08]/90 border-emerald-950/60 text-emerald-300' : 'bg-emerald-50 border-emerald-200 text-emerald-800'}`}>
-                          <span className="text-emerald-500/60 uppercase text-[9px] block mb-1">Scenario Intel</span>
+                        <div className={`p-5 rounded-[20px] mb-6 text-sm leading-relaxed border ${isDark ? 'bg-black/20 border-white/5' : 'bg-white/40 border-white/50 shadow-sm'}`}>
                           {currentQuestion.scenario}
                         </div>
                       )}
                       
-                      <h3 className={`text-base sm:text-lg font-bold mb-8 leading-relaxed ${isDark ? 'text-emerald-50' : 'text-emerald-950'}`}>
+                      <h3 className="text-lg sm:text-xl font-semibold mb-8 leading-relaxed">
                         {currentQuestion.question}
                       </h3>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-3">
                         {currentQuestion.options.map((opt, i) => {
-                          let btnClass = `p-4 rounded-2xl border text-xs sm:text-sm font-medium transition-all flex items-center justify-center text-center `;
+                          let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border `;
                           if (isAnswered) {
                             if (i === currentQuestion.answer) {
-                              btnClass += `bg-emerald-500 text-white border-emerald-400 shadow-[0_0_15px_rgba(16,185,129,0.4)] z-10 `;
+                              btnClass += `bg-green-500 text-white border-green-400 shadow-md z-10 scale-[1.02] `;
                             } else if (i === selectedAnswer) {
-                              btnClass += `bg-rose-500/10 border-rose-500/50 text-rose-500 `;
+                              btnClass += `bg-red-500/10 border-red-500/30 text-red-500 opacity-70 `;
                             } else {
-                              btnClass += isDark ? `bg-[#0a0f0d] border-emerald-900/30 text-emerald-500/40 ` : `bg-gray-50 border-gray-200 text-gray-400 `;
+                              btnClass += isDark ? `bg-white/5 border-white/5 opacity-40 ` : `bg-black/5 border-black/5 opacity-50 `;
                             }
                           } else {
                             btnClass += isDark 
-                              ? `bg-[#070c09] border-emerald-950/60 text-emerald-200 hover:bg-emerald-950/50 hover:border-emerald-500/50 hover:text-white cursor-pointer`
-                              : `bg-white border-emerald-200 text-emerald-800 hover:bg-emerald-50 hover:border-emerald-400 cursor-pointer shadow-sm hover:shadow`;
+                              ? `bg-white/5 border-white/10 hover:bg-white/10 hover:scale-[1.01] cursor-pointer`
+                              : `bg-white/60 border-white/80 hover:bg-white hover:scale-[1.01] cursor-pointer hover:shadow-md`;
                           }
 
                           return (
@@ -810,294 +794,173 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               onClick={() => handleAnswer(i)}
                               className={btnClass}
                             >
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : 'bg-black/5')}`}>
+                                {String.fromCharCode(65 + i)}
+                              </div>
                               {opt}
                             </button>
                           );
                         })}
                       </div>
 
-                      <div className="mt-6 flex flex-col sm:flex-row justify-between items-center gap-4 min-h-[40px]">
+                      <div className="mt-8 flex justify-between items-center min-h-[40px]">
                         <AnimatePresence>
                           {feedback && (
-                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`text-xs font-bold font-mono tracking-wide ${feedback.type === 'success' ? 'text-emerald-400' : feedback.type === 'error' ? 'text-rose-500' : 'text-amber-500'}`}>
+                            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className={`text-sm font-semibold px-4 py-2 rounded-full ${feedback.type === 'success' ? 'bg-green-500/20 text-green-600 dark:text-green-400' : feedback.type === 'error' ? 'bg-red-500/20 text-red-600 dark:text-red-400' : 'bg-blue-500/20 text-blue-600 dark:text-blue-400'}`}>
                               {feedback.text}
                             </motion.div>
                           )}
                         </AnimatePresence>
                         
                         {currentQuestion.hint && !isAnswered && (
-                          <div className="flex-1 text-right w-full sm:w-auto">
+                          <div className="flex-1 text-right">
                             {showHint ? (
-                              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`inline-block p-3 rounded-xl border text-[11px] font-mono text-left ${isDark ? 'bg-amber-900/20 border-amber-500/30 text-amber-300' : 'bg-amber-50 border-amber-200 text-amber-800'}`}>
-                                💡 Hint: {currentQuestion.hint}
+                              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className={`inline-block p-4 rounded-[20px] text-sm text-left border shadow-sm ${isDark ? 'bg-white/10 border-white/20' : 'bg-white/80 border-white/100'}`}>
+                                💡 {currentQuestion.hint}
                               </motion.div>
                             ) : (
-                              <button onClick={handleUseHint} disabled={score < 5} className={`px-4 py-2 rounded-full text-[10px] font-mono font-bold border border-dashed transition-colors ${score >= 5 ? (isDark ? 'border-amber-500/50 text-amber-500 hover:bg-amber-900/30' : 'border-amber-400 text-amber-600 hover:bg-amber-50') : (isDark ? 'border-emerald-900/50 text-emerald-700 cursor-not-allowed' : 'border-gray-300 text-gray-400 cursor-not-allowed')}`}>
-                                <Lightbulb size={12} className="inline mr-1" />
-                                Use Hint (-5 Grains)
+                              <button onClick={handleUseHint} disabled={score < 5} className={`px-5 py-2.5 rounded-full text-xs font-semibold shadow-sm transition-colors ${score >= 5 ? (isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50') : 'opacity-40 cursor-not-allowed'}`}>
+                                <Lightbulb size={14} className="inline mr-1" /> Use Hint (-5 Grains)
                               </button>
                             )}
                           </div>
                         )}
                       </div>
                     </motion.div>
-                  </TiltWrapper>
                 ) : (
                   !showAICompletion && (
-                    <motion.div className={`p-8 text-center rounded-2xl border ${isDark ? 'bg-emerald-900/10 border-emerald-800/50 text-emerald-500/60' : 'bg-emerald-50 border-emerald-200 text-emerald-600'}`}>
-                      <p>Loading questions or no questions available for this difficulty.</p>
+                    <motion.div className={`p-10 text-center rounded-[32px] backdrop-blur-2xl shadow-lg border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+                      <p className="opacity-70">Loading questions...</p>
                     </motion.div>
                   )
                 )}
               </AnimatePresence>
             </div>
-
-            {/* Sponsored Placement Section (Monetization Demo) */}
-            <div className={`p-6 rounded-3xl border text-center ${isDark ? 'bg-purple-950/5 border-purple-900/20' : 'bg-purple-50/50 border-purple-200'}`}>
-              <span className="text-[9px] font-mono font-bold text-purple-500 uppercase tracking-widest block mb-2">Sponsored Placement</span>
-              <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <div className="text-left max-w-xl">
-                  <h4 className="text-sm font-mono font-bold">Upgrade your skills with OffSec (OSCP)</h4>
-                  <p className={`text-xs mt-1 ${isDark ? 'text-emerald-50/50' : 'text-emerald-950/50'}`}>
-                    OffSec has pledged to match up to 100,000 grains of rice today! Learn advanced penetration testing and support global food programs.
-                  </p>
-                </div>
-                <a href="https://www.offsec.com/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 rounded-lg text-xs font-bold bg-purple-600 text-white hover:bg-purple-500 transition-colors shrink-0">
-                  Visit OffSec
-                </a>
-              </div>
-            </div>
-
           </div>
 
-          {/* Right Column: Staking Stats & Badges */}
+          {/* Right Column: Staking Stats & Widgets */}
           <div className="lg:col-span-4 space-y-6">
             
-            {/* Score Board */}
-            <TiltWrapper tiltDeg={4}>
-              <motion.div layout className={`w-full rounded-3xl border p-6 text-center relative overflow-hidden shadow-xl ${isDark ? 'bg-gradient-to-b from-emerald-950/20 to-[#0a0f0d] border-emerald-900/30' : 'bg-white border-emerald-200'}`}>
-                <div className="absolute -top-24 -left-24 w-48 h-48 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none" />
-                
-                {/* Level Indicator */}
-                <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-bold text-emerald-400">
-                  <span>🛡️ Level {level}: {currentLevelTitle}</span>
-                </div>
+            {/* Main Score Widget */}
+            <motion.div layout className={`w-full rounded-[32px] border p-8 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
+              
+              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-500 shadow-inner">
+                Level {level}: {currentLevelTitle}
+              </div>
+              
+              <div className="flex flex-col items-center justify-center gap-2 mb-6">
+                <motion.span 
+                  key={score}
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  className="text-6xl font-bold tracking-tight"
+                >
+                  {score.toLocaleString()}
+                </motion.span>
+                <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Grains Donated</span>
+              </div>
 
-                <h2 className={`text-[10px] font-mono font-bold uppercase tracking-[0.3em] mb-4 ${isDark ? 'text-emerald-500/70' : 'text-emerald-600/70'}`}>Impact Generated</h2>
-                
-                <div className="flex items-center justify-center gap-4 mb-2">
-                  <span className="text-4xl drop-shadow-lg">🌟</span>
-                  <motion.span 
-                    key={score}
-                    initial={{ scale: 1.2, color: '#10b981' }}
-                    animate={{ scale: 1, color: isDark ? '#34d399' : '#059669' }}
-                    className="text-5xl font-black font-mono tracking-tighter text-emerald-400 drop-shadow-[0_0_15px_rgba(16,185,129,0.3)]"
-                  >
-                    {score.toLocaleString()}
-                  </motion.span>
-                </div>
-
-                <div className="relative h-20 flex flex-col items-center justify-center">
-                  <AnimatePresence>
-                    {riceGrains.map(grain => (
-                      <motion.span
-                        key={grain.id}
-                        initial={{ opacity: 0, y: -40, scale: 0.5, rotate: 0 }}
-                        animate={{ opacity: 1, y: 20, scale: 1, rotate: 90 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.8, ease: "easeIn" }}
-                        className="absolute text-2xl z-10"
-                        style={{ left: grain.left, animationDelay: grain.delay }}
-                      >
-                        {grain.icon}
-                      </motion.span>
-                    ))}
-                  </AnimatePresence>
-                  <motion.div animate={riceGrains.length ? { y: [0, 5, 0], scale: [1, 1.1, 1] } : {}} className="text-5xl relative z-20 mt-4">
-                    {recipientIcons[recipient].base}
-                    <motion.span animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute -top-4 -right-4 text-xl">
-                      {recipientIcons[recipient].float}
-                    </motion.span>
-                  </motion.div>
-                </div>
-
-                <div className={`w-full h-2 rounded-full overflow-hidden mt-6 border ${isDark ? 'bg-[#050a07] border-emerald-950/40' : 'bg-emerald-100 border-emerald-200'}`}>
-                  <motion.div className="h-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.8)]" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
-                </div>
-                <span className={`text-[9px] font-mono mt-2 block ${isDark ? 'text-emerald-500/50' : 'text-emerald-600/70'}`}>{milestone} / 500 grains for a bowl</span>
-
-                {/* Streak Shields Shop */}
-                <div className="flex items-center justify-between gap-2 border-t border-b border-dashed border-emerald-950/40 py-2.5 my-4 text-[10px] font-mono">
-                  <span className="text-emerald-500/70">🛡️ Shields: {streakShields}</span>
-                  <button 
-                    onClick={handleBuyShield}
-                    disabled={score < 500}
-                    className="px-2 py-0.5 rounded bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold transition-all disabled:opacity-30 disabled:pointer-events-none"
-                  >
-                    Buy (500)
-                  </button>
-                </div>
-
-                <div className="mt-4 flex flex-col gap-3 items-center">
-                  <AnimatePresence>
-                    {streak >= 3 && (
-                      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="text-xs font-bold text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]">
-                        🔥 {streak} Correct Streak!
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  <button onClick={handleShare} className={`w-full flex items-center justify-center gap-2 py-2 rounded-xl text-xs font-bold transition-all border ${isDark ? 'border-emerald-700 text-emerald-400 hover:bg-emerald-900/30' : 'border-emerald-300 text-emerald-700 hover:bg-emerald-50'}`}>
-                    <Share2 size={12} /> Share Impact
-                  </button>
-                  {level >= 3 && (
-                    <button
-                      onClick={handleMintSoulboundNFT}
-                      disabled={isMinting || nftMinted}
-                      className={`w-full flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-all border ${
-                        nftMinted 
-                          ? 'border-emerald-500/20 bg-emerald-500/10 text-emerald-400 cursor-default' 
-                          : 'border-[#38bdf8]/30 bg-[#38bdf8]/10 text-[#38bdf8] hover:bg-[#38bdf8]/20 shadow-[0_0_10px_rgba(56,189,248,0.2)]'
-                      }`}
+              <div className="relative h-24 flex flex-col items-center justify-center">
+                <AnimatePresence>
+                  {riceGrains.map(grain => (
+                    <motion.span
+                      key={grain.id}
+                      initial={{ opacity: 0, y: -40, scale: 0.5 }}
+                      animate={{ opacity: 1, y: 20, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      className="absolute text-3xl z-10"
+                      style={{ left: grain.left, animationDelay: grain.delay }}
                     >
-                      <Award size={14} />
-                      <span>{isMinting ? "Minting SBT..." : nftMinted ? "SBT Minted! ✓" : "Mint Proof SBT"}</span>
-                    </button>
-                  )}
-                </div>
-              </motion.div>
-            </TiltWrapper>
+                      {grain.icon}
+                    </motion.span>
+                  ))}
+                </AnimatePresence>
+                <motion.div animate={riceGrains.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20">
+                  {recipientIcons[recipient].base}
+                </motion.div>
+              </div>
 
-            {/* Choose Recipient Staking */}
-            <div className={`p-5 rounded-3xl border text-center ${isDark ? 'bg-[#0c1510]/50 border-emerald-950/60 shadow-lg' : 'bg-white border-emerald-200'}`}>
-              <p className={`text-[10px] font-mono uppercase tracking-widest mb-3 ${isDark ? 'text-emerald-500/60' : 'text-emerald-600/70'}`}>Choose Staking Path</p>
-              <div className="flex flex-col gap-2">
+              <div className={`w-full h-3 rounded-full overflow-hidden mt-8 shadow-inner ${isDark ? 'bg-black/30' : 'bg-black/5'}`}>
+                <motion.div className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
+              </div>
+              <span className="text-[10px] font-semibold mt-3 block opacity-60">{milestone} / 500 for a full bowl</span>
+
+              <div className="mt-8">
+                <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>
+                  <Share2 size={16} /> Share Impact
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Recipients Widget */}
+            <div className={`p-6 rounded-[32px] border shadow-lg backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+              <h3 className="text-sm font-bold mb-4 opacity-80 px-2">Support Target</h3>
+              <div className="grid grid-cols-2 gap-3">
                 {Object.entries(recipientIcons).slice(0, 4).map(([key, info]) => (
                   <button
                     key={key}
                     onClick={() => setRecipient(key)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center justify-between ${recipient === key ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/20' : (isDark ? 'bg-[#050a07] text-emerald-400 border border-emerald-950/60 hover:bg-[#070c09]' : 'bg-white text-emerald-700 border border-emerald-200')}`}
+                    className={`p-4 rounded-[20px] text-sm font-semibold transition-all flex flex-col items-center gap-2 text-center border ${recipient === key ? 'bg-blue-500 text-white shadow-lg border-blue-400' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-white/80 hover:bg-white shadow-sm')}`}
                   >
-                    <span>{info.base.slice(0, 2)} {info.label}</span>
-                    {recipient === key && <span className="text-[10px] font-mono bg-emerald-600/30 text-white px-2 py-0.5 rounded-md">ACTIVE</span>}
+                    <span className="text-2xl">{info.base.slice(0, 2)}</span>
+                    <span className="text-xs">{info.label.split(' ')[0]}</span>
                   </button>
-                ))}
-                
-                <button onClick={() => setShowAstro(!showAstro)} className={`px-4 py-2 rounded-xl text-xs font-bold border border-dashed transition-all ${isDark ? 'border-emerald-700 text-emerald-500 hover:bg-emerald-900/20' : 'border-emerald-300 text-emerald-600 hover:bg-emerald-50'}`}>
-                  {showAstro ? 'Hide Cosmic Staking' : 'Show Cosmic Staking'}
-                </button>
-
-                <AnimatePresence>
-                  {showAstro && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      className="flex flex-col gap-2 overflow-hidden pt-2"
-                    >
-                      {Object.entries(recipientIcons).slice(4).map(([key, info]) => (
-                        <button
-                          key={key}
-                          onClick={() => setRecipient(key)}
-                          className={`px-4 py-2 rounded-xl text-[10px] font-bold transition-all flex items-center justify-between ${recipient === key ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20' : (isDark ? 'bg-[#050a07] text-indigo-400 border border-indigo-950/60 hover:bg-[#070c09]' : 'bg-white text-indigo-700 border border-emerald-200')}`}
-                        >
-                          <span>{info.base.slice(0, 2)} {info.label}</span>
-                          {recipient === key && <span className="text-[10px] font-mono bg-indigo-700/30 text-white px-2 py-0.5 rounded-md">ACTIVE</span>}
-                        </button>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </div>
-
-            {/* Staking Nodes Panel */}
-            <div className={`p-6 rounded-3xl border ${isDark ? 'bg-[#0c1510]/50 border-emerald-950/60 shadow-lg' : 'bg-white border-emerald-200'}`}>
-              <div className="flex items-center gap-2 mb-4">
-                <Network className="w-4 h-4 text-[#38bdf8]" />
-                <h3 className="text-xs font-black font-mono tracking-wider uppercase text-white">Staking Nodes</h3>
-              </div>
-              <div className="space-y-3">
-                {stakingNodes.map((node, i) => (
-                  <div key={i} className={`p-3 rounded-2xl border text-[10px] font-mono flex flex-col gap-1.5 ${isDark ? 'bg-[#050a07] border-emerald-950/40' : 'bg-slate-50 border-slate-200'}`}>
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-[#38bdf8] flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        {node.name}
-                      </span>
-                      <span className="text-[8px] px-1.5 py-0.2 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{node.status}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-slate-500">
-                      <span>Address:</span>
-                      <span>{node.address}</span>
-                    </div>
-                    <div className="flex items-center justify-between text-slate-500">
-                      <span>Latency:</span>
-                      <span>{node.latency}</span>
-                    </div>
-                    <div className="flex items-center justify-between pt-1.5 border-t border-emerald-950/20 text-slate-400">
-                      <span>Staked Grains:</span>
-                      <span className="text-white font-bold tracking-normal">{node.staked.toLocaleString()}</span>
-                    </div>
-                  </div>
                 ))}
               </div>
             </div>
 
           </div>
-
         </div>
       </main>
 
       {/* AI Quiz Settings Modal */}
       <AnimatePresence>
         {showAIModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className={`w-full max-w-md p-8 rounded-3xl border shadow-2xl text-center ${isDark ? 'bg-[#0d1310] border-purple-500/30 shadow-[0_0_50px_rgba(147,51,234,0.1)]' : 'bg-white border-emerald-200 shadow-emerald-500/20'}`}>
-              <h3 className="text-xl font-bold text-purple-400 mb-2">Create Custom AI Quiz</h3>
-              <p className={`text-xs mb-6 ${isDark ? 'text-emerald-200/50' : 'text-emerald-700/60'}`}>
-                Enter any topic (e.g. World History, Indian Cuisine, JavaScript) and feed charities by answering AI-crafted questions!
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-md p-8 rounded-[32px] shadow-2xl border ${isDark ? 'bg-[#1c1c1e] border-white/10' : 'bg-white/90 border-white/100 backdrop-blur-xl'}`}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg rotate-3">
+                <Cpu size={32} className="text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-center mb-2">Custom AI Quiz</h3>
+              <p className="text-sm text-center opacity-60 mb-8">
+                Enter any topic and generate a quiz to feed charities!
               </p>
 
-              <div className="text-left mb-4">
-                <label className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-widest block mb-2">1. Choose Your Topic</label>
+              <div className="mb-5">
+                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Topic</label>
                 <input
                   type="text"
                   value={aiTopic}
                   onChange={e => setAiTopic(e.target.value)}
                   placeholder="e.g., Space Exploration"
                   disabled={isGeneratingAI}
-                  className={`w-full p-3 rounded-xl border text-center outline-none transition-all ${isDark ? 'bg-[#0a0f0d] border-purple-900/50 focus:border-purple-500 text-emerald-50' : 'bg-gray-50 border-purple-200 focus:border-purple-400 text-emerald-950'}`}
+                  className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
                 />
               </div>
 
-              <div className="text-left mb-6">
-                <label className="text-[10px] font-mono font-bold text-purple-400 uppercase tracking-widest block mb-1">2. Enter Gemini API Key</label>
-                <span className={`text-[9px] block mb-2 ${isDark ? 'text-emerald-500/40' : 'text-emerald-700/50'}`}>
-                  Get a free API key instantly at <a href="https://aistudio.google.com/" target="_blank" rel="noreferrer" className="underline text-emerald-500 hover:text-emerald-400">Google AI Studio</a>.
-                </span>
+              <div className="mb-8">
+                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Gemini API Key</label>
                 <input
                   type="password"
                   value={aiKey}
                   onChange={e => setAiKey(e.target.value)}
                   placeholder="Paste AI key here..."
                   disabled={isGeneratingAI}
-                  className={`w-full p-3 rounded-xl border text-center outline-none transition-all ${isDark ? 'bg-[#0a0f0d] border-purple-900/50 focus:border-purple-500 text-emerald-50' : 'bg-gray-50 border-purple-200 focus:border-purple-400 text-emerald-950'}`}
+                  className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
                 />
               </div>
 
-              <button
-                onClick={handleGenerateAIQuiz}
-                disabled={isGeneratingAI}
-                className="w-full py-3.5 rounded-xl font-bold bg-purple-600 text-white hover:bg-purple-500 disabled:opacity-50 transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(147,51,234,0.3)]"
-              >
-                {isGeneratingAI ? (
-                  <>🤖 Crafting Questions...</>
-                ) : (
-                  <>🔮 Generate custom Quiz</>
-                )}
-              </button>
-
-              <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className={`mt-6 text-xs font-semibold ${isDark ? 'text-rose-500/80 hover:text-rose-400' : 'text-rose-600 hover:text-rose-500'}`}>Cancel</button>
+              <div className="flex flex-col gap-3">
+                <button
+                  onClick={handleGenerateAIQuiz}
+                  disabled={isGeneratingAI}
+                  className="w-full py-4 rounded-[20px] font-bold bg-black text-white dark:bg-white dark:text-black hover:scale-[1.02] disabled:opacity-50 transition-all shadow-lg flex items-center justify-center gap-2"
+                >
+                  {isGeneratingAI ? 'Generating...' : 'Generate Quiz'}
+                </button>
+                <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
+              </div>
             </motion.div>
           </motion.div>
         )}
@@ -1106,33 +969,39 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       {/* Auth Modal */}
       <AnimatePresence>
         {showEmailModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
-            <motion.div initial={{ scale: 0.95 }} animate={{ scale: 1 }} exit={{ scale: 0.95 }} className={`w-full max-w-sm p-8 rounded-3xl border shadow-2xl text-center ${isDark ? 'bg-[#0d1310] border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.1)]' : 'bg-white border-emerald-200 shadow-emerald-500/20'}`}>
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-sm p-8 rounded-[32px] shadow-2xl border text-center ${isDark ? 'bg-[#1c1c1e] border-white/10' : 'bg-white/90 border-white/100 backdrop-blur-xl'}`}>
               {!magicLinkSent ? (
                 <>
-                  <h3 className="text-xl font-bold text-emerald-500 mb-2">Email Login</h3>
-                  <p className={`text-xs mb-6 ${isDark ? 'text-emerald-200/50' : 'text-emerald-700/60'}`}>Enter your email to receive a secure login link (Magic Link).</p>
+                  <div className="w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-blue-500/30">
+                    <User size={32} className="text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-2">Sign In</h3>
+                  <p className="text-sm opacity-60 mb-8">Enter your email to receive a secure login link.</p>
                   <input
                     type="email"
                     value={emailInput}
                     onChange={e => setEmailInput(e.target.value)}
-                    placeholder="you@example.com"
-                    className={`w-full p-3 rounded-xl border text-center mb-4 outline-none transition-all ${isDark ? 'bg-[#0a0f0d] border-emerald-900/50 focus:border-emerald-500 text-emerald-50' : 'bg-gray-50 border-emerald-200 focus:border-emerald-400 text-emerald-950'}`}
+                    placeholder="name@example.com"
+                    className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner mb-6 text-center ${isDark ? 'bg-black/30 border-white/10 focus:border-blue-500' : 'bg-gray-50 border-gray-200 focus:border-blue-400'}`}
                   />
-                  <button onClick={sendMagicLink} disabled={isSendingMagicLink} className="w-full py-3 rounded-xl font-bold bg-emerald-500 text-white hover:bg-emerald-400 transition-colors disabled:opacity-50">
-                    {isSendingMagicLink ? 'Sending...' : 'Send Magic Link'}
-                  </button>
+                  <div className="flex flex-col gap-3">
+                    <button onClick={sendMagicLink} disabled={isSendingMagicLink} className="w-full py-4 rounded-[20px] font-bold bg-blue-500 text-white hover:scale-[1.02] disabled:opacity-50 transition-all shadow-md shadow-blue-500/20">
+                      {isSendingMagicLink ? 'Sending...' : 'Send Magic Link'}
+                    </button>
+                    <button onClick={() => setShowEmailModal(false)} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
+                  </div>
                 </>
               ) : (
                 <>
-                  <div className="w-16 h-16 mx-auto bg-emerald-500/20 rounded-full flex items-center justify-center mb-4">
-                    <span className="text-3xl">✅</span>
+                  <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30">
+                    <span className="text-4xl">✓</span>
                   </div>
-                  <p className="text-lg font-bold text-emerald-500 mb-2">Magic Link Sent!</p>
-                  <p className={`text-xs mb-6 ${isDark ? 'text-emerald-200/50' : 'text-emerald-700/60'}`}>Check your inbox and click the link to instantly log in and sync your karmic impact.</p>
+                  <h3 className="text-2xl font-bold mb-3">Check your inbox</h3>
+                  <p className="text-sm opacity-60 mb-8">We sent a magic link to {emailInput}. Click it to log in securely.</p>
+                  <button onClick={() => setShowEmailModal(false)} className="py-4 font-semibold opacity-60 hover:opacity-100">Close</button>
                 </>
               )}
-              <button onClick={() => setShowEmailModal(false)} className={`mt-6 text-xs font-semibold ${isDark ? 'text-rose-500/80 hover:text-rose-400' : 'text-rose-600 hover:text-rose-500'}`}>Cancel</button>
             </motion.div>
           </motion.div>
         )}
@@ -1142,45 +1011,33 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       <AnimatePresence>
         {showLevelUpModal && (
           <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-lg"
           >
             <motion.div
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.5, opacity: 0 }}
-              className={`w-full max-w-sm rounded-3xl border p-8 text-center relative overflow-hidden shadow-2xl ${isDark ? 'bg-gradient-to-b from-amber-950/40 to-[#0b0f19] border-amber-500/30' : 'bg-white border-amber-300'}`}
+              initial={{ scale: 0.8, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.8, opacity: 0, y: 30 }}
+              className={`w-full max-w-sm rounded-[32px] shadow-2xl border p-10 text-center relative overflow-hidden ${isDark ? 'bg-[#1c1c1e] border-white/10' : 'bg-white/90 border-white/100 backdrop-blur-xl'}`}
             >
-              {/* Glowing Amber Light Background */}
-              <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-48 h-48 bg-amber-500/20 blur-[50px] rounded-full pointer-events-none" />
+              <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: 'linear' }} className="absolute -top-32 -left-32 w-64 h-64 bg-yellow-400/20 blur-[60px] rounded-full pointer-events-none" />
+              
+              <div className="text-7xl mb-6 inline-block">🌟</div>
+              <h3 className="text-3xl font-bold mb-2">Level Up!</h3>
+              <p className="text-sm opacity-70 mb-8">Your impact is growing globally.</p>
 
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                className="text-6xl mb-4 inline-block drop-shadow-[0_0_15px_rgba(245,158,11,0.5)]"
-              >
-                🌟
-              </motion.div>
-
-              <h3 className="text-2xl font-black font-title text-amber-500 mb-2">Rank Up!</h3>
-              <p className={`text-xs mb-6 ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>
-                Incredible knowledge! Your answers are generating high impact for global charities.
-              </p>
-
-              <div className={`p-4 rounded-2xl mb-6 border ${isDark ? 'bg-amber-950/20 border-amber-500/20' : 'bg-amber-50 border-amber-200'}`}>
-                <div className="text-[10px] font-mono uppercase tracking-wider text-amber-500 mb-1">New Title Earned</div>
-                <div className="text-lg font-bold font-title text-[var(--fg)]">
+              <div className={`p-6 rounded-[24px] mb-8 border shadow-inner ${isDark ? 'bg-black/30 border-white/5' : 'bg-gray-50 border-gray-200'}`}>
+                <div className="text-xs font-bold uppercase tracking-wider text-blue-500 mb-2">New Rank</div>
+                <div className="text-xl font-bold">
                   Level {levelUpData.level}: {levelUpData.title}
                 </div>
               </div>
 
               <button
                 onClick={() => setShowLevelUpModal(false)}
-                className="w-full py-3 px-6 rounded-xl bg-amber-500 text-black font-bold hover:bg-amber-400 active:scale-95 transition-all shadow-[0_0_15px_rgba(245,158,11,0.4)]"
+                className="w-full py-4 rounded-[20px] bg-blue-500 text-white font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/30"
               >
-                Continue Feeding
+                Continue Playing
               </button>
             </motion.div>
           </motion.div>
