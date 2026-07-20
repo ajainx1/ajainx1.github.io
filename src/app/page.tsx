@@ -170,17 +170,31 @@ export default function GatewayPage() {
           style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
           className="text-center px-4 flex flex-col items-center z-10 sticky top-[30vh]"
         >
-          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none mb-6">
+          <h1 className="text-5xl md:text-7xl lg:text-[8rem] font-black tracking-tighter leading-none mb-6">
             <span className="block bg-gradient-to-r from-white via-slate-300 to-slate-500 bg-clip-text text-transparent">Mind-blowing.</span>
-            <span className="block bg-gradient-to-r from-slate-500 via-slate-300 to-white bg-clip-text text-transparent">Web3-turning.</span>
+            <span className="block bg-gradient-to-r from-slate-500 via-slate-300 to-white bg-clip-text text-transparent">Architectural Perfection.</span>
           </h1>
-          <p className="text-xl md:text-3xl font-medium tracking-tight opacity-70 max-w-3xl">
-            Decentralized security, gamified yields, and cryptographically verified portfolios. Welcome to the future of the NOC.
+          <p className="text-lg md:text-2xl font-medium tracking-tight opacity-70 max-w-4xl mb-10 leading-relaxed">
+            Next-generation engineering meets decentralized web infrastructure. Dive into an ecosystem featuring gamified threat intelligence, automated node provisioning, and cryptographically verified identities. Welcome to the new standard.
           </p>
+          
+          {/* Quick Access Links */}
+          <div className="flex flex-wrap justify-center gap-4 relative z-20">
+            <Link href="/portfolio" className="px-6 py-3 rounded-full bg-white text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform flex items-center gap-2 shadow-lg">
+              <User className="w-4 h-4" /> Identity Contract
+            </Link>
+            <Link href="/js" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2">
+              <Cpu className="w-4 h-4" /> JS Store
+            </Link>
+            <Link href="/charity-quiz" className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2">
+              <Award className="w-4 h-4" /> Charity Quiz
+            </Link>
+          </div>
+
           <motion.div 
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-            className="mt-20 opacity-50"
+            className="mt-16 opacity-50 pointer-events-none"
           >
             <ChevronDown className="w-10 h-10" />
           </motion.div>

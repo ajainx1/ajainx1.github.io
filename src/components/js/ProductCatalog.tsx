@@ -112,62 +112,58 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
               key={prod.id}
               variants={itemVariants}
               whileHover={{ y: -5, transition: { duration: 0.2 } }}
-              className="rounded-xl border flex flex-col justify-between overflow-hidden relative group shadow-xl backdrop-blur-sm"
-              style={{
-                backgroundColor: 'var(--card)',
-                borderColor: isPremium ? 'var(--border2)' : 'var(--border)',
-              }}
+              className={`rounded-[24px] border flex flex-col justify-between overflow-hidden relative group shadow-sm hover:shadow-md transition-shadow backdrop-blur-xl ${isPremium ? 'bg-white border-blue-200' : 'bg-white/60 border-white/60'}`}
             >
               {/* Magic Border Glow for Premium */}
               {isPremium && (
-                <div className="absolute inset-0 z-0 bg-gradient-to-br from-[var(--primary)]/20 via-transparent to-[var(--primary)]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                <div className="absolute inset-0 z-0 bg-gradient-to-br from-blue-50 via-transparent to-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
               )}
 
               {/* Badge */}
               {prod.badge && (
-                <div className={`absolute top-3 right-3 px-2.5 py-0.5 rounded-md text-[9px] font-mono font-bold uppercase tracking-widest z-10 border ${isPremium ? 'bg-[var(--fg)] text-[var(--bg)] border-transparent' : 'bg-[var(--card2)] text-[var(--muted)] border-[var(--border)]'}`}>
+                <div className={`absolute top-4 right-4 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest z-10 border shadow-sm ${isPremium ? 'bg-blue-600 text-white border-transparent' : 'bg-white text-slate-500 border-black/5'}`}>
                   {isPremium && <span className="mr-1">⭐</span>}
                   {prod.badge}
                 </div>
               )}
 
               {/* Image */}
-              <div className="h-36 sm:h-44 relative overflow-hidden flex-shrink-0 border-b border-[var(--border)] z-10">
+              <div className="h-36 sm:h-48 relative overflow-hidden flex-shrink-0 border-b border-black/5 z-10 bg-slate-50">
                 <motion.img
                   src={prod.image}
                   alt={prod.name}
                   className="w-full h-full object-cover"
-                  style={{ filter: 'brightness(0.68)' }}
+                  style={{ filter: 'brightness(0.95)' }}
                   loading="lazy"
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.7 }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[var(--card)] to-transparent pointer-events-none" />
-                <div className="absolute bottom-2.5 left-3.5 flex items-center gap-1.5 drop-shadow-md">
+                <div className="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-4 flex items-center gap-2 drop-shadow-sm bg-white/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-black/5">
                   {isHardware
-                    ? <Radio size={13} className="text-[var(--primary)]" />
-                    : <Zap size={13} className="text-[var(--primary)]" />}
-                  <span className="text-[9px] font-mono uppercase tracking-widest text-[var(--muted)]">
+                    ? <Radio size={14} className="text-blue-600" />
+                    : <Zap size={14} className="text-blue-600" />}
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-slate-600">
                     {isHardware ? 'Hardware Redundancy' : 'Algorithmic Software'}
                   </span>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4 z-10 relative">
+              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-5 z-10 relative">
                 <div>
-                  <h4 className="text-sm font-bold tracking-wide uppercase group-hover:text-[var(--primary)] transition-colors text-[var(--fg)]">
+                  <h4 className="text-base font-black tracking-widest uppercase group-hover:text-blue-600 transition-colors text-slate-900 font-title">
                     {prod.name}
                   </h4>
-                  <p className="text-xs mt-1 leading-relaxed text-[var(--muted)]">
+                  <p className="text-sm mt-2 leading-relaxed text-slate-600 font-medium">
                     {prod.description}
                   </p>
 
-                  <ul className="mt-3 sm:mt-4 space-y-1.5 sm:space-y-2">
+                  <ul className="mt-5 sm:mt-6 space-y-2.5 sm:space-y-3">
                     {prod.specs?.map((spec, i) => (
-                      <li key={i} className="flex items-start gap-2 text-xs">
-                        <span className={`w-1.5 h-1.5 mt-1.5 flex-shrink-0 rounded-full ${isPremium ? 'bg-[var(--fg)]' : 'bg-[var(--primary)]'}`} />
-                        <span className="font-mono text-[var(--muted)]">
+                      <li key={i} className="flex items-start gap-3 text-sm">
+                        <span className={`w-1.5 h-1.5 mt-2 flex-shrink-0 rounded-full ${isPremium ? 'bg-blue-600' : 'bg-slate-400'}`} />
+                        <span className="font-medium text-slate-600">
                           {spec}
                         </span>
                       </li>
@@ -175,16 +171,16 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
                   </ul>
                 </div>
 
-                <div className="pt-3 sm:pt-4 border-t border-[var(--border)] space-y-3">
-                  <div className="flex justify-between items-baseline font-mono">
-                    <span className="text-[10px] uppercase tracking-wider text-[var(--muted)]">
+                <div className="pt-5 sm:pt-6 border-t border-black/5 space-y-4 mt-auto">
+                  <div className="flex justify-between items-baseline">
+                    <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
                       Price in India
                     </span>
                     <div className="text-right">
-                      <span className={`text-xl sm:text-2xl font-black ${isPremium ? 'text-[var(--primary)]' : 'text-[var(--fg)]'}`}>
+                      <span className={`text-2xl sm:text-3xl font-black font-title tracking-tight ${isPremium ? 'text-blue-600' : 'text-slate-900'}`}>
                         ₹{prod.price.toLocaleString('en-IN')}
                       </span>
-                      <span className="text-[9px] block text-[var(--muted)]">
+                      <span className="text-[10px] font-bold block text-slate-400">
                         ~${(prod.price / 85).toFixed(2)} USD
                       </span>
                     </div>
@@ -194,15 +190,15 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
                     whileTap={{ scale: 0.98 }}
                     type="button"
                     onClick={() => onSelectProduct(prod)}
-                    className={`w-full py-2.5 rounded-lg text-xs font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer group/btn border shadow-sm ${
+                    className={`w-full py-3.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer group/btn border shadow-sm ${
                       isPremium 
-                        ? 'bg-[var(--fg)] text-[var(--bg)] border-transparent hover:bg-[var(--primary)] hover:text-white' 
-                        : 'bg-[var(--card2)] text-[var(--fg)] border-[var(--border)] hover:bg-[var(--card)]'
+                        ? 'bg-blue-600 text-white border-transparent hover:bg-blue-700 shadow-md hover:shadow-lg' 
+                        : 'bg-slate-100 text-slate-700 border-black/5 hover:bg-slate-200'
                     }`}
                   >
-                    <ShoppingCart size={13} />
+                    <ShoppingCart size={16} />
                     Apply to Checkout
-                    <ArrowRight size={12} className="group-hover/btn:translate-x-1 transition-transform" />
+                    <ArrowRight size={14} className="group-hover/btn:translate-x-1.5 transition-transform" />
                   </motion.button>
                 </div>
               </div>
@@ -217,7 +213,7 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="rounded-xl border border-[var(--border)] p-4 sm:p-5 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center font-mono uppercase tracking-wider text-[11px] bg-[var(--card)] backdrop-blur-sm shadow-md"
+        className="rounded-[24px] border border-white/60 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center bg-white/60 backdrop-blur-xl shadow-sm"
       >
         {[
           { icon: '🇮🇳', title: 'Shipped Local', desc: 'All 5G Routers dispatched express from New Delhi.' },
@@ -226,13 +222,13 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
         ].map((item, i) => (
           <div
             key={i}
-            className={`space-y-1 py-3 sm:py-0 ${i > 0 ? 'sm:border-l border-t sm:border-t-0 border-[var(--border)]' : ''}`}
+            className={`space-y-2 py-4 sm:py-0 ${i > 0 ? 'sm:border-l border-t sm:border-t-0 border-black/5' : ''}`}
           >
-            <span className="text-lg">{item.icon}</span>
-            <span className="font-bold block text-xs text-[var(--fg)]">
+            <span className="text-2xl">{item.icon}</span>
+            <span className="font-black block text-xs uppercase tracking-widest text-slate-900 font-title mt-2">
               {item.title}
             </span>
-            <span className="text-[9px] font-mono normal-case text-[var(--muted)]">
+            <span className="text-xs font-medium text-slate-500">
               {item.desc}
             </span>
           </div>

@@ -150,14 +150,22 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen relative flex flex-col font-sans bg-[#0b0f19] text-[#f8fafc]">
+    <div className="min-h-screen relative flex flex-col font-sans bg-slate-50 text-slate-900 transition-colors duration-500">
       
+      {/* Dynamic iCloud Mesh Background */}
+      <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-slate-50" />
+        <motion.div animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }} transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }} className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full blur-[120px] opacity-60 bg-blue-200 mix-blend-multiply" />
+        <motion.div animate={{ x: [0, -50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }} transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }} className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] rounded-full blur-[130px] opacity-50 bg-indigo-200 mix-blend-multiply" />
+        <div className="absolute inset-0 backdrop-blur-[80px]" />
+      </div>
+
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-[var(--border)] bg-[#0b0f19]/70 backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full border-b border-black/5 bg-white/70 backdrop-blur-2xl shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 font-title font-bold text-lg tracking-wide hover:opacity-90 transition-opacity">
-            <span className="bg-[var(--primary)] text-[#0b0f19] px-2 py-0.5 rounded text-sm font-mono">AJ</span>
-            <span>Aditya<span className="text-[var(--primary)]">.</span>Jain</span>
+          <Link href="/" className="flex items-center gap-2 font-title font-bold text-lg tracking-tight hover:opacity-80 transition-opacity">
+            <span className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white shadow-md px-2 py-0.5 rounded-lg text-sm font-semibold">AJ</span>
+            <span>Aditya<span className="text-blue-500">.</span>Jain</span>
           </Link>
           
           <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-[var(--muted)]">
@@ -177,19 +185,19 @@ export default function Home() {
 
           <div className="flex items-center gap-3">
             {walletAddress && (
-              <div className="hidden md:flex items-center gap-1.5 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 text-xs font-mono">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+              <div className="hidden md:flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-50 text-emerald-700 shadow-sm text-xs font-semibold">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                 <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
               </div>
             )}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--card)]/40 text-xs font-mono">
-              <span className="w-2 h-2 rounded-full bg-[var(--primary)] animate-pulse" />
+            <div className="hidden sm:flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/5 bg-white shadow-sm text-xs font-semibold text-slate-600">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               <span>{visitorCount} visitors</span>
             </div>
             <a 
               href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" 
               download 
-              className="px-4 py-1.5 text-xs font-semibold rounded-lg bg-[var(--card2)] border border-[var(--border2)] text-[var(--fg)] hover:bg-[var(--card)] transition-all flex items-center gap-1.5"
+              className="px-5 py-2 text-xs font-bold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Download CV</span>
@@ -199,30 +207,29 @@ export default function Home() {
       </header>
 
       {/* Telemetry Indicator Row */}
-      <div className="w-full border-b border-[var(--border)] bg-[#0f172a]/40 py-2 text-xs font-mono text-[var(--muted)] overflow-x-auto whitespace-nowrap">
-        <div className="max-w-7xl mx-auto px-4 flex gap-6 items-center">
-          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> SEC_CORE: ACTIVE</div>
-          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500"></span> AD_HARDENED: TRUE</div>
-          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-sky-500"></span> BGP_RTT: 18.2ms</div>
-          <div className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-purple-500"></span> THREEJS: POWER_HIGH</div>
+      <div className="w-full border-b border-black/5 bg-slate-100/50 py-2 text-xs font-semibold text-slate-500 overflow-x-auto whitespace-nowrap backdrop-blur-md relative z-10">
+        <div className="max-w-7xl mx-auto px-4 flex gap-8 items-center tracking-wide">
+          <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span> SEC_CORE: ACTIVE</div>
+          <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span> AD_HARDENED: TRUE</div>
+          <div className="flex items-center gap-2"><span className="w-2 h-2 rounded-full bg-sky-500 shadow-[0_0_8px_rgba(14,165,233,0.5)]"></span> BGP_RTT: 18.2ms</div>
         </div>
       </div>
 
-      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 space-y-24">
+      <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 space-y-24 relative z-10">
         
         {/* HERO SECTION */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[calc(100vh-10rem)]">
-          <div className="lg:col-span-7 space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[var(--border2)] bg-[var(--card)]/50 backdrop-blur-md text-xs font-medium">
-              <Shield className="w-3.5 h-3.5 text-[var(--primary)]" />
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center min-h-[calc(100vh-12rem)]">
+          <div className="lg:col-span-6 space-y-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
+              <Shield className="w-4 h-4 text-blue-600" />
               <span>SecOps • Purple Team • Threat Hunting</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-bold font-title tracking-tight text-[var(--fg)] leading-none">
-              Aditya <span className="text-[var(--primary)] glow">Jain</span>
+            <h1 className="text-5xl sm:text-7xl font-bold font-title tracking-tight text-slate-900 leading-tight">
+              Aditya <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">Jain</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-[var(--muted)] max-w-2xl leading-relaxed">
+            <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
               Versatile Cybersecurity Engineer with <strong>4+ years of enterprise experience</strong> in Security Operations, Threat Hunting, and Vulnerability Management across India’s national government IT infrastructure.
             </p>
 
@@ -234,48 +241,46 @@ export default function Home() {
                 { label: "Audits Automated", value: "120+" },
                 { label: "Effort Saved", value: "60%" }
               ].map((stat, i) => (
-                <div key={i} className="p-3 bg-[var(--card)]/20 border border-[var(--border)] rounded-xl backdrop-blur-sm">
-                  <div className="text-2xl font-bold text-[var(--primary)] font-mono">{stat.value}</div>
-                  <div className="text-[10px] text-[var(--muted)] uppercase tracking-wider mt-0.5">{stat.label}</div>
+                <div key={i} className="p-4 bg-white/60 border border-black/5 rounded-[20px] backdrop-blur-xl shadow-sm flex flex-col items-center justify-center text-center hover:bg-white/90 transition-colors">
+                  <div className="text-2xl font-black text-slate-800">{stat.value}</div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest mt-1">{stat.label}</div>
                 </div>
               ))}
             </div>
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <Link href="/js" className="group px-5 py-2.5 text-sm font-semibold text-[var(--bg)] bg-[var(--primary)] rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[var(--primary-glow)] shadow-md animate-pulse-glow-primary btn-shimmer">
-                <span className="font-mono text-xs flex items-center select-none mr-0.5">
-                  &gt;<span className="animate-cursor-blink">_</span>
-                </span>
+              <Link href="/js" className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 <span>JumpStreet Portal</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <Link href="/charity-quiz" className="group px-5 py-2.5 text-sm font-semibold text-white bg-emerald-600 rounded-lg hover:scale-105 active:scale-95 transition-transform flex items-center gap-2 shadow-[0_4px_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500 animate-pulse-glow-emerald btn-shimmer">
-                <span>🎮</span>
+              <Link href="/charity-quiz" className="group px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full hover:from-emerald-400 hover:to-teal-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <span className="text-lg">🎮</span>
                 <span>Play Charity Quiz</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
-              <a href="#about" className="px-5 py-2.5 text-sm font-semibold text-[var(--fg)] bg-[var(--card2)] border border-[var(--border2)] rounded-lg hover:bg-[var(--card)] transition-colors shadow-sm btn-shimmer">
-                View Full Portfolio
+              <a href="#about" className="px-6 py-3.5 text-sm font-bold text-slate-700 bg-white/60 border border-black/10 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md backdrop-blur-xl">
+                View Portfolio
               </a>
             </div>
           </div>
 
-          {/* Interactive React Terminal Card */}
-          <div className="lg:col-span-5 w-full">
-            <TiltWrapper className="w-full h-[400px] rounded-xl border border-[var(--border2)] bg-[#0d1117] overflow-hidden flex flex-col shadow-2xl">
-              <div className="bg-[#161b22] px-4 py-3 border-b border-[var(--border)] flex items-center justify-between">
-                <div className="flex gap-1.5">
-                  <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
-                  <span className="w-3 h-3 rounded-full bg-yellow-500/80"></span>
-                  <span className="w-3 h-3 rounded-full bg-green-500/80"></span>
+          {/* Sleek macOS Terminal Card */}
+          <div className="lg:col-span-6 w-full">
+            <TiltWrapper className="w-full h-[450px] rounded-[24px] border border-white/40 bg-white/60 backdrop-blur-2xl overflow-hidden flex flex-col shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all hover:shadow-[0_30px_60px_rgba(0,0,0,0.15)]">
+              {/* macOS Window Controls */}
+              <div className="bg-white/50 px-5 py-3.5 border-b border-black/5 flex items-center justify-between backdrop-blur-md">
+                <div className="flex gap-2">
+                  <span className="w-3.5 h-3.5 rounded-full bg-red-400 border border-red-500/50 shadow-inner"></span>
+                  <span className="w-3.5 h-3.5 rounded-full bg-amber-400 border border-amber-500/50 shadow-inner"></span>
+                  <span className="w-3.5 h-3.5 rounded-full bg-emerald-400 border border-emerald-500/50 shadow-inner"></span>
                 </div>
-                <div className="text-[10px] font-mono text-[var(--muted)]">aditya@secops:~ — audit_node v2.6</div>
+                <div className="text-[11px] font-bold text-slate-500 tracking-wide flex items-center gap-2"><TermIcon size={12}/> aditya@secops — terminal</div>
+                <div className="w-10"></div> {/* spacer for centering */}
               </div>
               
-              <div className="flex-1 p-4 font-mono text-xs overflow-y-auto space-y-2 scrollbar-thin scrollbar-thumb-slate-800">
+              <div className="flex-1 p-5 font-mono text-sm overflow-y-auto space-y-2 text-slate-700 bg-white/40 scrollbar-thin scrollbar-thumb-slate-300">
                 {terminalHistory.map((line, idx) => (
-                  <div key={idx} className={line.startsWith("aditya@secops:~$") ? "text-[var(--primary)]" : "text-slate-300"}>
+                  <div key={idx} className={line.startsWith("aditya@secops:~$") ? "font-bold text-blue-600" : "text-slate-600"}>
                     {line}
                   </div>
                 ))}
@@ -283,23 +288,22 @@ export default function Home() {
               </div>
 
               {/* Terminal Quick Options */}
-              <div className="px-4 py-2 border-t border-[var(--border)]/40 bg-[#0d1117]/80 flex gap-2 overflow-x-auto text-[10px] font-mono">
-                <span className="text-[var(--muted)] self-center">Try:</span>
-                <button onClick={() => runTerminalShortcut("whoami")} className="px-2 py-0.5 bg-[var(--card2)] border border-[var(--border)] rounded text-slate-300 hover:border-[var(--primary)] hover:text-white transition-colors">whoami</button>
-                <button onClick={() => runTerminalShortcut("skills")} className="px-2 py-0.5 bg-[var(--card2)] border border-[var(--border)] rounded text-slate-300 hover:border-[var(--primary)] hover:text-white transition-colors">skills</button>
-                <button onClick={() => runTerminalShortcut("exp")} className="px-2 py-0.5 bg-[var(--card2)] border border-[var(--border)] rounded text-slate-300 hover:border-[var(--primary)] hover:text-white transition-colors">exp</button>
-                <button onClick={() => runTerminalShortcut("certs")} className="px-2 py-0.5 bg-[var(--card2)] border border-[var(--border)] rounded text-slate-300 hover:border-[var(--primary)] hover:text-white transition-colors">certs</button>
-                <button onClick={() => runTerminalShortcut("clear")} className="px-2 py-0.5 bg-red-950/20 border border-red-500/30 rounded text-red-400 hover:bg-red-900/30 transition-colors">clear</button>
+              <div className="px-5 py-3 border-t border-black/5 bg-white/50 flex gap-2 overflow-x-auto text-xs font-semibold backdrop-blur-md">
+                <span className="text-slate-500 self-center mr-1">Try:</span>
+                {["whoami", "skills", "exp", "certs"].map(cmd => (
+                  <button key={cmd} onClick={() => runTerminalShortcut(cmd)} className="px-3 py-1.5 bg-white border border-black/10 rounded-full text-slate-600 hover:border-blue-300 hover:text-blue-600 transition-colors shadow-sm">{cmd}</button>
+                ))}
+                <button onClick={() => runTerminalShortcut("clear")} className="px-3 py-1.5 bg-rose-50 border border-rose-200 rounded-full text-rose-600 hover:bg-rose-100 transition-colors shadow-sm">clear</button>
               </div>
 
-              <form onSubmit={handleCommandSubmit} className="border-t border-[var(--border)] bg-[#161b22] px-4 py-3 flex gap-2">
-                <span className="font-mono text-xs text-[var(--primary)] self-center">aditya@secops:~$</span>
+              <form onSubmit={handleCommandSubmit} className="border-t border-black/5 bg-white/80 px-5 py-4 flex gap-3 backdrop-blur-xl">
+                <span className="font-mono text-sm font-bold text-blue-600 self-center">aditya@secops:~$</span>
                 <input 
                   type="text" 
                   value={terminalInput}
                   onChange={(e) => setTerminalInput(e.target.value)}
-                  className="flex-1 bg-transparent font-mono text-xs text-slate-100 focus:outline-none" 
-                  placeholder="type a command (whoami, skills)..."
+                  className="flex-1 bg-transparent border-none outline-none font-mono text-sm text-slate-700 placeholder:text-slate-400"
+                  placeholder="Enter command..."
                   autoComplete="off"
                   spellCheck="false"
                 />
@@ -311,13 +315,13 @@ export default function Home() {
         {/* SUMMARY / ABOUT */}
         <section id="about" className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">01 /</span>
-            <h2 className="text-3xl font-bold font-title">Professional Summary</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">01 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Professional Summary</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            <div className="lg:col-span-7 space-y-4 text-[var(--muted)] leading-relaxed text-base sm:text-lg">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            <div className="lg:col-span-7 space-y-5 text-slate-600 leading-relaxed text-base sm:text-lg">
               <p>
                 Highly capable <strong>Cybersecurity Engineer &amp; SME</strong> with <strong>4+ years of hands-on enterprise experience</strong> architecting, tuning, and defending critical IT and e-governance systems. Currently managing large-scale SecOps operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC).
               </p>
@@ -327,15 +331,20 @@ export default function Home() {
               <p>
                 Proven ability to automate regulatory auditing through custom PowerShell and Python frameworks, reducing overall audit cycles by 60% and successfully responding to national CERT-In security advisories.
               </p>
-              <p className="text-sm font-medium text-[var(--fg)] border-l-2 border-[var(--primary)] pl-3">
-                🎯 Open to U.S. Relocation / H-1B Sponsorship. Currently targeted locations: Washington D.C. Metro, Northern Virginia, Austin TX, Dallas TX, or Chicago IL.
-              </p>
+              <div className="p-4 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm mt-4">
+                <p className="text-sm font-semibold text-blue-900 flex gap-2 items-start">
+                  <span className="text-lg">🎯</span> 
+                  <span>Open to U.S. Relocation / H-1B Sponsorship. Currently targeted locations: Washington D.C. Metro, Northern Virginia, Austin TX, Dallas TX, or Chicago IL.</span>
+                </p>
+              </div>
             </div>
             
             <div className="lg:col-span-5">
-              <TiltWrapper className="p-5 rounded-xl border border-[var(--border2)] bg-[var(--card)]/40 backdrop-blur-md shadow-lg">
-                <div className="text-xs font-mono text-[var(--primary)] border-b border-[var(--border)]/40 pb-2 mb-3">~/profile.json</div>
-                <pre className="text-xs font-mono text-slate-300 leading-normal overflow-x-auto whitespace-pre">
+              <TiltWrapper className="p-6 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-2xl shadow-[0_10px_30px_rgba(0,0,0,0.05)]">
+                <div className="text-xs font-bold text-slate-500 border-b border-black/5 pb-3 mb-4 flex items-center gap-2">
+                  <TermIcon size={14}/> profile.json
+                </div>
+                <pre className="text-[13px] font-mono text-slate-700 leading-relaxed overflow-x-auto whitespace-pre">
 {`{
   "name": "Aditya Jain",
   "title": "Cybersecurity Engineer",
@@ -355,9 +364,9 @@ export default function Home() {
         {/* CORE COMPETENCIES */}
         <section id="skills" className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">02 /</span>
-            <h2 className="text-3xl font-bold font-title">Core Competencies</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">02 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Core Competencies</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -387,13 +396,15 @@ export default function Home() {
                 desc: "KACE UEM (750+ nodes), USB policy enforcement, unified security baselines, Linux server hardening, DHCP/PXE deployment, automated patching."
               }
             ].map((skill, idx) => (
-              <TiltWrapper key={idx} className="p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]/20 backdrop-blur-sm flex flex-col justify-between hover:border-[var(--border2)] transition-colors">
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2 text-[var(--primary)]">
-                    <Cpu className="w-5 h-5" />
-                    <h3 className="font-title font-semibold text-lg">{skill.title}</h3>
+              <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm flex flex-col justify-between hover:shadow-lg hover:bg-white/60 hover:-translate-y-1 transition-all duration-300">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3 text-blue-600">
+                    <div className="p-2 bg-blue-50 rounded-xl shadow-inner border border-blue-100">
+                      <Cpu className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-title font-bold text-xl text-slate-800">{skill.title}</h3>
                   </div>
-                  <p className="text-sm text-[var(--muted)] leading-relaxed">{skill.desc}</p>
+                  <p className="text-sm text-slate-600 leading-relaxed">{skill.desc}</p>
                 </div>
               </TiltWrapper>
             ))}
@@ -403,12 +414,12 @@ export default function Home() {
         {/* EXPERIENCE TIMELINE */}
         <section id="experience" className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">03 /</span>
-            <h2 className="text-3xl font-bold font-title">Professional Experience</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">03 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Professional Experience</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="relative border-l border-[var(--border2)] ml-4 sm:ml-8 pl-6 sm:pl-8 space-y-12">
+          <div className="relative border-l-2 border-black/10 ml-4 sm:ml-8 pl-8 sm:pl-10 space-y-12">
             {[
               {
                 period: "Feb 2024 – Present",
@@ -461,29 +472,29 @@ export default function Home() {
             ].map((exp, idx) => (
               <div key={idx} className="relative group">
                 {/* Timeline Node Point */}
-                <div className="absolute -left-[31px] sm:-left-[41px] top-1.5 w-4 h-4 rounded-full border-2 border-[var(--primary)] bg-[#0b0f19] group-hover:bg-[var(--primary)] transition-colors duration-300"></div>
+                <div className="absolute -left-[41px] sm:-left-[49px] top-4 w-5 h-5 rounded-full border-[3px] border-white bg-blue-500 shadow-md group-hover:scale-125 transition-transform duration-300"></div>
                 
-                <TiltWrapper key={idx} className="p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]/10 backdrop-blur-sm space-y-4 hover:border-[var(--border2)] transition-colors">
+                <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl space-y-5 hover:shadow-xl hover:bg-white/60 transition-all duration-300">
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-sm font-mono text-[var(--primary)]">{exp.period}</span>
-                    <span className="text-xs text-[var(--muted)] flex items-center gap-1"><MapPin className="w-3.5 h-3.5" /> {exp.location}</span>
+                    <span className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-bold font-mono shadow-inner">{exp.period}</span>
+                    <span className="text-xs font-bold text-slate-500 flex items-center gap-1.5"><MapPin className="w-4 h-4 text-blue-400" /> {exp.location}</span>
                   </div>
 
                   <div className="space-y-1">
-                    <h3 className="text-xl font-bold font-title">{exp.role}</h3>
-                    <div className="text-sm text-[var(--muted)] font-medium">{exp.company}</div>
+                    <h3 className="text-2xl font-bold font-title text-slate-900">{exp.role}</h3>
+                    <div className="text-sm text-slate-600 font-semibold">{exp.company}</div>
                   </div>
 
                   {/* Highlights Tags */}
-                  <div className="flex flex-wrap gap-2 pt-1">
+                  <div className="flex flex-wrap gap-2 pt-2">
                     {exp.tags.map((tag, i) => (
-                      <span key={i} className={`px-2.5 py-0.5 rounded text-[10px] font-mono border ${tag.includes("%") || tag.includes("+") ? "bg-[var(--primary-glow)] border-[var(--primary)] text-[var(--primary)]" : "bg-[var(--card2)] border-[var(--border)] text-[var(--muted)]"}`}>
+                      <span key={i} className={`px-3 py-1 rounded-lg text-[11px] font-bold tracking-wide border shadow-sm ${tag.includes("%") || tag.includes("+") ? "bg-indigo-50 border-indigo-100 text-indigo-700" : "bg-white border-black/5 text-slate-600"}`}>
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <ul className="space-y-2 text-sm text-[var(--muted)] leading-relaxed list-disc pl-4 pt-2">
+                  <ul className="space-y-3 text-sm text-slate-600 leading-relaxed list-disc pl-5 pt-3 marker:text-blue-400">
                     {exp.bullets.map((bullet, i) => (
                       <li key={i}>{bullet}</li>
                     ))}
@@ -497,12 +508,12 @@ export default function Home() {
         {/* TECHNICAL PROJECTS */}
         <section id="projects" className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">04 /</span>
-            <h2 className="text-3xl font-bold font-title">Key Security Projects</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">04 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Key Security Projects</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
                 title: "CDAC/CERT-In Compliance Engine",
@@ -510,7 +521,7 @@ export default function Home() {
                 desc: "Engineered a PowerShell & Python framework executing 120+ automated system configuration checks mapped to NIST standards across 750+ government nodes via KACE UEM.",
                 tags: ["PowerShell", "Python", "KACE UEM", "NIST CSF"],
                 badge: "Enterprise",
-                color: "border-[var(--primary)] bg-[var(--primary-glow)] text-[var(--primary)]"
+                color: "bg-blue-50 text-blue-700 border-blue-200"
               },
               {
                 title: "Government NOC Admin Portal",
@@ -519,7 +530,7 @@ export default function Home() {
                 tags: ["React/Next.js", "Ollama LLM", "PHP API", "RAG"],
                 badge: "Govt Deployment",
                 link: "/noc/",
-                color: "border-sky-500/30 bg-sky-500/10 text-sky-400"
+                color: "bg-indigo-50 text-indigo-700 border-indigo-200"
               },
               {
                 title: "Real-Time Network Alert Dashboard",
@@ -528,53 +539,53 @@ export default function Home() {
                 tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets"],
                 badge: "Live Gateway",
                 link: "/alert/",
-                color: "border-purple-500/30 bg-purple-500/10 text-purple-400"
+                color: "bg-violet-50 text-violet-700 border-violet-200"
               },
               {
                 title: "Cyber Free Rice Initiative",
                 status: "Charity Quiz",
-                desc: "Interactive cybersecurity education and awareness platform. User quiz scores are simulated to feed directly into food charity initiatives (FreeRice concept). Deployed on Next.js.",
+                desc: "Interactive education platform featuring a stunning macOS-inspired UI. User quiz scores are simulated to feed directly into food charity initiatives (FreeRice concept).",
                 tags: ["Next.js", "Framer Motion", "Supabase", "Tailwind CSS"],
                 badge: "Community",
                 link: "/charity-quiz",
-                color: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400"
+                color: "bg-emerald-50 text-emerald-700 border-emerald-200"
               }
             ].map((project, idx) => (
-              <TiltWrapper key={idx} className="p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]/10 backdrop-blur-sm flex flex-col justify-between hover:border-[var(--border2)] transition-colors relative overflow-hidden group">
-                <div className="space-y-4">
+              <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between hover:bg-white/60 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
+                <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-mono text-[var(--muted)]">{project.status}</span>
-                    <span className={`px-2 py-0.5 rounded text-[10px] font-mono border ${project.color}`}>{project.badge}</span>
+                    <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">{project.status}</span>
+                    <span className={`px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider border shadow-sm ${project.color}`}>{project.badge}</span>
                   </div>
 
                   <div className="space-y-2">
-                    <h3 className="text-xl font-bold font-title">{project.title}</h3>
-                    <p className="text-sm text-[var(--muted)] leading-relaxed">{project.desc}</p>
+                    <h3 className="text-2xl font-bold font-title text-slate-900">{project.title}</h3>
+                    <p className="text-sm text-slate-600 leading-relaxed">{project.desc}</p>
                   </div>
 
                   {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 pt-2">
                     {project.tags.map((tag, i) => (
-                      <span key={i} className="px-2 py-0.5 bg-[var(--card2)] border border-[var(--border)] rounded text-[10px] font-mono text-[var(--muted)]">
+                      <span key={i} className="px-3 py-1 bg-white border border-black/5 rounded-lg text-[11px] font-bold text-slate-600 shadow-sm">
                         {tag}
                       </span>
                     ))}
                   </div>
                 </div>
 
-                <div className="pt-6">
+                <div className="pt-8">
                   {project.link ? (
                     <a 
                       href={project.link} 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--primary)] hover:underline"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 text-white text-xs font-bold hover:bg-slate-800 hover:-translate-y-0.5 transition-all shadow-md hover:shadow-lg"
                     >
                       <span>Launch Project</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   ) : (
-                    <span className="text-xs font-mono text-[var(--muted)] cursor-default">Internal Infrastructure Only</span>
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-100 text-slate-400 text-xs font-bold cursor-not-allowed">Internal Infrastructure Only</span>
                   )}
                 </div>
               </TiltWrapper>
@@ -585,16 +596,16 @@ export default function Home() {
         {/* CERTIFICATIONS & CREDENTIALS */}
         <section id="certs" className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">05 /</span>
-            <h2 className="text-3xl font-bold font-title">Certifications &amp; Training</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">05 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Certifications &amp; Training</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Completed List */}
-            <div className="lg:col-span-7 space-y-4">
-              <h3 className="text-lg font-title font-semibold flex items-center gap-2"><Award className="w-5 h-5 text-[var(--primary)]" /> Completed Credentials</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="lg:col-span-7 space-y-6">
+              <h3 className="text-xl font-title font-bold text-slate-800 flex items-center gap-3"><Award className="w-6 h-6 text-blue-600" /> Completed Credentials</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
                   "Fortinet Certified Associate in Cybersecurity (FCAC)",
                   "Red Hat Certified System Administrator (RHCSA)",
@@ -605,8 +616,8 @@ export default function Home() {
                   "Security Management & Governance - Royal Holloway",
                   "TCM Security Live Training & Certifications"
                 ].map((cert, idx) => (
-                  <div key={idx} className="p-3 bg-[var(--card)]/10 border border-[var(--border)] rounded-lg text-sm text-slate-300 flex items-start gap-2">
-                    <span className="text-[var(--primary)] font-mono font-bold">[+]</span>
+                  <div key={idx} className="p-4 bg-white/60 border border-black/5 rounded-2xl text-sm font-semibold text-slate-700 flex items-start gap-3 shadow-sm hover:shadow-md transition-shadow backdrop-blur-xl">
+                    <span className="text-blue-500 font-black mt-0.5">✓</span>
                     <span>{cert}</span>
                   </div>
                 ))}
@@ -614,24 +625,24 @@ export default function Home() {
             </div>
 
             {/* Targeted Certifications Roadmap */}
-            <div className="lg:col-span-5 space-y-4">
-              <h3 className="text-lg font-title font-semibold flex items-center gap-2"><BookOpen className="w-5 h-5 text-sky-400" /> Targeted Roadmap</h3>
-              <div className="p-5 rounded-xl border border-[var(--border)] bg-[#1e293b]/20 backdrop-blur-sm space-y-4">
-                <div className="space-y-3">
+            <div className="lg:col-span-5 space-y-6">
+              <h3 className="text-xl font-title font-bold text-slate-800 flex items-center gap-3"><BookOpen className="w-6 h-6 text-indigo-600" /> Targeted Roadmap</h3>
+              <div className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm space-y-6">
+                <div className="space-y-4">
                   {[
                     { cert: "eJPT (eLearnSecurity)", time: "Target Q4 2026" },
                     { cert: "CEH v13 / CompTIA Security+", time: "Target 2026" },
                     { cert: "CISSP (ISC2)", time: "Roadmap Q3 2027" },
                     { cert: "OSCP / PEN-200 (Offensive Security)", time: "Post-CISSP" }
                   ].map((target, idx) => (
-                    <div key={idx} className="flex justify-between items-center gap-2 text-sm border-b border-[var(--border)]/30 pb-2">
-                      <span className="font-semibold text-slate-200">{target.cert}</span>
-                      <span className="text-xs font-mono text-[var(--primary)] bg-[var(--primary-glow)] px-2 py-0.5 rounded border border-[var(--primary)]/30 whitespace-nowrap">{target.time}</span>
+                    <div key={idx} className="flex justify-between items-center gap-3 text-sm border-b border-black/5 pb-3">
+                      <span className="font-bold text-slate-700">{target.cert}</span>
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-3 py-1 rounded-full whitespace-nowrap">{target.time}</span>
                     </div>
                   ))}
                 </div>
                 
-                <div className="text-xs text-[var(--muted)] leading-relaxed pt-2">
+                <div className="text-sm text-slate-600 leading-relaxed pt-3">
                   <strong>Offensive Labs Active Practice:</strong> Hack The Box (Active Directory, Pro Hacker rank), Vulnlab (AD multi-forest pivots, Domain Controller compromise).
                 </div>
               </div>
@@ -642,9 +653,9 @@ export default function Home() {
         {/* EDUCATION */}
         <section className="space-y-6 pt-16">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">06 /</span>
-            <h2 className="text-3xl font-bold font-title">Education</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">06 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Education</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -660,11 +671,11 @@ export default function Home() {
                 period: "Graduated 2022"
               }
             ].map((edu, idx) => (
-              <div key={idx} className="p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]/20 backdrop-blur-sm flex flex-col justify-between">
-                <div className="space-y-2">
-                  <span className="text-xs font-mono text-[var(--primary)]">{edu.period}</span>
-                  <h3 className="text-lg font-bold font-title">{edu.degree}</h3>
-                  <p className="text-sm text-[var(--muted)]">{edu.school}</p>
+              <div key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                <div className="space-y-3">
+                  <span className="inline-block px-3 py-1 bg-white border border-black/5 text-blue-600 rounded-full text-xs font-bold shadow-sm">{edu.period}</span>
+                  <h3 className="text-xl font-bold font-title text-slate-900 pt-2">{edu.degree}</h3>
+                  <p className="text-sm font-semibold text-slate-500">{edu.school}</p>
                 </div>
               </div>
             ))}
@@ -674,39 +685,39 @@ export default function Home() {
         {/* CONTACT / ESTABLISH CONNECTION */}
         <section id="contact" className="space-y-6 pt-16 pb-12">
           <div className="flex items-center gap-3">
-            <span className="text-xl font-mono text-[var(--primary)]">07 /</span>
-            <h2 className="text-3xl font-bold font-title">Establish Connection</h2>
-            <div className="flex-1 h-px bg-[var(--border)]"></div>
+            <span className="text-xl font-mono text-blue-500 font-bold">07 /</span>
+            <h2 className="text-3xl font-bold font-title text-slate-900">Establish Connection</h2>
+            <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             {/* Contact Details */}
             <div className="lg:col-span-5 space-y-4">
-              <TiltWrapper className="p-6 rounded-xl border border-[var(--border)] bg-[var(--card)]/30 backdrop-blur-sm space-y-4">
-                <h3 className="text-xl font-bold font-title">Get in Touch</h3>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
+              <TiltWrapper className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl space-y-6 shadow-sm">
+                <h3 className="text-2xl font-bold font-title text-slate-900">Get in Touch</h3>
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">
                   Open to enterprise SecOps, Purple Teaming, Detection Engineering, or Red Team roles — worldwide remote and relocation opportunities.
                 </p>
                 
-                <div className="space-y-3 font-mono text-xs text-slate-300">
-                  <a href="mailto:adityasec32@gmail.com" className="flex items-center gap-3 hover:text-[var(--primary)] transition-colors p-2 bg-[#0b0f19]/60 rounded border border-[var(--border)]/40">
-                    <Mail className="w-4 h-4 text-[var(--primary)]" />
+                <div className="space-y-4 font-mono text-sm font-bold text-slate-600">
+                  <a href="mailto:adityasec32@gmail.com" className="flex items-center gap-4 hover:text-blue-600 hover:bg-white transition-all p-4 bg-white/60 rounded-2xl border border-black/5 shadow-sm">
+                    <Mail className="w-5 h-5 text-blue-600" />
                     <span>adityasec32@gmail.com</span>
                   </a>
-                  <a href="tel:+917400588896" className="flex items-center gap-3 hover:text-[var(--primary)] transition-colors p-2 bg-[#0b0f19]/60 rounded border border-[var(--border)]/40">
-                    <Phone className="w-4 h-4 text-[var(--primary)]" />
+                  <a href="tel:+917400588896" className="flex items-center gap-4 hover:text-blue-600 hover:bg-white transition-all p-4 bg-white/60 rounded-2xl border border-black/5 shadow-sm">
+                    <Phone className="w-5 h-5 text-blue-600" />
                     <span>+91 740 058 8896</span>
                   </a>
-                  <a href="https://linkedin.com/in/ajainx1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--primary)] transition-colors p-2 bg-[#0b0f19]/60 rounded border border-[var(--border)]/40">
-                    <svg className="w-4 h-4 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <a href="https://linkedin.com/in/ajainx1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-blue-600 hover:bg-white transition-all p-4 bg-white/60 rounded-2xl border border-black/5 shadow-sm">
+                    <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                       <rect x="2" y="9" width="4" height="12"/>
                       <circle cx="4" cy="4" r="2"/>
                     </svg>
                     <span>linkedin.com/in/ajainx1</span>
                   </a>
-                  <a href="https://github.com/ajainx1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-[var(--primary)] transition-colors p-2 bg-[#0b0f19]/60 rounded border border-[var(--border)]/40">
-                    <svg className="w-4 h-4 text-[var(--primary)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <a href="https://github.com/ajainx1" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 hover:text-blue-600 hover:bg-white transition-all p-4 bg-white/60 rounded-2xl border border-black/5 shadow-sm">
+                    <svg className="w-5 h-5 text-blue-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
                     </svg>
                     <span>github.com/ajainx1</span>
@@ -717,22 +728,24 @@ export default function Home() {
 
             {/* PGP Secure Command / Relocation List */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="p-6 rounded-xl border border-[var(--border2)] bg-[var(--card)]/40 backdrop-blur-md space-y-4">
-                <div className="flex items-center gap-2 text-[var(--primary)]">
-                  <Key className="w-5 h-5 animate-pulse" />
-                  <h3 className="font-title font-semibold text-lg">Secure Communications</h3>
+              <div className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl space-y-5 shadow-sm">
+                <div className="flex items-center gap-3 text-slate-800">
+                  <div className="p-2 bg-slate-100 rounded-xl border border-black/5">
+                    <Key className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-title font-bold text-xl">Secure Communications</h3>
                 </div>
-                <p className="text-sm text-[var(--muted)] leading-relaxed">
+                <p className="text-sm text-slate-600 leading-relaxed font-medium">
                   To securely share logs, endpoints, or project briefs, import my PGP public key directly:
                 </p>
-                <div className="p-3 bg-black/60 rounded border border-[var(--border)] font-mono text-[11px] text-[var(--muted)] select-all leading-normal">
+                <div className="p-4 bg-slate-900 rounded-xl border border-slate-800 font-mono text-sm text-emerald-400 select-all shadow-inner">
                   curl -s https://adityasec32.systems/pgp.asc | gpg --import
                 </div>
               </div>
 
               {/* Relocation details */}
-              <div className="p-5 rounded-xl border border-[var(--border)] bg-[#1e293b]/10 backdrop-blur-sm text-sm text-[var(--muted)]">
-                <h4 className="font-title font-semibold text-[#f8fafc] mb-1.5 flex items-center gap-2"><MapPin className="w-4 h-4 text-red-400" /> Relocation Interests (U.S. Sponsorship)</h4>
+              <div className="p-6 rounded-[24px] border border-red-100 bg-red-50/50 backdrop-blur-xl text-sm text-slate-600 shadow-sm">
+                <h4 className="font-title font-bold text-red-900 mb-2 flex items-center gap-2"><MapPin className="w-5 h-5 text-red-500" /> Relocation Interests (U.S. Sponsorship)</h4>
                 Washington D.C. Metro Area, Northern Virginia (NOVA), Austin TX, Dallas TX, or Chicago IL.
               </div>
             </div>
@@ -742,13 +755,13 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="w-full border-t border-[var(--border)] bg-[#0b0f19]/90 py-6 text-xs text-[var(--muted)]">
+      <footer className="w-full border-t border-black/5 bg-slate-100/50 py-8 text-xs text-slate-500 font-semibold backdrop-blur-md relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <div className="flex items-center gap-3">
+            <span className="w-3 h-3 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
             <span>Session Active — © 2026 Aditya Jain. All rights reserved.</span>
           </div>
-          <div>Built with Next.js &amp; Three.js • Deployed via GitHub Pages</div>
+          <div>Built with Next.js &amp; Tailwind • Deployed via GitHub Pages</div>
         </div>
       </footer>
 

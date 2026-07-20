@@ -149,30 +149,30 @@ export default function PaymentPortal({
     }, 1500);
   };
 
-  const inputClass = "w-full bg-[var(--card2)] border border-[var(--border)] text-[var(--fg)] outline-none px-3 py-2.5 text-xs font-mono rounded-lg focus:border-[var(--primary)] transition-colors";
+  const inputClass = "w-full bg-slate-50 border border-black/5 text-slate-900 outline-none px-4 py-3 text-sm font-medium rounded-xl focus:border-blue-300 focus:bg-white shadow-sm transition-colors";
 
   return (
     <TiltWrapper tiltDeg={5}>
     <motion.div
       initial={{ opacity: 0, scale: 0.98 }}
       animate={{ opacity: 1, scale: 1 }}
-      className="rounded-xl border border-[var(--border)] p-4 sm:p-6 shadow-2xl bg-[var(--card)] backdrop-blur-md relative overflow-hidden"
+      className="rounded-[24px] border border-white/60 p-6 sm:p-8 shadow-sm bg-white/60 backdrop-blur-2xl relative overflow-hidden"
     >
       <div className="absolute left-0 bottom-0 opacity-[0.03] pointer-events-none -translate-x-1/4 translate-y-1/4">
-         <Shield size={300} className="text-[var(--primary)]" />
+         <Shield size={300} className="text-blue-600" />
       </div>
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-5 border-b border-[var(--border)] relative z-10">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-5 mb-8 pb-6 border-b border-black/5 relative z-10">
         <div>
-          <span className="text-[9px] font-mono uppercase px-2.5 py-1 rounded-md bg-[var(--card2)] text-[var(--muted)] border border-[var(--border)]">
+          <span className="text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-full bg-slate-100 text-slate-500 border border-black/5 shadow-inner">
             Secure Payment Gateway
           </span>
-          <h3 className="text-sm sm:text-base font-bold tracking-[0.2em] flex items-center gap-2 uppercase mt-3.5 text-[var(--fg)]">
-            <Shield size={18} className="text-[var(--primary)]" />
+          <h3 className="text-lg sm:text-xl font-black tracking-widest flex items-center gap-3 uppercase mt-4 text-slate-900 font-title">
+            <Shield size={22} className="text-blue-600" />
             Verification Portal
           </h3>
-          <p className="text-xs font-mono mt-1 text-[var(--muted)]">
+          <p className="text-sm font-medium mt-2 text-slate-500">
             Jumpstreet — A Mangalik and Sons Venture Limited
           </p>
         </div>
@@ -180,32 +180,32 @@ export default function PaymentPortal({
           href="https://ajainx1.github.io"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-lg text-xs font-mono font-bold tracking-wider text-[var(--primary)] transition-all uppercase flex-shrink-0 bg-[var(--primary)]/10 border border-[var(--primary)]/20 hover:bg-[var(--primary)]/20"
+          className="flex items-center gap-2 px-4 py-3 rounded-full text-xs font-bold tracking-widest text-blue-600 transition-all uppercase flex-shrink-0 bg-blue-50 border border-blue-100 hover:bg-blue-100 shadow-sm"
         >
           Visit Developer Network
-          <ExternalLink size={14} />
+          <ExternalLink size={16} />
         </a>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 relative z-10">
         {/* Left: Summary & Payment Options */}
-        <div className={paymentMethod === 'Web3' ? "lg:col-span-12 max-w-xl mx-auto w-full space-y-6" : "lg:col-span-5 space-y-6"}>
+        <div className={paymentMethod === 'Web3' ? "lg:col-span-12 max-w-xl mx-auto w-full space-y-8" : "lg:col-span-5 space-y-8"}>
           {/* Item summary */}
-          <div className="p-5 rounded-xl border border-[var(--border)] space-y-4 bg-[var(--card2)]/50 shadow-inner">
-            <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] text-[var(--muted)]">
+          <div className="p-6 rounded-[20px] border border-black/5 space-y-5 bg-slate-50 shadow-inner">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest text-slate-500">
               Selected Item Summary
             </h4>
             <div>
-              <span className="text-sm font-bold block truncate uppercase tracking-wide text-[var(--fg)]">{payableTitle}</span>
-              <span className="text-[11px] font-mono text-[var(--muted)]">
+              <span className="text-base font-black block truncate uppercase tracking-widest text-slate-900 font-title">{payableTitle}</span>
+              <span className="text-[11px] font-bold mt-1 text-slate-400">
                 Ready for automated fulfillment
               </span>
             </div>
-            <div className="flex justify-between items-baseline pt-4 border-t border-[var(--border)] font-mono">
-              <span className="text-xs text-[var(--muted)]">Fulfillment Cost</span>
+            <div className="flex justify-between items-baseline pt-5 border-t border-black/5">
+              <span className="text-sm font-bold text-slate-500">Fulfillment Cost</span>
               <div className="text-right">
-                <span className="text-xl font-bold text-[var(--primary)]">₹{payableTotal.toLocaleString('en-IN')}</span>
-                <span className="text-[10px] block text-[var(--muted)]">
+                <span className="text-3xl font-black text-blue-600 font-title tracking-tight">₹{payableTotal.toLocaleString('en-IN')}</span>
+                <span className="text-[11px] block font-bold text-slate-400 mt-1">
                   ~${(payableTotal / 85).toFixed(2)} USD
                 </span>
               </div>
@@ -213,25 +213,25 @@ export default function PaymentPortal({
           </div>
 
           {/* Payment method toggle */}
-          <div className="space-y-3">
-            <label className="block text-[10px] font-bold uppercase tracking-[0.15em] text-[var(--muted)]">
+          <div className="space-y-4">
+            <label className="block text-[11px] font-bold uppercase tracking-widest text-slate-500">
               Payment Route
             </label>
-            <div className="grid grid-cols-3 gap-2 p-1.5 rounded-lg bg-[var(--card2)] border border-[var(--border)]">
+            <div className="grid grid-cols-3 gap-2 p-2 rounded-xl bg-slate-100 border border-black/5 shadow-inner">
               {(['UPI', 'Card', 'Web3'] as const).map(method => (
                 <button
                   key={method}
                   type="button"
                   onClick={() => setPaymentMethod(method)}
-                  className={`py-2 rounded-md text-[10px] font-bold tracking-wider transition-all flex items-center justify-center gap-1 uppercase ${
+                  className={`py-3 rounded-lg text-xs font-bold tracking-widest transition-all flex items-center justify-center gap-2 uppercase ${
                     paymentMethod === method 
-                      ? 'bg-[var(--fg)] text-[var(--bg)] shadow-md' 
-                      : 'text-[var(--muted)] hover:bg-[var(--card)]'
+                      ? 'bg-white text-slate-900 shadow-md border border-black/5' 
+                      : 'text-slate-500 hover:bg-slate-200'
                   }`}
                 >
-                  {method === 'UPI' && <QrCode size={12} />}
-                  {method === 'Card' && <CreditCard size={12} />}
-                  {method === 'Web3' && <Wallet size={12} />}
+                  {method === 'UPI' && <QrCode size={14} />}
+                  {method === 'Card' && <CreditCard size={14} />}
+                  {method === 'Web3' && <Wallet size={14} />}
                   {method === 'UPI' && 'UPI'}
                   {method === 'Card' && 'Card'}
                   {method === 'Web3' && 'Web3'}
@@ -248,58 +248,58 @@ export default function PaymentPortal({
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
-                className="rounded-xl border border-[var(--border)] p-6 space-y-4 bg-[var(--card2)]"
+                className="rounded-[20px] border border-black/5 p-8 space-y-6 bg-slate-50 shadow-inner"
               >
-                <div className="flex items-center justify-between text-xs font-mono border-b border-[var(--border)] pb-2 mb-2">
-                  <span className="text-[var(--muted)]">Amount:</span>
-                  <span className="text-[var(--fg)] font-bold">₹{payableTotal.toLocaleString('en-IN')}</span>
+                <div className="flex items-center justify-between text-sm font-bold border-b border-black/5 pb-4 mb-4">
+                  <span className="text-slate-500 uppercase tracking-widest">Amount:</span>
+                  <span className="text-slate-900 font-black text-lg font-title tracking-tight">₹{payableTotal.toLocaleString('en-IN')}</span>
                 </div>
-                <div className="flex flex-col items-center gap-3">
-                  <div className="bg-white p-2.5 rounded-lg border border-[var(--border)] shadow-sm">
+                <div className="flex flex-col items-center gap-4">
+                  <div className="bg-white p-4 rounded-[20px] border border-black/5 shadow-md">
                     <img
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=jain.aditya33@okaxis%26pn=Aditya%2520Jain%26am=${payableTotal}%26cu=INR`}
+                      src={`https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=jain.aditya33@okaxis%26pn=Aditya%2520Jain%26am=${payableTotal}%26cu=INR`}
                       alt="UPI QR Code"
-                      width={150}
-                      height={150}
+                      width={180}
+                      height={180}
                     />
                   </div>
-                  <span className="text-[10px] font-mono text-[var(--muted)] uppercase tracking-wider">
+                  <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mt-2">
                     Scan &amp; Pay via any UPI App
                   </span>
                   
-                  <div className="w-full border-t border-[var(--border)] pt-3 flex flex-col gap-1.5">
-                    <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
-                      <span className="text-[var(--muted)]">VPA:</span>
-                      <span className="text-[var(--fg)] font-bold">jain.aditya33@okaxis</span>
+                  <div className="w-full border-t border-black/5 pt-4 mt-2 flex flex-col gap-2.5">
+                    <div className="flex items-center justify-between gap-3 text-xs font-medium">
+                      <span className="text-slate-500 uppercase tracking-widest font-bold">VPA:</span>
+                      <span className="text-slate-900 font-bold">jain.aditya33@okaxis</span>
                     </div>
-                    <div className="flex items-center justify-between gap-2 text-[10px] font-mono">
-                      <span className="text-[var(--fg)] font-bold">Merchant:</span>
-                      <span className="text-[var(--fg)] font-bold">Aditya Jain</span>
+                    <div className="flex items-center justify-between gap-3 text-xs font-medium">
+                      <span className="text-slate-500 uppercase tracking-widest font-bold">Merchant:</span>
+                      <span className="text-slate-900 font-bold">Aditya Jain</span>
                     </div>
                   </div>
 
                   <button
                     type="button"
                     onClick={() => copyToClipboard('jain.aditya33@okaxis')}
-                    className="w-full mt-2 py-2 rounded-lg text-[10px] font-mono font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5 border border-[var(--border)] text-[var(--muted)] hover:text-[var(--primary)] hover:border-[var(--primary)]/50 hover:bg-[var(--primary)]/10"
+                    className="w-full mt-4 py-3 rounded-xl text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 border border-black/5 bg-white text-slate-500 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 shadow-sm"
                     title="Copy UPI ID"
                   >
-                    <Clipboard size={12} />
+                    <Clipboard size={14} />
                     <span>Copy UPI ID</span>
                   </button>
                   <AnimatePresence>
                     {isCopied && (
                       <motion.span
-                        initial={{ opacity: 0, y: 5 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0 }}
-                        className="text-[9px] font-mono text-emerald-400 font-bold"
+                         initial={{ opacity: 0, y: 5 }}
+                         animate={{ opacity: 1, y: 0 }}
+                         exit={{ opacity: 0 }}
+                         className="text-[10px] font-bold uppercase tracking-widest text-emerald-500"
                       >
                         UPI ID copied!
                       </motion.span>
                     )}
                   </AnimatePresence>
-                  <span className="text-[10px] block leading-normal font-mono text-[var(--muted)]">
+                  <span className="text-[11px] block leading-relaxed font-medium text-slate-500 text-center max-w-[200px]">
                     BHIM, GPay, PhonePe, Paytm, Cred, or any Indian Bank app.
                   </span>
                 </div>
@@ -312,17 +312,17 @@ export default function PaymentPortal({
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                className="rounded-xl border border-[var(--border)] p-6 space-y-4 bg-[var(--card2)]"
+                className="rounded-[20px] border border-black/5 p-8 space-y-5 bg-slate-50 shadow-inner"
               >
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] block mb-2 text-[var(--muted)]">
+                <span className="text-[11px] font-bold uppercase tracking-widest block mb-4 text-slate-500">
                   Secure Card Gateway
                 </span>
-                <div className="space-y-1.5">
-                  <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Cardholder Email</label>
-                  <input type="text" value={email} disabled className={`${inputClass} opacity-50 cursor-not-allowed`} />
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Cardholder Email</label>
+                  <input type="text" value={email} disabled className={`${inputClass} opacity-60 bg-slate-100 cursor-not-allowed`} />
                 </div>
-                <div className="space-y-1.5">
-                  <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Card Number</label>
+                <div className="space-y-2">
+                  <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Card Number</label>
                   <div className="relative">
                     <input
                       type="text"
@@ -331,12 +331,12 @@ export default function PaymentPortal({
                       onChange={e => setCardNumber(e.target.value.replace(/\W/gi, '').replace(/(.{4})/g, '$1 ').trim().substring(0, 19))}
                       className={inputClass}
                     />
-                    <CreditCard size={14} className="absolute right-3.5 top-3 text-[var(--muted)]" />
+                    <CreditCard size={18} className="absolute right-4 top-3.5 text-slate-400" />
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Expiry</label>
+                <div className="grid grid-cols-2 gap-5">
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Expiry</label>
                     <input
                       type="text"
                       placeholder="MM/YY"
@@ -345,8 +345,8 @@ export default function PaymentPortal({
                       className={`${inputClass} text-center`}
                     />
                   </div>
-                  <div className="space-y-1.5">
-                    <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">CVV</label>
+                  <div className="space-y-2">
+                    <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">CVV</label>
                     <input
                       type="password"
                       placeholder="•••"
@@ -365,25 +365,25 @@ export default function PaymentPortal({
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
-                className="rounded-xl border border-[var(--border)] p-6 space-y-4 bg-[var(--card2)]"
+                className="rounded-[20px] border border-black/5 p-8 space-y-5 bg-slate-50 shadow-inner"
               >
-                <span className="text-[10px] font-bold uppercase tracking-[0.15em] block mb-2 text-[#38bdf8]">
+                <span className="text-[11px] font-bold uppercase tracking-widest block mb-4 text-blue-600">
                   Smart Contract Gateway
                 </span>
                 
                 {walletAddress ? (
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-[var(--muted)]">Payable Amount:</span>
-                      <span className="text-white font-bold">{(payableTotal / 300000).toFixed(5)} ETH</span>
+                  <div className="space-y-5">
+                    <div className="flex items-center justify-between text-sm font-bold">
+                      <span className="text-slate-500">Payable Amount:</span>
+                      <span className="text-slate-900 font-black">{(payableTotal / 300000).toFixed(5)} ETH</span>
                     </div>
-                    <div className="flex items-center justify-between text-xs font-mono">
-                      <span className="text-[var(--muted)]">Connected Wallet:</span>
-                      <span className="text-emerald-400 font-bold">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
+                    <div className="flex items-center justify-between text-sm font-bold">
+                      <span className="text-slate-500">Connected Wallet:</span>
+                      <span className="text-emerald-600 font-black">{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
                     </div>
 
-                    <div className="space-y-1.5 pt-2">
-                      <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Delivery Email</label>
+                    <div className="space-y-2 pt-3">
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Delivery Email</label>
                       <input 
                         type="email" 
                         value={email} 
@@ -392,8 +392,8 @@ export default function PaymentPortal({
                         className={inputClass} 
                       />
                     </div>
-                    <div className="space-y-1.5">
-                      <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Telegram Username</label>
+                    <div className="space-y-2">
+                      <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Telegram Username</label>
                       <input 
                         type="text" 
                         value={telegram} 
@@ -404,8 +404,8 @@ export default function PaymentPortal({
                     </div>
 
                     {requiresShipping && (
-                      <div className="space-y-1.5">
-                        <label className="block text-[9px] uppercase font-mono tracking-wider text-[var(--muted)]">Shipping Address</label>
+                      <div className="space-y-2">
+                        <label className="block text-[10px] uppercase font-bold tracking-widest text-slate-500">Shipping Address</label>
                         <textarea 
                           rows={2} 
                           value={deliveryAddress} 
@@ -420,20 +420,20 @@ export default function PaymentPortal({
                       type="button"
                       onClick={handleWeb3PaymentSubmit}
                       disabled={isSubmitting || !email || !telegram}
-                      className="w-full py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-widest bg-[#38bdf8] text-black hover:bg-sky-400 active:scale-95 transition-all flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(56,189,248,0.3)] disabled:opacity-50"
+                      className="w-full py-4 rounded-xl font-bold text-xs uppercase tracking-widest bg-blue-600 text-white hover:bg-blue-700 active:scale-95 transition-all flex items-center justify-center gap-3 shadow-md disabled:opacity-50"
                     >
                       {isSubmitting ? "Executing Contract..." : "Authorize Web3 Payment"}
                     </button>
                   </div>
                 ) : (
-                  <div className="text-center py-6 space-y-4">
-                    <p className="text-xs font-mono text-[var(--muted)] leading-relaxed">
+                  <div className="text-center py-8 space-y-6">
+                    <p className="text-sm font-medium text-slate-500 leading-relaxed max-w-sm mx-auto">
                       No connected Web3 node detected. Please connect your wallet in the header to execute this transaction.
                     </p>
                     <button
                       type="button"
                       onClick={triggerConnectWallet}
-                      className="px-5 py-2 rounded-lg font-mono text-[10px] font-bold uppercase tracking-wider bg-[#38bdf8] text-black hover:bg-sky-400 transition-colors"
+                      className="px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-blue-600 text-white hover:bg-blue-700 shadow-md transition-colors"
                     >
                       Connect Wallet
                     </button>
@@ -446,15 +446,15 @@ export default function PaymentPortal({
 
         {/* Right: Submission Form */}
         {paymentMethod !== 'Web3' && (
-          <form onSubmit={handleSubmitPayment} className="lg:col-span-7 space-y-5 sm:space-y-6">
-            <h4 className="text-[10px] font-mono font-bold uppercase tracking-[0.15em] pb-2 border-b border-[var(--border)] text-[var(--muted)]">
+          <form onSubmit={handleSubmitPayment} className="lg:col-span-7 space-y-6 sm:space-y-8">
+            <h4 className="text-[11px] font-bold uppercase tracking-widest pb-3 border-b border-black/5 text-slate-500">
               Submit Transaction Reference
             </h4>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-            <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-                Email Address <span className="text-rose-500">*</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                Email Address <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
@@ -465,9 +465,9 @@ export default function PaymentPortal({
                 className={inputClass}
               />
             </div>
-            <div className="space-y-1.5">
-              <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-                Telegram Username <span className="text-rose-500">*</span>
+            <div className="space-y-2">
+              <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                Telegram Username <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
@@ -480,9 +480,9 @@ export default function PaymentPortal({
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-              UPI UTR / Transaction ID <span className="text-rose-500">*</span>
+          <div className="space-y-2">
+            <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+              UPI UTR / Transaction ID <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
@@ -492,7 +492,7 @@ export default function PaymentPortal({
               placeholder="e.g. 412498553201 or TXN_XXXXXX"
               className={inputClass}
             />
-            <span className="text-[10px] mt-1.5 block font-mono text-[var(--muted)]">
+            <span className="text-[11px] mt-2 block font-medium text-slate-400">
               Enter the 12-digit reference number visible in your banking app after the transaction.
             </span>
           </div>
@@ -502,10 +502,10 @@ export default function PaymentPortal({
               <motion.div 
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
-                className="space-y-1.5"
+                className="space-y-2"
               >
-                <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
-                  Shipping Address in India <span className="text-rose-500">*</span>
+                <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
+                  Shipping Address in India <span className="text-red-500">*</span>
                 </label>
                 <textarea
                   required
@@ -513,41 +513,41 @@ export default function PaymentPortal({
                   onChange={e => setDeliveryAddress(e.target.value)}
                   placeholder="Complete address, state, city and pincode. Shipped via Delhivery / Bluedart."
                   rows={3}
-                  className={`${inputClass} resize-y min-h-[80px]`}
+                  className={`${inputClass} resize-y min-h-[100px]`}
                 />
               </motion.div>
             )}
           </AnimatePresence>
 
           {/* Upload */}
-          <div className="space-y-1.5">
-            <label className="block text-[10px] font-bold uppercase tracking-wider text-[var(--muted)]">
+          <div className="space-y-2">
+            <label className="block text-[10px] font-bold uppercase tracking-widest text-slate-500">
               Upload Payment Screenshot (Optional)
             </label>
-            <div className="border border-dashed border-[var(--border)] rounded-xl p-6 text-center relative transition-all bg-[var(--card2)]/50 hover:bg-[var(--card2)] group cursor-pointer">
+            <div className="border border-dashed border-black/10 rounded-[20px] p-8 text-center relative transition-all bg-white hover:bg-slate-50 group cursor-pointer">
               <input
                 type="file"
                 accept="image/*"
                 onChange={handleSimulatedUpload}
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               />
-              <div className="space-y-3">
-                <div className="mx-auto w-12 h-12 rounded-lg flex items-center justify-center bg-[var(--card)] border border-[var(--border)] text-[var(--muted)] group-hover:text-[var(--primary)] group-hover:border-[var(--primary)]/30 transition-colors">
-                  <Upload size={18} className={isUploading ? 'animate-bounce text-[var(--primary)]' : ''} />
+              <div className="space-y-4">
+                <div className="mx-auto w-14 h-14 rounded-[16px] flex items-center justify-center bg-slate-50 border border-black/5 text-slate-400 group-hover:text-blue-600 group-hover:border-blue-200 transition-colors shadow-sm">
+                  <Upload size={22} className={isUploading ? 'animate-bounce text-blue-600' : ''} />
                 </div>
                 {isUploading ? (
-                  <span className="text-[11px] font-mono text-[var(--primary)] animate-pulse">Parsing file securely...</span>
+                  <span className="text-[11px] font-bold uppercase tracking-widest text-blue-600 animate-pulse">Parsing file securely...</span>
                 ) : uploadedReceiptName ? (
-                  <div className="flex items-center justify-center gap-2 text-xs text-emerald-400 font-mono font-bold">
-                    <CheckCircle2 size={14} />
+                  <div className="flex items-center justify-center gap-2 text-sm text-emerald-600 font-bold">
+                    <CheckCircle2 size={18} />
                     Receipt: {uploadedReceiptName.toUpperCase()}
                   </div>
                 ) : (
                   <>
-                    <span className="text-[11px] font-bold block uppercase tracking-wide text-[var(--fg)]">
+                    <span className="text-xs font-black block uppercase tracking-widest text-slate-900 font-title">
                       Drag &amp; Drop or Click to Upload
                     </span>
-                    <span className="text-[9px] font-mono text-[var(--muted)]">
+                    <span className="text-[11px] font-medium text-slate-500">
                       PNG, JPG — up to 5MB
                     </span>
                   </>
@@ -557,37 +557,37 @@ export default function PaymentPortal({
           </div>
 
           {/* Submit */}
-          <div className="pt-2">
+          <div className="pt-4">
             <motion.button
               whileHover={!isSubmitting ? { scale: 1.01 } : {}}
               whileTap={!isSubmitting ? { scale: 0.99 } : {}}
               type="submit"
               disabled={isSubmitting}
-              className={`w-full py-4 font-bold rounded-lg text-xs transition-all tracking-widest uppercase flex items-center justify-center gap-2.5 ${
+              className={`w-full py-4 font-bold rounded-full text-xs transition-all tracking-widest uppercase flex items-center justify-center gap-3 shadow-md ${
                 isSubmitting 
-                  ? 'bg-[var(--card2)] text-[var(--muted)] cursor-not-allowed border border-[var(--border)]' 
-                  : 'bg-[var(--fg)] text-[var(--bg)] hover:bg-[var(--primary)] hover:text-white shadow-xl hover:shadow-[var(--primary)]/20 cursor-pointer'
+                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-black/5' 
+                  : 'bg-slate-900 text-white hover:bg-blue-600 hover:shadow-xl cursor-pointer'
               }`}
             >
               {isSubmitting ? (
                 <>
-                  <span className="w-4 h-4 rounded-full border-2 border-[var(--muted)] border-t-transparent animate-spin" />
+                  <span className="w-5 h-5 rounded-full border-2 border-slate-400 border-t-transparent animate-spin" />
                   Verifying Ledger Hashes...
                 </>
               ) : (
                 <>
-                  <CheckCircle2 size={16} />
+                  <CheckCircle2 size={18} />
                   Submit Payment Verification
                 </>
               )}
             </motion.button>
           </div>
 
-          <div className="flex items-start gap-3 p-4 rounded-lg border border-[var(--primary)]/20 bg-[var(--primary)]/5 font-mono text-[10px]">
-            <Info size={14} className="text-[var(--primary)] flex-shrink-0 mt-0.5" />
-            <p className="leading-relaxed text-[var(--muted)]">
+          <div className="flex items-start gap-4 p-5 rounded-[16px] border border-blue-100 bg-blue-50/50 text-xs shadow-sm">
+            <Info size={16} className="text-blue-600 flex-shrink-0 mt-0.5" />
+            <p className="leading-relaxed text-slate-600 font-medium">
               All software activation references are manually matched against UPI/Card bank ledgers in real-time.
-              Expect confirmation within <strong className="text-[var(--fg)] font-medium">15 minutes</strong>.
+              Expect confirmation within <strong className="text-slate-900 font-bold">15 minutes</strong>.
             </p>
           </div>
           </form>
