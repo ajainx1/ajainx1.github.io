@@ -920,6 +920,42 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
           </div>
         </div>
+
+        {/* Real-World Impact Gallery */}
+        <div className="w-full mt-8">
+          <div className={`p-8 rounded-[32px] shadow-lg backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+            <div className="flex items-center gap-3 mb-4">
+              <Heart size={28} className="text-rose-500 fill-rose-500" />
+              <h2 className="text-2xl font-bold tracking-tight">Real-World Impact</h2>
+            </div>
+            <p className="text-sm opacity-80 mb-8 max-w-3xl leading-relaxed">
+              Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
+            </p>
+            
+            <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
+              {/* Infinite Scrolling Marquee */}
+              <motion.div 
+                className="flex gap-4 absolute left-0"
+                animate={{ x: [0, -15000] }}
+                transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
+              >
+                {Array.from({ length: 72 }).map((_, i) => (
+                  <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                    <img 
+                      src={`/impact/impact-${i + 1}.jpeg`} 
+                      alt={`Real-World Impact ${i + 1}`} 
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                      loading="lazy" 
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                      <Heart size={16} className="text-white fill-white" />
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* AI Quiz Settings Modal */}
