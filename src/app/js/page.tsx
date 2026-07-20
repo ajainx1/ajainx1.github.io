@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {
   ShieldCheck, Terminal, TrendingUp, Radio, ExternalLink,
   FileCheck, Clock, Sliders, ShoppingCart, Menu, X,
-  MessageSquare, Sun, Moon, Eye, Server, ChevronUp, Zap
+  MessageSquare, Sun, Moon, Eye, Server, ChevronUp, Zap, Phone
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -84,12 +84,10 @@ function VisitCounterBadge({ displayCount }: { displayCount: number }) {
   );
 }
 
-/* ── Ticker items ── */
 const TICKER_ITEMS = [
   '🚀 Orca6 automated trading indicator package now live',
-  '📡 High-Availability 5G Redundancy Nodes in stock — 14 units remaining',
+  '📞 24/7 VIP Support Active: +91 98975 77 007',
   '⚡ Sub-millisecond Windows Cloud VMs available 24/7',
-  '🇮🇳 Express shipping from New Delhi within 48 hrs',
   '🤖 Automated watchdogs pre-installed on all VMs',
   '💳 UPI, GPay & International Card payments accepted',
   '🔒 Managed by Jumpstreet — A Mangalik & Sons Securities',
@@ -290,11 +288,18 @@ function AppContent() {
                 <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
               </div>
             )}
+            <a
+              href="tel:+919897577007"
+              className="hidden sm:flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase px-4 py-2.5 rounded-xl transition-all border border-blue-200 text-blue-600 bg-blue-50 hover:bg-blue-100 shadow-sm"
+            >
+              <Phone size={14} className="animate-pulse" />
+              <span>+91 98975 77 007</span>
+            </a>
             <Link
               href="/portfolio"
-              className="hidden sm:flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-xl transition-all border border-black/5 text-slate-500 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 group shadow-sm bg-white/50"
+              className="hidden lg:flex items-center gap-2 text-[11px] font-bold tracking-widest uppercase px-5 py-2.5 rounded-xl transition-all border border-black/5 text-slate-500 hover:text-blue-600 hover:border-blue-200 hover:bg-blue-50 group shadow-sm bg-white/50"
             >
-              <span className="hidden md:inline">Aditya Portfolio</span>
+              <span className="hidden xl:inline">Aditya Portfolio</span>
               <ExternalLink size={14} className="group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <button
@@ -370,15 +375,14 @@ function AppContent() {
               </h1>
 
               <p className="text-sm sm:text-base leading-relaxed max-w-2xl mb-6 text-slate-600 font-medium">
-                Deploy state-of-the-art algorithmic trading configurations. Jumpstreet secures
-                lowest-latency Windows VPS packages pre-installed with{' '}
-                <strong className="text-slate-900 font-bold">Orca6</strong> indicators, paired with
-                imported path-redundant telecommunications hardware from Japan and China.
+                Experience fully hands-off, state-of-the-art algorithmic trading. Jumpstreet secures
+                the lowest-latency Windows Cloud VPS packages seamlessly pre-installed with our elite{' '}
+                <strong className="text-slate-900 font-bold">Orca6</strong> trading logic, delivering instant execution directly to the markets.
               </p>
 
-              <div className="mb-10 p-5 rounded-2xl bg-amber-50 border border-amber-200 shadow-sm text-sm font-medium text-amber-900 leading-relaxed max-w-2xl">
-                <strong className="text-amber-700 block mb-2 text-xs tracking-widest uppercase">⚠️ Operational Requirements</strong>
-                We require a <strong>minimum capital of 500 USD</strong>. To protect our proprietary strategies, we do not share them. We only require your account credentials to deploy Orca6 directly to your account. You may also provide a trial account to evaluate our execution logic.
+              <div className="mb-10 p-5 rounded-2xl bg-indigo-50 border border-indigo-200 shadow-sm text-sm font-medium text-indigo-900 leading-relaxed max-w-2xl">
+                <strong className="text-indigo-700 flex items-center gap-2 mb-2 text-xs tracking-widest uppercase"><ShieldCheck size={16} /> VIP Client Onboarding</strong>
+                To ensure maximum performance and returns, the Orca6 system requires a <strong>minimum trading capital of 500 USD</strong>. Our team handles the entire technical setup directly on your account—no coding or trading experience required. Simply provide a trial account with your credentials to evaluate the execution logic firsthand.
               </div>
 
               {/* Stats Grid */}
