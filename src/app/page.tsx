@@ -128,6 +128,18 @@ export default function GatewayPage() {
       borderColor: "border-emerald-500/30",
       glowColor: "shadow-emerald-500/10",
       textColor: "text-emerald-400",
+    },
+    {
+      title: "Free Web3 & Dev Domains",
+      subtitle: "TLDs // Subdomains // Hosting",
+      description: "Claim free subdomains and TLDs for developer projects, nodes, and smart contract frontends.",
+      link: "/free-domains",
+      icon: Globe,
+      cta: "Explore Domains",
+      color: "from-amber-600/10 to-amber-950/5",
+      borderColor: "border-amber-500/30",
+      glowColor: "shadow-amber-500/10",
+      textColor: "text-amber-400",
     }
   ];
 
