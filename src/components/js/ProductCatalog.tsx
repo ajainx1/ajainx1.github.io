@@ -12,8 +12,8 @@ interface ProductCatalogProps {
 const PRODUCTS: Product[] = [
   {
     id: 'bot_standard',
-    name: 'Bot Fixed — Standard License',
-    description: 'Autonomous trading indicator system. Instant signals sent directly to your messenger.',
+    name: 'Orca6 — Trial License',
+    description: 'Provide a trial account for us to deploy and test Orca6 execution logic.',
     price: 999,
     currency: 'INR',
     badge: 'Popular',
@@ -21,7 +21,8 @@ const PRODUCTS: Product[] = [
     image: '/js/bot_standard.png',
     specs: [
       'Telegram, WhatsApp & Signal Webhook Alerts',
-      'Fully custom strategies implementation',
+      'Minimum capital required: 500 USD',
+      'Account credentials required for deployment',
       'No VM headache — direct web API hooks',
       'Jumpstreet 0-latency engine access',
       '24/7 client-side running capability',
@@ -29,15 +30,17 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 'bot_premium',
-    name: 'Bot Fixed — Premium VM Bundle',
-    description: 'Fully hands-off trading system. Standard Bot Fixed + Dedicated Windows Cloud VM setup.',
+    name: 'Orca6 — Premium VM Bundle',
+    description: 'Full hands-off automated trading system running on Orca6 logic.',
     price: 1499,
     currency: 'INR',
     badge: 'Best Value',
     type: 'bundle',
     image: '/js/bot_premium.png',
     specs: [
-      'Includes 1 Month Bot Fixed License',
+      'Includes 1 Month Orca6 License',
+      'Minimum capital required: 500 USD',
+      'Account credentials required for deployment',
       'Pre-installed on Windows Cloud VM (2GB ECC RAM, 1 vCPU)',
       'Jumpstreet "Tricks Implementation" (Watchdogs & Anti-crash)',
       'Premium custom integration techniques included',
@@ -64,7 +67,7 @@ const PRODUCTS: Product[] = [
   {
     id: 'pro_trader_bundle',
     name: 'Pro Trader Ultimate Bundle',
-    description: 'The definitive algorithmic trading gear. Premium Bot Fixed + Windows VM + 5G SIM Hotspot.',
+    description: 'The definitive algorithmic trading gear. Premium Orca6 Bundle + Windows VM + 5G SIM Hotspot.',
     price: 4499,
     currency: 'INR',
     badge: 'Ultimate Elite',

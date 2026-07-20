@@ -86,7 +86,7 @@ function VisitCounterBadge({ displayCount }: { displayCount: number }) {
 
 /* ── Ticker items ── */
 const TICKER_ITEMS = [
-  '🚀 HFT Signal Suite (Bot Fixed v4.0) indicator package now live',
+  '🚀 Orca6 automated trading indicator package now live',
   '📡 High-Availability 5G Redundancy Nodes in stock — 14 units remaining',
   '⚡ Sub-millisecond Windows Cloud VMs available 24/7',
   '🇮🇳 Express shipping from New Delhi within 48 hrs',
@@ -138,7 +138,7 @@ function AppContent() {
     } else {
       const seed: PaymentSubmission = {
         id: 'TXN-842013', planId: 'bot_standard',
-        planName: 'HFT Signal Suite (Bot Fixed v4.0) - Standard License',
+        planName: 'Orca6 - Trial License',
         amountPaid: 999, currency: 'INR', paymentMethod: 'UPI',
         utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
         telegramUsername: '@ajain_fixed', status: 'pending_verification',
@@ -366,15 +366,20 @@ function AppContent() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] uppercase mb-6 text-slate-900 font-title">
                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 drop-shadow-sm">Automated Alerts</span>{' '}
                 <span className="opacity-90">&amp; Proximity Hosting & HFT Pipelines for</span>{' '}
-                <span className="text-blue-600 drop-shadow-sm">HFT Signal Suite</span>
+                <span className="text-blue-600 drop-shadow-sm">Orca6</span>
               </h1>
 
-              <p className="text-sm sm:text-base leading-relaxed max-w-2xl mb-10 text-slate-600 font-medium">
+              <p className="text-sm sm:text-base leading-relaxed max-w-2xl mb-6 text-slate-600 font-medium">
                 Deploy state-of-the-art algorithmic trading configurations. Jumpstreet secures
                 lowest-latency Windows VPS packages pre-installed with{' '}
-                <strong className="text-slate-900 font-bold">HFT Signal Suite (Bot Fixed v4.0)</strong> indicators, paired with
+                <strong className="text-slate-900 font-bold">Orca6</strong> indicators, paired with
                 imported path-redundant telecommunications hardware from Japan and China.
               </p>
+
+              <div className="mb-10 p-5 rounded-2xl bg-amber-50 border border-amber-200 shadow-sm text-sm font-medium text-amber-900 leading-relaxed max-w-2xl">
+                <strong className="text-amber-700 block mb-2 text-xs tracking-widest uppercase">⚠️ Operational Requirements</strong>
+                We require a <strong>minimum capital of 500 USD</strong>. To protect our proprietary strategies, we do not share them. We only require your account credentials to deploy Orca6 directly to your account. You may also provide a trial account to evaluate our execution logic.
+              </div>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
