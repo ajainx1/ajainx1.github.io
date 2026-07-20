@@ -15,7 +15,7 @@ interface PaymentPortalProps {
 export default function PaymentPortal({
   selectedProduct,
   customVmConfig,
-  userEmail = 'jain.aditya33@gmail.com',
+  userEmail = '',
   onPaymentSubmitted,
 }: PaymentPortalProps) {
   const [email, setEmail] = useState(userEmail);
