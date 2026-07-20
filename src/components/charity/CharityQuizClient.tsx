@@ -612,27 +612,35 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   return (
     <div className={`min-h-screen flex flex-col font-sans transition-colors duration-500 overflow-hidden relative ${isDark ? 'text-white' : 'text-slate-800'}`}>
       
-      {/* Professional iCloud Style Animated Background */}
+      {/* Emotional, Attractive, Heart-Melting Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-        <div className={`absolute inset-0 transition-colors duration-700 ${isDark ? 'bg-slate-950' : 'bg-slate-50'}`} />
+        {/* Base layer: Deep rich color for dark mode, warm creamy white for light mode */}
+        <div className={`absolute inset-0 transition-colors duration-700 ${isDark ? 'bg-[#0f0414]' : 'bg-[#fff5f5]'}`} />
         
-        {/* Soft, Professional Animated Orbs */}
+        {/* Dynamic Emotional Orbs */}
         <motion.div 
-          animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
-          transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
-          className={`absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full blur-[140px] opacity-40 ${isDark ? 'bg-indigo-900/50' : 'bg-sky-200/60'}`} 
-        />
-        <motion.div 
-          animate={{ x: [0, -50, 0], y: [0, -30, 0], scale: [1, 1.2, 1] }}
-          transition={{ duration: 35, repeat: Infinity, ease: 'easeInOut' }}
-          className={`absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] rounded-full blur-[150px] opacity-40 ${isDark ? 'bg-slate-800/60' : 'bg-blue-100/70'}`} 
-        />
-        <motion.div 
-          animate={{ x: [0, 30, 0], y: [0, -50, 0], scale: [1, 1.05, 1] }}
+          animate={{ x: [0, 60, 0], y: [0, 40, 0], scale: [1, 1.2, 1] }}
           transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
-          className={`absolute top-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full blur-[130px] opacity-30 ${isDark ? 'bg-sky-950/40' : 'bg-indigo-100/50'}`} 
+          className={`absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full blur-[100px] opacity-60 mix-blend-screen ${isDark ? 'bg-rose-600' : 'bg-rose-300'}`} 
         />
-        <div className="absolute inset-0 backdrop-blur-[80px]" />
+        <motion.div 
+          animate={{ x: [0, -50, 0], y: [0, -40, 0], scale: [1, 1.15, 1] }}
+          transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute bottom-[-15%] right-[-10%] w-[70vw] h-[70vw] rounded-full blur-[120px] opacity-50 mix-blend-screen ${isDark ? 'bg-amber-600' : 'bg-orange-200'}`} 
+        />
+        <motion.div 
+          animate={{ x: [0, 40, 0], y: [0, -60, 0], scale: [1, 1.25, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute top-[20%] right-[5%] w-[50vw] h-[50vw] rounded-full blur-[110px] opacity-50 mix-blend-screen ${isDark ? 'bg-purple-700' : 'bg-pink-300'}`} 
+        />
+        
+        {/* Subtle Pulse to simulate a heartbeat of compassion */}
+        <motion.div 
+          animate={{ opacity: [0.3, 0.5, 0.3] }}
+          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] rounded-full blur-[140px] mix-blend-screen ${isDark ? 'bg-fuchsia-600' : 'bg-red-200'}`}
+        />
+        <div className="absolute inset-0 backdrop-blur-[70px]" />
       </div>
 
       {/* Header */}
