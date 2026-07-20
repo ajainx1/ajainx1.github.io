@@ -12,8 +12,8 @@ interface ProductCatalogProps {
 const PRODUCTS: Product[] = [
   {
     id: 'bot_standard',
-    name: 'Orca6 — Trial License',
-    description: 'We will provide a pre-configured demo account for you to test and verify the Orca6 execution logic firsthand.',
+    name: 'Orca6™ — Trial License',
+    description: 'We will provide a pre-configured demo account for you to test and verify the Orca6™ execution logic firsthand.',
     price: 600,
     currency: 'INR',
     badge: 'Popular Trial',
@@ -29,15 +29,15 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 'bot_premium',
-    name: 'Orca6 — Premium VM Bundle',
-    description: 'Full hands-off automated trading system running on Orca6 logic, hosted on a dedicated low-latency server.',
+    name: 'Orca6™ — Premium VM Bundle',
+    description: 'Full hands-off automated trading system running on Orca6™ logic, hosted on a dedicated low-latency server.',
     price: 1499,
     currency: 'INR',
     badge: 'VIP Elite',
     type: 'bundle',
     image: '/js/bot_premium.png',
     specs: [
-      'Includes 1 Month Orca6 License',
+      'Includes 1 Month Orca6™ License',
       'Minimum capital required: 500 USD',
       'Account credentials required for deployment',
       'Pre-installed on Windows Cloud VM (2GB ECC RAM, 1 vCPU)',
@@ -141,14 +141,14 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
                 <div className="pt-5 sm:pt-6 border-t border-black/5 space-y-4 mt-auto">
                   <div className="flex justify-between items-baseline">
                     <span className="text-[11px] font-bold uppercase tracking-widest text-slate-400">
-                      Price in India
+                      Pricing
                     </span>
                     <div className="text-right">
-                      <span className={`text-2xl sm:text-3xl font-black font-title tracking-tight ${isPremium ? 'text-blue-600' : 'text-slate-900'}`}>
-                        ₹{prod.price.toLocaleString('en-IN')}
+                      <span className={`text-2xl sm:text-3xl font-black font-title tracking-tight ${isPremium ? 'text-emerald-600' : 'text-slate-900'}`}>
+                        ₹{prod.price.toLocaleString('en-IN')} INR
                       </span>
-                      <span className="text-[10px] font-bold block text-slate-400">
-                        ~${(prod.price / 85).toFixed(2)} USD
+                      <span className="text-[10px] font-bold block text-slate-500 mt-1">
+                        International: ${(prod.price / 85).toFixed(2)} USD
                       </span>
                     </div>
                   </div>
@@ -159,12 +159,12 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
                     onClick={() => onSelectProduct(prod)}
                     className={`w-full py-3.5 rounded-full text-xs font-bold tracking-widest uppercase transition-all flex items-center justify-center gap-2 cursor-pointer group/btn border shadow-sm ${
                       isPremium 
-                        ? 'bg-blue-600 text-white border-transparent hover:bg-blue-700 shadow-md hover:shadow-lg' 
+                        ? 'bg-emerald-500 text-white border-transparent hover:bg-emerald-600 shadow-md hover:shadow-lg' 
                         : 'bg-slate-100 text-slate-700 border-black/5 hover:bg-slate-200'
                     }`}
                   >
                     <ShoppingCart size={16} />
-                    Apply to Checkout
+                    Activate License
                     <ArrowRight size={14} className="group-hover/btn:translate-x-1.5 transition-transform" />
                   </motion.button>
                 </div>
@@ -183,9 +183,9 @@ export default function ProductCatalog({ onSelectProduct }: ProductCatalogProps)
         className="rounded-[24px] border border-white/60 p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 text-center bg-white/60 backdrop-blur-xl shadow-sm"
       >
         {[
-          { icon: '🇮🇳', title: 'Shipped Local', desc: 'All 5G Routers dispatched express from New Delhi.' },
-          { icon: '🤖', title: '0 VM Headache', desc: 'No server setups required. We fully provision on robust VMs.' },
-          { icon: '💳', title: 'UPI / Cards', desc: 'Secure transactions with rapid manual activation.' },
+          { icon: '🛡️', title: '100% Uptime Guarantee', desc: 'Enterprise SLAs with Zero Setup Fees.' },
+          { icon: '🔄', title: 'Cancel Anytime', desc: '7-day money-back guarantee on all licenses.' },
+          { icon: '💳', title: 'Global Payments', desc: 'UPI, GPay, Visa, Mastercard accepted.' },
         ].map((item, i) => (
           <div
             key={i}

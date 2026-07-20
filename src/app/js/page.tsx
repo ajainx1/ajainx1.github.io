@@ -20,33 +20,7 @@ import PaymentPortal from '@/components/js/PaymentPortal';
    HOOKS
 ══════════════════════════════ */
 
-function useVisitCounter() {
-  const [displayCount, setDisplayCount] = useState(0);
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    const stored = parseInt(localStorage.getItem('jumpstreet_visits') || '0', 10);
-    const newCount = stored + 1;
-    localStorage.setItem('jumpstreet_visits', String(newCount));
-    setCount(newCount);
-
-    // Count-up animation
-    const start = Math.max(0, newCount - 30);
-    let current = start;
-    const duration = 1200;
-    const steps = newCount - start;
-    const interval = steps > 0 ? duration / steps : 0;
-    if (steps <= 0) { setDisplayCount(newCount); return; }
-    const timer = setInterval(() => {
-      current++;
-      setDisplayCount(current);
-      if (current >= newCount) clearInterval(timer);
-    }, interval);
-    return () => clearInterval(timer);
-  }, []);
-
-  return { count, displayCount };
-}
+// Visit counter removed for UX improvements
 
 function useScrollTop() {
   const [visible, setVisible] = useState(false);
@@ -63,34 +37,15 @@ function useScrollTop() {
    SUB-COMPONENTS
 ══════════════════════════════ */
 
-function VisitCounterBadge({ displayCount }: { displayCount: number }) {
-  return (
-    <motion.div 
-      initial={{ opacity: 0, scale: 0.8, y: 20 }}
-      animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ delay: 1 }}
-      className="fixed bottom-6 left-6 z-50 flex items-center gap-3 px-4 py-2 rounded-full backdrop-blur-xl border border-black/5 bg-white/80 shadow-md"
-      aria-label={`${displayCount} platform visits`}
-    >
-      <span className="w-2 h-2 rounded-full bg-blue-500 animate-ping flex-shrink-0" />
-      <Eye size={14} className="text-blue-600 flex-shrink-0" />
-      <span className="font-title font-black text-xs text-slate-900 tracking-wide">
-        {displayCount.toLocaleString('en-IN')}
-      </span>
-      <span className="font-bold text-[9px] uppercase tracking-widest text-slate-400">
-        visits
-      </span>
-    </motion.div>
-  );
-}
+// VisitCounterBadge removed
 
 const TICKER_ITEMS = [
-  '🚀 Orca6 automated trading indicator package now live',
+  '🚀 Orca6™ automated trading indicator package now live',
   '📞 24/7 VIP Support Active: +91 98975 77 007',
   '⚡ Sub-millisecond Windows Cloud VMs available 24/7',
   '🤖 Automated watchdogs pre-installed on all VMs',
   '💳 UPI, GPay & International Card payments accepted',
-  '🔒 Managed by Jumpstreet — A Mangalik & Sons Securities',
+  '🔒 Managed by Jumpstreet — A Mangalik & Sons Ventures',
   '📈 Avg signal latency: 1.2ms via Jumpstreet API',
 ];
 
@@ -124,7 +79,6 @@ function AppContent() {
     return () => window.removeEventListener("storage", checkWallet);
   }, []);
   
-  const { displayCount } = useVisitCounter();
   const { visible: showScrollTop, scrollTop } = useScrollTop();
   const { addToast } = useToast();
 
@@ -136,7 +90,7 @@ function AppContent() {
     } else {
       const seed: PaymentSubmission = {
         id: 'TXN-842013', planId: 'bot_standard',
-        planName: 'Orca6 - Trial License',
+        planName: 'Orca6™ - Trial License',
         amountPaid: 600, currency: 'INR', paymentMethod: 'UPI',
         utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
         telegramUsername: '@ajain_fixed', status: 'pending_verification',
@@ -369,20 +323,23 @@ function AppContent() {
               </div>
 
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] uppercase mb-6 text-slate-900 font-title">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 drop-shadow-sm">Automated Alerts</span>{' '}
-                <span className="opacity-90">&amp; Proximity Hosting & HFT Pipelines for</span>{' '}
-                <span className="text-blue-600 drop-shadow-sm">Orca6</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-600 to-teal-600 drop-shadow-sm">Apex Algorithmic Trading</span>{' '}
+                <span className="opacity-90">— Powered by</span>{' '}
+                <span className="text-emerald-600 drop-shadow-sm">Orca6™</span>
               </h1>
 
               <p className="text-sm sm:text-base leading-relaxed max-w-2xl mb-6 text-slate-600 font-medium">
                 Experience fully hands-off, state-of-the-art algorithmic trading. Jumpstreet secures
                 the lowest-latency Windows Cloud VPS packages seamlessly pre-installed with our elite{' '}
-                <strong className="text-slate-900 font-bold">Orca6</strong> trading logic, delivering instant execution directly to the markets.
+                <strong className="text-slate-900 font-bold">Orca6™</strong> trading logic, delivering instant execution directly to the markets.
               </p>
 
               <div className="mb-10 p-5 rounded-2xl bg-indigo-50 border border-indigo-200 shadow-sm text-sm font-medium text-indigo-900 leading-relaxed max-w-2xl">
                 <strong className="text-indigo-700 flex items-center gap-2 mb-2 text-xs tracking-widest uppercase"><ShieldCheck size={16} /> VIP Client Onboarding</strong>
-                To ensure maximum performance and returns, the Orca6 system requires a <strong>minimum trading capital of 500 USD</strong>. Our team handles the entire technical setup directly on your account—no coding or trading experience required. Simply request a trial, and we will provide a pre-configured demo account for you to evaluate the execution logic firsthand.
+                To ensure maximum performance and returns, the Orca6™ system requires a <strong>minimum trading capital of 500 USD</strong>. Our team handles the entire technical setup directly on your account—no coding or trading experience required. Simply request a trial, and we will provide a pre-configured demo account for you to evaluate the execution logic firsthand.
+                <ul className="mt-2 text-xs list-disc list-inside">
+                  <li>Dedicated 1:1 onboarding call with our team</li>
+                </ul>
               </div>
 
               {/* Stats Grid */}
@@ -391,7 +348,7 @@ function AppContent() {
                   { label: 'Gateway Status', value: 'Secure Live',    color: '#2563eb', pulse: true, bg: 'bg-blue-50' },
                   { label: 'Signal Latency',  value: '~1.2 ms avg',   color: '#0f172a',  pulse: false, bg: 'bg-slate-100' },
                   { label: 'Dual-Homed Node Stock', value: '14 Units Left', color: '#64748b',  pulse: false, bg: 'bg-slate-50' },
-                  { label: 'Operator',        value: 'M&S Securities',   color: '#4f46e5', pulse: false, bg: 'bg-indigo-50' },
+                  { label: 'Operator',        value: 'M&S Ventures',   color: '#00A86B', pulse: false, bg: 'bg-emerald-50' },
                 ].map((s, i) => (
                   <motion.div
                     whileHover={{ y: -4 }}
@@ -546,7 +503,7 @@ function AppContent() {
                           <div className="pt-5 border-t border-black/5 flex justify-between items-center text-[11px] font-bold">
                             <span className="italic text-slate-500">
                               {ord.status === 'pending_verification'
-                                ? '🔒 Awaiting ledger review by Mangalik & Sons Securities.'
+                                ? '🔒 Awaiting ledger review by Mangalik & Sons Ventures.'
                                 : '✅ License key dispatched via Telegram.'}
                             </span>
                             <button
@@ -581,7 +538,7 @@ function AppContent() {
             <div className="space-y-4 text-sm leading-relaxed text-slate-600 font-medium">
               <p>
                 <strong className="text-slate-900 font-bold">Jumpstreet</strong> is a premier tech and hardware distribution entity under{' '}
-                <strong className="text-slate-900 font-bold">A Mangalik and Sons Securities Limited</strong>.
+                <strong className="text-slate-900 font-bold">A Mangalik and Sons Ventures Limited</strong>.
               </p>
               <p>
                 We specialize in FPGA-accelerated latency-critical trading utilities (the{' '}
@@ -607,38 +564,7 @@ function AppContent() {
             </div>
           </motion.div>
 
-          {/* Visit Stats */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3 }}
-            className="rounded-[24px] border border-white/60 p-6 sm:p-8 bg-white/60 backdrop-blur-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] overflow-hidden relative group"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-5">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-blue-100 rounded-xl">
-                    <Eye size={18} className="text-blue-600" />
-                  </div>
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-slate-500">Platform Visits</span>
-                </div>
-                <span className="font-black text-blue-600 text-3xl font-title drop-shadow-sm tracking-tight">{displayCount.toLocaleString('en-IN')}</span>
-              </div>
-              <div className="h-2 rounded-full overflow-hidden bg-slate-100 border border-black/5 shadow-inner">
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: '72%' }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 shadow-sm" 
-                />
-              </div>
-              <div className="flex justify-between text-[10px] font-bold mt-3 text-slate-400 uppercase tracking-widest">
-                <span>Unique browsers</span>
-                <span className="text-blue-600">72% retention</span>
-              </div>
-            </div>
-          </motion.div>
+          {/* Visit Stats removed for UX */}
 
           {/* Help Desk */}
           <motion.div 
@@ -671,11 +597,13 @@ function AppContent() {
       <footer className="border-t border-black/5 py-12 px-4 text-center text-xs mt-auto relative z-10 bg-slate-100/50 backdrop-blur-md">
         <div className="max-w-7xl mx-auto space-y-6">
           <p className="font-black uppercase tracking-[0.2em] text-[11px] text-slate-900 font-title">
-            Jumpstreet • A Mangalik and Sons Securities Limited © 2026. All rights reserved.
+            Jumpstreet • A Mangalik and Sons Ventures Limited © 2026. All rights reserved.
           </p>
+          <p className="font-bold text-emerald-700 tracking-wider">Orca6™ — Intelligent. Strategic. Apex.</p>
           <p className="max-w-2xl mx-auto text-[11px] leading-relaxed text-slate-500 font-medium">
-            Algorithmic quantitative signals ("HFT Signal Suite (Bot Fixed v4.0)") are for backtesting and analytical simulation.
-            We do not provide personalised financial advice. Shipped hardware is subject to Indian import regulations.
+            Jumpstreet is a technology distribution venture. Trading signals are for backtesting and analytical simulation.
+            We do not provide personalised financial advice. *Prices exclude GST. International payments via Stripe/Razorpay. <br/>
+            Your data is never shared or sold. Secured via 256-bit encryption.
           </p>
           <div className="flex flex-wrap justify-center gap-6 sm:gap-10 text-[10px] uppercase tracking-widest font-bold text-slate-400">
             {[
@@ -707,8 +635,7 @@ function AppContent() {
         ))}
       </nav>
 
-      {/* ── Visit Counter Floating Badge ── */}
-      <VisitCounterBadge displayCount={displayCount} />
+      {/* Visit Counter removed */}
 
       {/* ── Scroll-to-Top Button ── */}
       <AnimatePresence>
