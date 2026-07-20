@@ -482,7 +482,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     if (isCorrect) {
       // Correct
       const isPlanetBonus = (recipient === dailyPlanetBonus.targetRecipient);
-      const points = isPlanetBonus ? 20 : 10;
+      let basePoints = isPlanetBonus ? 20 : 10;
+      
+      // Combo Streak Multiplier
+      let multiplier = 1;
+      if (streak >= 2) {
+        multiplier = 2; // 2x points for 3 or more correct answers in a row!
+      }
+      
+      const points = basePoints * multiplier;
       
       saveScore(score + points);
       setStreak(s => s + 1);
@@ -495,8 +503,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       }
       recordDailyActivity();
       
-      if (isPlanetBonus) {
-        setFeedback({ text: `Correct! +20 grains of rice donated (PLANET BONUS 2X!).`, type: 'success' });
+      if (multiplier > 1) {
+        setFeedback({ text: `🔥 COMBO STREAK! 2X MULTIPLIER! +${points} grains donated!`, type: 'success' });
+      } else if (isPlanetBonus) {
+        setFeedback({ text: `Correct! +${points} grains of rice donated (PLANET BONUS 2X!).`, type: 'success' });
       } else {
         setFeedback({ text: `Correct! +${points} grains of rice donated.`, type: 'success' });
       }
@@ -709,6 +719,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     </button>
                   ))}
                   <button
+                    onClick={() => {
+                      const keys = Object.keys(quizData) as CategoryKey[];
+                      setCategory(keys[Math.floor(Math.random() * keys.length)]);
+                    }}
+                    className={`px-4 py-2 rounded-[16px] text-sm font-medium capitalize transition-all opacity-70 hover:opacity-100 hover:bg-white/10`}
+                  >
+                    🎲 Random
+                  </button>
+                  <button
                     onClick={() => setShowAIModal(true)}
                     className={`px-4 py-2 rounded-[16px] text-sm font-medium transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : 'opacity-80 hover:opacity-100 hover:bg-white/10'}`}
                   >
@@ -866,6 +885,13 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                   {score.toLocaleString()}
                 </motion.span>
                 <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Grains Donated</span>
+                
+                {score >= 500 && (
+                  <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm shadow-sm">
+                    <Heart size={16} className="fill-emerald-500" />
+                    You've funded {Math.floor(score / 500)} full meal{Math.floor(score / 500) > 1 ? 's' : ''}!
+                  </div>
+                )}
               </div>
 
               <div className="relative h-24 flex flex-col items-center justify-center">
