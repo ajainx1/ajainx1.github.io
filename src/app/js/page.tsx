@@ -137,7 +137,7 @@ function AppContent() {
       const seed: PaymentSubmission = {
         id: 'TXN-842013', planId: 'bot_standard',
         planName: 'Orca6 - Trial License',
-        amountPaid: 999, currency: 'INR', paymentMethod: 'UPI',
+        amountPaid: 600, currency: 'INR', paymentMethod: 'UPI',
         utrNo: '412095384112', email: 'jain.aditya33@gmail.com',
         telegramUsername: '@ajain_fixed', status: 'pending_verification',
         createdAt: new Date(Date.now() - 3600000).toLocaleDateString('en-IN', {
@@ -382,7 +382,7 @@ function AppContent() {
 
               <div className="mb-10 p-5 rounded-2xl bg-indigo-50 border border-indigo-200 shadow-sm text-sm font-medium text-indigo-900 leading-relaxed max-w-2xl">
                 <strong className="text-indigo-700 flex items-center gap-2 mb-2 text-xs tracking-widest uppercase"><ShieldCheck size={16} /> VIP Client Onboarding</strong>
-                To ensure maximum performance and returns, the Orca6 system requires a <strong>minimum trading capital of 500 USD</strong>. Our team handles the entire technical setup directly on your account—no coding or trading experience required. Simply provide a trial account with your credentials to evaluate the execution logic firsthand.
+                To ensure maximum performance and returns, the Orca6 system requires a <strong>minimum trading capital of 500 USD</strong>. Our team handles the entire technical setup directly on your account—no coding or trading experience required. Simply request a trial, and we will provide a pre-configured demo account for you to evaluate the execution logic firsthand.
               </div>
 
               {/* Stats Grid */}

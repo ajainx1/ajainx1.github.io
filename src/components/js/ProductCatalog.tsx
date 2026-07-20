@@ -13,8 +13,8 @@ const PRODUCTS: Product[] = [
   {
     id: 'bot_standard',
     name: 'Orca6 — Trial License',
-    description: 'Provide a trial account for us to deploy and test the Orca6 execution logic. Zero technical setup required.',
-    price: 999,
+    description: 'We will provide a pre-configured demo account for you to test and verify the Orca6 execution logic firsthand.',
+    price: 600,
     currency: 'INR',
     badge: 'Popular Trial',
     type: 'bot',
@@ -22,7 +22,7 @@ const PRODUCTS: Product[] = [
     specs: [
       'Telegram, WhatsApp & Signal Webhook Alerts',
       'Minimum capital required: 500 USD',
-      'Account credentials required for deployment',
+      'We provide the demo account credentials',
       'Lightning-fast trade execution to maximize profit margins',
       '24/7 autonomous client-side running capability',
     ],
