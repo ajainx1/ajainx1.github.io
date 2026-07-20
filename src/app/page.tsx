@@ -1,8 +1,9 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut } from "lucide-react";
-import TiltWrapper from "@/components/3d/TiltWrapper";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut, ChevronDown } from "lucide-react";
 
 export default function GatewayPage() {
   const [isDark, setIsDark] = useState(true);
@@ -22,6 +23,8 @@ export default function GatewayPage() {
 
   // Sync theme & wallet state on mount
   useEffect(() => {
+    // For this cinematic page, we heavily encourage dark mode. 
+    // We will sync it, but the styling will be dark-dominant.
     const isDarkMode = localStorage.getItem("jumpstreet_theme") !== "light";
     setIsDark(isDarkMode);
     document.body.classList.toggle("light-mode", !isDarkMode);
@@ -32,12 +35,10 @@ export default function GatewayPage() {
       setWalletBalance(localStorage.getItem("web3_wallet_balance") || "1.42 ETH");
     }
 
-    // Tick block height
     const blockInterval = setInterval(() => {
       setBlockHeight(prev => prev + 1);
     }, 12000);
 
-    // Randomize gas and load slightly
     const telemetryInterval = setInterval(() => {
       setGasPrice(Math.floor(18 + Math.random() * 10));
       setNetLoad(Math.floor(10 + Math.random() * 8));
@@ -59,18 +60,14 @@ export default function GatewayPage() {
   const handleConnectWallet = (provider: string) => {
     setIsConnecting(true);
     setShowWalletModal(false);
-    
     setTimeout(() => {
       const mockAddress = "0x7a2d71100f2e82500000000000000000000093B8";
       const mockBalance = provider === "phantom" ? "124.5 SOL" : "1.42 ETH";
-      
       setWalletAddress(mockAddress);
       setWalletBalance(mockBalance);
       localStorage.setItem("web3_wallet_address", mockAddress);
       localStorage.setItem("web3_wallet_balance", mockBalance);
       setIsConnecting(false);
-      
-      // Dispatch storage event to trigger updates in active sub-pages
       window.dispatchEvent(new Event("storage"));
     }, 1500);
   };
@@ -92,97 +89,51 @@ export default function GatewayPage() {
     }
   };
 
-  const portalCards = [
-    {
-      title: "Identity Contract (Portfolio)",
-      subtitle: "SecOps // Audits // Attestations",
-      description: "Cryptographically signed credentials, enterprise threat hunting logs, e-governance audits, and decentralized compliance attestations.",
-      link: "/portfolio",
-      icon: User,
-      cta: "Explore Identity",
-      color: "from-[#38bdf8]/10 to-[#0284c7]/5",
-      borderColor: "border-[#38bdf8]/30",
-      glowColor: "shadow-[#38bdf8]/10",
-      textColor: "text-[#38bdf8]",
-    },
-    {
-      title: "JumpStreet DeFi Yields",
-      subtitle: "Algo Nodes // Alert Webhooks // Mining",
-      description: "Quantitative high-frequency alert webhooks, trading bot nodes, and low-latency cloud mining/VM configurations.",
-      link: "/js",
-      icon: Cpu,
-      cta: "Configure Nodes",
-      color: "from-indigo-600/10 to-indigo-950/5",
-      borderColor: "border-indigo-500/30",
-      glowColor: "shadow-indigo-500/10",
-      textColor: "text-indigo-400",
-    },
-    {
-      title: "Proof-of-Knowledge Staking",
-      subtitle: "Trivia // Impact Milestones // Grains",
-      description: "Stake threat intelligence trivia answers to generate karmic impact, feeding global communities with verified correctness.",
-      link: "/charity-quiz",
-      icon: Award,
-      cta: "Play & Mint Impact",
-      color: "from-emerald-600/10 to-emerald-950/5",
-      borderColor: "border-emerald-500/30",
-      glowColor: "shadow-emerald-500/10",
-      textColor: "text-emerald-400",
-    },
-    {
-      title: "Free Web3 & Dev Domains",
-      subtitle: "TLDs // Subdomains // Hosting",
-      description: "Claim free subdomains and TLDs for developer projects, nodes, and smart contract frontends.",
-      link: "/free-domains",
-      icon: Globe,
-      cta: "Explore Domains",
-      color: "from-amber-600/10 to-amber-950/5",
-      borderColor: "border-amber-500/30",
-      glowColor: "shadow-amber-500/10",
-      textColor: "text-amber-400",
-    }
-  ];
+  // Scroll animations for the Hero Section
+  const { scrollYProgress } = useScroll();
+  
+  // Hero text scales up and fades out as you scroll down
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 1.1]);
+  const heroY = useTransform(scrollYProgress, [0, 0.15], [0, 50]);
 
   return (
-    <div className={`min-h-screen relative flex flex-col items-center justify-between font-sans selection:bg-[#38bdf8] selection:text-[#0b0f19] overflow-x-hidden ${isDark ? 'text-slate-100' : 'text-slate-900'}`}>
+    <div className={`min-h-screen relative font-sans selection:bg-[#38bdf8] selection:text-[#000000] overflow-x-hidden ${isDark ? 'bg-black text-white' : 'bg-slate-50 text-slate-900'}`}>
       
-      {/* Top Header Navbar */}
-      <header className={`w-full z-50 border-b px-6 py-4 backdrop-blur-xl flex items-center justify-between transition-colors ${isDark ? 'bg-[#0b0f19]/40 border-slate-800/60' : 'bg-slate-50/40 border-slate-200'}`}>
-        <div className="flex items-center gap-2 font-mono text-sm font-semibold tracking-wider text-[#38bdf8]">
+      {/* Top Header Navbar - Floating & Frosted */}
+      <header className={`fixed top-0 left-0 w-full z-50 px-6 py-4 backdrop-blur-xl flex items-center justify-between transition-colors border-b ${isDark ? 'bg-black/60 border-white/10' : 'bg-white/60 border-black/10'}`}>
+        <div className={`flex items-center gap-2 font-mono text-sm font-semibold tracking-wider ${isDark ? 'text-white' : 'text-black'}`}>
           <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-          SEC_CORE // WEB3 GATEWAY
+          SEC_CORE
         </div>
         <div className="flex items-center gap-3">
-          {/* Quick links header */}
           <nav className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider mr-4">
-            <Link href="/noc/" className="hover:text-[#38bdf8] transition-colors">NOC Terminal</Link>
-            <Link href="/alert/" className="hover:text-[#38bdf8] transition-colors">Threat Monitor</Link>
+            <Link href="/noc/" className="hover:text-[#38bdf8] transition-colors">NOC</Link>
+            <Link href="/alert/" className="hover:text-[#38bdf8] transition-colors">Monitor</Link>
           </nav>
           
-          {/* Connect Wallet Button */}
           {walletAddress ? (
             <button
               onClick={() => setShowDisconnectModal(true)}
-              className="flex items-center gap-2 px-4 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-lg border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20 active:scale-95 transition-all"
+              className="flex items-center gap-2 px-4 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-full border border-white/20 bg-white/10 hover:bg-white/20 active:scale-95 transition-all"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-              <span>{walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</span>
-              <span className="opacity-55 ml-1">({walletBalance})</span>
+              <span>{walletAddress.slice(0, 6)}...</span>
             </button>
           ) : (
             <button
               onClick={() => setShowWalletModal(true)}
               disabled={isConnecting}
-              className="flex items-center gap-2 px-4 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-lg border border-[#38bdf8]/30 bg-[#38bdf8]/10 text-[#38bdf8] hover:bg-[#38bdf8]/20 active:scale-95 transition-all disabled:opacity-50"
+              className={`flex items-center gap-2 px-4 py-1.5 text-xs font-mono font-bold tracking-wider uppercase rounded-full border transition-all active:scale-95 disabled:opacity-50 ${isDark ? 'border-white/20 bg-white/10 text-white hover:bg-white/20' : 'border-black/20 bg-black/5 text-black hover:bg-black/10'}`}
             >
               <Wallet className="w-3.5 h-3.5" />
-              <span>{isConnecting ? "Connecting..." : "Connect Wallet"}</span>
+              <span>{isConnecting ? "Connecting..." : "Connect"}</span>
             </button>
           )}
 
           <button
             onClick={toggleTheme}
-            className={`p-2 rounded-lg border transition-all ${isDark ? 'border-slate-800 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white' : 'border-slate-200 bg-white hover:bg-slate-50 text-slate-600 hover:text-black'}`}
+            className={`p-2 rounded-full border transition-all ${isDark ? 'border-white/20 bg-white/10 hover:bg-white/20 text-white' : 'border-black/20 bg-black/5 hover:bg-black/10 text-black'}`}
             title="Toggle Theme"
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -190,167 +141,224 @@ export default function GatewayPage() {
         </div>
       </header>
 
-      {/* Main Web3 Section */}
-      <main className="flex-1 w-full max-w-7xl px-6 py-12 md:py-20 flex flex-col items-center justify-center relative z-10">
-        
-        {/* Web3 Live Telemetry Grid */}
-        <div className={`w-full grid grid-cols-2 md:grid-cols-4 gap-4 p-4 rounded-2xl border mb-16 backdrop-blur-md font-mono text-[10px] tracking-wider uppercase transition-colors ${isDark ? 'bg-slate-950/30 border-slate-800/80 text-slate-400' : 'bg-slate-100/50 border-slate-200 text-slate-600'}`}>
-          <div className="flex flex-col gap-1 items-center justify-center border-r border-slate-800/40 py-2">
-            <span className="opacity-55">Block Height</span>
-            <span className="text-white font-bold tracking-normal text-xs">{blockHeight.toLocaleString()}</span>
-          </div>
-          <div className="flex flex-col gap-1 items-center justify-center border-none md:border-r border-slate-800/40 py-2">
-            <span className="opacity-55">Base Gas</span>
-            <span className="text-[#38bdf8] font-bold text-xs">{gasPrice} Gwei</span>
-          </div>
-          <div className="flex flex-col gap-1 items-center justify-center border-r border-slate-800/40 py-2">
-            <span className="opacity-55">Net Load</span>
-            <span className="text-indigo-400 font-bold text-xs">{netLoad}% Capacity</span>
-          </div>
-          <div className="flex flex-col gap-1 items-center justify-center py-2">
-            <span className="opacity-55">Network Status</span>
-            <span className="text-emerald-400 font-bold text-xs flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              Healthy
-            </span>
-          </div>
+      {/* Floating Bottom Telemetry Dock */}
+      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl hidden md:flex items-center justify-between p-3 rounded-2xl backdrop-blur-2xl border border-white/10 bg-black/40 shadow-2xl font-mono text-[10px] tracking-wider uppercase text-slate-300">
+        <div className="flex items-center gap-2 px-4">
+          <span className="opacity-50">Block</span>
+          <span className="text-white font-bold">{blockHeight.toLocaleString()}</span>
         </div>
+        <div className="w-px h-4 bg-white/10" />
+        <div className="flex items-center gap-2 px-4">
+          <span className="opacity-50">Gas</span>
+          <span className="text-[#38bdf8] font-bold">{gasPrice} Gwei</span>
+        </div>
+        <div className="w-px h-4 bg-white/10" />
+        <div className="flex items-center gap-2 px-4">
+          <span className="opacity-50">Load</span>
+          <span className="text-indigo-400 font-bold">{netLoad}%</span>
+        </div>
+        <div className="w-px h-4 bg-white/10" />
+        <div className="flex items-center gap-2 px-4">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-emerald-400 font-bold">Online</span>
+        </div>
+      </div>
 
-        {/* Hub Titles */}
-        <div className="text-center max-w-2xl mb-16">
-          <h1 className="text-4xl md:text-5xl font-black font-title tracking-tight mb-4 bg-gradient-to-r from-[#38bdf8] via-slate-100 to-white bg-clip-text text-transparent drop-shadow-[0_0_15px_rgba(56,189,248,0.25)]">
-            Decentralized Gateway Hub
+      {/* Hero Section */}
+      <section className="relative w-full h-[120vh] flex flex-col items-center pt-[30vh]">
+        <motion.div 
+          style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+          className="text-center px-4 flex flex-col items-center z-10 sticky top-[30vh]"
+        >
+          <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-black tracking-tighter leading-none mb-6">
+            <span className="block bg-gradient-to-r from-white via-slate-300 to-slate-500 bg-clip-text text-transparent">Mind-blowing.</span>
+            <span className="block bg-gradient-to-r from-slate-500 via-slate-300 to-white bg-clip-text text-transparent">Web3-turning.</span>
           </h1>
-          <p className="text-sm md:text-base text-slate-400 font-mono leading-relaxed">
-            Welcome to the security operations and cryptographic engineering directory. Select a smart node to begin.
+          <p className="text-xl md:text-3xl font-medium tracking-tight opacity-70 max-w-3xl">
+            Decentralized security, gamified yields, and cryptographically verified portfolios. Welcome to the future of the NOC.
           </p>
-        </div>
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+            className="mt-20 opacity-50"
+          >
+            <ChevronDown className="w-10 h-10" />
+          </motion.div>
+        </motion.div>
+      </section>
 
-        {/* 3D Interactive Card Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
-          {portalCards.map((card, i) => {
-            const Icon = card.icon;
-            return (
-              <TiltWrapper key={i} tiltDeg={5}>
-                <Link
-                  href={card.link}
-                  className={`group block h-full p-8 rounded-3xl border bg-gradient-to-br ${card.color} ${card.borderColor} backdrop-blur-md shadow-lg ${card.glowColor} hover:scale-[1.02] transition-all duration-300 relative overflow-hidden`}
-                >
-                  {/* Sheen sweep */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out" />
-                  
-                  {/* Card Icon */}
-                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-6 bg-slate-950/40 border ${card.borderColor} ${card.textColor}`}>
-                    <Icon className="w-6 h-6" />
-                  </div>
+      {/* Cinematic Portal Sections */}
+      <div className="relative z-20 w-full bg-black">
+        
+        {/* Section 1: Portfolio */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0284c7]/10 to-black pointer-events-none" />
+          <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                Identity <br/><span className="text-[#38bdf8]">Contract.</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
+                Cryptographically signed credentials, enterprise threat hunting logs, and decentralized compliance attestations.
+              </p>
+              <Link href="/portfolio" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold tracking-wide hover:scale-105 transition-transform">
+                Explore Portfolio <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative aspect-square md:aspect-video lg:aspect-square rounded-[3rem] border border-white/10 bg-gradient-to-br from-[#38bdf8]/20 to-transparent overflow-hidden flex items-center justify-center shadow-[0_0_100px_rgba(56,189,248,0.15)]"
+            >
+              <User className="w-48 h-48 text-[#38bdf8] drop-shadow-[0_0_30px_rgba(56,189,248,0.5)]" />
+            </motion.div>
+          </div>
+        </section>
 
-                  {/* Title & Info */}
-                  <div className="mb-2 text-[10px] font-mono font-bold tracking-widest uppercase text-slate-500">
-                    {card.subtitle}
-                  </div>
-                  <h3 className="text-xl font-bold font-title text-white mb-3 tracking-tight group-hover:text-[#38bdf8] transition-colors">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-slate-400 leading-relaxed font-sans mb-8">
-                    {card.description}
-                  </p>
+        {/* Section 2: JumpStreet */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-indigo-900/10 to-black pointer-events-none" />
+          <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotateY: -15 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative aspect-square md:aspect-video lg:aspect-square rounded-[3rem] border border-white/10 bg-gradient-to-br from-indigo-500/20 to-transparent overflow-hidden flex items-center justify-center shadow-[0_0_100px_rgba(99,102,241,0.15)] order-2 lg:order-1"
+            >
+              <Cpu className="w-48 h-48 text-indigo-400 drop-shadow-[0_0_30px_rgba(99,102,241,0.5)]" />
+            </motion.div>
 
-                  {/* Link CTA */}
-                  <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider mt-auto text-white">
-                    <span>{card.cta}</span>
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#38bdf8]" />
-                  </div>
-                </Link>
-              </TiltWrapper>
-            );
-          })}
-        </div>
-      </main>
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="order-1 lg:order-2"
+            >
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                DeFi Yields. <br/><span className="text-indigo-400">JumpStreet.</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
+                Quantitative high-frequency alert webhooks, trading bot nodes, and low-latency cloud mining configurations.
+              </p>
+              <Link href="/js" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-500 text-white font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]">
+                Configure Nodes <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Section 3: Charity Quiz */}
+        <section className="min-h-screen w-full flex items-center justify-center py-20 px-6 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-emerald-900/10 to-black pointer-events-none" />
+          <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                Proof of <br/><span className="text-emerald-400">Knowledge.</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
+                Stake threat intelligence trivia answers to generate karmic impact, feeding global communities with verified correctness.
+              </p>
+              <Link href="/charity-quiz" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]">
+                Play & Mint <ArrowRight className="w-5 h-5" />
+              </Link>
+            </motion.div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotateY: 15 }}
+              whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="relative aspect-square md:aspect-video lg:aspect-square rounded-[3rem] border border-white/10 bg-gradient-to-br from-emerald-500/20 to-transparent overflow-hidden flex items-center justify-center shadow-[0_0_100px_rgba(52,211,153,0.15)]"
+            >
+              <Award className="w-48 h-48 text-emerald-400 drop-shadow-[0_0_30px_rgba(52,211,153,0.5)]" />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Section 4: Free Domains */}
+        <section className="min-h-[80vh] w-full flex items-center justify-center py-20 px-6 relative overflow-hidden mb-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-amber-900/10 to-black pointer-events-none" />
+          <div className="max-w-4xl w-full flex flex-col items-center text-center relative z-10">
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-20%" }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <Globe className="w-24 h-24 text-amber-500 mx-auto mb-8 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]" />
+              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
+                Free Dev <span className="text-amber-500">Domains.</span>
+              </h2>
+              <p className="text-xl md:text-2xl text-slate-400 font-medium mb-12 leading-relaxed">
+                Claim free subdomains and TLDs for developer projects, nodes, and smart contract frontends sourced from the free-for-dev global registry.
+              </p>
+              <Link href="/free-domains" className="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-amber-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_40px_rgba(245,158,11,0.4)] text-lg">
+                Explore Domains <ArrowRight className="w-6 h-6" />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
+
+      </div>
 
       {/* Wallet Connection Modal */}
       {showWalletModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className={`w-full max-w-sm rounded-3xl border p-8 relative overflow-hidden shadow-2xl ${isDark ? 'bg-[#0d131a] border-slate-800' : 'bg-white border-slate-200'}`}>
-            <h3 className="text-xl font-black font-title text-[#38bdf8] mb-1">Connect Web3 Wallet</h3>
-            <p className="text-xs text-slate-400 font-mono mb-6">Select a cryptographic node provider below.</p>
-            
-            <div className="flex flex-col gap-3">
-              {[
-                { name: "MetaMask", id: "metamask", icon: "🦊" },
-                { name: "WalletConnect", id: "walletconnect", icon: "🌐" },
-                { name: "Coinbase Wallet", id: "coinbase", icon: "🛡️" },
-                { name: "Phantom", id: "phantom", icon: "👻" }
-              ].map(prov => (
-                <button
-                  key={prov.id}
-                  onClick={() => handleConnectWallet(prov.id)}
-                  className={`flex items-center justify-between p-4 rounded-xl border text-sm font-mono font-bold transition-all hover:scale-[1.01] active:scale-95 ${isDark ? 'bg-slate-900/40 border-slate-800 hover:border-[#38bdf8]/40 hover:bg-[#38bdf8]/5' : 'bg-slate-50 border-slate-200 hover:border-[#38bdf8]/40 hover:bg-[#38bdf8]/5'}`}
-                >
-                  <span>{prov.name}</span>
-                  <span className="text-xl">{prov.icon}</span>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
+          <div className="bg-[#111] border border-white/10 rounded-3xl p-8 max-w-sm w-full shadow-2xl relative">
+            <button onClick={() => setShowWalletModal(false)} className="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
+            <h3 className="text-2xl font-bold mb-2 text-white">Connect Wallet</h3>
+            <p className="text-white/50 text-sm mb-6">Select a provider to authenticate your Web3 session.</p>
+            <div className="space-y-3">
+              <button onClick={() => handleConnectWallet("metamask")} className="w-full py-3 px-4 rounded-xl border border-white/10 hover:border-[#38bdf8]/50 hover:bg-[#38bdf8]/10 text-white flex items-center justify-between group transition-all">
+                <span className="font-bold">MetaMask</span>
+                <span className="text-xs text-white/30 group-hover:text-[#38bdf8]">Detected</span>
+              </button>
+              <button onClick={() => handleConnectWallet("phantom")} className="w-full py-3 px-4 rounded-xl border border-white/10 hover:border-indigo-500/50 hover:bg-indigo-500/10 text-white flex items-center justify-between group transition-all">
+                <span className="font-bold">Phantom</span>
+                <span className="text-xs text-white/30 group-hover:text-indigo-400">Solana Network</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Disconnect Modal */}
+      {showDisconnectModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm px-4">
+          <div className="bg-[#111] border border-white/10 rounded-3xl p-8 max-w-sm w-full shadow-2xl relative">
+            <button onClick={() => setShowDisconnectModal(false)} className="absolute top-4 right-4 text-white/50 hover:text-white">✕</button>
+            <h3 className="text-2xl font-bold mb-2 text-white">Active Session</h3>
+            <div className="bg-black/50 border border-white/10 rounded-xl p-4 mb-6 mt-4">
+              <div className="text-xs text-white/50 mb-1">Connected Address</div>
+              <div className="font-mono text-sm break-all text-emerald-400">{walletAddress}</div>
+              <div className="mt-4 flex gap-2">
+                <button onClick={copyAddress} className="flex-1 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white text-xs font-bold flex items-center justify-center gap-2">
+                  {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
+                  {copied ? "Copied" : "Copy"}
                 </button>
-              ))}
-            </div>
-
-            <button
-              onClick={() => setShowWalletModal(false)}
-              className="w-full mt-6 py-2.5 rounded-xl font-mono text-xs font-bold uppercase tracking-wider border border-rose-500/20 bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 transition-all"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Disconnect Wallet Modal */}
-      {showDisconnectModal && walletAddress && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className={`w-full max-w-sm rounded-3xl border p-8 text-center relative overflow-hidden shadow-2xl ${isDark ? 'bg-[#0d131a] border-slate-800' : 'bg-white border-slate-200'}`}>
-            <div className="w-16 h-16 mx-auto bg-emerald-500/10 rounded-full flex items-center justify-center mb-4 text-emerald-400 border border-emerald-500/20">
-              <Wallet className="w-6 h-6" />
-            </div>
-            
-            <h3 className="text-lg font-bold font-title text-white mb-2">Connected Node</h3>
-            
-            <div className={`flex items-center justify-center gap-2 p-3 rounded-xl mb-6 border font-mono text-xs ${isDark ? 'bg-slate-900/60 border-slate-800' : 'bg-slate-50 border-slate-200'}`}>
-              <span>{walletAddress.slice(0, 8)}...{walletAddress.slice(-8)}</span>
-              <button onClick={copyAddress} className="text-[#38bdf8] hover:text-white transition-colors" title="Copy Address">
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-              </button>
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={handleDisconnect}
-                className="flex-1 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider bg-rose-500 text-white hover:bg-rose-400 active:scale-95 transition-all flex items-center justify-center gap-1.5"
-              >
-                <LogOut className="w-4 h-4" />
-                Disconnect
-              </button>
-              <button
-                onClick={() => setShowDisconnectModal(false)}
-                className={`flex-1 py-3 rounded-xl font-mono text-xs font-bold uppercase tracking-wider border transition-all ${isDark ? 'bg-slate-900/60 border-slate-800 hover:bg-slate-850' : 'bg-slate-50 border-slate-200 hover:bg-slate-100'}`}
-              >
-                Close
-              </button>
+                <button onClick={handleDisconnect} className="flex-1 py-2 rounded-lg bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 text-xs font-bold flex items-center justify-center gap-2">
+                  <LogOut className="w-3 h-3" /> Disconnect
+                </button>
+              </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Professional Footer Navigation */}
-      <footer className="w-full max-w-7xl px-6 py-8 border-t border-slate-800/40 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono text-slate-500 mt-12 z-10">
-        <div>
-          © 2026 Aditya Jain. Cryptographically Attested.
-        </div>
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-3">
-          <Link href="/portfolio" className="hover:text-white transition-colors">Portfolio</Link>
-          <Link href="/js" className="hover:text-white transition-colors">JumpStreet</Link>
-          <Link href="/charity-quiz" className="hover:text-white transition-colors">Charity Quiz</Link>
-          <Link href="/noc/" className="hover:text-white transition-colors">State NOC</Link>
-          <Link href="/alert/" className="hover:text-white transition-colors">Threat Monitor</Link>
-        </div>
-      </footer>
     </div>
   );
 }
