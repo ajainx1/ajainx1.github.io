@@ -108,8 +108,15 @@ export default function GatewayPage() {
         </div>
         <div className="flex items-center gap-3">
           <nav className="hidden md:flex items-center gap-6 text-xs font-mono uppercase tracking-wider mr-4">
-            <Link href="/noc/" className="hover:text-[#38bdf8] transition-colors">NOC</Link>
-            <Link href="/alert/" className="hover:text-[#38bdf8] transition-colors">Monitor</Link>
+            <div className="relative group">
+              <button className="flex items-center gap-1 hover:text-[#38bdf8] transition-colors py-2">
+                Projects <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
+              </button>
+              <div className="absolute top-full right-0 w-32 bg-black/90 border border-white/10 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col shadow-2xl backdrop-blur-xl">
+                <Link href="/noc/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">NOC</Link>
+                <Link href="/alert/" className="px-4 py-3 hover:bg-white/10 transition-colors text-white">Monitor</Link>
+              </div>
+            </div>
           </nav>
           
           {walletAddress ? (
@@ -164,8 +171,8 @@ export default function GatewayPage() {
         </div>
         <div className="w-px h-4 bg-white/10" />
         <div className="flex items-center gap-2 px-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-emerald-400 font-bold">SECURE</span>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00A86B] animate-pulse" />
+          <span className="text-[#00A86B] font-bold">SECURE</span>
         </div>
       </div>
 
@@ -180,11 +187,15 @@ export default function GatewayPage() {
             <span className="block bg-gradient-to-r from-slate-400 via-white to-emerald-400 bg-clip-text text-transparent">Infrastructure. Precision.</span>
           </h1>
           <p className="text-lg md:text-2xl font-medium tracking-tight opacity-70 max-w-4xl mb-6 leading-relaxed">
-            Next-generation engineering meets decentralized trading infrastructure. Gamified threat intelligence, automated node provisioning, and cryptographically verified identities. Built for traders who demand zero compromise.
+            Next-generation low-latency engineering meets decentralized trading infrastructure. Gamified threat intelligence, sub-millisecond provisioning, and cryptographically verified identities. Built for traders who demand zero compromise.
           </p>
-          <div className="flex items-center justify-center gap-2 mb-10 text-emerald-400 font-mono text-sm tracking-wider">
+          <div className="flex items-center justify-center gap-2 mb-8 text-[#00A86B] font-mono text-sm tracking-wider">
             <span>🔒 256-bit encrypted node provisioning. Zero-knowledge identity contracts.</span>
           </div>
+          
+          <Link href="/js" className="mb-10 px-8 py-4 rounded-full bg-[#00A86B] text-white font-black tracking-widest uppercase text-sm hover:scale-105 transition-transform shadow-[0_0_30px_rgba(0,168,107,0.5)] flex items-center gap-2 z-20 relative">
+            <span className="w-2 h-2 rounded-full bg-white animate-pulse" /> START TRADING WITH ORCA6
+          </Link>
           
           {/* Quick Access Links */}
           <div className="flex flex-wrap justify-center gap-4 relative z-20">
@@ -267,13 +278,13 @@ export default function GatewayPage() {
               className="order-1 lg:order-2"
             >
               <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
-                DeFi Yields. <br/><span className="text-indigo-400">JumpStreet.</span>
+                Algo Execution. <br/><span className="text-indigo-400">JumpStreet.</span>
               </h2>
               <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
-                Quantitative high-frequency alert webhooks, trading bot nodes, and low-latency cloud mining configurations.
+                Quantitative high-frequency alert webhooks, trading bot nodes, and low-latency cloud-based backtesting & execution nodes.
               </p>
               <Link href="/js" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-indigo-500 text-white font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(99,102,241,0.4)]">
-                Configure Nodes <ArrowRight className="w-5 h-5" />
+                Deploy Node <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
           </div>
@@ -296,7 +307,7 @@ export default function GatewayPage() {
                 Stake threat intelligence trivia answers to generate karmic impact, feeding global communities with verified correctness.
               </p>
               <Link href="/charity-quiz" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]">
-                Play & Mint <ArrowRight className="w-5 h-5" />
+                Play & Earn Karma <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
             
