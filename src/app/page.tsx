@@ -112,9 +112,11 @@ export default function GatewayPage() {
               <button className="flex items-center gap-1 hover:text-[#38bdf8] transition-colors py-2">
                 Projects <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
               </button>
-              <div className="absolute top-full right-0 w-32 bg-black/90 border border-white/10 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col shadow-2xl backdrop-blur-xl">
-                <Link href="/noc/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">NOC</Link>
-                <Link href="/alert/" className="px-4 py-3 hover:bg-white/10 transition-colors text-white">Monitor</Link>
+              <div className="absolute top-full right-0 w-48 bg-black/90 border border-white/10 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col shadow-2xl backdrop-blur-xl">
+                <Link href="/noc/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">NOC Portal</Link>
+                <Link href="/alert/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">Live Alerts</Link>
+                <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white" target="_blank" rel="noopener noreferrer">JS Store</Link>
+                <Link href="/charity-quiz" className="px-4 py-3 hover:bg-white/10 transition-colors text-white">Cyber Free Rice</Link>
               </div>
             </div>
           </nav>
