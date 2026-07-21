@@ -365,7 +365,7 @@ export default function GatewayPage() {
               <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
                 Stake threat intelligence trivia answers to generate karmic impact, feeding global communities with verified correctness.
               </p>
-              <Link href="https://cyberkarma.software" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]" target="_blank" rel="noopener noreferrer">
+              <Link href="/charity-quiz" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]">
                 Play & Earn Karma <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
