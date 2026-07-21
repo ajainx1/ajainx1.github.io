@@ -382,29 +382,6 @@ export default function GatewayPage() {
           </div>
         </section>
 
-        {/* Section 4: Free Domains */}
-        <section className="min-h-[80vh] w-full flex items-center justify-center py-20 px-6 relative overflow-hidden mb-20">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-amber-900/10 to-black pointer-events-none" />
-          <div className="max-w-4xl w-full flex flex-col items-center text-center relative z-10">
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: false, margin: "-20%" }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
-              <Globe className="w-24 h-24 text-amber-500 mx-auto mb-8 drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]" />
-              <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-white">
-                Free Dev <span className="text-amber-500">Domains.</span>
-              </h2>
-              <p className="text-xl md:text-2xl text-slate-400 font-medium mb-12 leading-relaxed">
-                Claim free subdomains and TLDs for developer projects, nodes, and smart contract frontends sourced from the free-for-dev global registry.
-              </p>
-              <Link href="/free-domains" className="inline-flex items-center gap-2 px-10 py-5 rounded-full bg-amber-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_40px_rgba(245,158,11,0.4)] text-lg">
-                Explore Domains <ArrowRight className="w-6 h-6" />
-              </Link>
-            </motion.div>
-          </div>
-        </section>
 
       </div>
 
