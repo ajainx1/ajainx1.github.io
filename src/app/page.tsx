@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut, ChevronDown } from "lucide-react";
+import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut, ChevronDown, Activity, Bell, ShoppingCart, Heart } from "lucide-react";
 
 export default function GatewayPage() {
   const [isDark, setIsDark] = useState(true);
@@ -205,9 +205,28 @@ export default function GatewayPage() {
             <Link href="https://jumpstreet.tech" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2" target="_blank" rel="noopener noreferrer">
               <Cpu className="w-4 h-4" /> JS Store
             </Link>
-            <Link href="/projects" className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2 border-2 border-emerald-400">
-              <Award className="w-4 h-4" /> Projects
-            </Link>
+            <div className="relative group z-30">
+              <button className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2 border-2 border-emerald-400">
+                <Award className="w-4 h-4" /> Projects <ChevronDown className="w-3 h-3 opacity-70 group-hover:rotate-180 transition-transform" />
+              </button>
+              <div className="absolute top-full right-0 mt-2 w-52 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 flex flex-col overflow-hidden">
+                <Link href="/noc/" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
+                  <Activity className="w-4 h-4 text-emerald-400" /> NOC Portal
+                </Link>
+                <div className="h-[1px] w-full bg-slate-800"></div>
+                <Link href="/alert/" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
+                  <Bell className="w-4 h-4 text-blue-400" /> Live Alerts
+                </Link>
+                <div className="h-[1px] w-full bg-slate-800"></div>
+                <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3" target="_blank" rel="noopener noreferrer">
+                  <ShoppingCart className="w-4 h-4 text-indigo-400" /> JS Store
+                </Link>
+                <div className="h-[1px] w-full bg-slate-800"></div>
+                <Link href="/charity-quiz" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
+                  <Heart className="w-4 h-4 text-red-400" /> Cyber Free Rice
+                </Link>
+              </div>
+            </div>
           </div>
 
           <motion.div 
