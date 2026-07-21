@@ -17,7 +17,7 @@ export default function GatewayPage() {
   const [copied, setCopied] = useState<boolean>(false);
   
   // Telemetry States
-  const [blockHeight, setBlockHeight] = useState<number>(19482903);
+  const [blockHeight, setBlockHeight] = useState<number>(19482917);
   const [gasPrice, setGasPrice] = useState<number>(21);
   const [netLoad, setNetLoad] = useState<number>(14);
 
@@ -115,7 +115,7 @@ export default function GatewayPage() {
               <div className="absolute top-full right-0 w-48 bg-black/90 border border-white/10 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col shadow-2xl backdrop-blur-xl">
                 <Link href="/noc/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">NOC Portal</Link>
                 <Link href="/alert/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">Live Alerts</Link>
-                <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white" target="_blank" rel="noopener noreferrer">JS Store</Link>
+                <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white" target="_blank" rel="noopener noreferrer">Marketplace</Link>
                 <Link href="/charity-quiz" className="px-4 py-3 hover:bg-white/10 transition-colors text-white">Cyber Free Rice</Link>
               </div>
             </div>
@@ -205,7 +205,7 @@ export default function GatewayPage() {
               <User className="w-4 h-4" /> Identity Contract
             </Link>
             <Link href="https://jumpstreet.tech" className="px-6 py-3 rounded-full bg-indigo-500 text-white font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(99,102,241,0.4)] flex items-center gap-2" target="_blank" rel="noopener noreferrer">
-              <Cpu className="w-4 h-4" /> JS Store
+              <Cpu className="w-4 h-4" /> Marketplace
             </Link>
             <div className="relative group z-30">
               <button className="px-6 py-3 rounded-full bg-emerald-500 text-black font-bold tracking-widest uppercase text-xs hover:scale-105 transition-transform hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] flex items-center gap-2 border-2 border-emerald-400">
@@ -221,7 +221,7 @@ export default function GatewayPage() {
                 </Link>
                 <div className="h-[1px] w-full bg-slate-800"></div>
                 <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3" target="_blank" rel="noopener noreferrer">
-                  <ShoppingCart className="w-4 h-4 text-indigo-400" /> JS Store
+                  <ShoppingCart className="w-4 h-4 text-indigo-400" /> Marketplace
                 </Link>
                 <div className="h-[1px] w-full bg-slate-800"></div>
                 <Link href="/charity-quiz" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
@@ -258,7 +258,7 @@ export default function GatewayPage() {
                 Identity <br/><span className="text-[#38bdf8]">Contract.</span>
               </h2>
               <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
-                Cryptographically signed credentials, enterprise threat hunting logs, and decentralized compliance attestations.
+                Cryptographic identity contracts for enterprise threat hunting and decentralized compliance.
               </p>
               <Link href="/portfolio" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-bold tracking-wide hover:scale-105 transition-transform">
                 Explore Portfolio <ArrowRight className="w-5 h-5" />
@@ -327,7 +327,7 @@ export default function GatewayPage() {
               <p className="text-xl md:text-2xl text-slate-400 font-medium mb-10 leading-relaxed max-w-lg">
                 Stake threat intelligence trivia answers to generate karmic impact, feeding global communities with verified correctness.
               </p>
-              <Link href="/charity-quiz" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]">
+              <Link href="https://cyberkarma.software" className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 text-black font-bold tracking-wide hover:scale-105 transition-transform hover:shadow-[0_0_30px_rgba(52,211,153,0.4)]" target="_blank" rel="noopener noreferrer">
                 Play & Earn Karma <ArrowRight className="w-5 h-5" />
               </Link>
             </motion.div>
