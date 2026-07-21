@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut, ChevronDown, Activity, Bell, ShoppingCart, Heart } from "lucide-react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { ArrowRight, Terminal, Award, User, ShieldAlert, Cpu, Globe, Moon, Sun, Wallet, Copy, Check, LogOut, ChevronDown, Activity, Bell, ShoppingCart, Heart, Menu } from "lucide-react";
 
 export default function GatewayPage() {
   const [isDark, setIsDark] = useState(true);
@@ -15,6 +15,7 @@ export default function GatewayPage() {
   const [showWalletModal, setShowWalletModal] = useState<boolean>(false);
   const [showDisconnectModal, setShowDisconnectModal] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   
   // Telemetry States
   const [blockHeight, setBlockHeight] = useState<number>(19482917);
@@ -148,8 +149,40 @@ export default function GatewayPage() {
           >
             {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`md:hidden p-2 rounded-full border transition-all ${isDark ? 'border-white/20 bg-white/10 text-white' : 'border-black/20 bg-black/5 text-black'}`}
+          >
+            <Menu className="w-4 h-4" />
+          </button>
         </div>
       </header>
+
+      {/* Mobile Navigation Menu */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className={`fixed top-[70px] left-4 right-4 z-40 p-4 rounded-2xl border backdrop-blur-3xl shadow-2xl flex flex-col gap-4 font-mono text-sm uppercase tracking-wider ${isDark ? 'bg-black/90 border-white/10 text-white' : 'bg-white/90 border-black/10 text-black'}`}
+          >
+            <Link href="/noc/" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 border-b border-current/10 hover:bg-current/5 rounded-lg flex items-center gap-3">
+              <Activity className="w-4 h-4 text-emerald-500" /> NOC Portal
+            </Link>
+            <Link href="https://www.worldmonitor.app/dashboard?zoom=1.00&view=global&timeRange=7d&layers=conflicts%2Cbases%2Chotspots%2Cnuclear%2Csanctions%2Cweather%2Ceconomic%2Cwaterways%2Coutages%2Cmilitary%2Cnatural" target="_blank" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 border-b border-current/10 hover:bg-current/5 rounded-lg flex items-center gap-3">
+              <Globe className="w-4 h-4 text-blue-500" /> World Monitor
+            </Link>
+            <Link href="/alert/" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 border-b border-current/10 hover:bg-current/5 rounded-lg flex items-center gap-3">
+              <Bell className="w-4 h-4 text-indigo-500" /> Live Alerts
+            </Link>
+            <Link href="https://jumpstreet.tech" target="_blank" onClick={() => setMobileMenuOpen(false)} className="px-4 py-3 hover:bg-current/5 rounded-lg flex items-center gap-3">
+              <ShoppingCart className="w-4 h-4 text-[#00A86B]" /> Marketplace
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Floating Bottom Telemetry Dock */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-2xl hidden md:flex items-center justify-between p-3 rounded-2xl backdrop-blur-2xl border border-white/10 bg-black/40 shadow-2xl font-mono text-[10px] tracking-wider uppercase text-slate-300">
