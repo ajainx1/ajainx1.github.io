@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Background3D from "@/components/3d/Background3D";
+import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -31,6 +32,7 @@ export default function RootLayout({
         <Background3D />
         <div className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
         {children}
+        <PWAInstallPrompt />
         <script
           dangerouslySetInnerHTML={{
             __html: `
