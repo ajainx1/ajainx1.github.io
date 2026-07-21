@@ -114,6 +114,7 @@ export default function GatewayPage() {
               </button>
               <div className="absolute top-full right-0 w-48 bg-black/90 border border-white/10 rounded-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all flex flex-col shadow-2xl backdrop-blur-xl">
                 <Link href="/noc/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">NOC Portal</Link>
+                <Link href="https://www.worldmonitor.app/dashboard?zoom=1.00&view=global&timeRange=7d&layers=conflicts%2Cbases%2Chotspots%2Cnuclear%2Csanctions%2Cweather%2Ceconomic%2Cwaterways%2Coutages%2Cmilitary%2Cnatural" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white" target="_blank" rel="noopener noreferrer">World Monitor</Link>
                 <Link href="/alert/" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white">Live Alerts</Link>
                 <Link href="https://jumpstreet.tech" className="px-4 py-3 hover:bg-white/10 transition-colors border-b border-white/5 text-white" target="_blank" rel="noopener noreferrer">Marketplace</Link>
                 <Link href="/charity-quiz" className="px-4 py-3 hover:bg-white/10 transition-colors text-white">Cyber Free Rice</Link>
@@ -214,6 +215,10 @@ export default function GatewayPage() {
               <div className="absolute top-full right-0 mt-2 w-52 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 flex flex-col overflow-hidden">
                 <Link href="/noc/" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
                   <Activity className="w-4 h-4 text-emerald-400" /> NOC Portal
+                </Link>
+                <div className="h-[1px] w-full bg-slate-800"></div>
+                <Link href="https://www.worldmonitor.app/dashboard?zoom=1.00&view=global&timeRange=7d&layers=conflicts%2Cbases%2Chotspots%2Cnuclear%2Csanctions%2Cweather%2Ceconomic%2Cwaterways%2Coutages%2Cmilitary%2Cnatural" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3" target="_blank" rel="noopener noreferrer">
+                  <Globe className="w-4 h-4 text-[#38bdf8]" /> World Monitor
                 </Link>
                 <div className="h-[1px] w-full bg-slate-800"></div>
                 <Link href="/alert/" className="px-4 py-3 hover:bg-slate-800 text-slate-300 hover:text-white transition-colors text-sm font-semibold flex items-center gap-3">
