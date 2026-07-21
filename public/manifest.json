@@ -1,0 +1,17 @@
+{
+  "name": "Aditya Jain Portfolio",
+  "short_name": "Aditya Jain",
+  "description": "Cybersecurity Engineer & SME Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0f19",
+  "theme_color": "#0b0f19",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "192x192 512x512",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ]
+}
