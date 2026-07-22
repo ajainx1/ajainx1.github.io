@@ -695,12 +695,41 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       {/* Main Content */}
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-6">
         
-        {/* Banner */}
-        <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className={`w-full p-8 rounded-[32px] text-center overflow-hidden relative shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">Every Answer Saves a Life.</h1>
-          <p className="text-sm sm:text-base max-w-2xl mx-auto opacity-90 leading-relaxed">
-            Play daily to transform a life. For every correct answer, we donate <strong>10 grains of rice</strong> to feed rescue animals and vulnerable families globally. Your knowledge creates real-world miracles.
+        {/* Highlighted Supreme Intro Banner */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-rose-950/40 via-black/40 to-slate-950/60 border-rose-500/20' : 'bg-gradient-to-b from-rose-50/80 via-white/90 to-amber-50/80 border-rose-200'}`}
+        >
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-rose-500/10 blur-3xl rounded-full pointer-events-none" />
+
+          {/* Emotional Headline */}
+          <h1 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 font-title leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400 drop-shadow-md">
+              Every Answer Saves a Life.
+            </span>
+          </h1>
+
+          <p className="text-sm sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed mb-6 text-slate-200">
+            Play daily to transform a life. For every correct answer, we donate{' '}
+            <span className="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+              10 grains of rice
+            </span>{' '}
+            to feed <strong className="text-rose-300 font-bold">rescue animals</strong> and <strong className="text-amber-300 font-bold">vulnerable families</strong> globally. Your knowledge creates real-world miracles.
           </p>
+
+          {/* Highlight Badges */}
+          <div className="flex flex-wrap justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider">
+            <span className="px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 shadow-sm flex items-center gap-1.5">
+              ❤️ 10 Grains Pledged / Answer
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 shadow-sm flex items-center gap-1.5">
+              🕊️ 100% Free &amp; Ad-Funded
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 shadow-sm flex items-center gap-1.5">
+              🌍 Verified Global Impact
+            </span>
+          </div>
         </motion.div>
 
         {/* Dynamic Grid Layout */}
