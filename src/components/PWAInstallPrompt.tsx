@@ -9,7 +9,18 @@ export default function PWAInstallPrompt() {
   const [isStandalone, setIsStandalone] = useState(false);
   const [showPrompt, setShowPrompt] = useState(true);
 
+  const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
+    // Check if mobile device or small screen width
+    const checkMobile = () => {
+      const userAgentMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      const screenMobile = window.innerWidth < 768;
+      setIsMobile(userAgentMobile || screenMobile);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+
     // Check if already installed
     if (window.matchMedia("(display-mode: standalone)").matches || (window.navigator as any).standalone === true) {
       setIsStandalone(true);
@@ -30,6 +41,7 @@ export default function PWAInstallPrompt() {
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
 
     return () => {
+      window.removeEventListener("resize", checkMobile);
       window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     };
   }, []);
@@ -44,12 +56,13 @@ export default function PWAInstallPrompt() {
     }
   };
 
-  if (isStandalone || !showPrompt || (!isInstallable && !isIOS)) {
+  // NEVER show on desktop browsers
+  if (!isMobile || isStandalone || !showPrompt || (!isInstallable && !isIOS)) {
     return null;
   }
 
   return (
-    <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
+    <div className="md:hidden fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-md">
       <div className="bg-slate-900/90 backdrop-blur-md border border-slate-700/50 rounded-2xl p-4 shadow-2xl flex items-center justify-between gap-4">
         <div className="flex-1">
           <h4 className="text-slate-100 font-semibold text-sm">Install App</h4>
