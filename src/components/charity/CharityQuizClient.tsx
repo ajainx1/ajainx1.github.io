@@ -587,12 +587,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleShare = () => {
-    const text = `I just reached Level ${level} and generated ${score} grains of rice on Cyber FreeRice! Join me:`;
+    const text = `🌾 I just generated ${score} grains of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
+    const shareUrl = "https://adityasec32.systems/charity-quiz";
     if (navigator.share) {
-      navigator.share({ title: 'Cyber FreeRice', text, url: window.location.href }).catch(console.error);
+      navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
     } else {
-      navigator.clipboard.writeText(`${text} ${window.location.href}`);
-      addToast('Copied to clipboard!', 'success');
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + shareUrl)}`;
+      window.open(whatsappUrl, '_blank');
+      navigator.clipboard.writeText(`${text} ${shareUrl}`);
+      addToast('Copied share link & opening WhatsApp!', 'success');
     }
   };
 
@@ -750,6 +753,32 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 )}
             </div>
 
+            {/* Corporate Sponsorship Banner */}
+            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group ${isDark ? 'bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-white to-teal-50 border-emerald-200'}`}>
+              <div className="flex items-center gap-3.5 z-10">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 text-emerald-400 font-black text-lg shadow-inner">
+                  🐋
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Official Sponsor</span>
+                    <span className="text-xs text-slate-400 font-mono">Orca6™ HFT</span>
+                  </div>
+                  <h4 className="text-sm font-black uppercase tracking-wider mt-1 text-white">Automate Trading with Sub-Millisecond AI</h4>
+                  <p className="text-xs text-slate-400 font-medium mt-0.5">Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
+                </div>
+              </div>
+              <Link
+                href="https://jumpstreet.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center justify-center gap-2 z-10"
+              >
+                <span>Explore Orca6™</span>
+                <Zap size={14} />
+              </Link>
+            </div>
+
             {/* Quiz Area */}
             <div className="w-full">
               <AnimatePresence mode="wait">
@@ -828,6 +857,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                             </button>
                           );
                         })}
+                      </div>
+
+                      {/* Google AdSense / Display Ad Unit Placeholder */}
+                      <div className={`p-4 rounded-[20px] border border-dashed text-center my-6 backdrop-blur-md ${isDark ? 'bg-black/30 border-white/10 text-slate-400' : 'bg-slate-50 border-black/10 text-slate-500'}`}>
+                        <span className="text-[9px] font-mono font-bold uppercase tracking-widest block opacity-50 mb-1">Monetized Display Ad Space</span>
+                        <div className="min-h-[70px] flex flex-col items-center justify-center text-xs font-mono text-emerald-400/90 bg-emerald-500/5 rounded-xl border border-emerald-500/10 p-3">
+                          <span className="font-bold">📺 Google AdSense / Ezoic Unit Slot Active</span>
+                          <span className="text-[10px] text-slate-400 mt-1">Est. CPM $4.50 – $10.00 USD • Refreshes per question response</span>
+                        </div>
                       </div>
 
                       <div className="mt-8 flex justify-between items-center min-h-[40px]">
