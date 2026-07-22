@@ -739,13 +739,13 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           <div className="lg:col-span-8 space-y-6">
             
             {/* Categories & Difficulty Container */}
-            <div className={`p-2 rounded-[24px] backdrop-blur-2xl shadow-lg border flex flex-col sm:flex-row gap-2 justify-between items-center ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
-                <div className="flex flex-wrap gap-1 w-full sm:w-auto p-1 bg-black/5 rounded-[20px]">
+            <div className={`p-3 rounded-[28px] backdrop-blur-3xl shadow-xl border flex flex-col sm:flex-row gap-3 justify-between items-center ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/70 border-white/60'}`}>
+                <div className="flex flex-wrap gap-1.5 w-full sm:w-auto p-1.5 bg-black/20 rounded-[22px]">
                   {(Object.keys(quizData) as CategoryKey[]).map(cat => (
                     <button
                       key={cat}
                       onClick={() => setCategory(cat)}
-                      className={`px-4 py-2 rounded-[16px] text-sm font-medium capitalize transition-all ${category === cat ? 'bg-white text-slate-900 shadow-md' : 'opacity-70 hover:opacity-100 hover:bg-white/10'}`}
+                      className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white'}`}
                     >
                       {cat}
                     </button>
@@ -755,25 +755,25 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       const keys = Object.keys(quizData) as CategoryKey[];
                       setCategory(keys[Math.floor(Math.random() * keys.length)]);
                     }}
-                    className={`px-4 py-2 rounded-[16px] text-sm font-medium capitalize transition-all opacity-70 hover:opacity-100 hover:bg-white/10`}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all opacity-70 hover:opacity-100 hover:bg-white/10 text-white`}
                   >
                     🎲 Random
                   </button>
                   <button
                     onClick={() => setShowAIModal(true)}
-                    className={`px-4 py-2 rounded-[16px] text-sm font-medium transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : 'opacity-80 hover:opacity-100 hover:bg-white/10'}`}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white'}`}
                   >
                     <Cpu size={14} /> AI Quiz
                   </button>
                 </div>
 
                 {category !== 'custom-ai' && (
-                  <div className="flex gap-1 p-1 bg-black/5 rounded-[20px]">
+                  <div className="flex gap-1.5 p-1.5 bg-black/20 rounded-[22px]">
                     {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
                       <button
                         key={diff}
                         onClick={() => setDifficulty(diff)}
-                        className={`px-3 py-1.5 rounded-[14px] text-xs font-semibold capitalize transition-all ${difficulty === diff ? 'bg-blue-500 text-white shadow-md' : 'opacity-60 hover:opacity-100'}`}
+                        className={`px-3 py-1.5 rounded-[14px] text-xs font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-500 text-white shadow-md' : 'opacity-60 hover:opacity-100 text-slate-300'}`}
                       >
                         {diff}
                       </button>
@@ -858,18 +858,18 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       <div className="grid grid-cols-1 gap-3">
                         {currentQuestion.options.map((opt, i) => {
                           let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border `;
-                          if (isAnswered) {
+                           if (isAnswered) {
                             if (i === currentQuestion.answer) {
-                              btnClass += `bg-green-500 text-white border-green-400 shadow-md z-10 scale-[1.02] `;
+                              btnClass += `bg-emerald-500 text-slate-950 font-bold border-emerald-400 shadow-lg z-10 scale-[1.02] `;
                             } else if (i === selectedAnswer) {
-                              btnClass += `bg-red-500/10 border-red-500/30 text-red-500 opacity-70 `;
+                              btnClass += `bg-red-500/20 border-red-500/40 text-red-400 opacity-90 `;
                             } else {
                               btnClass += isDark ? `bg-white/5 border-white/5 opacity-40 ` : `bg-black/5 border-black/5 opacity-50 `;
                             }
                           } else {
                             btnClass += isDark 
-                              ? `bg-white/5 border-white/10 hover:bg-white/10 hover:scale-[1.01] cursor-pointer`
-                              : `bg-white/60 border-white/80 hover:bg-white hover:scale-[1.01] cursor-pointer hover:shadow-md`;
+                              ? `bg-black/40 border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10 hover:scale-[1.01] cursor-pointer text-white`
+                              : `bg-white/70 border-white/90 hover:bg-white hover:border-emerald-400 hover:scale-[1.01] cursor-pointer hover:shadow-md text-slate-900`;
                           }
 
                           return (
