@@ -705,28 +705,28 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
           {/* Emotional Headline */}
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 font-title leading-tight">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400 drop-shadow-md">
+            <span className={`bg-clip-text text-transparent drop-shadow-md ${isDark ? 'bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400' : 'bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600'}`}>
               Every Answer Saves a Life.
             </span>
           </h1>
 
-          <p className="text-sm sm:text-lg max-w-3xl mx-auto font-medium leading-relaxed mb-6 text-slate-200">
+          <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-200 font-medium' : 'text-slate-800 font-bold'}`}>
             Play daily to transform a life. For every correct answer, we donate{' '}
-            <span className="px-2 py-0.5 rounded-lg bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+            <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
               10 grains of rice
             </span>{' '}
-            to feed <strong className="text-rose-300 font-bold">rescue animals</strong> and <strong className="text-amber-300 font-bold">vulnerable families</strong> globally. Your knowledge creates real-world miracles.
+            to feed <strong className={isDark ? 'text-rose-300 font-bold' : 'text-rose-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-amber-300 font-bold' : 'text-amber-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
           </p>
 
           {/* Highlight Badges */}
           <div className="flex flex-wrap justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider">
-            <span className="px-4 py-1.5 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 shadow-sm flex items-center gap-1.5">
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-rose-500/10 border-rose-500/20 text-rose-300' : 'bg-rose-100 border-rose-200 text-rose-800'}`}>
               ❤️ 10 Grains Pledged / Answer
             </span>
-            <span className="px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 shadow-sm flex items-center gap-1.5">
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-amber-500/10 border-amber-500/20 text-amber-300' : 'bg-amber-100 border-amber-200 text-amber-800'}`}>
               🕊️ 100% Free &amp; Ad-Funded
             </span>
-            <span className="px-4 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 shadow-sm flex items-center gap-1.5">
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-emerald-100 border-emerald-200 text-emerald-800'}`}>
               🌍 Verified Global Impact
             </span>
           </div>
@@ -739,13 +739,13 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           <div className="lg:col-span-8 space-y-6">
             
             {/* Categories & Difficulty Container */}
-            <div className={`p-3 rounded-[28px] backdrop-blur-3xl shadow-xl border flex flex-col sm:flex-row gap-3 justify-between items-center ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/70 border-white/60'}`}>
-                <div className="flex flex-wrap gap-1.5 w-full sm:w-auto p-1.5 bg-black/20 rounded-[22px]">
+            <div className={`p-3 rounded-[28px] backdrop-blur-3xl shadow-xl border flex flex-col sm:flex-row gap-3 justify-between items-center ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/90 border-slate-200 shadow-md'}`}>
+                <div className={`flex flex-wrap gap-1.5 w-full sm:w-auto p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
                   {(Object.keys(quizData) as CategoryKey[]).map(cat => (
                     <button
                       key={cat}
                       onClick={() => setCategory(cat)}
-                      className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white'}`}
+                      className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
                     >
                       {cat}
                     </button>
@@ -755,25 +755,25 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       const keys = Object.keys(quizData) as CategoryKey[];
                       setCategory(keys[Math.floor(Math.random() * keys.length)]);
                     }}
-                    className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all opacity-70 hover:opacity-100 hover:bg-white/10 text-white`}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
                   >
                     🎲 Random
                   </button>
                   <button
                     onClick={() => setShowAIModal(true)}
-                    className={`px-4 py-2 rounded-[16px] text-xs font-bold transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white'}`}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'}`}
                   >
                     <Cpu size={14} /> AI Quiz
                   </button>
                 </div>
 
                 {category !== 'custom-ai' && (
-                  <div className="flex gap-1.5 p-1.5 bg-black/20 rounded-[22px]">
+                  <div className={`flex gap-1.5 p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
                     {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
                       <button
                         key={diff}
                         onClick={() => setDifficulty(diff)}
-                        className={`px-3 py-1.5 rounded-[14px] text-xs font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-500 text-white shadow-md' : 'opacity-60 hover:opacity-100 text-slate-300'}`}
+                        className={`px-3 py-1.5 rounded-[14px] text-xs font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
                       >
                         {diff}
                       </button>
@@ -783,25 +783,25 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
 
             {/* Corporate Sponsorship Banner */}
-            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group ${isDark ? 'bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-white to-teal-50 border-emerald-200'}`}>
+            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group ${isDark ? 'bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
               <div className="flex items-center gap-3.5 z-10">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 text-emerald-400 font-black text-lg shadow-inner">
                   🐋
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Official Sponsor</span>
-                    <span className="text-xs text-slate-400 font-mono">Orca6™ HFT</span>
+                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Official Sponsor</span>
+                    <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Orca6™ HFT</span>
                   </div>
-                  <h4 className="text-sm font-black uppercase tracking-wider mt-1 text-white">Automate Trading with Sub-Millisecond AI</h4>
-                  <p className="text-xs text-slate-400 font-medium mt-0.5">Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
+                  <h4 className={`text-sm font-black uppercase tracking-wider mt-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>Automate Trading with Sub-Millisecond AI</h4>
+                  <p className={`text-xs font-semibold mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
                 </div>
               </div>
               <Link
                 href="https://jumpstreet.tech"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-500 text-slate-950 hover:bg-emerald-400 transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center justify-center gap-2 z-10"
+                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center justify-center gap-2 z-10"
               >
                 <span>Explore Orca6™</span>
                 <Zap size={14} />
