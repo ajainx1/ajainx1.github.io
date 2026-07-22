@@ -4,7 +4,6 @@ import "./globals.css";
 import Background3D from "@/components/3d/Background3D";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 
-import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -14,6 +13,9 @@ export const metadata: Metadata = {
   title: "Aditya Jain — Cybersecurity Engineer & SME",
   description: "Portfolio of Aditya Jain — 5+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, and AI Automation.",
   manifest: "/manifest.json",
+  other: {
+    'google-adsense-account': 'ca-pub-6072468142870937',
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -29,11 +31,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <Script
+        <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072468142870937"
           crossOrigin="anonymous"
-          strategy="afterInteractive"
         />
       </head>
       <body
