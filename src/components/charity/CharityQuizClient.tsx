@@ -105,11 +105,39 @@ export default function CharityQuizClient() {
       tag: 'Direct Street Feeding',
     },
     {
+      src: '/impact/street-dog-6.jpeg',
+      title: 'Morning Feeding Spot',
+      location: 'Rajbansi Nagar, Patna Division, Bihar',
+      date: '21 Jul 2026 • 10:45 AM',
+      tag: 'Morning Meal Drive',
+    },
+    {
+      src: '/impact/street-dog-7.jpeg',
+      title: 'Evening Community Street Feeding',
+      location: 'Road Rajbansi Nagar, Patna Division, Bihar',
+      date: '22 Jul 2026 • 07:18 PM',
+      tag: 'Evening Care Patrol',
+    },
+    {
       src: '/impact/street-dog-1.jpeg',
       title: 'Street Animal Feeding Point',
       location: 'Rajbansi Nagar Alley, Patna, Bihar',
       date: '20 Jul 2026 • Street Drive',
       tag: 'Daily Nourishment',
+    },
+    {
+      src: '/impact/street-dog-8.jpeg',
+      title: 'Street Pack Feeding Station',
+      location: 'Patna Division, Bihar',
+      date: 'July 2026 • Patna Community',
+      tag: 'Pack Feeding',
+    },
+    {
+      src: '/impact/street-dog-9.jpeg',
+      title: 'Night Stall Feeding Spot',
+      location: 'Egg Vendor Hub, Patna, Bihar',
+      date: 'July 2026 • Night Care Spot',
+      tag: 'Night Feeding Drive',
     },
     {
       src: '/impact/street-dog-3.jpeg',
@@ -1083,10 +1111,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
                   <span>🐕</span> Direct Street Feeding Drive • Rajbansi Nagar, Patna
                 </h3>
-                <span className="text-xs text-rose-500 font-bold">5 Verified Field Photos</span>
+                <span className="text-xs text-rose-500 font-bold">9 Verified Field Photos</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {STREET_FEEDING_DRIVE.map((item, idx) => (
                   <motion.div
                     key={idx}
@@ -1123,15 +1151,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             {/* Infinite Scrolling Marquee */}
             <div>
               <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 mb-4 flex items-center gap-2">
-                <span>📷</span> Global Community Impact Archive (77 Verified Photos)
+                <span>📷</span> Global Community Impact Archive (81 Verified Photos)
               </h3>
               <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
                 <motion.div 
                   className="flex gap-4 absolute left-0"
-                  animate={{ x: [0, -16000] }}
+                  animate={{ x: [0, -17000] }}
                   transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
                 >
-                  {Array.from({ length: 77 }).map((_, i) => (
+                  {Array.from({ length: 81 }).map((_, i) => (
                     <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
                       <img 
                         src={`/impact/impact-${i + 1}.jpeg`} 
