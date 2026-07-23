@@ -7,6 +7,7 @@ import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 import TiltWrapper from '@/components/3d/TiltWrapper';
+import AdSenseBanner from '@/components/AdSenseBanner';
 
 // Initialize Supabase client
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
@@ -969,32 +970,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         })}
                       </div>
 
-                      {/* Google AdSense / Display Ad Unit Slot */}
-                      <div className={`p-4 rounded-[20px] border border-dashed text-center my-6 backdrop-blur-md overflow-hidden ${isDark ? 'bg-black/30 border-white/10 text-slate-400' : 'bg-slate-50 border-black/10 text-slate-500'}`}>
-                        <div className="flex items-center justify-between text-[9px] font-mono font-bold uppercase tracking-widest opacity-60 mb-2 px-1">
-                          <span>Monetized Display Ad Space</span>
-                          <span className="text-emerald-400">Refreshes per question response</span>
-                        </div>
-
-                        {/* Live Google AdSense Slot Tag */}
-                        <div className="min-h-[85px] flex flex-col items-center justify-center text-xs font-mono text-emerald-400/90 bg-emerald-500/5 rounded-xl border border-emerald-500/10 p-3 relative">
-                          <ins className="adsbygoogle"
-                               style={{ display: 'block', width: '100%', minHeight: '60px' }}
-                               data-ad-client="ca-pub-6072468142870937"
-                               data-ad-slot="auto"
-                               data-ad-format="auto"
-                               data-full-width-responsive="true"></ins>
-
-                          <div className="mt-2 pt-2 border-t border-emerald-500/10 text-center w-full">
-                            <span className="font-bold flex items-center justify-center gap-1.5 text-emerald-400">
-                              📺 Google AdSense / Ezoic Unit Slot Active
-                            </span>
-                            <span className="text-[10px] text-slate-400 block mt-0.5">
-                              Est. CPM $4.50 – $10.00 USD • Refreshes per question response • Pub-ID: ca-pub-6072468142870937
-                            </span>
-                          </div>
-                        </div>
-                      </div>
+                      {/* Google AdSense / Display Ad Unit */}
+                      <AdSenseBanner refreshKey={`${currentQuestion?.question || score}`} isDark={isDark} />
 
                       <div className="mt-8 flex justify-between items-center min-h-[40px]">
                         <AnimatePresence>
