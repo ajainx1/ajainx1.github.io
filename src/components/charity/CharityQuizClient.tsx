@@ -84,6 +84,9 @@ export default function CharityQuizClient() {
   const [showLevelUpModal, setShowLevelUpModal] = useState(false);
   const [levelUpData, setLevelUpData] = useState({ level: 1, title: '' });
 
+  // Photo preview lightbox state
+  const [previewImage, setPreviewImage] = useState<{ src: string; title: string; location: string; date: string; tag: string } | null>(null);
+
   // Refs to track recently shown questions to prevent repeats
   const questionHistoryRef = useRef<string[]>([]);
   const currentQuestionRef = useRef<Question | null>(null);
@@ -92,6 +95,44 @@ export default function CharityQuizClient() {
   const [isDark, setIsDark] = useState(true);
 
   const { addToast } = useToast();
+
+  const STREET_FEEDING_DRIVE = [
+    {
+      src: '/impact/street-dog-2.jpeg',
+      title: 'Daily Evening Rice Bowl',
+      location: 'Rajbansi Nagar, Patna Division, Bihar',
+      date: '20 Jul 2026 • 12:55 PM',
+      tag: 'Direct Street Feeding',
+    },
+    {
+      src: '/impact/street-dog-1.jpeg',
+      title: 'Street Animal Feeding Point',
+      location: 'Rajbansi Nagar Alley, Patna, Bihar',
+      date: '20 Jul 2026 • Street Drive',
+      tag: 'Daily Nourishment',
+    },
+    {
+      src: '/impact/street-dog-3.jpeg',
+      title: 'Nourishing Street Companion',
+      location: 'Patna Division, Bihar',
+      date: 'July 2026 • Patna Community',
+      tag: 'Street Survival',
+    },
+    {
+      src: '/impact/street-dog-4.jpeg',
+      title: 'Street Stall Feeding Spot',
+      location: 'Market Street Hub, Bihar',
+      date: 'July 2026 • Street Vendor Spot',
+      tag: 'Community Care',
+    },
+    {
+      src: '/impact/street-dog-5.jpeg',
+      title: 'Late-Night Animal Feeding Drive',
+      location: 'Night Care Patrol, Patna, Bihar',
+      date: 'July 2026 • Night Drive',
+      tag: 'Zero Animal Hunger',
+    },
+  ];
 
   // Web3 States
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -1016,37 +1057,97 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
         {/* Real-World Impact Gallery */}
         <div className="w-full mt-8">
-          <div className={`p-8 rounded-[32px] shadow-lg backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
-            <div className="flex items-center gap-3 mb-4">
-              <Heart size={28} className="text-rose-500 fill-rose-500" />
-              <h2 className="text-2xl font-bold tracking-tight">Real-World Impact</h2>
-            </div>
-            <p className="text-sm opacity-80 mb-8 max-w-3xl leading-relaxed">
-              Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
-            </p>
+          <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-white/60'}`}>
             
-            <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
-              {/* Infinite Scrolling Marquee */}
-              <motion.div 
-                className="flex gap-4 absolute left-0"
-                animate={{ x: [0, -15000] }}
-                transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
-              >
-                {Array.from({ length: 72 }).map((_, i) => (
-                  <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
-                    <img 
-                      src={`/impact/impact-${i + 1}.jpeg`} 
-                      alt={`Real-World Impact ${i + 1}`} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                      loading="lazy" 
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                      <Heart size={16} className="text-white fill-white" />
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="p-2 rounded-xl bg-rose-500/20 text-rose-500 border border-rose-500/30">
+                    <Heart size={24} className="fill-rose-500" />
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-title">Real-World Impact Drive</h2>
+                </div>
+                <p className="text-sm opacity-90 max-w-3xl leading-relaxed font-medium">
+                  Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
+                </p>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold shrink-0">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>LIVE FEEDING VERIFIED • PATNA DIVISION</span>
+              </div>
             </div>
+
+            {/* Featured Direct Feeding Drive Gallery */}
+            <div className="mb-10">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
+                  <span>🐕</span> Direct Street Feeding Drive • Rajbansi Nagar, Patna
+                </h3>
+                <span className="text-xs text-rose-500 font-bold">5 Verified Field Photos</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                {STREET_FEEDING_DRIVE.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    onClick={() => setPreviewImage(item)}
+                    className="relative group rounded-[20px] overflow-hidden shadow-lg border border-white/15 cursor-pointer bg-black/40 h-72 flex flex-col justify-end p-4"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
+
+                    <div className="relative z-10 space-y-1">
+                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-rose-500 text-white shadow-sm inline-block mb-1">
+                        {item.tag}
+                      </span>
+                      <h4 className="text-xs font-bold text-white leading-tight font-title">{item.title}</h4>
+                      <p className="text-[10px] text-slate-300 flex items-center gap-1 font-mono">
+                        <span>📍</span> {item.location}
+                      </p>
+                      <span className="text-[9px] text-slate-400 block font-mono">{item.date}</span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Heart size={14} className="fill-rose-500 text-rose-500" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Infinite Scrolling Marquee */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 mb-4 flex items-center gap-2">
+                <span>📷</span> Global Community Impact Archive (77 Verified Photos)
+              </h3>
+              <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
+                <motion.div 
+                  className="flex gap-4 absolute left-0"
+                  animate={{ x: [0, -16000] }}
+                  transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
+                >
+                  {Array.from({ length: 77 }).map((_, i) => (
+                    <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                      <img 
+                        src={`/impact/impact-${i + 1}.jpeg`} 
+                        alt={`Real-World Impact ${i + 1}`} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <Heart size={16} className="text-white fill-white" />
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+
           </div>
         </div>
       </main>
@@ -1176,6 +1277,54 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               >
                 Continue Playing
               </button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* Photo Preview Lightbox Modal */}
+        {previewImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setPreviewImage(null)}
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl cursor-pointer"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-2xl w-full rounded-[32px] overflow-hidden bg-slate-900 border border-white/20 shadow-2xl"
+            >
+              <button
+                onClick={() => setPreviewImage(null)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-rose-600 transition-colors font-bold"
+              >
+                ✕
+              </button>
+              <div className="relative h-96 w-full bg-black">
+                <img
+                  src={previewImage.src}
+                  alt={previewImage.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="p-6 bg-slate-950 text-white space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold uppercase">
+                    Verified Field Impact
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">{previewImage.date}</span>
+                </div>
+                <h3 className="text-lg font-black font-title text-white">{previewImage.title}</h3>
+                <p className="text-xs text-slate-300 font-mono flex items-center gap-1">
+                  <span>📍</span> Location: {previewImage.location}
+                </p>
+                <p className="text-xs text-emerald-400 pt-2 border-t border-white/10 font-medium">
+                  ❤️ Your quiz participation directly funds rice meals for animals in this exact location.
+                </p>
+              </div>
             </motion.div>
           </motion.div>
         )}
