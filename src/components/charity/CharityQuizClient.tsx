@@ -196,6 +196,18 @@ export default function CharityQuizClient() {
     return () => window.removeEventListener("storage", checkWallet);
   }, []);
 
+  // Google AdSense auto-refresh hook per question response
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      }
+    } catch {
+      // Ignore initial render push errors when ad script is loading
+    }
+  }, [currentQuestion, aiIndex]);
+
   const handleMintSoulboundNFT = () => {
     if (!walletAddress) {
       addToast("No connected Web3 node. Please connect your wallet in the gateway hub.", "info");
@@ -957,12 +969,30 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         })}
                       </div>
 
-                      {/* Google AdSense / Display Ad Unit Placeholder */}
-                      <div className={`p-4 rounded-[20px] border border-dashed text-center my-6 backdrop-blur-md ${isDark ? 'bg-black/30 border-white/10 text-slate-400' : 'bg-slate-50 border-black/10 text-slate-500'}`}>
-                        <span className="text-[9px] font-mono font-bold uppercase tracking-widest block opacity-50 mb-1">Monetized Display Ad Space</span>
-                        <div className="min-h-[70px] flex flex-col items-center justify-center text-xs font-mono text-emerald-400/90 bg-emerald-500/5 rounded-xl border border-emerald-500/10 p-3">
-                          <span className="font-bold">📺 Google AdSense / Ezoic Unit Slot Active</span>
-                          <span className="text-[10px] text-slate-400 mt-1">Est. CPM $4.50 – $10.00 USD • Refreshes per question response</span>
+                      {/* Google AdSense / Display Ad Unit Slot */}
+                      <div className={`p-4 rounded-[20px] border border-dashed text-center my-6 backdrop-blur-md overflow-hidden ${isDark ? 'bg-black/30 border-white/10 text-slate-400' : 'bg-slate-50 border-black/10 text-slate-500'}`}>
+                        <div className="flex items-center justify-between text-[9px] font-mono font-bold uppercase tracking-widest opacity-60 mb-2 px-1">
+                          <span>Monetized Display Ad Space</span>
+                          <span className="text-emerald-400">Refreshes per question response</span>
+                        </div>
+
+                        {/* Live Google AdSense Slot Tag */}
+                        <div className="min-h-[85px] flex flex-col items-center justify-center text-xs font-mono text-emerald-400/90 bg-emerald-500/5 rounded-xl border border-emerald-500/10 p-3 relative">
+                          <ins className="adsbygoogle"
+                               style={{ display: 'block', width: '100%', minHeight: '60px' }}
+                               data-ad-client="ca-pub-6072468142870937"
+                               data-ad-slot="auto"
+                               data-ad-format="auto"
+                               data-full-width-responsive="true"></ins>
+
+                          <div className="mt-2 pt-2 border-t border-emerald-500/10 text-center w-full">
+                            <span className="font-bold flex items-center justify-center gap-1.5 text-emerald-400">
+                              📺 Google AdSense / Ezoic Unit Slot Active
+                            </span>
+                            <span className="text-[10px] text-slate-400 block mt-0.5">
+                              Est. CPM $4.50 – $10.00 USD • Refreshes per question response • Pub-ID: ca-pub-6072468142870937
+                            </span>
+                          </div>
                         </div>
                       </div>
 
