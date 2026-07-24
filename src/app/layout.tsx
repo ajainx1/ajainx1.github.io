@@ -11,8 +11,8 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Aditya Jain — Cybersecurity Engineer & SME",
-  description: "Portfolio of Aditya Jain — 5+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, and AI Automation.",
+  title: "CyberKarma — Play Free Quizzes & Feed Street Animals",
+  description: "CyberKarma (cyberkarma.me) is a free educational quiz platform. Answer questions across AI, SecOps, Animal Welfare & Science to donate real rice meals to street animals.",
   manifest: "/manifest.json",
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Aditya Jain",
+    title: "CyberKarma",
   },
 };
 
