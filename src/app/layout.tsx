@@ -14,8 +14,13 @@ export const metadata: Metadata = {
   title: "CyberKarma — Play Free Quizzes & Feed Street Animals",
   description: "CyberKarma (cyberkarma.me) is a free educational quiz platform. Answer questions across AI, SecOps, Animal Welfare & Science to donate real rice meals to street animals.",
   manifest: "/manifest.json",
+  metadataBase: new URL("https://cyberkarma.me"),
+  alternates: {
+    canonical: "https://cyberkarma.me",
+  },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
+    'theme-color': '#0b0f19',
   },
   appleWebApp: {
     capable: true,
