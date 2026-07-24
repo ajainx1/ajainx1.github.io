@@ -5,27 +5,26 @@ import Background3D from "@/components/3d/Background3D";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
 
-
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "CyberKarma — Play Free Quizzes & Feed Street Animals",
-  description: "CyberKarma (cyberkarma.me) is a free educational quiz platform. Answer questions across AI, SecOps, Animal Welfare & Science to donate real rice meals to street animals.",
+  title: "Aditya Jain — Cybersecurity Engineer & SME",
+  description: "Portfolio of Aditya Jain — 4+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, and Threat Hunting.",
   manifest: "/manifest.json",
-  metadataBase: new URL("https://cyberkarma.me"),
+  metadataBase: new URL("https://adityasec32.systems"),
   alternates: {
-    canonical: "https://cyberkarma.me",
+    canonical: "https://adityasec32.systems",
   },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
-    'theme-color': '#0b0f19',
+    'theme-color': '#0f172a',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "CyberKarma",
+    title: "Aditya Jain",
   },
 };
 
@@ -52,20 +51,6 @@ export default function RootLayout({
         {children}
         <PWAInstallPrompt />
         <TelegramVisitorLogger />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').then(
-                    function(registration) { console.log('SW registered: ', registration.scope); },
-                    function(err) { console.log('SW registration failed: ', err); }
-                  );
-                });
-              }
-            `,
-          }}
-        />
       </body>
     </html>
   );
