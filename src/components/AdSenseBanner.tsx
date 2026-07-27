@@ -91,8 +91,17 @@ export default function AdSenseBanner({ refreshKey = 0, className = "", isDark =
           </span>
         </div>
 
-        {/* Auto Ads will automatically inject real AdSense ads onto the page. */}
-        {/* We do not place an <ins> tag here without a valid data-ad-slot ID. */}
+        {/* Google AdSense Display Unit */}
+        <div className="w-full flex justify-center min-h-[90px] mb-4 overflow-hidden rounded-xl border border-dashed border-slate-500/30 relative">
+          <span className="absolute inset-0 flex items-center justify-center text-xs font-mono opacity-40 pointer-events-none">Ad Space (Auto-Filled by Google)</span>
+          <ins
+            className="adsbygoogle w-full"
+            style={{ display: 'block' }}
+            data-ad-client="ca-pub-6072468142870937"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          />
+        </div>
 
         {/* Active Animated Ad Banner Creative (Ensures visual ad is ALWAYS 100% working!) */}
         <AnimatePresence mode="wait">

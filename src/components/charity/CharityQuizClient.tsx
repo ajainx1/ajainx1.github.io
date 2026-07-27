@@ -1220,6 +1220,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       src={item.src}
                       alt={item.title}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
 
@@ -1245,27 +1246,31 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             {/* Infinite Scrolling Marquee */}
             <div>
               <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 mb-4 flex items-center gap-2">
-                <span>📷</span> Global Community Impact Archive (81 Verified Photos)
+                <span>📷</span> Global Community Impact Archive (Verified Photos)
               </h3>
               <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
                 <motion.div 
                   className="flex gap-4 absolute left-0"
-                  animate={{ x: [0, -17000] }}
-                  transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
+                  animate={{ x: [0, -3500] }}
+                  transition={{ repeat: Infinity, duration: 80, ease: 'linear' }}
                 >
-                  {Array.from({ length: 81 }).map((_, i) => (
-                    <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
-                      <img 
-                        src={`/impact/impact-${i + 1}.jpeg`} 
-                        alt={`Real-World Impact ${i + 1}`} 
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                        loading="lazy" 
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <Heart size={16} className="text-white fill-white" />
+                  {/* Render 18 images and duplicate them once for a seamless infinite scroll loop */}
+                  {[...Array.from({ length: 18 }), ...Array.from({ length: 18 })].map((_, i) => {
+                    const imgIndex = (i % 18) + 1;
+                    return (
+                      <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                        <img 
+                          src={`/impact/impact-${imgIndex}.jpeg`} 
+                          alt={`Real-World Impact ${imgIndex}`} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                          loading="lazy" 
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                          <Heart size={16} className="text-white fill-white" />
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </motion.div>
               </div>
             </div>
