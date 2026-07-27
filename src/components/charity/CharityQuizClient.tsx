@@ -733,7 +733,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
   const handleShare = () => {
     const text = `🌾 I just generated ${score} grains of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
-    const shareUrl = "https://adityasec32.systems/charity-quiz";
+    const shareUrl = "https://cyberkarma.me";
     if (navigator.share) {
       navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
     } else {

@@ -1,18 +1,5 @@
-import React from 'react';
-import CharityQuizClient from '@/components/charity/CharityQuizClient';
-import { ToastProvider } from '@/components/js/ToastContext';
-import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
-export const metadata: Metadata = {
-  title: 'Cyber Free Rice',
-  description: 'Stake threat intelligence trivia answers to generate karmic impact.',
-  manifest: '/manifest-quiz.json',
-};
-
-export default function CharityQuizPage() {
-  return (
-    <ToastProvider>
-      <CharityQuizClient />
-    </ToastProvider>
-  );
+export default function CharityQuizRedirectPage() {
+  redirect('/');
 }
