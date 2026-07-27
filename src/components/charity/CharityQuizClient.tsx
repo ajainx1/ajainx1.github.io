@@ -1019,6 +1019,23 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         </div>
                       )}
                       
+                      <div className="w-full h-48 sm:h-64 mb-6 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
+                        {/* Loading Skeleton */}
+                        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
+                        
+                        {/* The AI Image */}
+                        <img 
+                          key={currentQuestion.question} // Force re-render on new question
+                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentQuestion.question + " highly detailed 8k resolution digital art masterpiece")}?width=800&height=400&nologo=true`}
+                          alt="AI generated visual for question"
+                          className="w-full h-full object-cover relative z-10 opacity-0 transition-opacity duration-1000 group-hover:scale-105"
+                          onLoad={(e) => e.currentTarget.classList.remove('opacity-0')}
+                        />
+                        
+                        {/* Gradient overlay for text readability if needed later, and sleek aesthetic */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
+                      </div>
+                      
                       <h3 className="text-lg sm:text-xl font-semibold mb-8 leading-relaxed">
                         {currentQuestion.question}
                       </h3>
