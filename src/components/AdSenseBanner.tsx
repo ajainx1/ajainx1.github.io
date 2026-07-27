@@ -100,15 +100,14 @@ export default function AdSenseBanner({ refreshKey = 0, className = "", isDark =
           </span>
         </div>
 
-        {/* Live Google AdSense Ins Tag (Tested & Approved compliant) */}
+        {/* Live Google AdSense Ins Tag */}
         <div className="relative overflow-hidden rounded-2xl">
           <ins className="adsbygoogle"
                style={{ display: 'block', width: '100%', minHeight: '90px' }}
                data-ad-client="ca-pub-6072468142870937"
                data-ad-slot="auto"
                data-ad-format="auto"
-               data-full-width-responsive="true"
-               data-ad-test="on" />
+               data-full-width-responsive="true" />
         </div>
 
         {/* Active Animated Ad Banner Creative (Ensures visual ad is ALWAYS 100% working!) */}
