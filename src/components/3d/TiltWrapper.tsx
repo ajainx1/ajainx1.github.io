@@ -47,6 +47,12 @@ export default function TiltWrapper({
   const glareX = useTransform(x, [0, 1], ["-30%", "130%"]);
   const glareY = useTransform(y, [0, 1], ["-30%", "130%"]);
 
+  const glareBackground = useTransform(
+    [glareX, glareY],
+    ([gx, gy]) =>
+      `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.12) 0%, transparent 60%)`
+  );
+
   function handleMouse(e: React.MouseEvent) {
     if (isMobile) return;
     const rect = ref.current?.getBoundingClientRect();
@@ -81,13 +87,7 @@ export default function TiltWrapper({
       {glare && (
         <motion.div
           className="pointer-events-none absolute inset-0 z-50 rounded-[inherit]"
-          style={{
-            background: useTransform(
-              [glareX, glareY],
-              ([gx, gy]) =>
-                `radial-gradient(circle at ${gx} ${gy}, rgba(255,255,255,0.12) 0%, transparent 60%)`
-            ),
-          }}
+          style={{ background: glareBackground }}
         />
       )}
     </motion.div>
