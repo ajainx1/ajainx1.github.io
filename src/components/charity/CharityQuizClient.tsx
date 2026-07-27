@@ -1162,7 +1162,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
             
             {/* Main Score Widget */}
-            <motion.div layout className={`w-full rounded-[32px] border p-8 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
+            <motion.div layout className={`w-full rounded-[32px] border p-6 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
               
               <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-500 shadow-inner">
                 Level {level}: {currentLevelTitle}
@@ -1255,7 +1255,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
 
             {/* Corporate Sponsorship Banner */}
-            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
+            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
               <div className="flex flex-col items-center gap-3.5 z-10 w-full">
                 <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-lg shadow-inner mx-auto">
                   🐋
