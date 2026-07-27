@@ -356,6 +356,15 @@ export default function CharityQuizClient() {
     };
     checkSessionAndStates();
     
+    try {
+      const storedHistory = localStorage.getItem('charityQuizSeenQuestions');
+      if (storedHistory) {
+        questionHistoryRef.current = JSON.parse(storedHistory);
+      }
+    } catch (e) {
+      console.error('Failed to parse history', e);
+    }
+    
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user?.email) {
         handleUserLogin(session.user.email);
@@ -473,9 +482,10 @@ export default function CharityQuizClient() {
     
     // Add to history
     questionHistoryRef.current.push(selected.question);
-    if (questionHistoryRef.current.length > 5) {
+    if (questionHistoryRef.current.length > 1000) {
       questionHistoryRef.current.shift();
     }
+    localStorage.setItem('charityQuizSeenQuestions', JSON.stringify(questionHistoryRef.current));
     
     setIsAnswered(false);
     setSelectedAnswer(null);
@@ -1125,9 +1135,9 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       <button
                         key={diff}
                         onClick={() => setDifficulty(diff)}
-                        className={`flex-1 px-2 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
+                        className={`flex-1 px-2 py-2 rounded-[16px] text-[11px] font-bold transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
                       >
-                        {diff}
+                        {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
                       </button>
                     ))}
                   </div>
