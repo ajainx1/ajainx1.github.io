@@ -51,7 +51,7 @@ export default function CharityQuizClient() {
   const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('animals');
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
-  const [recipient, setRecipient] = useState('human');
+  const [recipient, setRecipient] = useState('dogs');
   const [showAstro, setShowAstro] = useState(false);
   const [showHint, setShowHint] = useState(false);
   
@@ -1110,17 +1110,34 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             {/* Recipients Widget */}
             <div className={`p-6 rounded-[32px] border shadow-lg backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
               <h3 className="text-sm font-bold mb-4 opacity-80 px-2">Support Target</h3>
-              <div className="grid grid-cols-2 gap-3">
-                {Object.entries(recipientIcons).slice(0, 4).map(([key, info]) => (
+              <div className="grid grid-cols-1 gap-3 mb-6">
+                {[ ['dogs', recipientIcons['dogs']] ].map(([key, info]) => (
                   <button
-                    key={key}
-                    onClick={() => setRecipient(key)}
+                    key={key as string}
+                    onClick={() => setRecipient(key as string)}
                     className={`p-4 rounded-[20px] text-sm font-semibold transition-all flex flex-col items-center gap-2 text-center border ${recipient === key ? 'bg-blue-500 text-white shadow-lg border-blue-400' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-white/80 hover:bg-white shadow-sm')}`}
                   >
-                    <span className="text-2xl">{info.base.slice(0, 2)}</span>
-                    <span className="text-xs">{info.label.split(' ')[0]}</span>
+                    <span className="text-3xl">{(info as any).base.slice(0, 2)}</span>
+                    <span className="text-sm">{(info as any).label.split(' ')[0]}</span>
                   </button>
                 ))}
+              </div>
+
+              <h3 className="text-xs font-bold mb-3 opacity-60 px-2 uppercase tracking-wider">Upcoming Targets</h3>
+              <div className="grid grid-cols-3 gap-2">
+                {['human', 'birds', 'cows'].map((key) => {
+                  const info = recipientIcons[key];
+                  return (
+                    <div
+                      key={key}
+                      className={`p-3 rounded-[16px] text-xs font-semibold flex flex-col items-center gap-1 text-center border opacity-50 cursor-not-allowed ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/60'}`}
+                      title="Coming soon!"
+                    >
+                      <span className="text-xl">{info.base.slice(0, 2)}</span>
+                      <span className="text-[10px]">{info.label.split(' ')[0]}</span>
+                    </div>
+                  );
+                })}
               </div>
             </div>
 
