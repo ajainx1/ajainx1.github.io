@@ -8,6 +8,7 @@ import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 import TiltWrapper from '@/components/3d/TiltWrapper';
 // Initialize Supabase client
+const GLOBAL_GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || ''; // 👈 ADMIN: Paste your Gemini API key here to make the AI Quiz free for your visitors!
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhraGdjY3hpbWNyc2RwZGxza3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ0OTksImV4cCI6MjA5OTI0MDQ5OX0.R9t0QNG0voJPyxhZkXO2hQtD4_Gr2xdnGyI8AlTOk5g';
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -539,8 +540,9 @@ export default function CharityQuizClient() {
     }
   }, [score, addToast]);
 
-  const fetchAIQuestions = async (count: number, topic: string, provider: string, key: string): Promise<Question[]> => {
-    const promptText = `Generate exactly ${count} multiple choice questions on the topic: "${topic}".
+  const fetchAIQuestions = async (count: number, topic: string, provider: string, key: string, history: string[] = []): Promise<Question[]> => {
+    const historyText = history.length > 0 ? `\nCRITICAL: DO NOT repeat any concepts or questions similar to these previously generated ones:\n- ${history.slice(-20).join('\n- ')}\n` : '';
+    const promptText = `Generate exactly ${count} completely unique and novel multiple choice questions on the topic: "${topic}".${historyText}
 Return the output ONLY as a valid JSON array matching the structure:
 [
   {
@@ -611,7 +613,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       addToast('Please enter a topic', 'error');
       return;
     }
-    if (aiProvider !== 'ollama' && !aiKey.trim()) {
+    const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
+    if (aiProvider !== 'ollama' && !finalKey) {
       addToast('Please enter your API Key', 'error');
       return;
     }
@@ -621,17 +624,17 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     setFeedback(null);
 
     try {
-      const parsedQuestions = await fetchAIQuestions(5, aiTopic, aiProvider, aiKey);
+      const questions = await fetchAIQuestions(5, aiTopic, aiProvider, finalKey);
       
-      if (!parsedQuestions || parsedQuestions.length === 0) {
+      if (!questions || questions.length === 0) {
         throw new Error('No questions returned.');
       }
 
-      setAiQuestions(parsedQuestions);
+      setAiQuestions(questions);
       setAiIndex(0);
       setAiCorrectCount(0);
       setCategory('custom-ai');
-      setCurrentQuestion(parsedQuestions[0]);
+      setCurrentQuestion(questions[0]);
       setIsAnswered(false);
       setSelectedAnswer(null);
       setShowHint(false);
@@ -703,19 +706,20 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
     setTimeout(() => {
       if (category === 'custom-ai') {
-        const nextIndex = aiIndex + 1;
-        
-        // Endless generation trigger: fetch 3 more when we are 2 questions away from the end
-        if (nextIndex === aiQuestions.length - 2) {
-           fetchAIQuestions(3, aiTopic, aiProvider, aiKey).then(newQ => {
-             if (newQ && newQ.length > 0) {
-               setAiQuestions(prev => [...prev, ...newQ]);
-               addToast('AI quietly generated more questions!', 'info');
-             }
-           }).catch(err => {
-             console.error("Endless fetch failed:", err);
-           });
+        // Endless AI Mode: Pre-fetch more questions if we are nearing the end of the queue
+        if (category === 'custom-ai' && aiIndex >= aiQuestions.length - 2) {
+          const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
+          fetchAIQuestions(3, aiTopic, aiProvider, finalKey, aiQuestions.map(q => q.question))
+            .then(newQuestions => {
+              if (newQuestions && newQuestions.length > 0) {
+                setAiQuestions(prev => [...prev, ...newQuestions]);
+                addToast('AI quietly generated more questions!', 'info');
+              }
+            })
+            .catch(console.error);
         }
+
+        const nextIndex = aiIndex + 1;
 
         if (nextIndex < aiQuestions.length) {
           setAiIndex(nextIndex);
