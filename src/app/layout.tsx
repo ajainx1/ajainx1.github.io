@@ -10,21 +10,21 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export const metadata: Metadata = {
-  title: "Aditya Jain — Cybersecurity Engineer & SME",
-  description: "Portfolio of Aditya Jain — 4+ years enterprise SecOps, EDR/SIEM SME, Purple Teaming, and Threat Hunting.",
-  manifest: "/manifest.json",
-  metadataBase: new URL("https://adityasec32.systems"),
+  title: "CyberKarma — Play Free Quizzes & Feed Street Animals",
+  description: "CyberKarma (cyberkarma.me) is a free educational quiz platform. Answer questions across AI, SecOps, Animal Welfare & Science to donate real rice meals to street animals.",
+  manifest: "/manifest-quiz.json",
+  metadataBase: new URL("https://cyberkarma.me"),
   alternates: {
-    canonical: "https://adityasec32.systems",
+    canonical: "https://cyberkarma.me",
   },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
-    'theme-color': '#0f172a',
+    'theme-color': '#0b0f19',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Aditya Jain",
+    title: "CyberKarma",
   },
 };
 
@@ -36,11 +36,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072468142870937"
           crossOrigin="anonymous"
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if (typeof window !== 'undefined' && window.location.protocol === 'http:' && window.location.hostname !== 'localhost') { window.location.replace('https://' + window.location.hostname + window.location.pathname + window.location.search); }`,
+          }}
         />
       </head>
       <body
