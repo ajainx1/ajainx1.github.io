@@ -857,8 +857,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         <div></div>
         
         <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
-          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white flex items-center justify-center text-sm shadow-md">C</div>
-          <span>Charity Quiz</span>
+          <img src="/icon.png" alt="CyberKarma Logo" className="w-8 h-8 rounded-lg object-cover shadow-md border border-white/20" />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-500 font-bold drop-shadow-sm">CyberKarma Charity Quiz</span>
         </div>
 
         <div className="flex items-center gap-3">
@@ -885,6 +885,33 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           )}
         </div>
       </header>
+
+      {/* Live Fact Ticker */}
+      <div className={`w-full overflow-hidden whitespace-nowrap border-b py-2 text-xs font-semibold tracking-wide shadow-sm z-40 relative backdrop-blur-md ${isDark ? 'bg-black/40 border-white/10 text-emerald-400' : 'bg-white/60 border-black/10 text-emerald-700'}`}>
+        <motion.div 
+          className="inline-block"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+        >
+          <span className="mx-4">🌍 1 grain of rice makes a difference.</span>
+          <span className="mx-4">💻 90% of cyber attacks start with phishing.</span>
+          <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
+          <span className="mx-4">🚀 Space debris travels at 17,500 mph!</span>
+          <span className="mx-4">🕊️ Every quiz answered feeds a soul.</span>
+          <span className="mx-4">🧠 AI can predict protein structures in minutes.</span>
+          <span className="mx-4">🐄 Over 1 billion cows exist globally.</span>
+          <span className="mx-4">🛡️ Use MFA to prevent 99% of unauthorized logins.</span>
+          {/* Duplicate for seamless infinite loop */}
+          <span className="mx-4">🌍 1 grain of rice makes a difference.</span>
+          <span className="mx-4">💻 90% of cyber attacks start with phishing.</span>
+          <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
+          <span className="mx-4">🚀 Space debris travels at 17,500 mph!</span>
+          <span className="mx-4">🕊️ Every quiz answered feeds a soul.</span>
+          <span className="mx-4">🧠 AI can predict protein structures in minutes.</span>
+          <span className="mx-4">🐄 Over 1 billion cows exist globally.</span>
+          <span className="mx-4">🛡️ Use MFA to prevent 99% of unauthorized logins.</span>
+        </motion.div>
+      </div>
 
       {/* Main Content */}
       <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-6">
