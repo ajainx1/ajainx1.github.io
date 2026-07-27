@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useCallback, useRef } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
@@ -51,6 +52,7 @@ export default function CharityQuizClient() {
   const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('animals');
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
+  const [nextQuestionToPrefetch, setNextQuestionToPrefetch] = useState<Question | null>(null);
   const [recipient, setRecipient] = useState('dogs');
   const [showAstro, setShowAstro] = useState(false);
   const [showHint, setShowHint] = useState(false);
@@ -474,11 +476,22 @@ export default function CharityQuizClient() {
       pool = pool.filter(q => q.question !== currentQuestionRef.current?.question);
     }
     
-    const rand = Math.floor(Math.random() * pool.length);
-    const selected = pool[rand];
+    // Pick the selected question (use prefetched if available and valid)
+    let selected = pool[Math.floor(Math.random() * pool.length)];
+    if (nextQuestionToPrefetch && pool.some(q => q.question === nextQuestionToPrefetch.question)) {
+      selected = nextQuestionToPrefetch;
+    }
     
     setCurrentQuestion(selected);
     currentQuestionRef.current = selected;
+    
+    // Pick the next question to prefetch for zero latency on the next turn
+    const nextPool = pool.filter(q => q.question !== selected.question);
+    if (nextPool.length > 0) {
+      setNextQuestionToPrefetch(nextPool[Math.floor(Math.random() * nextPool.length)]);
+    } else {
+      setNextQuestionToPrefetch(null);
+    }
     
     // Add to history
     questionHistoryRef.current.push(selected.question);
@@ -1019,17 +1032,27 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         </div>
                       )}
                       
+                      {/* Zero-Latency Prefetcher for Next Image */}
+                      {(category === 'custom-ai' ? aiQuestions[aiIndex + 1] : nextQuestionToPrefetch) && (
+                        <link 
+                          rel="preload" 
+                          as="image" 
+                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) + " highly detailed 8k resolution digital art masterpiece")}?width=800&height=400&nologo=true`} 
+                        />
+                      )}
+                      
                       <div className="w-full h-48 sm:h-64 mb-6 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
                         {/* The AI Image */}
-                        <img 
+                        <Image 
                           key={currentQuestion.question} // Force re-render on new question
                           src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentQuestion.question + " highly detailed 8k resolution digital art masterpiece")}?width=800&height=400&nologo=true`}
                           alt="AI generated visual for question"
-                          className="w-full h-full object-cover relative z-10 opacity-0 transition-opacity duration-1000 group-hover:scale-105"
-                          onLoad={(e) => e.currentTarget.classList.remove('opacity-0')}
+                          fill
+                          className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 800px"
                         />
                         
                         {/* Gradient overlay for text readability if needed later, and sleek aesthetic */}
@@ -1322,11 +1345,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     onClick={() => setPreviewImage(item)}
                     className="relative group rounded-[20px] overflow-hidden shadow-lg border border-white/15 cursor-pointer bg-black/40 h-72 flex flex-col justify-end p-4"
                   >
-                    <img
+                    <Image
                       src={item.src}
                       alt={item.title}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                      loading="lazy"
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
 
@@ -1365,11 +1388,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     const imgIndex = (i % 18) + 1;
                     return (
                       <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
-                        <img 
+                        <Image 
                           src={`/impact/impact-${imgIndex}.jpeg`} 
                           alt={`Real-World Impact ${imgIndex}`} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
-                          loading="lazy" 
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700" 
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                           <Heart size={16} className="text-white fill-white" />
@@ -1527,10 +1550,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 ✕
               </button>
               <div className="relative h-96 w-full bg-black">
-                <img
+                <Image
                   src={previewImage.src}
                   alt={previewImage.title}
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
                 />
               </div>
               <div className="p-6 bg-slate-950 text-white space-y-2">
