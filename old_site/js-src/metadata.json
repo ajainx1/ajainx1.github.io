@@ -1,6 +1,0 @@
-{
-  "name": "Jumpstreet - Bot Fixed",
-  "description": "Official billing, configuration, and product marketplace for Bot Fixed, a Mangalik and Sons Venture limited. Features cloud VM config, 5G Hotspots, Spotify feed, and UPI/Card checkout.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
