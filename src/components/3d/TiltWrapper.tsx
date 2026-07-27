@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, ReactNode } from "react";
+import React, { useRef, ReactNode, useState, useEffect } from "react";
 import {
   motion,
   useMotionValue,
@@ -21,6 +21,17 @@ export default function TiltWrapper({
   glare = true,
 }: TiltWrapperProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || ('ontouchstart' in window));
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const x = useMotionValue(0.5);
   const y = useMotionValue(0.5);
 
@@ -37,6 +48,7 @@ export default function TiltWrapper({
   const glareY = useTransform(y, [0, 1], ["-30%", "130%"]);
 
   function handleMouse(e: React.MouseEvent) {
+    if (isMobile) return;
     const rect = ref.current?.getBoundingClientRect();
     if (!rect) return;
     x.set((e.clientX - rect.left) / rect.width);
@@ -46,6 +58,10 @@ export default function TiltWrapper({
   function handleReset() {
     x.set(0.5);
     y.set(0.5);
+  }
+
+  if (isMobile) {
+    return <div className={`relative ${className}`}>{children}</div>;
   }
 
   return (
