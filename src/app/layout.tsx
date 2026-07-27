@@ -4,6 +4,7 @@ import "./globals.css";
 import Background3D from "@/components/3d/Background3D";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
+import SecurityGuard from "@/components/SecurityGuard";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -63,6 +64,7 @@ export default function RootLayout({
         {children}
         <PWAInstallPrompt />
         <TelegramVisitorLogger />
+        <SecurityGuard />
       </body>
     </html>
   );

@@ -72,6 +72,7 @@ export default function CharityQuizClient() {
   const [showAIModal, setShowAIModal] = useState(false);
   const [aiTopic, setAiTopic] = useState('');
   const [aiKey, setAiKey] = useState('');
+  const [aiProvider, setAiProvider] = useState<'gemini' | 'deepseek' | 'ollama'>('gemini');
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [aiQuestions, setAiQuestions] = useState<Question[]>([]);
   const [aiIndex, setAiIndex] = useState(0);
@@ -540,22 +541,8 @@ export default function CharityQuizClient() {
     }
   }, [score, addToast]);
 
-  // Generate Custom AI Quiz
-  const handleGenerateAIQuiz = async () => {
-    if (!aiTopic.trim()) {
-      addToast('Please enter a topic', 'error');
-      return;
-    }
-    if (!aiKey.trim()) {
-      addToast('Please enter a Gemini API Key', 'error');
-      return;
-    }
-
-    setIsGeneratingAI(true);
-    localStorage.setItem('GEMINI_API_KEY', aiKey);
-    setFeedback(null);
-
-    const promptText = `Generate exactly 5 multiple choice questions on the topic: "${aiTopic}".
+  const fetchAIQuestions = async (count: number, topic: string, provider: string, key: string): Promise<Question[]> => {
+    const promptText = `Generate exactly ${count} multiple choice questions on the topic: "${topic}".
 Return the output ONLY as a valid JSON array matching the structure:
 [
   {
@@ -568,27 +555,77 @@ Return the output ONLY as a valid JSON array matching the structure:
 ]
 Ensure the JSON output is raw, without any markdown formatting, backticks, or wrapping. Keep it strictly educational and correct.`;
 
-    try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${aiKey}`, {
+    if (provider === 'gemini') {
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           contents: [{ parts: [{ text: promptText }] }],
-          generationConfig: {
-            responseMimeType: "application/json"
-          }
+          generationConfig: { responseMimeType: "application/json" }
         })
       });
-
-      if (!response.ok) {
-        throw new Error('API key is invalid or request blocked.');
-      }
-
+      if (!response.ok) throw new Error('Gemini API key is invalid or request blocked.');
       const data = await response.json();
-      const textResponse = data.candidates[0].content.parts[0].text;
-      const parsedQuestions = JSON.parse(textResponse) as Question[];
+      let textResponse = data.candidates[0].content.parts[0].text;
+      textResponse = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+      return JSON.parse(textResponse) as Question[];
+    } else if (provider === 'deepseek') {
+      const response = await fetch('https://api.deepseek.com/chat/completions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
+        body: JSON.stringify({
+          model: "deepseek-chat",
+          messages: [{ role: "user", content: promptText }],
+          response_format: { type: "json_object" }
+        })
+      });
+      if (!response.ok) throw new Error('DeepSeek API key is invalid or request blocked.');
+      const data = await response.json();
+      let textResponse = data.choices[0].message.content;
+      textResponse = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+      const parsed = JSON.parse(textResponse);
+      return Array.isArray(parsed) ? parsed : (parsed.questions || parsed.data || []);
+    } else if (provider === 'ollama') {
+      const ollamaUrl = key.trim() || 'http://localhost:11434';
+      const response = await fetch(`${ollamaUrl}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: "llama3",
+          prompt: promptText,
+          stream: false,
+          format: "json"
+        })
+      });
+      if (!response.ok) throw new Error('Ensure Ollama is running locally.');
+      const data = await response.json();
+      let textResponse = data.response;
+      textResponse = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
+      const parsed = JSON.parse(textResponse);
+      return Array.isArray(parsed) ? parsed : (parsed.questions || parsed.data || []);
+    }
+    return [];
+  };
 
-      if (parsedQuestions.length === 0) {
+  // Generate Custom AI Quiz
+  const handleGenerateAIQuiz = async () => {
+    if (!aiTopic.trim()) {
+      addToast('Please enter a topic', 'error');
+      return;
+    }
+    if (aiProvider !== 'ollama' && !aiKey.trim()) {
+      addToast('Please enter your API Key', 'error');
+      return;
+    }
+
+    setIsGeneratingAI(true);
+    if (aiProvider === 'gemini') localStorage.setItem('GEMINI_API_KEY', aiKey);
+    setFeedback(null);
+
+    try {
+      const parsedQuestions = await fetchAIQuestions(5, aiTopic, aiProvider, aiKey);
+      
+      if (!parsedQuestions || parsedQuestions.length === 0) {
         throw new Error('No questions returned.');
       }
 
@@ -602,7 +639,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       setShowHint(false);
       setShowAIModal(false);
       setShowAICompletion(false);
-      addToast('AI Quiz Generated!', 'success');
+      addToast('Endless AI Quiz Started!', 'success');
     } catch (err: any) {
       addToast(`AI Generation Failed: ${err.message || err}`, 'error');
     } finally {
@@ -669,6 +706,19 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     setTimeout(() => {
       if (category === 'custom-ai') {
         const nextIndex = aiIndex + 1;
+        
+        // Endless generation trigger: fetch 3 more when we are 2 questions away from the end
+        if (nextIndex === aiQuestions.length - 2) {
+           fetchAIQuestions(3, aiTopic, aiProvider, aiKey).then(newQ => {
+             if (newQ && newQ.length > 0) {
+               setAiQuestions(prev => [...prev, ...newQ]);
+               addToast('AI quietly generated more questions!', 'info');
+             }
+           }).catch(err => {
+             console.error("Endless fetch failed:", err);
+           });
+        }
+
         if (nextIndex < aiQuestions.length) {
           setAiIndex(nextIndex);
           setCurrentQuestion(aiQuestions[nextIndex]);
@@ -677,7 +727,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           setFeedback(null);
           setShowHint(false);
         } else {
-          // Finished AI Quiz
+          // Fallback if endless fetch failed or didn't trigger in time
           setShowAICompletion(true);
           setCurrentQuestion(null);
         }
@@ -1304,13 +1354,31 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 />
               </div>
 
+              <div className="mb-5 flex flex-col sm:flex-row gap-4">
+                <div className="flex-1">
+                  <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">AI Provider</label>
+                  <select
+                    value={aiProvider}
+                    onChange={(e: any) => setAiProvider(e.target.value)}
+                    disabled={isGeneratingAI}
+                    className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner appearance-none cursor-pointer ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
+                  >
+                    <option value="gemini">Gemini 2.5 Flash</option>
+                    <option value="deepseek">DeepSeek AI</option>
+                    <option value="ollama">Ollama (Local)</option>
+                  </select>
+                </div>
+              </div>
+
               <div className="mb-8">
-                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Gemini API Key</label>
+                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">
+                  {aiProvider === 'ollama' ? 'Ollama API URL (Optional)' : 'API Key'}
+                </label>
                 <input
-                  type="password"
+                  type={aiProvider === 'ollama' ? 'text' : 'password'}
                   value={aiKey}
                   onChange={e => setAiKey(e.target.value)}
-                  placeholder="Paste AI key here..."
+                  placeholder={aiProvider === 'ollama' ? 'http://localhost:11434' : 'Paste API key here...'}
                   disabled={isGeneratingAI}
                   className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
                 />
