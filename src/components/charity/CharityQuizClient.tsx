@@ -2,6 +2,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import ImpactGallery from './ImpactGallery';
+import AdSlot from '../ads/AdSlot';
 import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
@@ -41,6 +43,7 @@ const levelTitles = [
 export default function CharityQuizClient() {
   // State
   const [score, setScore] = useState(0);
+  const [totalGrainsAllTime, setTotalGrainsAllTime] = useState(0);
   const [streak, setStreak] = useState(0);
   
   // Daily Streak & Shields State
@@ -99,135 +102,6 @@ export default function CharityQuizClient() {
   const [isDark, setIsDark] = useState(true);
 
   const { addToast } = useToast();
-
-  const STREET_FEEDING_DRIVE = [
-    {
-      src: '/impact/street-dog-14.jpg',
-      title: 'Community Dog Feeding',
-      location: 'Shiv Raj Yadav Path, Mohanpur Punaichak, Patna',
-      date: '26 Jul 2026 • 5:21 PM',
-      tag: 'Street Survival',
-    },
-    {
-      src: '/impact/street-dog-15.jpg',
-      title: 'Monsoon Evening Feeding',
-      location: 'Mohanpur Punaichak, Patna',
-      date: '26 Jul 2026 • 5:21 PM',
-      tag: 'Monsoon Care Drive',
-    },
-    {
-      src: '/impact/street-dog-16.jpg',
-      title: 'Stall Vendor Night Care',
-      location: 'Patna Division, Bihar',
-      date: '26 Jul 2026 • 5:21 PM',
-      tag: 'Evening Care Patrol',
-    },
-    {
-      src: '/impact/street-dog-17.jpg',
-      title: 'Pack Feeding Spot',
-      location: 'Rajbansi Nagar, Patna',
-      date: '26 Jul 2026 • 5:21 PM',
-      tag: 'Zero Animal Hunger',
-    },
-    {
-      src: '/impact/street-dog-18.jpg',
-      title: 'Daily Stray Hydration',
-      location: 'Patna Division, Bihar',
-      date: '26 Jul 2026 • 5:21 PM',
-      tag: 'Direct Street Feeding',
-    },
-    {
-      src: '/impact/street-dog-12.jpg',
-      title: 'Night Stall Feeding Spot',
-      location: 'Egg Vendor Hub, Patna, Bihar',
-      date: '22 Jul 2026 • 7:18 PM',
-      tag: 'Night Feeding Drive',
-    },
-    {
-      src: '/impact/street-dog-13.jpg',
-      title: 'Evening Community Street Feeding',
-      location: 'Road Rajbansi Nagar, Patna Division, Bihar',
-      date: '22 Jul 2026 • 7:18 PM',
-      tag: 'Evening Care Patrol',
-    },
-    {
-      src: '/impact/street-dog-10.jpg',
-      title: 'Nourishing Street Companion',
-      location: 'Rajbansi Nagar, Patna Division, Bihar',
-      date: '22 Jul 2026 • 7:18 PM',
-      tag: 'Street Survival',
-    },
-    {
-      src: '/impact/street-dog-11.jpg',
-      title: 'Late-Night Animal Feeding Drive',
-      location: 'Night Care Patrol, Patna, Bihar',
-      date: '22 Jul 2026 • 7:18 PM',
-      tag: 'Zero Animal Hunger',
-    },
-    {
-      src: '/impact/street-dog-2.jpeg',
-      title: 'Daily Evening Rice Bowl',
-      location: 'Rajbansi Nagar, Patna Division, Bihar',
-      date: '20 Jul 2026 • 12:55 PM',
-      tag: 'Direct Street Feeding',
-    },
-    {
-      src: '/impact/street-dog-6.jpeg',
-      title: 'Morning Feeding Spot',
-      location: 'Rajbansi Nagar, Patna Division, Bihar',
-      date: '21 Jul 2026 • 10:45 AM',
-      tag: 'Morning Meal Drive',
-    },
-    {
-      src: '/impact/street-dog-7.jpeg',
-      title: 'Evening Community Street Feeding',
-      location: 'Road Rajbansi Nagar, Patna Division, Bihar',
-      date: '22 Jul 2026 • 07:18 PM',
-      tag: 'Evening Care Patrol',
-    },
-    {
-      src: '/impact/street-dog-1.jpeg',
-      title: 'Street Animal Feeding Point',
-      location: 'Rajbansi Nagar Alley, Patna, Bihar',
-      date: '20 Jul 2026 • Street Drive',
-      tag: 'Daily Nourishment',
-    },
-    {
-      src: '/impact/street-dog-8.jpeg',
-      title: 'Street Pack Feeding Station',
-      location: 'Patna Division, Bihar',
-      date: 'July 2026 • Patna Community',
-      tag: 'Pack Feeding',
-    },
-    {
-      src: '/impact/street-dog-9.jpeg',
-      title: 'Night Stall Feeding Spot',
-      location: 'Egg Vendor Hub, Patna, Bihar',
-      date: 'July 2026 • Night Care Spot',
-      tag: 'Night Feeding Drive',
-    },
-    {
-      src: '/impact/street-dog-3.jpeg',
-      title: 'Nourishing Street Companion',
-      location: 'Patna Division, Bihar',
-      date: 'July 2026 • Patna Community',
-      tag: 'Street Survival',
-    },
-    {
-      src: '/impact/street-dog-4.jpeg',
-      title: 'Street Stall Feeding Spot',
-      location: 'Market Street Hub, Bihar',
-      date: 'July 2026 • Street Vendor Spot',
-      tag: 'Community Care',
-    },
-    {
-      src: '/impact/street-dog-5.jpeg',
-      title: 'Late-Night Animal Feeding Drive',
-      location: 'Night Care Patrol, Patna, Bihar',
-      date: 'July 2026 • Night Drive',
-      tag: 'Zero Animal Hunger',
-    },
-  ];
 
   // Web3 States
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -333,6 +207,12 @@ export default function CharityQuizClient() {
       setStreakShields(localShields);
       setLastPlayedDate(localLastPlayed);
       setAiKey(savedAIKey);
+      const localLastPlayedDate = localStorage.getItem('charityQuizLastPlayed');
+      const localTotalGrains = localStorage.getItem('charityTotalGrainsAllTime');
+      
+      if (localTotalGrains) {
+        setTotalGrainsAllTime(parseInt(localTotalGrains, 10));
+      }
       
       // Validate streak
       if (localLastPlayed) {
@@ -390,8 +270,16 @@ export default function CharityQuizClient() {
   };
 
   const saveScore = (newScore: number) => {
+    const earned = newScore - score;
     setScore(newScore);
     localStorage.setItem('charityRiceScore', String(newScore));
+    if (earned > 0) {
+      setTotalGrainsAllTime(prev => {
+        const updated = prev + earned;
+        localStorage.setItem('charityTotalGrainsAllTime', String(updated));
+        return updated;
+      });
+    }
     if (user) {
       localStorage.setItem(`charityRiceScore_${user.email}`, String(newScore));
     }
@@ -728,39 +616,41 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       if ('vibrate' in navigator) navigator.vibrate([50, 100, 50]);
     }
 
-    setTimeout(() => {
-      if (category === 'custom-ai') {
-        // Endless AI Mode: Pre-fetch more questions if we are nearing the end of the queue
-        if (category === 'custom-ai' && aiIndex >= aiQuestions.length - 2) {
-          const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
-          fetchAIQuestions(3, aiTopic, aiProvider, finalKey, aiQuestions.map(q => q.question))
-            .then(newQuestions => {
-              if (newQuestions && newQuestions.length > 0) {
-                setAiQuestions(prev => [...prev, ...newQuestions]);
-                addToast('AI quietly generated more questions!', 'info');
-              }
-            })
-            .catch(console.error);
-        }
+    // No more auto-advance here! The user must read the explanation and click "Next"
+  };
 
-        const nextIndex = aiIndex + 1;
-
-        if (nextIndex < aiQuestions.length) {
-          setAiIndex(nextIndex);
-          setCurrentQuestion(aiQuestions[nextIndex]);
-          setIsAnswered(false);
-          setSelectedAnswer(null);
-          setFeedback(null);
-          setShowHint(false);
-        } else {
-          // Fallback if endless fetch failed or didn't trigger in time
-          setShowAICompletion(true);
-          setCurrentQuestion(null);
-        }
-      } else {
-        loadNextQuestion();
+  const handleNextQuestion = () => {
+    if (category === 'custom-ai') {
+      // Endless AI Mode: Pre-fetch more questions if we are nearing the end of the queue
+      if (category === 'custom-ai' && aiIndex >= aiQuestions.length - 2) {
+        const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
+        fetchAIQuestions(3, aiTopic, aiProvider, finalKey, aiQuestions.map(q => q.question))
+          .then(newQuestions => {
+            if (newQuestions && newQuestions.length > 0) {
+              setAiQuestions(prev => [...prev, ...newQuestions]);
+              addToast('AI quietly generated more questions!', 'info');
+            }
+          })
+          .catch(console.error);
       }
-    }, 2500);
+
+      const nextIndex = aiIndex + 1;
+
+      if (nextIndex < aiQuestions.length) {
+        setAiIndex(nextIndex);
+        setCurrentQuestion(aiQuestions[nextIndex]);
+        setIsAnswered(false);
+        setSelectedAnswer(null);
+        setFeedback(null);
+        setShowHint(false);
+      } else {
+        // Fallback if endless fetch failed or didn't trigger in time
+        setShowAICompletion(true);
+        setCurrentQuestion(null);
+      }
+    } else {
+      loadNextQuestion();
+    }
   };
 
   const triggerRiceAnimation = () => {
@@ -976,16 +866,28 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               🕊️ 100% Free &amp; Ad-Funded
             </span>
             <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-blue-500/10 border-blue-500/20 text-blue-300 backdrop-blur-md' : 'bg-blue-50 border-blue-200 text-blue-700'}`}>
-              🌍 Verified Global Impact
+              🌍 Field-verified in Patna
             </span>
+          </div>
+
+          <div className={`mt-6 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-emerald-100 border-emerald-300 text-emerald-800'}`}>
+            14,203,500 GRAINS DONATED → ≈ 1,420 MEALS PROVIDED
           </div>
         </motion.div>
 
         {/* Dynamic Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          {/* Left Column: Active Quiz Panel */}
-          <div className="lg:col-span-8 space-y-6">
+          {/* Left Ad Column (Desktop Only) */}
+          <div className="hidden lg:block lg:col-span-2 xl:col-span-2 space-y-6">
+            <div className="sticky top-6 flex flex-col gap-6">
+              <AdSlot type="square" isDark={isDark} className="h-64" />
+              <AdSlot type="square" isDark={isDark} className="h-64" />
+            </div>
+          </div>
+
+          {/* Center Column: Active Quiz Panel */}
+          <div className="lg:col-span-6 xl:col-span-7 space-y-6">
             
 
 
@@ -1119,6 +1021,32 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                           </div>
                         )}
                       </div>
+
+                      {/* Phase 2: Educational Micro-Learning Layer */}
+                      <AnimatePresence>
+                        {isAnswered && currentQuestion.explanation && (
+                          <motion.div 
+                            initial={{ opacity: 0, height: 0, y: 20 }} 
+                            animate={{ opacity: 1, height: 'auto', y: 0 }} 
+                            className={`mt-6 p-6 rounded-[24px] border ${isDark ? 'bg-blue-500/10 border-blue-500/20' : 'bg-blue-50 border-blue-200'}`}
+                          >
+                            <div className="flex flex-col gap-4">
+                              <div>
+                                <h4 className={`text-sm font-black uppercase tracking-widest mb-2 ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>Did You Know?</h4>
+                                <p className={`text-base leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                  {currentQuestion.explanation}
+                                </p>
+                              </div>
+                              <button 
+                                onClick={handleNextQuestion}
+                                className={`w-full py-4 rounded-full text-sm font-black uppercase tracking-widest transition-all ${isDark ? 'bg-white text-slate-900 hover:bg-gray-200 shadow-lg' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg'}`}
+                              >
+                                Next Question →
+                              </button>
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </motion.div>
                 ) : (
                   !showAICompletion && (
@@ -1132,8 +1060,23 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </div>
 
           {/* Right Column: Staking Stats & Widgets */}
-          <div className="lg:col-span-4 space-y-6">
+          <div className="lg:col-span-4 xl:col-span-3 space-y-6">
             
+            {/* Phase 2: Personal Impact Dashboard Widget */}
+            <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-3 relative overflow-hidden ${isDark ? 'bg-gradient-to-b from-blue-900/20 to-slate-900/50 border-blue-500/20' : 'bg-gradient-to-b from-blue-50 to-white border-blue-200'}`}>
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-blue-200 text-blue-800 border-blue-400'}`}>
+                  Your Personal Impact
+                </span>
+              </div>
+              <h3 className={`text-3xl font-black font-mono ${isDark ? 'text-white' : 'text-slate-900'}`}>
+                {totalGrainsAllTime.toLocaleString()} <span className="text-sm text-blue-500 uppercase tracking-widest">Grains</span>
+              </h3>
+              <p className={`text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                You have personally funded approximately <strong className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>{(totalGrainsAllTime / 10000).toFixed(2)} meals</strong> for street animals!
+              </p>
+            </div>
+
             {/* Categories & Difficulty Container (Sidebar Layout) */}
             <div className={`p-5 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
                 <h3 className="text-sm font-bold opacity-80 px-1">Quiz Settings</h3>
@@ -1279,133 +1222,46 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
             {/* Corporate Sponsorship Banner */}
             <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
-              <div className="flex flex-col items-center gap-3.5 z-10 w-full">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-lg shadow-inner mx-auto">
-                  🐋
-                </div>
-                <div>
-                  <div className="flex items-center justify-center gap-2">
-                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Official Sponsor</span>
-                    <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Orca6™ HFT</span>
-                  </div>
-                  <h4 className={`text-sm font-black uppercase tracking-wider mt-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Automate Trading with Sub-Millisecond AI</h4>
-                  <p className={`text-xs font-semibold mt-1.5 ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
-                </div>
+              <div className="flex flex-col gap-2 items-center text-center">
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Supported By</span>
+                <Link
+                  href="https://jumpstreet.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-xs font-semibold hover:underline mt-1 ${isDark ? 'text-slate-400 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-700'}`}
+                >
+                  Orca6 Trading Technology
+                </Link>
               </div>
-              <Link
-                href="https://jumpstreet.tech"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full px-6 py-3 mt-2 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 z-10"
-              >
-                <span>Explore Orca6™</span>
-                <Zap size={14} />
-              </Link>
             </div>
 
+            {/* Sidebar Ad Placement */}
+            <div className="w-full mt-6">
+              <AdSlot type="square" isDark={isDark} />
+            </div>
           </div>
         </div>
 
         {/* Real-World Impact Gallery */}
-        <div className="w-full mt-8">
-          <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-white/60'}`}>
-            
-            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 pb-6 border-b border-white/10">
-              <div>
-                <div className="flex items-center gap-3 mb-2">
-                  <span className="p-2 rounded-xl bg-rose-500/20 text-rose-500 border border-rose-500/30">
-                    <Heart size={24} className="fill-rose-500" />
-                  </span>
-                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-title">Real-World Impact Drive</h2>
-                </div>
-                <p className="text-sm opacity-90 max-w-3xl leading-relaxed font-medium">
-                  Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
-                </p>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold shrink-0">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>LIVE FEEDING VERIFIED • PATNA DIVISION</span>
-              </div>
-            </div>
+        <ImpactGallery isDark={isDark} />
 
-            {/* Featured Direct Feeding Drive Gallery */}
-            <div className="mb-10">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
-                  <span>🐕</span> Direct Street Feeding Drive • Rajbansi Nagar, Patna
-                </h3>
-                <span className="text-xs text-rose-500 font-bold">9 Verified Field Photos</span>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {STREET_FEEDING_DRIVE.map((item, idx) => (
-                  <motion.div
-                    key={idx}
-                    whileHover={{ y: -6, scale: 1.02 }}
-                    onClick={() => setPreviewImage(item)}
-                    className="relative group rounded-[20px] overflow-hidden shadow-lg border border-white/15 cursor-pointer bg-black/40 h-72 flex flex-col justify-end p-4"
-                  >
-                    <Image
-                      src={item.src}
-                      alt={item.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
-
-                    <div className="relative z-10 space-y-1">
-                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-rose-500 text-white shadow-sm inline-block mb-1">
-                        {item.tag}
-                      </span>
-                      <h4 className="text-xs font-bold text-white leading-tight font-title">{item.title}</h4>
-                      <p className="text-[10px] text-slate-300 flex items-center gap-1 font-mono">
-                        <span>📍</span> {item.location}
-                      </p>
-                      <span className="text-[9px] text-slate-400 block font-mono">{item.date}</span>
-                    </div>
-
-                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Heart size={14} className="fill-rose-500 text-rose-500" />
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Infinite Scrolling Marquee */}
-            <div>
-              <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 mb-4 flex items-center gap-2">
-                <span>📷</span> Global Community Impact Archive (Verified Photos)
-              </h3>
-              <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
-                <motion.div 
-                  className="flex gap-4 absolute left-0"
-                  animate={{ x: [0, -3500] }}
-                  transition={{ repeat: Infinity, duration: 80, ease: 'linear' }}
-                >
-                  {/* Render 18 images and duplicate them once for a seamless infinite scroll loop */}
-                  {[...Array.from({ length: 18 }), ...Array.from({ length: 18 })].map((_, i) => {
-                    const imgIndex = (i % 18) + 1;
-                    return (
-                      <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
-                        <Image 
-                          src={`/impact/impact-${imgIndex}.jpeg`} 
-                          alt={`Real-World Impact ${imgIndex}`} 
-                          fill
-                          className="object-cover group-hover:scale-110 transition-transform duration-700" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                          <Heart size={16} className="text-white fill-white" />
-                        </div>
-                      </div>
-                    );
-                  })}
-                </motion.div>
-              </div>
-            </div>
-
-          </div>
+        {/* Footer Ad Placement */}
+        <div className="w-full max-w-6xl mx-auto mt-8 px-4">
+          <AdSlot type="responsive" isDark={isDark} />
         </div>
+
+        {/* Global Redirect Footer */}
+        <footer className={`w-full text-center py-8 mt-12 border-t ${isDark ? 'border-white/5' : 'border-black/5'}`}>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-4 text-xs font-bold uppercase tracking-widest">
+            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">About</Link>
+            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Contact</Link>
+            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
+            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
+          </div>
+          <p className="text-[10px] font-mono opacity-50 uppercase tracking-widest">
+            Developed & Managed by <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">Aditya</a>
+          </p>
+        </footer>
       </main>
 
       {/* AI Quiz Settings Modal */}
@@ -1517,61 +1373,17 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </div>
               </div>
 
+              {/* Level Up Modal Ad */}
+              <div className="my-6 w-full flex justify-center">
+                <AdSlot type="square" isDark={isDark} />
+              </div>
+
               <button
                 onClick={() => setShowLevelUpModal(false)}
                 className="w-full py-4 rounded-[20px] bg-blue-500 text-white font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/30"
               >
                 Continue Playing
               </button>
-            </motion.div>
-          </motion.div>
-        )}
-
-        {/* Photo Preview Lightbox Modal */}
-        {previewImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setPreviewImage(null)}
-            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl cursor-pointer"
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              onClick={(e) => e.stopPropagation()}
-              className="relative max-w-2xl w-full rounded-[32px] overflow-hidden bg-slate-900 border border-white/20 shadow-2xl"
-            >
-              <button
-                onClick={() => setPreviewImage(null)}
-                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-rose-600 transition-colors font-bold"
-              >
-                ✕
-              </button>
-              <div className="relative h-96 w-full bg-black">
-                <Image
-                  src={previewImage.src}
-                  alt={previewImage.title}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-              <div className="p-6 bg-slate-950 text-white space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold uppercase">
-                    Verified Field Impact
-                  </span>
-                  <span className="text-xs text-slate-400 font-mono">{previewImage.date}</span>
-                </div>
-                <h3 className="text-lg font-black font-title text-white">{previewImage.title}</h3>
-                <p className="text-xs text-slate-300 font-mono flex items-center gap-1">
-                  <span>📍</span> Location: {previewImage.location}
-                </p>
-                <p className="text-xs text-emerald-400 pt-2 border-t border-white/10 font-medium">
-                  ❤️ Your quiz participation directly funds rice meals for animals in this exact location.
-                </p>
-              </div>
             </motion.div>
           </motion.div>
         )}

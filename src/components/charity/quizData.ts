@@ -7,6 +7,7 @@ export interface Question {
   options: string[];
   answer: number;
   hint: string;
+  explanation: string;
   scenario?: string;
 }
 
@@ -31,7 +32,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Salty soup"
         ],
         "answer": 0,
-        "hint": "It is clear, cold, and comes from the tap."
+        "hint": "It is clear, cold, and comes from the tap.",
+        "explanation": "Did you know? It is clear, cold, and comes from the tap."
       },
       {
         "difficulty": "beginner",
@@ -43,7 +45,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Throw rocks at it"
         ],
         "answer": 2,
-        "hint": "An adult can safely figure out how to help."
+        "hint": "An adult can safely figure out how to help.",
+        "explanation": "Did you know? An adult can safely figure out how to help."
       },
       {
         "difficulty": "beginner",
@@ -55,7 +58,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "A zoo"
         ],
         "answer": 1,
-        "hint": "It is a community facility dedicated to housing unwanted or stray pets."
+        "hint": "It is a community facility dedicated to housing unwanted or stray pets.",
+        "explanation": "Did you know? It is a community facility dedicated to housing unwanted or stray pets."
       },
       {
         "difficulty": "beginner",
@@ -67,7 +71,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Stepping on its paws"
         ],
         "answer": 0,
-        "hint": "Cats prefer soft, gentle touches."
+        "hint": "Cats prefer soft, gentle touches.",
+        "explanation": "Did you know? Cats prefer soft, gentle touches."
       },
       {
         "difficulty": "beginner",
@@ -79,7 +84,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "The inside of the car gets dangerously hot very fast"
         ],
         "answer": 3,
-        "hint": "Cars act like ovens in heat, putting animals at risk."
+        "hint": "Cars act like ovens in heat, putting animals at risk.",
+        "explanation": "Did you know? Cars act like ovens in heat, putting animals at risk."
       },
       {
         "difficulty": "beginner",
@@ -91,7 +97,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Treats"
         ],
         "answer": 1,
-        "hint": "This provides a roof over their head."
+        "hint": "This provides a roof over their head.",
+        "explanation": "Did you know? This provides a roof over their head."
       },
       {
         "difficulty": "beginner",
@@ -103,7 +110,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "A wristwatch"
         ],
         "answer": 0,
-        "hint": "It lists contact information so people can call the owner."
+        "hint": "It lists contact information so people can call the owner.",
+        "explanation": "Did you know? It lists contact information so people can call the owner."
       },
       {
         "difficulty": "beginner",
@@ -115,7 +123,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Onions"
         ],
         "answer": 2,
-        "hint": "This food is formulated specifically for canine nutrition."
+        "hint": "This food is formulated specifically for canine nutrition.",
+        "explanation": "Did you know? This food is formulated specifically for canine nutrition."
       },
       {
         "difficulty": "beginner",
@@ -127,7 +136,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Take away its toy"
         ],
         "answer": 1,
-        "hint": "Politely check with the person holding the leash."
+        "hint": "Politely check with the person holding the leash.",
+        "explanation": "Did you know? Politely check with the person holding the leash."
       },
       {
         "difficulty": "beginner",
@@ -139,7 +149,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "To keep animals healthy and treat sick ones"
         ],
         "answer": 3,
-        "hint": "They are doctors who go to school to study animal medicine."
+        "hint": "They are doctors who go to school to study animal medicine.",
+        "explanation": "Did you know? They are doctors who go to school to study animal medicine."
       },
       {
         "difficulty": "intermediate",
@@ -151,7 +162,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "The Universal Animal Mandate"
         ],
         "answer": 0,
-        "hint": "They include freedom from hunger/thirst, discomfort, pain, fear, and freedom to express normal behavior."
+        "hint": "They include freedom from hunger/thirst, discomfort, pain, fear, and freedom to express normal behavior.",
+        "explanation": "Did you know? They include freedom from hunger/thirst, discomfort, pain, fear, and freedom to express normal behavior."
       },
       {
         "difficulty": "intermediate",
@@ -163,7 +175,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Freedom from pain, injury, or disease"
         ],
         "answer": 2,
-        "hint": "This freedom emphasizes preventing mental suffering and anxiety."
+        "hint": "This freedom emphasizes preventing mental suffering and anxiety.",
+        "explanation": "Did you know? This freedom emphasizes preventing mental suffering and anxiety."
       },
       {
         "difficulty": "intermediate",
@@ -175,7 +188,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Allied States Protection of Companion Animals"
         ],
         "answer": 1,
-        "hint": "It was founded in 1866 and is one of the oldest animal welfare organizations in North America."
+        "hint": "It was founded in 1866 and is one of the oldest animal welfare organizations in North America.",
+        "explanation": "Did you know? It was founded in 1866 and is one of the oldest animal welfare organizations in North America."
       },
       {
         "difficulty": "intermediate",
@@ -187,7 +201,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "NAFTA"
         ],
         "answer": 0,
-        "hint": "Its acronym stands for Convention on International Trade in Endangered Species of Wild Fauna and Flora."
+        "hint": "Its acronym stands for Convention on International Trade in Endangered Species of Wild Fauna and Flora.",
+        "explanation": "Did you know? Its acronym stands for Convention on International Trade in Endangered Species of Wild Fauna and Flora."
       },
       {
         "difficulty": "intermediate",
@@ -199,7 +214,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Trap-Neuter-Return"
         ],
         "answer": 3,
-        "hint": "It is a humane strategy to control outdoor cat populations."
+        "hint": "It is a humane strategy to control outdoor cat populations.",
+        "explanation": "Did you know? It is a humane strategy to control outdoor cat populations."
       },
       {
         "difficulty": "intermediate",
@@ -211,7 +227,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Sensory deprivation"
         ],
         "answer": 1,
-        "hint": "This process enriches the animal's living space and routine."
+        "hint": "This process enriches the animal's living space and routine.",
+        "explanation": "Did you know? This process enriches the animal's living space and routine."
       },
       {
         "difficulty": "intermediate",
@@ -223,7 +240,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "The Paws and Claws Act"
         ],
         "answer": 0,
-        "hint": "It is abbreviated as the AWA and enforced by the USDA."
+        "hint": "It is abbreviated as the AWA and enforced by the USDA.",
+        "explanation": "Did you know? It is abbreviated as the AWA and enforced by the USDA."
       },
       {
         "difficulty": "intermediate",
@@ -235,7 +253,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Docking"
         ],
         "answer": 2,
-        "hint": "This specific term refers to an ovariohysterectomy in females."
+        "hint": "This specific term refers to an ovariohysterectomy in females.",
+        "explanation": "Did you know? This specific term refers to an ovariohysterectomy in females."
       },
       {
         "difficulty": "intermediate",
@@ -247,7 +266,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Surrender"
         ],
         "answer": 1,
-        "hint": "This term describes taking a pet permanently into your home."
+        "hint": "This term describes taking a pet permanently into your home.",
+        "explanation": "Did you know? This term describes taking a pet permanently into your home."
       },
       {
         "difficulty": "intermediate",
@@ -259,7 +279,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "2020"
         ],
         "answer": 2,
-        "hint": "The directive was passed in 1999 (1999/74/EC), giving a 13-year phase-out ending in this year."
+        "hint": "The directive was passed in 1999 (1999/74/EC), giving a 13-year phase-out ending in this year.",
+        "explanation": "Did you know? The directive was passed in 1999 (1999/74/EC), giving a 13-year phase-out ending in this year."
       },
       {
         "difficulty": "advanced",
@@ -271,7 +292,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Marian Stamp Dawkins"
         ],
         "answer": 0,
-        "hint": "The technical committee was named after this zoologist."
+        "hint": "The technical committee was named after this zoologist.",
+        "explanation": "Did you know? The technical committee was named after this zoologist."
       },
       {
         "difficulty": "advanced",
@@ -283,7 +305,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Stereotypic Frequency Scoring"
         ],
         "answer": 1,
-        "hint": "It allows observers to use their own descriptive vocabulary to score animal expressiveness."
+        "hint": "It allows observers to use their own descriptive vocabulary to score animal expressiveness.",
+        "explanation": "Did you know? It allows observers to use their own descriptive vocabulary to score animal expressiveness."
       },
       {
         "difficulty": "advanced",
@@ -295,7 +318,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "EC No 1099/2009"
         ],
         "answer": 2,
-        "hint": "This 2005 regulation replaced Directive 91/628/EEC."
+        "hint": "This 2005 regulation replaced Directive 91/628/EEC.",
+        "explanation": "Did you know? This 2005 regulation replaced Directive 91/628/EEC."
       },
       {
         "difficulty": "advanced",
@@ -307,7 +331,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Health Domain"
         ],
         "answer": 0,
-        "hint": "Domains 1 to 4 evaluate physical/functional states, which feed into this final psychological outcome domain."
+        "hint": "Domains 1 to 4 evaluate physical/functional states, which feed into this final psychological outcome domain.",
+        "explanation": "Did you know? Domains 1 to 4 evaluate physical/functional states, which feed into this final psychological outcome domain."
       },
       {
         "difficulty": "advanced",
@@ -319,7 +344,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Urine"
         ],
         "answer": 3,
-        "hint": "As this keratinized structure grows, circulating hormones are passively incorporated into its shaft over long periods."
+        "hint": "As this keratinized structure grows, circulating hormones are passively incorporated into its shaft over long periods.",
+        "explanation": "Did you know? As this keratinized structure grows, circulating hormones are passively incorporated into its shaft over long periods."
       },
       {
         "difficulty": "advanced",
@@ -331,7 +357,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Restitution"
         ],
         "answer": 1,
-        "hint": "It involves modifying procedures to minimize pain, suffering, distress, or lasting harm."
+        "hint": "It involves modifying procedures to minimize pain, suffering, distress, or lasting harm.",
+        "explanation": "Did you know? It involves modifying procedures to minimize pain, suffering, distress, or lasting harm."
       },
       {
         "difficulty": "advanced",
@@ -343,7 +370,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Polyspike discharge"
         ],
         "answer": 0,
-        "hint": "It represents the complete absence of measurable electrical activity in the cerebral cortex."
+        "hint": "It represents the complete absence of measurable electrical activity in the cerebral cortex.",
+        "explanation": "Did you know? It represents the complete absence of measurable electrical activity in the cerebral cortex."
       },
       {
         "difficulty": "advanced",
@@ -355,7 +383,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Animals (Scientific Procedures) Act 1986"
         ],
         "answer": 2,
-        "hint": "This legislation overhauled almost a century of UK animal cruelty law in the mid-2000s."
+        "hint": "This legislation overhauled almost a century of UK animal cruelty law in the mid-2000s.",
+        "explanation": "Did you know? This legislation overhauled almost a century of UK animal cruelty law in the mid-2000s."
       },
       {
         "difficulty": "advanced",
@@ -367,7 +396,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "It exclusively measures physiological stress parameters"
         ],
         "answer": 1,
-        "hint": "Instead of measuring pen dimensions or trough length, it directly measures parameters on the animals themselves."
+        "hint": "Instead of measuring pen dimensions or trough length, it directly measures parameters on the animals themselves.",
+        "explanation": "Did you know? Instead of measuring pen dimensions or trough length, it directly measures parameters on the animals themselves."
       },
       {
         "difficulty": "advanced",
@@ -379,7 +409,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Head bobbing amplitude"
         ],
         "answer": 0,
-        "hint": "An arch in this anatomical feature when standing or walking indicates escalating severity of lameness."
+        "hint": "An arch in this anatomical feature when standing or walking indicates escalating severity of lameness.",
+        "explanation": "Did you know? An arch in this anatomical feature when standing or walking indicates escalating severity of lameness."
       }
     ]
   },
@@ -397,7 +428,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Yellow"
         ],
         "answer": 2,
-        "hint": "It is the color of grass."
+        "hint": "It is the color of grass.",
+        "explanation": "Did you know? It is the color of grass."
       },
       {
         "difficulty": "beginner",
@@ -409,7 +441,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Butter"
         ],
         "answer": 1,
-        "hint": "It is sweet and golden."
+        "hint": "It is sweet and golden.",
+        "explanation": "Did you know? It is sweet and golden."
       },
       {
         "difficulty": "beginner",
@@ -421,7 +454,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Penguin"
         ],
         "answer": 0,
-        "hint": "This black-and-white bear is native to China."
+        "hint": "This black-and-white bear is native to China.",
+        "explanation": "Did you know? This black-and-white bear is native to China."
       },
       {
         "difficulty": "beginner",
@@ -433,7 +467,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Juice"
         ],
         "answer": 1,
-        "hint": "It wets the ground and helps plants grow."
+        "hint": "It wets the ground and helps plants grow.",
+        "explanation": "Did you know? It wets the ground and helps plants grow."
       },
       {
         "difficulty": "beginner",
@@ -445,7 +480,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Methane"
         ],
         "answer": 1,
-        "hint": "Trees produce this gas during the day."
+        "hint": "Trees produce this gas during the day.",
+        "explanation": "Did you know? Trees produce this gas during the day."
       },
       {
         "difficulty": "beginner",
@@ -457,7 +493,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Grizzly Bear"
         ],
         "answer": 0,
-        "hint": "It has a long trunk and big ears."
+        "hint": "It has a long trunk and big ears.",
+        "explanation": "Did you know? It has a long trunk and big ears."
       },
       {
         "difficulty": "beginner",
@@ -469,7 +506,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Monsoon"
         ],
         "answer": 2,
-        "hint": "Flowers start blooming in this season."
+        "hint": "Flowers start blooming in this season.",
+        "explanation": "Did you know? Flowers start blooming in this season."
       },
       {
         "difficulty": "beginner",
@@ -481,7 +519,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "In the clouds"
         ],
         "answer": 1,
-        "hint": "Lakes, rivers, and oceans are full of it."
+        "hint": "Lakes, rivers, and oceans are full of it.",
+        "explanation": "Did you know? Lakes, rivers, and oceans are full of it."
       },
       {
         "difficulty": "beginner",
@@ -493,7 +532,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Stars"
         ],
         "answer": 1,
-        "hint": "It is a big star at the center of our solar system."
+        "hint": "It is a big star at the center of our solar system.",
+        "explanation": "Did you know? It is a big star at the center of our solar system."
       },
       {
         "difficulty": "beginner",
@@ -505,7 +545,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Spiders"
         ],
         "answer": 1,
-        "hint": "They have colorful wings and fly around flowers."
+        "hint": "They have colorful wings and fly around flowers.",
+        "explanation": "Did you know? They have colorful wings and fly around flowers."
       },
       {
         "difficulty": "intermediate",
@@ -517,7 +558,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Thermosphere"
         ],
         "answer": 1,
-        "hint": "It lies directly above the troposphere."
+        "hint": "It lies directly above the troposphere.",
+        "explanation": "Did you know? It lies directly above the troposphere."
       },
       {
         "difficulty": "intermediate",
@@ -529,7 +571,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Sclerophyllous"
         ],
         "answer": 2,
-        "hint": "Oak and maple are common examples."
+        "hint": "Oak and maple are common examples.",
+        "explanation": "Did you know? Oak and maple are common examples."
       },
       {
         "difficulty": "intermediate",
@@ -541,7 +584,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Pacific Ocean"
         ],
         "answer": 3,
-        "hint": "It covers more than 30% of the Earth's surface."
+        "hint": "It covers more than 30% of the Earth's surface.",
+        "explanation": "Did you know? It covers more than 30% of the Earth's surface."
       },
       {
         "difficulty": "intermediate",
@@ -553,7 +597,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Oceanic thermohaline currents"
         ],
         "answer": 1,
-        "hint": "Our natural satellite exerts a pull on Earth's waters."
+        "hint": "Our natural satellite exerts a pull on Earth's waters.",
+        "explanation": "Did you know? Our natural satellite exerts a pull on Earth's waters."
       },
       {
         "difficulty": "intermediate",
@@ -565,7 +610,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Indicator species"
         ],
         "answer": 2,
-        "hint": "Sea otters and wolves are famous examples."
+        "hint": "Sea otters and wolves are famous examples.",
+        "explanation": "Did you know? Sea otters and wolves are famous examples."
       },
       {
         "difficulty": "intermediate",
@@ -577,7 +623,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Savanna"
         ],
         "answer": 1,
-        "hint": "Found in Arctic regions and high mountain tops."
+        "hint": "Found in Arctic regions and high mountain tops.",
+        "explanation": "Did you know? Found in Arctic regions and high mountain tops."
       },
       {
         "difficulty": "intermediate",
@@ -589,7 +636,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Evaporation"
         ],
         "answer": 3,
-        "hint": "It happens when water is heated by the sun."
+        "hint": "It happens when water is heated by the sun.",
+        "explanation": "Did you know? It happens when water is heated by the sun."
       },
       {
         "difficulty": "intermediate",
@@ -601,7 +649,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Florida Reef Tract"
         ],
         "answer": 2,
-        "hint": "It is located off the coast of Queensland, Australia."
+        "hint": "It is located off the coast of Queensland, Australia.",
+        "explanation": "Did you know? It is located off the coast of Queensland, Australia."
       },
       {
         "difficulty": "intermediate",
@@ -613,7 +662,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Endoplasmic reticulum"
         ],
         "answer": 1,
-        "hint": "It contains green chlorophyll pigments."
+        "hint": "It contains green chlorophyll pigments.",
+        "explanation": "Did you know? It contains green chlorophyll pigments."
       },
       {
         "difficulty": "intermediate",
@@ -625,7 +675,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Detritivores"
         ],
         "answer": 2,
-        "hint": "Humans, bears, and pigs belong to this group."
+        "hint": "Humans, bears, and pigs belong to this group.",
+        "explanation": "Did you know? Humans, bears, and pigs belong to this group."
       },
       {
         "difficulty": "advanced",
@@ -637,7 +688,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "MOHO Line"
         ],
         "answer": 2,
-        "hint": "Named after natural historian Alfred Russel."
+        "hint": "Named after natural historian Alfred Russel.",
+        "explanation": "Did you know? Named after natural historian Alfred Russel."
       },
       {
         "difficulty": "advanced",
@@ -649,7 +701,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Pyruvate dehydrogenase"
         ],
         "answer": 1,
-        "hint": "It is often considered the most abundant enzyme on Earth."
+        "hint": "It is often considered the most abundant enzyme on Earth.",
+        "explanation": "Did you know? It is often considered the most abundant enzyme on Earth."
       },
       {
         "difficulty": "advanced",
@@ -661,7 +714,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Rensch's Rule"
         ],
         "answer": 0,
-        "hint": "Also known as Gause's Law."
+        "hint": "Also known as Gause's Law.",
+        "explanation": "Did you know? Also known as Gause's Law."
       },
       {
         "difficulty": "advanced",
@@ -673,7 +727,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Glycolate Pathway"
         ],
         "answer": 2,
-        "hint": "Abbreviated as CAM."
+        "hint": "Abbreviated as CAM.",
+        "explanation": "Did you know? Abbreviated as CAM."
       },
       {
         "difficulty": "advanced",
@@ -685,7 +740,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Complete dehydration of intracellular space into the gut"
         ],
         "answer": 0,
-        "hint": "The frog floods its organs with a high concentration of simple sugars."
+        "hint": "The frog floods its organs with a high concentration of simple sugars.",
+        "explanation": "Did you know? The frog floods its organs with a high concentration of simple sugars."
       },
       {
         "difficulty": "advanced",
@@ -697,7 +753,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Cryoturbated zone"
         ],
         "answer": 1,
-        "hint": "It actively undergoes freeze-thaw cycles every year."
+        "hint": "It actively undergoes freeze-thaw cycles every year.",
+        "explanation": "Did you know? It actively undergoes freeze-thaw cycles every year."
       },
       {
         "difficulty": "advanced",
@@ -709,7 +766,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Commensalism"
         ],
         "answer": 3,
-        "hint": "Barnacles attached to whales are a classic example."
+        "hint": "Barnacles attached to whales are a classic example.",
+        "explanation": "Did you know? Barnacles attached to whales are a classic example."
       },
       {
         "difficulty": "advanced",
@@ -721,7 +779,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Thermohaline turnover"
         ],
         "answer": 1,
-        "hint": "It fuels major fisheries along western continental coastlines."
+        "hint": "It fuels major fisheries along western continental coastlines.",
+        "explanation": "Did you know? It fuels major fisheries along western continental coastlines."
       },
       {
         "difficulty": "advanced",
@@ -733,7 +792,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Jaramillo Subchron"
         ],
         "answer": 1,
-        "hint": "Named after French and Japanese geophysicists."
+        "hint": "Named after French and Japanese geophysicists.",
+        "explanation": "Did you know? Named after French and Japanese geophysicists."
       },
       {
         "difficulty": "advanced",
@@ -745,7 +805,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Parenchyma cells"
         ],
         "answer": 1,
-        "hint": "Unlike angiosperms, conifers rely almost entirely on these for water transport."
+        "hint": "Unlike angiosperms, conifers rely almost entirely on these for water transport.",
+        "explanation": "Did you know? Unlike angiosperms, conifers rely almost entirely on these for water transport."
       }
     ]
   },
@@ -763,7 +824,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Thermometer"
         ],
         "answer": 1,
-        "hint": "It has earpieces connected to a round chest piece."
+        "hint": "It has earpieces connected to a round chest piece.",
+        "explanation": "Did you know? It has earpieces connected to a round chest piece."
       },
       {
         "difficulty": "beginner",
@@ -775,7 +837,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Shoes"
         ],
         "answer": 2,
-        "hint": "These cover your fingers and palms."
+        "hint": "These cover your fingers and palms.",
+        "explanation": "Did you know? These cover your fingers and palms."
       },
       {
         "difficulty": "beginner",
@@ -787,7 +850,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "J.K. Rowling"
         ],
         "answer": 0,
-        "hint": "He was a famous Danish author born in Odense."
+        "hint": "He was a famous Danish author born in Odense.",
+        "explanation": "Did you know? He was a famous Danish author born in Odense."
       },
       {
         "difficulty": "beginner",
@@ -799,7 +863,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Rosa Parks"
         ],
         "answer": 2,
-        "hint": "Her modern nursing work started during the Crimean War."
+        "hint": "Her modern nursing work started during the Crimean War.",
+        "explanation": "Did you know? Her modern nursing work started during the Crimean War."
       },
       {
         "difficulty": "beginner",
@@ -811,7 +876,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "A yellow square"
         ],
         "answer": 1,
-        "hint": "It consists of two crossing perpendicular lines on a white background."
+        "hint": "It consists of two crossing perpendicular lines on a white background.",
+        "explanation": "Did you know? It consists of two crossing perpendicular lines on a white background."
       },
       {
         "difficulty": "beginner",
@@ -823,7 +889,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Hospital"
         ],
         "answer": 3,
-        "hint": "This building has emergency rooms and patient wards."
+        "hint": "This building has emergency rooms and patient wards.",
+        "explanation": "Did you know? This building has emergency rooms and patient wards."
       },
       {
         "difficulty": "beginner",
@@ -835,7 +902,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Shopping List"
         ],
         "answer": 2,
-        "hint": "'The Tortoise and the Hare' is a classic example."
+        "hint": "'The Tortoise and the Hare' is a classic example.",
+        "explanation": "Did you know? 'The Tortoise and the Hare' is a classic example."
       },
       {
         "difficulty": "beginner",
@@ -847,7 +915,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Clock"
         ],
         "answer": 0,
-        "hint": "The word starts with 'thermo', which relates to heat."
+        "hint": "The word starts with 'thermo', which relates to heat.",
+        "explanation": "Did you know? The word starts with 'thermo', which relates to heat."
       },
       {
         "difficulty": "beginner",
@@ -859,7 +928,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Rocks and minerals"
         ],
         "answer": 1,
-        "hint": "It involves reading written works like novels and poems."
+        "hint": "It involves reading written works like novels and poems.",
+        "explanation": "Did you know? It involves reading written works like novels and poems."
       },
       {
         "difficulty": "beginner",
@@ -871,7 +941,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Ambulance"
         ],
         "answer": 3,
-        "hint": "It has sirens and flashing lights to clear traffic."
+        "hint": "It has sirens and flashing lights to clear traffic.",
+        "explanation": "Did you know? It has sirens and flashing lights to clear traffic."
       },
       {
         "difficulty": "intermediate",
@@ -883,7 +954,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "John Locke"
         ],
         "answer": 1,
-        "hint": "He wrote 'Discourse on the Method' in 1637."
+        "hint": "He wrote 'Discourse on the Method' in 1637.",
+        "explanation": "Did you know? He wrote 'Discourse on the Method' in 1637."
       },
       {
         "difficulty": "intermediate",
@@ -895,7 +967,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Doctors Without Borders"
         ],
         "answer": 2,
-        "hint": "She was inspired by visiting the International Red Cross in Europe."
+        "hint": "She was inspired by visiting the International Red Cross in Europe.",
+        "explanation": "Did you know? She was inspired by visiting the International Red Cross in Europe."
       },
       {
         "difficulty": "intermediate",
@@ -907,7 +980,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Existentialism"
         ],
         "answer": 0,
-        "hint": "Jeremy Bentham and John Stuart Mill were key founders of this philosophy."
+        "hint": "Jeremy Bentham and John Stuart Mill were key founders of this philosophy.",
+        "explanation": "Did you know? Jeremy Bentham and John Stuart Mill were key founders of this philosophy."
       },
       {
         "difficulty": "intermediate",
@@ -919,7 +993,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Aristotle"
         ],
         "answer": 2,
-        "hint": "Graduating medical students often take an oath named after him."
+        "hint": "Graduating medical students often take an oath named after him.",
+        "explanation": "Did you know? Graduating medical students often take an oath named after him."
       },
       {
         "difficulty": "intermediate",
@@ -931,7 +1006,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Postmodernism"
         ],
         "answer": 1,
-        "hint": "Famous figures include William Wordsworth, Lord Byron, and Mary Shelley."
+        "hint": "Famous figures include William Wordsworth, Lord Byron, and Mary Shelley.",
+        "explanation": "Did you know? Famous figures include William Wordsworth, Lord Byron, and Mary Shelley."
       },
       {
         "difficulty": "intermediate",
@@ -943,7 +1019,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Doctors Without Borders"
         ],
         "answer": 3,
-        "hint": "They won the Nobel Peace Prize in 1999 for work in crisis zones."
+        "hint": "They won the Nobel Peace Prize in 1999 for work in crisis zones.",
+        "explanation": "Did you know? They won the Nobel Peace Prize in 1999 for work in crisis zones."
       },
       {
         "difficulty": "intermediate",
@@ -955,7 +1032,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Justice"
         ],
         "answer": 0,
-        "hint": "It is closely summarized by the Latin phrase 'Primum non nocere'."
+        "hint": "It is closely summarized by the Latin phrase 'Primum non nocere'.",
+        "explanation": "Did you know? It is closely summarized by the Latin phrase 'Primum non nocere'."
       },
       {
         "difficulty": "intermediate",
@@ -967,7 +1045,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Ivan Pavlov"
         ],
         "answer": 1,
-        "hint": "He was an Austrian neurologist who founded psychoanalysis."
+        "hint": "He was an Austrian neurologist who founded psychoanalysis.",
+        "explanation": "Did you know? He was an Austrian neurologist who founded psychoanalysis."
       },
       {
         "difficulty": "intermediate",
@@ -979,7 +1058,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Philology"
         ],
         "answer": 2,
-        "hint": "The term originates from Greek roots meaning 'study of humans'."
+        "hint": "The term originates from Greek roots meaning 'study of humans'.",
+        "explanation": "Did you know? The term originates from Greek roots meaning 'study of humans'."
       },
       {
         "difficulty": "intermediate",
@@ -991,7 +1071,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Depression"
         ],
         "answer": 2,
-        "hint": "It acts as a temporary defense mechanism refusing to accept the reality of loss."
+        "hint": "It acts as a temporary defense mechanism refusing to accept the reality of loss.",
+        "explanation": "Did you know? It acts as a temporary defense mechanism refusing to accept the reality of loss."
       },
       {
         "difficulty": "advanced",
@@ -1003,7 +1084,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Paul Ricoeur"
         ],
         "answer": 0,
-        "hint": "He also established sociology as a scientific discipline and formulated the Law of Three Stages."
+        "hint": "He also established sociology as a scientific discipline and formulated the Law of Three Stages.",
+        "explanation": "Did you know? He also established sociology as a scientific discipline and formulated the Law of Three Stages."
       },
       {
         "difficulty": "advanced",
@@ -1015,7 +1097,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Callista Roy"
         ],
         "answer": 1,
-        "hint": "She published her foundational theoretical framework using the Sunrise Enabler model."
+        "hint": "She published her foundational theoretical framework using the Sunrise Enabler model.",
+        "explanation": "Did you know? She published her foundational theoretical framework using the Sunrise Enabler model."
       },
       {
         "difficulty": "advanced",
@@ -1027,7 +1110,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Chagas disease"
         ],
         "answer": 2,
-        "hint": "His work targeting MDR-TB challenged global health assumptions about treating infectious diseases in resource-poor settings."
+        "hint": "His work targeting MDR-TB challenged global health assumptions about treating infectious diseases in resource-poor settings.",
+        "explanation": "Did you know? His work targeting MDR-TB challenged global health assumptions about treating infectious diseases in resource-poor settings."
       },
       {
         "difficulty": "advanced",
@@ -1039,7 +1123,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Veracity"
         ],
         "answer": 1,
-        "hint": "This principle addresses the fair distribution of the burdens and benefits of research."
+        "hint": "This principle addresses the fair distribution of the burdens and benefits of research.",
+        "explanation": "Did you know? This principle addresses the fair distribution of the burdens and benefits of research."
       },
       {
         "difficulty": "advanced",
@@ -1051,7 +1136,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Iris Murdoch"
         ],
         "answer": 0,
-        "hint": "She was a German-American thinker who famously covered the trial of Adolf Eichmann."
+        "hint": "She was a German-American thinker who famously covered the trial of Adolf Eichmann.",
+        "explanation": "Did you know? She was a German-American thinker who famously covered the trial of Adolf Eichmann."
       },
       {
         "difficulty": "advanced",
@@ -1063,7 +1149,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Illness narrative"
         ],
         "answer": 3,
-        "hint": "It contrasts the biomedical account of 'disease' with the human experience of 'illness'."
+        "hint": "It contrasts the biomedical account of 'disease' with the human experience of 'illness'.",
+        "explanation": "Did you know? It contrasts the biomedical account of 'disease' with the human experience of 'illness'."
       },
       {
         "difficulty": "advanced",
@@ -1075,7 +1162,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Hydriotaphia"
         ],
         "answer": 0,
-        "hint": "The title translates from Latin as 'The Religion of a Physician'."
+        "hint": "The title translates from Latin as 'The Religion of a Physician'.",
+        "explanation": "Did you know? The title translates from Latin as 'The Religion of a Physician'."
       },
       {
         "difficulty": "advanced",
@@ -1087,7 +1175,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Lavinia Dock"
         ],
         "answer": 2,
-        "hint": "She coined the term 'public health nurse' to emphasize care rooted in community social context."
+        "hint": "She coined the term 'public health nurse' to emphasize care rooted in community social context.",
+        "explanation": "Did you know? She coined the term 'public health nurse' to emphasize care rooted in community social context."
       },
       {
         "difficulty": "advanced",
@@ -1099,7 +1188,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Maurice Merleau-Ponty"
         ],
         "answer": 1,
-        "hint": "Subtitled 'An Archaeology of Medical Perception', it explores the evolution of the medical gaze."
+        "hint": "Subtitled 'An Archaeology of Medical Perception', it explores the evolution of the medical gaze.",
+        "explanation": "Did you know? Subtitled 'An Archaeology of Medical Perception', it explores the evolution of the medical gaze."
       },
       {
         "difficulty": "advanced",
@@ -1111,7 +1201,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Annette Baier"
         ],
         "answer": 0,
-        "hint": "She critiqued Lawrence Kohlberg's stages of moral development for gender bias."
+        "hint": "She critiqued Lawrence Kohlberg's stages of moral development for gender bias.",
+        "explanation": "Did you know? She critiqued Lawrence Kohlberg's stages of moral development for gender bias."
       }
     ]
   },
@@ -1129,7 +1220,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Venus"
         ],
         "answer": 0,
-        "hint": "It is also known as the 'Blue Planet'."
+        "hint": "It is also known as the 'Blue Planet'.",
+        "explanation": "Did you know? It is also known as the 'Blue Planet'."
       },
       {
         "difficulty": "beginner",
@@ -1141,7 +1233,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Nitrogen"
         ],
         "answer": 1,
-        "hint": "Plants produce this gas during daylight hours."
+        "hint": "Plants produce this gas during daylight hours.",
+        "explanation": "Did you know? Plants produce this gas during daylight hours."
       },
       {
         "difficulty": "beginner",
@@ -1153,7 +1246,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Yellow"
         ],
         "answer": 2,
-        "hint": "This color comes from a chemical called chlorophyll."
+        "hint": "This color comes from a chemical called chlorophyll.",
+        "explanation": "Did you know? This color comes from a chemical called chlorophyll."
       },
       {
         "difficulty": "beginner",
@@ -1165,7 +1259,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Brain"
         ],
         "answer": 0,
-        "hint": "It beats continuously inside your chest."
+        "hint": "It beats continuously inside your chest.",
+        "explanation": "Did you know? It beats continuously inside your chest."
       },
       {
         "difficulty": "beginner",
@@ -1177,7 +1272,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "6"
         ],
         "answer": 3,
-        "hint": "Spiders have 8, but insects have two fewer."
+        "hint": "Spiders have 8, but insects have two fewer.",
+        "explanation": "Did you know? Spiders have 8, but insects have two fewer."
       },
       {
         "difficulty": "beginner",
@@ -1189,7 +1285,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Veins"
         ],
         "answer": 1,
-        "hint": "Calcium helps make these strong."
+        "hint": "Calcium helps make these strong.",
+        "explanation": "Did you know? Calcium helps make these strong."
       },
       {
         "difficulty": "beginner",
@@ -1201,7 +1298,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Juice"
         ],
         "answer": 2,
-        "hint": "You might put cubes of this in a warm drink."
+        "hint": "You might put cubes of this in a warm drink.",
+        "explanation": "Did you know? You might put cubes of this in a warm drink."
       },
       {
         "difficulty": "beginner",
@@ -1213,7 +1311,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Grasshopper"
         ],
         "answer": 0,
-        "hint": "It is an insect with colorful wings."
+        "hint": "It is an insect with colorful wings.",
+        "explanation": "Did you know? It is an insect with colorful wings."
       },
       {
         "difficulty": "beginner",
@@ -1225,7 +1324,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "The Sun"
         ],
         "answer": 3,
-        "hint": "It rises in the east every morning."
+        "hint": "It rises in the east every morning.",
+        "explanation": "Did you know? It rises in the east every morning."
       },
       {
         "difficulty": "beginner",
@@ -1237,7 +1337,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Mouth"
         ],
         "answer": 1,
-        "hint": "It sits right in the center of your face."
+        "hint": "It sits right in the center of your face.",
+        "explanation": "Did you know? It sits right in the center of your face."
       },
       {
         "difficulty": "intermediate",
@@ -1249,7 +1350,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Endoplasmic Reticulum"
         ],
         "answer": 0,
-        "hint": "It generates most of the chemical energy needed to power cellular reactions."
+        "hint": "It generates most of the chemical energy needed to power cellular reactions.",
+        "explanation": "Did you know? It generates most of the chemical energy needed to power cellular reactions."
       },
       {
         "difficulty": "intermediate",
@@ -1261,7 +1363,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Go"
         ],
         "answer": 2,
-        "hint": "It derives from the Latin word 'aurum'."
+        "hint": "It derives from the Latin word 'aurum'.",
+        "explanation": "Did you know? It derives from the Latin word 'aurum'."
       },
       {
         "difficulty": "intermediate",
@@ -1273,7 +1376,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Thyroxine"
         ],
         "answer": 1,
-        "hint": "Diabetics often monitor levels of this hormone or take it as medication."
+        "hint": "Diabetics often monitor levels of this hormone or take it as medication.",
+        "explanation": "Did you know? Diabetics often monitor levels of this hormone or take it as medication."
       },
       {
         "difficulty": "intermediate",
@@ -1285,7 +1389,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Photosynthesis"
         ],
         "answer": 3,
-        "hint": "This process produces glucose and oxygen from carbon dioxide and water."
+        "hint": "This process produces glucose and oxygen from carbon dioxide and water.",
+        "explanation": "Did you know? This process produces glucose and oxygen from carbon dioxide and water."
       },
       {
         "difficulty": "intermediate",
@@ -1297,7 +1402,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Hypothalamus"
         ],
         "answer": 0,
-        "hint": "Its name is Latin for 'little brain'."
+        "hint": "Its name is Latin for 'little brain'.",
+        "explanation": "Did you know? Its name is Latin for 'little brain'."
       },
       {
         "difficulty": "intermediate",
@@ -1309,7 +1415,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "14"
         ],
         "answer": 2,
-        "hint": "It sits right in the middle of the 0 to 14 scale."
+        "hint": "It sits right in the middle of the 0 to 14 scale.",
+        "explanation": "Did you know? It sits right in the middle of the 0 to 14 scale."
       },
       {
         "difficulty": "intermediate",
@@ -1321,7 +1428,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Vitamin K"
         ],
         "answer": 1,
-        "hint": "It is often called the 'sunshine vitamin'."
+        "hint": "It is often called the 'sunshine vitamin'.",
+        "explanation": "Did you know? It is often called the 'sunshine vitamin'."
       },
       {
         "difficulty": "intermediate",
@@ -1333,7 +1441,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Diamond"
         ],
         "answer": 3,
-        "hint": "It scores a 10 on the Mohs hardness scale."
+        "hint": "It scores a 10 on the Mohs hardness scale.",
+        "explanation": "Did you know? It scores a 10 on the Mohs hardness scale."
       },
       {
         "difficulty": "intermediate",
@@ -1345,7 +1454,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Venules"
         ],
         "answer": 0,
-        "hint": "The aorta is the largest example of these."
+        "hint": "The aorta is the largest example of these.",
+        "explanation": "Did you know? The aorta is the largest example of these."
       },
       {
         "difficulty": "intermediate",
@@ -1357,7 +1467,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Argon"
         ],
         "answer": 2,
-        "hint": "It has the atomic number 7."
+        "hint": "It has the atomic number 7.",
+        "explanation": "Did you know? It has the atomic number 7."
       },
       {
         "difficulty": "advanced",
@@ -1369,7 +1480,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Maple Syrup Urine Disease"
         ],
         "answer": 1,
-        "hint": "Symptoms include dark urine upon standing and bluish-black connective tissue pigmentation (ochronosis)."
+        "hint": "Symptoms include dark urine upon standing and bluish-black connective tissue pigmentation (ochronosis).",
+        "explanation": "Did you know? Symptoms include dark urine upon standing and bluish-black connective tissue pigmentation (ochronosis)."
       },
       {
         "difficulty": "advanced",
@@ -1381,7 +1493,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "SGLT2"
         ],
         "answer": 0,
-        "hint": "It translocates one sodium, one potassium, and two chloride ions."
+        "hint": "It translocates one sodium, one potassium, and two chloride ions.",
+        "explanation": "Did you know? It translocates one sodium, one potassium, and two chloride ions."
       },
       {
         "difficulty": "advanced",
@@ -1393,7 +1506,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Niemann-Pick Disease Type C"
         ],
         "answer": 2,
-        "hint": "Lysosomal enzymes fail to receive the mannose-6-phosphate targeting signal."
+        "hint": "Lysosomal enzymes fail to receive the mannose-6-phosphate targeting signal.",
+        "explanation": "Did you know? Lysosomal enzymes fail to receive the mannose-6-phosphate targeting signal."
       },
       {
         "difficulty": "advanced",
@@ -1405,7 +1519,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "HMG-CoA reductase"
         ],
         "answer": 3,
-        "hint": "It converts 3-hydroxy-3-methylglutaryl-CoA to mevalonate."
+        "hint": "It converts 3-hydroxy-3-methylglutaryl-CoA to mevalonate.",
+        "explanation": "Did you know? It converts 3-hydroxy-3-methylglutaryl-CoA to mevalonate."
       },
       {
         "difficulty": "advanced",
@@ -1417,7 +1532,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Muon"
         ],
         "answer": 0,
-        "hint": "It comes in charged (+/-) and neutral forms and was discovered in cosmic ray emulsions in 1947."
+        "hint": "It comes in charged (+/-) and neutral forms and was discovered in cosmic ray emulsions in 1947.",
+        "explanation": "Did you know? It comes in charged (+/-) and neutral forms and was discovered in cosmic ray emulsions in 1947."
       },
       {
         "difficulty": "advanced",
@@ -1429,7 +1545,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Schmidt reaction"
         ],
         "answer": 1,
-        "hint": "It involves thermal degradation of carboxylic acid derivatives using diphenylphosphoryl azide (DPPA) or similar reagents."
+        "hint": "It involves thermal degradation of carboxylic acid derivatives using diphenylphosphoryl azide (DPPA) or similar reagents.",
+        "explanation": "Did you know? It involves thermal degradation of carboxylic acid derivatives using diphenylphosphoryl azide (DPPA) or similar reagents."
       },
       {
         "difficulty": "advanced",
@@ -1441,7 +1558,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "RAF1"
         ],
         "answer": 2,
-        "hint": "This gene encodes the non-receptor protein tyrosine phosphatase SHP-2."
+        "hint": "This gene encodes the non-receptor protein tyrosine phosphatase SHP-2.",
+        "explanation": "Did you know? This gene encodes the non-receptor protein tyrosine phosphatase SHP-2."
       },
       {
         "difficulty": "advanced",
@@ -1453,7 +1571,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Limbic Encephalitis"
         ],
         "answer": 0,
-        "hint": "It primarily causes severe multifocal sensory loss and ataxia, often preceding diagnosis of small cell lung carcinoma."
+        "hint": "It primarily causes severe multifocal sensory loss and ataxia, often preceding diagnosis of small cell lung carcinoma.",
+        "explanation": "Did you know? It primarily causes severe multifocal sensory loss and ataxia, often preceding diagnosis of small cell lung carcinoma."
       },
       {
         "difficulty": "advanced",
@@ -1465,7 +1584,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Isopenicillin N synthase"
         ],
         "answer": 3,
-        "hint": "This mononuclear non-heme iron enzyme forms both the beta-lactam and thiazolidine rings in a single step."
+        "hint": "This mononuclear non-heme iron enzyme forms both the beta-lactam and thiazolidine rings in a single step.",
+        "explanation": "Did you know? This mononuclear non-heme iron enzyme forms both the beta-lactam and thiazolidine rings in a single step."
       },
       {
         "difficulty": "advanced",
@@ -1477,7 +1597,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "KCNE1"
         ],
         "answer": 1,
-        "hint": "It encodes the inward-rectifier potassium channel Kir2.1."
+        "hint": "It encodes the inward-rectifier potassium channel Kir2.1.",
+        "explanation": "Did you know? It encodes the inward-rectifier potassium channel Kir2.1."
       }
     ]
   },
@@ -1495,7 +1616,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Yellow"
         ],
         "answer": 1,
-        "hint": "It is the same color as the ocean."
+        "hint": "It is the same color as the ocean.",
+        "explanation": "Did you know? It is the same color as the ocean."
       },
       {
         "difficulty": "beginner",
@@ -1507,7 +1629,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Eight"
         ],
         "answer": 1,
-        "hint": "Count two in the front and two in the back."
+        "hint": "Count two in the front and two in the back.",
+        "explanation": "Did you know? Count two in the front and two in the back."
       },
       {
         "difficulty": "beginner",
@@ -1519,7 +1642,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Duck"
         ],
         "answer": 2,
-        "hint": "This pet likes to chase mice."
+        "hint": "This pet likes to chase mice.",
+        "explanation": "Did you know? This pet likes to chase mice."
       },
       {
         "difficulty": "beginner",
@@ -1531,7 +1655,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Black"
         ],
         "answer": 2,
-        "hint": "It is a bright primary color."
+        "hint": "It is a bright primary color.",
+        "explanation": "Did you know? It is a bright primary color."
       },
       {
         "difficulty": "beginner",
@@ -1543,7 +1668,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Candy"
         ],
         "answer": 0,
-        "hint": "It comes in jars and is made from flower nectar."
+        "hint": "It comes in jars and is made from flower nectar.",
+        "explanation": "Did you know? It comes in jars and is made from flower nectar."
       },
       {
         "difficulty": "beginner",
@@ -1555,7 +1681,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "12"
         ],
         "answer": 1,
-        "hint": "Monday to Sunday."
+        "hint": "Monday to Sunday.",
+        "explanation": "Did you know? Monday to Sunday."
       },
       {
         "difficulty": "beginner",
@@ -1567,7 +1694,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Grape"
         ],
         "answer": 2,
-        "hint": "It can be red, green, or yellow."
+        "hint": "It can be red, green, or yellow.",
+        "explanation": "Did you know? It can be red, green, or yellow."
       },
       {
         "difficulty": "beginner",
@@ -1579,7 +1707,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Soda"
         ],
         "answer": 1,
-        "hint": "It melts into liquid when warm."
+        "hint": "It melts into liquid when warm.",
+        "explanation": "Did you know? It melts into liquid when warm."
       },
       {
         "difficulty": "beginner",
@@ -1591,7 +1720,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Rectangle"
         ],
         "answer": 2,
-        "hint": "The prefix 'tri-' means three."
+        "hint": "The prefix 'tri-' means three.",
+        "explanation": "Did you know? The prefix 'tri-' means three."
       },
       {
         "difficulty": "beginner",
@@ -1603,7 +1733,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Autumn"
         ],
         "answer": 1,
-        "hint": "It is the season when flowers start to bloom."
+        "hint": "It is the season when flowers start to bloom.",
+        "explanation": "Did you know? It is the season when flowers start to bloom."
       },
       {
         "difficulty": "intermediate",
@@ -1615,7 +1746,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Brisbane"
         ],
         "answer": 2,
-        "hint": "It was chosen as a compromise between Sydney and Melbourne."
+        "hint": "It was chosen as a compromise between Sydney and Melbourne.",
+        "explanation": "Did you know? It was chosen as a compromise between Sydney and Melbourne."
       },
       {
         "difficulty": "intermediate",
@@ -1627,7 +1759,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Claude Monet"
         ],
         "answer": 1,
-        "hint": "He was a famous Italian Renaissance polymath."
+        "hint": "He was a famous Italian Renaissance polymath.",
+        "explanation": "Did you know? He was a famous Italian Renaissance polymath."
       },
       {
         "difficulty": "intermediate",
@@ -1639,7 +1772,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Oganesson"
         ],
         "answer": 2,
-        "hint": "It is essential for human respiration."
+        "hint": "It is essential for human respiration.",
+        "explanation": "Did you know? It is essential for human respiration."
       },
       {
         "difficulty": "intermediate",
@@ -1651,7 +1785,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Saturn"
         ],
         "answer": 1,
-        "hint": "It is named after the Roman god of war."
+        "hint": "It is named after the Roman god of war.",
+        "explanation": "Did you know? It is named after the Roman god of war."
       },
       {
         "difficulty": "intermediate",
@@ -1663,7 +1798,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "1923"
         ],
         "answer": 1,
-        "hint": "It occurred just two years before the start of World War I."
+        "hint": "It occurred just two years before the start of World War I.",
+        "explanation": "Did you know? It occurred just two years before the start of World War I."
       },
       {
         "difficulty": "intermediate",
@@ -1675,7 +1811,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Pacific Ocean"
         ],
         "answer": 3,
-        "hint": "Its name means 'peaceful'."
+        "hint": "Its name means 'peaceful'.",
+        "explanation": "Did you know? Its name means 'peaceful'."
       },
       {
         "difficulty": "intermediate",
@@ -1687,7 +1824,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Jane Austen"
         ],
         "answer": 1,
-        "hint": "He is often called the 'Bard of Avon'."
+        "hint": "He is often called the 'Bard of Avon'.",
+        "explanation": "Did you know? He is often called the 'Bard of Avon'."
       },
       {
         "difficulty": "intermediate",
@@ -1699,7 +1837,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Baht"
         ],
         "answer": 2,
-        "hint": "Its symbol is ¥."
+        "hint": "Its symbol is ¥.",
+        "explanation": "Did you know? Its symbol is ¥."
       },
       {
         "difficulty": "intermediate",
@@ -1711,7 +1850,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Corundum"
         ],
         "answer": 1,
-        "hint": "It is made of pure carbon organized in a crystal lattice."
+        "hint": "It is made of pure carbon organized in a crystal lattice.",
+        "explanation": "Did you know? It is made of pure carbon organized in a crystal lattice."
       },
       {
         "difficulty": "intermediate",
@@ -1723,7 +1863,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Germany"
         ],
         "answer": 1,
-        "hint": "It was designed by Frédéric-Auguste Bartholdi."
+        "hint": "It was designed by Frédéric-Auguste Bartholdi.",
+        "explanation": "Did you know? It was designed by Frédéric-Auguste Bartholdi."
       },
       {
         "difficulty": "advanced",
@@ -1735,7 +1876,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Mount Saint Elias"
         ],
         "answer": 2,
-        "hint": "It is located in the Saint Elias Mountains within Kluane National Park."
+        "hint": "It is located in the Saint Elias Mountains within Kluane National Park.",
+        "explanation": "Did you know? It is located in the Saint Elias Mountains within Kluane National Park."
       },
       {
         "difficulty": "advanced",
@@ -1747,7 +1889,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Peace of Augsburg"
         ],
         "answer": 1,
-        "hint": "It established the concept of sovereign statehood in modern diplomacy."
+        "hint": "It established the concept of sovereign statehood in modern diplomacy.",
+        "explanation": "Did you know? It established the concept of sovereign statehood in modern diplomacy."
       },
       {
         "difficulty": "advanced",
@@ -1759,7 +1902,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Frederick Sanger"
         ],
         "answer": 1,
-        "hint": "He won the 1954 Chemistry prize and the 1962 Peace prize."
+        "hint": "He won the 1954 Chemistry prize and the 1962 Peace prize.",
+        "explanation": "Did you know? He won the 1954 Chemistry prize and the 1962 Peace prize."
       },
       {
         "difficulty": "advanced",
@@ -1771,7 +1915,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Oort radius"
         ],
         "answer": 2,
-        "hint": "Named after a German astronomer who derived it in 1916."
+        "hint": "Named after a German astronomer who derived it in 1916.",
+        "explanation": "Did you know? Named after a German astronomer who derived it in 1916."
       },
       {
         "difficulty": "advanced",
@@ -1783,7 +1928,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "1492"
         ],
         "answer": 2,
-        "hint": "The city was conquered by Ottoman Sultan Mehmed II."
+        "hint": "The city was conquered by Ottoman Sultan Mehmed II.",
+        "explanation": "Did you know? The city was conquered by Ottoman Sultan Mehmed II."
       },
       {
         "difficulty": "advanced",
@@ -1795,7 +1941,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Watt"
         ],
         "answer": 2,
-        "hint": "The word stems from the Latin for candle."
+        "hint": "The word stems from the Latin for candle.",
+        "explanation": "Did you know? The word stems from the Latin for candle."
       },
       {
         "difficulty": "advanced",
@@ -1807,7 +1954,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Jonathan Swift"
         ],
         "answer": 0,
-        "hint": "He was famous for his translation of Homer's works into heroic couplets."
+        "hint": "He was famous for his translation of Homer's works into heroic couplets.",
+        "explanation": "Did you know? He was famous for his translation of Homer's works into heroic couplets."
       },
       {
         "difficulty": "advanced",
@@ -1819,7 +1967,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Fluorite"
         ],
         "answer": 1,
-        "hint": "Rubies and sapphires are gem varieties of this mineral."
+        "hint": "Rubies and sapphires are gem varieties of this mineral.",
+        "explanation": "Did you know? Rubies and sapphires are gem varieties of this mineral."
       },
       {
         "difficulty": "advanced",
@@ -1831,7 +1980,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Roach"
         ],
         "answer": 1,
-        "hint": "It was trapped in a relay of the Harvard Mark II computer."
+        "hint": "It was trapped in a relay of the Harvard Mark II computer.",
+        "explanation": "Did you know? It was trapped in a relay of the Harvard Mark II computer."
       },
       {
         "difficulty": "advanced",
@@ -1843,7 +1993,8 @@ export const quizData: Record<CategoryKey, CategoryData> = {
           "Rhenium"
         ],
         "answer": 2,
-        "hint": "Also known as Wolfram, it has the symbol W."
+        "hint": "Also known as Wolfram, it has the symbol W.",
+        "explanation": "Did you know? Also known as Wolfram, it has the symbol W."
       }
     ]
   }
