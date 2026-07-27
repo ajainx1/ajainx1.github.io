@@ -803,9 +803,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
       {/* Header */}
       <header className={`sticky top-0 z-50 px-4 sm:px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
-        <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity">
-          <ArrowLeft size={16} /> Dashboard
-        </Link>
+        {/* Removed Dashboard button since this is now the root page */}
+        <div></div>
         
         <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
           <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white flex items-center justify-center text-sm shadow-md">C</div>
