@@ -1382,37 +1382,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 />
               </div>
 
-              <div className="mb-5 flex flex-col sm:flex-row gap-4">
-                <div className="flex-1">
-                  <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">AI Provider</label>
-                  <select
-                    value={aiProvider}
-                    onChange={(e: any) => setAiProvider(e.target.value)}
-                    disabled={isGeneratingAI}
-                    className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner appearance-none cursor-pointer ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
-                  >
-                    <option value="gemini">Gemini 2.5 Flash</option>
-                    <option value="deepseek">DeepSeek AI</option>
-                    <option value="ollama">Ollama (Local)</option>
-                  </select>
-                </div>
-              </div>
-
-              {aiProvider !== 'gemini' && (
-                <div className="mb-8">
-                  <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">
-                    {aiProvider === 'ollama' ? 'Ollama API URL (Optional)' : 'API Key'}
-                  </label>
-                  <input
-                    type={aiProvider === 'ollama' ? 'text' : 'password'}
-                    value={aiKey}
-                    onChange={e => setAiKey(e.target.value)}
-                    placeholder={aiProvider === 'ollama' ? 'http://localhost:11434' : 'Paste API key here...'}
-                    disabled={isGeneratingAI}
-                    className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
-                  />
-                </div>
-              )}
+              <div className="mb-2"></div>
 
               <div className="flex flex-col gap-3">
                 <button
