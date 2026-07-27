@@ -882,49 +882,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           {/* Left Column: Active Quiz Panel */}
           <div className="lg:col-span-8 space-y-6">
             
-            {/* Categories & Difficulty Container */}
-            <div className={`p-3 rounded-[28px] backdrop-blur-3xl shadow-xl border flex flex-col sm:flex-row gap-3 justify-between items-center ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/90 border-slate-200 shadow-md'}`}>
-                <div className={`flex flex-wrap gap-1.5 w-full sm:w-auto p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
-                  {(Object.keys(quizData) as CategoryKey[]).map(cat => (
-                    <button
-                      key={cat}
-                      onClick={() => setCategory(cat)}
-                      className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
-                    >
-                      {cat}
-                    </button>
-                  ))}
-                  <button
-                    onClick={() => {
-                      const keys = Object.keys(quizData) as CategoryKey[];
-                      setCategory(keys[Math.floor(Math.random() * keys.length)]);
-                    }}
-                    className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
-                  >
-                    🎲 Random
-                  </button>
-                  <button
-                    onClick={() => setShowAIModal(true)}
-                    className={`px-4 py-2 rounded-[16px] text-xs font-bold transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'}`}
-                  >
-                    <Cpu size={14} /> AI Quiz
-                  </button>
-                </div>
-
-                {category !== 'custom-ai' && (
-                  <div className={`flex gap-1.5 p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
-                    {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
-                      <button
-                        key={diff}
-                        onClick={() => setDifficulty(diff)}
-                        className={`px-3 py-1.5 rounded-[14px] text-xs font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
-                      >
-                        {diff}
-                      </button>
-                    ))}
-                  </div>
-                )}
-            </div>
 
 
             {/* Quiz Area */}
@@ -1047,6 +1004,56 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
           {/* Right Column: Staking Stats & Widgets */}
           <div className="lg:col-span-4 space-y-6">
+            
+            {/* Categories & Difficulty Container (Sidebar Layout) */}
+            <div className={`p-5 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
+                <h3 className="text-sm font-bold opacity-80 px-1">Quiz Settings</h3>
+                <div className={`flex flex-col gap-2 p-2 rounded-[24px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                  <div className="flex flex-wrap gap-1.5 justify-center">
+                    {(Object.keys(quizData) as CategoryKey[]).map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => setCategory(cat)}
+                        className={`flex-1 min-w-[30%] px-3 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                  
+                  <div className="flex gap-1.5">
+                    <button
+                      onClick={() => {
+                        const keys = Object.keys(quizData) as CategoryKey[];
+                        setCategory(keys[Math.floor(Math.random() * keys.length)]);
+                      }}
+                      className={`flex-1 px-4 py-2.5 rounded-[16px] text-[11px] font-bold transition-all ${isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                    >
+                      🎲 Random
+                    </button>
+                    <button
+                      onClick={() => setShowAIModal(true)}
+                      className={`flex-1 px-4 py-2.5 rounded-[16px] text-[11px] font-bold transition-all flex justify-center items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'}`}
+                    >
+                      <Cpu size={14} /> AI Quiz
+                    </button>
+                  </div>
+                </div>
+
+                {category !== 'custom-ai' && (
+                  <div className={`flex gap-1 p-1.5 rounded-[20px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                    {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
+                      <button
+                        key={diff}
+                        onClick={() => setDifficulty(diff)}
+                        className={`flex-1 px-2 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
+                      >
+                        {diff}
+                      </button>
+                    ))}
+                  </div>
+                )}
+            </div>
             
             {/* Main Score Widget */}
             <motion.div layout className={`w-full rounded-[32px] border p-8 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
