@@ -1,14 +1,12 @@
 "use client";
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server } from 'lucide-react';
+import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 import TiltWrapper from '@/components/3d/TiltWrapper';
-import AdSenseBanner from '@/components/AdSenseBanner';
-
 // Initialize Supabase client
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhraGdjY3hpbWNyc2RwZGxza3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ0OTksImV4cCI6MjA5OTI0MDQ5OX0.R9t0QNG0voJPyxhZkXO2hQtD4_Gr2xdnGyI8AlTOk5g';
@@ -853,8 +851,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
       {/* Header */}
       <header className={`sticky top-0 z-50 px-4 sm:px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
-        {/* Removed Dashboard button since this is now the root page */}
-        <div></div>
+        {/* Founder Profile Link */}
+        <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 transition-all border border-emerald-500/30 shadow-sm flex items-center justify-center group" title="Founder Profile">
+          <Shield className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+        </a>
         
         <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
           <img src="/icon.png" alt="CyberKarma Logo" className="w-8 h-8 rounded-lg object-cover shadow-md border border-white/20" />
@@ -1040,9 +1040,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                           );
                         })}
                       </div>
-
-                      {/* Google AdSense / Display Ad Unit */}
-                      <AdSenseBanner refreshKey={`${currentQuestion?.question || score}`} isDark={isDark} />
 
                       <div className="mt-8 flex justify-between items-center min-h-[40px]">
                         <AnimatePresence>
