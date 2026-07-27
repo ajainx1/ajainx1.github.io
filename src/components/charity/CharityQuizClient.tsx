@@ -926,31 +926,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 )}
             </div>
 
-            {/* Corporate Sponsorship Banner */}
-            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group ${isDark ? 'bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
-              <div className="flex items-center gap-3.5 z-10">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 text-emerald-400 font-black text-lg shadow-inner">
-                  🐋
-                </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Official Sponsor</span>
-                    <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Orca6™ HFT</span>
-                  </div>
-                  <h4 className={`text-sm font-black uppercase tracking-wider mt-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>Automate Trading with Sub-Millisecond AI</h4>
-                  <p className={`text-xs font-semibold mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
-                </div>
-              </div>
-              <Link
-                href="https://jumpstreet.tech"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center justify-center gap-2 z-10"
-              >
-                <span>Explore Orca6™</span>
-                <Zap size={14} />
-              </Link>
-            </div>
 
             {/* Quiz Area */}
             <div className="w-full">
@@ -1147,6 +1122,32 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                   </button>
                 ))}
               </div>
+            </div>
+
+            {/* Corporate Sponsorship Banner */}
+            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
+              <div className="flex flex-col items-center gap-3.5 z-10 w-full">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-black text-lg shadow-inner mx-auto">
+                  🐋
+                </div>
+                <div>
+                  <div className="flex items-center justify-center gap-2">
+                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Official Sponsor</span>
+                    <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Orca6™ HFT</span>
+                  </div>
+                  <h4 className={`text-sm font-black uppercase tracking-wider mt-2 ${isDark ? 'text-white' : 'text-slate-900'}`}>Automate Trading with Sub-Millisecond AI</h4>
+                  <p className={`text-xs font-semibold mt-1.5 ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
+                </div>
+              </div>
+              <Link
+                href="https://jumpstreet.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full px-6 py-3 mt-2 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 z-10"
+              >
+                <span>Explore Orca6™</span>
+                <Zap size={14} />
+              </Link>
             </div>
 
           </div>
