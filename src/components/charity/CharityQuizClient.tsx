@@ -920,34 +920,34 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         <motion.div 
           initial={{ opacity: 0, y: -20 }} 
           animate={{ opacity: 1, y: 0 }} 
-          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-rose-950/40 via-black/40 to-slate-950/60 border-rose-500/20' : 'bg-gradient-to-b from-rose-50/80 via-white/90 to-amber-50/80 border-rose-200'}`}
+          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/80 via-black/60 to-slate-950/80 border-emerald-500/20' : 'bg-gradient-to-b from-emerald-50/80 via-white/90 to-cyan-50/80 border-emerald-200'}`}
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-rose-500/10 blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-emerald-500/20 blur-[80px] rounded-full pointer-events-none" />
 
           {/* Emotional Headline */}
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 font-title leading-tight">
-            <span className={`bg-clip-text text-transparent drop-shadow-md ${isDark ? 'bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400' : 'bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600'}`}>
+            <span className={`bg-clip-text text-transparent drop-shadow-md ${isDark ? 'bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-500' : 'bg-gradient-to-r from-emerald-600 via-cyan-600 to-blue-700'}`}>
               Every Answer Saves a Life.
             </span>
           </h1>
 
-          <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-200 font-medium' : 'text-slate-800 font-bold'}`}>
+          <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-300 font-medium' : 'text-slate-800 font-bold'}`}>
             Play daily to transform a life. For every correct answer, we donate{' '}
-            <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
+            <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
               10 grains of rice
             </span>{' '}
-            to feed <strong className={isDark ? 'text-rose-300 font-bold' : 'text-rose-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-amber-300 font-bold' : 'text-amber-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
+            to feed <strong className={isDark ? 'text-cyan-300 font-bold' : 'text-cyan-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-blue-300 font-bold' : 'text-blue-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
           </p>
 
           {/* Highlight Badges */}
           <div className="flex flex-wrap justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider">
-            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-rose-500/10 border-rose-500/20 text-rose-300' : 'bg-rose-100 border-rose-200 text-rose-800'}`}>
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 backdrop-blur-md' : 'bg-emerald-50 border-emerald-200 text-emerald-700'}`}>
               ❤️ 10 Grains Pledged / Answer
             </span>
-            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-amber-500/10 border-amber-500/20 text-amber-300' : 'bg-amber-100 border-amber-200 text-amber-800'}`}>
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300 backdrop-blur-md' : 'bg-cyan-50 border-cyan-200 text-cyan-700'}`}>
               🕊️ 100% Free &amp; Ad-Funded
             </span>
-            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-emerald-100 border-emerald-200 text-emerald-800'}`}>
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-blue-500/10 border-blue-500/20 text-blue-300 backdrop-blur-md' : 'bg-blue-50 border-blue-200 text-blue-700'}`}>
               🌍 Verified Global Impact
             </span>
           </div>
