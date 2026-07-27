@@ -99,6 +99,34 @@ export default function CharityQuizClient() {
 
   const STREET_FEEDING_DRIVE = [
     {
+      src: '/impact/street-dog-12.jpg',
+      title: 'Night Stall Feeding Spot',
+      location: 'Egg Vendor Hub, Patna, Bihar',
+      date: '22 Jul 2026 • 7:18 PM',
+      tag: 'Night Feeding Drive',
+    },
+    {
+      src: '/impact/street-dog-13.jpg',
+      title: 'Evening Community Street Feeding',
+      location: 'Road Rajbansi Nagar, Patna Division, Bihar',
+      date: '22 Jul 2026 • 7:18 PM',
+      tag: 'Evening Care Patrol',
+    },
+    {
+      src: '/impact/street-dog-10.jpg',
+      title: 'Nourishing Street Companion',
+      location: 'Rajbansi Nagar, Patna Division, Bihar',
+      date: '22 Jul 2026 • 7:18 PM',
+      tag: 'Street Survival',
+    },
+    {
+      src: '/impact/street-dog-11.jpg',
+      title: 'Late-Night Animal Feeding Drive',
+      location: 'Night Care Patrol, Patna, Bihar',
+      date: '22 Jul 2026 • 7:18 PM',
+      tag: 'Zero Animal Hunger',
+    },
+    {
       src: '/impact/street-dog-2.jpeg',
       title: 'Daily Evening Rice Bowl',
       location: 'Rajbansi Nagar, Patna Division, Bihar',
