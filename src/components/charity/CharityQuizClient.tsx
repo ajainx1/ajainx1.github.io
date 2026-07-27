@@ -1287,7 +1287,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         <div className="w-full mt-8">
           <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-white/60'}`}>
             
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
+            <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 pb-6 border-b border-white/10">
               <div>
                 <div className="flex items-center gap-3 mb-2">
                   <span className="p-2 rounded-xl bg-rose-500/20 text-rose-500 border border-rose-500/30">
