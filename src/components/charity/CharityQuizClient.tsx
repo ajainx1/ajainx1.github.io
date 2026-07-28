@@ -945,8 +945,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         
                         {/* The Image */}
                         <Image 
-                          key={currentQuestion.question} 
-                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentQuestion.question)}?width=800&height=400&nologo=true`}
+                          key={category} 
+                          src={
+                            category === 'animals' ? 'https://images.unsplash.com/photo-1543946207-39fd9151528c?q=80&w=800&h=400&fit=crop' :
+                            category === 'nature' ? 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&h=400&fit=crop' :
+                            category === 'humanities' ? 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?q=80&w=800&h=400&fit=crop' :
+                            category === 'science' ? 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&h=400&fit=crop' :
+                            category === 'gk' ? 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&h=400&fit=crop' :
+                            'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=800&h=400&fit=crop'
+                          }
                           alt="Question visual"
                           fill
                           className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
