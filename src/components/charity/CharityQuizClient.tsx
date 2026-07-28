@@ -41,6 +41,28 @@ const levelTitles = [
   { minLvl: 25, title: "Ketu Supreme Architect" }
 ];
 
+const QuizImage = ({ category, question }: { category: string, question: string }) => {
+  const [error, setError] = useState(false);
+  const aiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + question)}?width=800&height=400&nologo=true`;
+  const fallbackUrl = `/category_${['animals', 'nature', 'humanities', 'science', 'gk'].includes(category) ? category : 'science'}.jpg`;
+
+  useEffect(() => {
+    setError(false);
+  }, [question, category]);
+
+  return (
+    <Image 
+      src={error ? fallbackUrl : aiUrl}
+      alt="Question visual"
+      fill
+      className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
+      sizes="(max-width: 768px) 100vw, 800px"
+      priority={true}
+      onError={() => setError(true)}
+    />
+  );
+};
+
 const AnimatedTitle = () => {
   const [index, setIndex] = useState(0);
   const titles = ["CyberKarma Charity Quiz", "The Cyber Free Rice", "Answer to Feed Animals", "Learn & Make Impact"];
@@ -986,15 +1008,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         )}
 
                         {/* The Image */}
-                        <Image 
-                          key={currentQuestion.question} 
-                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + currentQuestion.question)}?width=800&height=400&nologo=true`}
-                          alt="Question visual"
-                          fill
-                          className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 800px"
-                          priority={true}
-                        />
+                        <QuizImage key={currentQuestion.question} category={category} question={currentQuestion.question} />
                         
                         {/* Gradient overlay for text readability if needed later, and sleek aesthetic */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
