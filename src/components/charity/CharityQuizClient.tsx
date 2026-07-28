@@ -1072,26 +1072,26 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         onClick={() => setCategory(cat)}
                         className={`px-3 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
                       >
-                        {cat}
+                        {cat === 'gk' ? 'General Knowledge' : cat}
                       </button>
                     ))}
                   </div>
                   
-                  <div className="flex gap-1.5">
+                  <div className="flex flex-col gap-1.5 mt-1">
                     <button
                       onClick={() => {
                         const keys = Object.keys(quizData) as CategoryKey[];
                         setCategory(keys[Math.floor(Math.random() * keys.length)]);
                       }}
-                      className={`flex-1 px-4 py-2.5 rounded-[16px] text-[11px] font-bold transition-all ${isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                      className={`w-full px-4 py-2 rounded-[16px] text-[11px] font-bold transition-all ${isDark ? 'opacity-70 hover:opacity-100 bg-white/5 hover:bg-white/10 text-white' : 'text-slate-700 bg-slate-200/50 hover:bg-slate-200'}`}
                     >
-                      🎲 Random
+                      🎲 Play Random Category
                     </button>
                     <button
                       onClick={() => setShowAIModal(true)}
-                      className={`flex-1 px-4 py-2.5 rounded-[16px] text-[11px] font-bold transition-all flex justify-center items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'}`}
+                      className={`w-full px-4 py-3 rounded-[16px] text-[12px] font-bold transition-all flex justify-center items-center gap-2 shadow-sm ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'bg-gradient-to-r from-purple-900/40 to-indigo-900/40 border border-purple-500/30 hover:border-purple-500/60 text-purple-300 hover:text-white' : 'bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 text-purple-800 hover:bg-purple-100 hover:border-purple-300'}`}
                     >
-                      <Cpu size={14} /> AI Quiz
+                      <Cpu size={16} /> Choose Any Topic
                     </button>
                   </div>
                 </div>
