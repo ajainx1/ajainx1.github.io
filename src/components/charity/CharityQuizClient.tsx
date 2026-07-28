@@ -92,6 +92,53 @@ const AnimatedTitle = () => {
   );
 };
 
+// High-performance Web Audio API Synthesizer (Zero network overhead)
+const playSound = (type: 'correct' | 'wrong' | 'levelup') => {
+  try {
+    const AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    const now = ctx.currentTime;
+    if (type === 'correct') {
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.1);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.1, now + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
+      osc.start(now);
+      osc.stop(now + 0.5);
+    } else if (type === 'wrong') {
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, now);
+      osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.1, now + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+      osc.start(now);
+      osc.stop(now + 0.3);
+    } else if (type === 'levelup') {
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(261.63, now);
+      osc.frequency.setValueAtTime(329.63, now + 0.1);
+      osc.frequency.setValueAtTime(392.00, now + 0.2);
+      osc.frequency.setValueAtTime(523.25, now + 0.3);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.05, now + 0.05);
+      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+      osc.start(now);
+      osc.stop(now + 0.6);
+    }
+  } catch (e) {
+    // Ignore if Audio API is not supported or user hasn't interacted yet
+  }
+};
+
 export default function CharityQuizClient() {
   // State
   const [score, setScore] = useState(0);
@@ -474,35 +521,16 @@ export default function CharityQuizClient() {
         setLevelUpData({ level: calculatedLevel, title });
         setShowLevelUpModal(true);
         addToast(`🎉 Level Up! You reached Level ${calculatedLevel}!`, 'success');
+        playSound('levelup');
         
-        // Play level-up sound effect (ascending arpeggio)
-        try {
-          const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-          const playNote = (freq: number, delay: number, duration: number) => {
-            const osc = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc.type = 'triangle';
-            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
-            gain.gain.setValueAtTime(0.15, audioCtx.currentTime + delay);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
-            osc.start(audioCtx.currentTime + delay);
-            osc.stop(audioCtx.currentTime + delay + duration);
-          };
-          
-          playNote(261.63, 0, 0.2); // C4
-          playNote(329.63, 0.15, 0.2); // E4
-          playNote(392.00, 0.3, 0.2); // G4
-          playNote(523.25, 0.45, 0.5); // C5
-        } catch (e) {
-          console.error(e);
+        if (user) {
+          localStorage.setItem(`charityQuizLastLevel_${user.email}`, String(calculatedLevel));
         }
       } else if (calculatedLevel < storedLvl) {
         localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
     }
-  }, [score, addToast]);
+  }, [score, addToast, user]);
 
   const fetchAIQuestions = async (count: number, topic: string, provider: string, key: string, history: string[] = []): Promise<Question[]> => {
     const historyText = history.length > 0 ? `\nCRITICAL: DO NOT repeat any concepts or questions similar to these previously generated ones:\n- ${history.slice(-20).join('\n- ')}\n` : '';
@@ -628,6 +656,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     const isCorrect = (index === currentQuestion.answer);
 
     if (isCorrect) {
+      playSound('correct');
       // Correct
       const isPlanetBonus = (recipient === dailyPlanetBonus.targetRecipient);
       let basePoints = isPlanetBonus ? 20 : 10;
@@ -1405,7 +1434,20 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       Continue with Google
                     </button>
 
-                    <button onClick={() => setShowEmailModal(false)} className="w-full mt-2 py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
+                    <button 
+                      onClick={() => {
+                        const randomGuest = Math.floor(Math.random() * 10000);
+                        handleUserLogin(`guest_${randomGuest}@cyberkarma.me`);
+                        setShowEmailModal(false);
+                        addToast('Logged in as Guest User!', 'success');
+                      }} 
+                      className={`w-full mt-3 flex items-center justify-center gap-3 py-4 rounded-[20px] font-bold transition-all hover:scale-[1.02] ${isDark ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'}`}
+                    >
+                      <User size={18} />
+                      Play as Guest
+                    </button>
+
+                    <button onClick={() => setShowEmailModal(false)} className="w-full mt-4 py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
                   </div>
                 </>
               ) : (
