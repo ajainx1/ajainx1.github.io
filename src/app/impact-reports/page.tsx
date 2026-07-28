@@ -13,7 +13,7 @@ export default function ImpactReportsPage() {
           </Link>
           <h1 className="text-4xl sm:text-5xl font-black font-title">Transparency & Impact</h1>
           <p className="text-lg text-slate-400 max-w-3xl leading-relaxed">
-            We believe in radical transparency. Every grain earned, every dollar spent, and every meal delivered is documented here. We operate exclusively with local volunteers for field-verified feeding drives in Patna.
+            We believe in radical transparency. Every Karma Point earned, every dollar spent, and every meal delivered is documented here. We operate exclusively with local volunteers for field-verified feeding drives in Patna.
           </p>
         </div>
 
@@ -21,18 +21,18 @@ export default function ImpactReportsPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 rounded-[32px] bg-emerald-500/10 border border-emerald-500/20 flex flex-col gap-2">
             <TrendingUp size={24} className="text-emerald-400 mb-2" />
-            <span className="text-sm font-bold uppercase tracking-widest text-emerald-500">Total Grains Donated</span>
-            <span className="text-4xl font-black text-white font-mono">14,203,500</span>
+            <span className="text-sm font-bold uppercase tracking-widest text-emerald-500">Total Karma Points</span>
+            <span className="text-4xl font-black text-white font-mono">4,500</span>
           </div>
           <div className="p-6 rounded-[32px] bg-blue-500/10 border border-blue-500/20 flex flex-col gap-2">
             <Heart size={24} className="text-blue-400 mb-2" />
-            <span className="text-sm font-bold uppercase tracking-widest text-blue-500">Meals Provided (Est.)</span>
-            <span className="text-4xl font-black text-white font-mono">1,420</span>
+            <span className="text-sm font-bold uppercase tracking-widest text-blue-500">Bowls of Curd & Milk</span>
+            <span className="text-4xl font-black text-white font-mono">45</span>
           </div>
           <div className="p-6 rounded-[32px] bg-rose-500/10 border border-rose-500/20 flex flex-col gap-2">
             <Users size={24} className="text-rose-400 mb-2" />
-            <span className="text-sm font-bold uppercase tracking-widest text-rose-500">Animals Fed</span>
-            <span className="text-4xl font-black text-white font-mono">450+</span>
+            <span className="text-sm font-bold uppercase tracking-widest text-rose-500">Street Dogs Fed</span>
+            <span className="text-4xl font-black text-white font-mono">45+</span>
           </div>
         </div>
 
@@ -41,8 +41,8 @@ export default function ImpactReportsPage() {
           <h2 className="text-2xl font-bold flex items-center gap-2"><CheckCircle2 className="text-emerald-400" /> Verification Methodology</h2>
           <p className="text-slate-300 leading-relaxed text-sm">
             All feeding drives are field-verified by our team operating in Patna. 
-            Currently, our impact metrics calculate approximately 10,000 grains = 1 full meal for a street animal. 
-            Funds generated from sponsorships and advertising are directly converted into dog food (Pedigree/Drools) and fresh rice/chicken meals.
+            Currently, our impact metrics calculate approximately 200 Karma Points = 1 Bowl of Curd & Milk for a street animal. 
+            Funds generated from sponsorships and advertising are directly converted into fresh curd and milk for street animals.
           </p>
         </div>
 
@@ -63,8 +63,8 @@ export default function ImpactReportsPage() {
                 </span>
               </div>
               <ul className="space-y-2 text-sm text-slate-300 mb-6">
-                <li>• <strong className="text-white">Grains:</strong> 2,400,000</li>
-                <li>• <strong className="text-white">Meals:</strong> 240 provided</li>
+                <li>• <strong className="text-white">Karma Points:</strong> 4,500</li>
+                <li>• <strong className="text-white">Meals:</strong> 45 provided</li>
                 <li>• <strong className="text-white">Cost:</strong> [Insert Expenditure]</li>
               </ul>
               <div className="h-40 w-full relative rounded-xl overflow-hidden border border-white/10">

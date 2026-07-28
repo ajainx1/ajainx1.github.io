@@ -43,7 +43,7 @@ const levelTitles = [
 export default function CharityQuizClient() {
   // State
   const [score, setScore] = useState(0);
-  const [totalGrainsAllTime, setTotalGrainsAllTime] = useState(0);
+  const [totalKarmaAllTime, setTotalKarmaAllTime] = useState(0);
   const [streak, setStreak] = useState(0);
   
   // Daily Streak & Shields State
@@ -64,7 +64,7 @@ export default function CharityQuizClient() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [feedback, setFeedback] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
-  const [riceGrains, setRiceGrains] = useState<{ id: number; left: string; delay: string; icon: string }[]>([]);
+  const [donationIcons, setDonationIcons] = useState<{ id: number; left: string; delay: string; icon: string }[]>([]);
   
   // Auth
   const [user, setUser] = useState<{ email: string; name: string; avatar: string } | null>(null);
@@ -190,7 +190,7 @@ export default function CharityQuizClient() {
       if (session?.user?.email) {
         handleUserLogin(session.user.email);
       } else {
-        const localScore = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
+        const localScore = parseInt(localStorage.getItem('charityKarmaScore') || '0', 10);
         setScore(localScore);
         // Initialize level storage so we don't trigger modal on mount
         const calculatedLevel = Math.floor(localScore / 200) + 1;
@@ -208,10 +208,10 @@ export default function CharityQuizClient() {
       setLastPlayedDate(localLastPlayed);
       setAiKey(savedAIKey);
       const localLastPlayedDate = localStorage.getItem('charityQuizLastPlayed');
-      const localTotalGrains = localStorage.getItem('charityTotalGrainsAllTime');
+      const localTotalKarma = localStorage.getItem('charityTotalKarmaAllTime');
       
-      if (localTotalGrains) {
-        setTotalGrainsAllTime(parseInt(localTotalGrains, 10));
+      if (localTotalKarma) {
+        setTotalKarmaAllTime(parseInt(localTotalKarma, 10));
       }
       
       // Validate streak
@@ -262,7 +262,7 @@ export default function CharityQuizClient() {
     const name = email.split('@')[0];
     const avatar = `https://ui-avatars.com/api/?name=${email}&background=10b981&color=fff`;
     setUser({ email, name, avatar });
-    const userScore = parseInt(localStorage.getItem(`charityRiceScore_${email}`) || '0', 10);
+    const userScore = parseInt(localStorage.getItem(`charityKarmaScore_${email}`) || '0', 10);
     setScore(userScore);
     // Initialize level storage so we don't trigger modal on mount
     const calculatedLevel = Math.floor(userScore / 200) + 1;
@@ -272,16 +272,16 @@ export default function CharityQuizClient() {
   const saveScore = (newScore: number) => {
     const earned = newScore - score;
     setScore(newScore);
-    localStorage.setItem('charityRiceScore', String(newScore));
+    localStorage.setItem('charityKarmaScore', String(newScore));
     if (earned > 0) {
-      setTotalGrainsAllTime(prev => {
+      setTotalKarmaAllTime(prev => {
         const updated = prev + earned;
-        localStorage.setItem('charityTotalGrainsAllTime', String(updated));
+        localStorage.setItem('charityTotalKarmaAllTime', String(updated));
         return updated;
       });
     }
     if (user) {
-      localStorage.setItem(`charityRiceScore_${user.email}`, String(newScore));
+      localStorage.setItem(`charityKarmaScore_${user.email}`, String(newScore));
     }
   };
 
@@ -289,13 +289,13 @@ export default function CharityQuizClient() {
   const calculateDailyPlanetBonus = () => {
     const day = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
     const bonuses = {
-      0: { name: "Sunday (Sun Day)", targetRecipient: "dogs", message: "☀️ Today is Sun Day! Feed the Dogs for 2X Grains!" },
-      1: { name: "Monday (Moon Day)", targetRecipient: "moon", message: "🌕 Today is Moon Day! Feed the Moon Mothers for 2X Grains!" },
-      2: { name: "Tuesday (Mars Day)", targetRecipient: "cows", message: "🔥 Today is Mars Day! Feed the Cows for 2X Grains!" },
-      3: { name: "Wednesday (Mercury Day)", targetRecipient: "birds", message: "✨ Today is Mercury Day! Feed the Birds for 2X Grains!" },
-      4: { name: "Thursday (Jupiter Day)", targetRecipient: "jupiter", message: "🪐 Today is Jupiter Day! Support Jupiter's Scholars for 2X Grains!" },
-      5: { name: "Friday (Venus Day)", targetRecipient: "venus", message: "💖 Today is Venus Day! Support Venus Women Shelters for 2X Grains!" },
-      6: { name: "Saturday (Saturn Day)", targetRecipient: "saturn", message: "🛡️ Today is Saturday! Help Saturn's Disabled for 2X Grains!" }
+      0: { name: "Sunday (Sun Day)", targetRecipient: "dogs", message: "☀️ Today is Sun Day! Feed the Dogs for 2X Karma Points!" },
+      1: { name: "Monday (Moon Day)", targetRecipient: "moon", message: "🌕 Today is Moon Day! Feed the Moon Mothers for 2X Karma Points!" },
+      2: { name: "Tuesday (Mars Day)", targetRecipient: "cows", message: "🔥 Today is Mars Day! Feed the Cows for 2X Karma Points!" },
+      3: { name: "Wednesday (Mercury Day)", targetRecipient: "birds", message: "✨ Today is Mercury Day! Feed the Birds for 2X Karma Points!" },
+      4: { name: "Thursday (Jupiter Day)", targetRecipient: "jupiter", message: "🪐 Today is Jupiter Day! Support Jupiter's Scholars for 2X Karma Points!" },
+      5: { name: "Friday (Venus Day)", targetRecipient: "venus", message: "💖 Today is Venus Day! Support Venus Women Shelters for 2X Karma Points!" },
+      6: { name: "Saturday (Saturn Day)", targetRecipient: "saturn", message: "🛡️ Today is Saturday! Help Saturn's Disabled for 2X Karma Points!" }
     };
     setDailyPlanetBonus(bonuses[day as keyof typeof bonuses]);
   };
@@ -332,7 +332,7 @@ export default function CharityQuizClient() {
       setStreakShields(newShields);
       localStorage.setItem('charityQuizShields', String(newShields));
       
-      setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 grains.', type: 'success' });
+      setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 Karma Points.', type: 'success' });
       addToast('Streak Shield Purchased! 🛡️', 'success');
     }
   };
@@ -599,14 +599,14 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       recordDailyActivity();
       
       if (multiplier > 1) {
-        setFeedback({ text: `🔥 COMBO STREAK! 2X MULTIPLIER! +${points} grains donated!`, type: 'success' });
+        setFeedback({ text: `🔥 COMBO STREAK! 2X MULTIPLIER! +${points} Karma Points donated!`, type: 'success' });
       } else if (isPlanetBonus) {
-        setFeedback({ text: `Correct! +${points} grains of rice donated (PLANET BONUS 2X!).`, type: 'success' });
+        setFeedback({ text: `Correct! +${points} Karma Points donated (PLANET BONUS 2X!).`, type: 'success' });
       } else {
-        setFeedback({ text: `Correct! +${points} grains of rice donated.`, type: 'success' });
+        setFeedback({ text: `Correct! +${points} Karma Points donated.`, type: 'success' });
       }
       
-      triggerRiceAnimation();
+      triggerDonationAnimation();
       
       if ('vibrate' in navigator) navigator.vibrate(50);
     } else {
@@ -653,24 +653,24 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     }
   };
 
-  const triggerRiceAnimation = () => {
-    const grains = Array.from({ length: 6 }).map((_, i) => ({
+  const triggerDonationAnimation = () => {
+    const points = Array.from({ length: 6 }).map((_, i) => ({
       id: Date.now() + i,
       left: `calc(50% + ${(Math.random() - 0.5) * 80}px)`,
       delay: `${Math.random() * 0.2}s`,
-      icon: recipientIcons[recipient].float === '✨' ? '🌾' : '🍚'
+      icon: Math.random() > 0.5 ? '🥛' : '🥣'
     }));
-    setRiceGrains(grains);
-    setTimeout(() => setRiceGrains([]), 1500);
+    setDonationIcons(points);
+    setTimeout(() => setDonationIcons([]), 1500);
   };
 
   const handleUseHint = () => {
     if (score >= 5 && currentQuestion?.hint && !showHint) {
       saveScore(score - 5);
       setShowHint(true);
-      setFeedback({ text: 'Hint revealed! -5 grains.', type: 'info' });
+      setFeedback({ text: 'Hint revealed! -5 Karma Points.', type: 'info' });
     } else if (score < 5) {
-      setFeedback({ text: 'Not enough grains! You need 5 to use a hint.', type: 'error' });
+      setFeedback({ text: 'Not enough Karma Points! You need 5 to use a hint.', type: 'error' });
     }
   };
 
@@ -698,7 +698,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleShare = () => {
-    const text = `🌾 I just generated ${score} grains of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
+    const text = `🌾 I just generated ${score} Karma Points of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
     const shareUrl = "https://cyberkarma.me";
     if (navigator.share) {
       navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
@@ -712,7 +712,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
   // Share AI Custom Quiz Accomplishment (Viral Booster)
   const handleShareAIResult = () => {
-    const text = `🧠 I just scored ${aiCorrectCount}/5 in a custom AI-generated quiz on "${aiTopic}" on Cyber FreeRice, donating ${aiCorrectCount * 10} grains of rice! Try any topic here:`;
+    const text = `🧠 I just scored ${aiCorrectCount}/5 in a custom AI-generated quiz on "${aiTopic}" on Cyber FreeRice, donating ${aiCorrectCount * 10} Karma Points! Try any topic here:`;
     if (navigator.share) {
       navigator.share({ title: 'Cyber FreeRice AI Quiz', text, url: window.location.href }).catch(console.error);
     } else {
@@ -852,7 +852,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-300 font-medium' : 'text-slate-800 font-bold'}`}>
             Play daily to transform a life. For every correct answer, we donate{' '}
             <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
-              10 grains of rice
+              10 Karma Points
             </span>{' '}
             to feed <strong className={isDark ? 'text-cyan-300 font-bold' : 'text-cyan-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-blue-300 font-bold' : 'text-blue-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
           </p>
@@ -860,7 +860,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           {/* Highlight Badges */}
           <div className="flex flex-wrap justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider">
             <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 backdrop-blur-md' : 'bg-emerald-50 border-emerald-200 text-emerald-700'}`}>
-              ❤️ 10 Grains Pledged / Answer
+              ❤️ 10 Karma Points Pledged / Answer
             </span>
             <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-300 backdrop-blur-md' : 'bg-cyan-50 border-cyan-200 text-cyan-700'}`}>
               🕊️ 100% Free &amp; Ad-Funded
@@ -901,7 +901,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     </div>
                     <h3 className="text-2xl font-bold mb-3">Quiz Completed!</h3>
                     <p className="text-base opacity-80 mb-8">
-                      You answered {aiCorrectCount} of 5 questions correctly on <strong>{aiTopic}</strong>. <br/>You generated <strong>{aiCorrectCount * 10} grains</strong> of rice!
+                      You answered {aiCorrectCount} of 5 questions correctly on <strong>{aiTopic}</strong>. <br/>You generated <strong>{aiCorrectCount * 10} Karma Points</strong> of rice!
                     </p>
                     <div className="flex justify-center gap-4">
                       <button onClick={handleShareAIResult} className="px-6 py-3 rounded-full font-semibold bg-white text-slate-800 shadow-md hover:scale-105 transition-transform flex items-center gap-2">
@@ -1015,7 +1015,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               </motion.div>
                             ) : (
                               <button onClick={handleUseHint} disabled={score < 5} className={`px-5 py-2.5 rounded-full text-xs font-semibold shadow-sm transition-colors ${score >= 5 ? (isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50') : 'opacity-40 cursor-not-allowed'}`}>
-                                <Lightbulb size={14} className="inline mr-1" /> Use Hint (-5 Grains)
+                                <Lightbulb size={14} className="inline mr-1" /> Use Hint (-5 Karma Points)
                               </button>
                             )}
                           </div>
@@ -1070,10 +1070,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </span>
               </div>
               <h3 className={`text-3xl font-black font-mono ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                {totalGrainsAllTime.toLocaleString()} <span className="text-sm text-blue-500 uppercase tracking-widest">Grains</span>
+                {totalKarmaAllTime.toLocaleString()} <span className="text-sm text-blue-500 uppercase tracking-widest">Karma Points</span>
               </h3>
               <p className={`text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                You have personally funded approximately <strong className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>{(totalGrainsAllTime / 10000).toFixed(2)} meals</strong> for street animals!
+                You have personally funded approximately <strong className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>{(totalKarmaAllTime / 10000).toFixed(2)} meals</strong> for street animals!
               </p>
             </div>
 
@@ -1143,7 +1143,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 >
                   {score.toLocaleString()}
                 </motion.span>
-                <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Grains Donated</span>
+                <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Karma Points Donated</span>
                 
                 {score >= 500 && (
                   <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm shadow-sm">
@@ -1155,7 +1155,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
               <div className="relative h-24 flex flex-col items-center justify-center">
                 <AnimatePresence>
-                  {riceGrains.map(grain => (
+                  {donationIcons.map(grain => (
                     <motion.span
                       key={grain.id}
                       initial={{ opacity: 0, y: -40, scale: 0.5 }}
@@ -1169,7 +1169,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     </motion.span>
                   ))}
                 </AnimatePresence>
-                <motion.div animate={riceGrains.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20">
+                <motion.div animate={donationIcons.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20">
                   {recipientIcons[recipient].base}
                 </motion.div>
               </div>
@@ -1235,10 +1235,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               </div>
             </div>
 
-            {/* Sidebar Ad Placement */}
-            <div className="w-full mt-6">
-              <AdSlot type="square" isDark={isDark} />
-            </div>
           </div>
         </div>
 
