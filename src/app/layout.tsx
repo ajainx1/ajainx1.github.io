@@ -17,38 +17,28 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "CyberKarma | Play Free Quizzes, Learn & Feed Street Animals",
-  description: "Play free educational quizzes for kids and adults! Answer questions about AI, science, and charity. Every correct answer donates real food to feed street dogs and animals.",
-  keywords: ["quizzes", "quiz", "charity", "feed dogs", "learn", "kids", "educational games", "animal welfare", "free quiz game", "donate food", "ai quiz"],
-  authors: [{ name: "CyberKarma Team", url: "https://cyberkarma.me" }],
-  creator: "CyberKarma",
-  publisher: "CyberKarma Charity",
-  manifest: "/manifest-quiz.json",
-  metadataBase: new URL("https://cyberkarma.me"),
+  title: "Aditya Jain - Cybersecurity Engineer & SME",
+  description: "Portfolio of Aditya Jain - Enterprise SecOps, EDR/SIEM SME, Purple Teaming, Threat Hunting, and Security Automation.",
+  keywords: ["Aditya Jain", "Cybersecurity Engineer", "SecOps", "SIEM", "EDR", "Purple Teaming", "Threat Hunting", "SOC", "Security Automation"],
+  authors: [{ name: "Aditya Jain", url: "https://adityasec32.systems" }],
+  creator: "Aditya Jain",
+  publisher: "Aditya Jain",
+  metadataBase: new URL("https://adityasec32.systems"),
   alternates: {
-    canonical: "https://cyberkarma.me",
+    canonical: "https://adityasec32.systems",
   },
   openGraph: {
-    title: "CyberKarma | Play Quizzes & Feed Street Animals",
-    description: "Learn and donate! Play free educational quizzes and help feed street dogs and animals with every correct answer.",
-    url: "https://cyberkarma.me",
-    siteName: "CyberKarma",
-    images: [
-      {
-        url: "/icon.png",
-        width: 800,
-        height: 600,
-        alt: "CyberKarma Charity Quiz",
-      },
-    ],
+    title: "Aditya Jain - Cybersecurity Engineer & SME",
+    description: "Enterprise SecOps, EDR/SIEM SME, Purple Teaming, Threat Hunting, and Security Automation.",
+    url: "https://adityasec32.systems",
+    siteName: "Aditya Jain Portfolio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "CyberKarma | Play Quizzes & Feed Animals",
-    description: "Learn and donate! Play free educational quizzes and help feed street dogs and animals with every correct answer.",
-    images: ["/icon.png"],
+    title: "Aditya Jain - Cybersecurity Engineer & SME",
+    description: "Enterprise SecOps, EDR/SIEM SME, Purple Teaming, Threat Hunting, and Security Automation.",
   },
   robots: {
     index: true,
@@ -63,12 +53,12 @@ export const metadata: Metadata = {
   },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
-    'theme-color': '#0b0f19',
+    'theme-color': '#0f172a',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "CyberKarma",
+    title: "Aditya Jain",
   },
 };
 
