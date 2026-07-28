@@ -1225,12 +1225,12 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               <div className="flex flex-col gap-2 items-center text-center">
                 <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Supported By</span>
                 <Link
-                  href="https://jumpstreet.tech"
+                  href="https://adityasec32.systems"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`text-xs font-semibold hover:underline mt-1 ${isDark ? 'text-slate-400 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-700'}`}
                 >
-                  Orca6 Trading Technology
+                  AdityaSec Security Systems
                 </Link>
               </div>
             </div>
