@@ -1431,9 +1431,19 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 <button
                   onClick={handleGenerateAIQuiz}
                   disabled={isGeneratingAI}
-                  className="w-full py-4 rounded-[20px] font-bold bg-black text-white dark:bg-white dark:text-black hover:scale-[1.02] disabled:opacity-50 transition-all shadow-lg flex items-center justify-center gap-2"
+                  className={`w-full py-4 rounded-[20px] font-bold transition-all shadow-lg flex items-center justify-center gap-3 relative overflow-hidden ${isGeneratingAI ? 'bg-indigo-600 text-white cursor-not-allowed' : 'bg-black text-white dark:bg-white dark:text-black hover:scale-[1.02]'}`}
                 >
-                  {isGeneratingAI ? 'Generating...' : 'Generate Quiz'}
+                  {isGeneratingAI ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
+                      <span className="animate-pulse tracking-wide">Synthesizing Neural Network...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Cpu size={20} />
+                      Generate Quiz
+                    </>
+                  )}
                 </button>
                 <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
               </div>
