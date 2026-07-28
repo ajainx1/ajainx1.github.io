@@ -305,7 +305,7 @@ export default function CharityQuizClient() {
       // Load Supabase session
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user?.email) {
-        handleUserLogin(session.user.email);
+        handleUserLogin(session.user.email, session.user.user_metadata);
       } else {
         const localScore = parseInt(localStorage.getItem('charityKarmaScore') || '0', 10);
         setScore(localScore);
@@ -314,41 +314,48 @@ export default function CharityQuizClient() {
         localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
       
-      // Load daily streaks & shields from local storage
+      // Load daily streaks & shields from local/cloud storage
       const localStreak = parseInt(localStorage.getItem('charityQuizStreak') || '0', 10);
       const localShields = parseInt(localStorage.getItem('charityQuizShields') || '0', 10);
       const localLastPlayed = localStorage.getItem('charityQuizLastPlayedDate') || '';
       const savedAIKey = localStorage.getItem('GEMINI_API_KEY') || '';
-      
-      setDailyStreak(localStreak);
-      setStreakShields(localShields);
-      setLastPlayedDate(localLastPlayed);
-      setAiKey(savedAIKey);
-      const localLastPlayedDate = localStorage.getItem('charityQuizLastPlayed');
       const localTotalKarma = localStorage.getItem('charityTotalKarmaAllTime');
       
-      if (localTotalKarma) {
-        setTotalKarmaAllTime(parseInt(localTotalKarma, 10));
-      }
+      const finalStreak = session?.user?.user_metadata?.dailyStreak ?? localStreak;
+      const finalShields = session?.user?.user_metadata?.streakShields ?? localShields;
+      const finalLastPlayed = session?.user?.user_metadata?.lastPlayedDate ?? localLastPlayed;
+      const finalTotal = session?.user?.user_metadata?.totalKarmaAllTime ?? (localTotalKarma ? parseInt(localTotalKarma, 10) : 0);
+      
+      setDailyStreak(finalStreak);
+      setStreakShields(finalShields);
+      setLastPlayedDate(finalLastPlayed);
+      setAiKey(savedAIKey);
+      setTotalKarmaAllTime(finalTotal);
       
       // Validate streak
-      if (localLastPlayed) {
+      if (finalLastPlayed) {
         const todayStr = new Date().toISOString().split('T')[0];
-        const lastDate = new Date(localLastPlayed);
+        const lastDate = new Date(finalLastPlayed);
         const todayDate = new Date(todayStr);
         const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         if (diffDays > 1) {
           // Missed a day! check shields
-          if (localShields > 0) {
-            const updatedShields = localShields - 1;
+          if (finalShields > 0) {
+            const updatedShields = finalShields - 1;
             setStreakShields(updatedShields);
             localStorage.setItem('charityQuizShields', String(updatedShields));
-            addToast(`🛡️ Your streak of ${localStreak} days was saved by a Streak Shield!`, 'info');
+            if (session?.user && !session.user.email?.startsWith('guest_')) {
+              supabase.auth.updateUser({ data: { streakShields: updatedShields, dailyStreak: finalStreak } }).catch(console.error);
+            }
+            addToast(`🛡️ Your streak of ${finalStreak} days was saved by a Streak Shield!`, 'info');
           } else {
             setDailyStreak(0);
             localStorage.setItem('charityQuizStreak', '0');
+            if (session?.user && !session.user.email?.startsWith('guest_')) {
+              supabase.auth.updateUser({ data: { dailyStreak: 0 } }).catch(console.error);
+            }
           }
         }
       }
@@ -366,7 +373,7 @@ export default function CharityQuizClient() {
     
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user?.email) {
-        handleUserLogin(session.user.email);
+        handleUserLogin(session.user.email, session.user.user_metadata);
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
       }
@@ -375,12 +382,18 @@ export default function CharityQuizClient() {
     return () => authListener.subscription.unsubscribe();
   }, []);
 
-  const handleUserLogin = (email: string) => {
-    const name = email.split('@')[0];
-    const avatar = `https://ui-avatars.com/api/?name=${email}&background=10b981&color=fff`;
+  const handleUserLogin = (email: string, userMetadata?: any) => {
+    const name = userMetadata?.full_name || email.split('@')[0];
+    const avatar = userMetadata?.avatar_url || `https://ui-avatars.com/api/?name=${email}&background=10b981&color=fff`;
     setUser({ email, name, avatar });
-    const userScore = parseInt(localStorage.getItem(`charityKarmaScore_${email}`) || '0', 10);
+    
+    let userScore = parseInt(localStorage.getItem(`charityKarmaScore_${email}`) || '0', 10);
+    if (userMetadata && userMetadata.karmaScore !== undefined) {
+      userScore = userMetadata.karmaScore;
+    }
+    
     setScore(userScore);
+    localStorage.setItem('charityKarmaScore', String(userScore));
     // Initialize level storage so we don't trigger modal on mount
     const calculatedLevel = Math.floor(userScore / 200) + 1;
     localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
@@ -390,15 +403,19 @@ export default function CharityQuizClient() {
     const earned = newScore - score;
     setScore(newScore);
     localStorage.setItem('charityKarmaScore', String(newScore));
+    
+    let newTotal = totalKarmaAllTime;
     if (earned > 0) {
-      setTotalKarmaAllTime(prev => {
-        const updated = prev + earned;
-        localStorage.setItem('charityTotalKarmaAllTime', String(updated));
-        return updated;
-      });
+      newTotal = totalKarmaAllTime + earned;
+      setTotalKarmaAllTime(newTotal);
+      localStorage.setItem('charityTotalKarmaAllTime', String(newTotal));
     }
+    
     if (user) {
       localStorage.setItem(`charityKarmaScore_${user.email}`, String(newScore));
+      if (!user.email.startsWith('guest_')) {
+        supabase.auth.updateUser({ data: { karmaScore: newScore, totalKarmaAllTime: newTotal } }).catch(console.error);
+      }
     }
   };
 
@@ -437,6 +454,10 @@ export default function CharityQuizClient() {
       setLastPlayedDate(todayStr);
       localStorage.setItem('charityQuizLastPlayedDate', todayStr);
       localStorage.setItem('charityQuizStreak', String(newStreak));
+      
+      if (user && !user.email.startsWith('guest_')) {
+        supabase.auth.updateUser({ data: { dailyStreak: newStreak, lastPlayedDate: todayStr } }).catch(console.error);
+      }
     }
   };
 
@@ -448,6 +469,10 @@ export default function CharityQuizClient() {
       saveScore(newScore);
       setStreakShields(newShields);
       localStorage.setItem('charityQuizShields', String(newShields));
+      
+      if (user && !user.email.startsWith('guest_')) {
+        supabase.auth.updateUser({ data: { streakShields: newShields } }).catch(console.error);
+      }
       
       setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 Karma Points.', type: 'success' });
       addToast('Streak Shield Purchased! 🛡️', 'success');
