@@ -250,10 +250,10 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <Link href="https://jumpstreet.systems" target="_blank" rel="noopener noreferrer" className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+              <a href="https://jumpstreet.systems" target="_blank" rel="noopener noreferrer" className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 <span>JumpStreet Portal</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </a>
               <Link href="https://cyberkarma.me" className="group px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full hover:from-emerald-400 hover:to-teal-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
                 <span className="text-lg">🎮</span>
                 <span>Play Charity Quiz</span>
