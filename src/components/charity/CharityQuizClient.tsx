@@ -967,7 +967,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-6">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
         
         {/* Highlighted Supreme Intro Banner */}
         <motion.div 
@@ -1011,17 +1011,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         </motion.div>
 
         {/* Dynamic Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Left Spacer (Desktop Only) - Ads Removed for UX */}
-          <div className="hidden lg:block lg:col-span-2 xl:col-span-2 space-y-6">
-            <div className="sticky top-6 flex flex-col gap-6">
-              {/* Ad clutter removed */}
-            </div>
-          </div>
-
           {/* Center Column: Active Quiz Panel */}
-          <div className="lg:col-span-6 xl:col-span-7 space-y-6">
+          <div className="lg:col-span-8 space-y-8">
             
 
 
@@ -1213,7 +1206,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </div>
 
           {/* Right Column: Staking Stats & Widgets */}
-          <div className="lg:col-span-4 xl:col-span-3 space-y-6">
+          <div className="lg:col-span-4 space-y-8">
             
 
 
