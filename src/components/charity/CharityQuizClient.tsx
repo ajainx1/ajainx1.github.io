@@ -1226,12 +1226,12 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               <div className="flex flex-col gap-2 items-center text-center">
                 <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Supported By</span>
                 <Link
-                  href="https://jumpstreet.tech"
+                  href="https://adityasec32.systems"
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`text-xs font-semibold hover:underline mt-1 ${isDark ? 'text-slate-400 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-700'}`}
                 >
-                  Orca6 Trading Technology
+                  AdityaSec Security Systems
                 </Link>
               </div>
             </div>
@@ -1250,10 +1250,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         {/* Global Redirect Footer */}
         <footer className={`w-full text-center py-8 mt-12 border-t ${isDark ? 'border-white/5' : 'border-black/5'}`}>
           <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-4 text-xs font-bold uppercase tracking-widest">
-            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">About</Link>
-            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Contact</Link>
-            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
-            <Link href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
+            <Link href="/about" className="hover:text-emerald-400 transition-colors">About</Link>
+            <Link href="/faq" className="hover:text-emerald-400 transition-colors">FAQ & Contact</Link>
+            <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
           </div>
           <p className="text-[10px] font-mono opacity-50 uppercase tracking-widest">
             Developed & Managed by <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">Aditya</a>

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, ShieldCheck, Zap, Server, TrendingUp } from 'lucide-react';
+import { ExternalLink, ShieldCheck, Zap, Server, TrendingUp, Heart } from 'lucide-react';
 
 interface AdSenseBannerProps {
   refreshKey?: string | number;
@@ -13,14 +13,14 @@ interface AdSenseBannerProps {
 const SPONSOR_ADS = [
   {
     id: 1,
-    title: "Orca6™ High-Frequency Trading VPS",
-    sponsor: "Jumpstreet Cloud Infrastructure",
-    desc: "Sub-millisecond Windows Server VPS pre-installed with automated watchdog algorithms.",
-    badge: "Sponsored • Est CPM $8.50",
-    cta: "Claim Free Trial",
-    link: "/js",
-    icon: <Server size={18} className="text-emerald-400" />,
-    gradient: "from-emerald-950/90 via-slate-900 to-slate-950 border-emerald-500/40",
+    title: "Sponsor a Street Animal Feeding Drive",
+    sponsor: "CyberKarma Charity Foundation",
+    desc: "Your business can sponsor a 50-bowl feeding drive in Patna. Get a featured shoutout here!",
+    badge: "Sponsorship Available",
+    cta: "Contact Us",
+    link: "/faq",
+    icon: <Heart size={18} className="text-rose-400" />,
+    gradient: "from-rose-950/90 via-slate-900 to-slate-950 border-rose-500/40",
   },
   {
     id: 2,
@@ -32,29 +32,7 @@ const SPONSOR_ADS = [
     link: "https://adityasec32.systems",
     icon: <ShieldCheck size={18} className="text-cyan-400" />,
     gradient: "from-cyan-950/90 via-slate-900 to-slate-950 border-cyan-500/40",
-  },
-  {
-    id: 3,
-    title: "Apex Algorithmic Indicator Suite",
-    sponsor: "Mangalik & Sons Quant Lab",
-    desc: "Institutional order-book imbalance execution & real-time signal relay to Telegram.",
-    badge: "Direct Ad Unit • Live",
-    cta: "View Strategy",
-    link: "/js",
-    icon: <TrendingUp size={18} className="text-teal-400" />,
-    gradient: "from-teal-950/90 via-slate-900 to-slate-950 border-teal-500/40",
-  },
-  {
-    id: 4,
-    title: "Zero-Latency Equinix LD4 Edge Nodes",
-    sponsor: "Global Network Relay",
-    desc: "Dual-homed 5G network routing with 99.99% uptime SLA for automated trading.",
-    badge: "Sponsored Ad Unit",
-    cta: "Deploy Node",
-    link: "/js",
-    icon: <Zap size={18} className="text-amber-400" />,
-    gradient: "from-amber-950/90 via-slate-900 to-slate-950 border-amber-500/40",
-  },
+  }
 ];
 
 export default function AdSenseBanner({ refreshKey = 0, className = "", isDark = true }: AdSenseBannerProps) {
