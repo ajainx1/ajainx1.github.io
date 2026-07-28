@@ -43,7 +43,7 @@ const levelTitles = [
 
 const QuizImage = ({ category, question }: { category: string, question: string }) => {
   const [error, setError] = useState(false);
-  const aiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + question)}?width=800&height=400&nologo=true`;
+  const aiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + question)}?width=800&height=800&nologo=true`;
   const fallbackUrl = `/category_${['animals', 'nature', 'humanities', 'science', 'gk'].includes(category) ? category : 'science'}.jpg`;
 
   useEffect(() => {
@@ -1072,11 +1072,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         <link 
                           rel="preload" 
                           as="image" 
-                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || ''))}?width=800&height=400&nologo=true`} 
+                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || ''))}?width=800&height=800&nologo=true`} 
                         />
                       )}
                       
-                      <div className="w-full h-48 sm:h-64 mb-6 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
+                      <div className="w-full aspect-square sm:aspect-[4/3] max-h-[450px] mb-6 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
@@ -1084,10 +1084,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         {nextQuestionToPrefetch && (
                           <div className="hidden">
                             <Image 
-                              src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + nextQuestionToPrefetch.question)}?width=800&height=400&nologo=true`}
+                              src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + nextQuestionToPrefetch.question)}?width=800&height=800&nologo=true`}
                               alt="prefetch"
                               width={800}
-                              height={400}
+                              height={800}
                               priority={true}
                             />
                           </div>
