@@ -906,11 +906,17 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
       {/* Header */}
       <header className={`sticky top-0 z-50 px-4 sm:px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
-        {/* Founder Profile Link */}
+        {/* Professional Live Indicator */}
         <div className="flex-1 flex justify-start">
-          <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-emerald-500/10 hover:bg-emerald-500/20 transition-all border border-emerald-500/30 shadow-sm flex items-center justify-center group" title="Founder Profile">
-            <Shield className="w-5 h-5 text-emerald-400 group-hover:scale-110 transition-transform" />
-          </a>
+          <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
+            <div className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </div>
+            <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
+              Live Network
+            </span>
+          </div>
         </div>
         
         <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 font-semibold text-lg tracking-tight whitespace-nowrap z-10 pointer-events-none">
@@ -1387,9 +1393,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
             <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
           </div>
-          <p className="text-[10px] font-mono opacity-50 uppercase tracking-widest">
-            Developed & Managed by <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline">Aditya</a>
-          </p>
+          <div className="flex items-center justify-center gap-1.5 text-[10px] font-mono opacity-50 uppercase tracking-widest mt-2">
+            <Shield size={12} className="text-emerald-500" />
+            <span>Developed & Managed by <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline font-bold">AdityaSec Security Systems</a></span>
+          </div>
         </footer>
       </main>
 
