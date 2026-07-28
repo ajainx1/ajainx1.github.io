@@ -1086,7 +1086,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       <button
                         key={cat}
                         onClick={() => setCategory(cat)}
-                        className={`flex-1 min-w-[30%] px-3 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                        className={`px-3 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
                       >
                         {cat}
                       </button>
