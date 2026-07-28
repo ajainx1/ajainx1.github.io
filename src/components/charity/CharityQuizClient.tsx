@@ -939,7 +939,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         <link 
                           rel="preload" 
                           as="image" 
-                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) + " highly detailed 8k resolution digital art masterpiece")}?width=800&height=400&nologo=true`} 
+                          href={`https://picsum.photos/seed/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || '').substring(0, 15))}/800/400?blur=2`} 
                         />
                       )}
                       
@@ -947,14 +947,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
-                        {/* The AI Image */}
+                        {/* The Image */}
                         <Image 
-                          key={currentQuestion.question} // Force re-render on new question
-                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentQuestion.question + " highly detailed 8k resolution digital art masterpiece")}?width=800&height=400&nologo=true`}
-                          alt="AI generated visual for question"
+                          key={currentQuestion.question} 
+                          src={`https://picsum.photos/seed/${encodeURIComponent(currentQuestion.question.substring(0, 15))}/800/400?blur=2`}
+                          alt="Question visual"
                           fill
                           className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
                           sizes="(max-width: 768px) 100vw, 800px"
+                          priority={true}
                         />
                         
                         {/* Gradient overlay for text readability if needed later, and sleek aesthetic */}

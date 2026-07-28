@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import BackgroundWrapper from "@/components/3d/BackgroundWrapper";
+import dynamic from 'next/dynamic';
+const BackgroundWrapper = dynamic(() => import('@/components/3d/BackgroundWrapper'), { ssr: false });
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
 import SecurityGuard from "@/components/SecurityGuard";
