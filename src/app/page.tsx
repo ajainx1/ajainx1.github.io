@@ -10,6 +10,7 @@ const CharityQuizClient = dynamic(() => import('@/components/charity/CharityQuiz
 });
 import { ToastProvider } from '@/components/js/ToastContext';
 import { Metadata } from 'next';
+import MilestoneModal from '@/components/charity/MilestoneModal';
 
 export const metadata: Metadata = {
   title: 'CyberKarma | Answer Questions, Feed Animals',
@@ -20,6 +21,7 @@ export const metadata: Metadata = {
 export default function CyberKarmaHomePage() {
   return (
     <ToastProvider>
+      <MilestoneModal />
       <CharityQuizClient />
     </ToastProvider>
   );
