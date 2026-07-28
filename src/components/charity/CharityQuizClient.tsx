@@ -972,17 +972,23 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
+                        {/* High Speed Image Prefetching for the NEXT question */}
+                        {nextQuestionToPrefetch && (
+                          <div className="hidden">
+                            <Image 
+                              src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + nextQuestionToPrefetch.question)}?width=800&height=400&nologo=true`}
+                              alt="prefetch"
+                              width={800}
+                              height={400}
+                              priority={true}
+                            />
+                          </div>
+                        )}
+
                         {/* The Image */}
                         <Image 
-                          key={category} 
-                          src={
-                            category === 'animals' ? '/category_animals.jpg' :
-                            category === 'nature' ? '/category_nature.jpg' :
-                            category === 'humanities' ? '/category_humanities.jpg' :
-                            category === 'science' ? '/category_science.jpg' :
-                            category === 'gk' ? '/category_gk.jpg' :
-                            '/category_science.jpg'
-                          }
+                          key={currentQuestion.question} 
+                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + currentQuestion.question)}?width=800&height=400&nologo=true`}
                           alt="Question visual"
                           fill
                           className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
