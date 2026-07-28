@@ -33,14 +33,14 @@ const STREET_FEEDING_DRIVE = [
     tag: 'Zero Animal Hunger'
   },
   {
-    src: '/impact/street-dog-19.jpg',
+    src: '/impact/street-dog-17.jpg',
     title: 'Daily Stray Hydration',
     location: 'Patna Division, Bihar',
     date: '26 Jul 2026 • 5:21 PM',
     tag: 'Direct Street Feeding'
   },
   {
-    src: '/impact/street-dog-20.jpg',
+    src: '/impact/street-dog-13.jpg',
     title: 'Night Stall Feeding Spot',
     location: 'Egg Vendor Hub, Patna, Bihar',
     date: '22 Jul 2026 • 7:18 PM',
