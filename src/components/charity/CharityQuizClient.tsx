@@ -1244,7 +1244,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     </button>
                     <button
                       onClick={() => setShowAIModal(true)}
-                      className={`w-full px-4 py-3 rounded-[16px] text-[12px] font-bold transition-all flex justify-center items-center gap-2 shadow-sm ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'bg-gradient-to-r from-purple-900/40 to-indigo-900/40 border border-purple-500/30 hover:border-purple-500/60 text-purple-300 hover:text-white' : 'bg-gradient-to-r from-purple-50 to-indigo-50 border border-purple-200 text-purple-800 hover:bg-purple-100 hover:border-purple-300'}`}
+                      className={`w-full px-4 py-3 rounded-[16px] text-[12px] font-bold transition-all flex justify-center items-center gap-2 shadow-sm ${category === 'custom-ai' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-md' : isDark ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/50 hover:border-amber-400 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 hover:text-amber-100 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]' : 'bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 text-amber-800 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:border-amber-500 hover:shadow-md'}`}
                     >
                       <Cpu size={16} /> Choose Any Topic
                     </button>
