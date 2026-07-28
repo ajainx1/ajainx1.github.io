@@ -939,7 +939,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         <link 
                           rel="preload" 
                           as="image" 
-                          href={`https://picsum.photos/seed/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || '').substring(0, 15))}/800/400?blur=2`} 
+                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || ''))}?width=800&height=400&nologo=true`} 
                         />
                       )}
                       
@@ -950,7 +950,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         {/* The Image */}
                         <Image 
                           key={currentQuestion.question} 
-                          src={`https://picsum.photos/seed/${encodeURIComponent(currentQuestion.question.substring(0, 15))}/800/400?blur=2`}
+                          src={`https://image.pollinations.ai/prompt/${encodeURIComponent(currentQuestion.question)}?width=800&height=400&nologo=true`}
                           alt="Question visual"
                           fill
                           className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
