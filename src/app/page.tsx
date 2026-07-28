@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'CyberKarma — Play Quizzes & Feed Animals',
-  description: 'Stake threat intelligence trivia answers to generate karmic impact.',
+  description: 'Play free cybersecurity quizzes and help feed stray animals. Every correct answer donates food to animals in need.',
   manifest: '/manifest-quiz.json',
 };
 

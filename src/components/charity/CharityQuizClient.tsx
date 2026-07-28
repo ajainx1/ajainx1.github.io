@@ -412,7 +412,7 @@ export default function CharityQuizClient() {
       if (calculatedLevel > storedLvl) {
         localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
         
-        let title = "Chandra Novice";
+        let title = "Packet Novice";
         for (const item of levelTitles) {
           if (calculatedLevel >= item.minLvl) {
             title = item.title;
@@ -726,7 +726,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   const progressPct = Math.min((milestone / 500) * 100, 100);
   
   const level = Math.floor(score / 200) + 1;
-  let currentLevelTitle = "Chandra Novice";
+  let currentLevelTitle = "Packet Novice";
   for (const item of levelTitles) {
     if (level >= item.minLvl) {
       currentLevelTitle = item.title;
@@ -850,7 +850,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </h1>
 
           <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-300 font-medium' : 'text-slate-800 font-bold'}`}>
-            Play daily to transform a life. For every correct answer, we donate{' '}
+            Test your cybersecurity knowledge. Every correct answer donates{' '}
             <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
               10 Karma Points
             </span>{' '}
@@ -878,11 +878,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         {/* Dynamic Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          {/* Left Ad Column (Desktop Only) */}
+          {/* Left Spacer (Desktop Only) - Ads Removed for UX */}
           <div className="hidden lg:block lg:col-span-2 xl:col-span-2 space-y-6">
             <div className="sticky top-6 flex flex-col gap-6">
-              <AdSlot type="square" isDark={isDark} className="h-64" />
-              <AdSlot type="square" isDark={isDark} className="h-64" />
+              {/* Ad clutter removed */}
             </div>
           </div>
 
