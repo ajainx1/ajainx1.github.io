@@ -1057,7 +1057,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               onClick={() => handleAnswer(i)}
                               className={btnClass}
                             >
-                              <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10')}`}>
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : '')}`}>
                                 {String.fromCharCode(65 + i)}
                               </div>
                               {opt}
