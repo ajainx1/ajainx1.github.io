@@ -698,7 +698,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleShare = () => {
-    const text = `🌾 I just generated ${score} Karma Points of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
+    const text = `🐾 I just generated ${score} Karma Points of karmic impact on CyberKarma! Play fun quizzes & help provide milk and curd to street dogs:`;
     const shareUrl = "https://cyberkarma.me";
     if (navigator.share) {
       navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
@@ -811,23 +811,19 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           animate={{ x: ["0%", "-50%"] }}
           transition={{ ease: "linear", duration: 30, repeat: Infinity }}
         >
-          <span className="mx-4">🌍 1 grain of rice makes a difference.</span>
-          <span className="mx-4">💻 90% of cyber attacks start with phishing.</span>
+          <span className="mx-4">🐾 Every drop of milk makes a difference for street dogs.</span>
           <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
-          <span className="mx-4">🚀 Space debris travels at 17,500 mph!</span>
-          <span className="mx-4">🕊️ Every quiz answered feeds a soul.</span>
-          <span className="mx-4">🧠 AI can predict protein structures in minutes.</span>
-          <span className="mx-4">🐄 Over 1 billion cows exist globally.</span>
-          <span className="mx-4">🛡️ Use MFA to prevent 99% of unauthorized logins.</span>
+          <span className="mx-4">🥛 A bowl of milk and curd provides essential nutrition.</span>
+          <span className="mx-4">🕊️ Every question answered feeds a hungry soul.</span>
+          <span className="mx-4">🐄 Our dairy donations support local farmers too.</span>
+          <span className="mx-4">❤️ Good karma returns to those who help animals.</span>
           {/* Duplicate for seamless infinite loop */}
-          <span className="mx-4">🌍 1 grain of rice makes a difference.</span>
-          <span className="mx-4">💻 90% of cyber attacks start with phishing.</span>
+          <span className="mx-4">🐾 Every drop of milk makes a difference for street dogs.</span>
           <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
-          <span className="mx-4">🚀 Space debris travels at 17,500 mph!</span>
-          <span className="mx-4">🕊️ Every quiz answered feeds a soul.</span>
-          <span className="mx-4">🧠 AI can predict protein structures in minutes.</span>
-          <span className="mx-4">🐄 Over 1 billion cows exist globally.</span>
-          <span className="mx-4">🛡️ Use MFA to prevent 99% of unauthorized logins.</span>
+          <span className="mx-4">🥛 A bowl of milk and curd provides essential nutrition.</span>
+          <span className="mx-4">🕊️ Every question answered feeds a hungry soul.</span>
+          <span className="mx-4">🐄 Our dairy donations support local farmers too.</span>
+          <span className="mx-4">❤️ Good karma returns to those who help animals.</span>
         </motion.div>
       </div>
 
@@ -850,11 +846,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </h1>
 
           <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-300 font-medium' : 'text-slate-800 font-bold'}`}>
-            Test your cybersecurity knowledge. Every correct answer donates{' '}
+            Play fun, educational quizzes. Every correct answer donates{' '}
             <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
               10 Karma Points
             </span>{' '}
-            to feed <strong className={isDark ? 'text-cyan-300 font-bold' : 'text-cyan-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-blue-300 font-bold' : 'text-blue-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
+            to provide <strong className={isDark ? 'text-cyan-300 font-bold' : 'text-cyan-700 font-extrabold'}>milk and curd</strong> to <strong className={isDark ? 'text-blue-300 font-bold' : 'text-blue-700 font-extrabold'}>street dogs</strong>. Your time creates real-world miracles.
           </p>
 
           {/* Highlight Badges */}
@@ -871,7 +867,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </div>
 
           <div className={`mt-6 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-emerald-100 border-emerald-300 text-emerald-800'}`}>
-            14,203,500 GRAINS DONATED → ≈ 1,420 MEALS PROVIDED
+            14,203,500 KARMA POINTS DONATED → ≈ 1,420 BOWLS OF MILK & CURD
           </div>
         </motion.div>
 
