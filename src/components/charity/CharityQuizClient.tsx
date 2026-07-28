@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import ImpactGallery from './ImpactGallery';
+import dynamic from 'next/dynamic';
+const ImpactGallery = dynamic(() => import('./ImpactGallery'), { ssr: false, loading: () => <div className="animate-pulse bg-white/5 rounded-[32px] h-96 w-full mt-8" /> });
 import AdSlot from '../ads/AdSlot';
 import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';

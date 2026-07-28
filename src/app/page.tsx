@@ -1,5 +1,14 @@
 import React from 'react';
-import CharityQuizClient from '@/components/charity/CharityQuizClient';
+import dynamic from 'next/dynamic';
+const CharityQuizClient = dynamic(() => import('@/components/charity/CharityQuizClient'), {
+  ssr: false,
+  loading: () => (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0b0f19]">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-emerald-500 mb-4"></div>
+      <p className="text-emerald-500 font-mono text-sm tracking-widest animate-pulse">LOADING CYBERKARMA...</p>
+    </div>
+  )
+});
 import { ToastProvider } from '@/components/js/ToastContext';
 import { Metadata } from 'next';
 
