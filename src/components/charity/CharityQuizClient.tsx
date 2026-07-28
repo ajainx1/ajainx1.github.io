@@ -1058,20 +1058,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           {/* Right Column: Staking Stats & Widgets */}
           <div className="lg:col-span-4 xl:col-span-3 space-y-6">
             
-            {/* Phase 2: Personal Impact Dashboard Widget */}
-            <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-3 relative overflow-hidden ${isDark ? 'bg-gradient-to-b from-blue-900/20 to-slate-900/50 border-blue-500/20' : 'bg-gradient-to-b from-blue-50 to-white border-blue-200'}`}>
-              <div className="flex items-center gap-2 mb-1">
-                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-blue-200 text-blue-800 border-blue-400'}`}>
-                  Your Personal Impact
-                </span>
-              </div>
-              <h3 className={`text-3xl font-black font-mono ${isDark ? 'text-white' : 'text-slate-900'}`}>
-                {totalKarmaAllTime.toLocaleString()} <span className="text-sm text-blue-500 uppercase tracking-widest">Karma Points</span>
-              </h3>
-              <p className={`text-xs font-bold ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                You have personally funded approximately <strong className={isDark ? 'text-emerald-400' : 'text-emerald-600'}>{(totalKarmaAllTime / 10000).toFixed(2)} meals</strong> for street animals!
-              </p>
-            </div>
+
 
             {/* Categories & Difficulty Container (Sidebar Layout) */}
             <div className={`p-5 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
