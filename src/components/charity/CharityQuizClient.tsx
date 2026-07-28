@@ -1034,20 +1034,29 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                             animate={{ opacity: 1, height: 'auto', y: 0 }} 
                             className={`mt-6 p-6 rounded-[24px] border ${isDark ? 'bg-blue-500/10 border-blue-500/20' : 'bg-blue-50 border-blue-200'}`}
                           >
-                            <div className="flex flex-col gap-4">
-                              <div>
-                                <h4 className={`text-sm font-black uppercase tracking-widest mb-2 ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>Did You Know?</h4>
-                                <p className={`text-base leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                                  {currentQuestion.explanation}
-                                </p>
-                              </div>
-                              <button 
-                                onClick={handleNextQuestion}
-                                className={`w-full py-4 rounded-full text-sm font-black uppercase tracking-widest transition-all ${isDark ? 'bg-white text-slate-900 hover:bg-gray-200 shadow-lg' : 'bg-slate-900 text-white hover:bg-slate-800 shadow-lg'}`}
-                              >
-                                Next Question →
-                              </button>
+                            <div>
+                              <h4 className={`text-sm font-black uppercase tracking-widest mb-2 ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>Did You Know?</h4>
+                              <p className={`text-base leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
+                                {currentQuestion.explanation}
+                              </p>
                             </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <AnimatePresence>
+                        {isAnswered && (
+                          <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="mt-6"
+                          >
+                            <button 
+                              onClick={handleNextQuestion}
+                              className={`w-full py-4 rounded-full text-sm font-black uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] ${isDark ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-900 shadow-[0_0_20px_rgba(52,211,153,0.3)]' : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'}`}
+                            >
+                              Next Question →
+                            </button>
                           </motion.div>
                         )}
                       </AnimatePresence>
