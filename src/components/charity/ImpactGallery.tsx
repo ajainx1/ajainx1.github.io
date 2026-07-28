@@ -121,27 +121,52 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
             </div>
             
             <div className="relative w-full overflow-hidden rounded-[20px]">
-              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[var(--bg)] to-transparent z-10" style={{ opacity: isDark ? 0.8 : 0.4 }} />
-              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[var(--bg)] to-transparent z-10" style={{ opacity: isDark ? 0.8 : 0.4 }} />
+              <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[var(--bg)] to-transparent z-10 pointer-events-none" style={{ opacity: isDark ? 0.8 : 0.4 }} />
+              <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[var(--bg)] to-transparent z-10 pointer-events-none" style={{ opacity: isDark ? 0.8 : 0.4 }} />
               
-              <div className="flex gap-3 py-2 px-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                {Array.from({ length: 18 }).map((_, i) => {
-                  const imgIndex = (i % 18) + 1;
-                  return (
-                    <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10 snap-center">
-                      <Image 
-                        src={`/impact/impact-${imgIndex}.jpeg`} 
-                        alt={`Real-World Impact ${imgIndex}`} 
-                        fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-700" 
-                      />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                        <Heart size={16} className="text-white fill-white" />
+              <div className="w-full py-2">
+                <motion.div 
+                  className="flex gap-3 px-2 w-max"
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+                >
+                  {/* First Set */}
+                  {Array.from({ length: 18 }).map((_, i) => {
+                    const imgIndex = (i % 18) + 1;
+                    return (
+                      <div key={`set1-${i}`} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                        <Image 
+                          src={`/impact/impact-${imgIndex}.jpeg`} 
+                          alt={`Real-World Impact ${imgIndex}`} 
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 pointer-events-none" 
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
+                          <Heart size={16} className="text-white fill-white" />
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                  {/* Second Set for seamless loop */}
+                  {Array.from({ length: 18 }).map((_, i) => {
+                    const imgIndex = (i % 18) + 1;
+                    return (
+                      <div key={`set2-${i}`} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                        <Image 
+                          src={`/impact/impact-${imgIndex}.jpeg`} 
+                          alt={`Real-World Impact ${imgIndex}`} 
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700 pointer-events-none" 
+                        />
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors pointer-events-none" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
+                          <Heart size={16} className="text-white fill-white" />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </motion.div>
               </div>
             </div>
           </div>
