@@ -93,10 +93,28 @@ const AnimatedTitle = () => {
 };
 
 // High-performance Web Audio API Synthesizer (Zero network overhead)
+let globalAudioCtx: AudioContext | null = null;
+
+const getAudioContext = () => {
+  if (!globalAudioCtx) {
+    const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext;
+    if (AudioContextClass) {
+      globalAudioCtx = new AudioContextClass();
+    }
+  }
+  return globalAudioCtx;
+};
+
 const playSound = (type: 'correct' | 'wrong' | 'levelup') => {
   try {
-    const AudioContext = (window as any).AudioContext || (window as any).webkitAudioContext;
-    const ctx = new AudioContext();
+    const ctx = getAudioContext();
+    if (!ctx) return;
+    
+    // Resume context if it was suspended (browser autoplay policy)
+    if (ctx.state === 'suspended') {
+      ctx.resume();
+    }
+
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     
