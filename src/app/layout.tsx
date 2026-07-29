@@ -80,8 +80,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#0b0f19" />
+        <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -107,7 +107,6 @@ export default function RootLayout({
           }}
         />
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
-        <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
         <Script
           id="adsbygoogle-init"
           strategy="afterInteractive"
@@ -124,7 +123,7 @@ export default function RootLayout({
         className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-[var(--bg)] text-[var(--fg)]`}
       >
         <BackgroundWrapper />
-        <div className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
+        <div aria-hidden="true" className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
         {children}
         <PWAInstallPrompt />
         <TelegramVisitorLogger />

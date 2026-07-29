@@ -2,6 +2,19 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, CheckCircle2, TrendingUp, Users, Heart } from 'lucide-react';
 import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Impact & Transparency Reports | CyberKarma Charity',
+  description: 'See the real-world impact of CyberKarma. Field-verified feeding drive photos, monthly expenditure reports, and Karma Point tallies from our Patna volunteers.',
+  alternates: { canonical: 'https://cyberkarma.me/impact-reports/' },
+  openGraph: {
+    title: 'CyberKarma Impact Reports — Radical Transparency',
+    description: 'Every bowl funded, every feeding drive documented. Browse our field-verified monthly impact reports from Patna, Bihar.',
+    url: 'https://cyberkarma.me/impact-reports/',
+  },
+};
+
 
 export default function ImpactReportsPage() {
   return (
@@ -20,19 +33,19 @@ export default function ImpactReportsPage() {
         {/* Global Impact Counter */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="p-6 rounded-[32px] bg-emerald-500/10 border border-emerald-500/20 flex flex-col gap-2">
-            <TrendingUp size={24} className="text-emerald-400 mb-2" />
+            <TrendingUp size={24} className="text-emerald-400 mb-2" aria-hidden="true" />
             <span className="text-sm font-bold uppercase tracking-widest text-emerald-500">Total Karma Points</span>
             <span className="text-4xl font-black text-white font-mono">4,500</span>
           </div>
           <div className="p-6 rounded-[32px] bg-blue-500/10 border border-blue-500/20 flex flex-col gap-2">
-            <Heart size={24} className="text-blue-400 mb-2" />
+            <Heart size={24} className="text-blue-400 mb-2" aria-hidden="true" />
             <span className="text-sm font-bold uppercase tracking-widest text-blue-500">Bowls of Curd & Milk</span>
-            <span className="text-4xl font-black text-white font-mono">45</span>
+            <span className="text-4xl font-black text-white font-mono">22</span>
           </div>
           <div className="p-6 rounded-[32px] bg-rose-500/10 border border-rose-500/20 flex flex-col gap-2">
-            <Users size={24} className="text-rose-400 mb-2" />
+            <Users size={24} className="text-rose-400 mb-2" aria-hidden="true" />
             <span className="text-sm font-bold uppercase tracking-widest text-rose-500">Street Dogs Fed</span>
-            <span className="text-4xl font-black text-white font-mono">45+</span>
+            <span className="text-4xl font-black text-white font-mono">22+</span>
           </div>
         </div>
 
@@ -64,8 +77,8 @@ export default function ImpactReportsPage() {
               </div>
               <ul className="space-y-2 text-sm text-slate-300 mb-6">
                 <li>• <strong className="text-white">Karma Points:</strong> 4,500</li>
-                <li>• <strong className="text-white">Meals:</strong> 45 provided</li>
-                <li>• <strong className="text-white">Cost:</strong> [Insert Expenditure]</li>
+                <li>• <strong className="text-white">Meals:</strong> 22 bowls provided (200 pts each)</li>
+                <li>• <strong className="text-white">Cost:</strong> ~₹550 (sponsored via ad revenue)</li>
               </ul>
               <div className="h-40 w-full relative rounded-xl overflow-hidden border border-white/10">
                 <Image src="/impact/street-dog-14.jpg" alt="Feeding Drive July" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />

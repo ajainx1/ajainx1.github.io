@@ -1,8 +1,8 @@
 {
-  "name": "Cyber Free Rice",
-  "short_name": "Free Rice",
-  "description": "Stake threat intelligence trivia answers to generate karmic impact.",
-  "start_url": "/charity-quiz",
+  "name": "CyberKarma Charity Quiz",
+  "short_name": "CyberKarma",
+  "description": "Play free quizzes and donate food to street animals with every correct answer.",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#020817",
   "theme_color": "#10b981",

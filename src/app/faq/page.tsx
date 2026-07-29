@@ -1,10 +1,45 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, Mail } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'FAQ & Contact | CyberKarma Charity Quiz',
+  description: 'Frequently asked questions about CyberKarma. Learn how Karma Points work, how 200 points funds one bowl of food, and how to contact the team.',
+  alternates: { canonical: 'https://cyberkarma.me/faq/' },
+  openGraph: {
+    title: 'FAQ & Contact — CyberKarma',
+    description: 'Got questions? Learn how CyberKarma converts quiz answers into real food for street animals in Patna, Bihar.',
+    url: 'https://cyberkarma.me/faq/',
+  },
+};
 
 export default function FAQPage() {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How many Karma Points equal a bowl of food?",
+        "acceptedAnswer": { "@type": "Answer", "text": "It takes 200 Karma Points to fund one bowl of fresh curd and milk. Each correct standard question gives you 10 points, so you can feed an animal with just 20 correct answers!" }
+      },
+      {
+        "@type": "Question",
+        "name": "Who verifies the feeding drives?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Our local volunteers physically carry out the feeding drives in Patna. We upload field-verified photos directly to our Impact Reports gallery, complete with timestamps and geo-tags." }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it really 100% free?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes. You never have to pay a single cent. The food is funded by the ethical advertisers and corporate sponsors displayed on the website." }
+      }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-slate-950 text-white p-6 sm:p-12 font-inter selection:bg-emerald-500/30">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <div className="max-w-3xl mx-auto space-y-12">
         <div className="space-y-6">
           <Link href="/" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors">

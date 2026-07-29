@@ -1,6 +1,13 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | CyberKarma',
+  description: 'Read the CyberKarma Privacy Policy. We use minimal data collection. Your scores are stored locally. We use Google AdSense and may use AI providers for the Custom Quiz feature.',
+  alternates: { canonical: 'https://cyberkarma.me/privacy/' },
+};
 
 export default function PrivacyPage() {
   return (

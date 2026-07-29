@@ -12,8 +12,8 @@ import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 import TiltWrapper from '@/components/3d/TiltWrapper';
 // Initialize Supabase client
-const __ENCODED_KEY__ = "QVEuQWI4Uk42SmhzbkZfOURvY2MyZHNzWXlCdGZhMHpyYWFaNGVDcW1vazNEUnZnZjlPSEE=";
-const GLOBAL_GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || (typeof window !== 'undefined' ? atob(__ENCODED_KEY__) : '');
+// Note: AI quiz features require a Gemini API key from the user or NEXT_PUBLIC_GEMINI_API_KEY env var
+const GLOBAL_GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhraGdjY3hpbWNyc2RwZGxza3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ0OTksImV4cCI6MjA5OTI0MDQ5OX0.R9t0QNG0voJPyxhZkXO2hQtD4_Gr2xdnGyI8AlTOk5g';
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1035,7 +1035,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </div>
 
           <div className={`mt-6 px-4 sm:px-6 py-3 rounded-full text-[10px] sm:text-sm font-bold tracking-widest uppercase border transition-all text-center ${isDark ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400' : 'bg-emerald-50 border-emerald-300 text-emerald-700'}`}>
-            {(24500 + totalKarmaAllTime).toLocaleString()} KARMA POINTS DONATED → ≈ {((24500 + totalKarmaAllTime) / 10000).toFixed(1)} BOWLS OF MILK & CURD
+            {(24500 + totalKarmaAllTime).toLocaleString()} KARMA POINTS DONATED → ≈ {Math.floor((24500 + totalKarmaAllTime) / 200)} BOWLS OF MILK & CURD
           </div>
         </motion.div>
 
@@ -1144,17 +1144,27 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               : `bg-white/70 border-white/90 hover:bg-white hover:border-emerald-400 hover:scale-[1.01] cursor-pointer hover:shadow-md text-slate-900`;
                           }
 
+                          const resultIcon = isAnswered
+                            ? i === currentQuestion.answer
+                              ? <span aria-label="Correct" className="ml-auto text-base font-black shrink-0">✓</span>
+                              : i === selectedAnswer
+                                ? <span aria-label="Incorrect" className="ml-auto text-base font-black shrink-0">✗</span>
+                                : null
+                            : null;
+
                           return (
                             <button
                               key={i}
                               disabled={isAnswered}
                               onClick={() => handleAnswer(i)}
+                              aria-pressed={isAnswered && i === selectedAnswer}
                               className={btnClass}
                             >
                               <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : '')}`}>
                                 {String.fromCharCode(65 + i)}
                               </div>
                               {opt}
+                              {resultIcon}
                             </button>
                           );
                         })}
@@ -1307,10 +1317,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </motion.span>
                 <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Karma Points Donated</span>
                 
-                {score >= 500 && (
+                {score >= 200 && (
                   <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm shadow-sm">
                     <Heart size={16} className="fill-emerald-500" />
-                    You've funded {Math.floor(score / 500)} full meal{Math.floor(score / 500) > 1 ? 's' : ''}!
+                    You've funded {Math.floor(score / 200)} bowl{Math.floor(score / 200) > 1 ? 's' : ''} of milk & curd!
                   </div>
                 )}
               </div>
@@ -1339,7 +1349,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               <div className={`w-full h-3 rounded-full overflow-hidden mt-8 shadow-inner ${isDark ? 'bg-black/30' : 'bg-black/5'}`}>
                 <motion.div className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
               </div>
-              <span className="text-[10px] font-semibold mt-3 block opacity-60">{milestone} / 500 for a full bowl</span>
+              <span className="text-[10px] font-semibold mt-3 block opacity-60">{milestone} / 200 for a bowl of milk & curd</span>
 
               <div className="mt-8">
                 <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>

@@ -1,6 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | CyberKarma',
+  description: 'Read the CyberKarma Terms of Service. Karma Points hold no real-world monetary value and are used solely to track charitable impact donations.',
+  alternates: { canonical: 'https://cyberkarma.me/terms/' },
+};
+
 
 export default function TermsPage() {
   return (

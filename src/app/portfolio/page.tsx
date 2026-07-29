@@ -18,7 +18,9 @@ import {
   Briefcase, 
   FileText,
   MapPin,
-  ExternalLink
+  ExternalLink,
+  Menu,
+  X
 } from "lucide-react";
 import Link from "next/link";
 import TiltWrapper from "@/components/3d/TiltWrapper";
@@ -88,6 +90,7 @@ export default function Home() {
   const [terminalInput, setTerminalInput] = useState("");
   const [visitorCount, setVisitorCount] = useState(2143);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   // Persistent client-side visitor tracker starting at 2143
@@ -183,6 +186,15 @@ export default function Home() {
             <a href="#contact" className="hover:text-[var(--fg)] transition-colors">Contact</a>
           </nav>
 
+          {/* Mobile Hamburger */}
+          <button
+            className="md:hidden p-2 rounded-lg border border-black/10 hover:bg-black/5 transition-colors"
+            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setMobileMenuOpen(v => !v)}
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+
           <div className="flex items-center gap-3">
             {walletAddress && (
               <div className="hidden md:flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-50 text-emerald-700 shadow-sm text-xs font-semibold">
@@ -194,7 +206,7 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               <span>{visitorCount} visitors</span>
             </div>
-            <a 
+            <a
               href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" 
               download 
               className="px-5 py-2 text-xs font-bold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
@@ -205,6 +217,42 @@ export default function Home() {
           </div>
         </div>
       </header>
+
+      {/* Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
+          <nav
+            className="absolute top-0 left-0 h-full w-72 bg-white shadow-2xl flex flex-col pt-20 px-6 gap-2"
+            onClick={e => e.stopPropagation()}
+          >
+            {[
+              { href: '#about', label: 'About' },
+              { href: '#skills', label: 'Competencies' },
+              { href: '#experience', label: 'Experience' },
+              { href: '#projects', label: 'Projects' },
+              { href: '#certs', label: 'Credentials' },
+              { href: '#contact', label: 'Contact' },
+            ].map(link => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-3 px-4 rounded-xl text-slate-700 font-semibold text-base hover:bg-slate-50 hover:text-slate-900 transition-colors border-b border-slate-100 last:border-0"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf"
+              download
+              onClick={() => setMobileMenuOpen(false)}
+              className="mt-4 py-3 px-4 rounded-xl text-sm font-bold text-center bg-slate-900 text-white hover:bg-slate-800 transition-colors flex items-center justify-center gap-2"
+            >
+              <Download className="w-4 h-4" /> Download CV
+            </a>
+          </nav>
+        </div>
+      )}
 
       {/* Telemetry Indicator Row */}
       <div className="w-full border-b border-black/5 bg-slate-100/50 py-2 text-xs font-semibold text-slate-500 overflow-x-auto whitespace-nowrap backdrop-blur-md relative z-10">

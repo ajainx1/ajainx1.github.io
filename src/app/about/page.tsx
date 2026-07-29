@@ -1,7 +1,18 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ShieldCheck, Heart, MapPin, CheckCircle2 } from 'lucide-react';
-import Image from 'next/image';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'About CyberKarma | Free Quiz Charity Feeding Street Animals in Patna',
+  description: 'Learn how CyberKarma works. Every quiz answer generates Karma Points that fund real food for street dogs and animals in Patna, Bihar, field-verified by local volunteers.',
+  alternates: { canonical: 'https://cyberkarma.me/about/' },
+  openGraph: {
+    title: 'About CyberKarma — Learn & Feed Street Animals',
+    description: 'How does a free quiz feed street animals? Learn how CyberKarma converts ad revenue and quiz answers into real food for dogs in Patna, Bihar.',
+    url: 'https://cyberkarma.me/about/',
+  },
+};
 
 export default function AboutPage() {
   return (
