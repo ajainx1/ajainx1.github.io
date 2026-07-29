@@ -43,17 +43,30 @@ export default function AdSlot({
 
   if (isPlaceholder) {
     return (
-      <div className={`relative w-full ${heightClass} flex flex-col items-center justify-center rounded-[24px] overflow-hidden border border-dashed transition-all duration-300 ${isDark ? 'border-white/20 bg-white/5' : 'border-slate-300 bg-slate-100'} ${className}`}>
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-rose-500/10 opacity-50" />
+      <div className={`relative w-full ${heightClass} flex flex-col items-center justify-center rounded-[24px] overflow-hidden border shadow-sm transition-all duration-300 ${isDark ? 'border-indigo-500/30 bg-gradient-to-br from-indigo-900/40 to-purple-900/40 hover:from-indigo-900/60 hover:to-purple-900/60' : 'border-indigo-200 bg-gradient-to-br from-indigo-50 to-purple-50 hover:from-indigo-100 hover:to-purple-100'} ${className}`}>
         
-        <div className={`relative z-10 flex flex-col items-center gap-2 text-center p-4 ${isDark ? 'text-white/60' : 'text-slate-500'}`}>
-          <div className={`p-2 rounded-xl ${isDark ? 'bg-white/10' : 'bg-slate-200'}`}>
-            <Megaphone size={18} />
+        <div className={`absolute top-3 right-4 px-2 py-0.5 rounded text-[8px] font-bold uppercase tracking-widest ${isDark ? 'bg-black/40 text-white/50' : 'bg-white/60 text-slate-400'}`}>
+          Sponsored
+        </div>
+
+        <div className={`relative z-10 flex flex-col items-center gap-3 text-center p-6 ${isDark ? 'text-white' : 'text-slate-800'}`}>
+          <div className="flex items-center gap-2">
+            <div className={`p-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white shadow-lg`}>
+              <Megaphone size={16} />
+            </div>
+            <span className="font-bold text-sm tracking-wide">TechForGood</span>
           </div>
-          <span className="text-xs font-bold uppercase tracking-widest font-mono">Premium Ad Placement</span>
-          <span className="text-[10px] opacity-70">
-            {type === 'banner' ? '728x90 Leaderboard' : type === 'square' ? '250x250 Medium Rectangle' : 'Responsive Ad Unit'}
-          </span>
+          
+          <div>
+            <h4 className="font-black text-lg mb-1 leading-tight">Elevate Your Engineering</h4>
+            <p className={`text-xs max-w-[200px] leading-relaxed ${isDark ? 'text-white/70' : 'text-slate-600'}`}>
+              Join the fastest-growing community of developers building the future.
+            </p>
+          </div>
+          
+          <button className={`mt-1 px-5 py-2 rounded-full text-xs font-bold transition-transform hover:scale-105 shadow-md ${isDark ? 'bg-white text-indigo-900' : 'bg-indigo-600 text-white'}`}>
+            Learn More
+          </button>
         </div>
       </div>
     );

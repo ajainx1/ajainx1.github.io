@@ -548,29 +548,35 @@ export default function CharityQuizClient() {
   // Hook to track and celebrate Level Up achievements
   useEffect(() => {
     if (score > 0) {
-      const calculatedLevel = Math.floor(score / 200) + 1;
+      const milestoneThresholds = [10, 30, 60, 100, 150, 250, 400, 600, 850, 1200, 1600, 2200, 3000, 4000, 5000, 7500, 10000];
+      
+      let reachedLevel = 1;
+      for (let i = 0; i < milestoneThresholds.length; i++) {
+        if (score >= milestoneThresholds[i]) {
+          reachedLevel = i + 2; 
+        }
+      }
+      
       const storedLvl = parseInt(localStorage.getItem('charityQuizLastLevel') || '1', 10);
       
-      if (calculatedLevel > storedLvl) {
-        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
+      if (reachedLevel > storedLvl) {
+        localStorage.setItem('charityQuizLastLevel', String(reachedLevel));
         
         let title = "Packet Novice";
         for (const item of levelTitles) {
-          if (calculatedLevel >= item.minLvl) {
+          if (reachedLevel >= item.minLvl) {
             title = item.title;
           }
         }
         
-        setLevelUpData({ level: calculatedLevel, title });
+        setLevelUpData({ level: reachedLevel, title });
         setShowLevelUpModal(true);
-        addToast(`🎉 Level Up! You reached Level ${calculatedLevel}!`, 'success');
+        addToast(`🎉 Level Up! You reached Level ${reachedLevel}!`, 'success');
         playSound('levelup');
         
         if (user) {
-          localStorage.setItem(`charityQuizLastLevel_${user.email}`, String(calculatedLevel));
+          localStorage.setItem(`charityQuizLastLevel_${user.email}`, String(reachedLevel));
         }
-      } else if (calculatedLevel < storedLvl) {
-        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
     }
   }, [score, addToast, user]);
@@ -752,8 +758,16 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         fetchAIQuestions(3, aiTopic, aiProvider, finalKey, aiQuestions.map(q => q.question))
           .then(newQuestions => {
             if (newQuestions && newQuestions.length > 0) {
-              setAiQuestions(prev => [...prev, ...newQuestions]);
-              addToast('AI quietly generated more questions!', 'info');
+              setAiQuestions(prev => {
+                const existingQs = new Set(prev.map(q => q.question.toLowerCase().trim()));
+                const uniqueNewQs = newQuestions.filter(q => !existingQs.has(q.question.toLowerCase().trim()));
+                
+                if (uniqueNewQs.length > 0) {
+                  addToast('AI quietly generated more unique questions!', 'info');
+                  return [...prev, ...uniqueNewQs];
+                }
+                return prev;
+              });
             }
           })
           .catch(console.error);
