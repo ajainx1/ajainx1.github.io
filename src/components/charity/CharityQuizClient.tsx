@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 const ImpactGallery = dynamic(() => import('./ImpactGallery'), { ssr: false, loading: () => <div className="animate-pulse bg-white/5 rounded-[32px] h-96 w-full mt-8" /> });
 import AdSlot from '../ads/AdSlot';
-import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, ArrowRight, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield } from 'lucide-react';
+import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, ArrowRight, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield, TrendingUp } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
@@ -1384,19 +1384,19 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </span>
 
                 <div className="flex flex-col w-full gap-5">
-                  {/* Orca6 */}
+                  {/* Orca6 / AdityaSec */}
                   <Link
                     href="https://adityasec32.systems"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex flex-col items-center group/orca"
                   >
-                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-emerald-500' : 'text-emerald-600'}`}>Sponsored By</span>
+                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-emerald-500' : 'text-emerald-600'}`}>Developed By</span>
                     <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/orca:text-emerald-400' : 'text-slate-900 group-hover/orca:text-emerald-700'}`}>
                       Orca6
                     </span>
                     <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/orca:text-emerald-300/80' : 'text-slate-500 group-hover/orca:text-emerald-600/80'}`}>
-                      by AdityaSec Security Systems
+                      AdityaSec Security Systems
                     </span>
                   </Link>
 
@@ -1410,15 +1410,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     rel="noopener noreferrer"
                     className="flex flex-col items-center group/jump"
                   >
-                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-blue-500' : 'text-blue-600'}`}>Technology Partner</span>
+                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-blue-500' : 'text-blue-600'}`}>Trading Partner</span>
                     <div className="flex items-center gap-1.5">
-                      <Server size={18} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/jump:text-blue-300' : 'text-blue-600 group-hover/jump:text-blue-700'}`} />
+                      <TrendingUp size={18} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/jump:text-blue-300' : 'text-blue-600 group-hover/jump:text-blue-700'}`} />
                       <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/jump:text-blue-400' : 'text-slate-900 group-hover/jump:text-blue-700'}`}>
                         JumpStreet
                       </span>
                     </div>
                     <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/jump:text-blue-300/80' : 'text-slate-500 group-hover/jump:text-blue-600/80'}`}>
-                      Next-Gen Cloud Solutions
+                      Algorithmic Trading Bot
                     </span>
                   </Link>
                 </div>
