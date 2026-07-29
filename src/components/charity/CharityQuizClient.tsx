@@ -954,7 +954,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
           )}
 
-          <button onClick={toggleTheme} className="p-2 rounded-full bg-white/20 border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all shadow-sm">
+          <button onClick={toggleTheme} aria-label="Toggle Theme" className="p-2 rounded-full bg-white/20 border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all shadow-sm">
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
@@ -962,7 +962,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
               <img src={user.avatar} alt="User" className="w-6 h-6 rounded-full shadow-sm" />
               <span className="text-xs font-semibold hidden sm:block">{user.name}</span>
-              <button onClick={handleLogout} className="text-rose-500 hover:text-rose-400 p-1"><LogOut size={14} /></button>
+              <button onClick={handleLogout} aria-label="Sign Out" className="text-rose-500 hover:text-rose-400 p-1"><LogOut size={14} /></button>
             </div>
           ) : (
             <button onClick={() => setShowEmailModal(true)} className="flex items-center justify-center gap-2 px-3 sm:px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-800 hover:bg-gray-50 transition-all shadow-md">

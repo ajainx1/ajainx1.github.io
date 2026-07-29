@@ -5,7 +5,7 @@ import BackgroundWrapper from "@/components/3d/BackgroundWrapper";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
 import SecurityGuard from "@/components/SecurityGuard";
-
+import Script from "next/script";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -108,10 +108,11 @@ export default function RootLayout({
         />
         <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
         <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072468142870937"
+        <Script
+          id="adsbygoogle-init"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6072468142870937"
         />
         <script
           dangerouslySetInnerHTML={{
