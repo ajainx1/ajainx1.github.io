@@ -1373,52 +1373,55 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               </div>
             </div>
 
-            {/* Corporate Sponsorship Banner */}
-            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30 hover:border-emerald-500/50 hover:shadow-emerald-900/20' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md hover:border-emerald-400 hover:shadow-xl'}`}>
+            {/* Unified Partners & Sponsors Banner */}
+            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col relative overflow-hidden group transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700 hover:border-slate-500 hover:shadow-slate-900/50' : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200 shadow-md hover:border-slate-300 hover:shadow-xl'}`}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <div className="flex flex-col gap-2 items-center text-center relative z-10">
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-sm ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>
-                  Sponsored By
+              
+              <div className="flex flex-col items-center text-center relative z-10 w-full">
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-5 rounded-full border shadow-sm ${isDark ? 'bg-slate-800 text-slate-300 border-slate-600' : 'bg-slate-100 text-slate-600 border-slate-300'}`}>
+                  Our Partners
                 </span>
-                <Link
-                  href="https://adityasec32.systems"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center group/link mt-2"
-                >
-                  <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/link:text-emerald-400' : 'text-slate-900 group-hover/link:text-emerald-700'}`}>
-                    Orca6
-                  </span>
-                  <span className={`text-[10px] font-semibold tracking-widest uppercase mt-1 transition-opacity ${isDark ? 'text-slate-400 group-hover/link:text-emerald-300/80' : 'text-slate-500 group-hover/link:text-emerald-600/80'}`}>
-                    by AdityaSec Security Systems
-                  </span>
-                </Link>
-              </div>
-            </div>
 
-            {/* JumpStreet Technology Partner Banner */}
-            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-blue-950/60 via-slate-900/80 to-indigo-950/60 border-blue-500/30 hover:border-blue-500/50 hover:shadow-blue-900/20' : 'bg-gradient-to-br from-blue-50 via-blue-100/60 to-indigo-50 border-blue-300 shadow-md hover:border-blue-400 hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <div className="flex flex-col gap-2 items-center text-center relative z-10">
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-sm ${isDark ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-blue-200 text-blue-800 border-blue-400'}`}>
-                  Technology Partner
-                </span>
-                <Link
-                  href="https://jumpstreet.tech"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center group/link mt-2"
-                >
-                  <div className="flex items-center gap-2">
-                    <Server size={22} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/link:text-blue-300' : 'text-blue-600 group-hover/link:text-blue-700'}`} />
-                    <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/link:text-blue-400' : 'text-slate-900 group-hover/link:text-blue-700'}`}>
-                      JumpStreet
+                <div className="flex flex-col w-full gap-5">
+                  {/* Orca6 */}
+                  <Link
+                    href="https://adityasec32.systems"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center group/orca"
+                  >
+                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-emerald-500' : 'text-emerald-600'}`}>Sponsored By</span>
+                    <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/orca:text-emerald-400' : 'text-slate-900 group-hover/orca:text-emerald-700'}`}>
+                      Orca6
                     </span>
-                  </div>
-                  <span className={`text-[10px] font-semibold tracking-widest uppercase mt-2 transition-opacity ${isDark ? 'text-slate-400 group-hover/link:text-blue-300/80' : 'text-slate-500 group-hover/link:text-blue-600/80'}`}>
-                    Next-Gen Cloud Solutions
-                  </span>
-                </Link>
+                    <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/orca:text-emerald-300/80' : 'text-slate-500 group-hover/orca:text-emerald-600/80'}`}>
+                      by AdityaSec Security Systems
+                    </span>
+                  </Link>
+
+                  {/* Divider */}
+                  <div className={`w-3/4 mx-auto h-[1px] ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`} />
+
+                  {/* JumpStreet */}
+                  <Link
+                    href="https://jumpstreet.tech"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center group/jump"
+                  >
+                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-blue-500' : 'text-blue-600'}`}>Technology Partner</span>
+                    <div className="flex items-center gap-1.5">
+                      <Server size={18} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/jump:text-blue-300' : 'text-blue-600 group-hover/jump:text-blue-700'}`} />
+                      <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/jump:text-blue-400' : 'text-slate-900 group-hover/jump:text-blue-700'}`}>
+                        JumpStreet
+                      </span>
+                    </div>
+                    <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/jump:text-blue-300/80' : 'text-slate-500 group-hover/jump:text-blue-600/80'}`}>
+                      Next-Gen Cloud Solutions
+                    </span>
+                  </Link>
+                </div>
+
               </div>
             </div>
 
