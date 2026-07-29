@@ -1374,16 +1374,24 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
 
             {/* Corporate Sponsorship Banner */}
-            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
-              <div className="flex flex-col gap-2 items-center text-center">
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Supported By</span>
+            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30 hover:border-emerald-500/50 hover:shadow-emerald-900/20' : 'bg-gradient-to-br from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md hover:border-emerald-400 hover:shadow-xl'}`}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="flex flex-col gap-2 items-center text-center relative z-10">
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-sm ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>
+                  Sponsored By
+                </span>
                 <Link
                   href="https://adityasec32.systems"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`text-xs font-semibold hover:underline mt-1 ${isDark ? 'text-slate-400 hover:text-emerald-400' : 'text-slate-600 hover:text-emerald-700'}`}
+                  className="flex flex-col items-center group/link mt-2"
                 >
-                  AdityaSec Security Systems
+                  <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/link:text-emerald-400' : 'text-slate-900 group-hover/link:text-emerald-700'}`}>
+                    Orca6
+                  </span>
+                  <span className={`text-[10px] font-semibold tracking-widest uppercase mt-1 transition-opacity ${isDark ? 'text-slate-400 group-hover/link:text-emerald-300/80' : 'text-slate-500 group-hover/link:text-emerald-600/80'}`}>
+                    by AdityaSec Security Systems
+                  </span>
                 </Link>
               </div>
             </div>
