@@ -752,6 +752,14 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleNextQuestion = () => {
+    // Smoothly scroll back to the top of the quiz container for mobile users
+    const quizSection = document.getElementById('quiz-section');
+    if (quizSection) {
+      setTimeout(() => {
+        quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
+    }
+
     if (category === 'custom-ai') {
       // Endless AI Mode: Pre-fetch more questions if we are nearing the end of the queue
       if (category === 'custom-ai' && aiIndex >= aiQuestions.length - 2) {
@@ -1040,7 +1048,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
 
             {/* Quiz Area */}
-            <div className="w-full">
+            <div id="quiz-section" className="w-full scroll-mt-24 sm:scroll-mt-32">
               <AnimatePresence mode="wait">
                 {showAICompletion && (
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className={`w-full p-10 rounded-[32px] text-center shadow-xl backdrop-blur-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
