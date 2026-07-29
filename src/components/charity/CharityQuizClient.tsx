@@ -1396,6 +1396,32 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
               </div>
             </div>
 
+            {/* JumpStreet Technology Partner Banner */}
+            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col items-center justify-center gap-4 relative overflow-hidden group text-center transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-blue-950/60 via-slate-900/80 to-indigo-950/60 border-blue-500/30 hover:border-blue-500/50 hover:shadow-blue-900/20' : 'bg-gradient-to-br from-blue-50 via-blue-100/60 to-indigo-50 border-blue-300 shadow-md hover:border-blue-400 hover:shadow-xl'}`}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="flex flex-col gap-2 items-center text-center relative z-10">
+                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-sm ${isDark ? 'bg-blue-500/20 text-blue-400 border-blue-500/30' : 'bg-blue-200 text-blue-800 border-blue-400'}`}>
+                  Technology Partner
+                </span>
+                <Link
+                  href="https://jumpstreet.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center group/link mt-2"
+                >
+                  <div className="flex items-center gap-2">
+                    <Server size={22} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/link:text-blue-300' : 'text-blue-600 group-hover/link:text-blue-700'}`} />
+                    <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/link:text-blue-400' : 'text-slate-900 group-hover/link:text-blue-700'}`}>
+                      JumpStreet
+                    </span>
+                  </div>
+                  <span className={`text-[10px] font-semibold tracking-widest uppercase mt-2 transition-opacity ${isDark ? 'text-slate-400 group-hover/link:text-blue-300/80' : 'text-slate-500 group-hover/link:text-blue-600/80'}`}>
+                    Next-Gen Cloud Solutions
+                  </span>
+                </Link>
+              </div>
+            </div>
+
           </div>
         </div>
 
