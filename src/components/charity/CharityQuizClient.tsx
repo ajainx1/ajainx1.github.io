@@ -1129,7 +1129,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                       
                       <div className="grid grid-cols-1 gap-3">
                         {currentQuestion.options.map((opt, i) => {
-                          let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border `;
+                          let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border active:scale-[0.98] select-none `;
                            if (isAnswered) {
                             if (i === currentQuestion.answer) {
                               btnClass += `bg-emerald-500 text-slate-950 font-bold border-emerald-400 shadow-lg z-10 scale-[1.02] `;
