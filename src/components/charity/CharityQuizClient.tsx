@@ -1025,8 +1025,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </span>
           </div>
 
-          <div className={`mt-6 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-emerald-100 border-emerald-300 text-emerald-800'}`}>
-            14,203,500 KARMA POINTS DONATED → ≈ 1,420 BOWLS OF MILK & CURD
+          <div className={`mt-6 px-6 py-3 rounded-full text-sm font-bold tracking-widest uppercase border transition-all ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-emerald-100 border-emerald-300 text-emerald-800'}`}>
+            {(24500 + totalKarmaAllTime).toLocaleString()} KARMA POINTS DONATED → ≈ {((24500 + totalKarmaAllTime) / 10000).toFixed(1)} BOWLS OF MILK & CURD
           </div>
         </motion.div>
 
