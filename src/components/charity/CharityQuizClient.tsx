@@ -548,7 +548,8 @@ export default function CharityQuizClient() {
   // Hook to track and celebrate Level Up achievements
   useEffect(() => {
     if (score > 0) {
-      const milestoneThresholds = [10, 30, 60, 100, 150, 250, 400, 600, 850, 1200, 1600, 2200, 3000, 4000, 5000, 7500, 10000];
+      // Adjusted to be less frequent (gives 5-15 question breaks)
+      const milestoneThresholds = [50, 150, 300, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 10000];
       
       let reachedLevel = 1;
       for (let i = 0; i < milestoneThresholds.length; i++) {
