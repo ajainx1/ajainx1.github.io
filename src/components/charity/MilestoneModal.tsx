@@ -5,8 +5,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function MilestoneModal() {
   const [isOpen, setIsOpen] = useState(false);
+  const [visitorNumber, setVisitorNumber] = useState(3320);
 
   useEffect(() => {
+    // Generate a pseudo-random, ever-increasing visitor number
+    // using the current date/time to make it look realistic.
+    const launchDate = new Date('2024-01-01').getTime(); 
+    const now = Date.now();
+    const hoursSinceLaunch = (now - launchDate) / (1000 * 60 * 60);
+    // Base 3320 + ~12 visitors per hour since launch
+    const calculatedVisitors = 3320 + Math.floor(hoursSinceLaunch * 12.4);
+    
+    // To make it slightly random but mostly consistent
+    const randomFuzz = Math.floor(Math.random() * 5);
+    
+    setVisitorNumber(calculatedVisitors + randomFuzz);
+
     // Only show it once per session to avoid annoying the user on every refresh
     if (!sessionStorage.getItem('milestone_shown')) {
       const timer = setTimeout(() => {
@@ -75,7 +89,7 @@ export default function MilestoneModal() {
             </h2>
             
             <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-              Congratulations! You are visitor <span className="font-bold text-emerald-600">#3,320</span> to CyberKarma.
+              Congratulations! You are visitor <span className="font-bold text-emerald-600">#{visitorNumber.toLocaleString()}</span> to CyberKarma.
             </p>
             
             <button
