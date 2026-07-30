@@ -984,7 +984,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
+      <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
         
         {/* Highlighted Supreme Intro Banner */}
         <motion.div 
@@ -1239,7 +1239,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
             {/* Categories & Difficulty Container (Sidebar Layout) */}
             <div className={`p-5 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
-                <h3 className="text-sm font-bold opacity-80 px-1">Quiz Settings</h3>
+                <h2 className="text-sm font-bold opacity-80 px-1 font-title">Quiz Settings & Categories</h2>
                 <div className={`flex flex-col gap-2 p-2 rounded-[24px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
                   <div className="flex flex-wrap gap-1.5 justify-center">
                     {(Object.keys(quizData) as CategoryKey[]).map(cat => (
