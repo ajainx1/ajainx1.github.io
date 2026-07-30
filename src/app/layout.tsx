@@ -5,6 +5,8 @@ import BackgroundWrapper from "@/components/3d/BackgroundWrapper";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
 import SecurityGuard from "@/components/SecurityGuard";
+import Footer from "@/components/Footer";
+import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -125,6 +127,8 @@ export default function RootLayout({
         <BackgroundWrapper />
         <div aria-hidden="true" className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
         {children}
+        <Footer />
+        <CookieConsent />
         <PWAInstallPrompt />
         <TelegramVisitorLogger />
         <SecurityGuard />

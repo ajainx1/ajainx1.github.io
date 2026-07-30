@@ -254,18 +254,6 @@ export default function CharityQuizClient() {
     return () => window.removeEventListener("storage", checkWallet);
   }, []);
 
-  // Google AdSense auto-refresh hook per question response
-  useEffect(() => {
-    try {
-      if (typeof window !== 'undefined') {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
-      }
-    } catch {
-      // Ignore initial render push errors when ad script is loading
-    }
-  }, [currentQuestion, aiIndex]);
-
   const handleMintSoulboundNFT = () => {
     if (!walletAddress) {
       addToast("No connected Web3 node. Please connect your wallet in the gateway hub.", "info");

@@ -10,18 +10,16 @@ const CharityQuizClient = dynamic(() => import('@/components/charity/CharityQuiz
 });
 import { ToastProvider } from '@/components/js/ToastContext';
 import { Metadata } from 'next';
-import MilestoneModal from '@/components/charity/MilestoneModal';
 
 export const metadata: Metadata = {
-  title: 'CyberKarma | Answer Questions, Feed Animals',
-  description: 'Play fun, educational quizzes and help feed stray dogs. Every correct answer donates milk and curd to animals in need.',
-  manifest: '/manifest-quiz.json',
+  title: 'CyberKarma | Answer Free Trivia Quizzes & Donate Food to Street Animals',
+  description: 'Play fun, educational quizzes for all ages! Answer questions about general knowledge, science, nature, and AI. Every 200 Karma Points funds a bowl of milk & curd for street animals in Patna.',
+  alternates: { canonical: 'https://cyberkarma.me' },
 };
 
 export default function CyberKarmaHomePage() {
   return (
     <ToastProvider>
-      <MilestoneModal />
       <CharityQuizClient />
     </ToastProvider>
   );
