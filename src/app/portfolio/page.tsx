@@ -49,11 +49,12 @@ const COMMANDS = {
   skills: [
     "aditya@secops:~$ list-skills --verbose",
     "• SIEM/EDR: Wazuh, Blu Sapphire, SentinelOne, Trend Micro, Kaspersky EDR",
+    "• Forensics & DFIR: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, WinSCP, RAM Dump Analysis",
     "• Offensive: Metasploit, Nmap, Burp Suite Pro, BloodHound, Impacket, Mimikatz",
     "• Network: Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, OSPF",
     "• Scripting: Python, PowerShell, Bash, Git",
     "• DCIM & Infra: SDC Data Center Mgmt, PACs, Rodent Repellers, Racks & Patch Panels, Fire Suppression",
-    "• Compliance: NIST CSF, OWASP Top 10, CERT-In, RAM Dump Analysis"
+    "• Compliance: NIST CSF, OWASP Top 10, CERT-In Guidelines"
   ],
   exp: [
     "aditya@secops:~$ get-history",
@@ -437,8 +438,8 @@ export default function Home() {
                 desc: "Python, PowerShell, Bash, Git. Developing customized automated compliance scripting, network log parsers, and AI telemetry helpers."
               },
               {
-                title: "Compliance & Incident Response",
-                desc: "NIST CSF, OWASP Top 10 remediation, CERT-In compliance guidelines, RAM dump forensics, threat intelligence feed integration, Snort signature engineering."
+                title: "Digital Forensics & Incident Response (DFIR)",
+                desc: "FTK Imager, Magnet Forensics RAM Capture, Disk2vhd physical/virtual disk imaging, Autopsy, WinSCP secure artifact extraction, RAM dump analysis, NIST CSF, CERT-In compliance guidelines, Snort signature engineering."
               },
               {
                 title: "Endpoint & Data Center Infrastructure (DCIM)",
