@@ -48,13 +48,13 @@ const COMMANDS = {
   ],
   skills: [
     "aditya@secops:~$ list-skills --verbose",
+    "• Firewalls & NGFW: Check Point NGFW, Fortinet FortiGate (FCAC), Sophos, Default-Deny Policies, NAT/ACLs, VPNs",
+    "• VAPT & Offensive: Web App VAPT (OWASP Top 10), Infra Pentesting, Burp Suite Pro, Metasploit, Nmap, AD Exploitation",
     "• SIEM/EDR: Wazuh, Blu Sapphire, SentinelOne, Trend Micro, Kaspersky EDR",
     "• Forensics & DFIR: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, WinSCP, RAM Dump Analysis",
-    "• Offensive: Metasploit, Nmap, Burp Suite Pro, BloodHound, Impacket, Mimikatz",
-    "• Network: Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, OSPF",
-    "• Scripting: Python, PowerShell, Bash, Git",
+    "• Scripting & Automation: Python, PowerShell, Bash, Git, Ollama LLM RAG Chatbots",
     "• DCIM & Infra: SDC Data Center Mgmt, PACs, Rodent Repellers, Racks & Patch Panels, Fire Suppression",
-    "• Compliance: NIST CSF, OWASP Top 10, CERT-In Guidelines"
+    "• Compliance: CERT-In Guidelines, CDAC Standards, NIST CSF"
   ],
   exp: [
     "aditya@secops:~$ get-history",
@@ -272,7 +272,7 @@ export default function Home() {
           <div className="lg:col-span-6 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
               <Shield className="w-4 h-4 text-blue-600" />
-              <span>Full-Spectrum IT &amp; SecOps • DCIM • Purple Team • Threat Hunting</span>
+              <span>Firewall Engineering • VAPT &amp; Pentesting • SecOps • Purple Teaming</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-bold font-title tracking-tight text-slate-900 leading-tight">
@@ -280,7 +280,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
-              Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist with <strong>4+ years of enterprise experience</strong> governing the complete IT stack — from physical Data Centre facilities (DCIM, PACs, racks) to firewalls, EDR/SIEM telemetry, DFIR, and automated compliance across 750+ government offices.
+              Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist with <strong>4+ years of enterprise experience</strong> specializing in Next-Generation Firewall (NGFW) engineering (Check Point, Fortinet), Web &amp; Network VAPT, EDR/SIEM threat hunting, and physical Data Center security across 750+ government offices.
             </p>
 
             {/* Quick Action Stats */}
@@ -425,24 +425,24 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "SIEM / EDR",
-                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel."
+                title: "NGFW & Firewall Engineering",
+                desc: "Check Point NGFW, Fortinet FortiGate (FCAC certified), Sophos, Cisco AnyConnect, Default-Deny rule design, NAT/PAT configuration, ACL auditing, IPsec/SSL VPN tunnels, TACACS+/RADIUS AAA, perimeter traffic inspection."
               },
               {
-                title: "Offensive Security",
-                desc: "Active Directory Exploitation (Kerberoasting, Pass-the-Hash, DCSync, Kerberos Delegation), Burp Suite Pro, BloodHound, Metasploit, Nmap, Impacket, Mimikatz."
+                title: "VAPT & Offensive Security",
+                desc: "Web Application VAPT (OWASP Top 10), Infrastructure Pentesting, Active Directory Security Assessments (Kerberoasting, Pass-the-Hash, DCSync, BloodHound, Impacket, Mimikatz), Burp Suite Pro, Metasploit, Nmap, PoC Exploit Development."
               },
               {
-                title: "Network Security & VPNs",
-                desc: "Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, AAA (TACACS+/RADIUS), OSPF Routing, Wireshark packet capture & triage."
-              },
-              {
-                title: "Scripting & AI Automation",
-                desc: "Python, PowerShell, Bash, Git. Developing customized automated compliance scripting, network log parsers, and AI telemetry helpers."
+                title: "SIEM / EDR & Threat Hunting",
+                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel, 24x7 CNI SOC threat hunting."
               },
               {
                 title: "Digital Forensics & Incident Response (DFIR)",
                 desc: "FTK Imager, Magnet Forensics RAM Capture, Disk2vhd physical/virtual disk imaging, Autopsy, WinSCP secure artifact extraction, RAM dump analysis, NIST CSF, CERT-In compliance guidelines, Snort signature engineering."
+              },
+              {
+                title: "Scripting & AI Automation",
+                desc: "Python, PowerShell, Bash, Git. Developing customized automated compliance scripting (120+ checks), network log parsers, and AI telemetry RAG LLM helpers."
               },
               {
                 title: "Endpoint & Data Center Infrastructure (DCIM)",
