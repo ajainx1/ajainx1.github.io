@@ -482,7 +482,8 @@ export default function Home() {
                 tags: ["EDR Deployment", "Incidents & Forensics", "60% Audit Effort Saved", "750+ Offices"],
                 bullets: [
                   "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, monitoring threat telemetry and tuning detection rules to neutralize emerging vectors.",
-                  "Incident Response & Forensics: Primary responder to CERT-In security advisories; performed host forensics, RAM dump analysis, IP reputation triage, and authored PoC exploits to validate vulnerability closures.",
+                  "Enterprise Intranet & AI Portal (10.133.22.8): Solely engineered and deployed an AI-assisted organization-wide NOC portal (http://10.133.22.8), embedding a custom RAG LLM Chatbot (Ollama), personal hyperlink ecosystem, district router telemetry, and automated outage alerts.",
+                  "Incident Response & Forensics: Primary responder to CERT-In security advisories; performed live memory triage (RAM dumps via Magnet RAM Capture, FTK Imager, Disk2vhd) and authored PoC exploits to validate vulnerability closures.",
                   "Compliance Automation: Built PowerShell and Python frameworks executing 120+ regulatory checks (NIST/ISO 27001 aligned) across 750+ endpoints — reducing manual cycles by 60%.",
                   "Data Center Infrastructure Management (DCIM): Overseeing State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, high-density patch panel routing, ultrasonic rodent repeller systems, and fire hazard detection/VESDA safety compliance.",
                   "Vulnerability Management: Coordinated disclosure and patching with government development teams to remediate OWASP Top 10 vulnerabilities.",
@@ -578,11 +579,11 @@ export default function Home() {
                 color: "bg-blue-50 text-blue-700 border-blue-200"
               },
               {
-                title: "Government NOC Admin Portal",
-                status: "Live Deployment",
-                desc: "A dashboard monitoring 38 district-level router nodes with real-time traceroute telemetry and a voice-input enabled RAG cybersecurity chatbot running locally (Ollama/LLM).",
-                tags: ["React/Next.js", "Ollama LLM", "PHP API", "RAG"],
-                badge: "Govt Deployment",
+                title: "Enterprise AI & NOC Portal (10.133.22.8)",
+                status: "Live Intranet Production",
+                desc: "Sole architect of a full-stack intranet portal deployed at 10.133.22.8 for the organization. Features an integrated AI-assisted RAG Cybersecurity Chatbot (Ollama LLM), custom tool hyperlink directory, 38-district live router telemetry, and automated outage alerting.",
+                tags: ["10.133.22.8 Intranet", "Sole Architect", "AI RAG Chatbot", "Ollama LLM", "PHP API"],
+                badge: "Govt Intranet",
                 link: "/noc/",
                 color: "bg-indigo-50 text-indigo-700 border-indigo-200"
               },
