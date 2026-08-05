@@ -593,9 +593,9 @@ export default function Home() {
                 color: "bg-indigo-50 text-indigo-700 border-indigo-200"
               },
               {
-                title: "Network Alert Dashboard (10.133.22.8/alert/)",
+                title: "Real-Time Network Alert Dashboard (10.133.22.8/alert/)",
                 status: "Live Deployment",
-                desc: "Automated ping monitoring and packet loss analysis dashboard for enterprise core routing units. Integrates custom outage alerting, noise filters, and live telemetry log feeds.",
+                desc: "Solely engineered real-time ping monitoring and packet loss analysis dashboard for enterprise core routing units. Integrates custom outage alerting, noise filters, and live telemetry log feeds.",
                 tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets"],
                 badge: "Live Gateway",
                 link: "/alert/",
