@@ -440,7 +440,7 @@ export default function Home() {
               },
               {
                 title: "Infrastructure, Automation & Compliance",
-                desc: "KACE UEM (750+ endpoints), State Data Centre DCIM (PACs, racks, patch panels, VESDA fire safety, rodent repellers), Python/PowerShell/Bash automation (120+ checks), WinSCP, Git, Ollama RAG LLM chatbots, CERT-In/CDAC/NIST CSF compliance."
+                desc: "KACE UEM (750+ endpoints), PXE Boot imaging, State Data Centre DCIM (PACs, racks, patch panels, VESDA fire safety, rodent repellers), Python/PowerShell/CMD/Bash automation (120+ checks), WinSCP, Git, Ollama RAG LLM chatbots, CERT-In/CDAC/NIST CSF compliance."
               }
             ].map((skill, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm flex flex-col justify-between hover:shadow-lg hover:bg-white/60 hover:-translate-y-1 transition-all duration-300">
