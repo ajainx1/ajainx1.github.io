@@ -39,11 +39,11 @@ const COMMANDS = {
     "aditya@secops:~$ cat whoami.json",
     "{",
     "  \"name\": \"Aditya Jain\",",
-    "  \"role\": \"SME Cybersecurity Engineer\",",
-    "  \"exp\": \"4+ Years Enterprise SecOps\",",
+    "  \"role\": \"Full-Spectrum Cybersecurity & IT Infrastructure Specialist\",",
+    "  \"scope\": \"Physical DCIM (PACs/Racks) -> Network/Firewalls -> SIEM/EDR -> DFIR & Compliance\",",
+    "  \"exp\": \"4+ Years Enterprise SecOps & IT Equipment Mgmt\",",
     "  \"location\": \"Patna, Bihar, India\",",
-    "  \"current\": \"Security Administrator @ National Informatics Centre (NIC)\",",
-    "  \"focus\": \"SecOps, Purple Teaming, Threat Hunting\"",
+    "  \"current\": \"Security Administrator @ National Informatics Centre (NIC)\"",
     "}"
   ],
   skills: [
@@ -272,7 +272,7 @@ export default function Home() {
           <div className="lg:col-span-6 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
               <Shield className="w-4 h-4 text-blue-600" />
-              <span>SecOps • Purple Team • Threat Hunting</span>
+              <span>Full-Spectrum IT &amp; SecOps • DCIM • Purple Team • Threat Hunting</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-bold font-title tracking-tight text-slate-900 leading-tight">
@@ -280,7 +280,7 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
-              Versatile Cybersecurity Engineer with <strong>4+ years of enterprise experience</strong> in Security Operations, Threat Hunting, and Vulnerability Management across India’s national government IT infrastructure.
+              Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist with <strong>4+ years of enterprise experience</strong> governing the complete IT stack — from physical Data Centre facilities (DCIM, PACs, racks) to firewalls, EDR/SIEM telemetry, DFIR, and automated compliance across 750+ government offices.
             </p>
 
             {/* Quick Action Stats */}
@@ -373,10 +373,13 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-7 space-y-5 text-slate-600 leading-relaxed text-base sm:text-lg">
               <p>
-                Highly capable <strong>Cybersecurity Engineer &amp; SME</strong> with <strong>4+ years of hands-on enterprise experience</strong> architecting, tuning, and defending critical IT and e-governance systems. Currently managing large-scale SecOps operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC).
+                Versatile <strong>Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist</strong> with <strong>4+ years of hands-on enterprise experience</strong> governing, architecting, and defending the entire IT equipment and security lifecycle. Currently managing large-scale SecOps operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC).
               </p>
               <p>
-                Adept at offensive simulations (Active Directory exploitation, payload analysis, and sandbox malware replication) and defensive engineering (writing custom Wazuh/Snort IDS rules, tuning SIEM systems, and orchestrating EDR policies).
+                Commands complete end-to-end IT infrastructure ownership — managing physical Data Center environmental controls (PACs, rodent repeller systems, server rack &amp; patch panel structuring, fire hazard/VESDA safety) alongside perimeter NGFWs, SIEM/EDR tuning, DFIR forensics (FTK Imager, Magnet RAM Capture, Disk2vhd), and CERT-In compliance automation.
+              </p>
+              <p>
+                Adept at offensive simulations (Active Directory exploitation, payload analysis, and sandbox malware replication) and defensive engineering (writing custom Wazuh/Snort IDS rules, tuning SIEM correlation, and orchestrating EDR policies).
               </p>
               <p>
                 Proven ability to automate regulatory auditing through custom PowerShell and Python frameworks, reducing overall audit cycles by 60% and successfully responding to national CERT-In security advisories.
