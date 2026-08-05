@@ -5,6 +5,41 @@ import { Heart } from 'lucide-react';
 
 const STREET_FEEDING_DRIVE = [
   {
+    src: '/impact/impact-82.jpg',
+    title: 'Fresh Milk & Curd Feeding',
+    location: 'Rajbansi Nagar, Patna Division, Bihar',
+    date: '29 Jul 2026 • 5:07 PM',
+    tag: 'Verified Curd Drive'
+  },
+  {
+    src: '/impact/impact-83.jpg',
+    title: 'Street Dog Curd Bowl',
+    location: 'Local Market Stall, Rajbansi Nagar, Patna',
+    date: '29 Jul 2026 • 5:07 PM',
+    tag: 'Daily Nourishment'
+  },
+  {
+    src: '/impact/impact-84.jpg',
+    title: 'Volunteer Evening Patrol',
+    location: 'Rajbansi Nagar Road, Patna, Bihar',
+    date: '29 Jul 2026 • 5:07 PM',
+    tag: 'Field Volunteer Drive'
+  },
+  {
+    src: '/impact/impact-85.jpg',
+    title: 'Stray Dog Rescue Feeding',
+    location: 'Patna Division, Bihar',
+    date: '29 Jul 2026 • 5:07 PM',
+    tag: 'Direct Care'
+  },
+  {
+    src: '/impact/impact-86.jpg',
+    title: 'Night Stall Feeding Patrol',
+    location: 'Market Stall Hub, Patna, Bihar',
+    date: '29 Jul 2026 • 5:07 PM',
+    tag: 'Night Feeding Drive'
+  },
+  {
     src: '/impact/street-dog-14.jpg',
     title: 'Community Dog Feeding',
     location: 'Shiv Raj Yadav Path, Mohanpur Punaichak, Patna',

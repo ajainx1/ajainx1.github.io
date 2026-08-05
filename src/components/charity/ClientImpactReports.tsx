@@ -107,19 +107,48 @@ export default function ClientImpactReports() {
               </button>
             </div>
             
-            {/* Pending Report */}
-            <div className="p-6 rounded-[24px] bg-white/5 border border-white/10 opacity-70">
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-xl font-bold">August 2026</h3>
-                  <p className="text-sm text-slate-400 font-mono mt-1">Data Collection in Progress</p>
+            {/* August 2026 Published Report */}
+            <div className="p-6 rounded-[24px] bg-white/5 border border-white/10 group hover:border-emerald-500/50 transition-colors flex flex-col justify-between">
+              <div>
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold">August 2026 Field Drive</h3>
+                    <p className="text-sm text-emerald-400 font-mono mt-1 flex items-center gap-1">
+                      <MapPin size={13} /> Rajbansi Nagar & Patna Division, Bihar
+                    </p>
+                  </div>
+                  <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider border border-emerald-500/30">
+                    Published
+                  </span>
                 </div>
-                <span className="px-3 py-1 rounded-full bg-slate-500/20 text-slate-400 text-xs font-bold uppercase tracking-wider border border-slate-500/30">
-                  Pending
-                </span>
+                <ul className="space-y-2 text-sm text-slate-300 mb-6">
+                  <li>• <strong className="text-white">Karma Points:</strong> 6,800 Points</li>
+                  <li>• <strong className="text-white">Meals Provided:</strong> 34 Bowls of Fresh Milk & Curd</li>
+                  <li>• <strong className="text-white">Field Operations:</strong> 5 Verified Locations in Patna</li>
+                </ul>
               </div>
-              <div className="h-44 w-full bg-black/40 rounded-xl flex items-center justify-center border border-white/5">
-                <span className="text-sm font-bold text-slate-500 uppercase tracking-widest">Report Drops Sep 1st</span>
+
+              {/* Photo Thumbnails Grid */}
+              <div className="grid grid-cols-5 gap-2">
+                {[
+                  { src: '/impact/impact-82.jpg', title: 'Fresh Milk & Curd Feeding', location: 'Rajbansi Nagar, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-83.jpg', title: 'Street Dog Curd Bowl', location: 'Local Market Stall, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Curd & Milk' },
+                  { src: '/impact/impact-84.jpg', title: 'Volunteer Evening Patrol', location: 'Rajbansi Nagar Road, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Volunteer Feeding' },
+                  { src: '/impact/impact-85.jpg', title: 'Stray Dog Rescue Feeding', location: 'Patna Division, Bihar', date: '29 Jul 2026 • 5:07 PM', meals: 'Curd Bowl' },
+                  { src: '/impact/impact-86.jpg', title: 'Night Stall Feeding Patrol', location: 'Market Stall Hub, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Night Patrol Bowl' }
+                ].map((photo, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setActivePhoto(photo)}
+                    className="h-20 w-full relative rounded-lg overflow-hidden border border-white/10 group/btn focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer"
+                    aria-label={`View photo ${i + 1}`}
+                  >
+                    <Image src={photo.src} alt={photo.title} fill className="object-cover group-hover/btn:scale-110 transition-transform duration-500" />
+                    <div className="absolute inset-0 bg-black/30 group-hover/btn:bg-black/10 transition-colors flex items-center justify-center">
+                      <Maximize2 size={12} className="text-white opacity-80 group-hover/btn:opacity-100" />
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
           </div>
