@@ -52,6 +52,7 @@ const COMMANDS = {
     "• Offensive: Metasploit, Nmap, Burp Suite Pro, BloodHound, Impacket, Mimikatz",
     "• Network: Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, OSPF",
     "• Scripting: Python, PowerShell, Bash, Git",
+    "• DCIM & Infra: SDC Data Center Mgmt, PACs, Rodent Repellers, Racks & Patch Panels, Fire Suppression",
     "• Compliance: NIST CSF, OWASP Top 10, CERT-In, RAM Dump Analysis"
   ],
   exp: [
@@ -440,8 +441,8 @@ export default function Home() {
                 desc: "NIST CSF, OWASP Top 10 remediation, CERT-In compliance guidelines, RAM dump forensics, threat intelligence feed integration, Snort signature engineering."
               },
               {
-                title: "Endpoint & Infrastructure",
-                desc: "KACE UEM (750+ nodes), USB policy enforcement, unified security baselines, Linux server hardening, DHCP/PXE deployment, automated patching."
+                title: "Endpoint & Data Center Infrastructure (DCIM)",
+                desc: "KACE UEM (750+ nodes), State Data Centre (SDC) physical mgmt, Precision Air Conditioning (PACs), ultrasonic rodent repellers, server rack & patch panel structuring, fire hazard/VESDA safety, Linux admin & automated patching."
               }
             ].map((skill, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm flex flex-col justify-between hover:shadow-lg hover:bg-white/60 hover:-translate-y-1 transition-all duration-300">
@@ -479,6 +480,7 @@ export default function Home() {
                   "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, monitoring threat telemetry and tuning detection rules to neutralize emerging vectors.",
                   "Incident Response & Forensics: Primary responder to CERT-In security advisories; performed host forensics, RAM dump analysis, IP reputation triage, and authored PoC exploits to validate vulnerability closures.",
                   "Compliance Automation: Built PowerShell and Python frameworks executing 120+ regulatory checks (NIST/ISO 27001 aligned) across 750+ endpoints — reducing manual cycles by 60%.",
+                  "Data Center Infrastructure Management (DCIM): Overseeing State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, high-density patch panel routing, ultrasonic rodent repeller systems, and fire hazard detection/VESDA safety compliance.",
                   "Vulnerability Management: Coordinated disclosure and patching with government development teams to remediate OWASP Top 10 vulnerabilities.",
                   "Endpoint & Network Hardening: Enforced default-deny policies on Check Point NGFW, deployed USB blocks, and conducted public IP exposure audits."
                 ]
