@@ -39,11 +39,12 @@ const COMMANDS = {
     "aditya@secops:~$ cat whoami.json",
     "{",
     "  \"name\": \"Aditya Jain\",",
-    "  \"role\": \"Full-Spectrum Cybersecurity & IT Infrastructure Specialist\",",
-    "  \"scope\": \"Physical DCIM (PACs/Racks) -> Network/Firewalls -> SIEM/EDR -> DFIR & Compliance\",",
-    "  \"exp\": \"4+ Years Enterprise SecOps & IT Equipment Mgmt\",",
+    "  \"role\": \"Cybersecurity Engineer — Firewall & VAPT Specialist\",",
+    "  \"scope\": \"NGFW Architecture -> VAPT -> SIEM/EDR -> DFIR -> DCIM & Compliance\",",
+    "  \"exp\": \"3.5+ Years Enterprise Cybersecurity & IT Ops\",",
     "  \"location\": \"Patna, Bihar, India\",",
-    "  \"current\": \"Security Administrator @ National Informatics Centre (NIC)\"",
+    "  \"current\": \"Security Administrator @ National Informatics Centre (NIC)\",",
+    "  \"clearance\": \"Vetted for CNI Access (NIC/MeitY & DAE/NFC)\"",
     "}"
   ],
   skills: [
@@ -51,8 +52,8 @@ const COMMANDS = {
     "• Firewalls & NGFW: Check Point NGFW, Fortinet FortiGate (FCAC), Sophos, Default-Deny Policies, NAT/ACLs, VPNs",
     "• VAPT & Offensive: Web App VAPT (OWASP Top 10), Infra Pentesting, Burp Suite Pro, Metasploit, Nmap, AD Exploitation",
     "• SIEM/EDR: Wazuh, Blu Sapphire, SentinelOne, Trend Micro, Kaspersky EDR",
-    "• Forensics & DFIR: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, WinSCP, RAM Dump Analysis",
-    "• Scripting & Automation: Python, PowerShell, Bash, Git, Ollama LLM RAG Chatbots",
+    "• DFIR & Forensics: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, RAM Dump Analysis",
+    "• Scripting & Tools: Python, PowerShell, Bash, Git, WinSCP, Ollama LLM RAG Chatbots",
     "• DCIM & Infra: SDC Data Center Mgmt, PACs, Rodent Repellers, Racks & Patch Panels, Fire Suppression",
     "• Compliance: CERT-In Guidelines, CDAC Standards, NIST CSF"
   ],
@@ -272,7 +273,7 @@ export default function Home() {
           <div className="lg:col-span-6 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
               <Shield className="w-4 h-4 text-blue-600" />
-              <span>Firewall Engineering • VAPT &amp; Pentesting • SecOps • Purple Teaming</span>
+              <span>Firewall Engineering &bull; VAPT &amp; Pentesting &bull; SecOps &bull; Purple Teaming</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-bold font-title tracking-tight text-slate-900 leading-tight">
@@ -280,16 +281,16 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
-              Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist with <strong>4+ years of enterprise experience</strong> specializing in Next-Generation Firewall (NGFW) engineering (Check Point, Fortinet), Web &amp; Network VAPT, EDR/SIEM threat hunting, and physical Data Center security across 750+ government offices.
+              Cybersecurity Engineer specializing in <strong>NGFW Architecture</strong> (Check Point, Fortinet) and <strong>Vulnerability Assessment &amp; Penetration Testing</strong> with <strong>3.5+ years of enterprise experience</strong> across government infrastructure (NIC/MeitY) and Critical National Infrastructure SOC operations (DAE/NFC). CNI-vetted.
             </p>
 
             {/* Quick Action Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
               {[
-                { label: "Years SecOps", value: "4+" },
+                { label: "Years Cyber", value: "3.5+" },
                 { label: "Govt Endpoints", value: "750+" },
-                { label: "Audits Automated", value: "120+" },
-                { label: "Effort Saved", value: "60%" }
+                { label: "VAPT Assessments", value: "15+" },
+                { label: "Audit Effort Saved", value: "60%" }
               ].map((stat, i) => (
                 <div key={i} className="p-4 bg-white/60 border border-black/5 rounded-[20px] backdrop-blur-xl shadow-sm flex flex-col items-center justify-center text-center hover:bg-white/90 transition-colors">
                   <div className="text-2xl font-black text-slate-800">{stat.value}</div>
@@ -300,16 +301,16 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <a href="https://jumpstreet.tech" target="_blank" rel="noopener noreferrer" className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                <span>JumpStreet Portal</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <a href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" download className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <Download className="w-4 h-4" />
+                <span>Download Resume</span>
               </a>
-              <Link href="https://cyberkarma.me" className="group px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full hover:from-emerald-400 hover:to-teal-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                <span className="text-lg">🎮</span>
-                <span>Play Charity Quiz</span>
-              </Link>
-              <a href="#about" className="px-6 py-3.5 text-sm font-bold text-slate-700 bg-white/60 border border-black/10 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md backdrop-blur-xl">
-                View Portfolio
+              <a href="#experience" className="px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-500 hover:to-indigo-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <Briefcase className="w-4 h-4" />
+                <span>View Experience</span>
+              </a>
+              <a href="#contact" className="px-6 py-3.5 text-sm font-bold text-slate-700 bg-white/60 border border-black/10 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md backdrop-blur-xl">
+                Contact Me
               </a>
             </div>
           </div>
@@ -373,13 +374,13 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-7 space-y-5 text-slate-600 leading-relaxed text-base sm:text-lg">
               <p>
-                Versatile <strong>Full-Spectrum Cybersecurity &amp; IT Infrastructure Specialist</strong> with <strong>4+ years of hands-on enterprise experience</strong> governing, architecting, and defending the entire IT equipment and security lifecycle. Currently managing large-scale SecOps operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC).
+                <strong>Cybersecurity Engineer &amp; Firewall/VAPT Specialist</strong> with <strong>3.5+ years of hands-on enterprise experience</strong> in Next-Generation Firewall architecture, Web &amp; Infrastructure Penetration Testing, and SIEM/EDR threat hunting. Currently managing large-scale cybersecurity operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC, MeitY). Vetted for Critical National Infrastructure access (DAE/NFC).
               </p>
               <p>
-                Commands complete end-to-end IT infrastructure ownership — managing physical Data Center environmental controls (PACs, rodent repeller systems, server rack &amp; patch panel structuring, fire hazard/VESDA safety) alongside perimeter NGFWs, SIEM/EDR tuning, DFIR forensics (FTK Imager, Magnet RAM Capture, Disk2vhd), and CERT-In compliance automation.
+                Specializes in <strong>Check Point NGFW and Fortinet FortiGate</strong> perimeter security design (default-deny policies, NAT/ACL auditing, IPsec VPN tunnels) and conducting periodic <strong>VAPT assessments</strong> against government web portals, identifying and remediating OWASP Top 10 vulnerabilities with coordinated PoC exploit validation.
               </p>
               <p>
-                Adept at offensive simulations (Active Directory exploitation, payload analysis, and sandbox malware replication) and defensive engineering (writing custom Wazuh/Snort IDS rules, tuning SIEM correlation, and orchestrating EDR policies).
+                Equally adept at defensive SIEM/EDR engineering (SentinelOne, Wazuh, Blu Sapphire), DFIR triage (FTK Imager, Magnet RAM Capture, Disk2vhd), and physical Data Center Infrastructure Management (DCIM) including PACs, server racks, and VESDA fire safety systems.
               </p>
               <p>
                 Proven ability to automate regulatory auditing through custom PowerShell and Python frameworks, reducing overall audit cycles by 60% and successfully responding to national CERT-In security advisories.
@@ -387,7 +388,7 @@ export default function Home() {
               <div className="p-4 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm mt-4">
                 <p className="text-sm font-semibold text-blue-900 flex gap-2 items-start">
                   <span className="text-lg">🎯</span> 
-                  <span>Open to U.S. Relocation / H-1B Sponsorship. Currently targeted locations: Washington D.C. Metro, Northern Virginia, Austin TX, Dallas TX, or Chicago IL.</span>
+                  <span>Open to Firewall Engineering, VAPT/Pentesting, SOC Leadership, and Purple Team roles — PAN India relocation and international H-1B sponsorship opportunities.</span>
                 </p>
               </div>
             </div>
@@ -400,13 +401,14 @@ export default function Home() {
                 <pre className="text-[13px] font-mono text-slate-700 leading-relaxed overflow-x-auto whitespace-pre">
 {`{
   "name": "Aditya Jain",
-  "title": "Cybersecurity Engineer",
-  "exp": "4+ Years Enterprise SecOps",
-  "relocation": "U.S. Relocation / H-1B",
+  "title": "Cybersecurity Engineer — Firewall & VAPT",
+  "exp": "3.5+ Years Enterprise SecOps & VAPT",
+  "focus": "NGFW • Web/Infra VAPT • SIEM/EDR • DFIR",
+  "clearance": "CNI Vetted (NIC/MeitY & DAE/NFC)",
   "email": "adityasec32@gmail.com",
   "contact": "+91 740 058 8896",
   "studying": "MBA in Cybersecurity",
-  "pursuing": ["OSCP", "CISSP"]
+  "pursuing": ["eJPT", "CEH v13", "CISSP"]
 }`}
                 </pre>
               </TiltWrapper>
@@ -422,7 +424,7 @@ export default function Home() {
             <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 title: "NGFW & Firewall Engineering",
@@ -433,20 +435,12 @@ export default function Home() {
                 desc: "Web Application VAPT (OWASP Top 10), Infrastructure Pentesting, Active Directory Security Assessments (Kerberoasting, Pass-the-Hash, DCSync, BloodHound, Impacket, Mimikatz), Burp Suite Pro, Metasploit, Nmap, PoC Exploit Development."
               },
               {
-                title: "SIEM / EDR & Threat Hunting",
-                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel, 24x7 CNI SOC threat hunting."
+                title: "SIEM/EDR, DFIR & SOC Operations",
+                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel, Snort IDS, 24x7 CNI SOC. DFIR: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, CERT-In IR."
               },
               {
-                title: "Digital Forensics & Incident Response (DFIR)",
-                desc: "FTK Imager, Magnet Forensics RAM Capture, Disk2vhd physical/virtual disk imaging, Autopsy, WinSCP secure artifact extraction, RAM dump analysis, NIST CSF, CERT-In compliance guidelines, Snort signature engineering."
-              },
-              {
-                title: "Scripting & AI Automation",
-                desc: "Python, PowerShell, Bash, Git. Developing customized automated compliance scripting (120+ checks), network log parsers, and AI telemetry RAG LLM helpers."
-              },
-              {
-                title: "Endpoint & Data Center Infrastructure (DCIM)",
-                desc: "KACE UEM (750+ nodes), State Data Centre (SDC) physical mgmt, Precision Air Conditioning (PACs), ultrasonic rodent repellers, server rack & patch panel structuring, fire hazard/VESDA safety, Linux admin & automated patching."
+                title: "Infrastructure, Automation & Compliance",
+                desc: "KACE UEM (750+ endpoints), State Data Centre DCIM (PACs, racks, patch panels, VESDA fire safety, rodent repellers), Python/PowerShell/Bash automation (120+ checks), WinSCP, Git, Ollama RAG LLM chatbots, CERT-In/CDAC/NIST CSF compliance."
               }
             ].map((skill, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm flex flex-col justify-between hover:shadow-lg hover:bg-white/60 hover:-translate-y-1 transition-all duration-300">
@@ -477,28 +471,39 @@ export default function Home() {
               {
                 period: "Feb 2024 – Present",
                 role: "Security Administrator",
-                company: "Ebix Technologies (Contracted to National Informatics Centre - NIC)",
+                company: "Ebix Technologies (Contracted to National Informatics Centre - NIC, MeitY)",
                 location: "Patna, Bihar, India",
-                tags: ["EDR Deployment", "Incidents & Forensics", "60% Audit Effort Saved", "750+ Offices"],
+                tags: ["Check Point NGFW", "Web & Infra VAPT", "EDR / 750+ Offices", "60% Audit Automated", "CERT-In IR"],
                 bullets: [
-                  "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, monitoring threat telemetry and tuning detection rules to neutralize emerging vectors.",
-                  "Enterprise Intranet & AI Portal (10.133.22.8): Solely engineered and deployed an AI-assisted organization-wide NOC portal (http://10.133.22.8), embedding a custom RAG LLM Chatbot (Ollama), personal hyperlink ecosystem, district router telemetry, and automated outage alerts.",
-                  "Incident Response & Forensics: Primary responder to CERT-In security advisories; performed live memory triage (RAM dumps via Magnet RAM Capture, FTK Imager, Disk2vhd) and authored PoC exploits to validate vulnerability closures.",
-                  "Compliance Automation: Built PowerShell and Python frameworks executing 120+ regulatory checks (NIST/ISO 27001 aligned) across 750+ endpoints — reducing manual cycles by 60%.",
-                  "Data Center Infrastructure Management (DCIM): Overseeing State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, high-density patch panel routing, ultrasonic rodent repeller systems, and fire hazard detection/VESDA safety compliance.",
-                  "Vulnerability Management: Coordinated disclosure and patching with government development teams to remediate OWASP Top 10 vulnerabilities.",
-                  "Endpoint & Network Hardening: Enforced default-deny policies on Check Point NGFW, deployed USB blocks, and conducted public IP exposure audits."
+                  "Firewall Architecture & Perimeter Hardening: Designed and enforced default-deny security policies on Check Point NGFW across Bihar SDC and NKN offices; configured NAT/PAT rules, audited ACLs, and managed IPsec VPN tunnels for secure inter-district government communications.",
+                  "Web Application & Infrastructure VAPT: Conducted 15+ vulnerability assessments and penetration tests against government-facing web portals; identified and remediated 50+ critical/high OWASP Top 10 vulnerabilities (Open Redirect, XSS, SQLi); validated closures via PoC exploits coordinated with NIC-CERT.",
+                  "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, tuning behavioral detection policies to neutralize emerging ransomware and fileless attack vectors.",
+                  "Enterprise Intranet & AI Portal (10.133.22.8): Independently designed and deployed an AI-assisted organization-wide NOC portal (http://10.133.22.8), integrating an offline RAG LLM Chatbot (Ollama), custom tool hyperlink directory, district router telemetry, and automated outage alerts.",
+                  "DFIR & CERT-In Incident Response: Primary CERT-In responder; performed live memory triage (Magnet RAM Capture, FTK Imager, Disk2vhd), host forensics, and authored PoC exploits to validate vulnerability closures. Achieved 100% closure rate on CERT-In advisories within SLA.",
+                  "Compliance Automation: Built PowerShell and Python frameworks automating 120+ CDAC/CERT-In regulatory checks across 750+ endpoints via KACE UEM — cutting audit effort by 60%.",
+                  "Data Center Infrastructure Management (DCIM): Oversaw State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, patch panel routing, ultrasonic rodent repeller systems, and VESDA fire safety compliance."
+                ]
+              },
+              {
+                period: "Aug 2023 – Jan 2024",
+                role: "Self-Directed Security Research & MBA Prep",
+                company: "Independent Study & Chitkara University Enrollment",
+                location: "Patna, Bihar, India",
+                tags: ["Hack The Box", "AD Labs", "MBA Prep", "Offensive Security Practice"],
+                bullets: [
+                  "Enrolled in MBA in Cybersecurity (Chitkara University) while completing intensive self-directed offensive security lab practice on Hack The Box (Active Directory exploitation, Pro Hacker rank) and VulnLab (multi-forest AD pivots, Domain Controller compromise).",
+                  "Deepened expertise in Active Directory attack chains (Kerberoasting, Pass-the-Hash, DCSync, Unconstrained Delegation) and VAPT methodologies in preparation for eJPT certification."
                 ]
               },
               {
                 period: "Dec 2022 – Jul 2023",
                 role: "SOC Analyst — Threat Hunter",
-                company: "RRG Engineering Technologies (Contracted to Nuclear Fuel Complex - NFC)",
+                company: "RRG Engineering Technologies (Contracted to Nuclear Fuel Complex - NFC, DAE)",
                 location: "Kota, Rajasthan, India",
                 tags: ["24x7 CNI SOC", "Blu Sapphire SIEM", "+35% Detection Boost", "Malware Sandboxing"],
                 bullets: [
-                  "CNI SOC Operations: Threat hunting and incident response SME in a 24x7 critical nuclear infrastructure SOC (DOE-equivalent sensitivity), monitoring telemetry via Blu Sapphire SIEM.",
-                  "Sandbox Analysis: Reproduced adversary exploit signatures in isolated lab environments; performed behavioral malware analysis with Kaspersky EDR to reverse-engineer TTPs.",
+                  "CNI SOC Operations: SME for threat hunting and incident response in a 24x7 nuclear-sector SOC (Department of Atomic Energy — DOE-equivalent sensitivity), monitoring enterprise telemetry via Blu Sapphire SIEM.",
+                  "Sandbox & Malware Analysis: Reproduced adversary exploit signatures in isolated lab environments; performed behavioral malware analysis with Kaspersky EDR to reverse-engineer TTPs.",
                   "Detection Engineering: Tuned SIEM correlation rules and EDR behavioral rules, yielding a 35% improvement in true-positive detection rates while eliminating alert fatigue."
                 ]
               },
@@ -506,22 +511,22 @@ export default function Home() {
                 period: "Aug 2022 – Oct 2022",
                 role: "SOC Analyst — IDS & Signature Development",
                 company: "E2E Networks Limited",
-                location: "Vellore, Tamil Nadu, India",
+                location: "Delhi NCR, India (Remote)",
                 tags: ["Snort IDS", "Wazuh SIEM", "Perimeter Blocklist"],
                 bullets: [
-                  "IDS Engineering: Authored and deployed custom Snort and Wazuh IDS signatures to capture novel attack patterns.",
-                  "Threat Intelligence: Automated AbuseIPDB threat feed ingestion to enforce real-time perimeter firewall IP blocklisting.",
+                  "IDS Engineering: Authored and deployed custom Snort and Wazuh IDS signatures to capture novel attack patterns in a 24x7 SOC environment.",
+                  "Threat Intelligence: Automated AbuseIPDB threat feed ingestion for real-time perimeter firewall IP blocklisting.",
                   "Telemetry Analysis: Analyzed bandwidth and network traffic logs to identify routing loops and anomalies."
                 ]
               },
               {
                 period: "Dec 2021 – May 2022",
-                role: "Technical Support Executive",
+                role: "Technical Support Executive (Microsoft Account)",
                 company: "Teleperformance",
                 location: "Jaipur, Rajasthan, India",
-                tags: ["Enterprise Support", "Microsoft Suite", "SLA Compliance"],
+                tags: ["Earlier Career"],
                 bullets: [
-                  "Delivered Tier-2 Microsoft enterprise support via the Rave ticketing platform, maintaining SLA compliance and documenting security knowledge bases."
+                  "Delivered Tier-2 Microsoft enterprise support; maintained SLA compliance and documented internal security knowledge bases."
                 ]
               }
             ].map((exp, idx) => (
@@ -713,7 +718,7 @@ export default function Home() {
             <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
                 degree: "Master of Business Administration (MBA) in Cybersecurity",
@@ -724,6 +729,11 @@ export default function Home() {
                 degree: "B.Tech in Computer Science & Engineering",
                 school: "Manipal University Jaipur, India",
                 period: "Graduated 2022"
+              },
+              {
+                degree: "Diploma in Computer Science & Engineering",
+                school: "Hindu College of Engineering, India",
+                period: "2013 – 2018"
               }
             ].map((edu, idx) => (
               <div key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -751,7 +761,7 @@ export default function Home() {
               <TiltWrapper className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl space-y-6 shadow-sm">
                 <h3 className="text-2xl font-bold font-title text-slate-900">Get in Touch</h3>
                 <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                  Open to enterprise SecOps, Purple Teaming, Detection Engineering, or Red Team roles — worldwide remote and relocation opportunities.
+                  Open to Firewall Engineering, VAPT/Pentesting, SOC Leadership, and Purple Team roles — PAN India relocation and international opportunities.
                 </p>
                 
                 <div className="space-y-4 font-mono text-sm font-bold text-slate-600">
