@@ -5,6 +5,125 @@ import { Heart } from 'lucide-react';
 
 const STREET_FEEDING_DRIVE = [
   {
+    src: '/impact/impact-103.jpg',
+    title: 'Morning Curd & Milk Patrol',
+    location: 'Patna Division, Bihar',
+    date: '05 Aug 2026 • 9:15 AM',
+    tag: 'Daily Feeding Patrol'
+  },
+  {
+    src: '/impact/impact-102.jpg',
+    title: 'Morning Stray Dog Feeding',
+    location: 'Rajbansi Nagar, Patna',
+    date: '04 Aug 2026 • 8:40 AM',
+    tag: 'Morning Nourishment'
+  },
+  {
+    src: '/impact/impact-101.jpg',
+    title: 'Evening Street Feeding',
+    location: 'Punaichak Hub, Patna',
+    date: '04 Aug 2026 • 6:57 PM',
+    tag: 'Evening Care'
+  },
+  {
+    src: '/impact/impact-100.jpg',
+    title: 'Community Dog Curd Drive',
+    location: 'Market Stall Hub, Patna',
+    date: '03 Aug 2026 • 5:47 PM',
+    tag: 'Street Care'
+  },
+  {
+    src: '/impact/impact-99.jpg',
+    title: 'Morning Hydration & Milk Bowl',
+    location: 'Patna Streets, Bihar',
+    date: '03 Aug 2026 • 10:12 AM',
+    tag: 'Direct Feeding'
+  },
+  {
+    src: '/impact/impact-98.jpg',
+    title: 'Stray Rescue Morning Care',
+    location: 'Rajbansi Nagar, Patna',
+    date: '02 Aug 2026 • 8:45 AM',
+    tag: 'Rescued Stray Drive'
+  },
+  {
+    src: '/impact/impact-97.jpg',
+    title: 'Evening Curd & Milk Bowl',
+    location: 'Patna Division, Bihar',
+    date: '02 Aug 2026 • 7:03 PM',
+    tag: 'Evening Patrol'
+  },
+  {
+    src: '/impact/impact-96.jpg',
+    title: 'Night Market Stall Feeding',
+    location: 'Local Vendor Hub, Patna',
+    date: '01 Aug 2026 • 6:32 PM',
+    tag: 'Night Drive'
+  },
+  {
+    src: '/impact/impact-95.jpg',
+    title: 'Evening Stray Nourishment',
+    location: 'Rajbansi Nagar, Patna',
+    date: '01 Aug 2026 • 5:42 PM',
+    tag: 'Volunteer Care'
+  },
+  {
+    src: '/impact/impact-94.jpg',
+    title: 'Night Patrol Feeding Spot',
+    location: 'Punaichak, Patna',
+    date: '31 Jul 2026 • 8:01 PM',
+    tag: 'Night Patrol'
+  },
+  {
+    src: '/impact/impact-93.jpg',
+    title: 'Evening Community Care',
+    location: 'Rajbansi Nagar Road, Patna',
+    date: '31 Jul 2026 • 6:42 PM',
+    tag: 'Direct Care'
+  },
+  {
+    src: '/impact/impact-92.jpg',
+    title: 'Monsoon Curd & Milk Drive',
+    location: 'Patna Division, Bihar',
+    date: '31 Jul 2026 • 6:10 PM',
+    tag: 'Monsoon Care'
+  },
+  {
+    src: '/impact/impact-91.jpg',
+    title: 'Morning Stray Hydration',
+    location: 'Patna Streets, Bihar',
+    date: '30 Jul 2026 • 8:48 AM',
+    tag: 'Morning Drive'
+  },
+  {
+    src: '/impact/impact-90.jpg',
+    title: 'Night Vendor Feed Hub',
+    location: 'Market Stall, Patna',
+    date: '29 Jul 2026 • 7:32 PM',
+    tag: 'Night Care'
+  },
+  {
+    src: '/impact/impact-89.jpg',
+    title: 'Evening Curd Bowl Drive',
+    location: 'Rajbansi Nagar, Patna',
+    date: '29 Jul 2026 • 5:08 PM',
+    tag: 'Curd Drive'
+  },
+  {
+    src: '/impact/impact-88.jpg',
+    title: 'Night Stray Patrol',
+    location: 'Patna Division, Bihar',
+    date: '28 Jul 2026 • 7:11 PM',
+    tag: 'Night Patrol'
+  },
+  {
+    src: '/impact/impact-87.jpg',
+    title: 'Evening Dog Feed Spot',
+    location: 'Rajbansi Nagar, Patna',
+    date: '28 Jul 2026 • 5:10 PM',
+    tag: 'Evening Care'
+  },
+  {
     src: '/impact/impact-82.jpg',
     title: 'Fresh Milk & Curd Feeding',
     location: 'Rajbansi Nagar, Patna Division, Bihar',

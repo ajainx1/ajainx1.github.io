@@ -122,30 +122,47 @@ export default function ClientImpactReports() {
                   </span>
                 </div>
                 <ul className="space-y-2 text-sm text-slate-300 mb-6">
-                  <li>• <strong className="text-white">Karma Points:</strong> 6,800 Points</li>
-                  <li>• <strong className="text-white">Meals Provided:</strong> 34 Bowls of Fresh Milk & Curd</li>
-                  <li>• <strong className="text-white">Field Operations:</strong> 5 Verified Locations in Patna</li>
+                  <li>• <strong className="text-white">Karma Points:</strong> 18,400 Points</li>
+                  <li>• <strong className="text-white">Meals Provided:</strong> 92 Bowls of Fresh Milk & Curd</li>
+                  <li>• <strong className="text-white">Field Operations:</strong> 22 Field-Verified Feeding Drives (July 28 - August 5)</li>
                 </ul>
               </div>
 
               {/* Photo Thumbnails Grid */}
-              <div className="grid grid-cols-5 gap-2">
+              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
                 {[
+                  { src: '/impact/impact-103.jpg', title: 'Morning Curd & Milk Patrol', location: 'Patna Division, Bihar', date: '05 Aug 2026 • 9:15 AM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-102.jpg', title: 'Morning Stray Dog Feeding', location: 'Rajbansi Nagar, Patna', date: '04 Aug 2026 • 8:40 AM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-101.jpg', title: 'Evening Street Feeding', location: 'Punaichak Hub, Patna', date: '04 Aug 2026 • 6:57 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-100.jpg', title: 'Community Dog Curd Drive', location: 'Market Stall Hub, Patna', date: '03 Aug 2026 • 5:47 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-99.jpg', title: 'Morning Hydration & Milk Bowl', location: 'Patna Streets, Bihar', date: '03 Aug 2026 • 10:12 AM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-98.jpg', title: 'Stray Rescue Morning Care', location: 'Rajbansi Nagar, Patna', date: '02 Aug 2026 • 8:45 AM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-97.jpg', title: 'Evening Curd & Milk Bowl', location: 'Patna Division, Bihar', date: '02 Aug 2026 • 7:03 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-96.jpg', title: 'Night Market Stall Feeding', location: 'Local Vendor Hub, Patna', date: '01 Aug 2026 • 6:32 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-95.jpg', title: 'Evening Stray Nourishment', location: 'Rajbansi Nagar, Patna', date: '01 Aug 2026 • 5:42 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-94.jpg', title: 'Night Patrol Feeding Spot', location: 'Punaichak, Patna', date: '31 Jul 2026 • 8:01 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-93.jpg', title: 'Evening Community Care', location: 'Rajbansi Nagar Road, Patna', date: '31 Jul 2026 • 6:42 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-92.jpg', title: 'Monsoon Curd & Milk Drive', location: 'Patna Division, Bihar', date: '31 Jul 2026 • 6:10 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-91.jpg', title: 'Morning Stray Hydration', location: 'Patna Streets, Bihar', date: '30 Jul 2026 • 8:48 AM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-90.jpg', title: 'Night Vendor Feed Hub', location: 'Market Stall, Patna', date: '29 Jul 2026 • 7:32 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-89.jpg', title: 'Evening Curd Bowl Drive', location: 'Rajbansi Nagar, Patna', date: '29 Jul 2026 • 5:08 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-88.jpg', title: 'Night Stray Patrol', location: 'Patna Division, Bihar', date: '28 Jul 2026 • 7:11 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-87.jpg', title: 'Evening Dog Feed Spot', location: 'Rajbansi Nagar, Patna', date: '28 Jul 2026 • 5:10 PM', meals: 'Milk & Curd Bowl' },
                   { src: '/impact/impact-82.jpg', title: 'Fresh Milk & Curd Feeding', location: 'Rajbansi Nagar, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' },
-                  { src: '/impact/impact-83.jpg', title: 'Street Dog Curd Bowl', location: 'Local Market Stall, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Curd & Milk' },
-                  { src: '/impact/impact-84.jpg', title: 'Volunteer Evening Patrol', location: 'Rajbansi Nagar Road, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Volunteer Feeding' },
-                  { src: '/impact/impact-85.jpg', title: 'Stray Dog Rescue Feeding', location: 'Patna Division, Bihar', date: '29 Jul 2026 • 5:07 PM', meals: 'Curd Bowl' },
-                  { src: '/impact/impact-86.jpg', title: 'Night Stall Feeding Patrol', location: 'Market Stall Hub, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Night Patrol Bowl' }
+                  { src: '/impact/impact-83.jpg', title: 'Street Dog Curd Bowl', location: 'Local Market Stall, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-84.jpg', title: 'Volunteer Evening Patrol', location: 'Rajbansi Nagar Road, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-85.jpg', title: 'Stray Dog Rescue Feeding', location: 'Patna Division, Bihar', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' },
+                  { src: '/impact/impact-86.jpg', title: 'Night Stall Feeding Patrol', location: 'Market Stall Hub, Patna', date: '29 Jul 2026 • 5:07 PM', meals: 'Milk & Curd Bowl' }
                 ].map((photo, i) => (
                   <button
                     key={i}
                     onClick={() => setActivePhoto(photo)}
-                    className="h-20 w-full relative rounded-lg overflow-hidden border border-white/10 group/btn focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer"
+                    className="h-16 w-full relative rounded-lg overflow-hidden border border-white/10 group/btn focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer"
                     aria-label={`View photo ${i + 1}`}
                   >
                     <Image src={photo.src} alt={photo.title} fill className="object-cover group-hover/btn:scale-110 transition-transform duration-500" />
                     <div className="absolute inset-0 bg-black/30 group-hover/btn:bg-black/10 transition-colors flex items-center justify-center">
-                      <Maximize2 size={12} className="text-white opacity-80 group-hover/btn:opacity-100" />
+                      <Maximize2 size={10} className="text-white opacity-80 group-hover/btn:opacity-100" />
                     </div>
                   </button>
                 ))}
