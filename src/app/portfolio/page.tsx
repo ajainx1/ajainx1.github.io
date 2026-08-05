@@ -609,6 +609,15 @@ export default function Home() {
                 badge: "Community",
                 link: "https://cyberkarma.me",
                 color: "bg-emerald-50 text-emerald-700 border-emerald-200"
+              },
+              {
+                title: "JumpStreet Trading Infrastructure",
+                status: "Production",
+                desc: "Engineered low-latency algorithmic trading infrastructure providing sub-millisecond cloud VMs and high-availability 5G redundancy nodes for quantitative traders.",
+                tags: ["Cloud Infra", "Low Latency", "5G Redundancy", "Windows Server"],
+                badge: "Enterprise",
+                link: "https://jumpstreet.tech",
+                color: "bg-rose-50 text-rose-700 border-rose-200"
               }
             ].map((project, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between hover:bg-white/60 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
