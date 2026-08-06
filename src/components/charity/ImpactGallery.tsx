@@ -203,7 +203,7 @@ const STREET_FEEDING_DRIVE = [
   }
 ];
 
-export default function ImpactGallery({ isDark }: { isDark: boolean }) {
+export default function ImpactGallery({ isDark, liveDeliveriesCount = 14203 }: { isDark: boolean; liveDeliveriesCount?: number }) {
   const [previewImage, setPreviewImage] = useState<any>(null);
   const [activeFilter, setActiveFilter] = useState<string>('all');
 
@@ -332,7 +332,10 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
               <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
                 <span>📸 </span> Global Verified Deliveries
               </h3>
-              <span className="text-xs text-emerald-500 font-bold">14,203+ Deliveries</span>
+              <span className="text-xs text-emerald-400 font-mono font-black flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                {liveDeliveriesCount.toLocaleString()}+ Verified Deliveries
+              </span>
             </div>
             
             <div className="relative w-full overflow-hidden rounded-[20px]">

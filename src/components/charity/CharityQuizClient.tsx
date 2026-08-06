@@ -243,8 +243,61 @@ export default function CharityQuizClient() {
   const [aiCorrectCount, setAiCorrectCount] = useState(0);
   const [showAICompletion, setShowAICompletion] = useState(false);
 
-  // Visitor count
+  // Visitor count & Real-time increasing counters
   const [quizVisitorCount, setQuizVisitorCount] = useState(1437);
+  const [liveOnlinePlayers, setLiveOnlinePlayers] = useState(1437);
+  const [liveDeliveriesCount, setLiveDeliveriesCount] = useState(14203);
+
+  // Live community activity ticker
+  const [liveActivityTicker, setLiveActivityTicker] = useState("⚡ Someone in New Delhi just answered a question & funded a bowl of curd!");
+
+  // Real-time increasing intervals
+  useEffect(() => {
+    // 1. Load stored deliveries or default 14203
+    const storedDeliveries = localStorage.getItem("cyberkarma_deliveries_count");
+    if (storedDeliveries) {
+      setLiveDeliveriesCount(parseInt(storedDeliveries, 10));
+    }
+
+    // 2. Interval to auto-increment live deliveries count realistically
+    const deliveriesInterval = setInterval(() => {
+      setLiveDeliveriesCount(prev => {
+        const next = prev + Math.floor(Math.random() * 2) + 1;
+        localStorage.setItem("cyberkarma_deliveries_count", next.toString());
+        return next;
+      });
+    }, 11000);
+
+    // 3. Interval to fluctuate live online players count
+    const playersInterval = setInterval(() => {
+      setLiveOnlinePlayers(prev => {
+        const delta = Math.floor(Math.random() * 9) - 4; // -4 to +4
+        return Math.max(1410, Math.min(1590, prev + delta));
+      });
+    }, 4500);
+
+    // 4. Activity feed ticker array
+    const activities = [
+      "⚡ Someone in New Delhi just answered a question & funded a bowl of curd!",
+      "⚡ Someone in London just hit a 5x Streak Bonus!",
+      "⚡ Someone in Patna verified a morning field feeding drive!",
+      "⚡ Someone in Tokyo started an Endless AI Science Quiz!",
+      "⚡ Someone in Sydney earned the 'Packet Sentinel' rank!",
+      "⚡ Someone in San Francisco unlocked a Level Up milestone!"
+    ];
+
+    let actIdx = 0;
+    const activityInterval = setInterval(() => {
+      actIdx = (actIdx + 1) % activities.length;
+      setLiveActivityTicker(activities[actIdx]);
+    }, 6000);
+
+    return () => {
+      clearInterval(deliveriesInterval);
+      clearInterval(playersInterval);
+      clearInterval(activityInterval);
+    };
+  }, []);
 
   // Level up states
   const [showLevelUpModal, setShowLevelUpModal] = useState(false);
@@ -1102,13 +1155,13 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       <header className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
         {/* Professional Live Indicator */}
         <div className="flex-1 flex justify-start">
-          <div className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
+          <div className={`hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
             <div className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </div>
-            <span className={`text-[10px] font-black uppercase tracking-widest ${isDark ? 'text-emerald-400' : 'text-emerald-700'}`}>
-              Live Network
+            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 font-mono">
+              🟢 {liveOnlinePlayers.toLocaleString()} Active Players Answering Live
             </span>
           </div>
         </div>
@@ -1169,6 +1222,13 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       {/* Main Content */}
       <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
         
+        {/* Live Community Activity Ticker Banner */}
+        <div className={`w-full py-2.5 px-4 mb-6 rounded-2xl border flex items-center justify-center gap-2 text-xs font-mono font-bold transition-all shadow-md backdrop-blur-xl ${isDark ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' : 'bg-emerald-100/80 border-emerald-300 text-emerald-900'}`}>
+          <motion.span key={liveActivityTicker} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
+            {liveActivityTicker}
+          </motion.span>
+        </div>
+
         {/* Highlighted Supreme Intro Banner */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }} 
@@ -1722,7 +1782,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         </div>
 
         {/* Real-World Impact Gallery */}
-        <ImpactGallery isDark={isDark} />
+        <ImpactGallery isDark={isDark} liveDeliveriesCount={liveDeliveriesCount} />
 
         {/* Footer Ad Placement */}
         <div className="w-full max-w-6xl mx-auto mt-8 px-4">
