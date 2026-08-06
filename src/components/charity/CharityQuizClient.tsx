@@ -1370,6 +1370,61 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </div>
               </div>
             </TiltWrapper>
+
+            {/* 🔥 Most Played Custom AI Quizzes Widget */}
+            <TiltWrapper tiltDeg={4}>
+              <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-[0_15px_35px_rgba(0,0,0,0.3)] border flex flex-col gap-4 relative overflow-hidden transition-all ${isDark ? 'bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 border-amber-500/30 shadow-amber-950/30' : 'bg-gradient-to-br from-white/90 via-amber-50/30 to-white border-amber-200 shadow-xl'}`}>
+                {/* Background Ambient Glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 blur-[60px] rounded-full pointer-events-none" />
+
+                <div className="flex items-center justify-between px-1 relative z-10">
+                  <h3 className="text-sm font-black uppercase tracking-wider text-amber-400 font-title flex items-center gap-2">
+                    <Flame size={18} className="text-amber-400 animate-pulse fill-amber-400" />
+                    Most Played AI Quizzes
+                  </h3>
+                  <span className="text-[10px] font-mono text-amber-400/80 font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+                    Trending
+                  </span>
+                </div>
+
+                <div className="flex flex-col gap-2.5 relative z-10">
+                  {[
+                    { topic: 'Space & Quantum Physics', icon: '🚀', plays: '4.8k', karma: '48.2k', value: 'Space Exploration & Quantum Physics' },
+                    { topic: 'Cybersecurity & AI Hacking', icon: '🔐', plays: '3.9k', karma: '39.4k', value: 'Cybersecurity, Hacking & Artificial Intelligence' },
+                    { topic: 'Street Dog Psychology', icon: '🐕', plays: '3.5k', karma: '35.1k', value: 'Animal Welfare & Canine Behavior' },
+                    { topic: 'Lost Ancient Civilizations', icon: '🏛️', plays: '2.8k', karma: '28.9k', value: 'Ancient World Civilizations & Archaeology' },
+                    { topic: 'World History & Philosophy', icon: '📜', plays: '2.4k', karma: '24.6k', value: 'World History & Philosophical Thought' }
+                  ].map((item, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setAiTopic(item.value);
+                        setShowAIModal(true);
+                      }}
+                      className={`w-full p-3.5 rounded-[20px] text-left transition-all duration-300 flex items-center justify-between border group active:scale-[0.98] ${isDark ? 'bg-black/40 border-white/10 hover:border-amber-400/50 hover:bg-amber-500/10 text-white' : 'bg-white border-slate-200 hover:border-amber-400 hover:bg-amber-50 text-slate-900 shadow-sm'}`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl p-2 rounded-xl bg-amber-500/20 border border-amber-500/30 group-hover:scale-110 transition-transform">
+                          {item.icon}
+                        </span>
+                        <div>
+                          <h4 className="text-xs font-extrabold group-hover:text-amber-400 transition-colors font-title">
+                            {item.topic}
+                          </h4>
+                          <span className="text-[10px] text-slate-400 font-mono font-medium block mt-0.5">
+                            🔥 {item.plays} Plays • {item.karma} Karma
+                          </span>
+                        </div>
+                      </div>
+
+                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
+                        Play →
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </TiltWrapper>
             
             {/* Main Score Widget (Sidebar 3D Layout) */}
             <TiltWrapper tiltDeg={4}>
