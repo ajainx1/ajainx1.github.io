@@ -83,23 +83,24 @@ const levelTitles = [
 ];
 
 const QuizImage = ({ category, question }: { category: string, question: string }) => {
-  const [error, setError] = useState(false);
-  const aiUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + question)}?width=800&height=800&nologo=true`;
-  const fallbackUrl = `/category_${['animals', 'nature', 'humanities', 'science', 'gk'].includes(category) ? category : 'science'}.jpg`;
+  const categoryImageMap: Record<string, string> = {
+    animals: '/category_animals.jpg',
+    nature: '/category_nature.jpg',
+    humanities: '/category_humanities.jpg',
+    science: '/category_science.jpg',
+    gk: '/category_gk.jpg'
+  };
 
-  useEffect(() => {
-    setError(false);
-  }, [question, category]);
+  const imageSrc = categoryImageMap[category] || '/category_science.jpg';
 
   return (
     <Image 
-      src={error ? fallbackUrl : aiUrl}
-      alt="Question visual"
+      src={imageSrc}
+      alt={`${category} 3D Visual Graphic`}
       fill
-      className="object-cover relative z-10 transition-opacity duration-1000 group-hover:scale-105"
+      className="object-cover relative z-10 transition-transform duration-700 group-hover:scale-105"
       sizes="(max-width: 768px) 100vw, 800px"
       priority={true}
-      onError={() => setError(true)}
     />
   );
 };
@@ -1449,17 +1450,31 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </div>
 
                 <div className={`flex flex-col gap-2.5 p-3 rounded-[24px] relative z-10 ${isDark ? 'bg-black/40 border border-white/10' : 'bg-slate-100/80 border border-slate-200'}`}>
-                  <div className="flex flex-wrap gap-2 justify-center">
-                    {(Object.keys(quizData) as CategoryKey[]).map(cat => (
-                      <button
-                        key={cat}
-                        onClick={() => setCategory(cat)}
-                        className={`px-3.5 py-2.5 rounded-[18px] text-[11px] font-extrabold capitalize transition-all duration-300 flex items-center gap-1.5 active:scale-[0.98] ${category === cat ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 shadow-[0_0_20px_rgba(52,211,153,0.4)] scale-[1.03] font-black border border-emerald-300' : isDark ? 'bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-emerald-50 hover:border-emerald-300 shadow-sm'}`}
-                      >
-                        <span>{cat === 'gk' ? '🧠' : cat === 'animals' ? '🐶' : cat === 'nature' ? '🌿' : cat === 'science' ? '⚛️' : '📚'}</span>
-                        {cat === 'gk' ? 'General Knowledge' : cat}
-                      </button>
-                    ))}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {(Object.keys(quizData) as CategoryKey[]).map(cat => {
+                      const imgMap: Record<string, string> = {
+                        animals: '/category_animals.jpg',
+                        nature: '/category_nature.jpg',
+                        humanities: '/category_humanities.jpg',
+                        science: '/category_science.jpg',
+                        gk: '/category_gk.jpg'
+                      };
+                      return (
+                        <button
+                          key={cat}
+                          onClick={() => setCategory(cat)}
+                          className={`p-2 rounded-[20px] text-[11px] font-black capitalize transition-all duration-300 flex flex-col items-center gap-1.5 active:scale-[0.98] border relative overflow-hidden group ${category === cat ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 shadow-[0_0_20px_rgba(52,211,153,0.4)] scale-[1.03] border-emerald-300' : isDark ? 'bg-black/40 border-white/10 hover:border-emerald-500/40 text-white' : 'bg-white border-slate-200 text-slate-700 hover:bg-emerald-50 hover:border-emerald-300 shadow-sm'}`}
+                        >
+                          <div className="w-full h-16 rounded-[14px] overflow-hidden relative shadow-inner border border-white/20">
+                            <img src={imgMap[cat]} alt={cat} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                          </div>
+                          <span className="flex items-center gap-1 text-[11px]">
+                            <span>{cat === 'gk' ? '🧠' : cat === 'animals' ? '🐶' : cat === 'nature' ? '🌿' : cat === 'science' ? '⚛️' : '📚'}</span>
+                            {cat === 'gk' ? 'GK' : cat}
+                          </span>
+                        </button>
+                      );
+                    })}
                   </div>
                   
                   <div className="flex flex-col gap-2 mt-1">
