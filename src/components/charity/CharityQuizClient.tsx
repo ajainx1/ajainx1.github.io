@@ -253,6 +253,9 @@ export default function CharityQuizClient() {
   // Photo preview lightbox state
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string; location: string; date: string; tag: string } | null>(null);
 
+  // 3D Viral Share Modal State
+  const [showShareModal, setShowShareModal] = useState(false);
+
   // Refs to track recently shown questions to prevent repeats
   const questionHistoryRef = useRef<string[]>([]);
   const currentQuestionRef = useRef<Question | null>(null);
@@ -1034,16 +1037,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleShare = () => {
-    const text = `🐾 I just generated ${score} Karma Points of karmic impact on CyberKarma! Play fun quizzes & help provide milk and curd to street dogs:`;
-    const shareUrl = "https://cyberkarma.me";
-    if (navigator.share) {
-      navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
-    } else {
-      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + shareUrl)}`;
-      window.open(whatsappUrl, '_blank');
-      navigator.clipboard.writeText(`${text} ${shareUrl}`);
-      addToast('Copied share link & opening WhatsApp!', 'success');
-    }
+    setShowShareModal(true);
+    playSound('levelup');
   };
 
   // Share AI Custom Quiz Accomplishment (Viral Booster)
@@ -1956,6 +1951,168 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 className="w-full py-4 rounded-[20px] bg-blue-500 text-white font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/30"
               >
                 Continue Playing
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 3D Viral Social Share Modal */}
+      <AnimatePresence>
+        {showShareModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl overflow-y-auto"
+            onClick={() => setShowShareModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 30 }}
+              onClick={e => e.stopPropagation()}
+              className={`w-full max-w-lg rounded-[36px] p-6 sm:p-8 shadow-2xl border relative overflow-hidden my-auto ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-emerald-500/30 text-white' : 'bg-gradient-to-br from-white via-emerald-50/50 to-white border-emerald-200 text-slate-900'}`}
+            >
+              <button
+                onClick={() => setShowShareModal(false)}
+                className="absolute top-5 right-5 z-50 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center font-bold text-sm transition-colors border border-white/20"
+              >
+                ✕
+              </button>
+
+              <div className="text-center space-y-2 mb-6">
+                <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 inline-block mb-1">
+                  🌟 Viral Impact Badge
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black font-title tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                  Share Your Karmic Impact
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xs mx-auto leading-relaxed">
+                  Inspire your friends on Instagram, Facebook & WhatsApp to feed street dogs by answering trivia!
+                </p>
+              </div>
+
+              {/* 3D Glass Certificate Badge Card */}
+              <TiltWrapper tiltDeg={6}>
+                <div className="p-6 rounded-[28px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 border border-emerald-500/40 shadow-[0_20px_40px_rgba(0,0,0,0.6)] relative overflow-hidden mb-6 group">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/15 blur-[60px] rounded-full pointer-events-none" />
+                  
+                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-2">
+                      <span className="text-2xl">🐕🥣</span>
+                      <div>
+                        <span className="text-xs font-black uppercase tracking-wider text-emerald-400 block font-title">CyberKarma Impact</span>
+                        <span className="text-[10px] text-slate-400 font-mono">Patna Street Dog Drive</span>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      OFFICIAL VERIFIED
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-xs text-slate-400 font-mono">Current Rank:</span>
+                      <span className="text-sm font-black text-amber-400 font-title">Level {userLevel}: {userTitle}</span>
+                    </div>
+
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-xs text-slate-400 font-mono">Total Karma Donated:</span>
+                      <span className="text-xl font-black text-emerald-400 font-mono">{score.toLocaleString()} Points</span>
+                    </div>
+
+                    <div className="flex justify-between items-baseline">
+                      <span className="text-xs text-slate-400 font-mono">Bowls Funded:</span>
+                      <span className="text-sm font-extrabold text-cyan-300 font-mono">~{Math.max(1, Math.floor(score / 200))} Bowl(s) of Milk & Curd</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-mono">
+                    <span>📍 Verified Patna Streets, Bihar</span>
+                    <span>cyberkarma.me</span>
+                  </div>
+                </div>
+              </TiltWrapper>
+
+              {/* Social Share Buttons */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
+                {/* Instagram Story / Post */}
+                <button
+                  onClick={() => {
+                    const text = `🐾 I just donated ${score} Karma Points on CyberKarma (~${Math.max(1, Math.floor(score / 200))} bowls of milk & curd for Patna street dogs)! Try any quiz at https://cyberkarma.me 🐕🥣`;
+                    navigator.clipboard.writeText(text);
+                    addToast('📸 Instagram Story caption copied! Share on Instagram now.', 'success');
+                  }}
+                  className="p-3 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-pink-400/30 col-span-2 sm:col-span-1"
+                >
+                  <span>📸</span> Instagram
+                </button>
+
+                {/* Facebook */}
+                <button
+                  onClick={() => {
+                    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cyberkarma.me')}&quote=${encodeURIComponent(`🐾 I generated ${score} Karma Points on CyberKarma to feed street dogs! Play free quizzes at cyberkarma.me`)}`;
+                    window.open(shareUrl, '_blank');
+                  }}
+                  className="p-3 rounded-2xl bg-[#1877F2] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-blue-400/30"
+                >
+                  <span>📘</span> Facebook
+                </button>
+
+                {/* WhatsApp */}
+                <button
+                  onClick={() => {
+                    const text = `🐾 I just generated ${score} Karma Points on CyberKarma! Answer trivia & help provide milk and curd to street dogs: https://cyberkarma.me 🐕🥣`;
+                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                  className="p-3 rounded-2xl bg-[#25D366] text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-emerald-400/40"
+                >
+                  <span>💬</span> WhatsApp
+                </button>
+
+                {/* X / Twitter */}
+                <button
+                  onClick={() => {
+                    const text = `🐾 Just donated ${score} Karma Points feeding street dogs in Patna on @CyberKarma! Answer trivia & save lives: https://cyberkarma.me 🐕🥣 #CyberKarma #AnimalWelfare`;
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                  className="p-3 rounded-2xl bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-white/20"
+                >
+                  <span>🪽</span> X (Twitter)
+                </button>
+
+                {/* LinkedIn */}
+                <button
+                  onClick={() => {
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cyberkarma.me')}`, '_blank');
+                  }}
+                  className="p-3 rounded-2xl bg-[#0A66C2] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-blue-300/30"
+                >
+                  <span>💼</span> LinkedIn
+                </button>
+
+                {/* Telegram */}
+                <button
+                  onClick={() => {
+                    const text = `🐾 I just generated ${score} Karma Points feeding street dogs on CyberKarma! Play quizzes here:`;
+                    window.open(`https://t.me/share/url?url=${encodeURIComponent('https://cyberkarma.me')}&text=${encodeURIComponent(text)}`, '_blank');
+                  }}
+                  className="p-3 rounded-2xl bg-[#229ED9] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-cyan-300/30"
+                >
+                  <span>✈️</span> Telegram
+                </button>
+              </div>
+
+              {/* Copy Dynamic Link */}
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(`https://cyberkarma.me`);
+                  addToast('📋 Live Certificate Link Copied!', 'success');
+                }}
+                className={`w-full py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border active:scale-95 ${isDark ? 'bg-white/10 hover:bg-white/20 text-white border-white/10' : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'}`}
+              >
+                <span>🔗</span> Copy Certificate & Share Link
               </button>
             </motion.div>
           </motion.div>
