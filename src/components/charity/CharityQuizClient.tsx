@@ -803,14 +803,16 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleNextQuestion = () => {
-    // Smoothly scroll to position question & all 4 options perfectly in the viewport
+    // Smoothly scroll to position question & all 4 options perfectly on mobile & desktop screens
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
       setTimeout(() => {
         const rect = quizSection.getBoundingClientRect();
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const isMobile = window.innerWidth < 640;
+        const offset = isMobile ? 65 : 80;
         window.scrollTo({
-          top: rect.top + scrollTop - 80,
+          top: rect.top + scrollTop - offset,
           behavior: 'smooth'
         });
       }, 50);
@@ -1163,7 +1165,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         />
                       )}
                       
-                      <div className="w-full aspect-[16/9] sm:aspect-[16/10] max-h-[220px] sm:max-h-[300px] mb-5 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
+                      <div className="w-full aspect-[21/9] sm:aspect-[16/10] max-h-[170px] sm:max-h-[280px] mb-4 sm:mb-5 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
