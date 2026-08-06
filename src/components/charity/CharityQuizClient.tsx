@@ -1252,16 +1252,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       {/* Main Content */}
       <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
         
-        {/* Live Community Activity Ticker Banner */}
-        <div className={`w-full py-2.5 px-4 rounded-2xl border flex items-center justify-center gap-2 text-xs font-mono font-bold transition-all shadow-md backdrop-blur-xl ${isDark ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' : 'bg-emerald-100/80 border-emerald-300 text-emerald-900'}`}>
-          <motion.span key={liveActivityTicker} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-            {liveActivityTicker}
-          </motion.span>
-        </div>
-
-        {/* Daily Updating Compassionate Quote Card */}
-        <div className={`w-full p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${isDark ? 'bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border-amber-500/30' : 'bg-gradient-to-r from-amber-50 via-rose-50 to-amber-50 border-amber-200'}`}>
-          <div className="flex items-center gap-3">
+        {/* Single Sleek Dual-Feature Live Impact Bar */}
+        <div className={`w-full p-4 sm:p-5 rounded-[28px] border backdrop-blur-2xl shadow-xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 ${isDark ? 'bg-gradient-to-r from-emerald-950/40 via-slate-950/80 to-amber-950/40 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-emerald-200'}`}>
+          {/* Left: Daily Featured Compassionate Thought */}
+          <div className="flex-1 flex items-center gap-3">
             <span className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xl shrink-0">
               📅
             </span>
@@ -1272,14 +1266,22 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </span>
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
               </div>
-              <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+              <p className={`text-xs sm:text-sm font-semibold leading-snug ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
                 "{getDailyQuote().text}"
               </p>
             </div>
           </div>
-          <span className="text-[10px] font-mono text-amber-400/90 font-bold shrink-0 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
-            Updated Daily
-          </span>
+
+          {/* Vertical Divider on Desktop */}
+          <div className="hidden lg:block w-px h-10 bg-white/10 shrink-0" />
+
+          {/* Right: Live Community Activity Ticker */}
+          <div className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-bold text-emerald-300 shadow-inner">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <motion.span key={liveActivityTicker} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="truncate">
+              {liveActivityTicker}
+            </motion.span>
+          </div>
         </div>
 
         {/* Highlighted Supreme Intro Banner */}
