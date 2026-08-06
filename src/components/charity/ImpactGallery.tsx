@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart } from 'lucide-react';
+import { Heart, Maximize2 } from 'lucide-react';
+import TiltWrapper from '@/components/3d/TiltWrapper';
 
 const STREET_FEEDING_DRIVE = [
   {
@@ -264,33 +265,40 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {STREET_FEEDING_DRIVE.map((item, idx) => (
-                <motion.div
-                  key={idx}
-                  whileHover={{ y: -6, scale: 1.02 }}
-                  onClick={() => setPreviewImage(item)}
-                  className="relative group rounded-[20px] overflow-hidden shadow-lg border border-white/15 cursor-pointer bg-black/40 h-72 flex flex-col justify-end p-4"
-                >
-                  <Image
-                    src={item.src}
-                    alt={item.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
+                <TiltWrapper key={idx} tiltDeg={6}>
+                  <div
+                    onClick={() => setPreviewImage(item)}
+                    className="relative group rounded-[24px] overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.3)] border border-white/20 hover:border-emerald-400/50 cursor-pointer bg-slate-950 h-72 flex flex-col justify-end p-5 transition-all duration-300 hover:shadow-[0_25px_50px_rgba(16,185,129,0.25)]"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-700 brightness-95 group-hover:brightness-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent group-hover:from-black/98 transition-colors" />
 
-                  <div className="relative z-10 space-y-1">
-                    <span className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-rose-500 text-white shadow-sm inline-block mb-1">
-                      {item.tag}
-                    </span>
-                    <h4 className="text-xs font-bold text-white leading-tight font-title">{item.title}</h4>
-                    <p className="text-[10px] text-slate-300 flex items-center gap-1 font-mono">
-                      <span>📍</span> {item.location}
-                    </p>
-                    <span className="text-[9px] text-slate-400 block font-mono">{item.date}</span>
+                    {/* Top Right Expand Badge */}
+                    <div className="absolute top-3 right-3 p-2 rounded-xl bg-black/50 border border-white/20 text-white backdrop-blur-md opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all">
+                      <Maximize2 size={14} className="text-emerald-400" />
+                    </div>
+
+                    <div className="relative z-10 space-y-1.5">
+                      <span className="px-3 py-1 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-emerald-500/90 text-white shadow-md backdrop-blur-md inline-block mb-1 border border-emerald-400/40">
+                        {item.tag}
+                      </span>
+                      <h4 className="text-sm font-extrabold text-white leading-tight font-title group-hover:text-emerald-300 transition-colors">
+                        {item.title}
+                      </h4>
+                      <p className="text-[11px] text-slate-300 flex items-center gap-1 font-mono font-semibold">
+                        <span>📍</span> {item.location}
+                      </p>
+                      <span className="text-[10px] text-emerald-400/80 block font-mono font-medium">{item.date}</span>
+                    </div>
                   </div>
-                </motion.div>
+                </TiltWrapper>
               ))}
             </div>
           </div>
