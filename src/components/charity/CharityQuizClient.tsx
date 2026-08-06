@@ -1105,11 +1105,11 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           </div>
         </motion.div>
 
-        {/* Dynamic Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Dynamic Grid Layout (Mobile 1 Col, Tablet & Desktop 2 Col) */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
           
-          {/* Center Column: Active Quiz Panel */}
-          <div className="lg:col-span-8 space-y-8">
+          {/* Active Quiz Panel */}
+          <div className="md:col-span-7 lg:col-span-8 space-y-8">
             
 
 
@@ -1310,8 +1310,8 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
           </div>
 
-          {/* Right Column: Staking Stats & Widgets */}
-          <div className="lg:col-span-4 space-y-8">
+          {/* Right Column: Staking Stats & Widgets (Responsive Tablet Sidebar) */}
+          <div className="md:col-span-5 lg:col-span-4 space-y-6 sm:space-y-8">
             
 
 
