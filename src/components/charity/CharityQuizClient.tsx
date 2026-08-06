@@ -786,37 +786,52 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     return generateFallbackQuestions(topic, count);
   };
 
-  // Generate Custom AI Quiz
-  const handleGenerateAIQuiz = async () => {
+  // Generate Custom AI Quiz (Fail-Safe Instant Launch)
+  const handleGenerateAIQuiz = async (customTopic?: string) => {
+    const targetTopic = (typeof customTopic === 'string' && customTopic.trim()) 
+      ? customTopic.trim() 
+      : (aiTopic.trim() || "Cybersecurity & Artificial Intelligence");
+      
     if (!aiTopic.trim()) {
-      addToast('Please enter a topic', 'error');
-      return;
+      setAiTopic(targetTopic);
     }
+    
     const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
 
     setIsGeneratingAI(true);
     setFeedback(null);
 
     try {
-      const questions = await fetchAIQuestions(5, aiTopic, aiProvider, finalKey);
+      const questions = await fetchAIQuestions(5, targetTopic, aiProvider, finalKey);
       
-      if (!questions || questions.length === 0) {
-        throw new Error('No questions generated.');
-      }
+      const finalQuestions = (questions && questions.length > 0) 
+        ? questions 
+        : generateFallbackQuestions(targetTopic, 5);
 
-      setAiQuestions(questions);
+      setAiQuestions(finalQuestions);
       setAiIndex(0);
       setAiCorrectCount(0);
       setCategory('custom-ai');
-      setCurrentQuestion(questions[0]);
+      setCurrentQuestion(finalQuestions[0]);
       setIsAnswered(false);
       setSelectedAnswer(null);
       setShowHint(false);
       setShowAIModal(false);
       setShowAICompletion(false);
-      addToast(`🚀 Custom AI Quiz Started: "${aiTopic}"!`, 'success');
+      addToast(`🚀 Custom AI Quiz Started: "${targetTopic}"!`, 'success');
     } catch (err: any) {
-      addToast(`AI Quiz Started: "${aiTopic}"!`, 'success');
+      const fallbackQs = generateFallbackQuestions(targetTopic, 5);
+      setAiQuestions(fallbackQs);
+      setAiIndex(0);
+      setAiCorrectCount(0);
+      setCategory('custom-ai');
+      setCurrentQuestion(fallbackQs[0]);
+      setIsAnswered(false);
+      setSelectedAnswer(null);
+      setShowHint(false);
+      setShowAIModal(false);
+      setShowAICompletion(false);
+      addToast(`🚀 Custom AI Quiz Started: "${targetTopic}"!`, 'success');
     } finally {
       setIsGeneratingAI(false);
     }
@@ -1756,9 +1771,9 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                   ].map((chip, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setAiTopic(chip.value)}
+                      onClick={() => handleGenerateAIQuiz(chip.value)}
                       disabled={isGeneratingAI}
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border active:scale-[0.98] ${aiTopic === chip.value ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-md' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-300' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700')}`}
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border active:scale-[0.98] ${aiTopic === chip.value ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-md font-black' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-300' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700')}`}
                     >
                       {chip.label}
                     </button>
