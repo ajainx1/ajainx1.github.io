@@ -1197,7 +1197,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
           {user ? (
             <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
               <img src={user.avatar} alt="User" className="w-6 h-6 rounded-full shadow-sm" />
-              <span className="text-xs font-semibold hidden sm:block">{user.name}</span>
+              <span className="text-xs font-semibold hidden sm:block max-w-[140px] truncate">{user.name}</span>
               <button onClick={handleLogout} aria-label="Sign Out" className="text-rose-500 hover:text-rose-400 p-1"><LogOut size={14} /></button>
             </div>
           ) : (
@@ -1977,17 +1977,18 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     <button 
                       onClick={() => {
                         try {
-                          const googleEmail = `google_user_${Math.floor(Math.random() * 9000 + 1000)}@gmail.com`;
-                          const name = "Google Karma Champion";
-                          const avatar = `https://ui-avatars.com/api/?name=Google+User&background=4285F4&color=fff`;
-                          setUser({ email: googleEmail, name, avatar });
+                          const userEmail = emailInput && emailInput.includes('@') ? emailInput : `google_user_${Math.floor(Math.random() * 9000 + 1000)}@gmail.com`;
+                          const rawName = userEmail.split('@')[0];
+                          const name = rawName.charAt(0).toUpperCase() + rawName.slice(1).replace(/[^a-zA-Z0-9]/g, ' ');
+                          const avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=4285F4&color=fff`;
+                          setUser({ email: userEmail, name, avatar });
                           const localScore = parseInt(localStorage.getItem('charityKarmaScore') || '0', 10);
                           setScore(localScore);
                           localStorage.setItem('charityKarmaScore', String(localScore));
                           const calculatedLevel = Math.floor(localScore / 200) + 1;
                           localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
                           setShowEmailModal(false);
-                          addToast('🎉 Signed in with Google successfully!', 'success');
+                          addToast(`🎉 Welcome back, ${name}! Signed in with Google.`, 'success');
                         } catch (err) {
                           console.error('Google login error:', err);
                           addToast('Sign in failed. Try "Play as Guest" instead.', 'error');
