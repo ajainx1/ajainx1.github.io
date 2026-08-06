@@ -803,11 +803,16 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   };
 
   const handleNextQuestion = () => {
-    // Smoothly scroll back to the top of the quiz container for mobile users
+    // Smoothly scroll to position question & all 4 options perfectly in the viewport
     const quizSection = document.getElementById('quiz-section');
     if (quizSection) {
       setTimeout(() => {
-        quizSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const rect = quizSection.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        window.scrollTo({
+          top: rect.top + scrollTop - 80,
+          behavior: 'smooth'
+        });
       }, 50);
     }
 
@@ -1158,7 +1163,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         />
                       )}
                       
-                      <div className="w-full aspect-square sm:aspect-[4/3] max-h-[450px] mb-6 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
+                      <div className="w-full aspect-[16/9] sm:aspect-[16/10] max-h-[220px] sm:max-h-[300px] mb-5 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
                         {/* Loading Skeleton */}
                         <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
                         
@@ -1178,20 +1183,20 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         {/* The Image */}
                         <QuizImage key={currentQuestion.question} category={category} question={currentQuestion.question} />
                         
-                        {/* Gradient overlay for text readability if needed later, and sleek aesthetic */}
+                        {/* Gradient overlay for text readability */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
                       </div>
                       
-                      <h3 className="text-lg sm:text-xl font-semibold mb-8 leading-relaxed">
+                      <h3 className="text-base sm:text-lg font-bold mb-6 leading-relaxed font-title">
                         {currentQuestion.question}
                       </h3>
                       
-                      <div className="grid grid-cols-1 gap-3">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         {currentQuestion.options.map((opt, i) => {
-                          let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border active:scale-[0.98] select-none `;
+                          let btnClass = `w-full text-left p-3.5 sm:p-4 rounded-[20px] text-xs sm:text-sm font-semibold transition-all flex items-center shadow-sm border active:scale-[0.98] select-none min-h-[52px] `;
                            if (isAnswered) {
                             if (i === currentQuestion.answer) {
-                              btnClass += `bg-emerald-500 text-slate-950 font-bold border-emerald-400 shadow-lg z-10 scale-[1.02] `;
+                              btnClass += `bg-emerald-500 text-slate-950 font-black border-emerald-400 shadow-lg z-10 scale-[1.01] `;
                             } else if (i === selectedAnswer) {
                               btnClass += `bg-red-500/20 border-red-500/40 text-red-400 opacity-90 `;
                             } else {
@@ -1205,9 +1210,9 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
                           const resultIcon = isAnswered
                             ? i === currentQuestion.answer
-                              ? <span aria-label="Correct" className="ml-auto text-base font-black shrink-0">✓</span>
+                              ? <span aria-label="Correct" className="ml-auto text-sm font-black shrink-0">✓</span>
                               : i === selectedAnswer
-                                ? <span aria-label="Incorrect" className="ml-auto text-base font-black shrink-0">✗</span>
+                                ? <span aria-label="Incorrect" className="ml-auto text-sm font-black shrink-0">✗</span>
                                 : null
                             : null;
 
@@ -1219,10 +1224,10 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               aria-pressed={isAnswered && i === selectedAnswer}
                               className={btnClass}
                             >
-                              <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : '')}`}>
+                              <div className={`w-7 h-7 rounded-full flex items-center justify-center mr-3 shrink-0 text-xs font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : 'bg-slate-200')}`}>
                                 {String.fromCharCode(65 + i)}
                               </div>
-                              {opt}
+                              <span className="leading-snug">{opt}</span>
                               {resultIcon}
                             </button>
                           );
