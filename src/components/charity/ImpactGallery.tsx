@@ -205,6 +205,16 @@ const STREET_FEEDING_DRIVE = [
 
 export default function ImpactGallery({ isDark }: { isDark: boolean }) {
   const [previewImage, setPreviewImage] = useState<any>(null);
+  const [activeFilter, setActiveFilter] = useState<string>('all');
+
+  const filteredPhotos = STREET_FEEDING_DRIVE.filter(item => {
+    if (activeFilter === 'all') return true;
+    if (activeFilter === 'morning') return item.tag.toLowerCase().includes('morning');
+    if (activeFilter === 'evening') return item.tag.toLowerCase().includes('evening');
+    if (activeFilter === 'monsoon') return item.tag.toLowerCase().includes('monsoon');
+    if (activeFilter === 'night') return item.tag.toLowerCase().includes('night');
+    return true;
+  });
 
   return (
     <>
@@ -259,14 +269,28 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-mono font-bold shrink-0">
-                <span>📸</span>
-                <span>22 Verified Field Photos</span>
+              {/* Photo Filter Bar */}
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { label: 'All Photos (22)', key: 'all' },
+                  { label: '🌅 Morning Patrol', key: 'morning' },
+                  { label: '🌇 Evening Care', key: 'evening' },
+                  { label: '🌧️ Monsoon Drive', key: 'monsoon' },
+                  { label: '🌙 Night Patrol', key: 'night' }
+                ].map(filter => (
+                  <button
+                    key={filter.key}
+                    onClick={() => setActiveFilter(filter.key)}
+                    className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition-all border active:scale-[0.98] ${activeFilter === filter.key ? 'bg-emerald-500 text-slate-950 border-emerald-300 shadow-md font-black' : 'bg-white/5 text-slate-300 border-white/10 hover:bg-white/10'}`}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {STREET_FEEDING_DRIVE.map((item, idx) => (
+              {filteredPhotos.map((item, idx) => (
                 <TiltWrapper key={idx} tiltDeg={6}>
                   <div
                     onClick={() => setPreviewImage(item)}

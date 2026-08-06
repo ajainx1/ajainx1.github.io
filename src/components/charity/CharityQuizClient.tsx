@@ -1647,73 +1647,81 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
               <h3 className="text-xs font-bold mb-3 opacity-60 px-2 uppercase tracking-wider">Upcoming Targets</h3>
               <div className="grid grid-cols-3 gap-2">
-                {['human', 'birds', 'cows'].map((key) => {
-                  const info = recipientIcons[key];
-                  return (
-                    <div
-                      key={key}
-                      className={`p-3 rounded-[16px] text-xs font-semibold flex flex-col items-center gap-1 text-center border opacity-50 cursor-not-allowed ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/60'}`}
-                      title="Coming soon!"
-                    >
-                      <span className="text-xl">{info.base.slice(0, 2)}</span>
-                      <span className="text-[10px]">{info.label.split(' ')[0]}</span>
-                    </div>
-                  );
-                })}
+                {[
+                  { key: 'human', label: 'Humans', icon: '🤲', goal: 'Unlock at Level 5' },
+                  { key: 'birds', label: 'Birds', icon: '🕊️', goal: 'Unlock at Level 3' },
+                  { key: 'cows', label: 'Cows', icon: '🐄', goal: 'Unlock at Level 4' }
+                ].map((target) => (
+                  <button
+                    key={target.key}
+                    onClick={() => addToast(`🔒 ${target.label} Target Unlocks soon! ${target.goal}. Currently focused 100% on Patna Street Dogs.`, 'info')}
+                    className={`p-3 rounded-[16px] text-xs font-semibold flex flex-col items-center gap-1 text-center border opacity-80 hover:opacity-100 transition-all cursor-pointer active:scale-95 ${isDark ? 'bg-white/5 border-white/10 hover:bg-emerald-500/10 hover:border-emerald-500/30' : 'bg-white/40 border-white/60 hover:bg-white'}`}
+                  >
+                    <span className="text-xl">{target.icon}</span>
+                    <span className="text-[10px] font-bold">{target.label}</span>
+                    <span className="text-[8px] text-emerald-400 font-mono font-bold">🔒 Locked</span>
+                  </button>
+                ))}
               </div>
             </div>
 
             {/* Unified Partners & Sponsors Banner */}
-            <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-lg flex flex-col relative overflow-hidden group transition-all hover:scale-[1.02] duration-300 ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 border-slate-700 hover:border-slate-500 hover:shadow-slate-900/50' : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200 shadow-md hover:border-slate-300 hover:shadow-xl'}`}>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              
-              <div className="flex flex-col items-center text-center relative z-10 w-full">
-                <span className={`text-[10px] font-bold uppercase tracking-widest px-3 py-1 mb-5 rounded-full border shadow-sm ${isDark ? 'bg-slate-800 text-slate-300 border-slate-600' : 'bg-slate-100 text-slate-600 border-slate-300'}`}>
-                  Our Partners
-                </span>
+            <TiltWrapper tiltDeg={4}>
+              <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-xl flex flex-col relative overflow-hidden group transition-all duration-300 ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-slate-700/80 shadow-slate-950/60' : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200 shadow-xl'}`}>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none" />
 
-                <div className="flex flex-col w-full gap-5">
-                  {/* Orca6 / AdityaSec */}
-                  <Link
-                    href="https://adityasec32.systems"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center group/orca"
-                  >
-                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-emerald-500' : 'text-emerald-600'}`}>Developed By</span>
-                    <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/orca:text-emerald-400' : 'text-slate-900 group-hover/orca:text-emerald-700'}`}>
-                      Orca6
-                    </span>
-                    <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/orca:text-emerald-300/80' : 'text-slate-500 group-hover/orca:text-emerald-600/80'}`}>
-                      AdityaSec Security Systems
-                    </span>
-                  </Link>
+                <div className="flex flex-col items-center text-center relative z-10 w-full">
+                  <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-3.5 py-1 mb-5 rounded-full border shadow-sm flex items-center gap-1.5 ${isDark ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-emerald-50 text-emerald-700 border-emerald-300'}`}>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
+                    Verified System Partners
+                  </span>
 
-                  {/* Divider */}
-                  <div className={`w-3/4 mx-auto h-[1px] ${isDark ? 'bg-slate-700' : 'bg-slate-200'}`} />
-
-                  {/* JumpStreet */}
-                  <Link
-                    href="https://jumpstreet.tech"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-col items-center group/jump"
-                  >
-                    <span className={`text-[9px] font-bold uppercase tracking-widest mb-1 ${isDark ? 'text-blue-500' : 'text-blue-600'}`}>Trading Partner</span>
-                    <div className="flex items-center gap-1.5">
-                      <TrendingUp size={18} className={`transition-colors ${isDark ? 'text-blue-400 group-hover/jump:text-blue-300' : 'text-blue-600 group-hover/jump:text-blue-700'}`} />
-                      <span className={`text-2xl font-black tracking-tight transition-colors ${isDark ? 'text-white group-hover/jump:text-blue-400' : 'text-slate-900 group-hover/jump:text-blue-700'}`}>
-                        JumpStreet
+                  <div className="flex flex-col w-full gap-5">
+                    {/* Orca6 / AdityaSec */}
+                    <Link
+                      href="https://adityasec32.systems"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-4 rounded-[22px] border transition-all duration-300 flex flex-col items-center group/orca active:scale-[0.98] ${isDark ? 'bg-black/40 border-emerald-500/20 hover:border-emerald-400/60 hover:bg-emerald-500/10' : 'bg-white border-slate-200 hover:border-emerald-400 shadow-sm'}`}
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
+                        <span className={`text-[9px] font-mono font-bold uppercase tracking-widest ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>Core Infrastructure</span>
+                      </div>
+                      <span className={`text-2xl font-black tracking-tight font-title transition-colors ${isDark ? 'text-white group-hover/orca:text-emerald-300' : 'text-slate-900 group-hover/orca:text-emerald-700'}`}>
+                        Orca6
                       </span>
-                    </div>
-                    <span className={`text-[9px] font-semibold tracking-widest uppercase mt-0.5 transition-opacity ${isDark ? 'text-slate-400 group-hover/jump:text-blue-300/80' : 'text-slate-500 group-hover/jump:text-blue-600/80'}`}>
-                      Algorithmic Trading Bot
-                    </span>
-                  </Link>
-                </div>
+                      <span className={`text-[10px] font-mono font-bold tracking-widest uppercase mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        AdityaSec Security Systems
+                      </span>
+                    </Link>
 
+                    {/* JumpStreet */}
+                    <Link
+                      href="https://jumpstreet.tech"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-4 rounded-[22px] border transition-all duration-300 flex flex-col items-center group/jump active:scale-[0.98] ${isDark ? 'bg-black/40 border-blue-500/20 hover:border-blue-400/60 hover:bg-blue-500/10' : 'bg-white border-slate-200 hover:border-blue-400 shadow-sm'}`}
+                    >
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_#60a5fa]" />
+                        <span className={`text-[9px] font-mono font-bold uppercase tracking-widest ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>Algorithmic Engine</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <TrendingUp size={20} className="text-blue-400" />
+                        <span className={`text-2xl font-black tracking-tight font-title transition-colors ${isDark ? 'text-white group-hover/jump:text-blue-300' : 'text-slate-900 group-hover/jump:text-blue-700'}`}>
+                          JumpStreet
+                        </span>
+                      </div>
+                      <span className={`text-[10px] font-mono font-bold tracking-widest uppercase mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                        Algorithmic Trading Bot
+                      </span>
+                    </Link>
+                  </div>
+
+                </div>
               </div>
-            </div>
+            </TiltWrapper>
 
           </div>
         </div>
