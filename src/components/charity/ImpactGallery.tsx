@@ -208,31 +208,60 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
   return (
     <>
       <div className="w-full mt-8">
-        <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-white/60'}`}>
-          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 pb-6 border-b border-white/10">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className="p-2 rounded-xl bg-rose-500/20 text-rose-500 border border-rose-500/30">
-                  <Heart size={24} className="fill-rose-500" />
+        <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden relative ${isDark ? 'bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 border-emerald-500/30 shadow-emerald-950/40' : 'bg-gradient-to-br from-white/90 via-emerald-50/40 to-white border-emerald-200 shadow-xl'}`}>
+          {/* Ambient Background Glows */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-500/10 blur-[100px] rounded-full pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-96 h-96 bg-rose-500/10 blur-[100px] rounded-full pointer-events-none" />
+
+          {/* Top Command Bar */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8 pb-6 border-b border-white/15 relative z-10">
+            <div className="space-y-2">
+              <div className="flex items-center gap-3">
+                <span className="p-3 rounded-2xl bg-gradient-to-tr from-rose-500/20 to-emerald-500/20 text-rose-400 border border-rose-500/30 shadow-[0_0_20px_rgba(244,63,94,0.2)]">
+                  <Heart size={28} className="fill-rose-500 animate-pulse" />
                 </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-title">Real-World Impact Drive</h2>
+                <div>
+                  <h2 className="text-2xl sm:text-4xl font-black tracking-tight font-title bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
+                    Real-World Impact Drive
+                  </h2>
+                  <span className="text-xs font-mono text-emerald-400 font-bold uppercase tracking-widest flex items-center gap-1.5 mt-0.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+                    Live Field Operations • Bihar Division
+                  </span>
+                </div>
               </div>
-              <p className="text-sm opacity-90 max-w-3xl leading-relaxed font-medium">
-                Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
+
+              <p className={`text-sm sm:text-base max-w-3xl leading-relaxed ${isDark ? 'text-slate-300 font-medium' : 'text-slate-700 font-semibold'}`}>
+                Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong className="text-emerald-400 font-bold">Your knowledge is their direct survival.</strong>
               </p>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold shrink-0">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span>LIVE FEEDING VERIFIED • PATNA DIVISION</span>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 shrink-0">
+              <div className="flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-mono font-bold shadow-lg backdrop-blur-md">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_10px_#34d399]" />
+                <span>LIVE FEEDING VERIFIED • PATNA DIVISION</span>
+              </div>
             </div>
           </div>
 
-          <div className="mb-10">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
-                <span>🐶 </span> Direct Street Feeding Drive • Rajbansi Nagar, Patna
-              </h3>
-              <span className="text-xs text-rose-500 font-bold">9 Verified Field Photos</span>
+          <div className="mb-10 relative z-10">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 p-4 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-xl">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl p-2 rounded-xl bg-amber-500/20 border border-amber-500/30">🐶</span>
+                <div>
+                  <h3 className="text-sm font-bold uppercase tracking-wider text-white font-title flex items-center gap-2">
+                    Direct Street Feeding Drive
+                  </h3>
+                  <p className="text-xs text-emerald-400 font-mono flex items-center gap-1 mt-0.5">
+                    📍 Rajbansi Nagar, Punaichak & Patna Streets, Bihar
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-mono font-bold shrink-0">
+                <span>📸</span>
+                <span>22 Verified Field Photos</span>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
