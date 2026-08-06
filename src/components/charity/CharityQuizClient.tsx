@@ -1245,35 +1245,49 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             
 
 
-            {/* Categories & Difficulty Container (Sidebar Layout) */}
-            <div className={`p-5 rounded-[32px] backdrop-blur-3xl shadow-lg border flex flex-col gap-4 ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
-                <h2 className="text-sm font-bold opacity-80 px-1 font-title">Quiz Settings & Categories</h2>
-                <div className={`flex flex-col gap-2 p-2 rounded-[24px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
-                  <div className="flex flex-wrap gap-1.5 justify-center">
+            {/* Categories & Difficulty Container (Sidebar 3D Layout) */}
+            <TiltWrapper tiltDeg={4}>
+              <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-[0_15px_35px_rgba(0,0,0,0.3)] border flex flex-col gap-5 relative overflow-hidden transition-all ${isDark ? 'bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 border-emerald-500/30 shadow-emerald-950/30' : 'bg-gradient-to-br from-white/90 via-emerald-50/30 to-white border-emerald-200 shadow-xl'}`}>
+                {/* Background Ambient Radial Glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-[60px] rounded-full pointer-events-none" />
+
+                <div className="flex items-center justify-between px-1 relative z-10">
+                  <h2 className="text-sm font-black uppercase tracking-wider text-emerald-400 font-title flex items-center gap-2">
+                    <span className="p-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/30">🎯</span>
+                    Quiz Settings & Categories
+                  </h2>
+                  <span className="text-[10px] font-mono text-emerald-400/80 font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                    Live Topics
+                  </span>
+                </div>
+
+                <div className={`flex flex-col gap-2.5 p-3 rounded-[24px] relative z-10 ${isDark ? 'bg-black/40 border border-white/10' : 'bg-slate-100/80 border border-slate-200'}`}>
+                  <div className="flex flex-wrap gap-2 justify-center">
                     {(Object.keys(quizData) as CategoryKey[]).map(cat => (
                       <button
                         key={cat}
                         onClick={() => setCategory(cat)}
-                        className={`px-3 py-2 rounded-[16px] text-[11px] font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                        className={`px-3.5 py-2.5 rounded-[18px] text-[11px] font-extrabold capitalize transition-all duration-300 flex items-center gap-1.5 active:scale-[0.98] ${category === cat ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 shadow-[0_0_20px_rgba(52,211,153,0.4)] scale-[1.03] font-black border border-emerald-300' : isDark ? 'bg-white/5 border border-white/10 hover:border-emerald-500/40 hover:bg-emerald-500/10 text-white' : 'bg-white border border-slate-200 text-slate-700 hover:bg-emerald-50 hover:border-emerald-300 shadow-sm'}`}
                       >
+                        <span>{cat === 'gk' ? '🧠' : cat === 'animals' ? '🐶' : cat === 'nature' ? '🌿' : cat === 'science' ? '⚛️' : '📚'}</span>
                         {cat === 'gk' ? 'General Knowledge' : cat}
                       </button>
                     ))}
                   </div>
                   
-                  <div className="flex flex-col gap-1.5 mt-1">
+                  <div className="flex flex-col gap-2 mt-1">
                     <button
                       onClick={() => {
                         const keys = Object.keys(quizData) as CategoryKey[];
                         setCategory(keys[Math.floor(Math.random() * keys.length)]);
                       }}
-                      className={`w-full px-4 py-2 rounded-[16px] text-[11px] font-bold transition-all ${isDark ? 'opacity-70 hover:opacity-100 bg-white/5 hover:bg-white/10 text-white' : 'text-slate-700 bg-slate-200/50 hover:bg-slate-200'}`}
+                      className={`w-full px-4 py-2.5 rounded-[18px] text-[11px] font-black transition-all flex items-center justify-center gap-2 border active:scale-[0.98] ${isDark ? 'bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20' : 'text-slate-700 bg-slate-200/60 hover:bg-slate-200 border-slate-300'}`}
                     >
                       🎲 Play Random Category
                     </button>
                     <button
                       onClick={() => setShowAIModal(true)}
-                      className={`w-full px-4 py-3 rounded-[16px] text-[12px] font-bold transition-all flex justify-center items-center gap-2 shadow-sm ${category === 'custom-ai' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-md' : isDark ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/50 hover:border-amber-400 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 hover:text-amber-100 hover:shadow-[0_0_15px_rgba(245,158,11,0.3)]' : 'bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 text-amber-800 hover:bg-gradient-to-r hover:from-amber-100 hover:to-orange-100 hover:border-amber-500 hover:shadow-md'}`}
+                      className={`w-full px-4 py-3 rounded-[18px] text-[12px] font-black transition-all duration-300 flex justify-center items-center gap-2 border active:scale-[0.98] ${category === 'custom-ai' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.4)] border-amber-300' : isDark ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 hover:border-amber-400 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 hover:text-amber-100 shadow-lg' : 'bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 text-amber-900 hover:border-amber-500 shadow-sm'}`}
                     >
                       <Cpu size={16} /> Choose Any Topic
                     </button>
@@ -1281,71 +1295,79 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </div>
 
                 {category !== 'custom-ai' && (
-                  <div className={`flex gap-1 p-1.5 rounded-[20px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                  <div className={`flex gap-1.5 p-2 rounded-[22px] border relative z-10 ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100/80 border-slate-200'}`}>
                     {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
                       <button
                         key={diff}
                         onClick={() => setDifficulty(diff)}
-                        className={`flex-1 px-2 py-2 rounded-[16px] text-[11px] font-bold transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
+                        className={`flex-1 px-2.5 py-2.5 rounded-[16px] text-[11px] font-black transition-all active:scale-[0.98] ${difficulty === diff ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)] border border-blue-400' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300 hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-white'}`}
                       >
                         {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
                       </button>
                     ))}
                   </div>
                 )}
-            </div>
+              </div>
+            </TiltWrapper>
             
-            {/* Main Score Widget */}
-            <motion.div layout className={`w-full rounded-[32px] border p-6 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
-              
-              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-500 shadow-inner">
-                Level {level}: {currentLevelTitle}
-              </div>
-              
-              <div className="flex flex-col items-center justify-center gap-2 mb-6">
-                <motion.span 
-                  key={score}
-                  initial={{ scale: 1.1 }}
-                  animate={{ scale: 1 }}
-                  className="text-6xl font-bold tracking-tight"
-                >
-                  {score.toLocaleString()}
-                </motion.span>
-                <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Karma Points Donated</span>
-                
-                {score >= 200 && (
-                  <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm shadow-sm">
-                    <Heart size={16} className="fill-emerald-500" />
-                    You've funded {Math.floor(score / 200)} bowl{Math.floor(score / 200) > 1 ? 's' : ''} of milk & curd!
+            {/* Main Score Widget (Sidebar 3D Layout) */}
+            <TiltWrapper tiltDeg={4}>
+              <motion.div layout className={`w-full rounded-[32px] border p-6 text-center relative overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.3)] backdrop-blur-3xl transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/90 via-slate-950 to-slate-950 border-cyan-500/30 shadow-cyan-950/30' : 'bg-gradient-to-b from-cyan-50/80 via-white/90 to-emerald-50/80 border-cyan-200 shadow-xl'}`}>
+                {/* Background Glow */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-[50px] rounded-full pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-black text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-mono">
+                    Level {level}: {currentLevelTitle}
                   </div>
-                )}
-              </div>
-
-              <div className="relative h-24 flex flex-col items-center justify-center">
-                <AnimatePresence>
-                  {donationIcons.map(grain => (
-                    <motion.span
-                      key={grain.id}
-                      initial={{ opacity: 0, y: -40, scale: 0.5 }}
-                      animate={{ opacity: 1, y: 20, scale: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.8, ease: 'easeOut' }}
-                      className="absolute text-3xl z-10"
-                      style={{ left: grain.left, animationDelay: grain.delay }}
+                  
+                  <div className="flex flex-col items-center justify-center gap-2 mb-6">
+                    <motion.span 
+                      key={score}
+                      initial={{ scale: 1.1 }}
+                      animate={{ scale: 1 }}
+                      className="text-6xl font-black tracking-tight font-title bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-300 drop-shadow-md"
                     >
-                      {grain.icon}
+                      {score.toLocaleString()}
                     </motion.span>
-                  ))}
-                </AnimatePresence>
-                <motion.div animate={donationIcons.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20">
-                  {recipientIcons[recipient].base}
-                </motion.div>
-              </div>
+                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 font-mono">Karma Points Donated</span>
+                    
+                    {score >= 200 && (
+                      <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+                        <Heart size={16} className="fill-emerald-400 text-emerald-400" />
+                        You've funded {Math.floor(score / 200)} bowl{Math.floor(score / 200) > 1 ? 's' : ''} of milk & curd!
+                      </div>
+                    )}
+                  </div>
 
-              <div className={`w-full h-3 rounded-full overflow-hidden mt-8 shadow-inner ${isDark ? 'bg-black/30' : 'bg-black/5'}`}>
-                <motion.div className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
-              </div>
-              <span className="text-[10px] font-semibold mt-3 block opacity-60">{milestone} / 200 for a bowl of milk & curd</span>
+                  <div className="relative h-24 flex flex-col items-center justify-center">
+                    <AnimatePresence>
+                      {donationIcons.map(grain => (
+                        <motion.span
+                          key={grain.id}
+                          initial={{ opacity: 0, y: -40, scale: 0.5 }}
+                          animate={{ opacity: 1, y: 20, scale: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.8, ease: 'easeOut' }}
+                          className="absolute text-3xl z-10"
+                          style={{ left: grain.left, animationDelay: grain.delay }}
+                        >
+                          {grain.icon}
+                        </motion.span>
+                      ))}
+                    </AnimatePresence>
+                    <motion.div animate={donationIcons.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20 drop-shadow-lg">
+                      {recipientIcons[recipient].base}
+                    </motion.div>
+                  </div>
+
+                  <div className={`w-full h-3.5 rounded-full overflow-hidden mt-8 shadow-inner border border-white/10 ${isDark ? 'bg-black/50' : 'bg-slate-200'}`}>
+                    <motion.div className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_12px_#38bdf8]" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
+                  </div>
+                  <span className="text-[10px] font-mono font-bold mt-3 block opacity-80 text-cyan-300 uppercase tracking-wider">{milestone} / 200 for a bowl of milk & curd</span>
+                </div>
+              </motion.div>
+            </TiltWrapper>
 
               <div className="mt-8">
                 <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>
