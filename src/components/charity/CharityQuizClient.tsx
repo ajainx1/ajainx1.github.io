@@ -1357,19 +1357,17 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                   </div>
                 </div>
 
-                {category !== 'custom-ai' && (
-                  <div className={`flex gap-1.5 p-2 rounded-[22px] border relative z-10 ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100/80 border-slate-200'}`}>
-                    {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
-                      <button
-                        key={diff}
-                        onClick={() => setDifficulty(diff)}
-                        className={`flex-1 px-2.5 py-2.5 rounded-[16px] text-[11px] font-black transition-all active:scale-[0.98] ${difficulty === diff ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)] border border-blue-400' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300 hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-white'}`}
-                      >
-                        {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
-                      </button>
-                    ))}
-                  </div>
-                )}
+                <div className={`flex gap-1.5 p-2 rounded-[22px] border relative z-10 ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100/80 border-slate-200'}`}>
+                  {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
+                    <button
+                      key={diff}
+                      onClick={() => setDifficulty(diff)}
+                      className={`flex-1 px-2.5 py-2.5 rounded-[16px] text-[11px] font-black transition-all active:scale-[0.98] ${difficulty === diff ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)] border border-blue-400' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300 hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-white'}`}
+                    >
+                      {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
+                    </button>
+                  ))}
+                </div>
               </div>
             </TiltWrapper>
             
@@ -1552,49 +1550,102 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       {/* AI Quiz Settings Modal */}
       <AnimatePresence>
         {showAIModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
-            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-md p-8 rounded-[32px] shadow-2xl border ${isDark ? 'bg-[#1c1c1e] border-white/10' : 'bg-white/90 border-white/100 backdrop-blur-xl'}`}>
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg rotate-3">
-                <Cpu size={32} className="text-white" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-xl">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-lg p-6 sm:p-8 rounded-[32px] shadow-2xl border relative overflow-hidden max-h-[90vh] overflow-y-auto ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-amber-500/30 text-white shadow-amber-950/40' : 'bg-white/95 border-amber-200 text-slate-900 shadow-xl'}`}>
+              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(245,158,11,0.4)] rotate-3">
+                <Cpu size={32} className="text-slate-950 animate-pulse" />
               </div>
-              <h3 className="text-2xl font-bold text-center mb-2">Custom AI Quiz</h3>
-              <p className="text-sm text-center opacity-60 mb-8">
-                Enter any topic and generate a quiz to feed charities!
+              <h3 className="text-2xl sm:text-3xl font-black text-center mb-1 font-title bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200">
+                Endless Custom AI Quiz
+              </h3>
+              <p className="text-xs sm:text-sm text-center opacity-80 mb-6 font-medium max-w-sm mx-auto leading-relaxed">
+                Enter <strong className="text-amber-400">any topic in the universe</strong> to generate an endless trivia stream & feed street animals!
               </p>
 
+              {/* Topic Input Box */}
               <div className="mb-5">
-                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Topic</label>
+                <label className="text-xs font-mono font-bold uppercase tracking-wider ml-1 mb-2 block text-amber-400">
+                  Enter Your Custom Topic
+                </label>
                 <input
                   type="text"
                   value={aiTopic}
                   onChange={e => setAiTopic(e.target.value)}
-                  placeholder="e.g., Space Exploration"
+                  placeholder="e.g., Quantum Computing, Street Dogs, Ancient Rome..."
                   disabled={isGeneratingAI}
-                  className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
+                  className={`w-full p-4 rounded-[20px] text-sm font-semibold border outline-none transition-all shadow-inner ${isDark ? 'bg-black/50 border-white/15 focus:border-amber-400 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-300 focus:border-amber-500 text-slate-900'}`}
                 />
               </div>
 
-              <div className="mb-2"></div>
+              {/* Instant Preset Topic Chips */}
+              <div className="mb-6">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-60 block mb-2">
+                  ⚡ Quick Pick Popular Topics:
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {[
+                    { label: '🚀 Space Exploration', value: 'Space Exploration & Cosmology' },
+                    { label: '🔐 Cybersecurity & AI', value: 'Cybersecurity, Hacking & Artificial Intelligence' },
+                    { label: '🧬 World Wildlife', value: 'Animal Welfare & Wildlife Psychology' },
+                    { label: '🏛️ Ancient History', value: 'Ancient World Civilizations' },
+                    { label: '☕ Pop Culture & Movies', value: 'Pop Culture Cinema & Music' }
+                  ].map((chip, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setAiTopic(chip.value)}
+                      disabled={isGeneratingAI}
+                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border active:scale-[0.98] ${aiTopic === chip.value ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-md' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-300' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700')}`}
+                    >
+                      {chip.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
+              {/* Difficulty Selection */}
+              <div className="mb-6">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-60 block mb-2">
+                  🎯 Difficulty Mode:
+                </span>
+                <div className={`flex gap-2 p-1.5 rounded-[20px] border ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100 border-slate-300'}`}>
+                  {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
+                    <button
+                      key={diff}
+                      onClick={() => setDifficulty(diff)}
+                      className={`flex-1 py-2 rounded-[14px] text-xs font-bold transition-all ${difficulty === diff ? 'bg-amber-500 text-slate-950 shadow-md font-black' : (isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600')}`}
+                    >
+                      {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
               <div className="flex flex-col gap-3">
                 <button
                   onClick={handleGenerateAIQuiz}
                   disabled={isGeneratingAI}
-                  className={`w-full py-4 rounded-[20px] font-bold transition-all shadow-lg flex items-center justify-center gap-3 relative overflow-hidden ${isGeneratingAI ? 'bg-indigo-600 text-white cursor-not-allowed' : 'bg-black text-white dark:bg-white dark:text-black hover:scale-[1.02]'}`}
+                  className={`w-full py-4 rounded-[20px] font-black text-sm uppercase tracking-wider transition-all duration-300 shadow-xl flex items-center justify-center gap-3 relative overflow-hidden active:scale-[0.98] ${isGeneratingAI ? 'bg-amber-600 text-white cursor-not-allowed' : 'bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 text-slate-950 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-[1.02]'}`}
                 >
                   {isGeneratingAI ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white/20 border-t-white rounded-full animate-spin" />
-                      <span className="animate-pulse tracking-wide">Synthesizing Neural Network...</span>
+                      <div className="w-5 h-5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
+                      <span className="animate-pulse tracking-wide font-black">Synthesizing Neural Quiz Stream...</span>
                     </>
                   ) : (
                     <>
                       <Cpu size={20} />
-                      Generate Quiz
+                      Launch Endless AI Quiz →
                     </>
                   )}
                 </button>
-                <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
+                <button 
+                  onClick={() => setShowAIModal(false)} 
+                  disabled={isGeneratingAI} 
+                  className="py-3 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
+                >
+                  Cancel & Close
+                </button>
               </div>
             </motion.div>
           </motion.div>
