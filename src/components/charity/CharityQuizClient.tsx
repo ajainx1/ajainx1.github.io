@@ -82,6 +82,22 @@ const levelTitles = [
   { minLvl: 25, title: "Ketu Supreme Architect" }
 ];
 
+const DAILY_KARMA_QUOTES = [
+  { text: "🥛 A bowl of milk and curd provides essential nutrition & hydration for street dogs.", tag: "Daily Nutrition Fact" },
+  { text: "🕊️ Every question answered feeds a hungry soul in verified local feeding drives.", tag: "Daily Karma Thought" },
+  { text: "🐄 Our dairy donations support local farmers & village dairy suppliers in Patna.", tag: "Community Impact" },
+  { text: "❤️ Good karma returns to those who help vulnerable animals survive the street.", tag: "Karmic Reflection" },
+  { text: "🐾 Every drop of milk makes a difference for street dogs enduring extreme weather.", tag: "Field Care Insight" },
+  { text: "🐕 Over 200 Million stray dogs worldwide need our collective love and care.", tag: "Global Animal Awareness" },
+  { text: "🥛 Fresh curd helps digest food & prevents heat stroke in summer street animals.", tag: "Animal Wellness Tip" },
+  { text: "✨ Knowledge turned into compassion builds a kinder world for all creatures.", tag: "Daily Inspiration" }
+];
+
+const getDailyQuote = () => {
+  const dayOfYear = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
+  return DAILY_KARMA_QUOTES[dayOfYear % DAILY_KARMA_QUOTES.length];
+};
+
 const QuizImage = ({ category, question }: { category: string, question: string }) => {
   const categoryImageMap: Record<string, string> = {
     animals: '/category_animals.jpg',
@@ -1223,10 +1239,33 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
         
         {/* Live Community Activity Ticker Banner */}
-        <div className={`w-full py-2.5 px-4 mb-6 rounded-2xl border flex items-center justify-center gap-2 text-xs font-mono font-bold transition-all shadow-md backdrop-blur-xl ${isDark ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' : 'bg-emerald-100/80 border-emerald-300 text-emerald-900'}`}>
+        <div className={`w-full py-2.5 px-4 rounded-2xl border flex items-center justify-center gap-2 text-xs font-mono font-bold transition-all shadow-md backdrop-blur-xl ${isDark ? 'bg-emerald-950/60 border-emerald-500/30 text-emerald-300' : 'bg-emerald-100/80 border-emerald-300 text-emerald-900'}`}>
           <motion.span key={liveActivityTicker} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
             {liveActivityTicker}
           </motion.span>
+        </div>
+
+        {/* Daily Updating Compassionate Quote Card */}
+        <div className={`w-full p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 ${isDark ? 'bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border-amber-500/30' : 'bg-gradient-to-r from-amber-50 via-rose-50 to-amber-50 border-amber-200'}`}>
+          <div className="flex items-center gap-3">
+            <span className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xl shrink-0">
+              📅
+            </span>
+            <div>
+              <div className="flex items-center gap-2 mb-0.5">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
+                  {getDailyQuote().tag} • Today's Featured Thought
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
+              </div>
+              <p className={`text-xs sm:text-sm font-semibold leading-relaxed ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
+                "{getDailyQuote().text}"
+              </p>
+            </div>
+          </div>
+          <span className="text-[10px] font-mono text-amber-400/90 font-bold shrink-0 uppercase tracking-widest px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
+            Updated Daily
+          </span>
         </div>
 
         {/* Highlighted Supreme Intro Banner */}
