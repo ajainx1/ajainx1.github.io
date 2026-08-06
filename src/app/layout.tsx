@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import BackgroundWrapper from "@/components/3d/BackgroundWrapper";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
@@ -8,6 +8,9 @@ import SecurityGuard from "@/components/SecurityGuard";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -108,7 +111,7 @@ export default function RootLayout({
   ];
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={cn("dark", "font-sans", geist.variable)}>
       <head>
         <meta name="theme-color" content="#0b0f19" />
         <meta name="google-adsense-account" content="ca-pub-6072468142870937" />

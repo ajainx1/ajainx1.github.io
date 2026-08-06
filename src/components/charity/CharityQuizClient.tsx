@@ -990,8 +990,15 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
         <motion.div 
           initial={{ opacity: 0, y: -20 }} 
           animate={{ opacity: 1, y: 0 }} 
-          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/80 via-black/60 to-slate-950/80 border-emerald-500/20' : 'bg-gradient-to-b from-emerald-50/80 via-white/90 to-cyan-50/80 border-emerald-200'}`}
+          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/90 via-black/80 to-slate-950/90 border-emerald-500/30' : 'bg-gradient-to-b from-emerald-50/80 via-white/90 to-cyan-50/80 border-emerald-200'}`}
         >
+          {/* Professional 3D Hero Visual Banner */}
+          <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
+            <img src="/hero_banner.jpg" alt="CyberKarma 3D Showcase" className="w-full h-full object-cover" />
+            <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-slate-950' : 'bg-gradient-to-b from-white/90 via-white/70 to-white'}`} />
+          </div>
+
+          <div className="relative z-10">
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-emerald-500/20 blur-[80px] rounded-full pointer-events-none" />
 
           {/* Emotional Headline */}
@@ -1024,6 +1031,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
 
           <div className={`mt-6 px-4 sm:px-6 py-3 rounded-full text-[10px] sm:text-sm font-bold tracking-widest uppercase border transition-all text-center ${isDark ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400' : 'bg-emerald-50 border-emerald-300 text-emerald-700'}`}>
             {(24500 + totalKarmaAllTime).toLocaleString()} KARMA POINTS DONATED → ≈ {Math.floor((24500 + totalKarmaAllTime) / 200)} BOWLS OF MILK & CURD
+          </div>
           </div>
         </motion.div>
 
