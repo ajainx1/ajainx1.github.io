@@ -1365,16 +1365,14 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     <motion.div className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_12px_#38bdf8]" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
                   </div>
                   <span className="text-[10px] font-mono font-bold mt-3 block opacity-80 text-cyan-300 uppercase tracking-wider">{milestone} / 200 for a bowl of milk & curd</span>
+                  <div className="mt-8">
+                    <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>
+                      <Share2 size={16} /> Share Impact
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             </TiltWrapper>
-
-              <div className="mt-8">
-                <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>
-                  <Share2 size={16} /> Share Impact
-                </button>
-              </div>
-            </motion.div>
 
             {/* Recipients Widget */}
             <div className={`p-6 rounded-[32px] border shadow-lg backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
