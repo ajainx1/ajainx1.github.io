@@ -233,7 +233,7 @@ export default function ImpactGallery({ isDark }: { isDark: boolean }) {
               </div>
 
               <p className={`text-sm sm:text-base max-w-3xl leading-relaxed ${isDark ? 'text-slate-300 font-medium' : 'text-slate-700 font-semibold'}`}>
-                Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong className="text-emerald-400 font-bold">Your knowledge is their direct survival.</strong>
+                Every single bowl of milk and curd makes a difference. These are the actual street dogs and community animals you are helping feed every time you answer a question. <strong className="text-emerald-400 font-bold">Your knowledge is their direct survival.</strong>
               </p>
             </div>
 
