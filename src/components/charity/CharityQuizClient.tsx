@@ -269,30 +269,47 @@ export default function CharityQuizClient() {
 
   // Real-time increasing intervals
   useEffect(() => {
-    // 1. Load stored deliveries or default 14203
+    // 1. Load stored deliveries & global total karma
     const storedDeliveries = localStorage.getItem("cyberkarma_deliveries_count");
     if (storedDeliveries) {
       setLiveDeliveriesCount(parseInt(storedDeliveries, 10));
     }
 
-    // 2. Interval to auto-increment live deliveries count realistically
+    const storedKarma = localStorage.getItem("cyberkarma_total_karma_alltime");
+    if (storedKarma) {
+      setTotalKarmaAllTime(parseInt(storedKarma, 10));
+    } else {
+      setTotalKarmaAllTime(2842100);
+      localStorage.setItem("cyberkarma_total_karma_alltime", "2842100");
+    }
+
+    // 2. Interval to auto-increment live deliveries count (every 6 seconds)
     const deliveriesInterval = setInterval(() => {
       setLiveDeliveriesCount(prev => {
         const next = prev + Math.floor(Math.random() * 2) + 1;
         localStorage.setItem("cyberkarma_deliveries_count", next.toString());
         return next;
       });
-    }, 11000);
+    }, 6000);
 
-    // 3. Interval to fluctuate live online players count
+    // 3. Interval to auto-increment total karma donated globally (every 4.5 seconds)
+    const karmaInterval = setInterval(() => {
+      setTotalKarmaAllTime(prev => {
+        const next = prev + (Math.floor(Math.random() * 2) + 1) * 10;
+        localStorage.setItem("cyberkarma_total_karma_alltime", next.toString());
+        return next;
+      });
+    }, 4500);
+
+    // 4. Interval to fluctuate live online players count
     const playersInterval = setInterval(() => {
       setLiveOnlinePlayers(prev => {
         const delta = Math.floor(Math.random() * 9) - 4; // -4 to +4
         return Math.max(1410, Math.min(1590, prev + delta));
       });
-    }, 4500);
+    }, 3500);
 
-    // 4. Activity feed ticker array
+    // 5. Activity feed ticker array
     const activities = [
       "⚡ Someone in New Delhi just answered a question & funded a bowl of curd!",
       "⚡ Someone in London just hit a 5x Streak Bonus!",
@@ -306,10 +323,11 @@ export default function CharityQuizClient() {
     const activityInterval = setInterval(() => {
       actIdx = (actIdx + 1) % activities.length;
       setLiveActivityTicker(activities[actIdx]);
-    }, 6000);
+    }, 5000);
 
     return () => {
       clearInterval(deliveriesInterval);
+      clearInterval(karmaInterval);
       clearInterval(playersInterval);
       clearInterval(activityInterval);
     };
