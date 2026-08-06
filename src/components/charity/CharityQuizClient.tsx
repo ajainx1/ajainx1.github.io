@@ -2130,7 +2130,9 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                   <div className="space-y-3">
                     <div className="flex justify-between items-baseline">
                       <span className="text-xs text-slate-400 font-mono">Current Rank:</span>
-                      <span className="text-sm font-black text-amber-400 font-title">Level {userLevel}: {userTitle}</span>
+                      <span className="text-sm font-black text-amber-400 font-title">
+                        Level {Math.floor(score / 200) + 1}: {levelTitles.slice().reverse().find(t => (Math.floor(score / 200) + 1) >= t.minLvl)?.title || "Chandra Novice"}
+                      </span>
                     </div>
 
                     <div className="flex justify-between items-baseline">
