@@ -478,7 +478,7 @@ export default function Home() {
                   "Firewall Architecture & Perimeter Hardening: Designed and enforced default-deny security policies on Check Point NGFW across Bihar SDC and NKN offices; configured NAT/PAT rules, audited ACLs, and managed IPsec VPN tunnels for secure inter-district government communications.",
                   "Web Application & Infrastructure VAPT: Conducted 15+ vulnerability assessments and penetration tests against government-facing web portals; identified and remediated 50+ critical/high OWASP Top 10 vulnerabilities (Open Redirect, XSS, SQLi); validated closures via PoC exploits coordinated with NIC-CERT.",
                   "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, tuning behavioral detection policies to neutralize emerging ransomware and fileless attack vectors.",
-                  "Enterprise Intranet & AI Portal (10.133.22.8): Independently designed and deployed an AI-assisted organization-wide NOC portal (http://10.133.22.8), integrating an offline RAG LLM Chatbot (Ollama), custom tool hyperlink directory, district router telemetry, and automated outage alerts.",
+                  "Air-Gapped Enterprise AI & NOC Gateway: Independently designed and deployed an AI-assisted organization-wide NOC gateway on the air-gapped intranet, integrating an offline RAG LLM Chatbot (Ollama), custom tool hyperlink directory, district router telemetry, and automated outage alerts.",
                   "DFIR & CERT-In Incident Response: Primary CERT-In responder; performed live memory triage (Magnet RAM Capture, FTK Imager, Disk2vhd), host forensics, and authored PoC exploits to validate vulnerability closures. Achieved 100% closure rate on CERT-In advisories within SLA.",
                   "Compliance Automation: Built PowerShell and Python frameworks automating 120+ CDAC/CERT-In regulatory checks across 750+ endpoints via KACE UEM — cutting audit effort by 60%.",
                   "Data Center Infrastructure Management (DCIM): Oversaw State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, patch panel routing, ultrasonic rodent repeller systems, and VESDA fire safety compliance."
@@ -576,42 +576,42 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "CDAC/CERT-In Compliance Engine",
-                status: "NIC Production (Classified)",
-                desc: "Engineered a PowerShell & Python framework executing 120+ automated system configuration checks mapped to NIST standards across 750+ government nodes via KACE UEM.",
-                tags: ["PowerShell", "Python", "KACE UEM", "NIST CSF"],
+                title: "CDAC & CERT-In Compliance Auditor Framework",
+                status: "Enterprise SecOps (Sanitized)",
+                desc: "Engineered an automated PowerShell & Python compliance framework executing 120+ regulatory security controls mapped to NIST CSF standards across 750+ enterprise nodes via KACE UEM.",
+                tags: ["PowerShell", "Python", "KACE UEM", "NIST CSF", "Automated Hardening"],
                 badge: "Enterprise",
                 color: "bg-blue-50 text-blue-700 border-blue-200"
               },
               {
-                title: "Enterprise AI & NOC Portal (10.133.22.8)",
-                status: "Live Intranet Production",
-                desc: "Sole architect of a full-stack intranet portal deployed at 10.133.22.8 for the organization. Features an integrated AI-assisted RAG Cybersecurity Chatbot (Ollama LLM), custom tool hyperlink directory, 38-district live router telemetry, and automated outage alerting.",
-                tags: ["10.133.22.8 Intranet", "Sole Architect", "AI RAG Chatbot", "Ollama LLM", "PHP API"],
-                badge: "Govt Intranet",
+                title: "Air-Gapped Enterprise AI & NOC Gateway",
+                status: "Air-Gapped Intranet Production",
+                desc: "Sole architect of a full-stack air-gapped intranet NOC gateway. Features an integrated offline RAG Cybersecurity Chatbot (Ollama LLM), custom tool hyperlink directory, 38-district live router telemetry, and automated outage alerting.",
+                tags: ["Air-Gapped SecOps", "Sole Architect", "AI RAG Chatbot", "Ollama LLM", "PHP REST API"],
+                badge: "Enterprise Intranet",
                 link: "/noc/",
                 color: "bg-indigo-50 text-indigo-700 border-indigo-200"
               },
               {
-                title: "Real-Time Network Alert Dashboard (10.133.22.8/alert/)",
+                title: "Real-Time Enterprise Network Telemetry & Alert Dashboard",
                 status: "Live Deployment",
                 desc: "Solely engineered real-time ping monitoring and packet loss analysis dashboard for enterprise core routing units. Integrates custom outage alerting, noise filters, and live telemetry log feeds.",
-                tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets"],
+                tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets", "Telemetry"],
                 badge: "Live Gateway",
                 link: "/alert/",
                 color: "bg-violet-50 text-violet-700 border-violet-200"
               },
               {
-                title: "Cyber Free Rice Initiative",
-                status: "Charity Quiz",
-                desc: "Interactive education platform featuring a stunning macOS-inspired UI. User quiz scores are simulated to feed directly into food charity initiatives (FreeRice concept).",
-                tags: ["Next.js", "Framer Motion", "Supabase", "Tailwind CSS"],
-                badge: "Community",
+                title: "CyberKarma Philanthropic AI Platform",
+                status: "Production App",
+                desc: "Interactive education and food donation platform featuring a stunning macOS-inspired UI, 3D physics, real-time dynamic counters, and 1-tap Google authentication.",
+                tags: ["Next.js 16", "Framer Motion", "Supabase Auth", "3D Physics", "Tailwind CSS"],
+                badge: "Live Platform",
                 link: "https://cyberkarma.me",
                 color: "bg-emerald-50 text-emerald-700 border-emerald-200"
               },
               {
-                title: "JumpStreet Trading Infrastructure",
+                title: "JumpStreet Low-Latency Trading Infrastructure",
                 status: "Production",
                 desc: "Engineered low-latency algorithmic trading infrastructure providing sub-millisecond cloud VMs and high-availability 5G redundancy nodes for quantitative traders.",
                 tags: ["Cloud Infra", "Low Latency", "5G Redundancy", "Windows Server"],
