@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Network Alert Dashboard | AdityaSec Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --bg: #0b0f19;
+            --card: #161e2f;
+            --card-border: #2e3c54;
+            --fg: #f8fafc;
+            --muted: #94a3b8;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --red: #ef4444;
+            --blue: #38bdf8;
+            --purple: #a855f7;
+            --font-sans: 'Inter', sans-serif;
+            --font-title: 'Outfit', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: var(--bg);
+            color: var(--fg);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-col: column;
+            padding: 24px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-title);
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 4px 12px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-family: var(--font-mono);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 8px var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .stat-title { font-size: 11px; color: var(--muted); text-transform: uppercase; font-family: var(--font-mono); font-weight: 700; }
+        .stat-value { font-size: 28px; font-weight: 800; font-family: var(--font-title); margin-top: 6px; }
+
+        .log-container {
+            background: #0d1117;
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 500px;
+        }
+
+        .log-line {
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 12px;
+        }
+
+        .log-time { color: var(--muted); }
+        .log-ok { color: var(--green); }
+        .log-warn { color: var(--amber); }
+        .log-err { color: var(--red); }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--fg);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .btn-back:hover { background: rgba(255, 255, 255, 0.2); }
+    </style>
+</head>
+<body>
+
+    <div style="max-w: 1200px; width: 100%; margin: 0 auto;">
+        <div class="header">
+            <div class="logo">
+                <i class="fa-solid fa-satellite-dish" style="color: var(--blue);"></i>
+                <span>Enterprise Telemetry Alert Gateway</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="badge">
+                    <span class="dot"></span> LIVE ICMP TELEMETRY
+                </div>
+                <a href="/portfolio/" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Portfolio</a>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">Monitored Core Routers</div>
+                <div class="stat-value" style="color: var(--blue);">38 Districts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Average Round-Trip Latency</div>
+                <div class="stat-value" style="color: var(--green);" id="rttVal">18.2 ms</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Packet Loss Ratio</div>
+                <div class="stat-value" style="color: var(--green);" id="lossVal">0.00%</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">Active Alert Noise Filters</div>
+                <div class="stat-value" style="color: var(--purple);">12 Rules</div>
+            </div>
+        </div>
+
+        <h3 style="font-family: var(--font-title); font-size: 16px; margin-bottom: 12px; color: var(--muted);">Real-Time System Telemetry Stream</h3>
+        <div class="log-container" id="logBox">
+            <div class="log-line"><span class="log-time">[10:14:02]</span> <span class="log-ok">INIT</span> <span>Core Gateway Connection Established to 38 District Nodes.</span></div>
+            <div class="log-line"><span class="log-time">[10:14:05]</span> <span class="log-ok">PING</span> <span>Patna Main HQ Core Router: 12ms RTT (0% loss)</span></div>
+            <div class="log-line"><span class="log-time">[10:14:10]</span> <span class="log-ok">PING</span> <span>Gaya Regional Data Link: 18ms RTT (0% loss)</span></div>
+            <div class="log-line"><span class="log-time">[10:14:15]</span> <span class="log-ok">PING</span> <span>Muzaffarpur Secondary Node: 21ms RTT (0% loss)</span></div>
+            <div class="log-line"><span class="log-time">[10:14:20]</span> <span class="log-ok">PING</span> <span>Bhagalpur Perimeter Router: 19ms RTT (0% loss)</span></div>
+        </div>
+    </div>
+
+    <script>
+        const logBox = document.getElementById('logBox');
+        const rttVal = document.getElementById('rttVal');
+        const nodes = ['Patna Main HQ', 'Gaya Regional Link', 'Muzaffarpur Node', 'Bhagalpur Core', 'Purnia Gateway', 'Darbhanga Hub'];
+
+        setInterval(() => {
+            const time = new Date().toTimeString().split(' ')[0];
+            const node = nodes[Math.floor(Math.random() * nodes.length)];
+            const rtt = Math.floor(Math.random() * 12) + 12;
+            rttVal.innerText = rtt + ' ms';
+
+            const line = document.createElement('div');
+            line.className = 'log-line';
+            line.innerHTML = `<span class="log-time">[${time}]</span> <span class="log-ok">PING</span> <span>${node}: ${rtt}ms RTT (0% loss)</span>`;
+            logBox.appendChild(line);
+            logBox.scrollTop = logBox.scrollHeight;
+
+            if (logBox.children.length > 50) {
+                logBox.removeChild(logBox.children[0]);
+            }
+        }, 3500);
+    </script>
+</body>
+</html>
