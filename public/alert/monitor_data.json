@@ -10,12 +10,12 @@
     "config": {
         "provider": "none",
         "recipient": "",
-        "twilio_sender": "+1 (415) XXX-XXXX",
+        "twilio_sender": "+14155238886",
         "twilio_join_msg": "join at-cath"
     },
     "hosts": [
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.192.254",
             "description": "3.11 Lakhisarai-",
             "category": "DHQ",
             "status": "DOWN",
@@ -34,10 +34,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.192.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.192.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.216.100",
             "description": "1.21 Arwal_Router Faulty",
             "category": "DHQ",
             "status": "DOWN",
@@ -56,10 +56,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.216.100 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.216.100:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.224.254",
             "description": "5.11 Vaishali_Router",
             "category": "DHQ",
             "status": "DOWN",
@@ -78,10 +78,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.224.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.224.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.0.254",
             "description": "1.1 Araria_ASR1002",
             "category": "DHQ",
             "status": "DOWN",
@@ -100,10 +100,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.0.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.0.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.112.5",
             "description": "2.62 Jehanabad_Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -122,10 +122,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.112.5 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.112.5:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.208.254",
             "description": "3.91 Purnea_7206VXR\/BSNL",
             "category": "DHQ",
             "status": "DOWN",
@@ -144,10 +144,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.208.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.208.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.185",
             "description": "2.32 Gaya_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -166,10 +166,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.185 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.185:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.186",
             "description": "1.61 Bhabhua\/Kaimur_",
             "category": "DHQ",
             "status": "DOWN",
@@ -188,10 +188,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.186 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.186:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.187",
             "description": "4.52 Sheikhpura_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -210,10 +210,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.187 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.187:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.193",
             "description": "2.12 Darbhanga_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -232,10 +232,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.193 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.193:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.194",
             "description": "1.71 Bhagalpur_7206VXR",
             "category": "DHQ",
             "status": "DOWN",
@@ -254,10 +254,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.194 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.194:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.195",
             "description": "4.71 Sitamarhi_ASR1002 -X",
             "category": "DHQ",
             "status": "UP",
@@ -276,10 +276,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=4ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.195 with 32 bytes of data:\r\nReply from 10.255.208.195: bytes=32 time=4ms TTL=253\r\n\r\nPing statistics for 10.255.208.195:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.197",
             "description": "3.92 Purnea_ASR 1002x",
             "category": "DHQ",
             "status": "DOWN",
@@ -298,10 +298,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.197 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.197:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.198",
             "description": "4.32 Samastipur_ASR1002-X",
             "category": "DHQ",
             "status": "UP",
@@ -320,10 +320,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=13ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.198 with 32 bytes of data:\r\nReply from 10.255.208.198: bytes=32 time=13ms TTL=253\r\n\r\nPing statistics for 10.255.208.198:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.208.199",
             "description": "4.42 Saran_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -342,10 +342,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.208.199 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.208.199:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.103",
             "description": "4.81 Siwan_CISCO2851",
             "category": "DHQ",
             "status": "UP",
@@ -364,10 +364,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=7ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.103 with 32 bytes of data:\r\nReply from 10.255.254.103: bytes=32 time=7ms TTL=253\r\n\r\nPing statistics for 10.255.254.103:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.105",
             "description": "4.91 Supaul_ASR1002-X",
             "category": "DHQ",
             "status": "UP",
@@ -386,10 +386,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=11ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 11ms, Maximum = 11ms, Average = 11ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.105 with 32 bytes of data:\r\nReply from 10.255.254.105: bytes=32 time=11ms TTL=252\r\n\r\nPing statistics for 10.255.254.105:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 11ms, Maximum = 11ms, Average = 11ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.71",
             "description": "1.3 Aurangabad_7206VXR",
             "category": "DHQ",
             "status": "DOWN",
@@ -408,10 +408,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.71 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.71:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.72",
             "description": "1.4 Banka_CISCO2851",
             "category": "DHQ",
             "status": "DOWN",
@@ -430,10 +430,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.72 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.72:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.73",
             "description": "Begusaria_ASR1002",
             "category": "DHQ",
             "status": "UP",
@@ -452,10 +452,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=2ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 2ms, Maximum = 2ms, Average = 2ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.73 with 32 bytes of data:\r\nReply from 10.255.254.73: bytes=32 time=2ms TTL=253\r\n\r\nPing statistics for 10.255.254.73:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 2ms, Maximum = 2ms, Average = 2ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.76",
             "description": "1.8 Bhojpur_7206VXR",
             "category": "DHQ",
             "status": "DOWN",
@@ -474,10 +474,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.76 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.76:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.77",
             "description": "1.9 Buxar_ASR1002",
             "category": "DHQ",
             "status": "DOWN",
@@ -496,10 +496,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.77 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.77:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.79",
             "description": "2.2 East Champaran\/Motihari_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -518,10 +518,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.79 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.79:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.81",
             "description": "2.4 Gopalganj_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -540,10 +540,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.81 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.81:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.82",
             "description": "2.5 Jamui_ASR1002",
             "category": "DHQ",
             "status": "DOWN",
@@ -562,10 +562,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.82 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.82:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.84",
             "description": "2.71 Katihar _10002X",
             "category": "DHQ",
             "status": "DOWN",
@@ -584,10 +584,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.84 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.84:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.85",
             "description": "2.8 Khagaria_CISCO2851",
             "category": "DHQ",
             "status": "DOWN",
@@ -606,10 +606,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.85 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.85:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.86",
             "description": "2.9 Kishanganj_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -628,10 +628,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.86 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.86:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.88",
             "description": "3.2 Madhepura_CISCO2851",
             "category": "DHQ",
             "status": "DOWN",
@@ -650,10 +650,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.88 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.88:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.89",
             "description": "3.3 Madhubani_CISCO2851",
             "category": "DHQ",
             "status": "UP",
@@ -672,10 +672,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.89 with 32 bytes of data:\r\nReply from 10.255.254.89: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.255.254.89:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.90",
             "description": "3.4 Munger_7206VXR",
             "category": "DHQ",
             "status": "DOWN",
@@ -694,10 +694,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.90 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.90:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.91",
             "description": "3.5 Muzaffarpur_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -716,10 +716,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.91 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.91:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.92",
             "description": "3.6 Nalanda_ASR1002-X",
             "category": "DHQ",
             "status": "DOWN",
@@ -738,10 +738,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.92 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.92:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.97",
             "description": "4.2 Saharsa_7206VXR",
             "category": "DHQ",
             "status": "DOWN",
@@ -760,10 +760,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.97 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.255.254.97:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.200.253",
             "description": "Buxar\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -782,10 +782,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.200.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.200.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.200.254",
             "description": "Buxar\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -804,10 +804,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.200.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.200.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.208.1",
             "description": "Sitamarhi-Switch-Unmanagable",
             "category": "DHQ",
             "status": "UP",
@@ -826,10 +826,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.208.1 with 32 bytes of data:\r\nReply from 10.99.208.1: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.99.208.1:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.216.2",
             "description": "Arwal System",
             "category": "DHQ",
             "status": "DOWN",
@@ -848,10 +848,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.216.2 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.216.2:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.232.253",
             "description": "Supaul\/2960X\/Switch",
             "category": "DHQ",
             "status": "UP",
@@ -870,10 +870,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=16ms TTL=251\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.232.253 with 32 bytes of data:\r\nReply from 10.99.232.253: bytes=32 time=16ms TTL=251\r\n\r\nPing statistics for 10.99.232.253:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.240.254",
             "description": "Bhagalpur\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -892,10 +892,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.240.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.240.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.104.253",
             "description": "Jamui\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -914,10 +914,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.104.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.104.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.104.254",
             "description": "Jamui\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -936,10 +936,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.104.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.104.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.120.254",
             "description": "Katihar",
             "category": "DHQ",
             "status": "DOWN",
@@ -958,10 +958,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.120.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.120.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.128.254",
             "description": "Khagaria\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -980,10 +980,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.128.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.128.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.136.254",
             "description": "Kishanganj\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1002,10 +1002,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.136.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.136.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.152.253",
             "description": "Madhepura\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1024,10 +1024,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.152.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.152.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.16.254",
             "description": "Aurangabad\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1046,10 +1046,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.16.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.16.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.160.254",
             "description": "Madhubani\/2960S\/Switch",
             "category": "DHQ",
             "status": "UP",
@@ -1068,10 +1068,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=20ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 20ms, Maximum = 20ms, Average = 20ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.160.254 with 32 bytes of data:\r\nReply from 10.100.160.254: bytes=32 time=20ms TTL=252\r\n\r\nPing statistics for 10.100.160.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 20ms, Maximum = 20ms, Average = 20ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.168.253",
             "description": "Munger\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1090,10 +1090,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.168.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.168.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.176.254",
             "description": "Muzaffarpur\/2960X\/Switch-ADM",
             "category": "DHQ",
             "status": "DOWN",
@@ -1112,10 +1112,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.176.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.176.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.184.254",
             "description": "Nalanda\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1134,10 +1134,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.184.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.184.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.216.253",
             "description": "Rohtas\/2960X\/Switch-ADM",
             "category": "DHQ",
             "status": "DOWN",
@@ -1156,10 +1156,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.216.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.216.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.224.254",
             "description": "Saharsa\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1178,10 +1178,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.224.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.224.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.24.254",
             "description": "Banka\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1200,10 +1200,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.24.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.24.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.240.254",
             "description": "Saran\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1222,10 +1222,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.240.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.240.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.32.254",
             "description": "Begusarai\/2960S\/Switch",
             "category": "DHQ",
             "status": "UP",
@@ -1244,10 +1244,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=16ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.32.254 with 32 bytes of data:\r\nReply from 10.100.32.254: bytes=32 time=16ms TTL=252\r\n\r\nPing statistics for 10.100.32.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.40.253",
             "description": "Kaimur\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1266,10 +1266,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.40.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.40.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.40.254",
             "description": "Kaimur\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1288,10 +1288,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.40.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.40.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.56.254",
             "description": "Bhojpur\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1310,10 +1310,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.56.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.56.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.8.254",
             "description": "Siwan\/2960S\/Switch",
             "category": "DHQ",
             "status": "UP",
@@ -1332,10 +1332,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=16ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.8.254 with 32 bytes of data:\r\nReply from 10.100.8.254: bytes=32 time=16ms TTL=252\r\n\r\nPing statistics for 10.100.8.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 16ms, Maximum = 16ms, Average = 16ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.80.254",
             "description": "E.Champaran\/2960S\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1354,10 +1354,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.80.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.80.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.96.253",
             "description": "Gopalganj\/2960X\/Switch",
             "category": "DHQ",
             "status": "DOWN",
@@ -1376,10 +1376,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.96.253 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.96.253:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.11.254",
             "description": "1st Floor",
             "category": "SHQ",
             "status": "UP",
@@ -1398,10 +1398,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=19ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 19ms, Maximum = 19ms, Average = 19ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.11.254 with 32 bytes of data:\r\nReply from 10.99.11.254: bytes=32 time=19ms TTL=254\r\n\r\nPing statistics for 10.99.11.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 19ms, Maximum = 19ms, Average = 19ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.12.254",
             "description": "2nd Floor",
             "category": "SHQ",
             "status": "UP",
@@ -1420,10 +1420,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=6ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.12.254 with 32 bytes of data:\r\nReply from 10.99.12.254: bytes=32 time=6ms TTL=254\r\n\r\nPing statistics for 10.99.12.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.12.253",
             "description": "2nd Floor Switch-2",
             "category": "SHQ",
             "status": "UP",
@@ -1442,10 +1442,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=9ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 9ms, Maximum = 9ms, Average = 9ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.12.253 with 32 bytes of data:\r\nReply from 10.99.12.253: bytes=32 time=9ms TTL=254\r\n\r\nPing statistics for 10.99.12.253:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 9ms, Maximum = 9ms, Average = 9ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.12.252",
             "description": "2nd Floor Switch-3 POE",
             "category": "SHQ",
             "status": "UP",
@@ -1464,10 +1464,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=23ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 23ms, Maximum = 23ms, Average = 23ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.12.252 with 32 bytes of data:\r\nReply from 10.99.12.252: bytes=32 time=23ms TTL=254\r\n\r\nPing statistics for 10.99.12.252:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 23ms, Maximum = 23ms, Average = 23ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.13.254",
             "description": "3rd Floor",
             "category": "SHQ",
             "status": "UP",
@@ -1486,10 +1486,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=7ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.13.254 with 32 bytes of data:\r\nReply from 10.99.13.254: bytes=32 time=7ms TTL=254\r\n\r\nPing statistics for 10.99.13.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.14.254",
             "description": "4th Floor",
             "category": "SHQ",
             "status": "UP",
@@ -1508,10 +1508,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.14.254 with 32 bytes of data:\r\nReply from 10.99.14.254: bytes=32 time=1ms TTL=254\r\n\r\nPing statistics for 10.99.14.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.14.253",
             "description": "4th Floor Switch-2",
             "category": "SHQ",
             "status": "UP",
@@ -1530,10 +1530,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.14.253 with 32 bytes of data:\r\nReply from 10.99.14.253: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.99.14.253:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.20.135",
             "description": "5th Floor DGRC",
             "category": "SHQ",
             "status": "UP",
@@ -1552,10 +1552,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.20.135 with 32 bytes of data:\r\nReply from 10.99.20.135: bytes=32 time<1ms TTL=252\r\n\r\nPing statistics for 10.99.20.135:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.65",
             "description": "Bhawan 9006 Core Router",
             "category": "SHQ",
             "status": "UP",
@@ -1574,10 +1574,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.65 with 32 bytes of data:\r\nReply from 10.255.254.65: bytes=32 time=5ms TTL=254\r\n\r\nPing statistics for 10.255.254.65:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.254.66",
             "description": "Bhawan 9010 Core Router",
             "category": "SHQ",
             "status": "UP",
@@ -1596,10 +1596,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.254.66 with 32 bytes of data:\r\nReply from 10.255.254.66: bytes=32 time=1ms TTL=253\r\n\r\nPing statistics for 10.255.254.66:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.7.230",
             "description": "BHAWAN Core Switch",
             "category": "SHQ",
             "status": "UP",
@@ -1618,10 +1618,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=255\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.7.230 with 32 bytes of data:\r\nReply from 10.99.7.230: bytes=32 time<1ms TTL=255\r\n\r\nPing statistics for 10.99.7.230:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.29",
             "description": "CCTV Switch",
             "category": "SHQ",
             "status": "UP",
@@ -1640,10 +1640,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.15.29 with 32 bytes of data:\r\nReply from 10.99.15.29: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.99.15.29:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.154",
             "description": "CS Cell 100 Mbps BSNL",
             "category": "SHQ",
             "status": "DOWN",
@@ -1662,10 +1662,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.154 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.154:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.5.154",
             "description": "CS Cell 2 MBPS",
             "category": "SHQ",
             "status": "DOWN",
@@ -1684,10 +1684,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.5.154 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.5.154:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.2.27",
             "description": "MCU 1",
             "category": "SHQ",
             "status": "UP",
@@ -1706,10 +1706,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.2.27 with 32 bytes of data:\r\nReply from 10.99.2.27: bytes=32 time=1ms TTL=63\r\n\r\nPing statistics for 10.99.2.27:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.2.28",
             "description": "MCU 2",
             "category": "SHQ",
             "status": "UP",
@@ -1728,10 +1728,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.2.28 with 32 bytes of data:\r\nReply from 10.99.2.28: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.99.2.28:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.5.130",
             "description": "Patna High Court 20Mbps",
             "category": "SHQ",
             "status": "UP",
@@ -1750,10 +1750,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=2ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 2ms, Maximum = 2ms, Average = 2ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.5.130 with 32 bytes of data:\r\nReply from 10.99.5.130: bytes=32 time=2ms TTL=252\r\n\r\nPing statistics for 10.99.5.130:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 2ms, Maximum = 2ms, Average = 2ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.5.190",
             "description": "Patna High Court 4Mbps",
             "category": "SHQ",
             "status": "UP",
@@ -1772,10 +1772,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.5.190 with 32 bytes of data:\r\nReply from 10.99.5.190: bytes=32 time<1ms TTL=252\r\n\r\nPing statistics for 10.99.5.190:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.234.5",
             "description": "PGCIL PATNA-DEL 10 Gbps",
             "category": "SHQ",
             "status": "UP",
@@ -1794,10 +1794,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=30ms TTL=251\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 30ms, Maximum = 30ms, Average = 30ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.234.5 with 32 bytes of data:\r\nReply from 10.255.234.5: bytes=32 time=30ms TTL=251\r\n\r\nPing statistics for 10.255.234.5:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 30ms, Maximum = 30ms, Average = 30ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.237.101",
             "description": "PGCIL PATNA-HYD 10 Gbps",
             "category": "SHQ",
             "status": "UP",
@@ -1816,10 +1816,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=26ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 26ms, Maximum = 26ms, Average = 26ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.237.101 with 32 bytes of data:\r\nReply from 10.255.237.101: bytes=32 time=26ms TTL=252\r\n\r\nPing statistics for 10.255.237.101:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 26ms, Maximum = 26ms, Average = 26ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.255.238.201",
             "description": "RAILTEL PATNA-KOL 10 Gbps",
             "category": "SHQ",
             "status": "UP",
@@ -1838,10 +1838,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=10ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 10ms, Maximum = 10ms, Average = 10ms\r\n"
+            "last_stdout": "\r\nPinging 10.255.238.201 with 32 bytes of data:\r\nReply from 10.255.238.201: bytes=32 time=10ms TTL=253\r\n\r\nPing statistics for 10.255.238.201:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 10ms, Maximum = 10ms, Average = 10ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.7.226",
             "description": "SDC 10G",
             "category": "SHQ",
             "status": "UP",
@@ -1860,10 +1860,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.7.226 with 32 bytes of data:\r\nReply from 10.99.7.226: bytes=32 time=1ms TTL=61\r\n\r\nPing statistics for 10.99.7.226:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.14.26",
             "description": "AA Bhojpur\/PGCIL\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -1882,10 +1882,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.14.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.14.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.14.25",
             "description": "AA Buxar\/PGCIL\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -1904,10 +1904,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.14.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.14.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.111.26",
             "description": "BB Banka\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -1926,10 +1926,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.111.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.111.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.111.25",
             "description": "BB Jamui\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -1948,10 +1948,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.111.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.111.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.167.25",
             "description": "CC Madhubani\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -1970,10 +1970,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.167.25 with 32 bytes of data:\r\nReply from 10.100.167.25: bytes=32 time=5ms TTL=253\r\n\r\nPing statistics for 10.100.167.25:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.167.26",
             "description": "CC Sitamarhi\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -1992,10 +1992,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=6ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.167.26 with 32 bytes of data:\r\nReply from 10.100.167.26: bytes=32 time=6ms TTL=253\r\n\r\nPing statistics for 10.100.167.26:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.87.25",
             "description": "DD Motihari\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2014,10 +2014,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.87.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.87.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.87.26",
             "description": "DD Sheohar\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2036,10 +2036,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.87.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.87.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.103.25",
             "description": "EE Gopalganj\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2058,10 +2058,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.103.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.103.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.103.26",
             "description": "EE Siwan\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -2080,10 +2080,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\nPinging 10.X.X.0 with 32 bytes of data:\nReply from 10.X.X.0: bytes=32 time=4ms TTL=253\n\nPing statistics for 10.X.X.0:\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms"
+            "last_stdout": "\nPinging 10.100.103.26 with 32 bytes of data:\nReply from 10.100.103.26: bytes=32 time=4ms TTL=253\n\nPing statistics for 10.100.103.26:\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.7.25",
             "description": "FF Araria\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2102,10 +2102,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.7.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.7.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.7.26",
             "description": "FF Kishanganj\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2124,10 +2124,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.7.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.7.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.119.25",
             "description": "GG Jehanabad\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2146,10 +2146,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.119.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.119.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.119.26",
             "description": "GG Nalanda\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2168,10 +2168,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.119.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.119.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.95.26",
             "description": "HH Aurangabad\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2190,10 +2190,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.95.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.95.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.95.25",
             "description": "HH Gaya\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2212,10 +2212,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.95.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.95.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.55.25",
             "description": "II Bettiah\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2234,10 +2234,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.55.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.55.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.55.26",
             "description": "II Vaishali\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -2256,10 +2256,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.55.26 with 32 bytes of data:\r\nReply from 10.100.55.26: bytes=32 time<1ms TTL=253\r\n\r\nPing statistics for 10.100.55.26:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.183.25",
             "description": "JJ Muzaffarpur\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2278,10 +2278,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.183.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.183.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.183.26",
             "description": "JJ Samastipur\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -2300,10 +2300,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=13ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.183.26 with 32 bytes of data:\r\nReply from 10.100.183.26: bytes=32 time=13ms TTL=253\r\n\r\nPing statistics for 10.100.183.26:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.39.25",
             "description": "KK Begusarai\/BSNL\/1G",
             "category": "INTD",
             "status": "UP",
@@ -2322,10 +2322,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=4ms TTL=253\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.39.25 with 32 bytes of data:\r\nReply from 10.100.39.25: bytes=32 time=4ms TTL=253\r\n\r\nPing statistics for 10.100.39.25:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.39.26",
             "description": "KK Lakhisarai\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2344,10 +2344,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.39.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.39.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.199.25",
             "description": "LL Nawada\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2366,10 +2366,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.199.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.199.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.199.26",
             "description": "LL Sheikhpura\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2388,10 +2388,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.199.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.199.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.127.26",
             "description": "MM Bhagalpur\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2410,10 +2410,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.127.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.127.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.127.25",
             "description": "MM Katihar\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2432,10 +2432,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.127.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.127.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.47.25",
             "description": "NN Bhabhua\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2454,10 +2454,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.47.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.47.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.47.26",
             "description": "NN Rohtas\/BSNL\/1G",
             "category": "INTD",
             "status": "DOWN",
@@ -2476,10 +2476,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.47.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.47.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.159.5",
             "description": "OO Madhepura\/BSNL\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -2498,10 +2498,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.159.5 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.159.5:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.159.6",
             "description": "OO Purnea\/BSNL\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -2520,10 +2520,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.159.6 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.159.6:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.231.26",
             "description": "PP Madhepura\/Railtel\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -2542,10 +2542,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.231.26 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.231.26:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.231.25",
             "description": "PP Saharsha\/Railtel\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -2564,10 +2564,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.231.25 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.231.25:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.14.29",
             "description": "QQ Darbhanga\/PGCIL\/100 Mbps",
             "category": "INTD",
             "status": "DOWN",
@@ -2586,10 +2586,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.100.14.29 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.100.14.29:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.14.30",
             "description": "QQ Supaul\/PGCIL\/100 Mbps",
             "category": "INTD",
             "status": "UP",
@@ -2608,10 +2608,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=17ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 17ms, Maximum = 17ms, Average = 17ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.14.30 with 32 bytes of data:\r\nReply from 10.100.14.30: bytes=32 time=17ms TTL=252\r\n\r\nPing statistics for 10.100.14.30:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 17ms, Maximum = 17ms, Average = 17ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.9.246",
             "description": "PATNA-BALLIA(Interstate)-PGCIL-100M",
             "category": "INTS",
             "status": "DOWN",
@@ -2630,10 +2630,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.9.246 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.9.246:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.9.254",
             "description": "PATNA-DEORIA(Interstate)-RAILTEL-1G",
             "category": "INTS",
             "status": "DOWN",
@@ -2652,10 +2652,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.9.254 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.9.254:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.9.250",
             "description": "PATNA-GAZIPUR(Interstate)-PGCIL-100M",
             "category": "INTS",
             "status": "UP",
@@ -2674,10 +2674,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=343ms TTL=62\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 343ms, Maximum = 343ms, Average = 343ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.9.250 with 32 bytes of data:\r\nReply from 10.99.9.250: bytes=32 time=343ms TTL=62\r\n\r\nPing statistics for 10.99.9.250:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 343ms, Maximum = 343ms, Average = 343ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.42",
             "description": "Main UPS Monitor",
             "category": "UPS",
             "status": "UP",
@@ -2701,7 +2701,7 @@
             "battery_status": 2
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.43",
             "description": "Backup UPS Monitor",
             "category": "UPS",
             "status": "UP",
@@ -2720,11 +2720,11 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
+            "last_stdout": "\r\nPinging 10.99.15.43 with 32 bytes of data:\r\nReply from 10.99.15.43: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.99.15.43:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
             "temp": 27
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.45",
             "description": "UPS Monitor 3",
             "category": "UPS",
             "status": "UP",
@@ -2748,7 +2748,7 @@
             "battery_status": 2
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.100.232.254",
             "description": "Samastipur Switch",
             "category": "District Headquarters Links (DHQ)",
             "status": "UP",
@@ -2767,10 +2767,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=13ms TTL=252\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
+            "last_stdout": "\r\nPinging 10.100.232.254 with 32 bytes of data:\r\nReply from 10.100.232.254: bytes=32 time=13ms TTL=252\r\n\r\nPing statistics for 10.100.232.254:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.19.131",
             "description": "SHQ AP - NIC Bhawan - 4th Floor",
             "category": "AP",
             "status": "UP",
@@ -2789,10 +2789,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.19.131 with 32 bytes of data:\r\nReply from 10.99.19.131: bytes=32 time<1ms TTL=254\r\n\r\nPing statistics for 10.99.19.131:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.19.130",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor",
             "category": "AP",
             "status": "UP",
@@ -2811,10 +2811,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=6ms TTL=254\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.19.130 with 32 bytes of data:\r\nReply from 10.99.19.130: bytes=32 time=6ms TTL=254\r\n\r\nPing statistics for 10.99.19.130:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.32.11",
             "description": "SHQ AP - NIC Bhawan - 4th Floor - Rack",
             "category": "AP",
             "status": "UP",
@@ -2833,10 +2833,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.32.11 with 32 bytes of data:\r\nReply from 10.99.32.11: bytes=32 time=5ms TTL=61\r\n\r\nPing statistics for 10.99.32.11:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.22.22",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Gallery",
             "category": "AP",
             "status": "UP",
@@ -2855,10 +2855,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=10ms TTL=64\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 10ms, Maximum = 10ms, Average = 10ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.22.22 with 32 bytes of data:\r\nReply from 10.99.22.22: bytes=32 time=10ms TTL=64\r\n\r\nPing statistics for 10.99.22.22:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 10ms, Maximum = 10ms, Average = 10ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.32.101",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Extra",
             "category": "AP",
             "status": "DOWN",
@@ -2877,10 +2877,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.32.101 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.32.101:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.32.6",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Room 205",
             "category": "AP",
             "status": "UP",
@@ -2899,10 +2899,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=6ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.32.6 with 32 bytes of data:\r\nReply from 10.99.32.6: bytes=32 time=6ms TTL=61\r\n\r\nPing statistics for 10.99.32.6:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.22.37",
             "description": "SHQ AP - DGRC NIC Bhawan - 5th Floor",
             "category": "AP",
             "status": "UP",
@@ -2921,10 +2921,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=13ms TTL=64\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.22.37 with 32 bytes of data:\r\nReply from 10.99.22.37: bytes=32 time=13ms TTL=64\r\n\r\nPing statistics for 10.99.22.37:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 13ms, Maximum = 13ms, Average = 13ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.22.35",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor - SIO Room",
             "category": "AP",
             "status": "UP",
@@ -2943,10 +2943,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=64\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.22.35 with 32 bytes of data:\r\nReply from 10.99.22.35: bytes=32 time=1ms TTL=64\r\n\r\nPing statistics for 10.99.22.35:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.22.36",
             "description": "SHQ AP - DGRC NIC Bhawan - 5th Floor (dup.)",
             "category": "AP",
             "status": "UP",
@@ -2965,10 +2965,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=64\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.22.36 with 32 bytes of data:\r\nReply from 10.99.22.36: bytes=32 time<1ms TTL=64\r\n\r\nPing statistics for 10.99.22.36:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.32.9",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor - Room 302",
             "category": "AP",
             "status": "UP",
@@ -2987,10 +2987,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=1ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.32.9 with 32 bytes of data:\r\nReply from 10.99.32.9: bytes=32 time=1ms TTL=61\r\n\r\nPing statistics for 10.99.32.9:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 1ms, Maximum = 1ms, Average = 1ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.32.10",
             "description": "SHQ AP - NIC Bhawan - 1st Floor",
             "category": "AP",
             "status": "UP",
@@ -3009,10 +3009,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.32.10 with 32 bytes of data:\r\nReply from 10.99.32.10: bytes=32 time<1ms TTL=61\r\n\r\nPing statistics for 10.99.32.10:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.2",
             "description": "Office of the IG, Frontier HQ, SSB Patna",
             "category": "SSB",
             "status": "DOWN",
@@ -3031,10 +3031,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: Destination net unreachable.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.2 with 32 bytes of data:\r\nReply from 10.99.7.229: Destination net unreachable.\r\n\r\nPing statistics for 10.99.6.2:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.18",
             "description": "Office of the Commandant, 40th Btn, SSB Patna",
             "category": "SSB",
             "status": "UP",
@@ -3053,10 +3053,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.18 with 32 bytes of data:\r\nReply from 10.99.6.18: bytes=32 time<1ms TTL=61\r\n\r\nPing statistics for 10.99.6.18:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.34",
             "description": "Office of the Commandant, 52nd Btn, SSB Araria",
             "category": "SSB",
             "status": "DOWN",
@@ -3075,10 +3075,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.34 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.34:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.38",
             "description": "Office of the Commandant, 56th Btn, SSB Bathnaha",
             "category": "SSB",
             "status": "DOWN",
@@ -3097,10 +3097,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.38 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.38:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.126",
             "description": "Office of the DIG (Medical), Composite Hospital, Bathnaha",
             "category": "SSB",
             "status": "DOWN",
@@ -3119,10 +3119,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.126 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.126:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.62",
             "description": "Office of the Commandant, 47th Btn, SSB Pantoka",
             "category": "SSB",
             "status": "DOWN",
@@ -3141,10 +3141,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.62 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.62:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.58",
             "description": "Office of the Commandant, 71st Btn, SSB Piprakothi",
             "category": "SSB",
             "status": "DOWN",
@@ -3163,10 +3163,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.58 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.58:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.94",
             "description": "Office of the DIG (Special Operations), Sector HQ",
             "category": "SSB",
             "status": "DOWN",
@@ -3185,10 +3185,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.94 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.94:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.98",
             "description": "Office of the Commandant, 29th Btn, SSB Gaya",
             "category": "SSB",
             "status": "DOWN",
@@ -3207,10 +3207,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.98 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.98:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.22",
             "description": "Office of the Commandant, 16th Btn, SSB Jamui",
             "category": "SSB",
             "status": "DOWN",
@@ -3229,10 +3229,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: Destination net unreachable.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.22 with 32 bytes of data:\r\nReply from 10.99.7.229: Destination net unreachable.\r\n\r\nPing statistics for 10.99.6.22:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.30",
             "description": "Office of the Commandant, 12th Btn, SSB Kishanganj",
             "category": "SSB",
             "status": "DOWN",
@@ -3251,10 +3251,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.30 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.30:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.10",
             "description": "Office of the Commandant, 19th Btn, SSB Thakurganj",
             "category": "SSB",
             "status": "DOWN",
@@ -3273,10 +3273,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.10 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.10:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.134",
             "description": "Office of the Commandant, 48th Btn, SSB Jaynagar",
             "category": "SSB",
             "status": "UP",
@@ -3295,10 +3295,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=6ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.134 with 32 bytes of data:\r\nReply from 10.99.6.134: bytes=32 time=6ms TTL=61\r\n\r\nPing statistics for 10.99.6.134:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 6ms, Maximum = 6ms, Average = 6ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.142",
             "description": "Office of the Commandant, 18th Btn, SSB Rajnagar",
             "category": "SSB",
             "status": "UP",
@@ -3317,10 +3317,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=15ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 15ms, Maximum = 15ms, Average = 15ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.142 with 32 bytes of data:\r\nReply from 10.99.6.142: bytes=32 time=15ms TTL=61\r\n\r\nPing statistics for 10.99.6.142:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 15ms, Maximum = 15ms, Average = 15ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.166",
             "description": "Office of the DIG, Sector HQ, Muzaffarpur",
             "category": "SSB",
             "status": "DOWN",
@@ -3339,10 +3339,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.166 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.166:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.170",
             "description": "Office of the Commandant, 32nd Btn, SSB Muzaffarpur",
             "category": "SSB",
             "status": "DOWN",
@@ -3361,10 +3361,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.170 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.170:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.178",
             "description": "Office of the DIG, Sector HQ, Purnia",
             "category": "SSB",
             "status": "DOWN",
@@ -3383,10 +3383,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.178 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.178:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.182",
             "description": "Office of the Commandant, 20th Btn, SSB Paktola",
             "category": "SSB",
             "status": "DOWN",
@@ -3405,10 +3405,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.182 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.182:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.186",
             "description": "Office of the Commandant, 51st Btn, SSB Sitamarhi",
             "category": "SSB",
             "status": "UP",
@@ -3427,10 +3427,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=4ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.186 with 32 bytes of data:\r\nReply from 10.99.6.186: bytes=32 time=4ms TTL=61\r\n\r\nPing statistics for 10.99.6.186:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 4ms, Maximum = 4ms, Average = 4ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.26",
             "description": "Office of the Commandant, 45th Btn, SSB Birpur",
             "category": "SSB",
             "status": "DOWN",
@@ -3449,10 +3449,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: Destination net unreachable.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.26 with 32 bytes of data:\r\nReply from 10.99.7.229: Destination net unreachable.\r\n\r\nPing statistics for 10.99.6.26:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.174",
             "description": "Office of the DIG, Recruit Training Centre, Supaul",
             "category": "SSB",
             "status": "UP",
@@ -3471,10 +3471,10 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=7ms TTL=61\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.174 with 32 bytes of data:\r\nReply from 10.99.6.174: bytes=32 time=7ms TTL=61\r\n\r\nPing statistics for 10.99.6.174:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 7ms, Maximum = 7ms, Average = 7ms\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.190",
             "description": "Office of the DIG, Sector HQ, Bettiah",
             "category": "SSB",
             "status": "DOWN",
@@ -3493,10 +3493,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.190 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.190:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.194",
             "description": "Office of the Commandant, 21st Btn, SSB Bagaha",
             "category": "SSB",
             "status": "DOWN",
@@ -3515,10 +3515,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.194 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.194:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.198",
             "description": "Office of the Commandant, 44th Btn, SSB Narkatiaganj",
             "category": "SSB",
             "status": "DOWN",
@@ -3537,10 +3537,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.198 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.198:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.6.206",
             "description": "Office of the Commandant, 65th Btn, SSB Bettiah",
             "category": "SSB",
             "status": "DOWN",
@@ -3559,10 +3559,10 @@
                 "DOWN",
                 "DOWN"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
+            "last_stdout": "\r\nPinging 10.99.6.206 with 32 bytes of data:\r\nRequest timed out.\r\n\r\nPing statistics for 10.99.6.206:\r\n    Packets: Sent = 1, Received = 0, Lost = 1 (100% loss),\r\n"
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.50",
             "description": "PAC Vertiv Unit 1",
             "category": "PAC",
             "status": "UP",
@@ -3581,11 +3581,11 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time=5ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n",
+            "last_stdout": "\r\nPinging 10.99.15.50 with 32 bytes of data:\r\nReply from 10.99.15.50: bytes=32 time=5ms TTL=63\r\n\r\nPing statistics for 10.99.15.50:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 5ms, Maximum = 5ms, Average = 5ms\r\n",
             "temp": 25.9
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.52",
             "description": "PAC Vertiv Unit 3",
             "category": "PAC",
             "status": "UP",
@@ -3604,11 +3604,11 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
+            "last_stdout": "\r\nPinging 10.99.15.52 with 32 bytes of data:\r\nReply from 10.99.15.52: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.99.15.52:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
             "temp": 25.7
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.51",
             "description": "PAC Vertiv Unit 2",
             "category": "PAC",
             "status": "UP",
@@ -3627,11 +3627,11 @@
                 "UP",
                 "UP"
             ],
-            "last_stdout": "\r\nPinging 10.X.X.0 with 32 bytes of data:\r\nReply from 10.X.X.0: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.X.X.0:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
+            "last_stdout": "\r\nPinging 10.99.15.51 with 32 bytes of data:\r\nReply from 10.99.15.51: bytes=32 time<1ms TTL=63\r\n\r\nPing statistics for 10.99.15.51:\r\n    Packets: Sent = 1, Received = 1, Lost = 0 (0% loss),\r\nApproximate round trip times in milli-seconds:\r\n    Minimum = 0ms, Maximum = 0ms, Average = 0ms\r\n",
             "temp": 25.7
         },
         {
-            "ip": "10.X.X.0",
+            "ip": "10.99.15.18",
             "description": "Data Center (IP Cam)",
             "category": "Environment",
             "status": "UP",
@@ -3656,41 +3656,41 @@
     ],
     "last_updated": "2026-07-10 22:31:29",
     "logs": [
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] KK Lakhisarai\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] LL Nawada\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] LL Sheikhpura\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] MM Bhagalpur\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] MM Katihar\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] NN Bhabhua\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] NN Rohtas\/BSNL\/1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] OO Madhepura\/BSNL\/100 Mbps (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] OO Purnea\/BSNL\/100 Mbps (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PP Madhepura\/Railtel\/100 Mbps (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PP Saharsha\/Railtel\/100 Mbps (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] QQ Darbhanga\/PGCIL\/100 Mbps (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PATNA-BALLIA(Interstate)-PGCIL-100M (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PATNA-DEORIA(Interstate)-RAILTEL-1G (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] SHQ AP - NIC Bhawan - 2nd Floor - Extra (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the IG, Frontier HQ, SSB Patna (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 52nd Btn, SSB Araria (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 56th Btn, SSB Bathnaha (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG (Medical), Composite Hospital, Bathnaha (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 47th Btn, SSB Pantoka (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 71st Btn, SSB Piprakothi (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG (Special Operations), Sector HQ (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 29th Btn, SSB Gaya (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 16th Btn, SSB Jamui (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 12th Btn, SSB Kishanganj (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 19th Btn, SSB Thakurganj (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Muzaffarpur (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 32nd Btn, SSB Muzaffarpur (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Purnia (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 20th Btn, SSB Paktola (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 45th Btn, SSB Birpur (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Bettiah (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 21st Btn, SSB Bagaha (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 44th Btn, SSB Narkatiaganj (10.X.X.0) is offline.",
-        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 65th Btn, SSB Bettiah (10.X.X.0) is offline."
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] KK Lakhisarai\/BSNL\/1G (10.100.39.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] LL Nawada\/BSNL\/1G (10.100.199.25) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] LL Sheikhpura\/BSNL\/1G (10.100.199.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] MM Bhagalpur\/BSNL\/1G (10.100.127.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] MM Katihar\/BSNL\/1G (10.100.127.25) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] NN Bhabhua\/BSNL\/1G (10.100.47.25) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] NN Rohtas\/BSNL\/1G (10.100.47.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] OO Madhepura\/BSNL\/100 Mbps (10.100.159.5) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] OO Purnea\/BSNL\/100 Mbps (10.100.159.6) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PP Madhepura\/Railtel\/100 Mbps (10.100.231.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PP Saharsha\/Railtel\/100 Mbps (10.100.231.25) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] QQ Darbhanga\/PGCIL\/100 Mbps (10.100.14.29) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PATNA-BALLIA(Interstate)-PGCIL-100M (10.99.9.246) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] PATNA-DEORIA(Interstate)-RAILTEL-1G (10.99.9.254) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] SHQ AP - NIC Bhawan - 2nd Floor - Extra (10.99.32.101) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the IG, Frontier HQ, SSB Patna (10.99.6.2) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 52nd Btn, SSB Araria (10.99.6.34) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 56th Btn, SSB Bathnaha (10.99.6.38) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG (Medical), Composite Hospital, Bathnaha (10.99.6.126) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 47th Btn, SSB Pantoka (10.99.6.62) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 71st Btn, SSB Piprakothi (10.99.6.58) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG (Special Operations), Sector HQ (10.99.6.94) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 29th Btn, SSB Gaya (10.99.6.98) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 16th Btn, SSB Jamui (10.99.6.22) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 12th Btn, SSB Kishanganj (10.99.6.30) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 19th Btn, SSB Thakurganj (10.99.6.10) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Muzaffarpur (10.99.6.166) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 32nd Btn, SSB Muzaffarpur (10.99.6.170) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Purnia (10.99.6.178) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 20th Btn, SSB Paktola (10.99.6.182) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 45th Btn, SSB Birpur (10.99.6.26) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the DIG, Sector HQ, Bettiah (10.99.6.190) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 21st Btn, SSB Bagaha (10.99.6.194) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 44th Btn, SSB Narkatiaganj (10.99.6.198) is offline.",
+        "2026-07-10 22:31:22 - WARNING - [STILL DOWN] Office of the Commandant, 65th Btn, SSB Bettiah (10.99.6.206) is offline."
     ],
     "whatsapp_logs": [],
     "stats_history": [

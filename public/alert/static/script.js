@@ -696,8 +696,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (h.battery_status !== undefined && h.battery_status !== null) {
                     let label = "";
-                    if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
-                    else if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
+                    if (h.ip === "10.99.15.42") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
+                    else if (h.ip === "10.99.15.45") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
                     
                     let batText = label + (h.battery_status == 2 ? "<span style='color:var(--color-up);'>Normal</span>" : 
                                   h.battery_status == 3 ? "<span style='color:var(--color-warning);'>Low</span>" : 
@@ -710,7 +710,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let camTempStr = "";
             hosts.forEach(h => {
-                if (h.ip === "10.X.X.0" && h.temp !== undefined) {
+                if (h.ip === "10.99.15.18" && h.temp !== undefined) {
                     camTempStr = h.temp;
                 }
             });
@@ -1366,7 +1366,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Update WhatsApp Twilio Sign-up details dynamically
                     if (data.config) {
-                        const sender = data.config.twilio_sender || "+1 (415) XXX-XXXX";
+                        const sender = data.config.twilio_sender || "+14155238886";
                         const joinMsg = data.config.twilio_join_msg || "join at-cath";
                         
                         const qrImg = document.getElementById("enrollment-qr-img");
