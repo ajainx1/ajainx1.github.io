@@ -1,0 +1,1824 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="description" content="Bihar 38-District Panasonic KX-VC1300 HDVC Video Conference QoS Monitor â Real-Time NOC Command Center. Live latency, jitter, packet loss and SLA telemetry for all Bihar SWAN district VC studios.">
+    <title>Bihar 38-District VC Monitor | NOC Command Center</title>
+    <link rel="icon" type="image/png" href="../NIC_Preview-1.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg:       #020810;
+            --panel:    rgba(8, 18, 38, 0.82);
+            --border:   rgba(56, 189, 248, 0.18);
+            --cyan:     #38bdf8;
+            --blue:     #0ea5e9;
+            --emerald:  #10b981;
+            --amber:    #fbbf24;
+            --rose:     #f43f5e;
+            --violet:   #a78bfa;
+            --text:     #f0f6ff;
+            --muted:    #64748b;
+            --card-bg:  rgba(10, 22, 46, 0.75);
+        }
+        body.lm {
+            --bg:      #eef3fb;
+            --panel:   rgba(255,255,255,0.9);
+            --border:  rgba(14,76,129,0.18);
+            --cyan:    #0f4c81;
+            --text:    #0b1220;
+            --muted:   #475569;
+            --card-bg: rgba(255,255,255,0.85);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        /* ââ TOAST NOTIFICATIONS âââââââââââââââââââââââ */
+        #toast-rack {
+            position: fixed;
+            top: 20px; right: 20px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: none;
+        }
+        .toast {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255,255,255,0.12);
+            min-width: 300px;
+            max-width: 380px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            animation: toastIn 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
+            pointer-events: auto;
+            font-size: 0.82rem;
+        }
+        .toast.hide { animation: toastOut 0.3s ease forwards; }
+        .toast.t-critical { background: rgba(244,63,94,0.15); border-color: rgba(244,63,94,0.5); }
+        .toast.t-warning  { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.45); }
+        .toast.t-info     { background: rgba(56,189,248,0.1);  border-color: rgba(56,189,248,0.35); }
+        .toast-icon { font-size: 1.3rem; margin-top: 1px; }
+        .toast.t-critical .toast-icon { color: var(--rose); }
+        .toast.t-warning  .toast-icon { color: var(--amber); }
+        .toast.t-info     .toast-icon { color: var(--cyan); }
+        .toast-body strong { display: block; font-weight: 800; margin-bottom: 3px; }
+        .toast-body small  { color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+        @keyframes toastIn  { from { opacity:0; transform:translateX(40px) scale(0.95); } to { opacity:1; transform:translateX(0) scale(1); } }
+        @keyframes toastOut { to   { opacity:0; transform:translateX(40px) scale(0.9); } }
+
+        /* ââ SCANLINE RADAR SWEEP ââââââââââââââââââââââ */
+        @keyframes scan-sweep {
+            0%   { background-position: -100% 0; }
+            100% { background-position: 250% 0; }
+        }
+        .card-scanning::after {
+            content:'';
+            position:absolute; inset:0; pointer-events:none; z-index:2;
+            background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.12) 50%, transparent 100%);
+            background-size: 60% 100%;
+            animation: scan-sweep 0.6s ease-in-out;
+            border-radius: inherit;
+        }
+
+        /* ââ PULSING STATUS RINGS âââââââââââââââââââââ */
+        @keyframes ring-critical {
+            0%,100% { box-shadow: 0 0 0 0 rgba(244,63,94,0.5), 0 8px 25px rgba(0,0,0,0.4); }
+            50%      { box-shadow: 0 0 0 6px rgba(244,63,94,0), 0 8px 25px rgba(244,63,94,0.25); }
+        }
+        @keyframes ring-vip {
+            0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,0.5), 0 8px 25px rgba(0,0,0,0.4); }
+            50%      { box-shadow: 0 0 0 8px rgba(251,191,36,0), 0 8px 25px rgba(251,191,36,0.2); }
+        }
+        @keyframes dot-pulse-red {
+            0%,100% { box-shadow: 0 0 0 0 rgba(244,63,94,0.7); }
+            50%      { box-shadow: 0 0 0 6px rgba(244,63,94,0); }
+        }
+
+        /* ââ HEADER âââââââââââââââââââââââââââââââââââ */
+        .header-bar {
+            max-width: 1500px; margin: 0 auto 20px auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+            padding: 14px 22px;
+            background: var(--panel);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+        }
+        .brand-box { display: flex; align-items: center; gap: 14px; }
+        .brand-icon {
+            width: 46px; height: 46px; border-radius: 12px;
+            background: linear-gradient(135deg, rgba(14,165,233,0.25), rgba(56,189,248,0.1));
+            border: 1px solid rgba(56,189,248,0.5);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--cyan);
+            box-shadow: 0 0 20px rgba(14,165,233,0.3);
+        }
+        .brand-text h1 {
+            font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 900;
+            color: var(--text); letter-spacing: 0.3px;
+        }
+        .brand-text p { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.5px; margin-top: 2px; }
+
+        .nav-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+        .clock-widget {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem; font-weight: 700;
+            color: var(--text);
+            border-right: 1px solid var(--border);
+            padding-right: 14px; margin-right: 4px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .clock-date { font-size: 0.65rem; color: var(--muted); font-weight: 400; }
+
+        .btn-nav {
+            display: inline-flex; align-items: center; gap: 7px;
+            padding: 7px 14px; border-radius: 8px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+            color: var(--muted); font-size: 0.78rem; font-weight: 700;
+            text-decoration: none; transition: all 0.2s; cursor: pointer;
+        }
+        .btn-nav:hover { background: rgba(56,189,248,0.1); border-color: var(--cyan); color: var(--cyan); }
+        .btn-nav.icon-only { width: 36px; height: 36px; padding: 0; justify-content: center; }
+
+        /* ââ GLOBAL SUMMARY HUD âââââââââââââââââââââââ */
+        .hud-strip {
+            max-width: 1500px; margin: 0 auto 20px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .hud-card {
+            background: var(--panel); backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: 14px;
+            padding: 16px 18px;
+            display: flex; align-items: center; justify-content: space-between;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: default;
+        }
+        .hud-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
+        .hud-label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 5px; }
+        .hud-val {
+            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900;
+            line-height: 1; color: var(--text);
+            transition: color 0.4s;
+        }
+        .hud-icon {
+            width: 44px; height: 44px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+
+        /* ââ TOOLBAR ââââââââââââââââââââââââââââââââââ */
+        .toolbar {
+            max-width: 1500px; margin: 0 auto 16px auto;
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+            padding: 12px 16px;
+            background: rgba(8,18,38,0.6); border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px; backdrop-filter: blur(16px);
+        }
+        .toolbar-left { display: flex; align-items: center; gap: 10px; }
+        .toolbar-right { display: flex; align-items: center; gap: 10px; }
+
+        .search-box {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px; padding: 8px 14px; width: 290px; max-width: 100%;
+            transition: border-color 0.2s;
+        }
+        .search-box:focus-within { border-color: var(--cyan); }
+        .search-box input { background:transparent; border:none; outline:none; color:var(--text); font-size:0.83rem; width:100%; }
+
+        .filter-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 12px; border-radius: 7px; font-size: 0.75rem; font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+            color: var(--muted); cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: rgba(56,189,248,0.12); border-color: var(--cyan); color: var(--cyan); }
+        .filter-btn.active.f-warn  { background: rgba(251,191,36,0.1); border-color: var(--amber); color: var(--amber); }
+        .filter-btn.active.f-crit  { background: rgba(244,63,94,0.1); border-color: var(--rose); color: var(--rose); }
+
+        .btn-action {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 9px 18px; border-radius: 9px; font-size: 0.85rem; font-weight: 800;
+            cursor: pointer; transition: all 0.2s; border: 1px solid;
+            font-family: 'Outfit', sans-serif;
+        }
+        .btn-audit {
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            border-color: rgba(56,189,248,0.8); color: #fff;
+            box-shadow: 0 4px 18px rgba(14,165,233,0.4);
+        }
+        .btn-audit:hover { box-shadow: 0 6px 24px rgba(14,165,233,0.7); transform: translateY(-1px); }
+        .btn-audit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+        .btn-monitor {
+            background: rgba(167,139,250,0.12);
+            border-color: rgba(167,139,250,0.4); color: var(--violet);
+        }
+        .btn-monitor:hover { background: rgba(167,139,250,0.22); }
+        .btn-monitor.active {
+            background: rgba(16,185,129,0.12);
+            border-color: rgba(16,185,129,0.5); color: var(--emerald);
+        }
+
+        /* ââ SHORTCUT HINTS âââââââââââââââââââââââââââ */
+        .kbd {
+            display: inline-flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 4px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; color: var(--muted); line-height: 1.4;
+        }
+
+        /* ââ EVENT LOG ââââââââââââââââââââââââââââââââ */
+        .log-panel {
+            max-width: 1500px; margin: 0 auto 18px auto;
+            background: var(--card-bg); border: 1px solid var(--border);
+            border-radius: 12px; overflow: hidden;
+            display: none;
+        }
+        .log-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 16px;
+            background: rgba(0,0,0,0.35);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer; user-select: none;
+        }
+        .log-header .log-title { font-size: 0.73rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+        .log-counters { display: flex; gap: 8px; }
+        .log-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.68rem; font-weight: 700;
+            padding: 2px 8px; border-radius: 4px;
+        }
+        .lb-crit  { background: rgba(244,63,94,0.15); color: var(--rose); border: 1px solid rgba(244,63,94,0.4); }
+        .lb-warn  { background: rgba(251,191,36,0.15); color: var(--amber); border: 1px solid rgba(251,191,36,0.4); }
+        .lb-info  { background: rgba(56,189,248,0.1); color: var(--cyan); border: 1px solid rgba(56,189,248,0.3); }
+        .log-body { max-height: 220px; overflow-y: auto; padding: 8px 16px; }
+        .log-body::-webkit-scrollbar { width: 5px; }
+        .log-body::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 4px; }
+        .log-entry {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.73rem; padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            display: flex; gap: 12px; align-items: baseline;
+        }
+        .log-entry .ts { color: var(--muted); white-space: nowrap; }
+        .log-entry.lc { color: var(--rose); }
+        .log-entry.lw { color: var(--amber); }
+        .log-entry.li { color: var(--cyan); }
+        .log-entry .ok { color: var(--emerald); }
+
+        /* ââ PROGRESS BAR âââââââââââââââââââââââââââââ */
+        .audit-progress-bar {
+            max-width: 1500px; margin: 0 auto 16px auto;
+            height: 3px; background: rgba(255,255,255,0.06);
+            border-radius: 999px; overflow: hidden;
+            display: none;
+        }
+        .audit-progress-fill {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, var(--cyan), var(--violet));
+            border-radius: 999px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(56,189,248,0.6);
+        }
+
+        /* ââ SECTION TITLES âââââââââââââââââââââââââââ */
+        .section-title {
+            font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 800;
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 12px; letter-spacing: 0.3px;
+        }
+        .section-title.gold { color: var(--amber); }
+        .section-title.blue { color: var(--cyan); }
+
+        /* ââ GRIDS ââââââââââââââââââââââââââââââââââââ */
+        .vip-section    { max-width: 1500px; margin: 0 auto 20px auto; }
+        .district-section { max-width: 1500px; margin: 0 auto 40px auto; }
+
+        .vip-grid      { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px,1fr)); gap: 14px; }
+        .district-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 14px; }
+
+        /* ââ STUDIO CARD âââââââââââââââââââââââââââââââ */
+        .studio-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(18px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 16px;
+            position: relative; overflow: hidden;
+            transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, border-color 0.25s;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        .studio-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(56,189,248,0.55);
+            box-shadow: 0 14px 38px rgba(0,0,0,0.5), 0 0 24px rgba(56,189,248,0.12);
+        }
+        .studio-card.vip {
+            border-color: rgba(251,191,36,0.45);
+            background: linear-gradient(135deg, rgba(245,158,11,0.07) 0%, var(--card-bg) 100%);
+            animation: ring-vip 3s ease-in-out infinite;
+        }
+        .studio-card.s-critical { animation: ring-critical 1.5s ease-in-out infinite; border-color: rgba(244,63,94,0.6) !important; }
+
+        /* Card inner layout */
+        .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
+        .card-name {
+            font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 900;
+            color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+        }
+        .dot {
+            width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+            background: var(--emerald); box-shadow: 0 0 8px var(--emerald);
+            transition: background 0.4s, box-shadow 0.4s;
+        }
+        .dot.offline { background: var(--rose); box-shadow: 0 0 8px var(--rose); animation: dot-pulse-red 1.2s infinite; }
+        .dot.warn    { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+        .dot.standby { background: var(--muted); box-shadow: none; }
+
+        .card-meta { font-size: 0.68rem; color: var(--muted); margin-top: 3px; }
+        .card-tech {
+            font-size: 0.63rem; color: var(--cyan); margin-top: 5px;
+            display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+        }
+        .card-tech span { display: flex; align-items: center; gap: 4px; }
+
+        /* Status badge */
+        .badge {
+            font-size: 0.63rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px;
+            padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+        }
+        .b-standby  { background: rgba(100,116,139,0.2); color: #94a3b8; border: 1px solid rgba(100,116,139,0.4); }
+        .b-optimal  { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.5); }
+        .b-warning  { background: rgba(251,191,36,0.15); color: var(--amber); border: 1px solid rgba(251,191,36,0.5); }
+        .b-critical { background: rgba(244,63,94,0.15);  color: var(--rose); border: 1px solid rgba(244,63,94,0.5); }
+        .b-testing  { background: rgba(56,189,248,0.1);  color: var(--cyan); border: 1px solid rgba(56,189,248,0.3); }
+
+        /* IP spec row */
+        .ip-row {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 8px; font-size: 0.72rem;
+            background: rgba(0,0,0,0.35); padding: 8px 12px;
+            border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 11px;
+        }
+        .ip-lbl { font-size: 0.6rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
+        .ip-val { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--cyan); margin-top: 1px; }
+
+        /* QoS metrics row */
+        .qos-row {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.7rem; color: var(--muted);
+            padding-bottom: 10px; margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(255,255,255,0.07);
+        }
+        .qos-item { display: flex; align-items: center; gap: 5px; }
+        .qos-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text); font-size: 0.78rem; }
+
+        /* Sparkline canvas */
+        .sparkline-wrap {
+            margin-bottom: 10px;
+            background: rgba(0,0,0,0.25); border-radius: 6px;
+            padding: 4px 6px 2px;
+            position: relative;
+        }
+        .sparkline-label {
+            font-size: 0.58rem; font-weight: 700; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px;
+        }
+        canvas.sparkline { width: 100%; height: 36px; display: block; }
+
+        /* Packet loss bar */
+        .loss-bar-wrap { margin-bottom: 11px; }
+        .loss-bar-label { display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+        .loss-bar-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+        .loss-bar-fill { height: 100%; width: 0%; border-radius: 4px; transition: width 0.6s ease, background 0.4s; background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
+
+        /* Uptime badge */
+        .uptime-row {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem; color: var(--muted); margin-bottom: 10px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .uptime-val { color: var(--emerald); font-weight: 700; }
+
+        /* Card actions */
+        .card-actions { display: flex; gap: 7px; }
+        .btn-card {
+            flex: 1; padding: 6px 10px; border-radius: 7px;
+            font-size: 0.7rem; font-weight: 700;
+            cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+            transition: all 0.18s; border: 1px solid;
+        }
+        .btn-ping {
+            background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); color: var(--muted);
+        }
+        .btn-ping:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+        .btn-web {
+            background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.3); color: var(--cyan);
+        }
+        .btn-web:hover { background: rgba(56,189,248,0.2); }
+
+        /* ââ OFFLINE OVERLAY ââââââââââââââââââââââââââ */
+        .offline-overlay {
+            display: none; position: absolute; inset: 0;
+            background: rgba(244,63,94,0.06);
+            border-radius: 16px; z-index: 1;
+            border: 2px solid rgba(244,63,94,0.35);
+            pointer-events: none;
+        }
+        .studio-card.s-critical .offline-overlay { display: block; }
+
+        /* ââ SOUND TOGGLE âââââââââââââââââââââââââââââ */
+        .sound-on  { color: var(--emerald) !important; }
+        .sound-off { color: var(--muted) !important; }
+
+        /* ââ FLOATING AI CHATBOT WIDGET STYLES ââââââââââââââ */
+        .ai-chatbot-widget {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .chatbot-attention-tooltip {
+            position: absolute;
+            bottom: 72px;
+            right: 5px;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: #ffffff;
+            padding: 9px 15px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
+            animation: tooltip-bounce 2.2s infinite ease-in-out;
+            pointer-events: none !important;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+            z-index: 9998;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .chatbot-attention-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            right: 22px;
+            border-width: 7px 7px 0;
+            border-style: solid;
+            border-color: #0284c7 transparent;
+            display: block;
+            width: 0;
+        }
+
+        @keyframes tooltip-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .chatbot-toggle-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9, #0369a1);
+            border: 1px solid rgba(56, 189, 248, 0.6);
+            color: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 10000;
+        }
+
+        .chatbot-toggle-btn.pulse {
+            animation: button-pulse-cyan 2s infinite;
+        }
+
+        @keyframes button-pulse-cyan {
+            0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.6); }
+            70% { box-shadow: 0 0 0 14px rgba(14, 165, 233, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); }
+        }
+
+        .chatbot-toggle-btn:hover {
+            transform: scale(1.08) rotate(6deg);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.6);
+        }
+
+        .chatbot-panel {
+            position: absolute;
+            bottom: 72px;
+            right: 0;
+            width: 380px;
+            height: 540px;
+            background: var(--panel);
+            backdrop-filter: blur(24px);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            opacity: 0;
+            transform: scale(0.92) translateY(18px);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .chatbot-panel.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .chatbot-header {
+            padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.25), rgba(8, 18, 38, 0.9));
+            border-bottom: 1px solid var(--border);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .chatbot-header-title {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .chatbot-header-title i {
+            font-size: 1.2rem;
+            color: var(--cyan);
+        }
+
+        .chatbot-header-title h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .chatbot-header-close {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+        }
+
+        .chatbot-header-close:hover {
+            color: #ffffff;
+            transform: scale(1.1);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: rgba(3, 8, 16, 0.4);
+        }
+
+        .chat-msg {
+            max-width: 86%;
+            padding: 9px 13px;
+            border-radius: 14px;
+            font-size: 0.83rem;
+            line-height: 1.45;
+            word-wrap: break-word;
+        }
+
+        .chat-msg.bot {
+            align-self: flex-start;
+            background: rgba(15, 23, 42, 0.85);
+            color: var(--text);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-bottom-left-radius: 4px;
+        }
+
+        .chat-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, #0ea5e9, #0284c7);
+            color: #ffffff;
+            border-bottom-right-radius: 4px;
+        }
+
+        .chatbot-chips {
+            display: flex;
+            gap: 6px;
+            padding: 8px 14px;
+            background: transparent;
+            flex-wrap: wrap;
+        }
+
+        .chatbot-chip-btn {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: var(--cyan);
+            border-radius: 16px;
+            padding: 5px 11px;
+            font-size: 0.72rem;
+            font-family: inherit;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .chatbot-chip-btn:hover {
+            background: rgba(56, 189, 248, 0.2);
+            border-color: var(--cyan);
+            color: #ffffff;
+        }
+
+        .chatbot-input-area {
+            padding: 12px 14px;
+            background: rgba(8, 18, 38, 0.8);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 8px 12px;
+            color: #ffffff;
+            font-size: 0.82rem;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .chatbot-input:focus {
+            border-color: var(--cyan);
+        }
+
+        .chatbot-send-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--blue);
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .chatbot-send-btn:hover {
+            background: var(--cyan);
+            transform: scale(1.05);
+        }
+
+        .chatbot-footer {
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 9px;
+            color: var(--muted);
+            font-weight: 500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .district-grid { grid-template-columns: 1fr; }
+            .search-box { width: 100%; }
+            .chatbot-panel { width: 310px; right: -10px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ââ TOAST RACK ââââââââââââââââââââââââââââââââââââ -->
+<div id="toast-rack"></div>
+
+<!-- ââ AUDIT PROGRESS BAR âââââââââââââââââââââââââââ -->
+<div class="audit-progress-bar" id="auditProgressBar">
+    <div class="audit-progress-fill" id="auditProgressFill"></div>
+</div>
+
+<!-- ââ HEADER âââââââââââââââââââââââââââââââââââââââ -->
+<header class="header-bar">
+    <div class="brand-box" style="display: flex; align-items: center; gap: 14px;">
+        <a href="http://10.133.22.8/" title="National Informatics Centre, Bihar State Centre" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="../NIC_Preview-1.png" alt="NIC Bihar Logo" style="height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); transition: transform 0.25s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+        </a>
+        <div class="brand-icon"><i class="fas fa-satellite-dish"></i></div>
+        <div class="brand-text">
+            <h1>Bihar VC NOC Command Center</h1>
+            <p>38-District Panasonic KX-VC1300 Â· HDVC Â· ITU-T G.114 QoS Engine Â· Real-Time SWAN Telemetry</p>
+        </div>
+    </div>
+    <div class="nav-actions">
+        <div class="clock-widget">
+            <i class="far fa-clock"></i>
+            <div>
+                <div id="clockTime">00:00:00</div>
+                <div class="clock-date" id="clockDate">â</div>
+            </div>
+        </div>
+        <button class="btn-nav icon-only" id="soundToggleBtn" title="Toggle Alert Sounds (S)"><i class="fas fa-volume-up sound-on" id="soundIcon"></i></button>
+        <button class="btn-nav icon-only" id="themeToggleBtn" title="Toggle Light/Dark (T)"><i class="fas fa-sun" id="themeIcon"></i></button>
+        <a href="http://10.133.22.8/" class="btn-nav"><i class="fas fa-home"></i> Main Portal</a>
+        <a href="http://10.133.22.8/alert/" class="btn-nav"><i class="fas fa-bell"></i> Alerts</a>
+        <a href="http://10.133.22.8/speed/" class="btn-nav"><i class="fas fa-tachometer-alt"></i> Speed</a>
+    </div>
+</header>
+
+<!-- ââ GLOBAL HUD STRIP ââââââââââââââââââââââââââââââ -->
+<section class="hud-strip" id="hudStrip">
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">Total Endpoints</div>
+            <div class="hud-val" id="h-total">41</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(14,165,233,0.12);color:#38bdf8"><i class="fas fa-satellite-dish"></i></div>
+    </div>
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">Online</div>
+            <div class="hud-val" id="h-online" style="color:#10b981">â</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(16,185,129,0.12);color:#10b981"><i class="fas fa-check-circle"></i></div>
+    </div>
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">Offline / Unreachable</div>
+            <div class="hud-val" id="h-offline" style="color:#94a3b8">â</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(244,63,94,0.1);color:#f43f5e"><i class="fas fa-times-circle"></i></div>
+    </div>
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">Avg SWAN Latency</div>
+            <div class="hud-val" id="h-latency" style="color:#38bdf8">â ms</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(245,158,11,0.12);color:#fbbf24"><i class="fas fa-stopwatch"></i></div>
+    </div>
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">Avg Jitter</div>
+            <div class="hud-val" id="h-jitter" style="color:#a78bfa">â ms</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(167,139,250,0.12);color:#a78bfa"><i class="fas fa-bolt"></i></div>
+    </div>
+    <div class="hud-card">
+        <div>
+            <div class="hud-label">SLA Integrity</div>
+            <div class="hud-val" id="h-sla" style="color:#10b981">â</div>
+        </div>
+        <div class="hud-icon" style="background:rgba(16,185,129,0.12);color:#10b981"><i class="fas fa-shield-alt"></i></div>
+    </div>
+</section>
+
+<!-- ââ KEYBOARD SHORTCUTS BAR âââââââââââââââââââââââ -->
+<div style="max-width:1500px; margin:0 auto 16px auto; background:rgba(15,23,42,0.75); border:1px solid rgba(56,189,248,0.25); border-radius:12px; padding:10px 18px; backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
+    <div style="display:flex; align-items:center; gap:8px; font-size:0.78rem; font-weight:800; color:var(--cyan); text-transform:uppercase; letter-spacing:0.8px;">
+        <i class="fas fa-keyboard"></i> Quick NOC Keyboard Shortcuts:
+    </div>
+    <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:0.75rem; color:var(--text);">
+        <span><span class="kbd">Space</span> Run Audit</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">M</span> Toggle Monitor</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">S</span> Sound Alerts</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">T</span> Theme</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">L</span> Alert Log</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">1</span>-<span class="kbd">4</span> Filters (All / Online / Warn / Crit)</span>
+    </div>
+</div>
+
+
+
+<!-- ââ TOOLBAR âââââââââââââââââââââââââââââââââââââââ -->
+<div class="toolbar">
+    <div class="toolbar-left">
+        <div class="search-box">
+            <i class="fas fa-search" style="color:var(--cyan)"></i>
+            <input type="text" id="searchInput" oninput="filterStudios()" placeholder="Search district, IP, SIO...">
+        </div>
+        <button class="filter-btn" id="fAll" onclick="setFilter('all')" title="Show All">All</button>
+        <button class="filter-btn" id="fOnline" onclick="setFilter('online')"><i class="fas fa-check-circle"></i> Online</button>
+        <button class="filter-btn f-warn" id="fWarn" onclick="setFilter('warn')"><i class="fas fa-exclamation-triangle"></i> Warning</button>
+        <button class="filter-btn f-crit" id="fCrit" onclick="setFilter('critical')"><i class="fas fa-skull-crossbones"></i> Critical</button>
+    </div>
+    <div class="toolbar-right">
+        <span id="auditStatus" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted)"></span>
+        <button class="btn-action btn-monitor" id="btnMonitor" onclick="toggleAutoMonitor()" title="Auto-Monitor every 20s (M)">
+            <i class="fas fa-satellite-dish"></i> AUTO-MONITOR <span class="kbd">M</span>
+        </button>
+        <button class="btn-action btn-audit" id="btnAudit" onclick="runFullAudit()" title="Run full audit (Space)">
+            <i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd">Space</span>
+        </button>
+    </div>
+</div>
+
+<!-- ââ EVENT LOG ââââââââââââââââââââââââââââââââââââ -->
+<div class="log-panel" id="logPanel">
+    <div class="log-header" onclick="toggleLog()">
+        <div class="log-title">
+            <i class="fas fa-terminal"></i> NOC ALERT LOG
+            <span class="log-badge lb-crit" id="lcCrit">0 CRIT</span>
+            <span class="log-badge lb-warn" id="lcWarn">0 WARN</span>
+            <span class="log-badge lb-info" id="lcInfo">0 INFO</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+            <button onclick="event.stopPropagation();clearLog()" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.3);color:var(--rose);border-radius:5px;padding:3px 9px;font-size:0.68rem;font-weight:700;cursor:pointer">Clear</button>
+            <i class="fas fa-chevron-down" id="logChevron" style="color:var(--muted);transition:transform 0.2s"></i>
+        </div>
+    </div>
+    <div class="log-body" id="logBody"></div>
+</div>
+
+<!-- ââ TECHNICAL DATA & TROUBLESHOOTING PLAYBOOK ââââââââ -->
+<section style="max-width:1500px; margin:0 auto 24px auto; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px 22px; backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+    <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;" onclick="const el=document.getElementById('techDocBody'); el.style.display = el.style.display==='none'?'block':'none';">
+        <div style="font-family:'Outfit',sans-serif; font-size:1.05rem; font-weight:800; color:var(--cyan); display:flex; align-items:center; gap:10px;">
+            <i class="fas fa-microchip" style="color:var(--amber)"></i>
+            TECHNICAL SPECIFICATIONS & NOC TROUBLESHOOTING PLAYBOOK
+            <span style="font-size:0.68rem; font-family:'JetBrains Mono',monospace; background:rgba(56,189,248,0.12); color:var(--cyan); border:1px solid rgba(56,189,248,0.3); padding:2px 8px; border-radius:5px;">Panasonic KX-VC1300 Enterprise</span>
+        </div>
+        <div style="font-size:0.8rem; color:var(--muted); font-weight:700; display:flex; align-items:center; gap:6px;">
+            <i class="fas fa-book-open"></i> Technical Guide & Runbook <i class="fas fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <div id="techDocBody" style="margin-top:16px; pt-16px; border-top:1px solid rgba(255,255,255,0.08); display:none;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:18px;">
+            
+            <!-- Specs & Network Architecture -->
+            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
+                <div style="font-size:0.82rem; font-weight:800; color:var(--amber); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-network-wired"></i> Network Port & Protocol Architecture
+                </div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:0.73rem; color:var(--text); line-height:1.7;">
+                    <div>â¢ <strong>SIP Control Signalling:</strong> UDP/TCP Port 5060</div>
+                    <div>â¢ <strong>H.323 Call Control:</strong> TCP Port 1720 / H.245 Dynamic</div>
+                    <div>â¢ <strong>RTP Media Streams:</strong> UDP Ports 16000 - 20000</div>
+                    <div>â¢ <strong>Web Management Interface:</strong> HTTP Port 80 / HTTPS 443</div>
+                    <div>â¢ <strong>QoS Tagging:</strong> DSCP EF (Expedited Forwarding - 46)</div>
+                    <div>â¢ <strong>Max Intranet MTU:</strong> 1420 bytes (prevent IPSec fragmentation)</div>
+                </div>
+            </div>
+
+            <!-- ITU-T G.114 SLA Standards -->
+            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
+                <div style="font-size:0.82rem; font-weight:800; color:var(--emerald); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-tachometer-alt"></i> ITU-T G.114 QoS Broadcast Benchmarks
+                </div>
+                <table style="width:100%; font-size:0.72rem; font-family:'JetBrains Mono',monospace; border-collapse:collapse; color:var(--text);">
+                    <thead>
+                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--muted); text-align:left;">
+                            <th style="padding:4px;">Metric</th>
+                            <th style="padding:4px; color:var(--emerald);">Optimal</th>
+                            <th style="padding:4px; color:var(--amber);">Warning</th>
+                            <th style="padding:4px; color:var(--rose);">Critical</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px dashed rgba(255,255,255,0.05);">
+                            <td style="padding:4px; font-weight:700;">Latency</td>
+                            <td style="padding:4px; color:var(--emerald);">&lt; 35ms</td>
+                            <td style="padding:4px; color:var(--amber);">35 - 60ms</td>
+                            <td style="padding:4px; color:var(--rose);">&gt; 60ms</td>
+                        </tr>
+                        <tr style="border-bottom:1px dashed rgba(255,255,255,0.05);">
+                            <td style="padding:4px; font-weight:700;">Jitter</td>
+                            <td style="padding:4px; color:var(--emerald);">&lt; 5ms</td>
+                            <td style="padding:4px; color:var(--amber);">5 - 15ms</td>
+                            <td style="padding:4px; color:var(--rose);">&gt; 15ms</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:4px; font-weight:700;">Packet Loss</td>
+                            <td style="padding:4px; color:var(--emerald);">0.0%</td>
+                            <td style="padding:4px; color:var(--amber);">&lt; 0.5%</td>
+                            <td style="padding:4px; color:var(--rose);">&gt; 0.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Troubleshooting Matrix Playbook -->
+            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px; grid-column: 1 / -1;">
+                <div style="font-size:0.82rem; font-weight:800; color:var(--cyan); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+                    <i class="fas fa-tools"></i> NOC Engineer Troubleshooting Matrix & Incident Playbook
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; font-size:0.73rem; color:var(--text);">
+                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--rose);">
+                        <strong style="color:var(--rose); display:block; margin-bottom:4px;">1. Codec Status OFFLINE / Unreachable</strong>
+                        <div style="color:var(--muted);">Check physical power & RJ-45 LED on Panasonic KX-VC1300. Ping SWAN Gateway IP <code>10.140.X.254</code>. Verify switch port VLAN 100 access and 1000Mbps Full Duplex link status.</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--amber);">
+                        <strong style="color:var(--amber); display:block; margin-bottom:4px;">2. High Jitter (&gt;15ms) or Video Stutter</strong>
+                        <div style="color:var(--muted);">Inspect SWAN Router interface Queue drops. Verify Expedited Forwarding (EF/46) QoS profile on SWAN edge node. Ensure MTU is clamped at 1420 to prevent packet slicing over VPN tunnels.</div>
+                    </div>
+                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--cyan);">
+                        <strong style="color:var(--cyan); display:block; margin-bottom:4px;">3. One-Way Audio or Black Screen Video</strong>
+                        <div style="color:var(--muted);">Check firewall UDP ACLs for RTP port range <code>16000-20000</code>. Verify NAT Traversal / STUN / TURN configuration on State Hub Core Switch. Re-register SIP session via Codec Web UI.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ââ VIP SECTION ââââââââââââââââââââââââââââââââââ -->
+<section class="vip-section">
+    <div class="section-title gold"><i class="fas fa-crown"></i> State HQ VIP Master VC Studios</div>
+    <div class="vip-grid" id="vipGrid"></div>
+</section>
+
+<!-- ââ DISTRICT SECTION âââââââââââââââââââââââââââââ -->
+<section class="district-section">
+    <div class="section-title blue"><i class="fas fa-building"></i> Bihar 38-District VC Studios &nbsp;<span id="districtCount" style="font-size:0.75rem;color:var(--muted);font-weight:600"></span></div>
+    <div class="district-grid" id="distGrid"></div>
+</section>
+
+<!-- ââ VANTA BG âââââââââââââââââââââââââââââââââââââ -->
+<div id="vanta-bg" style="position:fixed;inset:0;z-index:-1"></div>
+
+<!-- âââââââââââ JAVASCRIPT ENGINE ââââââââââââââââââââ -->
+<script>
+/* âââ STATE ââââââââââââââââââââââââââââââââââââââââ */
+let allStudios = [];
+let latencyHistory = {}; // code â last 20 values
+let jitterHistory  = {}; // code â last 20 values
+let uptimeData     = {}; // code â { checks, online, lastOnline, firstSeen }
+let logCounts = { crit:0, warn:0, info:0 };
+let currentFilter = 'all';
+let soundEnabled = true;
+let isMonitoring = false;
+let monitorInterval = null;
+let isAuditing = false;
+let logExpanded = true;
+
+/* âââ AUDIO ENGINE âââââââââââââââââââââââââââââââââ */
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx = null;
+function getAudioCtx() { if (!audioCtx) audioCtx = new AudioCtx(); return audioCtx; }
+function beepAlert(type) {
+    if (!soundEnabled) return;
+    try {
+        const ctx = getAudioCtx();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain); gain.connect(ctx.destination);
+        if (type === 'critical') {
+            osc.frequency.value = 880;
+            gain.gain.setValueAtTime(0.18, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+            osc.start(); osc.stop(ctx.currentTime + 0.4);
+        } else if (type === 'warning') {
+            osc.frequency.value = 520;
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+            osc.start(); osc.stop(ctx.currentTime + 0.25);
+        }
+    } catch(e){}
+}
+
+/* âââ TOAST âââââââââââââââââââââââââââââââââââââââ */
+function showToast(title, body, type = 'info') {
+    const rack = document.getElementById('toast-rack');
+    const icons = { critical:'<i class="fas fa-exclamation-circle"></i>', warning:'<i class="fas fa-exclamation-triangle"></i>', info:'<i class="fas fa-info-circle"></i>' };
+    const el = document.createElement('div');
+    el.className = `toast t-${type}`;
+    el.innerHTML = `<div class="toast-icon">${icons[type]||icons.info}</div><div class="toast-body"><strong>${title}</strong><small>${body}</small></div>`;
+    rack.appendChild(el);
+    if (type === 'critical') beepAlert('critical');
+    if (type === 'warning')  beepAlert('warning');
+    setTimeout(() => { el.classList.add('hide'); setTimeout(() => el.remove(), 320); }, type==='critical'?6000:4000);
+}
+
+/* âââ EVENT LOG ââââââââââââââââââââââââââââââââââââ */
+function log(msg, type='info', district='') {
+    const body = document.getElementById('logBody');
+    const panel = document.getElementById('logPanel');
+    panel.style.display = 'block';
+    logCounts[type==='critical'?'crit':type==='warning'?'warn':'info']++;
+    document.getElementById('lcCrit').textContent = logCounts.crit + ' CRIT';
+    document.getElementById('lcWarn').textContent = logCounts.warn + ' WARN';
+    document.getElementById('lcInfo').textContent = logCounts.info + ' INFO';
+    const ts = new Date().toLocaleTimeString('en-IN', { hour12:false });
+    const el = document.createElement('div');
+    el.className = `log-entry l${type==='critical'?'c':type==='warning'?'w':'i'}`;
+    el.innerHTML = `<span class="ts">${ts}</span><span>${msg}</span>`;
+    body.prepend(el);
+    if (body.children.length > 80) body.removeChild(body.lastChild);
+}
+function clearLog() {
+    document.getElementById('logBody').innerHTML = '';
+    logCounts = {crit:0,warn:0,info:0};
+    document.getElementById('lcCrit').textContent = '0 CRIT';
+    document.getElementById('lcWarn').textContent = '0 WARN';
+    document.getElementById('lcInfo').textContent = '0 INFO';
+}
+function toggleLog() {
+    const body = document.getElementById('logBody');
+    const chev = document.getElementById('logChevron');
+    logExpanded = !logExpanded;
+    body.style.display = logExpanded ? 'block' : 'none';
+    chev.style.transform = logExpanded ? 'rotate(0deg)' : 'rotate(-90deg)';
+}
+
+/* âââ SPARKLINE DRAWING ââââââââââââââââââââââââââââ */
+function drawSparkline(canvas, data, color, max) {
+    if (!canvas || !data || data.length < 2) return;
+    const ctx = canvas.getContext('2d');
+    const dpr = window.devicePixelRatio || 1;
+    const W = canvas.offsetWidth * dpr;
+    const H = canvas.offsetHeight * dpr;
+    canvas.width = W; canvas.height = H;
+    ctx.clearRect(0, 0, W, H);
+    const padding = 3 * dpr;
+    const pts = data.slice(-20);
+    const realMax = Math.max(max, ...pts) || 1;
+    const step = (W - padding*2) / (pts.length - 1);
+    const grad = ctx.createLinearGradient(0, 0, 0, H);
+    grad.addColorStop(0, color + '55');
+    grad.addColorStop(1, color + '00');
+    ctx.beginPath();
+    ctx.moveTo(padding, H - padding);
+    pts.forEach((v, i) => {
+        const x = padding + i * step;
+        const y = H - padding - ((v / realMax) * (H - padding*2));
+        if (i === 0) ctx.lineTo(x, y);
+        else ctx.lineTo(x, y);
+    });
+    ctx.lineTo(padding + (pts.length-1)*step, H - padding);
+    ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+    ctx.beginPath();
+    pts.forEach((v, i) => {
+        const x = padding + i * step;
+        const y = H - padding - ((v / realMax) * (H - padding*2));
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = color; ctx.lineWidth = 1.8 * dpr;
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.stroke();
+    // Latest value dot
+    const lx = padding + (pts.length-1)*step;
+    const lv = pts[pts.length-1];
+    const ly = H - padding - ((lv / realMax) * (H - padding*2));
+    ctx.beginPath(); ctx.arc(lx, ly, 3*dpr, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
+}
+
+/* âââ UPTIME TRACKING ââââââââââââââââââââââââââââââ */
+function initUptime(code) {
+    if (!uptimeData[code]) uptimeData[code] = { checks:0, online:0, lastOnline:false, firstSeen: Date.now() };
+}
+function recordUptime(code, isOnline) {
+    initUptime(code);
+    uptimeData[code].checks++;
+    uptimeData[code].lastOnline = isOnline;
+    if (isOnline) uptimeData[code].online++;
+}
+function getUptimePct(code) {
+    const d = uptimeData[code];
+    if (!d || d.checks === 0) return null;
+    return ((d.online / d.checks) * 100).toFixed(1);
+}
+function getSessionTime(code) {
+    const d = uptimeData[code];
+    if (!d) return 'â';
+    const secs = Math.floor((Date.now() - d.firstSeen) / 1000);
+    const m = Math.floor(secs / 60); const s = secs % 60;
+    return `${m}m ${s}s`;
+}
+
+/* âââ CREATE STUDIO CARD âââââââââââââââââââââââââââ */
+function createCard(s, isVip) {
+    if (!latencyHistory[s.code]) latencyHistory[s.code] = [];
+    if (!jitterHistory[s.code])  jitterHistory[s.code]  = [];
+    initUptime(s.code);
+
+    const div = document.createElement('div');
+    div.className = `studio-card ${isVip ? 'vip' : ''}`;
+    div.id = `card-${s.code}`;
+    div.dataset.tier = s.tier;
+    div.dataset.name = s.name.toLowerCase();
+    div.dataset.ip = s.vc_ip;
+    div.dataset.sio = s.sio.toLowerCase();
+
+    div.innerHTML = `
+        <div class="offline-overlay"></div>
+        <div class="card-header">
+            <div>
+                <div class="card-name">
+                    <span class="dot standby" id="dot-${s.code}"></span>
+                    ${s.name}
+                    ${isVip ? '<span style="font-size:0.65rem;color:var(--amber);background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);padding:2px 6px;border-radius:5px;font-family:JetBrains Mono,monospace">VIP</span>' : ''}
+                </div>
+                <div class="card-meta">${s.sio} &nbsp;Â·&nbsp; <i class="fas fa-phone-alt" style="font-size:0.65rem"></i> ${s.phone}</div>
+                <div class="card-tech">
+                    <span><i class="fas fa-video"></i> ${s.codec_type || 'KX-VC1300'}</span>
+                    <span style="color:var(--muted)">|</span>
+                    <span><i class="fas fa-network-wired"></i> TCP/${s.target_port || 5060}</span>
+                    <span style="color:var(--muted)">|</span>
+                    <span><i class="fas fa-signal"></i> ${s.sip_status || 'SIP Enabled'}</span>
+                </div>
+            </div>
+            <span class="badge b-standby" id="badge-${s.code}">STANDBY</span>
+        </div>
+
+        <div class="ip-row">
+            <div><div class="ip-lbl">VC Codec IP</div><div class="ip-val">${s.vc_ip}</div></div>
+            <div><div class="ip-lbl">SWAN Gateway</div><div class="ip-val">${s.gw_ip}</div></div>
+        </div>
+
+        <div class="qos-row">
+            <div class="qos-item"><i class="fas fa-stopwatch" style="color:var(--amber)"></i> Latency: <span class="qos-val" id="lat-${s.code}">â ms</span></div>
+            <div class="qos-item"><i class="fas fa-bolt" style="color:var(--violet)"></i> Jitter: <span class="qos-val" id="jit-${s.code}">â ms</span></div>
+            <div class="qos-item"><i class="fas fa-chart-line" style="color:var(--emerald)"></i> Loss: <span class="qos-val" id="loss-${s.code}">â%</span></div>
+        </div>
+
+        <div class="sparkline-wrap">
+            <div class="sparkline-label"><i class="fas fa-chart-area"></i> Latency Trend (last 20 polls)</div>
+            <canvas class="sparkline" id="spark-${s.code}" height="36"></canvas>
+        </div>
+
+        <div class="loss-bar-wrap">
+            <div class="loss-bar-label">
+                <span>Packet Loss</span>
+                <span id="lossBarPct-${s.code}" style="color:var(--emerald)">0%</span>
+            </div>
+            <div class="loss-bar-track"><div class="loss-bar-fill" id="lossBar-${s.code}"></div></div>
+        </div>
+
+        <div class="uptime-row">
+            <span>Session Uptime</span>
+            <span class="uptime-val" id="uptime-${s.code}">â</span>
+        </div>
+
+        <div class="card-actions">
+            <button class="btn-card btn-ping" onclick="pingOne('${s.code}','${s.vc_ip}','${s.gw_ip}')">
+                <i class="fas fa-sync-alt" id="pi-${s.code}"></i> Ping
+            </button>
+            <a href="http://${s.vc_ip}" target="_blank" rel="noopener noreferrer" class="btn-card btn-web">
+                <i class="fas fa-external-link-alt"></i> Codec Web
+            </a>
+        </div>
+    `;
+    return div;
+}
+
+/* âââ LOAD STUDIOS âââââââââââââââââââââââââââââââââ */
+async function loadStudios() {
+    try {
+        const r = await fetch('../vc_api.php?action=list&t=' + Date.now());
+        const d = await r.json();
+        if (d.status === 'success' && d.studios) {
+            allStudios = d.studios;
+            renderStudios(allStudios);
+            document.getElementById('h-total').textContent = allStudios.length;
+        }
+    } catch(e) { console.error('Load error:', e); }
+}
+
+function renderStudios(studios) {
+    const vip = studios.filter(s => s.tier === 'VIP Master Studio');
+    const dist = studios.filter(s => s.tier !== 'VIP Master Studio');
+    document.getElementById('vipGrid').innerHTML = '';
+    document.getElementById('distGrid').innerHTML = '';
+    document.getElementById('districtCount').textContent = `(${dist.length} districts)`;
+    vip.forEach(s  => document.getElementById('vipGrid').appendChild(createCard(s, true)));
+    dist.forEach(s => document.getElementById('distGrid').appendChild(createCard(s, false)));
+    setInterval(refreshUptimes, 5000);
+}
+
+function refreshUptimes() {
+    allStudios.forEach(s => {
+        const el = document.getElementById(`uptime-${s.code}`);
+        const pct = getUptimePct(s.code);
+        if (el && pct !== null) {
+            el.textContent = pct + '% (' + getSessionTime(s.code) + ')';
+            el.style.color = pct >= 99 ? 'var(--emerald)' : pct >= 90 ? 'var(--amber)' : 'var(--rose)';
+        }
+    });
+}
+
+/* âââ PING ONE STUDIO ââââââââââââââââââââââââââââââ */
+async function pingOne(code, vcIp, gwIp) {
+    const icon  = document.getElementById(`pi-${code}`);
+    const badge = document.getElementById(`badge-${code}`);
+    const dot   = document.getElementById(`dot-${code}`);
+    const latEl = document.getElementById(`lat-${code}`);
+    const jitEl = document.getElementById(`jit-${code}`);
+    const lossEl= document.getElementById(`loss-${code}`);
+    const card  = document.getElementById(`card-${code}`);
+    const bar   = document.getElementById(`lossBar-${code}`);
+    const barPct= document.getElementById(`lossBarPct-${code}`);
+
+    if (icon) icon.classList.add('fa-spin');
+    if (badge) { badge.className='badge b-testing'; badge.textContent='PROBING...'; }
+    if (card)  card.classList.add('card-scanning');
+
+    const s = allStudios.find(x => x.code === code);
+    const name = s ? s.name : code.toUpperCase();
+
+    try {
+        const r = await fetch(`../vc_api.php?action=ping&ip=${vcIp}&t=${Date.now()}`);
+        const d = await r.json();
+
+        if (d.status === 'success') {
+            const offline  = !d.online;
+            const pct      = parseFloat(d.packet_loss || 0);
+            const lat      = d.latency_ms;
+            const jit      = d.jitter_ms;
+            const quality  = d.quality;
+
+            recordUptime(code, !offline);
+
+            // Update sparkline & jitter history
+            if (!offline && lat !== null) {
+                latencyHistory[code].push(lat);
+                if (latencyHistory[code].length > 20) latencyHistory[code].shift();
+            }
+            if (!offline && jit !== null) {
+                jitterHistory[code].push(jit);
+                if (jitterHistory[code].length > 20) jitterHistory[code].shift();
+            }
+
+            const spk = document.getElementById(`spark-${code}`);
+            const sparkColor = offline ? '#f43f5e' : quality==='optimal' ? '#38bdf8' : quality==='warning' ? '#fbbf24' : '#f43f5e';
+            drawSparkline(spk, latencyHistory[code], sparkColor, 100);
+
+            // QoS values
+            if (latEl) { latEl.textContent = offline ? 'TIMEOUT' : (lat+'ms'); latEl.style.color = offline?'#f43f5e':lat>60?'#f43f5e':lat>35?'#fbbf24':'#38bdf8'; }
+            if (jitEl) { jitEl.textContent = offline ? 'TIMEOUT' : (jit!==null?jit+'ms':'0ms'); jitEl.style.color = offline?'#f43f5e':jit>15?'#f43f5e':jit>5?'#fbbf24':'#a78bfa'; }
+            if (lossEl){ lossEl.textContent = pct+'%';  lossEl.style.color = pct>0?'#f43f5e':'#34d399'; }
+
+            // Loss bar
+            if (bar) {
+                bar.style.width = Math.min(pct*5, 100)+'%';
+                bar.style.background = pct>5?'#f43f5e':pct>0?'#fbbf24':'#10b981';
+                bar.style.boxShadow = `0 0 8px ${pct>5?'#f43f5e':pct>0?'#fbbf24':'#10b981'}`;
+            }
+            if (barPct) { barPct.textContent = pct+'%'; barPct.style.color = pct>0?'#f43f5e':'#34d399'; }
+
+            // Badge + dot + card class
+            if (offline) {
+                badge.className='badge b-critical'; badge.textContent='OFFLINE';
+                dot.className='dot offline';
+                card.classList.add('s-critical');
+            } else if (quality==='critical' || pct>0) {
+                badge.className='badge b-critical'; badge.textContent='DEGRADED';
+                dot.className='dot offline';
+                card.classList.add('s-critical');
+            } else if (quality==='warning') {
+                badge.className='badge b-warning'; badge.textContent='WARNING';
+                dot.className='dot warn';
+                card.classList.remove('s-critical');
+            } else {
+                badge.className='badge b-optimal'; badge.textContent='1080p READY';
+                dot.className='dot';
+                card.classList.remove('s-critical');
+            }
+
+            // Log + Toast on bad events
+            if (offline) {
+                log(`â  [${name}] OFFLINE â VC Codec ${vcIp} unreachable`, 'critical');
+                showToast(`${name} OFFLINE`, `VC Codec ${vcIp} is unreachable`, 'critical');
+            } else if (quality==='critical' || pct>0) {
+                log(`ð´  [${name}] QoS DEGRADED â Loss:${pct}%  Jitter:${jit}ms  Lat:${lat}ms`, 'critical');
+                showToast(`${name} QoS DEGRADED`, `Loss: ${pct}%  Jitter: ${jit}ms`, 'critical');
+            } else if (quality==='warning') {
+                log(`â ï¸  [${name}] Network degradation â Lat:${lat}ms  Jitter:${jit}ms`, 'warning');
+            } else {
+                if (isMonitoring && latencyHistory[code].length === 1) {
+                    log(`â  [${name}] Online â Lat:${lat}ms  Jit:${jit}ms  Loss:${pct}%`, 'info');
+                }
+            }
+        } else {
+            badge.className='badge b-critical'; badge.textContent='UNREACHABLE';
+            dot.className='dot offline';
+            card.classList.add('s-critical');
+            if (latEl) latEl.textContent='TIMEOUT';
+            if (jitEl) jitEl.textContent='TIMEOUT';
+            if (lossEl){ lossEl.textContent='100%'; lossEl.style.color='#f43f5e'; }
+            log(`â  [${name}] API returned failure`, 'critical');
+        }
+    } catch(e) {
+        badge.className='badge b-critical'; badge.textContent='API ERROR';
+        dot.className='dot offline';
+    } finally {
+        if (icon) icon.classList.remove('fa-spin');
+        if (card) { setTimeout(()=>card.classList.remove('card-scanning'), 650); }
+    }
+
+    refreshHUD();
+}
+
+/* âââ REFRESH GLOBAL HUD âââââââââââââââââââââââââââ */
+function refreshHUD() {
+    let online=0, offline=0, lats=[], jits=[];
+    const auditedAll = allStudios.filter(s => uptimeData[s.code]?.checks > 0);
+    
+    auditedAll.forEach(s => {
+        const d = uptimeData[s.code];
+        if (d.lastOnline) {
+            online++;
+            if (latencyHistory[s.code]?.length) lats.push(latencyHistory[s.code].at(-1));
+            if (jitterHistory[s.code]?.length)  jits.push(jitterHistory[s.code].at(-1));
+        } else {
+            offline++;
+        }
+    });
+
+    const avg = arr => arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : 'â';
+    
+    document.getElementById('h-online').textContent = auditedAll.length ? `${online}` : 'â';
+    document.getElementById('h-offline').textContent = auditedAll.length ? `${offline}` : 'â';
+    document.getElementById('h-offline').style.color = offline > 0 ? 'var(--rose)' : 'var(--muted)';
+    
+    document.getElementById('h-latency').textContent = lats.length ? avg(lats)+' ms' : 'â ms';
+    document.getElementById('h-latency').style.color = parseFloat(avg(lats))>60?'var(--rose)':parseFloat(avg(lats))>35?'var(--amber)':'#38bdf8';
+    
+    document.getElementById('h-jitter').textContent = jits.length ? avg(jits)+' ms' : 'â ms';
+    document.getElementById('h-jitter').style.color = parseFloat(avg(jits))>15?'var(--rose)':parseFloat(avg(jits))>5?'var(--amber)':'#a78bfa';
+
+    const sla = auditedAll.length ? ((online / auditedAll.length) * 100).toFixed(1)+'%' : 'â';
+    document.getElementById('h-sla').textContent = sla;
+    document.getElementById('h-sla').style.color = parseFloat(sla)<95?'var(--rose)':parseFloat(sla)<99?'var(--amber)':'var(--emerald)';
+}
+
+/* âââ FULL AUDIT (FAST BATCHED CONCURRENT PROBING) ââ */
+async function runFullAudit() {
+    if (isAuditing) return;
+    isAuditing = true;
+    const btn = document.getElementById('btnAudit');
+    const status = document.getElementById('auditStatus');
+    const bar = document.getElementById('auditProgressBar');
+    const fill = document.getElementById('auditProgressFill');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUDITINGâ¦';
+    bar.style.display = 'block';
+    fill.style.width = '0%';
+    log('ð  Pre-VC Audit initiated across all ' + allStudios.length + ' endpoints', 'info');
+
+    // Audit VIP studios FIRST, then districts
+    const sortedStudios = [...allStudios].sort((a,b) => {
+        if (a.tier === 'VIP Master Studio' && b.tier !== 'VIP Master Studio') return -1;
+        if (a.tier !== 'VIP Master Studio' && b.tier === 'VIP Master Studio') return 1;
+        return 0;
+    });
+
+    // Run in parallel batches of 6 endpoints
+    const BATCH_SIZE = 6;
+    let done = 0;
+    for (let i = 0; i < sortedStudios.length; i += BATCH_SIZE) {
+        const batch = sortedStudios.slice(i, i + BATCH_SIZE);
+        status.textContent = `[${Math.min(i + BATCH_SIZE, sortedStudios.length)}/${sortedStudios.length}] Probing endpoints...`;
+        await Promise.all(batch.map(s => pingOne(s.code, s.vc_ip, s.gw_ip)));
+        done += batch.length;
+        fill.style.width = Math.round((done / sortedStudios.length) * 100) + '%';
+        await new Promise(r => setTimeout(r, 60));
+    }
+
+    status.textContent = '';
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd">Space</span>';
+    bar.style.display = 'none';
+    fill.style.width = '0%';
+    isAuditing = false;
+
+    // Summary toast
+    const offCount = allStudios.filter(s => uptimeData[s.code]?.checks > 0 && !uptimeData[s.code]?.lastOnline).length;
+    const onCount = allStudios.filter(s => uptimeData[s.code]?.checks > 0 && uptimeData[s.code]?.lastOnline).length;
+    if (offCount > 0) {
+        showToast(`Audit Complete â ${offCount} Offline`, `${onCount}/${allStudios.length} endpoints 1080p ready`, 'critical');
+        log(`â¡  Audit done: ${offCount} offline, ${onCount} healthy`, 'critical');
+    } else {
+        showToast('Audit Complete â All Clear', `${onCount}/${allStudios.length} endpoints 1080p ready`, 'info');
+        log(`â  Audit complete â all ${allStudios.length} endpoints healthy`, 'info');
+    }
+}
+
+/* âââ AUTO MONITOR âââââââââââââââââââââââââââââââââ */
+function toggleAutoMonitor() {
+    const btn = document.getElementById('btnMonitor');
+    if (isMonitoring) {
+        isMonitoring = false;
+        clearInterval(monitorInterval);
+        btn.classList.remove('active');
+        btn.innerHTML = '<i class="fas fa-satellite-dish"></i> AUTO-MONITOR <span class="kbd">M</span>';
+        log('ð¡  Auto-Monitor paused', 'info');
+    } else {
+        isMonitoring = true;
+        btn.classList.add('active');
+        btn.innerHTML = '<i class="fas fa-satellite-dish fa-spin"></i> MONITORING <span class="kbd">M</span>';
+        log('ð¡  Auto-Monitor engaged â sweeping every 20 seconds', 'info');
+        runFullAudit();
+        monitorInterval = setInterval(() => { if (!isAuditing) runFullAudit(); }, 20000);
+    }
+}
+
+/* âââ FILTER âââââââââââââââââââââââââââââââââââââââ */
+function setFilter(f) {
+    currentFilter = f;
+    ['fAll','fOnline','fWarn','fCrit'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+    const map = {all:'fAll', online:'fOnline', warn:'fWarn', critical:'fCrit'};
+    document.getElementById(map[f])?.classList.add('active');
+    filterStudios();
+}
+
+function filterStudios() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.studio-card').forEach(card => {
+        const name = card.dataset.name || '';
+        const ip   = card.dataset.ip   || '';
+        const sio  = card.dataset.sio  || '';
+        const code = card.id.replace('card-','');
+        const badge = document.getElementById(`badge-${code}`)?.textContent?.toLowerCase() || '';
+
+        let show = (name.includes(q) || ip.includes(q) || sio.includes(q));
+        if (show && currentFilter === 'online')   show = badge.includes('ready') || badge.includes('warning');
+        if (show && currentFilter === 'warn')     show = badge.includes('warning');
+        if (show && currentFilter === 'critical') show = badge.includes('offline') || badge.includes('degraded') || badge.includes('unreachable');
+        card.style.display = show ? '' : 'none';
+    });
+}
+
+/* âââ KEYBOARD SHORTCUTS âââââââââââââââââââââââââââ */
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT') return;
+    if (e.code === 'Space') { e.preventDefault(); runFullAudit(); }
+    if (e.code === 'KeyM')  toggleAutoMonitor();
+    if (e.code === 'KeyS')  toggleSound();
+    if (e.code === 'KeyT')  toggleTheme();
+    if (e.code === 'KeyL')  toggleLog();
+    if (e.code === 'Digit1') setFilter('all');
+    if (e.code === 'Digit2') setFilter('online');
+    if (e.code === 'Digit3') setFilter('warn');
+    if (e.code === 'Digit4') setFilter('critical');
+});
+
+/* âââ SOUND TOGGLE âââââââââââââââââââââââââââââââââ */
+function toggleSound() {
+    soundEnabled = !soundEnabled;
+    const icon = document.getElementById('soundIcon');
+    icon.className = soundEnabled ? 'fas fa-volume-up sound-on' : 'fas fa-volume-mute sound-off';
+}
+document.getElementById('soundToggleBtn').addEventListener('click', toggleSound);
+
+/* âââ THEME ââââââââââââââââââââââââââââââââââââââââ */
+function toggleTheme() {
+    const isLight = document.body.classList.contains('lm');
+    const icon = document.getElementById('themeIcon');
+    if (isLight) {
+        document.body.classList.remove('lm');
+        icon.className = 'fas fa-sun';
+        localStorage.setItem('vc_theme','dark');
+        if (window.vantaEffect) window.vantaEffect.setOptions({ color:0x38bdf8, backgroundColor:0x020810 });
+    } else {
+        document.body.classList.add('lm');
+        icon.className = 'fas fa-moon';
+        localStorage.setItem('vc_theme','light');
+        if (window.vantaEffect) window.vantaEffect.setOptions({ color:0x0f4c81, backgroundColor:0xeef3fb });
+    }
+}
+document.getElementById('themeToggleBtn').addEventListener('click', toggleTheme);
+if (localStorage.getItem('vc_theme') === 'light') toggleTheme();
+
+/* âââ LIVE CLOCK âââââââââââââââââââââââââââââââââââ */
+function updateClock() {
+    const now = new Date();
+    document.getElementById('clockTime').textContent = now.toLocaleTimeString('en-IN', { hour12:true });
+    document.getElementById('clockDate').textContent = now.toLocaleDateString('en-IN', { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+/* âââ AI CHATBOT ENGINE ââââââââââââââââââââââââââââ */
+let contactsDatabase = [];
+const synonymDict = { "patna": ["hq", "sio"], "noc": ["server", "patna"] };
+
+async function loadContactsDatabase() {
+    try {
+        const response = await fetch('../contacts.json?t=' + Date.now());
+        if (response.ok) contactsDatabase = await response.json();
+    } catch (e) {}
+}
+
+function sendSuggestionChip(text) {
+    const input = document.getElementById('chatbotInput');
+    if (input) {
+        input.value = text;
+        handleChatSend();
+    }
+}
+
+function appendUserMessage(text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('chat-msg', 'user');
+    msgDiv.textContent = text;
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function appendBotMessage(text) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('chat-msg', 'bot');
+    msgDiv.innerHTML = formatMarkdown(text);
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    chatbotMessages.appendChild(msgDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+function formatMarkdown(text) {
+    if (!text) return "";
+    let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+    html = html.replace(/\*(.*?)\*/g, "<em>$1</em>");
+    html = html.replace(/`([^`]+)`/g, "<code style='background:rgba(56,189,248,0.12);color:#38bdf8;padding:1px 5px;border-radius:4px;font-family:JetBrains Mono,monospace;'>$1</code>");
+    html = html.replace(/\n/g, "<br>");
+    return html;
+}
+
+async function handleChatSend() {
+    const input = document.getElementById('chatbotInput');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const text = input.value.trim();
+    if (!text) return;
+
+    appendUserMessage(text);
+    input.value = '';
+
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'chat-msg bot';
+    typingIndicator.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Thinking...';
+    chatbotMessages.appendChild(typingIndicator);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    const lowerText = text.toLowerCase();
+    
+    // Quick District Live Check
+    const matchedStudio = allStudios.find(s => lowerText.includes(s.name.toLowerCase()) || lowerText.includes(s.code));
+    if (matchedStudio && (lowerText.includes('ip') || lowerText.includes('phone') || lowerText.includes('status') || lowerText.includes('ping') || lowerText.includes('reach'))) {
+        try {
+            const r = await fetch(`../vc_api.php?action=ping&ip=${matchedStudio.vc_ip}&t=${Date.now()}`);
+            const data = await r.json();
+            typingIndicator.remove();
+            
+            let statusText = data.online ? `ð¢ **ONLINE (1080p Ready)**` : `ð´ **OFFLINE / UNREACHABLE**`;
+            let msg = `ð¹ **${matchedStudio.name} VC Studio Status**:\n\n` +
+                      `* **Status:** ${statusText}\n` +
+                      `* **VC Codec IP:** \`${matchedStudio.vc_ip}\`\n` +
+                      `* **SWAN Gateway:** \`${matchedStudio.gw_ip}\`\n` +
+                      `* **VoIP IP Extension:** ð \`${matchedStudio.phone}\`\n` +
+                      `* **DIO/SIO In-Charge:** ${matchedStudio.sio}\n` +
+                      `* **Latency:** \`${data.latency_ms !== null ? data.latency_ms + 'ms' : 'TIMEOUT'}\` | **Jitter:** \`${data.jitter_ms !== null ? data.jitter_ms + 'ms' : 'TIMEOUT'}\` | **Loss:** \`${data.packet_loss}%\``;
+            appendBotMessage(msg);
+            return;
+        } catch(e) {}
+    }
+
+    // Contact RAG search
+    let matchedContacts = [];
+    if (contactsDatabase.length > 0) {
+        let keywords = lowerText.split(/[^a-zA-Z0-9]/).filter(w => w.length >= 3);
+        if (keywords.length > 0) {
+            matchedContacts = contactsDatabase.map(c => {
+                let score = 0;
+                const name = (c.name || "").toLowerCase();
+                const role = (c.role || "").toLowerCase();
+                const location = (c.location || "").toLowerCase();
+                keywords.forEach(kw => {
+                    if (name.includes(kw)) score += 5;
+                    if (location.includes(kw)) score += 4;
+                    if (role.includes(kw)) score += 2;
+                });
+                return { contact: c, score };
+            }).filter(i => i.score > 0).sort((a,b) => b.score - a.score).map(i => i.contact).slice(0, 5);
+        }
+    }
+
+    let dynamicContext = "";
+    if (matchedContacts.length > 0) {
+        dynamicContext = "\n\nRelevant Contacts:\n" + matchedContacts.map(c => `- ${c.name} (${c.role}, ${c.location}): Mobile ${c.mobile}, IP Phone ${c.ip || 'N/A'}`).join("\n");
+    }
+
+    try {
+        const response = await fetch('../chat.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                model: 'qwen2.5:1.5b',
+                messages: [
+                    {
+                        role: 'system',
+                        content: 'You are the Bihar State VC & NOC AI Assistant. Be concise, direct, and professional. Answer questions about Panasonic KX-VC1300 HDVC codecs, SIP 5060, H.323 1720, RTP 16000-20000, MTU 1420, DSCP EF (46) QoS, district IP phones, and live video conference operations in Bihar. This NOC Portal was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain or the founder, state: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +919897577007, email: seca1.shq.br@nic.in.' + dynamicContext
+                    },
+                    { role: 'user', content: text }
+                ],
+                stream: true,
+                options: { num_ctx: 2048, num_predict: 256, temperature: 0.7 }
+            })
+        });
+
+        if (!response.ok) {
+            typingIndicator.remove();
+            appendBotMessage("â ï¸ Unable to reach AI backend. Please verify network connection.");
+            return;
+        }
+
+        typingIndicator.remove();
+        let msgDiv = document.createElement('div');
+        msgDiv.classList.add('chat-msg', 'bot');
+        chatbotMessages.appendChild(msgDiv);
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder("utf-8");
+        let done = false;
+        let botText = "";
+        let buffer = "";
+
+        while (!done) {
+            const { value, done: readerDone } = await reader.read();
+            done = readerDone;
+            if (value) {
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n');
+                buffer = lines.pop();
+
+                for (const line of lines) {
+                    if (line.trim() !== '') {
+                        try {
+                            const data = JSON.parse(line);
+                            if (data.message && data.message.content) {
+                                botText += data.message.content;
+                                msgDiv.innerHTML = formatMarkdown(botText);
+                                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+                            }
+                        } catch (e) {}
+                    }
+                }
+            }
+        }
+    } catch (e) {
+        typingIndicator.remove();
+        appendBotMessage("â ï¸ AI Assistant encounter an error. Please try again.");
+    }
+}
+
+/* âââ BOOT âââââââââââââââââââââââââââââââââââââââââ */
+document.addEventListener('DOMContentLoaded', () => {
+    loadStudios();
+    setFilter('all');
+    loadContactsDatabase();
+    log('ð¡  Bihar VC NOC Command Center online â Press [Space] to run audit, [M] to auto-monitor', 'info');
+
+    // Chatbot Event Listeners
+    const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
+    const chatbotCloseBtn  = document.getElementById('chatbotCloseBtn');
+    const chatbotPanel     = document.getElementById('chatbotPanel');
+    const chatbotSendBtn   = document.getElementById('chatbotSendBtn');
+    const chatbotInput     = document.getElementById('chatbotInput');
+    const chatbotTooltip   = document.getElementById('chatbotTooltip');
+
+    if (chatbotToggleBtn) {
+        chatbotToggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            chatbotPanel.classList.toggle('active');
+            if (chatbotPanel.classList.contains('active')) {
+                chatbotInput.focus();
+                if (chatbotTooltip) chatbotTooltip.style.opacity = '0';
+                chatbotToggleBtn.classList.remove('pulse');
+            }
+        });
+    }
+
+    if (chatbotCloseBtn) {
+        chatbotCloseBtn.addEventListener('click', () => {
+            chatbotPanel.classList.remove('active');
+        });
+    }
+
+    if (chatbotSendBtn) chatbotSendBtn.addEventListener('click', handleChatSend);
+    if (chatbotInput) chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleChatSend();
+    });
+});
+</script>
+
+<!-- ââ FLOATING AI CHATBOT WIDGET HTML ââââââââââââââââ -->
+<div class="ai-chatbot-widget">
+    <div class="chatbot-attention-tooltip" id="chatbotTooltip">
+        ð¤ Bihar VC & NOC AI is online! Ask me anything.
+    </div>
+    <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar VC & NOC AI Assistant">
+        <i class="fas fa-robot"></i>
+    </button>
+    <div class="chatbot-panel" id="chatbotPanel">
+        <div class="chatbot-header">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <div class="chatbot-header-title">
+                    <i class="fas fa-robot"></i>
+                    <h3>Bihar VC & NOC Assistant</h3>
+                </div>
+                <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
+            </div>
+            <div style="font-size: 9.5px; opacity: 0.95; color: rgba(255, 255, 255, 0.95); font-weight: 600; letter-spacing: 0.2px; margin-left: 25px; line-height: 1.3; margin-top: 3px;">
+                Architected & Founded by <strong style="color: #ffd700;">Aditya Jain</strong> (Security Administrator, NIC Bihar HQ)
+            </div>
+            <div style="font-size: 8.5px; opacity: 0.85; color: rgba(255, 255, 255, 0.85); font-style: italic; margin-left: 25px; margin-top: 2px; line-height: 1.3;">
+                Instant, AI-driven support for VC Codecs, SWAN & Network Operations.
+            </div>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="chat-msg bot">
+                Hello! I am your Bihar VC & NOC AI Support Assistant. Ask me anything about district IP phones, Panasonic KX-VC1300 specs, SIP/H.323 ports, QoS thresholds, or live node status!
+            </div>
+        </div>
+        <!-- Suggestion Chips -->
+        <div class="chatbot-chips">
+            <button onclick="sendSuggestionChip('VC Codec Specs')" class="chatbot-chip-btn">ð¹ VC Codec Specs</button>
+            <button onclick="sendSuggestionChip('District IP Phones')" class="chatbot-chip-btn">ð District IP Phones</button>
+            <button onclick="sendSuggestionChip('Jitter & Loss Benchmarks')" class="chatbot-chip-btn">ð QoS Benchmarks</button>
+            <button onclick="sendSuggestionChip('SIP Port Rules')" class="chatbot-chip-btn">ð SIP & H.323 Ports</button>
+        </div>
+        <div class="chatbot-input-area">
+            <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask about VC, IP phones, QoS..." autocomplete="off">
+            <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div class="chatbot-footer">
+            <span>Bihar NOC Command Center</span>
+            <span>Built with â¤ï¸ for Engineers</span>
+        </div>
+    </div>
+</div>
+
+<!-- ââ VANTA.JS BACKGROUND âââââââââââââââââââââââââ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+<script>
+window.addEventListener('DOMContentLoaded', () => {
+    const isLight = document.body.classList.contains('lm');
+    try {
+        window.vantaEffect = VANTA.NET({
+            el: '#vanta-bg',
+            mouseControls: true, touchControls: true, gyroControls: false,
+            minHeight: 200, minWidth: 200, scale: 1,
+            color: isLight ? 0x0f4c81 : 0x38bdf8,
+            backgroundColor: isLight ? 0xeef3fb : 0x020810,
+            points: 14, maxDistance: 24, spacing: 17, showDots: true
+        });
+    } catch(e) { console.error('Vanta init failed:', e); }
+});
+</script>
+</body>
+</html>

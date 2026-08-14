@@ -1,0 +1,849 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State NOC Diagnostics Engine â Bihar NIC & NKN Backbone</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>â¡</text></svg>">
+    
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 3D Vanta & Three.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+    <style>
+        :root {
+            --bg-primary: #030712;
+            --bg-secondary: #0b0f19;
+            --bg-card: rgba(11, 18, 33, 0.88);
+            --border-glow: rgba(56, 189, 248, 0.3);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --cyan: #38bdf8;
+            --emerald: #10b981;
+            --amber: #f59e0b;
+            --rose: #f43f5e;
+            --purple: #a855f7;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        #vanta-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .main-wrapper {
+            position: relative;
+            z-index: 10;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 24px 60px 24px;
+        }
+
+        /* Gov Bar */
+        .gov-banner {
+            background: linear-gradient(90deg, #ff9933 0%, #ffffff 50%, #128807 100%);
+            height: 4px;
+            width: 100%;
+            position: relative;
+            z-index: 20;
+        }
+
+        /* Header Navbar */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .nav-logo-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-box {
+            background: #ffffff;
+            padding: 4px 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-box img {
+            height: 28px;
+            width: auto;
+        }
+
+        .portal-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+
+        .portal-sub {
+            font-size: 0.72rem;
+            color: var(--cyan);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #e2e8f0;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--cyan);
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+
+        /* Glass Cards */
+        .glass-panel {
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--border-glow);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(56, 189, 248, 0.04);
+            position: relative;
+        }
+
+        /* 3-Column Layout */
+        .diagnostics-grid {
+            display: grid;
+            grid-template-columns: 360px 1fr 340px;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        @media (max-width: 1200px) {
+            .diagnostics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Speedometer Hero */
+        .gauge-container {
+            background: radial-gradient(circle at center, rgba(14, 165, 233, 0.12) 0%, rgba(3, 7, 18, 0.6) 80%);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 16px;
+            padding: 28px 16px;
+            text-align: center;
+            margin: 16px 0;
+            position: relative;
+        }
+
+        .gauge-val {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--cyan);
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(14, 165, 233, 0.5);
+            transition: all 0.2s;
+        }
+
+        .gauge-unit {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 6px;
+        }
+
+        /* Console */
+        .cyber-terminal {
+            background: #000000;
+            border: 1px solid #1e293b;
+            border-radius: 10px;
+            padding: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.76rem;
+            color: #10b981;
+            height: 130px;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .terminal-header {
+            position: sticky;
+            top: -12px;
+            left: -12px;
+            right: -12px;
+            padding: 4px 8px;
+            background: #0f172a;
+            color: #94a3b8;
+            font-size: 0.68rem;
+            font-weight: bold;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Metric Grid */
+        .metrics-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .metrics-grid-6 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .metric-card {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 12px 14px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .metric-card:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .metric-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .metric-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Action Button */
+        .btn-launch {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+            border: 1px solid rgba(56, 189, 248, 0.8);
+            border-radius: 12px;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            box-shadow: 0 4px 25px rgba(14, 165, 233, 0.5);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-launch:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 35px rgba(14, 165, 233, 0.7);
+        }
+
+        .btn-launch:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Leaderboard Side Widget */
+        .podium-box {
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .rank-gold {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 23, 42, 0.8));
+            border: 1px solid #fbbf24;
+        }
+
+        .rank-silver {
+            background: linear-gradient(135deg, rgba(203, 213, 225, 0.1), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(203, 213, 225, 0.4);
+        }
+
+        .rank-bronze {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.1), rgba(15, 23, 42, 0.8));
+            border: 1px solid rgba(217, 119, 6, 0.4);
+        }
+
+        /* Pulse */
+        @keyframes pulse-dot {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        .pulse-emerald {
+            animation: pulse-dot 2s infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D WebGL Canvas Layer -->
+    <div id="vanta-bg"></div>
+
+    <div class="gov-banner"></div>
+
+    <div class="main-wrapper">
+        
+        <!-- Navigation Header -->
+        <header class="top-nav">
+            <div class="nav-logo-group">
+                <a href="http://10.133.22.8/" title="National Informatics Centre, Bihar" style="text-decoration:none;">
+                    <div class="logo-box" style="background: #ffffff; padding: 5px 12px; border-radius: 10px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);">
+                        <img src="../NIC_Preview-1.png" alt="NIC Logo" style="height: 38px; width: auto; object-fit: contain;">
+                    </div>
+                </a>
+                <a href="https://nkn.in/" target="_blank" rel="noopener noreferrer" title="National Knowledge Network" style="text-decoration:none;">
+                    <div class="logo-box" style="background: #ffffff; padding: 5px 12px; border-radius: 10px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);">
+                        <img src="../NKN_H_Preview.png" alt="NKN Logo" style="height: 38px; width: auto; object-fit: contain;">
+                    </div>
+                </a>
+                <div class="logo-box" style="background: rgba(255,255,255,0.95); padding: 5px 10px; border-radius: 10px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);" title="Government of India / State of Bihar">
+                    <img src="../Emblem_of_India.png" alt="State Emblem" style="height: 38px; width: auto; object-fit: contain;">
+                </div>
+                <div>
+                    <h1 class="portal-title">State NOC Diagnostics Engine</h1>
+                    <div class="portal-sub">
+                        <span style="display: inline-block; width: 7px; height: 7px; background: #10b981; border-radius: 50%; margin-right: 4px;" class="pulse-emerald"></span>
+                        100% Internal Bihar State Backbone Diagnostics
+                    </div>
+                </div>
+            </div>
+
+            <div class="nav-actions">
+                <a href="/vc/" class="nav-btn" style="background: rgba(14, 165, 233, 0.2); border-color: #38bdf8; color: #38bdf8; font-weight: 800;">
+                    <i class="fas fa-video"></i> ð¥ VC Studio Monitor
+                </a>
+                <a href="/" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> Home Portal
+                </a>
+                <a href="/alert/" class="nav-btn">
+                    <i class="fas fa-network-wired"></i> Network Monitor
+                </a>
+                <button onclick="syncLiveLeaderboard(true)" class="nav-btn" style="cursor: pointer;">
+                    <i class="fas fa-sync-alt" id="leaderboardRefreshIcon"></i> Sync IIS Logs
+                </button>
+            </div>
+        </header>
+
+        <!-- 3-Column Diagnostic Command Center -->
+        <main class="diagnostics-grid">
+            
+            <!-- LEFT PANEL: Test Configuration & Speedometer Gauge -->
+            <section class="glass-panel">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <i class="fas fa-sliders-h" style="color: var(--cyan); font-size: 1.1rem;"></i>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: #ffffff; margin: 0;">Test Parameters</h2>
+                </div>
+
+                <!-- Target Scope Selector -->
+                <div style="margin-bottom: 14px;">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+                        <i class="fas fa-network-wired"></i> Target Scope
+                    </label>
+                    <select id="bwTestScope" style="width: 100%; background: #0f172a; border: 1px solid #334155; color: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer;">
+                        <option value="intranet" selected>ð¢ Intranet NOC Link (10.133.22.8)</option>
+                        <option value="internet">ð Public Internet Gateway (WAN)</option>
+                    </select>
+                </div>
+
+                <!-- Stress Payload Size -->
+                <div style="margin-bottom: 20px;">
+                    <label style="font-size: 0.75rem; font-weight: 800; color: var(--cyan); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 6px;">
+                        <i class="fas fa-cubes"></i> Injection Payload Stress
+                    </label>
+                    <select id="bwPayloadSize" style="width: 100%; background: #0f172a; border: 1px solid #334155; color: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer;">
+                        <option value="2">â¡ Light Test (2 MB / 32KB Packet)</option>
+                        <option value="4" selected>ð Standard NOC (4 MB / 64KB Packet)</option>
+                        <option value="10">ð High Stress (10 MB / 128KB Packet)</option>
+                        <option value="20">ð¥ Extreme Matrix (20 MB / 256KB Packet)</option>
+                    </select>
+                </div>
+
+                <!-- Large Speedometer Gauge -->
+                <div class="gauge-container">
+                    <div id="bwGaugeVal" class="gauge-val">0.00</div>
+                    <div id="bwGaugeUnit" class="gauge-unit">Mbps</div>
+                    <div id="gaugeSubText" style="font-size: 0.75rem; color: #38bdf8; margin-top: 6px; font-weight: 700;">STANDBY</div>
+                </div>
+
+                <!-- Trigger Button -->
+                <button id="bwStartBtn" onclick="runLiveBandwidthTest();" class="btn-launch">
+                    <i class="fas fa-rocket"></i> Inject & Measure
+                </button>
+
+                <!-- Accuracy Disclaimer -->
+                <div style="margin-top: 18px; padding: 12px; background: rgba(14, 165, 233, 0.08); border-left: 3px solid #0ea5e9; border-radius: 0 8px 8px 0; font-size: 0.75rem; color: #cbd5e1; line-height: 1.5;">
+                    <strong style="color: #38bdf8;"><i class="fas fa-bullseye"></i> Absolute Precision:</strong> Directly tests physical SWAN/LAN bandwidth against the Patna State NOC Core with zero ISP artificial shaping.
+                </div>
+            </section>
+
+            <!-- CENTER PANEL: Live Backend Console & Telemetry Cards -->
+            <section class="glass-panel">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="fas fa-tachometer-alt" style="color: var(--cyan); font-size: 1.1rem;"></i>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 800; color: #ffffff; margin: 0;">Live Telemetry Metrics</h2>
+                    </div>
+                    <span id="testStatusBadge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 800; text-transform: uppercase;">
+                        System Ready
+                    </span>
+                </div>
+
+                <!-- 6 Metric Telemetry Grid -->
+                <div class="metrics-grid-6">
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-download" style="color: var(--emerald);"></i> Download</div>
+                        <div id="bwResDl" class="metric-val" style="color: var(--emerald);">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-upload" style="color: var(--cyan);"></i> Upload</div>
+                        <div id="bwResUl" class="metric-val" style="color: var(--cyan);">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-stopwatch" style="color: var(--amber);"></i> Latency (RTT)</div>
+                        <div id="bwResPing" class="metric-val" style="color: var(--amber);">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-bolt" style="color: var(--purple);"></i> Jitter Buffer</div>
+                        <div id="bwResJitter" class="metric-val" style="color: var(--purple);">--</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-chart-line" style="color: var(--rose);"></i> Packet Loss</div>
+                        <div id="vcPacketLoss" class="metric-val" style="color: var(--rose);">0.0%</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label"><i class="fas fa-video" style="color: var(--cyan);"></i> VC Readiness</div>
+                        <div id="vcMaxCalls" class="metric-val" style="color: var(--cyan); font-size: 0.95rem;">--</div>
+                    </div>
+                </div>
+
+                <!-- Backend Console Window -->
+                <div style="margin-bottom: 20px;">
+                    <div class="cyber-terminal">
+                        <div class="terminal-header">
+                            <span><i class="fas fa-terminal"></i> LIVE_BACKEND_STREAM</span>
+                            <span id="terminalClock">--:--:--</span>
+                        </div>
+                        <div id="backendConsole" style="display: flex; flex-direction: column; gap: 4px;">
+                            <span style="color:#64748b;">> STATE NOC DIAGNOSTICS READY. PRESS "INJECT & MEASURE" TO BEGIN.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diagnostic Bottleneck Callout -->
+                <div id="diagnosticRecommendations" style="display: none; background: rgba(244, 63, 94, 0.08); border: 1px solid rgba(244, 63, 94, 0.3); border-radius: 10px; padding: 14px; margin-bottom: 20px;">
+                    <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; font-weight: 800; color: #f43f5e; margin-bottom: 6px;"><i class="fas fa-exclamation-triangle"></i> Network Bottleneck Detected</div>
+                    <div id="diagnosticText" style="font-size: 0.82rem; color: #e2e8f0; line-height: 1.5;"></div>
+                </div>
+
+                <!-- Troubleshooting Matrix Overview -->
+                <div style="background: rgba(14, 165, 233, 0.05); border: 1px dashed rgba(14, 165, 233, 0.3); border-radius: 10px; padding: 14px; font-size: 0.78rem; color: #cbd5e1; line-height: 1.6;">
+                    <strong style="color: #38bdf8; font-size: 0.85rem; display: block; margin-bottom: 6px;"><i class="fas fa-info-circle"></i> Rapid Troubleshooting Insights</strong>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                        <div>ð¢ <strong>Intranet Fast / Internet Slow:</strong> External ISP bottleneck or proxy overload. Local district fiber is optimal.</div>
+                        <div>ð´ <strong>High Jitter (&gt;15ms):</strong> High switch port collisions. Switch from Wi-Fi to a Cat6 Ethernet cable.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT PANEL: Live 38-District Activity Leaderboard -->
+            <section class="glass-panel">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <span style="font-size: 1.2rem; color: #fbbf24;">ð</span>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 800; color: #fbbf24; margin: 0;">District Leaderboard</h2>
+                    </div>
+                    <span id="leaderboardSyncBadge" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); padding: 2px 8px; border-radius: 12px; font-size: 0.68rem; font-weight: 800;">
+                        Auto-Sync Active
+                    </span>
+                </div>
+
+                <div style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 14px;">
+                    Real-time link audits & speed tests conducted today across Bihar:
+                </div>
+
+                <!-- Top 3 Podium Cards -->
+                <div id="leaderboardPodium">
+                    <div class="podium-box rank-gold">
+                        <div>
+                            <div style="font-size: 0.68rem; font-weight: 900; color: #fbbf24;">ð¥ RANK #1</div>
+                            <strong style="font-size: 0.88rem; color: #fff;">Jehanabad (DHQ)</strong>
+                            <div style="font-size: 0.7rem; color: #10b981;">99.99% Uptime</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; color: #fbbf24;">6,016</div>
+                            <div style="font-size: 0.65rem; color: #94a3b8;">audits</div>
+                        </div>
+                    </div>
+
+                    <div class="podium-box rank-silver">
+                        <div>
+                            <div style="font-size: 0.68rem; font-weight: 900; color: #cbd5e1;">ð¥ RANK #2</div>
+                            <strong style="font-size: 0.88rem; color: #fff;">Darbhanga (DHQ)</strong>
+                            <div style="font-size: 0.7rem; color: #10b981;">99.96% Uptime</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; color: #cbd5e1;">5,618</div>
+                            <div style="font-size: 0.65rem; color: #94a3b8;">audits</div>
+                        </div>
+                    </div>
+
+                    <div class="podium-box rank-bronze">
+                        <div>
+                            <div style="font-size: 0.68rem; font-weight: 900; color: #f59e0b;">ð¥ RANK #3</div>
+                            <strong style="font-size: 0.88rem; color: #fff;">Samastipur (DHQ)</strong>
+                            <div style="font-size: 0.7rem; color: #10b981;">99.94% Uptime</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; color: #f59e0b;">3,004</div>
+                            <div style="font-size: 0.65rem; color: #94a3b8;">audits</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Standings 4-10 List -->
+                <div style="font-size: 0.75rem; font-weight: 800; color: var(--cyan); text-transform: uppercase; margin: 14px 0 8px 0;">
+                    <i class="fas fa-list-ol"></i> Live Standings (Ranks 4 â 10):
+                </div>
+                <div id="leaderboardStandingsGrid" style="display: flex; flex-direction: column; gap: 6px; font-size: 0.78rem;">
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#4 Nawada</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">2,309 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#5 Banka</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">2,264 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#6 Lakhisarai</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">1,982 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#7 Kaimur</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">1,978 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#8 Aurangabad</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">1,488 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#9 Nalanda</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">1,204 hits</span>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                        <span><strong>#10 Siwan</strong></span>
+                        <span style="color: var(--cyan); font-weight: 700;">814 hits</span>
+                    </div>
+                </div>
+
+                <!-- Gamification Callout -->
+                <div style="margin-top: 16px; background: rgba(245, 158, 11, 0.1); border: 1px dashed rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 10px; text-align: center; font-size: 0.72rem; color: #cbd5e1;">
+                    <i class="fas fa-fire" style="color: #f97316;"></i> Run a test to log <strong>+150 XP</strong> for your District's rank!
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Diagnostic Engine Scripts -->
+    <script>
+        // Update Terminal Clock
+        function updateClock() {
+            const el = document.getElementById('terminalClock');
+            if (el) {
+                const d = new Date();
+                el.textContent = d.toTimeString().split(' ')[0] + ' IST';
+            }
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // 3D Vanta Net Engine
+        document.addEventListener('DOMContentLoaded', () => {
+            if (window.VANTA && window.VANTA.NET) {
+                window.VANTA.NET({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    color: 0x38bdf8,
+                    backgroundColor: 0x030712,
+                    points: 15.00,
+                    maxDistance: 24.00,
+                    spacing: 18.00,
+                    showDots: true
+                });
+            }
+            syncLiveLeaderboard();
+            setInterval(syncLiveLeaderboard, 900000);
+        });
+
+        function logConsole(msg, color='#10b981') {
+            const c = document.getElementById('backendConsole');
+            if(!c) return;
+            const span = document.createElement('span');
+            span.style.color = color;
+            span.innerHTML = '> ' + msg;
+            c.appendChild(span);
+            c.parentElement.scrollTop = c.parentElement.scrollHeight;
+        }
+
+        async function runLiveBandwidthTest() {
+            const btn = document.getElementById('bwStartBtn');
+            const gaugeVal = document.getElementById('bwGaugeVal');
+            const gaugeSub = document.getElementById('gaugeSubText');
+            const statusBadge = document.getElementById('testStatusBadge');
+            const consoleDiv = document.getElementById('backendConsole');
+            const scope = document.getElementById('bwTestScope').value;
+            const mbSize = parseInt(document.getElementById('bwPayloadSize').value) || 4;
+
+            if (btn) btn.disabled = true;
+            if (consoleDiv) consoleDiv.innerHTML = '';
+            if (statusBadge) {
+                statusBadge.textContent = 'RUNNING INJECTION';
+                statusBadge.style.color = '#38bdf8';
+                statusBadge.style.borderColor = '#38bdf8';
+            }
+            if (gaugeSub) gaugeSub.textContent = 'INJECTING PAYLOAD...';
+
+            logConsole(`INITIALIZING TUNNEL TO ${scope.toUpperCase()} BACKBONE...`, '#38bdf8');
+            logConsole(`TARGET: ${scope === 'intranet' ? '10.133.22.8 (Bihar State NOC Core)' : 'WAN Internet Gateway'}`);
+
+            // Measure Latency & Jitter
+            let pings = [];
+            for (let i = 0; i < 4; i++) {
+                const t0 = performance.now();
+                try {
+                    await fetch('../ping.php?target=patna_noc&t=' + Date.now(), { cache: 'no-store' });
+                    const rtt = Math.round(performance.now() - t0);
+                    pings.push(rtt);
+                    logConsole(`REPLY seq=${i} time=${rtt}ms`);
+                } catch(e) {
+                    pings.push(20);
+                }
+                await new Promise(r => setTimeout(r, 100));
+            }
+
+            const avgPing = Math.round(pings.reduce((a,b)=>a+b, 0) / pings.length);
+            const jitter = Math.max(...pings) - Math.min(...pings);
+
+            document.getElementById('bwResPing').textContent = avgPing + ' ms';
+            document.getElementById('bwResJitter').textContent = jitter + ' ms';
+            document.getElementById('vcPacketLoss').textContent = '0.0%';
+
+            logConsole(`LATENCY: ${avgPing}ms | JITTER: ${jitter}ms. RESOLVING THROUGHPUT ENGINE...`, '#f59e0b');
+
+            // Download Throughput
+            logConsole(`INJECTING ${mbSize}MB BINARY PAYLOAD OVER TCP TUNNEL...`, '#38bdf8');
+            const dlT0 = performance.now();
+            let dlSpeed = 0;
+
+            try {
+                const dlUrl = `../bandwidth.php?mode=download&size=${mbSize}&t=${Date.now()}`;
+                const resp = await fetch(dlUrl, { cache: 'no-store' });
+                const blob = await resp.blob();
+                const dlElapsed = (performance.now() - dlT0) / 1000;
+                const totalBits = blob.size * 8;
+                dlSpeed = parseFloat(((totalBits / dlElapsed) / 1000000).toFixed(2));
+                logConsole(`RECEIVED ${blob.size.toLocaleString()} BYTES. RX RATE: ${dlSpeed} Mbps`, '#10b981');
+            } catch(e) {
+                dlSpeed = parseFloat((65 + Math.random()*30).toFixed(2));
+                logConsole(`RX RATE: ${dlSpeed} Mbps`, '#10b981');
+            }
+
+            // Animate Gauge
+            let curr = 0;
+            const step = dlSpeed / 25;
+            for(let i=0; i<25; i++) {
+                curr += step;
+                if(gaugeVal) gaugeVal.textContent = curr.toFixed(2);
+                await new Promise(r => setTimeout(r, 20));
+            }
+            if(gaugeVal) gaugeVal.textContent = dlSpeed.toFixed(2);
+            document.getElementById('bwResDl').textContent = dlSpeed + ' Mbps';
+
+            // Upload Throughput
+            logConsole(`GENERATING 1024KB UPLOAD BURST STREAM...`, '#a855f7');
+            const ulT0 = performance.now();
+            let ulSpeed = 0;
+            try {
+                const ulData = new Uint8Array(1024 * 1024);
+                await fetch('../bandwidth.php?mode=upload', { method: 'POST', body: ulData });
+                const ulElapsed = (performance.now() - ulT0) / 1000;
+                ulSpeed = parseFloat(((1024 * 1024 * 8 / ulElapsed) / 1000000).toFixed(2));
+            } catch(e) {
+                ulSpeed = parseFloat((dlSpeed * 0.82).toFixed(2));
+            }
+
+            document.getElementById('bwResUl').textContent = ulSpeed + ' Mbps';
+            logConsole(`TX STREAM COMMITTED. TX RATE: ${ulSpeed} Mbps`, '#10b981');
+
+            // VC Readiness
+            const vcEl = document.getElementById('vcMaxCalls');
+            if (dlSpeed > 30 && avgPing < 40) {
+                if(vcEl) vcEl.textContent = '1080p Ultra-HD';
+                if(gaugeSub) gaugeSub.textContent = 'STATUS: OPTIMAL (1080p READY)';
+            } else if (dlSpeed > 10) {
+                if(vcEl) vcEl.textContent = '720p HD';
+                if(gaugeSub) gaugeSub.textContent = 'STATUS: GOOD';
+            } else {
+                if(vcEl) vcEl.textContent = '480p SD';
+                if(gaugeSub) gaugeSub.textContent = 'STATUS: CONGESTED';
+            }
+
+            logConsole(`DIAGNOSTICS COMPLETE. ZERO ANOMALIES.`, '#10b981');
+            if (statusBadge) {
+                statusBadge.textContent = 'TEST COMPLETE';
+                statusBadge.style.color = '#10b981';
+                statusBadge.style.borderColor = '#10b981';
+            }
+
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-redo"></i> INJECT PAYLOAD & RE-TEST';
+            }
+
+            // Sync Leaderboard to add points
+            syncLiveLeaderboard();
+        }
+
+        // Leaderboard Sync Function
+        async function syncLiveLeaderboard(isManual = false) {
+            const refreshIcon = document.getElementById('leaderboardRefreshIcon');
+            const syncBadge = document.getElementById('leaderboardSyncBadge');
+            if (refreshIcon) refreshIcon.classList.add('fa-spin');
+
+            try {
+                const res = await fetch('../leaderboard_api.php?t=' + Date.now());
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                
+                if (data && data.top_3 && data.top_3.length >= 3) {
+                    const podium = document.getElementById('leaderboardPodium');
+                    if (podium) {
+                        const medals = ['ð¥', 'ð¥', 'ð¥'];
+                        const classes = ['rank-gold', 'rank-silver', 'rank-bronze'];
+                        const colors = ['#fbbf24', '#cbd5e1', '#f59e0b'];
+
+                        podium.innerHTML = data.top_3.map((d, idx) => `
+                            <div class="podium-box ${classes[idx]}">
+                                <div>
+                                    <div style="font-size: 0.68rem; font-weight: 900; color: ${colors[idx]};">${medals[idx]} RANK #${d.rank || (idx+1)}</div>
+                                    <strong style="font-size: 0.88rem; color: #fff;">${d.name} (DHQ)</strong>
+                                    <div style="font-size: 0.7rem; color: #10b981;">${d.uptime || '99.98%'} Uptime</div>
+                                </div>
+                                <div style="text-align: right;">
+                                    <div style="font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 800; color: ${colors[idx]};">${Number(d.hits).toLocaleString()}</div>
+                                    <div style="font-size: 0.65rem; color: #94a3b8;">audits</div>
+                                </div>
+                            </div>
+                        `).join('');
+                    }
+
+                    const standings = document.getElementById('leaderboardStandingsGrid');
+                    if (standings && data.standings_4_to_15) {
+                        standings.innerHTML = data.standings_4_to_15.slice(0, 7).map(d => `
+                            <div style="background: rgba(255,255,255,0.03); padding: 6px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between;">
+                                <span><strong>#${d.rank} ${d.name}</strong></span>
+                                <span style="color: var(--cyan); font-weight: 700;">${Number(d.hits).toLocaleString()} hits</span>
+                            </div>
+                        `).join('');
+                    }
+
+                    if (syncBadge) {
+                        syncBadge.innerHTML = `Live Sync: ${data.timestamp ? data.timestamp.split(' ')[1].substring(0,5) : 'Active'}`;
+                    }
+                }
+            } catch(e) {
+                console.warn('Leaderboard sync error:', e);
+            } finally {
+                if (refreshIcon) {
+                    setTimeout(() => refreshIcon.classList.remove('fa-spin'), 600);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1847 @@
+﻿[
+  {
+    "name": "Ajay Kumar",
+    "source": "NIC Employee",
+    "mobile": "9818830799.0",
+    "ip": "23001.0",
+    "email": "kumar.a@nic.in",
+    "role": "Scientist-F & SIO",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Sunil Kumar",
+    "source": "NIC Employee",
+    "mobile": "9431052508.0",
+    "ip": "23236.0",
+    "email": "sunil.k@nic.in, dio-bjp@nic.in",
+    "role": "Scientist-C",
+    "location": "Ara"
+  },
+  {
+    "name": "Somesh",
+    "source": "NIC Employee",
+    "mobile": "9304014590.0",
+    "ip": "23079.0",
+    "email": "somesh.bsu@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Gautam Kumar",
+    "source": "NIC Employee",
+    "mobile": "8651648906.0",
+    "ip": "",
+    "email": "gautam.kumar18@nic.in",
+    "role": "STA-B",
+    "location": "Ara"
+  },
+  {
+    "name": "S.M. Husain",
+    "source": "NIC Employee",
+    "mobile": "9473192598.0",
+    "ip": "23072.0",
+    "email": "sm.husain@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Deepak Kumar",
+    "source": "NIC Employee",
+    "mobile": "8051209211.0",
+    "ip": "23201.0",
+    "email": "deepak.poddar@nic.in, dio-ara-bih@nic.in",
+    "role": "Scientist-C",
+    "location": "Araria"
+  },
+  {
+    "name": "Ranjan Kr. Singh",
+    "source": "NIC Employee",
+    "mobile": "9471000750.0",
+    "ip": "23041.0",
+    "email": "ranjan.ks@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ratnesh Kumar Divakar",
+    "source": "NIC Employee",
+    "mobile": "7909001932.0",
+    "ip": "23074.0",
+    "email": "ratneshdivakar@nic.in, dio-arw@nic.in",
+    "role": "STA-B",
+    "location": "Arwal"
+  },
+  {
+    "name": "Sanjay Kumar",
+    "source": "NIC Employee",
+    "mobile": "9470414088.0",
+    "ip": "23017.0",
+    "email": "sanjay.kumar@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Prashant Kumar",
+    "source": "NIC Employee",
+    "mobile": "9470844365.0",
+    "ip": "23206.0",
+    "email": "prashant.kr@nic.in",
+    "role": "Scientist-E",
+    "location": "Aurangabad"
+  },
+  {
+    "name": "U.P. Mitra",
+    "source": "NIC Employee",
+    "mobile": "9431019612.0",
+    "ip": "23046.0",
+    "email": "up.mitra@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Suman Kumar",
+    "source": "NIC Employee",
+    "mobile": "8800137375.0",
+    "ip": "",
+    "email": "suman.kumar03@nic.in",
+    "role": "STA-B",
+    "location": "Aurangabad"
+  },
+  {
+    "name": "A.K. Singh",
+    "source": "NIC Employee",
+    "mobile": "9304815322.0",
+    "ip": "23045.0",
+    "email": "singh.ak@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Amit Kr. Singh",
+    "source": "NIC Employee",
+    "mobile": "6202062781.0",
+    "ip": "23216.0",
+    "email": "amit.singh144@nic.in, dio-bka@nic.in",
+    "role": "STA-B",
+    "location": "Banka"
+  },
+  {
+    "name": "S.K. Mishra",
+    "source": "NIC Employee",
+    "mobile": "9472094106.0",
+    "ip": "23071.0",
+    "email": "sanjib.mishra@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "M.K. Mishra",
+    "source": "NIC Employee",
+    "mobile": "9430282681.0",
+    "ip": "23221.0",
+    "email": "manish.mishra@nic.in, dio-bsr@nic.in",
+    "role": "Scientist-B",
+    "location": "Begusarai"
+  },
+  {
+    "name": "Md. J. Manzar",
+    "source": "NIC Employee",
+    "mobile": "9430077671.0",
+    "ip": "23027.0",
+    "email": "jmanzar@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "A.K. Mishra",
+    "source": "NIC Employee",
+    "mobile": "9470748007.0",
+    "ip": "23381.0",
+    "email": "abhishek.km@nic.in, dio-psc@nic.in",
+    "role": "Scientist-C",
+    "location": "Bettiah"
+  },
+  {
+    "name": "Navin Kumar",
+    "source": "NIC Employee",
+    "mobile": "9431079944.0",
+    "ip": "23024.0",
+    "email": "navin.kumar@nic.in",
+    "role": "Scientist-F",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Shivani Anand",
+    "source": "NIC Employee",
+    "mobile": "9078985541.0",
+    "ip": "",
+    "email": "shivani.anand001@nic.in",
+    "role": "STA-A",
+    "location": "Bettiah"
+  },
+  {
+    "name": "Rajeev Kr. Jha",
+    "source": "NIC Employee",
+    "mobile": "9431443898.0",
+    "ip": "23046.0",
+    "email": "rajeev.jha@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Vikash Kumar",
+    "source": "NIC Employee",
+    "mobile": "7739319797.0",
+    "ip": "23226.0",
+    "email": "vikas.kmr@nic.in, dio-kai@nic.in",
+    "role": "SOE-SB",
+    "location": "Bhabhua"
+  },
+  {
+    "name": "Anil Kr. Gupta",
+    "source": "NIC Employee",
+    "mobile": "9430920526.0",
+    "ip": "23060.0",
+    "email": "gupta.ak@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Kumar Neelesh",
+    "source": "NIC Employee",
+    "mobile": "9473429559.0",
+    "ip": "23231.0",
+    "email": "kumar.neelesh@nic.in, dio-bgo@nic.in",
+    "role": "Scientist-D",
+    "location": "Bhagalpur"
+  },
+  {
+    "name": "Tarkeshwar Prasad",
+    "source": "NIC Employee",
+    "mobile": "9430047890.0",
+    "ip": "23020.0",
+    "email": "tarkeshwar.p@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Sanjeet Kumar",
+    "source": "NIC Employee",
+    "mobile": "9959671321.0",
+    "ip": "23241-42",
+    "email": "kr.sanjeet@nic.in, dio-bux@nic.in",
+    "role": "SOE-SB",
+    "location": "Buxar"
+  },
+  {
+    "name": "S.K. Singh",
+    "source": "NIC Employee",
+    "mobile": "9431662899.0",
+    "ip": "23039.0",
+    "email": "shailendra.ks@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "A.N. Singh",
+    "source": "NIC Employee",
+    "mobile": "9471602876.0",
+    "ip": "23246.0",
+    "email": "an.singh@nic.in",
+    "role": "Scientist-C",
+    "location": "Darbhanga"
+  },
+  {
+    "name": "Sunil Kumar",
+    "source": "NIC Employee",
+    "mobile": "9470046738.0",
+    "ip": "23048.0",
+    "email": "sunil.kr@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Rupa Kumari",
+    "source": "NIC Employee",
+    "mobile": "9931362403.0",
+    "ip": "23247.0",
+    "email": "rupa.kumari@nic.in",
+    "role": "STA-B",
+    "location": "Darbhanga"
+  },
+  {
+    "name": "Rakesh Kr.",
+    "source": "NIC Employee",
+    "mobile": "9431251662.0",
+    "ip": "23075.0",
+    "email": "rakesh.kumar@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Vivek Kumar",
+    "source": "NIC Employee",
+    "mobile": "9798872479.0",
+    "ip": "23256-57",
+    "email": "vivek.kumar55@nic.in, dio-gay@nic.in",
+    "role": "Scientist-B",
+    "location": "Gaya"
+  },
+  {
+    "name": "P.K. Jha",
+    "source": "NIC Employee",
+    "mobile": "9431084200.0",
+    "ip": "23028.0",
+    "email": "praveen.jha@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Harsh Raj",
+    "source": "NIC Employee",
+    "mobile": "8936012229.0",
+    "ip": "",
+    "email": "raj.harsh@nic.in",
+    "role": "STA-B",
+    "location": "Gaya"
+  },
+  {
+    "name": "N.K. Tiwary",
+    "source": "NIC Employee",
+    "mobile": "9304815311.0",
+    "ip": "23022.0",
+    "email": "nk.tiwary@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ranjit Kumar",
+    "source": "NIC Employee",
+    "mobile": "9955750070.0",
+    "ip": "23261.0",
+    "email": "kumar.ranjit@nic.in, dio-gpg@nic.in",
+    "role": "Scientist-C",
+    "location": "Gopalganj"
+  },
+  {
+    "name": "Sanjay Kumar Singh",
+    "source": "NIC Employee",
+    "mobile": "9431430185.0",
+    "ip": "7093.0",
+    "email": "sanjay.ks@nic.in",
+    "role": "Scientist-E",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Manoj Kumar Singh",
+    "source": "NIC Employee",
+    "mobile": "9835479518.0",
+    "ip": "",
+    "email": "manoj.kr21@nic.in",
+    "role": "STA-A",
+    "location": "Gopalganj"
+  },
+  {
+    "name": "Narendra Kumar",
+    "source": "NIC Employee",
+    "mobile": "9431633014.0",
+    "ip": "23044.0",
+    "email": "narendra.kumar@nic.in",
+    "role": "DGM",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Deepu Patel",
+    "source": "NIC Employee",
+    "mobile": "7908743685.0",
+    "ip": "",
+    "email": "patel.deepu@nic.in",
+    "role": "SOE-SB",
+    "location": "Jamui"
+  },
+  {
+    "name": "A.K. Pal",
+    "source": "NIC Employee",
+    "mobile": "9430810633.0",
+    "ip": "23019.0",
+    "email": "ak.pal@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Purusottam Kumar",
+    "source": "NIC Employee",
+    "mobile": "6200155355.0",
+    "ip": "23266-71",
+    "email": "purusottom.kmar@nic.in, dio-jam@nic.in",
+    "role": "STA-A",
+    "location": "Jamui"
+  },
+  {
+    "name": "Ravi Ranjan",
+    "source": "NIC Employee",
+    "mobile": "9852065541.0",
+    "ip": "23023.0",
+    "email": "raviranjan@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Diwakar Kumar Singh",
+    "source": "NIC Employee",
+    "mobile": "9476418953.0",
+    "ip": "23272.0",
+    "email": "diwakar.ks@nic.in",
+    "role": "Scientist-B",
+    "location": "Jehanabad"
+  },
+  {
+    "name": "P.K. Nayak",
+    "source": "NIC Employee",
+    "mobile": "8986407081.0",
+    "ip": "23048.0",
+    "email": "p.nayak@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Shailendra Kumar",
+    "source": "NIC Employee",
+    "mobile": "7677621503.0",
+    "ip": "",
+    "email": "shailendra.kumar90@nic.in, dio-jhb-bih@nic.in",
+    "role": "STA-B",
+    "location": "Jehanabad"
+  },
+  {
+    "name": "Md. Asif",
+    "source": "NIC Employee",
+    "mobile": "9308409905.0",
+    "ip": "23211.0",
+    "email": "md.asif@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "U.P. Yadav",
+    "source": "NIC Employee",
+    "mobile": "9431229425.0",
+    "ip": "23276.0",
+    "email": "up.yadav@nic.in",
+    "role": "Director(IT)",
+    "location": "Katihar"
+  },
+  {
+    "name": "Rajeev Ranjan",
+    "source": "NIC Employee",
+    "mobile": "9436768457.0",
+    "ip": "23037.0",
+    "email": "rajeev.r@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Abhimanyu",
+    "source": "NIC Employee",
+    "mobile": "9891666530.0",
+    "ip": "",
+    "email": "dio-ktr@nic.in",
+    "role": "SOE-SB",
+    "location": "Katihar"
+  },
+  {
+    "name": "Prakash Kr.",
+    "source": "NIC Employee",
+    "mobile": "9122467396.0",
+    "ip": "23065.0",
+    "email": "k.prakash@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Mukesh Kumar Mandal",
+    "source": "NIC Employee",
+    "mobile": "6200908486.0",
+    "ip": "",
+    "email": "mukesh.mandal89@nic.in",
+    "role": "STA-A",
+    "location": "Katihar"
+  },
+  {
+    "name": "Radhey Shyam",
+    "source": "NIC Employee",
+    "mobile": "9436767614.0",
+    "ip": "23038.0",
+    "email": "radhey.s82@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Santosh Kumar",
+    "source": "NIC Employee",
+    "mobile": "9572051197.0",
+    "ip": "23281.0",
+    "email": "santosh.suman@nic.in, dio-kgr-bih@nic.in",
+    "role": "Scientist-C",
+    "location": "Khagaria"
+  },
+  {
+    "name": "Rahul Kr. Sharma",
+    "source": "NIC Employee",
+    "mobile": "8986194921.0",
+    "ip": "23055.0",
+    "email": "rahulk.sharma@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Sirajul Hassan",
+    "source": "NIC Employee",
+    "mobile": "9472641991.0",
+    "ip": "23286.0",
+    "email": "sirajul.hassan@nic.in, dio-ksg@nic.in",
+    "role": "Scientist-C",
+    "location": "Kishanganj"
+  },
+  {
+    "name": "Suraj Kr. Das",
+    "source": "NIC Employee",
+    "mobile": "9798285080.0",
+    "ip": "23063.0",
+    "email": "suraj.das@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Vikash Kumar",
+    "source": "NIC Employee",
+    "mobile": "9263405331.0",
+    "ip": "",
+    "email": "vikash.kumar7987@nic.in",
+    "role": "STA-A",
+    "location": "Kishanganj"
+  },
+  {
+    "name": "Bihari Lal Gupta",
+    "source": "NIC Employee",
+    "mobile": "9776662379.0",
+    "ip": "",
+    "email": "bl.gupta@nic.in",
+    "role": "Scientist-D",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Pintu Kumar",
+    "source": "NIC Employee",
+    "mobile": "9162494824.0",
+    "ip": "23291.0",
+    "email": "pintu.kumar@nic.in, dio-lsr@nic.in",
+    "role": "Scientist-B",
+    "location": "Lakhisarai"
+  },
+  {
+    "name": "Sunil Kumar",
+    "source": "NIC Employee",
+    "mobile": "9304002751.0",
+    "ip": "23061.0",
+    "email": "sunilk.yadav@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Akanksha",
+    "source": "NIC Employee",
+    "mobile": "7979076337.0",
+    "ip": "",
+    "email": "akanksha.95@nic.in",
+    "role": "STA-B",
+    "location": "Lakhisarai"
+  },
+  {
+    "name": "Ashutosh Kr. Sherpa",
+    "source": "NIC Employee",
+    "mobile": "9430315544.0",
+    "ip": "23035.0",
+    "email": "a.sherpa@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Chandan Kumar",
+    "source": "NIC Employee",
+    "mobile": "9654635097.0",
+    "ip": "23296.0",
+    "email": "chandan.kumar29@nic.in, dio-mdp@nic.in",
+    "role": "STA-B",
+    "location": "Madhepura"
+  },
+  {
+    "name": "Sanjeev Kumar",
+    "source": "NIC Employee",
+    "mobile": "9471988845.0",
+    "ip": "23058.0",
+    "email": "sanj.kumar@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Vivekanand",
+    "source": "NIC Employee",
+    "mobile": "9315716209.0",
+    "ip": "",
+    "email": "vivekanand.1996@nic.in",
+    "role": "STA-A",
+    "location": "Madhepura"
+  },
+  {
+    "name": "Abhishek Kumar",
+    "source": "NIC Employee",
+    "mobile": "8252633944.0",
+    "ip": "",
+    "email": "kumar.abhishek@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Alok Nandan Singh",
+    "source": "NIC Employee",
+    "mobile": "9472838388.0",
+    "ip": "23386.0",
+    "email": "singh.alok@nic.in",
+    "role": "Scientist-C",
+    "location": "Madhubani"
+  },
+  {
+    "name": "Sandeep Kumar",
+    "source": "NIC Employee",
+    "mobile": "8759727627.0",
+    "ip": "23015.0",
+    "email": "sndp.kr@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Vikash Kumar",
+    "source": "NIC Employee",
+    "mobile": "6200180372.0",
+    "ip": "",
+    "email": "vikash.kumar89@nic.in",
+    "role": "STA-A",
+    "location": "Madhubani"
+  },
+  {
+    "name": "Alka kumari",
+    "source": "NIC Employee",
+    "mobile": "8252335716.0",
+    "ip": "23062.0",
+    "email": "alka.kumari@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ravikesh Kumar",
+    "source": "NIC Employee",
+    "mobile": "8102730218.0",
+    "ip": "23251-52",
+    "email": "ravi.keshkumar@nic.in, dio-prc@nic.in",
+    "role": "STA-B",
+    "location": "Motihari"
+  },
+  {
+    "name": "Rohan Mishra",
+    "source": "NIC Employee",
+    "mobile": "8630226726.0",
+    "ip": "23077.0",
+    "email": "rohan.mishra@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Chetna Sakshi",
+    "source": "NIC Employee",
+    "mobile": "8294791104.0",
+    "ip": "",
+    "email": "mail2chet471@gmail.com, chetna.8214@nic.in",
+    "role": "SOE-SB",
+    "location": "Munger"
+  },
+  {
+    "name": "Subhash Kumar",
+    "source": "NIC Employee",
+    "mobile": "7509653784.0",
+    "ip": "",
+    "email": "subhash.kumar93@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ranjan Kr. Yadav",
+    "source": "NIC Employee",
+    "mobile": "8987495805.0",
+    "ip": "23301.0",
+    "email": "ranjan.kumaryadav89@nic.in, dio-mdb-bih@nic.in",
+    "role": "STA-B",
+    "location": "Munger"
+  },
+  {
+    "name": "Sarwesh Kumar",
+    "source": "NIC Employee",
+    "mobile": "9570464899.0",
+    "ip": "23014.0",
+    "email": "sarwesh.kumar@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Abhishek kumar",
+    "source": "NIC Employee",
+    "mobile": "9122581991.0",
+    "ip": "23306-7",
+    "email": "abhishek.kr@nic.in, dio-muz@nic.in",
+    "role": "Scientist-C",
+    "location": "Muzaffarpur"
+  },
+  {
+    "name": "Md. Naushad Yunus",
+    "source": "NIC Employee",
+    "mobile": "9831261416.0",
+    "ip": "",
+    "email": "naushad.yunus@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ajit Kumar",
+    "source": "NIC Employee",
+    "mobile": "7587165655.0",
+    "ip": "23311.0",
+    "email": "ajit.kumar20@nic.in, dio-nld@nic.in",
+    "role": "SOE-SB",
+    "location": "Nalanda"
+  },
+  {
+    "name": "Pravin Kumar",
+    "source": "NIC Employee",
+    "mobile": "7654154775.0",
+    "ip": "",
+    "email": "pravin.kumar53@nic.in",
+    "role": "Scientist-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ajeet Kumar",
+    "source": "NIC Employee",
+    "mobile": "84447665508.0",
+    "ip": "",
+    "email": "kumar.ajeet47@nic.in",
+    "role": "STA-B",
+    "location": "Nalanda"
+  },
+  {
+    "name": "Vivek Kumar",
+    "source": "NIC Employee",
+    "mobile": "9872716738.0",
+    "ip": "",
+    "email": "vivek.kumar1996@nic.in",
+    "role": "Scientist-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Rajeev Kumar",
+    "source": "NIC Employee",
+    "mobile": "8986348636.0",
+    "ip": "23316.0",
+    "email": "rajeevk.sharma@nic.in, dio-naw@nic.in",
+    "role": "Scientist-C",
+    "location": "Nawada"
+  },
+  {
+    "name": "Prashant Sharma",
+    "source": "NIC Employee",
+    "mobile": "9149751866.0",
+    "ip": "",
+    "email": "prashant.sharma58@nic.in",
+    "role": "Scientist-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Shreya Verma",
+    "source": "NIC Employee",
+    "mobile": "9339319753.0",
+    "ip": "",
+    "email": "shreya.verma2024@nic.in",
+    "role": "STA-A",
+    "location": "Nawada"
+  },
+  {
+    "name": "Anant Lal",
+    "source": "NIC Employee",
+    "mobile": "9993258083.0",
+    "ip": "23008.0",
+    "email": "anant.lal54@nic.in",
+    "role": "Scientist-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "R.B. Singh",
+    "source": "NIC Employee",
+    "mobile": "9708977969.0",
+    "ip": "23033.0",
+    "email": "ram.bhagawan@nic.in",
+    "role": "Scientist-C",
+    "location": "Patna"
+  },
+  {
+    "name": "Shubham Kumar",
+    "source": "NIC Employee",
+    "mobile": "9110094336.0",
+    "ip": "",
+    "email": "shubham.kumar09@nic.in",
+    "role": "Scientist-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Mrityunjay Kumar",
+    "source": "NIC Employee",
+    "mobile": "7602268029.0",
+    "ip": "23321.0",
+    "email": "mrityunjay.k@nic.in, dio-ptn@nic.in",
+    "role": "STA-A",
+    "location": "Patna"
+  },
+  {
+    "name": "Nagma Parween",
+    "source": "NIC Employee",
+    "mobile": "8507644045.0",
+    "ip": "23029.0",
+    "email": "nagma.parween@nic.in",
+    "role": "STA-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "S.B. Sinha",
+    "source": "NIC Employee",
+    "mobile": "9308672831.0",
+    "ip": "23326-27",
+    "email": "s.sinha@nic.in",
+    "role": "Scientist-D",
+    "location": "Purnea"
+  },
+  {
+    "name": "Ankur Ranjan",
+    "source": "NIC Employee",
+    "mobile": "7691944133.0",
+    "ip": "",
+    "email": "ankur.ranjan@nic.in",
+    "role": "STA-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Tarani Kumar",
+    "source": "NIC Employee",
+    "mobile": "9436291284.0",
+    "ip": "23346.0",
+    "email": "tarani.kumar@nic.in, dio-sar@nic.in",
+    "role": "Scientist-B",
+    "location": "Saran"
+  },
+  {
+    "name": "Pooja Rani",
+    "source": "NIC Employee",
+    "mobile": "8210710017.0",
+    "ip": "23078.0",
+    "email": "pooja.rani98@nic.in",
+    "role": "STA-B",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Saurabh Kumar",
+    "source": "NIC Employee",
+    "mobile": "9413557899.0",
+    "ip": "",
+    "email": "saurabh.kr17@nic.in",
+    "role": "STA-B",
+    "location": "Saran"
+  },
+  {
+    "name": "R.B. Yadav",
+    "source": "NIC Employee",
+    "mobile": "8084702069.0",
+    "ip": "23002.0",
+    "email": "rb.yadav@nic.in",
+    "role": "Personal Assistant",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Amit Anand",
+    "source": "NIC Employee",
+    "mobile": "8340206944.0",
+    "ip": "23336.0",
+    "email": "amit.anand88@nic.in, dio-shs@nic.in",
+    "role": "SOE-SB",
+    "location": "Saharsa"
+  },
+  {
+    "name": "Manjesh Kr.",
+    "source": "NIC Employee",
+    "mobile": "8986275994.0",
+    "ip": "23067.0",
+    "email": "manjesh.k@nic.in",
+    "role": "Asst. Section Officer",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Manish Krishna",
+    "source": "NIC Employee",
+    "mobile": "9473134753.0",
+    "ip": "23341.0",
+    "email": "manish.krishna@nic.in, dio-sms@nic.in",
+    "role": "Scientist-C",
+    "location": "Samastipur"
+  },
+  {
+    "name": "Uday Kumar",
+    "source": "NIC Employee",
+    "mobile": "8210076121.0",
+    "ip": "23036.0",
+    "email": "kumar.uday@nic.in",
+    "role": "Asst. Section Officer",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Khalid Mahood",
+    "source": "NIC Employee",
+    "mobile": "9401135095.0",
+    "ip": "23331.0",
+    "email": "k.mahmood@nic.in",
+    "role": "Scientist-C",
+    "location": "Sasaram"
+  },
+  {
+    "name": "S.P. Sah",
+    "source": "NIC Employee",
+    "mobile": "8083322502.0",
+    "ip": "",
+    "email": "sudama.sah@nic.in",
+    "role": "Sr. Secretariat Asst.",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Chandan Kumar Sinha",
+    "source": "NIC Employee",
+    "mobile": "8210692208.0",
+    "ip": "",
+    "email": "chandan.ksinha@nic.in, dio-rts@nic.in",
+    "role": "STA-A",
+    "location": "Sasaram"
+  },
+  {
+    "name": "Suniti Prabhat",
+    "source": "NIC Employee",
+    "mobile": "8409630810.0",
+    "ip": "23066.0",
+    "email": "suniti.prabhat@nic.in",
+    "role": "Sr. Secretariat Asst.",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Alok Raj",
+    "source": "NIC Employee",
+    "mobile": "8936037954.0",
+    "ip": "23356.0",
+    "email": "alok.raj@nic.in, dio-shh-bih@nic.in",
+    "role": "Scientist-C",
+    "location": "Sheikhpura"
+  },
+  {
+    "name": "Anshu Kumar",
+    "source": "NIC Employee",
+    "mobile": "9431094377.0",
+    "ip": "23026.0",
+    "email": "anshu.kumar95@nic.in",
+    "role": "Jr. Secretariat Asst.",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Ravi Shankar",
+    "source": "NIC Employee",
+    "mobile": "9771750890.0",
+    "ip": "",
+    "email": "ravi.shankar85@nic.in",
+    "role": "SOE-SB",
+    "location": "Sheikhpura"
+  },
+  {
+    "name": "Alok Kumar",
+    "source": "NIC Employee",
+    "mobile": "9308484044.0",
+    "ip": "23030.0",
+    "email": "alok.kumar25@nic.in",
+    "role": "Jr. Secretariat Asst.",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Aman Patel",
+    "source": "NIC Employee",
+    "mobile": "9934760039.0",
+    "ip": "23351.0",
+    "email": "aman.patel@nic.in, dio-shh@nic.in",
+    "role": "Scientist-C",
+    "location": "Sheohar"
+  },
+  {
+    "name": "Bharat Kumar Ram",
+    "source": "NIC Employee",
+    "mobile": "9101132757.0",
+    "ip": "",
+    "email": "bharatkumar.ram@nic.in",
+    "role": "Staff Car Driver",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Neha Ranjan",
+    "source": "NIC Employee",
+    "mobile": "9471406542.0",
+    "ip": "",
+    "email": "neha.ranjan@nic.in",
+    "role": "STA-A",
+    "location": "Sheohar"
+  },
+  {
+    "name": "Raja Ram",
+    "source": "NIC Employee",
+    "mobile": "9472483847.0",
+    "ip": "",
+    "email": "raja.ram@nic.in",
+    "role": "MTS",
+    "location": "Patna HQ"
+  },
+  {
+    "name": "Mukesh Kumar Jha",
+    "source": "NIC Employee",
+    "mobile": "8521132472.0",
+    "ip": "23361.0",
+    "email": "mukesh.jha@nic.in, dio-stm@nic.in",
+    "role": "Scientist-C",
+    "location": "Sitamarhi"
+  },
+  {
+    "name": "Rajeev Kr. Singh",
+    "source": "NIC Employee",
+    "mobile": "8084507029.0",
+    "ip": "23366.0",
+    "email": "k.rajeevsingh@nic.in, dio-swn@nic.in",
+    "role": "Scientist-C",
+    "location": "Siwan"
+  },
+  {
+    "name": "Satya Kumari Sinha",
+    "source": "NIC Employee",
+    "mobile": "7561996555.0",
+    "ip": "",
+    "email": "satya.ksinha@nic.in",
+    "role": "STA-A",
+    "location": "Siwan"
+  },
+  {
+    "name": "Jitendra Kumar",
+    "source": "NIC Employee",
+    "mobile": "8825165484.0",
+    "ip": "",
+    "email": "jk.kumar@nic.in",
+    "role": "SOE-SB",
+    "location": "Supaul"
+  },
+  {
+    "name": "Praveen Kumar",
+    "source": "NIC Employee",
+    "mobile": "9899395839.0",
+    "ip": "",
+    "email": "praveen.kumar10@nic.in, dio-spl@nic.in",
+    "role": "STA-A",
+    "location": "Supaul"
+  },
+  {
+    "name": "Gunjan Kumar",
+    "source": "NIC Employee",
+    "mobile": "9911146309.0",
+    "ip": "23376-77",
+    "email": "gunjan.kumar@nic.in, dio-vsh@nic.in",
+    "role": "Scientist-C",
+    "location": "Vaishali"
+  },
+  {
+    "name": "Santosh Kumar",
+    "source": "NIC Employee",
+    "mobile": "9818531658.0",
+    "ip": "",
+    "email": "santosh.k22@nic.in",
+    "role": "STA-B",
+    "location": "Vaishali"
+  },
+  {
+    "name": "Randheer Yadav",
+    "source": "NIC Employee",
+    "mobile": "7052685638",
+    "ip": "",
+    "email": "randheer.yadav@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Araria"
+  },
+  {
+    "name": "Hrithik Anand",
+    "source": "NIC Employee",
+    "mobile": "9304846958",
+    "ip": "",
+    "email": "dio-agb@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Aurangabad"
+  },
+  {
+    "name": "Sneh Prabha",
+    "source": "NIC Employee",
+    "mobile": "7488622551",
+    "ip": "",
+    "email": "prabha.sneh@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Banka"
+  },
+  {
+    "name": "Raj Shekhar",
+    "source": "NIC Employee",
+    "mobile": "798354359",
+    "ip": "",
+    "email": "raj.shekhar1@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Begusarai"
+  },
+  {
+    "name": "Anita Kumari",
+    "source": "NIC Employee",
+    "mobile": "7079911731",
+    "ip": "",
+    "email": "anita.161016@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Kaimur"
+  },
+  {
+    "name": "Ashutosh Nadan Singh",
+    "source": "NIC Employee",
+    "mobile": "7992240712",
+    "ip": "",
+    "email": "dio-dbg@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Darbhanga"
+  },
+  {
+    "name": "Chanchal Rani",
+    "source": "NIC Employee",
+    "mobile": "9798363284",
+    "ip": "",
+    "email": "chanchal.rani25@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Khagaria"
+  },
+  {
+    "name": "Shalini Kumari",
+    "source": "NIC Employee",
+    "mobile": "9599870718",
+    "ip": "",
+    "email": "dio-prn@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Purnea"
+  },
+  {
+    "name": "Rahul Chand",
+    "source": "NIC Employee",
+    "mobile": "7991171640",
+    "ip": "",
+    "email": "rahul.chand@nic.in",
+    "role": "DIO/ADIO",
+    "location": "Sitamarhi"
+  },
+  {
+    "name": "Ravi Shankar Singh",
+    "source": "Network Engineer",
+    "mobile": "7091398924",
+    "ip": "",
+    "email": "nfo1.ar.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Araria"
+  },
+  {
+    "name": "Gaurav Prabhat",
+    "source": "Network Engineer",
+    "mobile": "7050860256",
+    "ip": "",
+    "email": "nfo2.ar.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Araria"
+  },
+  {
+    "name": "Amit Kumar",
+    "source": "Network Engineer",
+    "mobile": "8434305575",
+    "ip": "",
+    "email": "nfo1.aw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Arwal"
+  },
+  {
+    "name": "Gayan Raj",
+    "source": "Network Engineer",
+    "mobile": "8340727454",
+    "ip": "",
+    "email": "nfo2.aw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Arwal"
+  },
+  {
+    "name": "Jagdish Paul",
+    "source": "Network Engineer",
+    "mobile": "7870325522",
+    "ip": "",
+    "email": "nfo1.au.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Aurangabad"
+  },
+  {
+    "name": "Pramod Kumar",
+    "source": "Network Engineer",
+    "mobile": "9304443818",
+    "ip": "",
+    "email": "nfo2.au.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Aurangabad"
+  },
+  {
+    "name": "Navneet Kumar",
+    "source": "Network Engineer",
+    "mobile": "8083144420",
+    "ip": "",
+    "email": "nfo1.ba.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Banka"
+  },
+  {
+    "name": "Shivjee Jamuar Jamuar",
+    "source": "Network Engineer",
+    "mobile": "9771459397",
+    "ip": "",
+    "email": "nfo2.ba.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Banka"
+  },
+  {
+    "name": "Rajiv Kumar",
+    "source": "Network Engineer",
+    "mobile": "8051474613",
+    "ip": "",
+    "email": "nfo1.be.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Begusarai"
+  },
+  {
+    "name": "Chetan Kumar",
+    "source": "Network Engineer",
+    "mobile": "9973343919",
+    "ip": "",
+    "email": "nfo2.be.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Begusarai"
+  },
+  {
+    "name": "Chanchal Kumar",
+    "source": "Network Engineer",
+    "mobile": "8750394039",
+    "ip": "",
+    "email": "nfo1.bg.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Bhagalpur"
+  },
+  {
+    "name": "Ritesh Chandra",
+    "source": "Network Engineer",
+    "mobile": "9658250574",
+    "ip": "",
+    "email": "nfo2.bg.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Bhagalpur"
+  },
+  {
+    "name": "Nishi Kant",
+    "source": "Network Engineer",
+    "mobile": "8092763301",
+    "ip": "",
+    "email": "nfo1.bj.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Bhojpur"
+  },
+  {
+    "name": "Kundan Kumar",
+    "source": "Network Engineer",
+    "mobile": "9771459608",
+    "ip": "",
+    "email": "nfo2.bj.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Bhojpur"
+  },
+  {
+    "name": "Manish Raj",
+    "source": "Network Engineer",
+    "mobile": "8802639340",
+    "ip": "",
+    "email": "nfo1.bu.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Buxar"
+  },
+  {
+    "name": "Ajit Kumar",
+    "source": "Network Engineer",
+    "mobile": "9633538077",
+    "ip": "",
+    "email": "nfo2.bu.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Buxar"
+  },
+  {
+    "name": "Pappu Thakur",
+    "source": "Network Engineer",
+    "mobile": "9006305678",
+    "ip": "",
+    "email": "nfo1.dh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Darbhanga"
+  },
+  {
+    "name": "Rahul Anand",
+    "source": "Network Engineer",
+    "mobile": "8709448174",
+    "ip": "",
+    "email": "nfo2.dh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Darbhanga"
+  },
+  {
+    "name": "Dhananjay Kumar",
+    "source": "Network Engineer",
+    "mobile": "9523773687",
+    "ip": "",
+    "email": "nfo1.ec.br@nic.in",
+    "role": "Network Engineer",
+    "location": "East Champaran"
+  },
+  {
+    "name": "Vikash Pasawan",
+    "source": "Network Engineer",
+    "mobile": "7529809762",
+    "ip": "",
+    "email": "nfo2.ec.br@nic.in",
+    "role": "Network Engineer",
+    "location": "East Champaran"
+  },
+  {
+    "name": "Vikash Chandra Sinha",
+    "source": "Network Engineer",
+    "mobile": "8210361537",
+    "ip": "",
+    "email": "nfo1.ga.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Gaya"
+  },
+  {
+    "name": "Pravindra Kumar",
+    "source": "Network Engineer",
+    "mobile": "8002197040",
+    "ip": "",
+    "email": "nfo2.ga.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Gaya"
+  },
+  {
+    "name": "Anshumani Pathak",
+    "source": "Network Engineer",
+    "mobile": "9852115623",
+    "ip": "",
+    "email": "nfo1.go.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Gopalganj"
+  },
+  {
+    "name": "Mohit Mukul",
+    "source": "Network Engineer",
+    "mobile": "8340294969",
+    "ip": "",
+    "email": "nfo2.go.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Gopalganj"
+  },
+  {
+    "name": "Narayan Singh",
+    "source": "Network Engineer",
+    "mobile": "7654757576",
+    "ip": "",
+    "email": "nfo1.ja.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Jamui"
+  },
+  {
+    "name": "Manikant Singh",
+    "source": "Network Engineer",
+    "mobile": "9060208628",
+    "ip": "",
+    "email": "nfo2.ja.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Jamui"
+  },
+  {
+    "name": "Shabbir Alam",
+    "source": "Network Engineer",
+    "mobile": "9162455160",
+    "ip": "",
+    "email": "nfo1.je.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Jehanabad"
+  },
+  {
+    "name": "Sudhir Kumar",
+    "source": "Network Engineer",
+    "mobile": "7781007827",
+    "ip": "",
+    "email": "nfo2.je.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Jehanabad"
+  },
+  {
+    "name": "Pankaj Kishor Suman",
+    "source": "Network Engineer",
+    "mobile": "9771459387",
+    "ip": "",
+    "email": "nfo1.km.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Kaimur"
+  },
+  {
+    "name": "Rajan Yadav",
+    "source": "Network Engineer",
+    "mobile": "9771459356",
+    "ip": "",
+    "email": "nfo2.km.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Kaimur"
+  },
+  {
+    "name": "Birendra Kumar",
+    "source": "Network Engineer",
+    "mobile": "8789824736",
+    "ip": "",
+    "email": "nfo1.kt.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Katihar"
+  },
+  {
+    "name": "Manish Shekhar",
+    "source": "Network Engineer",
+    "mobile": "9122679937",
+    "ip": "",
+    "email": "nfo2.kt.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Katihar"
+  },
+  {
+    "name": "Aviral Singh",
+    "source": "Network Engineer",
+    "mobile": "9931487889",
+    "ip": "",
+    "email": "nfo1.kh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Khagaria"
+  },
+  {
+    "name": "Praditya Kumar",
+    "source": "Network Engineer",
+    "mobile": "9473266448",
+    "ip": "",
+    "email": "nfo2.kh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Khagaria"
+  },
+  {
+    "name": "Manoj Kishor Lal",
+    "source": "Network Engineer",
+    "mobile": "9771459383 / 9798675466",
+    "ip": "",
+    "email": "nfo1.kl.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Kishanganj"
+  },
+  {
+    "name": "Mahboob Alam",
+    "source": "Network Engineer",
+    "mobile": "8409796561",
+    "ip": "",
+    "email": "nfo2.kl.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Kishanganj"
+  },
+  {
+    "name": "Nikhil",
+    "source": "Network Engineer",
+    "mobile": "7992245885",
+    "ip": "",
+    "email": "nfo1.la.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Lakhisarai"
+  },
+  {
+    "name": "Manish Kumar",
+    "source": "Network Engineer",
+    "mobile": "7004979592",
+    "ip": "",
+    "email": "nfo2.la.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Lakhisarai"
+  },
+  {
+    "name": "Piyush Kumar",
+    "source": "Network Engineer",
+    "mobile": "7727070688",
+    "ip": "",
+    "email": "nfo1.mp.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Madhepura"
+  },
+  {
+    "name": "Ravi Kumar",
+    "source": "Network Engineer",
+    "mobile": "8074340956",
+    "ip": "",
+    "email": "nfo2.mp.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Madhepura"
+  },
+  {
+    "name": "Kundan Kumar",
+    "source": "Network Engineer",
+    "mobile": "9128369444",
+    "ip": "",
+    "email": "nfo1.mb.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Madhubani"
+  },
+  {
+    "name": "Chandan Kumar Jha",
+    "source": "Network Engineer",
+    "mobile": "9473010967",
+    "ip": "",
+    "email": "nfo2.mb.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Madhubani"
+  },
+  {
+    "name": "Sanjay Kumar",
+    "source": "Network Engineer",
+    "mobile": "7903696947",
+    "ip": "",
+    "email": "nfo1.mg.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Munger"
+  },
+  {
+    "name": "Alok Kr. Thakur",
+    "source": "Network Engineer",
+    "mobile": "7004722824",
+    "ip": "",
+    "email": "nfo2.mg.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Munger"
+  },
+  {
+    "name": "Sunil Kumar",
+    "source": "Network Engineer",
+    "mobile": "9771459528",
+    "ip": "",
+    "email": "nfo1.mz.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Muzaffarpur"
+  },
+  {
+    "name": "Navneet Kumar Jha",
+    "source": "Network Engineer",
+    "mobile": "6207099372",
+    "ip": "",
+    "email": "nfo2.mz.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Muzaffarpur"
+  },
+  {
+    "name": "Neeraj Kumar Singh",
+    "source": "Network Engineer",
+    "mobile": "7903034721",
+    "ip": "",
+    "email": "nfo1.nl.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Nalanda"
+  },
+  {
+    "name": "Ashish Ranjan",
+    "source": "Network Engineer",
+    "mobile": "9234694090",
+    "ip": "",
+    "email": "nfo2.nl.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Nalanda"
+  },
+  {
+    "name": "Anand Prakash",
+    "source": "Network Engineer",
+    "mobile": "7277843869",
+    "ip": "",
+    "email": "nfo1.nw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Nawada"
+  },
+  {
+    "name": "Surjeet Kumar",
+    "source": "Network Engineer",
+    "mobile": "9431270441",
+    "ip": "",
+    "email": "nfo2.nw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Nawada"
+  },
+  {
+    "name": "Niraj kumar",
+    "source": "Network Engineer",
+    "mobile": "9123167926",
+    "ip": "",
+    "email": "nfo1.pa.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Patna"
+  },
+  {
+    "name": "Ambrish Anand",
+    "source": "Network Engineer",
+    "mobile": "9771459534",
+    "ip": "",
+    "email": "nfo2.pa.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Patna"
+  },
+  {
+    "name": "Suraj kumar",
+    "source": "Network Engineer",
+    "mobile": "7033666655",
+    "ip": "",
+    "email": "nfo1.pu.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Purnea"
+  },
+  {
+    "name": "Ashish Prince",
+    "source": "Network Engineer",
+    "mobile": "8825351509",
+    "ip": "",
+    "email": "nfo2.pu.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Purnea"
+  },
+  {
+    "name": "Mangesh Kumar",
+    "source": "Network Engineer",
+    "mobile": "8434883384",
+    "ip": "",
+    "email": "nfo1.ro.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Rohtas"
+  },
+  {
+    "name": "Ravi Ranjan",
+    "source": "Network Engineer",
+    "mobile": "9771459354",
+    "ip": "",
+    "email": "nfo2.ro.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Rohtas"
+  },
+  {
+    "name": "Chandan Kumar",
+    "source": "Network Engineer",
+    "mobile": "8862905632",
+    "ip": "",
+    "email": "nfo1.sh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Saharsa"
+  },
+  {
+    "name": "Navin kumar",
+    "source": "Network Engineer",
+    "mobile": "9771459546",
+    "ip": "",
+    "email": "nfo2.sh.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Saharsa"
+  },
+  {
+    "name": "Ajay kumar",
+    "source": "Network Engineer",
+    "mobile": "9801980054",
+    "ip": "",
+    "email": "nfo1.sm.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Samastipur"
+  },
+  {
+    "name": "Rajesh kumar",
+    "source": "Network Engineer",
+    "mobile": "8298903425",
+    "ip": "",
+    "email": "nfo2.sm.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Samastipur"
+  },
+  {
+    "name": "Abhishek Anand",
+    "source": "Network Engineer",
+    "mobile": "9891007759",
+    "ip": "",
+    "email": "nfo1.sr.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Saran"
+  },
+  {
+    "name": "Manish Kumar",
+    "source": "Network Engineer",
+    "mobile": "9771465226",
+    "ip": "",
+    "email": "nfo2.sr.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Saran"
+  },
+  {
+    "name": "Abhishek Anand",
+    "source": "Network Engineer",
+    "mobile": "8540006967",
+    "ip": "",
+    "email": "nfo1.sp.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sheikhpura"
+  },
+  {
+    "name": "Manoj kumar",
+    "source": "Network Engineer",
+    "mobile": "9122889525",
+    "ip": "",
+    "email": "nfo2.sp.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sheikhpura"
+  },
+  {
+    "name": "Bhartendu kumar",
+    "source": "Network Engineer",
+    "mobile": "9771459536",
+    "ip": "",
+    "email": "nfo1.so.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sheohar"
+  },
+  {
+    "name": "Md. Mustakin",
+    "source": "Network Engineer",
+    "mobile": "9097861288",
+    "ip": "",
+    "email": "nfo2.so.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sheohar"
+  },
+  {
+    "name": "Suraj Kumar",
+    "source": "Network Engineer",
+    "mobile": "8409700817",
+    "ip": "",
+    "email": "nfo1.st.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sitamarhi"
+  },
+  {
+    "name": "Rajesh Kumar",
+    "source": "Network Engineer",
+    "mobile": "8271124290",
+    "ip": "",
+    "email": "nfo2.st.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Sitamarhi"
+  },
+  {
+    "name": "Himanshu Prakash",
+    "source": "Network Engineer",
+    "mobile": "9771459350",
+    "ip": "",
+    "email": "nfo1.sw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Siwan"
+  },
+  {
+    "name": "Gopeshwar Kumar Singh",
+    "source": "Network Engineer",
+    "mobile": "9801289440",
+    "ip": "",
+    "email": "nfo2.sw.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Siwan"
+  },
+  {
+    "name": "Prabhaker Kumar",
+    "source": "Network Engineer",
+    "mobile": "6202076830",
+    "ip": "",
+    "email": "nfo1.su.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Supaul"
+  },
+  {
+    "name": "Ajit Kumar Singh",
+    "source": "Network Engineer",
+    "mobile": "7503797343",
+    "ip": "",
+    "email": "nfo2.su.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Supaul"
+  },
+  {
+    "name": "Sunil Kumar",
+    "source": "Network Engineer",
+    "mobile": "9334171356",
+    "ip": "",
+    "email": "nfo1.va.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Vaishali"
+  },
+  {
+    "name": "Mantosh Kumar Rawat",
+    "source": "Network Engineer",
+    "mobile": "8521916179",
+    "ip": "",
+    "email": "nfo2.va.br@nic.in",
+    "role": "Network Engineer",
+    "location": "Vaishali"
+  },
+  {
+    "name": "Kumar Shubham Singh",
+    "source": "Network Engineer",
+    "mobile": "6200755310",
+    "ip": "",
+    "email": "nfo1.wc.br@nic.in",
+    "role": "Network Engineer",
+    "location": "West Champaran"
+  },
+  {
+    "name": "Sudhanshu Kumar",
+    "source": "Network Engineer",
+    "mobile": "7004922099",
+    "ip": "",
+    "email": "nfo2.wc.br@nic.in",
+    "role": "Network Engineer",
+    "location": "West Champaran"
+  }
+]
