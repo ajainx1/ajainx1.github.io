@@ -1,0 +1,9 @@
+# Responsible Disclosure & Security Policy for AdityaSec Systems
+Contact: mailto:contact@adityasec32.systems
+Expires: 2027-12-31T23:59:59.000Z
+Encryption: https://adityasec32.systems/pgp-key.txt
+Preferred-Languages: en
+Canonical: https://adityasec32.systems/.well-known/security.txt
+Policy: https://adityasec32.systems/security-policy
+
+# Statement: All government & infrastructure case studies on this domain are sanitized for educational & portfolio demonstration only. No live state networks are exposed.
