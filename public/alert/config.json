@@ -4,822 +4,822 @@
     "max_retries": 2,
     "hosts": [
         {
-            "ip": "10.133.10.2",
+            "ip": "10.X.X.2",
             "description": "3.11 Lakhisarai-",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.3",
+            "ip": "10.X.X.3",
             "description": "1.21 Arwal_Router Faulty",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.4",
+            "ip": "10.X.X.4",
             "description": "5.11 Vaishali_Router",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.5",
+            "ip": "10.X.X.5",
             "description": "1.1 Araria_ASR1002",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.6",
+            "ip": "10.X.X.6",
             "description": "2.62 Jehanabad_Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.7",
+            "ip": "10.X.X.7",
             "description": "3.91 Purnea_7206VXR/BSNL",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.8",
+            "ip": "10.X.X.8",
             "description": "2.32 Gaya_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.9",
+            "ip": "10.X.X.9",
             "description": "1.61 Bhabhua/Kaimur_",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.10",
+            "ip": "10.X.X.10",
             "description": "4.52 Sheikhpura_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.11",
+            "ip": "10.X.X.11",
             "description": "2.12 Darbhanga_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.12",
+            "ip": "10.X.X.12",
             "description": "1.71 Bhagalpur_7206VXR",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.13",
+            "ip": "10.X.X.13",
             "description": "4.71 Sitamarhi_ASR1002 -X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.14",
+            "ip": "10.X.X.14",
             "description": "3.92 Purnea_ASR 1002x",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.15",
+            "ip": "10.X.X.15",
             "description": "4.32 Samastipur_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.16",
+            "ip": "10.X.X.16",
             "description": "4.42 Saran_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.17",
+            "ip": "10.X.X.17",
             "description": "4.81 Siwan_CISCO2851",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.18",
+            "ip": "10.X.X.18",
             "description": "4.91 Supaul_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.19",
+            "ip": "10.X.X.19",
             "description": "1.3 Aurangabad_7206VXR",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.20",
+            "ip": "10.X.X.20",
             "description": "1.4 Banka_CISCO2851",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.21",
+            "ip": "10.X.X.21",
             "description": "Begusaria_ASR1002",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.22",
+            "ip": "10.X.X.22",
             "description": "1.8 Bhojpur_7206VXR",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.23",
+            "ip": "10.X.X.23",
             "description": "1.9 Buxar_ASR1002",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.24",
+            "ip": "10.X.X.24",
             "description": "2.2 East Champaran/Motihari_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.25",
+            "ip": "10.X.X.25",
             "description": "2.4 Gopalganj_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.26",
+            "ip": "10.X.X.26",
             "description": "2.5 Jamui_ASR1002",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.27",
+            "ip": "10.X.X.27",
             "description": "2.71 Katihar _10002X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.28",
+            "ip": "10.X.X.28",
             "description": "2.8 Khagaria_CISCO2851",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.29",
+            "ip": "10.X.X.29",
             "description": "2.9 Kishanganj_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.30",
+            "ip": "10.X.X.30",
             "description": "3.2 Madhepura_CISCO2851",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.31",
+            "ip": "10.X.X.31",
             "description": "3.3 Madhubani_CISCO2851",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.32",
+            "ip": "10.X.X.32",
             "description": "3.4 Munger_7206VXR",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.33",
+            "ip": "10.X.X.33",
             "description": "3.5 Muzaffarpur_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.34",
+            "ip": "10.X.X.34",
             "description": "3.6 Nalanda_ASR1002-X",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.35",
+            "ip": "10.X.X.35",
             "description": "4.2 Saharsa_7206VXR",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.36",
+            "ip": "10.X.X.36",
             "description": "Buxar/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.37",
+            "ip": "10.X.X.37",
             "description": "Buxar/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.38",
+            "ip": "10.X.X.38",
             "description": "Sitamarhi-Switch-Unmanagable",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.39",
+            "ip": "10.X.X.39",
             "description": "Arwal System",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.40",
+            "ip": "10.X.X.40",
             "description": "Supaul/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.41",
+            "ip": "10.X.X.41",
             "description": "Bhagalpur/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.42",
+            "ip": "10.X.X.42",
             "description": "Jamui/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.43",
+            "ip": "10.X.X.43",
             "description": "Jamui/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.44",
+            "ip": "10.X.X.44",
             "description": "Katihar",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.45",
+            "ip": "10.X.X.45",
             "description": "Khagaria/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.46",
+            "ip": "10.X.X.46",
             "description": "Kishanganj/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.47",
+            "ip": "10.X.X.47",
             "description": "Madhepura/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.48",
+            "ip": "10.X.X.48",
             "description": "Aurangabad/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.49",
+            "ip": "10.X.X.49",
             "description": "Madhubani/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.50",
+            "ip": "10.X.X.50",
             "description": "Munger/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.51",
+            "ip": "10.X.X.51",
             "description": "Muzaffarpur/2960X/Switch-ADM",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.52",
+            "ip": "10.X.X.52",
             "description": "Nalanda/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.53",
+            "ip": "10.X.X.53",
             "description": "Rohtas/2960X/Switch-ADM",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.54",
+            "ip": "10.X.X.54",
             "description": "Saharsa/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.55",
+            "ip": "10.X.X.55",
             "description": "Banka/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.56",
+            "ip": "10.X.X.56",
             "description": "Saran/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.57",
+            "ip": "10.X.X.57",
             "description": "Begusarai/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.58",
+            "ip": "10.X.X.58",
             "description": "Kaimur/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.59",
+            "ip": "10.X.X.59",
             "description": "Kaimur/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.60",
+            "ip": "10.X.X.60",
             "description": "Bhojpur/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.61",
+            "ip": "10.X.X.61",
             "description": "Siwan/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.62",
+            "ip": "10.X.X.62",
             "description": "E.Champaran/2960S/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.63",
+            "ip": "10.X.X.63",
             "description": "Gopalganj/2960X/Switch",
             "category": "DHQ"
         },
         {
-            "ip": "10.133.10.64",
+            "ip": "10.X.X.64",
             "description": "1st Floor",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.65",
+            "ip": "10.X.X.65",
             "description": "2nd Floor",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.66",
+            "ip": "10.X.X.66",
             "description": "2nd Floor Switch-2",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.67",
+            "ip": "10.X.X.67",
             "description": "2nd Floor Switch-3 POE",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.68",
+            "ip": "10.X.X.68",
             "description": "3rd Floor",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.69",
+            "ip": "10.X.X.69",
             "description": "4th Floor",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.70",
+            "ip": "10.X.X.70",
             "description": "4th Floor Switch-2",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.71",
+            "ip": "10.X.X.71",
             "description": "5th Floor DGRC",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.72",
+            "ip": "10.X.X.72",
             "description": "Bhawan 9006 Core Router",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.73",
+            "ip": "10.X.X.73",
             "description": "Bhawan 9010 Core Router",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.74",
+            "ip": "10.X.X.74",
             "description": "BHAWAN Core Switch",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.75",
+            "ip": "10.X.X.75",
             "description": "CCTV Switch",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.76",
+            "ip": "10.X.X.76",
             "description": "CS Cell 100 Mbps BSNL",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.77",
+            "ip": "10.X.X.77",
             "description": "CS Cell 2 MBPS",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.78",
+            "ip": "10.X.X.78",
             "description": "MCU 1",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.79",
+            "ip": "10.X.X.79",
             "description": "MCU 2",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.80",
+            "ip": "10.X.X.80",
             "description": "Patna High Court 20Mbps",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.81",
+            "ip": "10.X.X.81",
             "description": "Patna High Court 4Mbps",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.82",
+            "ip": "10.X.X.82",
             "description": "PGCIL PATNA-DEL 10 Gbps",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.83",
+            "ip": "10.X.X.83",
             "description": "PGCIL PATNA-HYD 10 Gbps",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.84",
+            "ip": "10.X.X.84",
             "description": "RAILTEL PATNA-KOL 10 Gbps",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.85",
+            "ip": "10.X.X.85",
             "description": "SDC 10G",
             "category": "SHQ"
         },
         {
-            "ip": "10.133.10.86",
+            "ip": "10.X.X.86",
             "description": "AA Bhojpur/PGCIL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.87",
+            "ip": "10.X.X.87",
             "description": "AA Buxar/PGCIL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.88",
+            "ip": "10.X.X.88",
             "description": "BB Banka/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.89",
+            "ip": "10.X.X.89",
             "description": "BB Jamui/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.90",
+            "ip": "10.X.X.90",
             "description": "CC Madhubani/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.91",
+            "ip": "10.X.X.91",
             "description": "CC Sitamarhi/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.92",
+            "ip": "10.X.X.92",
             "description": "DD Motihari/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.93",
+            "ip": "10.X.X.93",
             "description": "DD Sheohar/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.94",
+            "ip": "10.X.X.94",
             "description": "EE Gopalganj/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.95",
+            "ip": "10.X.X.95",
             "description": "EE Siwan/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.96",
+            "ip": "10.X.X.96",
             "description": "FF Araria/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.97",
+            "ip": "10.X.X.97",
             "description": "FF Kishanganj/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.98",
+            "ip": "10.X.X.98",
             "description": "GG Jehanabad/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.99",
+            "ip": "10.X.X.99",
             "description": "GG Nalanda/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.100",
+            "ip": "10.X.X.100",
             "description": "HH Aurangabad/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.101",
+            "ip": "10.X.X.101",
             "description": "HH Gaya/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.102",
+            "ip": "10.X.X.102",
             "description": "II Bettiah/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.103",
+            "ip": "10.X.X.103",
             "description": "II Vaishali/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.104",
+            "ip": "10.X.X.104",
             "description": "JJ Muzaffarpur/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.105",
+            "ip": "10.X.X.105",
             "description": "JJ Samastipur/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.106",
+            "ip": "10.X.X.106",
             "description": "KK Begusarai/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.107",
+            "ip": "10.X.X.107",
             "description": "KK Lakhisarai/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.108",
+            "ip": "10.X.X.108",
             "description": "LL Nawada/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.109",
+            "ip": "10.X.X.109",
             "description": "LL Sheikhpura/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.110",
+            "ip": "10.X.X.110",
             "description": "MM Bhagalpur/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.111",
+            "ip": "10.X.X.111",
             "description": "MM Katihar/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.112",
+            "ip": "10.X.X.112",
             "description": "NN Bhabhua/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.113",
+            "ip": "10.X.X.113",
             "description": "NN Rohtas/BSNL/1G",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.114",
+            "ip": "10.X.X.114",
             "description": "OO Madhepura/BSNL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.115",
+            "ip": "10.X.X.115",
             "description": "OO Purnea/BSNL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.116",
+            "ip": "10.X.X.116",
             "description": "PP Madhepura/Railtel/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.117",
+            "ip": "10.X.X.117",
             "description": "PP Saharsha/Railtel/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.118",
+            "ip": "10.X.X.118",
             "description": "QQ Darbhanga/PGCIL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.119",
+            "ip": "10.X.X.119",
             "description": "QQ Supaul/PGCIL/100 Mbps",
             "category": "INTD"
         },
         {
-            "ip": "10.133.10.120",
+            "ip": "10.X.X.120",
             "description": "PATNA-BALLIA(Interstate)-PGCIL-100M",
             "category": "INTS"
         },
         {
-            "ip": "10.133.10.121",
+            "ip": "10.X.X.121",
             "description": "PATNA-DEORIA(Interstate)-RAILTEL-1G",
             "category": "INTS"
         },
         {
-            "ip": "10.133.10.122",
+            "ip": "10.X.X.122",
             "description": "PATNA-GAZIPUR(Interstate)-PGCIL-100M",
             "category": "INTS"
         },
         {
-            "ip": "10.133.10.123",
+            "ip": "10.X.X.123",
             "description": "Main UPS Monitor",
             "category": "UPS"
         },
         {
-            "ip": "10.133.10.124",
+            "ip": "10.X.X.124",
             "description": "Backup UPS Monitor",
             "category": "UPS"
         },
         {
-            "ip": "10.133.10.125",
+            "ip": "10.X.X.125",
             "description": "UPS Monitor 3",
             "category": "UPS"
         },
         {
-            "ip": "10.133.10.126",
+            "ip": "10.X.X.126",
             "description": "Samastipur Switch",
             "category": "District Headquarters Links (DHQ)"
         },
         {
-            "ip": "10.133.10.127",
+            "ip": "10.X.X.127",
             "description": "SHQ AP - NIC Bhawan - 4th Floor",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.128",
+            "ip": "10.X.X.128",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.129",
+            "ip": "10.X.X.129",
             "description": "SHQ AP - NIC Bhawan - 4th Floor - Rack",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.130",
+            "ip": "10.X.X.130",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Gallery",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.131",
+            "ip": "10.X.X.131",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Extra",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.132",
+            "ip": "10.X.X.132",
             "description": "SHQ AP - NIC Bhawan - 2nd Floor - Room 205",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.133",
+            "ip": "10.X.X.133",
             "description": "SHQ AP - DGRC NIC Bhawan - 5th Floor",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.134",
+            "ip": "10.X.X.134",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor - SIO Room",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.135",
+            "ip": "10.X.X.135",
             "description": "SHQ AP - DGRC NIC Bhawan - 5th Floor (dup.)",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.136",
+            "ip": "10.X.X.136",
             "description": "SHQ AP - NIC Bhawan - 3rd Floor - Room 302",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.137",
+            "ip": "10.X.X.137",
             "description": "SHQ AP - NIC Bhawan - 1st Floor",
             "category": "AP"
         },
         {
-            "ip": "10.133.10.138",
+            "ip": "10.X.X.138",
             "description": "Office of the IG, Frontier HQ, SSB Patna",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.139",
+            "ip": "10.X.X.139",
             "description": "Office of the Commandant, 40th Btn, SSB Patna",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.140",
+            "ip": "10.X.X.140",
             "description": "Office of the Commandant, 52nd Btn, SSB Araria",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.141",
+            "ip": "10.X.X.141",
             "description": "Office of the Commandant, 56th Btn, SSB Bathnaha",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.142",
+            "ip": "10.X.X.142",
             "description": "Office of the DIG (Medical), Composite Hospital, Bathnaha",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.143",
+            "ip": "10.X.X.143",
             "description": "Office of the Commandant, 47th Btn, SSB Pantoka",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.144",
+            "ip": "10.X.X.144",
             "description": "Office of the Commandant, 71st Btn, SSB Piprakothi",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.145",
+            "ip": "10.X.X.145",
             "description": "Office of the DIG (Special Operations), Sector HQ",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.146",
+            "ip": "10.X.X.146",
             "description": "Office of the Commandant, 29th Btn, SSB Gaya",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.147",
+            "ip": "10.X.X.147",
             "description": "Office of the Commandant, 16th Btn, SSB Jamui",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.148",
+            "ip": "10.X.X.148",
             "description": "Office of the Commandant, 12th Btn, SSB Kishanganj",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.149",
+            "ip": "10.X.X.149",
             "description": "Office of the Commandant, 19th Btn, SSB Thakurganj",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.150",
+            "ip": "10.X.X.150",
             "description": "Office of the Commandant, 48th Btn, SSB Jaynagar",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.151",
+            "ip": "10.X.X.151",
             "description": "Office of the Commandant, 18th Btn, SSB Rajnagar",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.152",
+            "ip": "10.X.X.152",
             "description": "Office of the DIG, Sector HQ, Muzaffarpur",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.153",
+            "ip": "10.X.X.153",
             "description": "Office of the Commandant, 32nd Btn, SSB Muzaffarpur",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.154",
+            "ip": "10.X.X.154",
             "description": "Office of the DIG, Sector HQ, Purnia",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.155",
+            "ip": "10.X.X.155",
             "description": "Office of the Commandant, 20th Btn, SSB Paktola",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.156",
+            "ip": "10.X.X.156",
             "description": "Office of the Commandant, 51st Btn, SSB Sitamarhi",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.157",
+            "ip": "10.X.X.157",
             "description": "Office of the Commandant, 45th Btn, SSB Birpur",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.158",
+            "ip": "10.X.X.158",
             "description": "Office of the DIG, Recruit Training Centre, Supaul",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.159",
+            "ip": "10.X.X.159",
             "description": "Office of the DIG, Sector HQ, Bettiah",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.160",
+            "ip": "10.X.X.160",
             "description": "Office of the Commandant, 21st Btn, SSB Bagaha",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.161",
+            "ip": "10.X.X.161",
             "description": "Office of the Commandant, 44th Btn, SSB Narkatiaganj",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.162",
+            "ip": "10.X.X.162",
             "description": "Office of the Commandant, 65th Btn, SSB Bettiah",
             "category": "SSB"
         },
         {
-            "ip": "10.133.10.163",
+            "ip": "10.X.X.163",
             "description": "PAC Vertiv Unit 1",
             "category": "PAC"
         },
         {
-            "ip": "10.133.10.164",
+            "ip": "10.X.X.164",
             "description": "PAC Vertiv Unit 3",
             "category": "PAC"
         },
         {
-            "ip": "10.133.10.165",
+            "ip": "10.X.X.165",
             "description": "PAC Vertiv Unit 2",
             "category": "PAC"
         }
