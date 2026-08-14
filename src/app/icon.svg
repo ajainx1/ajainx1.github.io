@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="tileGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#061A14"/>
+      <stop offset="100%" stop-color="#020907"/>
+    </linearGradient>
+    <linearGradient id="shieldGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="pawGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047"/>
+      <stop offset="50%" stop-color="#F59E0B"/>
+      <stop offset="100%" stop-color="#EA580C"/>
+    </linearGradient>
+    <filter id="pawGlow2" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#F59E0B" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded Dark Tile Background -->
+  <rect width="512" height="512" rx="128" fill="url(#tileGrad2)"/>
+  <rect width="504" height="504" x="4" y="4" rx="124" fill="none" stroke="#10B981" stroke-width="8" stroke-opacity="0.4"/>
+
+  <!-- Compassion Shield -->
+  <path d="M256 68 L396 125 C396 285 256 430 256 430 C256 430 116 285 116 125 Z" 
+        fill="#041E15" stroke="url(#shieldGrad2)" stroke-width="22" stroke-linejoin="round"/>
+
+  <!-- Paw Print: Main Pad -->
+  <path d="M256 312 C222 312 202 284 212 254 C220 230 240 220 256 220 C272 220 292 230 300 254 C310 284 290 312 256 312 Z" 
+        fill="url(#pawGrad2)" filter="url(#pawGlow2)"/>
+
+  <!-- Paw Print: 4 Toes -->
+  <ellipse cx="196" cy="204" rx="20" ry="26" transform="rotate(-22 196 204)" fill="url(#pawGrad2)"/>
+  <ellipse cx="236" cy="172" rx="19" ry="25" transform="rotate(-8 236 172)" fill="url(#pawGrad2)"/>
+  <ellipse cx="276" cy="172" rx="19" ry="25" transform="rotate(8 276 172)" fill="url(#pawGrad2)"/>
+  <ellipse cx="316" cy="204" rx="20" ry="26" transform="rotate(22 316 204)" fill="url(#pawGrad2)"/>
+</svg>
