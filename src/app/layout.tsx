@@ -19,41 +19,34 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
-  description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
+  title: "CyberKarma — Answer a Quiz, Feed an Animal 🐾",
+  description: "Play free educational cybersecurity, nature & trivia quizzes. 100% of ethical ad revenue (Google AdSense) directly funds milk, curd & food for stray animals in Patna, India.",
   keywords: [
-    "Aditya Jain",
-    "Cybersecurity Engineer",
-    "Purple Teamer",
-    "SecOps",
-    "Threat Hunting",
-    "SentinelOne",
-    "Wazuh SIEM",
-    "Check Point NGFW",
-    "Fortinet FortiGate",
-    "Palo Alto",
-    "DFIR",
-    "VAPT",
-    "Active Directory Security",
-    "NIST CSF",
-    "CERT-In"
+    "CyberKarma",
+    "Cyber Free Rice",
+    "Answer quiz feed animal",
+    "Free cybersecurity quiz",
+    "Animal charity quiz India",
+    "Patna stray dog feeding",
+    "Digital daanam",
+    "Aditya Jain"
   ],
   manifest: "/manifest.json",
-  metadataBase: new URL("https://adityasec32.systems"),
+  metadataBase: new URL("https://cyberkarma.me"),
   alternates: {
-    canonical: "https://adityasec32.systems",
+    canonical: "https://cyberkarma.me",
   },
   openGraph: {
-    title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
-    description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
-    url: "https://adityasec32.systems",
-    siteName: "AdityaSec Systems",
+    title: "CyberKarma — Answer a Quiz, Feed an Animal 🐾",
+    description: "Play free educational cybersecurity & trivia quizzes to fund real stray animal feeding drives in Patna, India. 100% ad-funded, zero user donations.",
+    url: "https://cyberkarma.me",
+    siteName: "CyberKarma",
     images: [
       {
-        url: "/og_image.png",
+        url: "/cyberkarma_hero_banner.jpg",
         width: 1200,
         height: 630,
-        alt: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
+        alt: "CyberKarma — Answer a Quiz, Feed an Animal",
       },
     ],
     locale: "en_US",
@@ -61,18 +54,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
-    description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
-    images: ["/og_image.png"],
+    title: "CyberKarma — Answer a Quiz, Feed an Animal 🐾",
+    description: "Play free educational cybersecurity & trivia quizzes to fund real stray animal feeding drives in Patna, India.",
+    images: ["/cyberkarma_hero_banner.jpg"],
   },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
-    'theme-color': '#020617',
+    'theme-color': '#070b14',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Aditya Jain",
+    title: "CyberKarma",
   },
 };
 
@@ -83,34 +76,24 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Aditya Jain",
-    "jobTitle": "Cybersecurity Engineer & Purple Teamer",
-    "url": "https://adityasec32.systems",
-    "knowsAbout": [
-      "Cybersecurity",
-      "Network Security",
-      "Purple Teaming",
-      "Threat Hunting",
-      "SentinelOne EDR",
-      "Wazuh SIEM",
-      "Check Point NGFW",
-      "Fortinet FortiGate",
-      "Active Directory Security",
-      "Incident Response",
-      "DFIR"
-    ],
-    "sameAs": [
-      "https://cyberkarma.me",
-      "https://github.com/ajainx1",
-      "https://www.linkedin.com/in/adityajainx1/"
-    ]
+    "@type": "NGO",
+    "name": "CyberKarma Initiative",
+    "url": "https://cyberkarma.me",
+    "founder": {
+      "@type": "Person",
+      "name": "Aditya Jain",
+      "jobTitle": "Cybersecurity Engineer",
+      "url": "https://adityasec32.systems"
+    },
+    "description": "Play free educational cybersecurity & trivia quizzes to fund real stray animal feeding drives in Patna, Bihar, India.",
+    "areaServed": "Patna, Bihar, India",
+    "nonprofitStatus": "Nonprofit501c3"
   };
 
   return (
     <html lang="en" className="dark">
       <head>
-        <meta name="theme-color" content="#020617" />
+        <meta name="theme-color" content="#070b14" />
         <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -139,20 +122,14 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-slate-950 text-slate-100`}
+        className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-[#070b14] text-[#e2e8f0]`}
       >
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-slate-950 font-bold rounded-lg shadow-lg font-mono">
           Skip to main content
         </a>
-        <noscript>
-          <div className="p-6 bg-slate-900 text-emerald-400 text-center font-mono text-sm border-b border-emerald-500/30">
-            <strong>Aditya Jain SecOps Portfolio requires JavaScript.</strong> 4+ years Enterprise SecOps, EDR/SIEM SME, Purple Teaming & Threat Hunting.
-          </div>
-        </noscript>
         <Background3D />
         <div aria-hidden="true" className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
         {children}
-        <Footer />
         <CookieConsent />
         <PWAInstallPrompt />
         <TelegramVisitorLogger />
