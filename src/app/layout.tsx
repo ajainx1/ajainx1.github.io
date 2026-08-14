@@ -1,16 +1,12 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Outfit, JetBrains_Mono, Geist } from "next/font/google";
+import { Inter, Outfit, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import BackgroundWrapper from "@/components/3d/BackgroundWrapper";
+import Background3D from "@/components/3d/Background3D";
 import PWAInstallPrompt from "@/components/PWAInstallPrompt";
 import TelegramVisitorLogger from "@/components/TelegramVisitorLogger";
-import SecurityGuard from "@/components/SecurityGuard";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
 import Script from "next/script";
-import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -23,28 +19,41 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "CyberKarma | Play Quizzes, Feed Street Dogs",
-  description: "Play free quizzes. Every correct answer donates milk & curd to street dogs in Patna, India. Turn your trivia into real impact — 100% free.",
-  keywords: ["quizzes", "quiz", "charity", "feed dogs", "learn", "kids", "educational games", "animal welfare", "free quiz game", "donate food", "ai quiz"],
-  authors: [{ name: "CyberKarma Team", url: "https://cyberkarma.me" }],
-  creator: "CyberKarma",
-  publisher: "CyberKarma Charity",
-  manifest: "/manifest-quiz.json",
-  metadataBase: new URL("https://cyberkarma.me"),
+  title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
+  description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
+  keywords: [
+    "Aditya Jain",
+    "Cybersecurity Engineer",
+    "Purple Teamer",
+    "SecOps",
+    "Threat Hunting",
+    "SentinelOne",
+    "Wazuh SIEM",
+    "Check Point NGFW",
+    "Fortinet FortiGate",
+    "Palo Alto",
+    "DFIR",
+    "VAPT",
+    "Active Directory Security",
+    "NIST CSF",
+    "CERT-In"
+  ],
+  manifest: "/manifest.json",
+  metadataBase: new URL("https://adityasec32.systems"),
   alternates: {
-    canonical: "https://cyberkarma.me",
+    canonical: "https://adityasec32.systems",
   },
   openGraph: {
-    title: "CyberKarma | Play Quizzes & Feed Street Dogs",
-    description: "Play free quizzes. Every correct answer donates milk & curd to street dogs in Patna, India. Turn your trivia into real impact.",
-    url: "https://cyberkarma.me",
-    siteName: "CyberKarma",
+    title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
+    description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
+    url: "https://adityasec32.systems",
+    siteName: "AdityaSec Systems",
     images: [
       {
-        url: "/icon.png",
-        width: 800,
-        height: 600,
-        alt: "CyberKarma Charity Quiz",
+        url: "/og_image.png",
+        width: 1200,
+        height: 630,
+        alt: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
       },
     ],
     locale: "en_US",
@@ -52,29 +61,18 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CyberKarma | Play Quizzes & Feed Animals",
-    description: "Play free quizzes. Every correct answer donates milk & curd to street dogs in Patna, India.",
-    images: ["/icon.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
+    title: "Aditya Jain — Cybersecurity Engineer & Purple Teamer",
+    description: "Network Security & NGFW Architecture (Palo Alto · Check Point · Fortinet) · VAPT · SIEM/EDR · DFIR — securing 750+ government endpoints & Critical National Infrastructure.",
+    images: ["/og_image.png"],
   },
   other: {
     'google-adsense-account': 'ca-pub-6072468142870937',
-    'theme-color': '#0b0f19',
+    'theme-color': '#020617',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "CyberKarma",
+    title: "Aditya Jain",
   },
 };
 
@@ -83,37 +81,36 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "CyberKarma",
-      "url": "https://cyberkarma.me",
-      "description": "Play free educational quizzes and donate food to street dogs with every correct answer.",
-      "applicationCategory": "EducationalApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "NGO",
-      "name": "CyberKarma Charity Foundation",
-      "url": "https://cyberkarma.me",
-      "description": "Field-verified street animal feeding initiative operating in Patna, Bihar.",
-      "sameAs": [
-        "https://cyberkarma.me/impact-reports/"
-      ]
-    }
-  ];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Aditya Jain",
+    "jobTitle": "Cybersecurity Engineer & Purple Teamer",
+    "url": "https://adityasec32.systems",
+    "knowsAbout": [
+      "Cybersecurity",
+      "Network Security",
+      "Purple Teaming",
+      "Threat Hunting",
+      "SentinelOne EDR",
+      "Wazuh SIEM",
+      "Check Point NGFW",
+      "Fortinet FortiGate",
+      "Active Directory Security",
+      "Incident Response",
+      "DFIR"
+    ],
+    "sameAs": [
+      "https://cyberkarma.me",
+      "https://github.com/ajainx1",
+      "https://www.linkedin.com/in/adityajainx1/"
+    ]
+  };
 
   return (
-    <html lang="en" className={cn("dark", "font-sans", geist.variable)}>
+    <html lang="en" className="dark">
       <head>
-        <meta name="theme-color" content="#0b0f19" />
+        <meta name="theme-color" content="#020617" />
         <meta name="google-adsense-account" content="ca-pub-6072468142870937" />
         <link rel="apple-touch-icon" sizes="180x180" href="/icon.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -142,24 +139,23 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-[var(--bg)] text-[var(--fg)]`}
+        className={`${inter.variable} ${outfit.variable} ${mono.variable} antialiased bg-slate-950 text-slate-100`}
       >
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:px-4 focus:py-2 focus:bg-emerald-500 focus:text-slate-950 font-bold rounded-lg shadow-lg font-mono">
           Skip to main content
         </a>
         <noscript>
           <div className="p-6 bg-slate-900 text-emerald-400 text-center font-mono text-sm border-b border-emerald-500/30">
-            <strong>CyberKarma requires JavaScript to play quizzes.</strong> Every question answered donates real food to feed street dogs in Patna, Bihar. Please enable JavaScript to continue.
+            <strong>Aditya Jain SecOps Portfolio requires JavaScript.</strong> 4+ years Enterprise SecOps, EDR/SIEM SME, Purple Teaming & Threat Hunting.
           </div>
         </noscript>
-        <BackgroundWrapper />
+        <Background3D />
         <div aria-hidden="true" className="h-1 w-full bg-gradient-to-r from-[#ff9933] via-white to-[#128807]"></div>
         {children}
         <Footer />
         <CookieConsent />
         <PWAInstallPrompt />
         <TelegramVisitorLogger />
-        <SecurityGuard />
       </body>
     </html>
   );
