@@ -829,8 +829,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
                 if (h.battery_status !== undefined && h.battery_status !== null) {
                     let label = "";
-                    if (h.ip === "10.133.15.42") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
-                    else if (h.ip === "10.133.15.45") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
+                    if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
+                    else if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
                     
                     let batText = label + (h.battery_status == 2 ? "<span style='color:var(--color-up);'>Normal</span>" : 
                                   h.battery_status == 3 ? "<span style='color:var(--color-warning);'>Low</span>" : 
@@ -843,7 +843,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             let camTempStr = "";
             hosts.forEach(h => {
-                if (h.ip === "10.133.15.18" && h.temp !== undefined) {
+                if (h.ip === "10.X.X.0" && h.temp !== undefined) {
                     camTempStr = h.temp;
                 }
             });
@@ -1653,7 +1653,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         clone.active_viewers = {
             count: 4,
-            ips: ["10.133.0.12 (NOC Lead)", "10.133.0.45 (SIO Console)", "10.133.22.8 (Server)"]
+            ips: ["10.X.X.0 (NOC Lead)", "10.X.X.0 (SIO Console)", "10.X.X.0 (Server)"]
         };
 
         if (!clone.logs || clone.logs.length === 0) {
@@ -1879,7 +1879,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const hop2 = (Math.floor(Math.random() * 2) + 1) + " ms";
                 const hop3 = (Math.floor(Math.random() * 4) + 2) + " ms";
                 
-                const traceOutput = `Tracing route to ${activeHostIp} [${desc}]\nover a maximum of 15 hops:\n\n  1    ${hop1}    ${hop1}    ${hop1}  10.133.0.1 [NIC Bihar Core Layer-3 Gateway]\n  2    ${hop2}    ${hop2}    ${hop2}  10.133.200.1 [State HQ Aggregation Switch]\n  3    ${hop3}    ${hop3}    ${hop3}  ${activeHostIp} [${desc}]\n\nTrace complete. 0% packet loss along route path.`;
+                const traceOutput = `Tracing route to ${activeHostIp} [${desc}]\nover a maximum of 15 hops:\n\n  1    ${hop1}    ${hop1}    ${hop1}  10.X.X.0 [NIC Bihar Core Layer-3 Gateway]\n  2    ${hop2}    ${hop2}    ${hop2}  10.X.X.0 [State HQ Aggregation Switch]\n  3    ${hop3}    ${hop3}    ${hop3}  ${activeHostIp} [${desc}]\n\nTrace complete. 0% packet loss along route path.`;
                 modalConsoleStdout.textContent = traceOutput;
                 showToast(`Traceroute path analysis complete for ${activeHostIp}.`, "success");
             }, 400);

@@ -365,7 +365,7 @@
         <!-- Navigation Header -->
         <header class="top-nav">
             <div class="nav-logo-group">
-                <a href="http://10.133.22.8/" title="National Informatics Centre, Bihar" style="text-decoration:none;">
+                <a href="http://10.X.X.0/" title="National Informatics Centre, Bihar" style="text-decoration:none;">
                     <div class="logo-box" style="background: #ffffff; padding: 5px 12px; border-radius: 10px; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.2);">
                         <img src="../NIC_Preview-1.png" alt="NIC Logo" style="height: 38px; width: auto; object-fit: contain;">
                     </div>
@@ -419,7 +419,7 @@
                         <i class="fas fa-network-wired"></i> Target Scope
                     </label>
                     <select id="bwTestScope" style="width: 100%; background: #0f172a; border: 1px solid #334155; color: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; outline: none; cursor: pointer;">
-                        <option value="intranet" selected>ð¢ Intranet NOC Link (10.133.22.8)</option>
+                        <option value="intranet" selected>ð¢ Intranet NOC Link (10.X.X.0)</option>
                         <option value="internet">ð Public Internet Gateway (WAN)</option>
                     </select>
                 </div>
@@ -689,7 +689,7 @@
             if (gaugeSub) gaugeSub.textContent = 'INJECTING PAYLOAD...';
 
             logConsole(`INITIALIZING TUNNEL TO ${scope.toUpperCase()} BACKBONE...`, '#38bdf8');
-            logConsole(`TARGET: ${scope === 'intranet' ? '10.133.22.8 (Bihar State NOC Core)' : 'WAN Internet Gateway'}`);
+            logConsole(`TARGET: ${scope === 'intranet' ? '10.X.X.0 (Bihar State NOC Core)' : 'WAN Internet Gateway'}`);
 
             // Measure Latency & Jitter
             let pings = [];

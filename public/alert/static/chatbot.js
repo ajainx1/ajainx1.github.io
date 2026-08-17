@@ -278,7 +278,7 @@
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: http://10.133.0.51:8080/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Aditya Jain, Security Administrator. If asked about Aditya Jain (including queries like "how is aditya jain" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +919897577007 and email is seca1.shq.br@nic.in.' + dynamicContext
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: http://10.X.X.0:8080/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547964. This chatbot was founded by Aditya Jain, Security Administrator. If asked about Aditya Jain (including queries like "how is aditya jain" or who he is), do not refuse; provide his profile as the Security Administrator and founder of this bot, and state that his correct contact number is +919897577007 and email is seca1.shq.br@nic.in.' + dynamicContext
                             },
                             ...chatHistory,
                             { role: 'user', content: text }
@@ -365,7 +365,7 @@
                 } else if (q.includes("tacacs") || q.includes("taspass") || q.includes("password") || q.includes("reset")) {
                     reply = `🔐 **TACACS+ Password Reset Portal**\n\nDistrict and State engineers can update their switch/router TACACS credentials directly at:\n🔗 [NIC TASPASS Device Portal](https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb)\n\n*Note: Ensure you are connected via NKN Core or VPN.*`;
                 } else if (q.includes("fms") || q.includes("attendance") || q.includes("billing")) {
-                    reply = `📋 **FMS Attendance & Billing System**\n\nAccess the internal engineer attendance portal:\n🔗 [FMS Attendance System](http://10.133.0.51:8080/FMS-attendance/index.php)`;
+                    reply = `📋 **FMS Attendance & Billing System**\n\nAccess the internal engineer attendance portal:\n🔗 [FMS Attendance System](http://10.X.X.0:8080/FMS-attendance/index.php)`;
                 } else if (matchedContacts.length > 0) {
                     reply = `📞 **NIC Engineering Directory Matches:**\n\n` + 
                         matchedContacts.map(c => `* **${c.name}** (${c.role || 'Staff'})\n  📍 Location: ${c.location || 'Patna'}\n  📱 Mobile: \`${c.mobile || 'N/A'}\`\n  ✉️ Email: \`${c.email || 'N/A'}\``).join("\n\n");
