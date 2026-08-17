@@ -351,6 +351,75 @@
         .pulse-emerald {
             animation: pulse-dot 2s infinite;
         }
+    
+        /* ========================================================= */
+        /* UNIVERSAL MOBILE RESPONSIVENESS (SPEED ENGINE) */
+        /* ========================================================= */
+        @media (max-width: 768px) {
+            body {
+                zoom: 1.0 !important;
+                overflow-x: hidden !important;
+                font-size: 14px;
+                -webkit-text-size-adjust: 100%;
+            }
+            .header-container {
+                flex-direction: column !important;
+                align-items: stretch !important;
+                gap: 12px !important;
+                padding: 14px !important;
+            }
+            .header-nav-links {
+                display: flex !important;
+                flex-wrap: wrap !important;
+                gap: 8px !important;
+                width: 100% !important;
+            }
+            .header-nav-links a {
+                flex: 1 1 calc(50% - 4px) !important;
+                justify-content: center !important;
+                font-size: 0.75rem !important;
+                padding: 8px 10px !important;
+            }
+            .speed-hero-panel {
+                padding: 20px 14px !important;
+            }
+            .gauge-wrap {
+                max-width: 280px !important;
+                height: 220px !important;
+                margin: 0 auto !important;
+            }
+            .gauge-speed-val {
+                font-size: 2.2rem !important;
+            }
+            .metrics-grid-6 {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 8px !important;
+            }
+            .metric-card {
+                padding: 10px !important;
+            }
+            .metric-val {
+                font-size: 1.2rem !important;
+            }
+            .test-config-row {
+                flex-direction: column !important;
+                gap: 10px !important;
+            }
+            .test-config-item {
+                width: 100% !important;
+            }
+            .test-btn-start {
+                width: 100% !important;
+                min-height: 48px !important;
+                font-size: 1rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            .metrics-grid-6 {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
     </style>
 </head>
 <body>
