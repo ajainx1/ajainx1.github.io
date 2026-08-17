@@ -54,9 +54,9 @@ body {
 }
 
 .app-container {
-    max-width: 1780px;
+    max-width: 98vw;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 12px;
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -281,6 +281,15 @@ body .stat-card:has(.purple-icon):hover,
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 24px;
+    transition: grid-template-columns 0.3s ease;
+}
+
+.main-layout.sidebar-hidden {
+    grid-template-columns: 1fr !important;
+}
+
+.main-layout.sidebar-hidden .side-panel {
+    display: none !important;
 }
 
 @media (max-width: 1120px) {
@@ -504,8 +513,8 @@ body.light-mode .premium-slider {
 
 .hosts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fill, minmax(calc(210px * var(--card-scale, 1.0)), 1fr));
+    gap: calc(14px * var(--card-scale, 1.0));
     max-height: calc(100vh - 340px);
     min-height: 420px;
     overflow-y: auto;
@@ -529,18 +538,38 @@ body.light-mode .premium-slider {
 .host-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
-    border-radius: 14px;
-    padding: 16px 16px 14px 16px;
+    border-radius: calc(14px * var(--card-scale, 1.0));
+    padding: calc(16px * var(--card-scale, 1.0)) calc(16px * var(--card-scale, 1.0)) calc(14px * var(--card-scale, 1.0)) calc(16px * var(--card-scale, 1.0));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 12px;
+    gap: calc(12px * var(--card-scale, 1.0));
     cursor: pointer;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    min-height: 112px;
+    min-height: calc(112px * var(--card-scale, 1.0));
     box-sizing: border-box;
+}
+
+/* Scaled font metrics */
+.host-card .card-ip {
+    font-size: calc(0.85rem * var(--card-scale, 1.0)) !important;
+}
+.host-card .card-desc {
+    font-size: calc(0.75rem * var(--card-scale, 1.0)) !important;
+}
+.host-card .card-status-pill {
+    font-size: calc(0.72rem * var(--card-scale, 1.0)) !important;
+    padding: calc(4px * var(--card-scale, 1.0)) calc(8px * var(--card-scale, 1.0)) !important;
+}
+.host-card .card-latency-badge {
+    font-size: calc(0.72rem * var(--card-scale, 1.0)) !important;
+    padding: calc(4px * var(--card-scale, 1.0)) calc(8px * var(--card-scale, 1.0)) !important;
+}
+.host-card .card-temp-badge,
+.host-card .card-battery-badge {
+    font-size: calc(10px * var(--card-scale, 1.0)) !important;
 }
 
 .host-card:hover {
@@ -1054,7 +1083,7 @@ body.light-mode .premium-slider {
 /* Toast System */
 .toast-container {
     position: fixed;
-    bottom: 24px;
+    top: 80px;
     right: 24px;
     display: flex;
     flex-direction: column;
@@ -1731,26 +1760,27 @@ body.light-mode .home-portal-btn:hover {
     color: var(--primary);
 }
 
-/* Split SHQ and DHQ Layout Sections */
+/* Split Layout Sections */
 .hosts-sections-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    grid-template-columns: var(--col-left-width, 1fr) 16px var(--col-center-width, 1fr) 16px 1fr;
+    gap: 16px;
     margin-top: 16px;
-    align-items: start;
+    align-items: stretch;
+    width: 100%;
 }
-
-
-
 
 @media (max-width: 1120px) {
     .hosts-sections-container {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 20px;
     }
 }
 
 .hosts-section {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
     background: rgba(18, 26, 47, 0.25);
     border: 1px solid var(--border-color);
     border-radius: 12px;
@@ -1813,6 +1843,8 @@ body.light-mode .home-portal-btn:hover {
 
 /* Light Mode Overrides for sections */
 body.light-mode .hosts-section {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
     background: rgba(255, 255, 255, 0.45);
     border-color: rgba(0, 0, 0, 0.06);
 }
@@ -2139,9 +2171,9 @@ body.light-mode .modal-ip-btn {
 
 /* Compact List View Mode Overrides */
 .list-view-active .hosts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 0 8px;
     min-height: unset;
 }
 
@@ -2149,18 +2181,21 @@ body.light-mode .modal-ip-btn {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 16px;
+    padding: 0 6px;
     min-height: unset;
-    height: 48px;
-    border-radius: 8px;
+    height: 24px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    background: transparent;
     gap: 0;
 }
 
 .list-view-active .host-card:hover {
-    transform: translateX(4px);
-    background: var(--bg-card-hover);
-    border-color: var(--border-hover);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+    transform: none;
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
 }
 
 .list-view-active .host-card::before {
@@ -2173,43 +2208,68 @@ body.light-mode .modal-ip-btn {
     align-items: center;
     justify-content: flex-start;
     flex-grow: 1;
-    gap: 20px;
+    gap: 10px;
     min-width: 0;
 }
 
 .list-view-active .host-card .card-title-area {
     flex-direction: row;
     align-items: center;
-    gap: 24px;
+    gap: 10px;
     flex-grow: 1;
     min-width: 0;
 }
 
 .list-view-active .host-card .card-ip-wrapper {
-    width: 175px;
-    flex-shrink: 0;
+    flex: 0 0 180px; /* Increased to prevent bleeding into text */
+    width: 180px;
+    padding: 0 4px 0 8px; /* Slight left padding for breathing room */
+    border-radius: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+    transition: none;
+    background: transparent !important;
+    border: none !important;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.list-view-active .host-card.up-state .card-ip-wrapper,
+.list-view-active .host-card.down-state .card-ip-wrapper,
+.list-view-active .host-card.muted-state .card-ip-wrapper {
+    background: transparent !important;
+    border: none !important;
 }
 
 .list-view-active .host-card .card-ip {
-    font-size: 14.5px;
+    font-size: 11.5px;
     font-weight: 700;
+    font-family: var(--font-mono);
+}
+
+.list-view-active .host-card.up-state .card-ip {
+    color: #10b981;
+}
+
+.list-view-active .host-card.down-state .card-ip {
+    color: #f43f5e;
 }
 
 .list-view-active .host-card .card-desc {
     margin-top: 0;
-    font-size: 13.5px;
+    font-size: 12px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: var(--text-primary);
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .list-view-active .host-card .card-status-pill {
-    width: 76px;
-    text-align: center;
-    flex-shrink: 0;
-    padding: 2px 0;
-    font-size: 9px;
+    display: none !important;
 }
 
 .list-view-active .host-card .card-mid-row {
@@ -2217,14 +2277,14 @@ body.light-mode .modal-ip-btn {
     padding-top: 0;
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 10px;
     flex-shrink: 0;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 .list-view-active .host-card .card-latency-badge {
     font-size: 11px;
-    width: 65px;
+    width: 50px;
     justify-content: flex-end;
 }
 
@@ -2293,69 +2353,1364 @@ body.light-mode .category-outages-list-container {
     transform: translateX(4px);
 }
 
+/* ==========================================================
+   UPS Critical Alert Mode
+   ========================================================== */
+body.ups-critical-active {
+    animation: ups-screen-flash 1s infinite alternate;
+}
+
+@keyframes ups-screen-flash {
+    0% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); }
+    100% { box-shadow: inset 0 0 80px rgba(255, 0, 0, 0.8); }
+}
+
+#ups-ack-banner {
+    position: fixed;
+    top: -100px; /* Hidden by default */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(200, 0, 0, 0.95);
+    border: 2px solid #ff4444;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(200, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+#ups-ack-banner.show {
+    top: 40px;
+}
+
+#ups-ack-banner i {
+    font-size: 32px;
+    animation: pulse 1s infinite;
+}
+
+#ups-ack-banner .ups-msg {
+    display: flex;
+    flex-direction: column;
+}
+
+#ups-ack-banner .ups-msg strong {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#ups-ack-banner .ups-msg span {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+#btn-ups-ack {
+    background: white;
+    color: #c80000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+
+/* Category Modal Custom Styling */
+.category-modal-card {
+    max-width: 550px !important;
+}
+
+.category-actions-row {
+    margin-top: 20px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+.category-outages-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 220px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+body.light-mode .category-outages-list-container {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.category-outage-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(244, 63, 94, 0.05);
+    border: 1px solid rgba(244, 63, 94, 0.15);
+    border-radius: 6px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.category-outage-row:hover {
+    background: rgba(244, 63, 94, 0.08);
+    border-color: rgba(244, 63, 94, 0.25);
+    transform: translateX(4px);
+}
+
+/* ==========================================================
+   UPS Critical Alert Mode
+   ========================================================== */
+body.ups-critical-active {
+    animation: ups-screen-flash 1s infinite alternate;
+}
+
+@keyframes ups-screen-flash {
+    0% { box-shadow: inset 0 0 0px rgba(255, 0, 0, 0); }
+    100% { box-shadow: inset 0 0 80px rgba(255, 0, 0, 0.8); }
+}
+
+#ups-ack-banner {
+    position: fixed;
+    top: -100px; /* Hidden by default */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(200, 0, 0, 0.95);
+    border: 2px solid #ff4444;
+    color: white;
+    padding: 16px 32px;
+    border-radius: 8px;
+    z-index: 10000;
+    box-shadow: 0 10px 30px rgba(200, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(10px);
+}
+
+#ups-ack-banner.show {
+    top: 40px;
+}
+
+#ups-ack-banner i {
+    font-size: 32px;
+    animation: pulse 1s infinite;
+}
+
+#ups-ack-banner .ups-msg {
+    display: flex;
+    flex-direction: column;
+}
+
+#ups-ack-banner .ups-msg strong {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#ups-ack-banner .ups-msg span {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+#btn-ups-ack {
+    background: white;
+    color: #c80000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: transform 0.2s, background 0.2s;
+}
+
+#btn-ups-ack:hover {
+    background: #ffeaea;
+    transform: scale(1.05);
+}
+
+#btn-ups-ack:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================================
+   Drag & Drop Customization UI
+   ========================================================== */
+.drag-handle {
+    cursor: grab;
+    opacity: 0.3;
+    transition: opacity 0.2s, color 0.2s;
+    margin-right: 8px;
+    font-size: 14px;
+}
+
+.drag-handle:hover {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.hosts-section {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    position: relative; /* required if using z-index while dragging */
+}
+
+.hosts-section.dragging {
+    opacity: 0.7;
+    background: rgba(18, 26, 47, 0.6) !important;
+    border: 2px dashed var(--accent) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+    transform: scale(1.02);
+    z-index: 100;
+}
+
+/* Ensure columns act as distinct Kanban-style 'Play Areas' */
+.hosts-column {
+    min-width: 280px;
+    max-width: 60vw;
+    min-height: 78vh;
+    border-radius: 14px;
+    background: rgba(18, 26, 47, 0.15);
+    border: 2px dashed rgba(255, 255, 255, 0.05);
+    padding: 16px;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.light-mode .hosts-column {
+    background: rgba(0, 0, 0, 0.02);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.hosts-column:hover {
+    background: rgba(18, 26, 47, 0.25);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.light-mode .hosts-column:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Depth */
+.section-header, .host-card {
+    transform: translateZ(20px);
+}
+.section-header-title {
+    transform: translateZ(30px);
+}
+
+/* Flashing Alert for UPS On Battery */
+.on-battery-pulse {
+    animation: on-battery-glow 1.5s infinite alternate;
+}
+
+@keyframes on-battery-glow {
+    0% {
+        box-shadow: 0 0 4px rgba(255, 51, 102, 0.2);
+        border-color: rgba(255, 51, 102, 0.3);
+        background: rgba(255, 51, 102, 0.1);
+    }
+    100% {
+        box-shadow: 0 0 12px rgba(255, 51, 102, 0.6);
+        border-color: rgba(255, 51, 102, 0.8);
+        background: rgba(255, 51, 102, 0.25);
+    }
+}
+
+/* Interactive Column Splitter Resizer Styles */
+.column-resizer {
+    width: 16px;
+    align-self: stretch;
+    background: transparent;
+    cursor: col-resize;
+    position: relative;
+    z-index: 100;
+    transition: background 0.2s ease;
+    flex-shrink: 0;
+}
+
+.column-resizer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 7px;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+}
+
+body.light-mode .column-resizer::after {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.column-resizer:hover::after,
+.column-resizer.active::after {
+    background: var(--accent, #0ea5e9);
+}
+
+.column-resizer:hover,
+.column-resizer.active {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+body.light-mode .column-resizer:hover,
+body.light-mode .column-resizer.active {
+    background: rgba(0, 0, 0, 0.01);
+}
+
+/* Force 3D Vanta Background to Cover 100% of Viewport */
+#vanta-bg {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: -1 !important;
+    overflow: hidden !important;
+}
+
+#vanta-bg canvas {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+}
+
+/* --- Professional UX: Custom Fade Tooltips --- */
+[data-tooltip] {
+    position: relative;
+    cursor: pointer;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -34px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.95);
+    color: #f8fafc;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0.4s, visibility 0.3s ease 0.4s; /* 0.4s delay before showing */
+    z-index: 10000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    border: 1px solid rgba(255,255,255,0.1);
+    font-family: var(--font-title, sans-serif);
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(4px);
+}
+
+body.light-mode [data-tooltip]::after {
+    background: rgba(255, 255, 255, 0.95);
+    color: #0f172a;
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ==========================================================================
+   UI-UX PRO MAX DESIGN SYSTEM ENHANCEMENTS (/alert)
+   Next-Generation State NOC Visual Excellence & Micro-Interactions
+   ========================================================================== */
+
+/* 1. Enhanced Root Tokens & Glassmorphism System */
+:root {
+    --pro-max-bg-glass: rgba(13, 20, 36, 0.75);
+    --pro-max-bg-glass-hover: rgba(22, 34, 60, 0.88);
+    --pro-max-border-glow: rgba(56, 189, 248, 0.4);
+    --pro-max-shadow-neon: 0 12px 35px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.12);
+    --pro-max-radius-lg: 16px;
+    --pro-max-radius-sm: 8px;
+    --pro-max-transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 2. Ambient Mesh Glow Background Effect */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(249, 115, 22, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* 3. Ultra-Glass Cards & Micro-Interactions */
+.app-header, 
+.hosts-panel, 
+.side-panel, 
+.stat-card {
+    background: var(--pro-max-bg-glass) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6) !important;
+    transition: var(--pro-max-transition) !important;
+}
+
+.stat-card:hover, 
+.host-card:hover {
+    transform: translateY(-4px) scale(1.008) !important;
+    border-color: var(--pro-max-border-glow) !important;
+    box-shadow: var(--pro-max-shadow-neon) !important;
+}
+
+/* 4. Stat Overview Gradient Titles & Glowing Numbers */
+.stat-value {
+    font-family: var(--font-title);
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.stat-value.text-success {
+    background: linear-gradient(135deg, #a7f3d0 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-value.text-danger {
+    background: linear-gradient(135deg, #fecdd3 0%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* 5. Glowing Pulse Animations for Active Status */
+@keyframes pro-pulse-emerald {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pro-pulse-rose {
+    0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+.pulse-green, .ping-indicator-dot.pulse-green {
+    animation: pro-pulse-emerald 2s infinite !important;
+    border-radius: 50% !important;
+}
+
+.pulse-red, .ping-indicator-dot.pulse-red {
+    animation: pro-pulse-rose 1.5s infinite !important;
+    border-radius: 50% !important;
+}
+
+/* 6. Pro Search Bar Focus Ring & Keyboard Shortcut Badge */
+.search-bar-container input {
+    background: rgba(8, 14, 28, 0.7) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    font-size: 0.85rem !important;
+    transition: var(--pro-max-transition) !important;
+}
+
+.search-bar-container input:focus {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25), inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(12, 20, 40, 0.9) !important;
+}
+
+/* 7. Category Filter Buttons Pro Glow */
+.filter-btn {
+    transition: var(--pro-max-transition) !important;
+    border: 1px solid transparent !important;
+    font-family: var(--font-sans) !important;
+    letter-spacing: 0.3px !important;
+}
+
+.filter-btn:hover {
+    background: rgba(56, 189, 248, 0.12) !important;
+    color: var(--accent) !important;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(14, 165, 233, 0.35) 100%) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25) !important;
+}
+
+/* 8. Host Card Specific Glass Enhancements */
+.host-card {
+    background: rgba(15, 23, 42, 0.6) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(16px) !important;
+    transition: var(--pro-max-transition) !important;
+}
+
+.host-card.status-up {
+    border-left: 4px solid var(--color-up) !important;
+}
+
+.host-card.status-down {
+    border-left: 4px solid var(--color-down) !important;
+}
+
+.host-card .host-ip {
+    font-family: var(--font-mono) !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--accent) !important;
+    font-weight: 600 !important;
+}
+
+/* 9. Latency Pill Badge Styling */
+.latency-badge {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--color-up);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.latency-badge.warning {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--color-warning);
+    border-color: rgba(245, 158, 11, 0.25);
+}
+
+/* 10. Scrollbar Styling for NOC Video Walls */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(7, 10, 19, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+/* 11. Light Mode UI-UX Pro Max Adaptations */
+body.light-mode {
+    --pro-max-bg-glass: rgba(255, 255, 255, 0.85);
+    --pro-max-bg-glass-hover: rgba(255, 255, 255, 0.95);
+    --pro-max-border-glow: rgba(14, 165, 233, 0.5);
+}
+
+body.light-mode .stat-value {
+    background: linear-gradient(135deg, #0f172a 30%, #0284c7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+body.light-mode .host-card {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04) !important;
+}
+
+body.light-mode .host-card .host-ip {
+    background: rgba(0, 0, 0, 0.05) !important;
+    color: #0284c7 !important;
+}
+
+
+/* ==========================================================================
+   ENTERPRISE STATE NOC - PROFESSIONAL UI/UX DESIGN SYSTEM (V7.0 PRO)
+   Inspired by Datadog, Cisco CyberVision & Enterprise NOC Command Centers
+   ========================================================================== */
+
+/* 1. Master Obsidian Glassmorphism Tokens */
+:root {
+    --bg-main: #060913;
+    --bg-card: rgba(13, 20, 36, 0.72);
+    --bg-card-hover: rgba(20, 31, 56, 0.88);
+    --border-color: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(56, 189, 248, 0.45);
+    
+    --color-up: #10b981;
+    --color-up-glow: rgba(16, 185, 129, 0.22);
+    --color-down: #f43f5e;
+    --color-down-glow: rgba(244, 63, 94, 0.25);
+    --color-warning: #f59e0b;
+    --color-muted: #64748b;
+    
+    --accent: #38bdf8;
+    --accent-glow: rgba(56, 189, 248, 0.3);
+    --accent-saffron: #f97316;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    
+    --font-sans: 'Inter', 'Outfit', -apple-system, sans-serif;
+    --font-title: 'Outfit', sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    --shadow-main: 0 16px 40px -10px rgba(0, 0, 0, 0.75);
+    --shadow-up: 0 0 20px rgba(16, 185, 129, 0.25);
+    --shadow-down: 0 0 20px rgba(244, 63, 94, 0.3);
+}
+
+/* 2. Global Body & Glassmorphic Backdrop */
+body {
+    background-color: var(--bg-main) !important;
+    color: var(--text-primary) !important;
+    font-family: var(--font-sans) !important;
+    letter-spacing: -0.01em !important;
+    background-image: 
+        radial-gradient(ellipse at 10% 0%, rgba(14, 165, 233, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 100%, rgba(249, 115, 22, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.04) 0%, transparent 60%) !important;
+    background-attachment: fixed !important;
+}
+
+/* 3. Header Architecture */
+.app-header {
+    background: rgba(10, 16, 30, 0.82) !important;
+    backdrop-filter: blur(24px) saturate(190%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 18px !important;
+    padding: 16px 28px !important;
+    box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+.logo-title h1 {
+    font-family: var(--font-title) !important;
+    font-size: 1.35rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    background: linear-gradient(135deg, #ffffff 30%, var(--accent) 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* 4. Stat Overview Cards */
+.stat-card {
+    background: rgba(13, 20, 36, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 16px !important;
+    padding: 20px 24px !important;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px) !important;
+    border-color: var(--border-hover) !important;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.12) !important;
+}
+
+/* 5. Section Headers & Badges */
+.section-header-title {
+    font-family: var(--font-title) !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.3px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    margin-bottom: 14px !important;
+}
+
+.section-badge {
+    font-family: var(--font-mono) !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: var(--color-up) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+}
+
+/* 6. Host Cards Grid & Monospaced IP Tags */
+.host-card {
+    background: rgba(15, 23, 42, 0.65) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    padding: 14px 16px !important;
+    backdrop-filter: blur(14px) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.host-card:hover {
+    background: rgba(22, 34, 60, 0.85) !important;
+    border-color: rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+    transform: translateY(-2px) !important;
+}
+
+.host-card .host-ip {
+    font-family: var(--font-mono) !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    background: rgba(0, 0, 0, 0.35) !important;
+    padding: 4px 8px !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    color: var(--accent) !important;
+}
+
+/* 7. Live Pulse Glows */
+@keyframes pro-pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+@keyframes pro-pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.8); }
+    70% { box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+.pulse-green { animation: pro-pulse-green 2s infinite !important; }
+.pulse-red { animation: pro-pulse-red 1.5s infinite !important; }
+
+/* 8. Modern Control Buttons */
+.home-portal-btn, .filter-btn, .view-btn {
+    border-radius: 10px !important;
+    font-family: var(--font-sans) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.3px !important;
+    transition: all 0.22s ease !important;
+}
+
+.filter-btn.active {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.25), rgba(14, 165, 233, 0.4)) !important;
+    border-color: var(--accent) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3) !important;
+}
+
+
+/* 4-Column Matrix Grid System Override */
+.hosts-sections-container {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 16px !important;
+    width: 100% !important;
+}
+
+@media (max-width: 1600px) {
+    .hosts-sections-container {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hosts-sections-container {
+        grid-template-columns: 1fr !important;
+    }
+}
 
 
 
 
-/* MOBILE RESPONSIVE OVERRIDES */
+
+
+
+#bwStartBtn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 30px rgba(14, 165, 233, 0.6) !important;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9) !important;
+}
+
+
+/* 3D Viral Share Impact Modal Styling */
+#viralShareModal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: rgba(4, 7, 16, 0.92) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+    z-index: 999999999 !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+}
+
+#viralShareModal.open {
+    display: flex !important;
+    pointer-events: auto !important;
+}
+
+#viralShareModal * {
+    pointer-events: auto !important;
+}
+
+
+/* ==========================================================================
+   MASTER HEADING PROFESSIONAL UI/UX & COLOR SYSTEM (V12.0 PRO)
+   ========================================================================== */
+
+/* Section Header Container */
+.section-header {
+    margin-bottom: 16px !important;
+    position: relative !important;
+}
+
+.section-header-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.05rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
+    color: #f8fafc !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.09) !important;
+    position: relative !important;
+}
+
+.section-header-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    box-shadow: 0 0 10px var(--accent);
+}
+
+/* Category-specific Heading Colors */
+.section-header-title[data-category="SHQ"] { color: #f8fafc !important; }
+.section-header-title[data-category="SHQ"] i { color: #38bdf8 !important; }
+
+.section-header-title[data-category="NKN"] { color: #f8fafc !important; }
+.section-header-title[data-category="NKN"] i { color: #10b981 !important; }
+
+.section-header-title[data-category="DHQ"] { color: #f8fafc !important; }
+.section-header-title[data-category="DHQ"] i { color: #f59e0b !important; }
+
+.section-header-title[data-category="Nivetti Switch"] { color: #38bdf8 !important; }
+.section-header-title[data-category="Nivetti Switch"] i { color: #f97316 !important; }
+
+.section-header-title[data-category="UPS"] { color: #f8fafc !important; }
+.section-header-title[data-category="UPS"] i { color: #eab308 !important; }
+
+.section-header-title[data-category="PAC"] { color: #f8fafc !important; }
+.section-header-title[data-category="PAC"] i { color: #06b6d4 !important; }
+
+.section-header-title[data-category="AP"] { color: #f8fafc !important; }
+.section-header-title[data-category="AP"] i { color: #3b82f6 !important; }
+
+.section-header-title[data-category="SSB"] { color: #f8fafc !important; }
+.section-header-title[data-category="SSB"] i { color: #ec4899 !important; }
+
+.section-header-title[data-category="INTD"] { color: #f8fafc !important; }
+.section-header-title[data-category="INTD"] i { color: #a855f7 !important; }
+
+.section-header-title[data-category="INTS"] { color: #f8fafc !important; }
+.section-header-title[data-category="INTS"] i { color: #6366f1 !important; }
+
+/* Section Badges */
+.section-badge {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    padding: 3px 10px !important;
+    border-radius: 20px !important;
+    background: rgba(16, 185, 129, 0.12) !important;
+    color: #10b981 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.15) !important;
+}
+
+/* Side Panel Card Headings */
+.side-panel h3, .glass-card h3 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.4px !important;
+    color: #f8fafc !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 16px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.side-panel h3 i, .glass-card h3 i {
+    color: var(--accent) !important;
+}
+
+
+/* ==========================================================================
+   LIGHT MODE HIGH-CONTRAST TYPOGRAPHY & UI/UX OVERRIDE (v13.0)
+   Guarantees 100% Crisp Readability for All Device Names & Headings
+   ========================================================================== */
+
+body.light-mode {
+    background-color: #f1f5f9 !important;
+    background-image: none !important;
+    color: #0f172a !important;
+}
+
+/* 1. All Section Headings & Header Titles */
+body.light-mode .section-header-title {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+body.light-mode .section-header-title span {
+    color: #0f172a !important;
+    font-weight: 800 !important;
+}
+
+body.light-mode .section-header-title[data-category="Nivetti Switch"] {
+    color: #0284c7 !important;
+}
+
+/* 2. Device Names & Host Card Descriptions */
+body.light-mode .host-card .card-desc,
+body.light-mode .host-card .host-desc,
+body.light-mode .host-card-title,
+body.light-mode .card-title,
+body.light-mode .host-description {
+    color: #0f172a !important;
+    font-weight: 700 !important;
+}
+
+body.light-mode .host-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+}
+
+body.light-mode .host-card:hover {
+    background: #f8fafc !important;
+    border-color: #0ea5e9 !important;
+    box-shadow: 0 8px 24px rgba(14, 165, 233, 0.15) !important;
+}
+
+/* 3. IP Address Monospaced Tags */
+body.light-mode .host-card .host-ip,
+body.light-mode .host-card .card-ip,
+body.light-mode .card-ip {
+    color: #0284c7 !important;
+    background: rgba(14, 165, 233, 0.12) !important;
+    border: 1px solid rgba(14, 165, 233, 0.3) !important;
+    font-weight: 700 !important;
+}
+
+/* 4. Stat Overview Cards & Command Row */
+body.light-mode .stat-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.light-mode .stat-title {
+    color: #475569 !important;
+    font-weight: 700 !important;
+}
+
+body.light-mode .stat-sub {
+    color: #64748b !important;
+}
+
+body.light-mode .pro-command-row {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+body.light-mode .pro-command-row span {
+    color: #0f172a !important;
+}
+
+/* 5. Header Bar & Controls */
+body.light-mode .app-header {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+body.light-mode .logo-title h1 {
+    background: linear-gradient(135deg, #0f172a, #0284c7) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+body.light-mode .logo-title p {
+    color: #64748b !important;
+}
+
+body.light-mode .digital-clock {
+    color: #0284c7 !important;
+}
+
+/* 6. Side Panel Cards */
+body.light-mode .glass-card,
+body.light-mode .side-panel .glass-card {
+    background: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06) !important;
+}
+
+body.light-mode .side-panel h3,
+body.light-mode .glass-card h3 {
+    color: #0f172a !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+
+/* ==========================================================================
+   MASTER PRO MAX (V14.0) ULTRA-STUNNING ENTERPRISE NOC DESIGN SYSTEM
+   ========================================================================== */
+
+/* 1. Ambient Mesh Gradient Background Animation */
+@keyframes gradientMesh {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background-color: #040711 !important;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(249, 115, 22, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 60%),
+        radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.08) 0px, transparent 50%) !important;
+    background-size: 180% 180% !important;
+    animation: gradientMesh 20s ease infinite !important;
+    background-attachment: fixed !important;
+}
+
+/* 2. Glassmorphic App Header & Brand Badge */
+.app-header {
+    background: rgba(8, 14, 28, 0.88) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+.logo-title h1 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.45rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.6px !important;
+    background: linear-gradient(135deg, #ffffff 20%, #38bdf8 70%, #f97316 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    text-shadow: 0 0 30px rgba(56, 189, 248, 0.25) !important;
+}
+
+/* 3. Stat Cards Depth & Hover Glow */
+.stat-card {
+    background: rgba(12, 19, 36, 0.75) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px) scale(1.01) !important;
+    border-color: rgba(56, 189, 248, 0.5) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.2) !important;
+}
+
+/* 4. Host Card Glassmorphism & Neon Pulse */
+.host-card {
+    background: rgba(13, 21, 38, 0.68) !important;
+    border: 1px solid rgba(255, 255, 255, 0.09) !important;
+    border-radius: 14px !important;
+    backdrop-filter: blur(16px) !important;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.host-card:hover {
+    background: rgba(20, 33, 60, 0.88) !important;
+    border-color: rgba(56, 189, 248, 0.45) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(56, 189, 248, 0.08) !important;
+    transform: translateY(-3px) !important;
+}
+
+.host-card .host-ip {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    color: #38bdf8 !important;
+    background: rgba(0, 0, 0, 0.4) !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(56, 189, 248, 0.25) !important;
+}
+
+/* 5. Executive Command Bar Styling */
+.pro-command-row {
+    background: rgba(10, 16, 30, 0.82) !important;
+    backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6) !important;
+}
+
+.pro-row-btn {
+    border-radius: 12px !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.pro-row-btn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+
+/* ==========================================================================
+   CORNER STRETCH & GRID RESIZER SYSTEM (v15.0)
+   Allows Dragging Corner Handles to Stretch Section Heights Seamlessly
+   ========================================================================== */
+
+.hosts-grid {
+    resize: vertical !important;
+    overflow-y: auto !important;
+    min-height: 180px !important;
+    max-height: 85vh !important;
+    position: relative !important;
+    padding-bottom: 12px !important;
+}
+
+/* Styled Resizer Handle for Chrome / Edge / Firefox */
+.hosts-grid::-webkit-resizer {
+    background-color: rgba(56, 189, 248, 0.4) !important;
+    border-top: 2px solid rgba(56, 189, 248, 0.8) !important;
+    border-left: 2px solid rgba(56, 189, 248, 0.8) !important;
+    border-radius: 4px 0 0 0 !important;
+}
+
+/* Light Mode Resizer Accent */
+body.light-mode .hosts-grid::-webkit-resizer {
+    background-color: rgba(14, 165, 233, 0.4) !important;
+    border-top: 2px solid #0284c7 !important;
+    border-left: 2px solid #0284c7 !important;
+}
+
+.hosts-section {
+    position: relative !important;
+    transition: margin 0.2s ease !important;
+}
+
+/* Sleek Corner Indicator Hint */
+.hosts-section::after {
+    content: '◢';
+    position: absolute;
+    bottom: 2px;
+    right: 4px;
+    font-size: 11px;
+    color: rgba(56, 189, 248, 0.6);
+    pointer-events: none;
+    z-index: 5;
+}
+
+body.light-mode .hosts-section::after {
+    color: rgba(2, 132, 199, 0.6);
+}
+
+
+
+/* ========================================================= */
+/* UNIVERSAL MOBILE RESPONSIVENESS (ALERT DASHBOARD) */
+/* ========================================================= */
 @media (max-width: 768px) {
-    .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start !important;
-        gap: 15px;
-        padding: 15px !important;
+    body {
+        zoom: 1.0 !important;
+        overflow-x: hidden !important;
+        font-size: 14px;
+        -webkit-text-size-adjust: 100%;
     }
-    
+    .app-container {
+        padding: 12px 10px !important;
+        gap: 16px !important;
+    }
+    .app-header {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding: 14px !important;
+    }
+    .logo-area {
+        align-items: center !important;
+    }
+    .logo-title h1 {
+        font-size: 1.15rem !important;
+    }
+    .logo-title p {
+        font-size: 0.72rem !important;
+    }
     .header-right {
-        width: 100%;
-        justify-content: space-between;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        align-items: center !important;
+        gap: 6px !important;
+        justify-content: flex-start !important;
     }
-    
-    .main-layout {
+    .home-portal-btn {
+        flex: 1 1 calc(50% - 6px) !important;
+        font-size: 10px !important;
+        height: 38px !important;
+        min-width: 130px !important;
+        padding: 6px 10px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        margin-right: 0 !important;
+    }
+    .digital-clock {
+        width: 100% !important;
+        text-align: center !important;
+        font-size: 1.1rem !important;
+        padding: 6px 0 !important;
+    }
+    .stats-bar {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    .stat-card {
+        padding: 12px !important;
+    }
+    .stat-value {
+        font-size: 1.4rem !important;
+    }
+    .controls-bar {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+    }
+    .search-box {
+        width: 100% !important;
+    }
+    .filter-buttons-wrapper {
+        display: flex !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        padding-bottom: 4px !important;
+        gap: 6px !important;
+    }
+    .filter-btn {
+        white-space: nowrap !important;
+        flex-shrink: 0 !important;
+        font-size: 0.72rem !important;
+        padding: 6px 12px !important;
+    }
+    .hosts-sections-container {
         grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+    .hosts-grid {
+        grid-template-columns: 1fr !important;
+        gap: 8px !important;
+    }
+    .host-card {
         padding: 10px !important;
-        gap: 15px !important;
     }
-    
-    .sidebar {
-        width: 100% !important;
+    .logs-panel {
+        padding: 14px !important;
+    }
+    .terminal-container {
+        height: 250px !important;
+        font-size: 0.75rem !important;
+    }
+    .modal-content, #diagnostics-modal > div {
+        width: calc(100vw - 24px) !important;
         max-width: 100% !important;
+        max-height: 88vh !important;
+        padding: 16px !important;
+        overflow-y: auto !important;
     }
-
-    .monitor-grid {
-        grid-template-columns: 1fr !important;
+    .ai-chatbot-widget {
+        bottom: 16px !important;
+        right: 16px !important;
     }
-
-    .stats-summary-grid {
-        grid-template-columns: 1fr !important;
-    }
-
-    .modal-stats-grid,
-    .diagnostics-actions-row {
-        grid-template-columns: 1fr !important;
-        gap: 8px !important;
-    }
-
-    .control-actions-row {
-        flex-direction: column;
-        gap: 8px !important;
-    }
-
-    .control-actions-row button {
-        width: 100% !important;
-    }
-    
-    /* Dialog modals should fit mobile viewports */
-    .modal-content {
-        width: 95% !important;
-        margin: 10px auto !important;
-        padding: 15px !important;
+    .chatbot-panel {
+        position: fixed !important;
+        bottom: 80px !important;
+        right: 12px !important;
+        left: 12px !important;
+        width: auto !important;
+        max-width: calc(100vw - 24px) !important;
+        height: 75vh !important;
+        max-height: 520px !important;
     }
 }
 
 @media (max-width: 480px) {
-    .diag-action-btn, 
-    .quick-action-btn {
-        width: 100% !important;
+    .stats-bar {
+        grid-template-columns: 1fr !important;
+    }
+    .home-portal-btn {
+        flex: 1 1 100% !important;
     }
 }
