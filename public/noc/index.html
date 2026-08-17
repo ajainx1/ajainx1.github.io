@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,7 +14,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
     
     <!-- FontAwesome Icons -->
     
@@ -2047,7 +2047,24 @@
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-</style>
+
+        /* Professional Devanagari & Latin Typography */
+        .emblem-text {
+            font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            line-height: 1.35;
+        }
+        .emblem-text span {
+            font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+        .emblem-text small, .emblem-text .sub-title {
+            font-family: 'Noto Sans Devanagari', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+            font-size: 0.75rem;
+            opacity: 0.85;
+        }
+
+    </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
 <body class="dark-mode" style="overflow-x: hidden !important;">
@@ -2062,14 +2079,13 @@
             <div class="emblem-container">
                 <img src="Emblem_of_India.png" alt="Emblem of India">
                 <div class="emblem-text">
-                    <span>Government of India | भारत सरकार</span><br>
-                    Ministry of Electronics & Information Technology
+                    <span>Government of India | भारत सरकार</span><br><span class="sub-title">Ministry of Electronics &amp; Information Technology | इलेक्ट्रॉनिकी और सूचना प्रौद्योगिकी मंत्रालय</span>
                 </div>
             </div>
         </a>
         <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
             <a href="/vc/" class="btn-portal-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(14, 165, 233, 0.15); border: 1px solid #38bdf8; border-radius: 8px; color: #38bdf8; font-size: 0.8rem; font-weight: 800; text-decoration: none; transition: all 0.2s;" target="_blank">
-                <i class="fas fa-video"></i> 🎥 VC Studio Monitor
+                <i class="fas fa-video"></i> ð¥ VC Studio Monitor
             </a>
             <a href="/alert/" class="btn-portal-link" style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 8px; color: #cbd5e1; font-size: 0.8rem; font-weight: 800; text-decoration: none; transition: all 0.2s;" target="_blank">
                 <i class="fas fa-bell"></i> 🚨 NOC Alerts
@@ -2089,7 +2105,7 @@
         <div class="alert-ticker" style="background: var(--ticker-bg); border-bottom: 1px solid var(--ticker-border); height: 38px; display: flex; align-items: center; transition: all 0.3s ease;">
             <div class="ticker-label" style="background: #10b981; color: #fff; font-weight: 800; padding: 0 16px; height: 100%; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; box-shadow: 2px 0 10px rgba(16,185,129,0.3);">LIVE</div>
             <marquee behavior="scroll" direction="left" scrollamount="6" style="flex: 1; color: var(--ticker-text); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">
-                🟢 NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 38/38 DISTRICT VC STUDIOS (10.X.X.100): BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; ⚡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; 🔄 LATENCY AVG: 12ms &nbsp;&nbsp;|&nbsp;&nbsp; 🛡️ FIREWALL DROP RATE: 0.01%
+                ð¢ NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; ð¥ 38/38 DISTRICT VC STUDIOS (10.X.X.100): BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp; ð¢ STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; ð¢ 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; â¡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; ð LATENCY AVG: 12ms &nbsp;&nbsp;|&nbsp;&nbsp; ð¡ï¸ FIREWALL DROP RATE: 0.01%
             </marquee>
         </div>
 
@@ -2930,7 +2946,7 @@
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 const isDark = document.body.classList.contains('dark-mode');
-                applyPortalTheme(isDarkभारत सरकार 'light' : 'dark');
+                applyPortalTheme(isDark ? 'light' : 'dark');
             });
         }
 
@@ -3037,7 +3053,7 @@
         function formatBytes(bytes, decimals = 2) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
-            const dm = decimals < 0भारत सरकार 0 : decimals;
+            const dm = decimals < 0 ? 0 : decimals;
             const sizes = ['Bytes', 'KB', 'MB', 'GB'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
@@ -3049,10 +3065,10 @@
             toastContainer.innerHTML = ''; // Clear existing
             
             const toast = document.createElement('div');
-            toast.className = `custom-toast ${status === 'success'भारत सरकार 'toast-success' : 'toast-error'}`;
+            toast.className = `custom-toast ${status === 'success' ? 'toast-success' : 'toast-error'}`;
             
             const icon = document.createElement('i');
-            icon.className = status === 'success'भारत सरकार 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+            icon.className = status === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
             
             const textSpan = document.createElement('span');
             textSpan.textContent = message;
@@ -3499,7 +3515,7 @@
             let dynamicContext = "";
             if (matchedContacts.length > 0) {
                 dynamicContext = "\n\nRelevant Contact details for the query:\n" + 
-                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ipभारत सरकार ', IP/Landline: ' + c.ip : ''}`).join("\n");
+                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ip ? ', IP/Landline: ' + c.ip : ''}`).join("\n");
             }
 
             try {
@@ -3814,18 +3830,18 @@
                 matches.forEach(c => {
                     const isFMS = c.source === 'Network Engineer' || c.source === 'FMS Engineer' || c.source === 'FMS NOFE' || (c.role && (c.role.includes('FMS') || c.role.includes('Network')));
                     contactsHtml += `
-                        <div class="contact-card ${isFMSभारत सरकार 'fms-card' : 'sio-card'}">
+                        <div class="contact-card ${isFMS ? 'fms-card' : 'sio-card'}">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
                                 <strong style="font-size: 0.95rem; color: var(--text-primary);">${c.name}</strong>
-                                <span class="badge-district" style="font-size: 0.7rem; background-color: ${isFMSभारत सरकार 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 76, 129, 0.15)'}; color: ${isFMSभारत सरकार 'var(--accent)' : 'var(--primary)'}; border: none; font-weight: 700; padding: 2px 6px;">
+                                <span class="badge-district" style="font-size: 0.7rem; background-color: ${isFMS ? 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 76, 129, 0.15)'}; color: ${isFMS ? 'var(--accent)' : 'var(--primary)'}; border: none; font-weight: 700; padding: 2px 6px;">
                                     ${c.source}
                                 </span>
                             </div>
                             <div style="font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
                                 <div><i class="fas fa-briefcase" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> ${c.role || 'Staff'}</div>
                                 <div><i class="fas fa-phone" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Mobile: <a href="tel:${c.mobile}" style="color: inherit; text-decoration: none; font-weight: 600;">${c.mobile}</a></div>
-                                ${c.ipभारत सरकार `<div><i class="fas fa-phone-alt" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> VoIP Ext: ${c.ip}</div>` : ''}
-                                ${c.emailभारत सरकार `<div><i class="fas fa-envelope" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Email: ${c.email.split(',').map(e => `<a href="mailto:${e.trim()}" style="color: inherit; text-decoration: none; font-weight: 500;">${e.trim()}</a>`).join(', ')}</div>` : ''}
+                                ${c.ip ? `<div><i class="fas fa-phone-alt" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> VoIP Ext: ${c.ip}</div>` : ''}
+                                ${c.email ? `<div><i class="fas fa-envelope" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Email: ${c.email.split(',').map(e => `<a href="mailto:${e.trim()}" style="color: inherit; text-decoration: none; font-weight: 500;">${e.trim()}</a>`).join(', ')}</div>` : ''}
                             </div>
                         </div>
                     `;
@@ -3839,7 +3855,7 @@
             }
 
             const commonEmail = dioCommonEmails[districtKey] || '';
-            const emailHtml = commonEmailभारत सरकार `
+            const emailHtml = commonEmail ? `
                 <div class="dio-common-email-banner" style="background: rgba(15, 76, 129, 0.08); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
                         <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 2px;">Official District DIO Email</span>
@@ -4129,11 +4145,11 @@
                         this.vy = (Math.random() - 0.5) * 12 - 2;
                         this.decay = Math.random() * 0.015 + 0.008;
                     }
-                    this.gravity = isTrailभारत सरकार 0.02 : 0.15;
+                    this.gravity = isTrail ? 0.02 : 0.15;
                     this.friction = 0.95;
                     this.color = color;
                     this.alpha = 1;
-                    this.size = isTrailभारत सरकार Math.random() * 1.5 + 1 : Math.random() * 3 + 2;
+                    this.size = isTrail ? Math.random() * 1.5 + 1 : Math.random() * 3 + 2;
                 }
                 update() {
                     this.vx *= this.friction;
@@ -4315,7 +4331,7 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: ${isDarkभारत सरकार 'rgba(8, 10, 16, 0.45)' : 'rgba(241, 245, 249, 0.45)'};
+                background: ${isDark ? 'rgba(8, 10, 16, 0.45)' : 'rgba(241, 245, 249, 0.45)'};
                 backdrop-filter: blur(20px) saturate(190%);
                 -webkit-backdrop-filter: blur(20px) saturate(190%);
                 display: flex;
@@ -4358,13 +4374,13 @@
 
             const card = document.createElement('div');
             card.style.cssText = `
-                background: ${isDarkभारत सरकार 'rgba(22, 30, 49, 0.65)' : 'rgba(255, 255, 255, 0.65)'};
-                border: 1px solid ${isDarkभारत सरकार 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)'};
+                background: ${isDark ? 'rgba(22, 30, 49, 0.65)' : 'rgba(255, 255, 255, 0.65)'};
+                border: 1px solid ${isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)'};
                 border-radius: 20px;
                 width: 90%;
                 max-width: 580px;
                 padding: 35px 30px 30px 30px;
-                box-shadow: ${isDarkभारत सरकार '0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1)' : '0 24px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)'};
+                box-shadow: ${isDark ? '0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1)' : '0 24px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)'};
                 position: relative;
                 transform: translateY(-20px);
                 transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -4386,15 +4402,15 @@
             `;
             card.appendChild(topBar);
 
-            const badgeBg = isDarkभारत सरकार 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.06)';
-            const badgeBorder = isDarkभारत सरकार 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)';
-            const badgeColor = isDarkभारत सरकार '#38bdf8' : '#0284c7';
+            const badgeBg = isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.06)';
+            const badgeBorder = isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)';
+            const badgeColor = isDark ? '#38bdf8' : '#0284c7';
 
-            const kbdBg = isDarkभारत सरकार 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)';
-            const kbdBorder = isDarkभारत सरकार 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
+            const kbdBg = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)';
+            const kbdBorder = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
 
             let html = `
-                <button onclick="closeNetworkBootGuide()" style="position: absolute; top: 20px; right: 20px; background: ${isDarkभारत सरकार 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}; border: 1px solid ${isDarkभारत सरकार 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-times"></i></button>
+                <button onclick="closeNetworkBootGuide()" style="position: absolute; top: 20px; right: 20px; background: ${isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}; border: 1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-times"></i></button>
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
                     <div style="width: 42px; height: 42px; background: rgba(56, 189, 248, 0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
                         <i class="fas fa-network-wired" style="font-size: 20px;"></i>
@@ -4440,7 +4456,7 @@
                     </div>
                 </div>
 
-                <div style="background: ${isDarkभारत सरकार 'rgba(16, 185, 129, 0.05)' : 'rgba(16, 185, 129, 0.03)'}; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 12px 15px; font-size: 0.78rem; color: #10b981; display: flex; align-items: flex-start; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 18px;">
+                <div style="background: ${isDark ? 'rgba(16, 185, 129, 0.05)' : 'rgba(16, 185, 129, 0.03)'}; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 12px 15px; font-size: 0.78rem; color: #10b981; display: flex; align-items: flex-start; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 18px;">
                     <i class="fas fa-info-circle" style="margin-top: 2px; font-size: 14px;"></i>
                     <span><strong>Note:</strong> Ensure your device is connected to the local district intranet / NKN network via Ethernet cable. Wi-Fi network booting is not supported.</span>
                 </div>
@@ -4731,7 +4747,7 @@
                     }
 
                     if (syncBadge) {
-                        syncBadge.innerHTML = `<span class="ping-indicator-dot pulse-emerald" style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:4px;"></span> Live Sync: ${data.timestampभारत सरकार data.timestamp.split(' ')[1].substring(0,5) : 'Active'}`;
+                        syncBadge.innerHTML = `<span class="ping-indicator-dot pulse-emerald" style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:4px;"></span> Live Sync: ${data.timestamp ? data.timestamp.split(' ')[1].substring(0,5) : 'Active'}`;
                     }
 
                     if (data.uptime_streak_text) {
@@ -4777,8 +4793,8 @@
               minWidth: 200.00,
               scale: 1.00,
               scaleMobile: 1.00,
-              color: isDarkModeभारत सरकार 0x38bdf8 : 0x0f4c81,
-              backgroundColor: isDarkModeभारत सरकार 0x030712 : 0xf8fafc,
+              color: isDarkMode ? 0x38bdf8 : 0x0f4c81,
+              backgroundColor: isDarkMode ? 0x030712 : 0xf8fafc,
               points: 15.00,
               maxDistance: 24.00,
               spacing: 18.00,
@@ -4793,8 +4809,8 @@
                         const dark = document.body.classList.contains('dark-mode');
                         if (window.vantaEffect) {
                             window.vantaEffect.setOptions({
-                                color: darkभारत सरकार 0x38bdf8 : 0x0f4c81,
-                                backgroundColor: darkभारत सरकार 0x030712 : 0xf8fafc
+                                color: dark ? 0x38bdf8 : 0x0f4c81,
+                                backgroundColor: dark ? 0x030712 : 0xf8fafc
                             });
                         }
                     }, 50);
@@ -5381,8 +5397,8 @@ window.runLiveBandwidthTest = async function() {
 
     var scopeSelect = document.getElementById('bwTestScope');
     var sizeSelect = document.getElementById('bwPayloadSize');
-    var testScope = scopeSelectभारत सरकार scopeSelect.value : 'intranet';
-    var payloadSizeMB = sizeSelectभारत सरकार parseInt(sizeSelect.value) : 4;
+    var testScope = scopeSelect ? scopeSelect.value : 'intranet';
+    var payloadSizeMB = sizeSelect ? parseInt(sizeSelect.value) : 4;
     var packetSizeKB = payloadSizeMB * 32;
 
     if (!btn) return;
@@ -5394,7 +5410,7 @@ window.runLiveBandwidthTest = async function() {
     resDl.innerText = '--'; resUl.innerText = '--'; resPing.innerText = '--'; resJitter.innerText = '--';
     diagBox.style.display = 'none';
 
-    var scopeLabel = testScope === 'internet'भारत सरकार 'PUBLIC INTERNET GATEWAY (WAN)' : 'INTRANET STATE NOC BACKBONE (10.133.22.8)';
+    var scopeLabel = testScope === 'internet' ? 'PUBLIC INTERNET GATEWAY (WAN)' : 'INTRANET STATE NOC BACKBONE (10.133.22.8)';
     consoleBox.innerHTML = '<span style="color:#f59e0b;">> INITIALIZING TUNNEL TO ' + scopeLabel + '...</span>';
 
     var hostOrigin = window.location.origin || (window.location.protocol + '//' + window.location.host);
@@ -5403,9 +5419,9 @@ window.runLiveBandwidthTest = async function() {
     var urlUl = hostOrigin + '/alert/bandwidth.php?action=upload';
 
     try {
-        logToConsole('TRANSMITTING ICMP ECHO (' + packetSizeKB + 'KB PACKET) TO ' + (testScope === 'internet'भारत सरकार 'WAN EDGE' : 'CORE INTRANET') + '...', '#38bdf8');
+        logToConsole('TRANSMITTING ICMP ECHO (' + packetSizeKB + 'KB PACKET) TO ' + (testScope === 'internet' ? 'WAN EDGE' : 'CORE INTRANET') + '...', '#38bdf8');
         var pings = [];
-        var pingCount = payloadSizeMB > 4भारत सरकार 6 : 4;
+        var pingCount = payloadSizeMB > 4 ? 6 : 4;
         for (var i = 0; i < pingCount; i++) {
             var t0 = performance.now();
             await fetch(urlPing + '&scope=' + testScope + '&_t=' + Date.now() + '_' + i);
@@ -5472,7 +5488,7 @@ window.runLiveBandwidthTest = async function() {
             diagText.previousElementSibling.style.color = '#f43f5e';
             logToConsole('DIAGNOSTICS COMPLETE. BOTTLENECKS IDENTIFIED.', '#f43f5e');
         } else {
-            diagText.innerHTML = "<strong>System Optimal (" + (testScope === 'internet'भारत सरकार 'WAN' : 'Intranet') + "):</strong> No anomalies detected. Network health is excellent.";
+            diagText.innerHTML = "<strong>System Optimal (" + (testScope === 'internet' ? 'WAN' : 'Intranet') + "):</strong> No anomalies detected. Network health is excellent.";
             diagBox.style.display = 'block';
             diagBox.style.background = 'rgba(16, 185, 129, 0.08)';
             diagBox.style.borderColor = 'rgba(16, 185, 129, 0.3)';
@@ -5502,6 +5518,47 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+
+
+    <!-- Three.js & Vanta 3D WebGL Network Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script>
+        function initVantaBackground() {
+            if (typeof VANTA !== 'undefined' && VANTA.NET && document.getElementById('vanta-bg')) {
+                if (window.vantaEffect) {
+                    try { window.vantaEffect.destroy(); } catch(e){}
+                }
+                const isDark = document.body.classList.contains('dark-mode') || !document.body.classList.contains('light-mode');
+                try {
+                    window.vantaEffect = VANTA.NET({
+                        el: "#vanta-bg",
+                        mouseControls: true,
+                        touchControls: true,
+                        gyroControls: false,
+                        minHeight: 200.00,
+                        minWidth: 200.00,
+                        scale: 1.00,
+                        scaleMobile: 1.00,
+                        color: isDark ? 0x38bdf8 : 0x0f4c81,
+                        backgroundColor: isDark ? 0x030712 : 0xf8fafc,
+                        points: 14.00,
+                        maxDistance: 22.00,
+                        spacing: 16.00,
+                        showDots: true
+                    });
+                } catch(err) {
+                    console.warn("Vanta init warning:", err);
+                }
+            }
+        }
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initVantaBackground);
+        } else {
+            initVantaBackground();
+        }
+        window.addEventListener('load', initVantaBackground);
+    </script>
 
 </body>
 
