@@ -3740,45 +3740,45 @@
         }
 
         const dioCommonEmails = {
-            "arwal": "dio-arw@nic.in",
-            "araria": "dio-ara-bih@nic.in",
-            "aurangabad": "dio-agb@nic.in",
-            "banka": "dio-bka@nic.in",
-            "begusarai": "dio-bsr@nic.in",
-            "kaimur": "dio-kai@nic.in",
-            "bhagalpur": "dio-bgo@nic.in",
-            "bhojpur": "dio-bjp@nic.in",
-            "buxar": "dio-bux@nic.in",
-            "darbhanga": "dio-dbg@nic.in",
-            "east champaran": "dio-prc@nic.in",
-            "gaya": "dio-gay@nic.in",
-            "gopalganj": "dio-gpg@nic.in",
-            "jamui": "dio-jam@nic.in",
-            "jehanabad": "dio-jhb-bih@nic.in",
-            "katihar": "dio-ktr@nic.in",
-            "khagaria": "dio-kgr-bih@nic.in",
-            "kishanganj": "dio-ksg@nic.in",
-            "lakhisarai": "dio-lsr@nic.in",
-            "madhepura": "dio-mdp@nic.in",
-            "madhubani": "dio-mdb-bih@nic.in",
-            "munger": "dio-mun@nic.in",
-            "muzaffarpur": "dio-muz@nic.in",
-            "nalanda": "dio-nld@nic.in",
-            "nawada": "dio-naw@nic.in",
-            "patna du": "dio-ptn@nic.in",
-            "patna": "dio-ptn@nic.in",
-            "purnia": "dio-prn@nic.in",
-            "rohtas": "dio-rts@nic.in",
-            "saharsa": "dio-shs@nic.in",
-            "samastipur": "dio-sms@nic.in",
-            "saran": "dio-sar@nic.in",
-            "sheikhpura": "dio-shh-bih@nic.in",
-            "sheohar": "dio-shh@nic.in",
-            "sitamarhi": "dio-stm@nic.in",
-            "siwan": "dio-swn@nic.in",
-            "supaul": "dio-spl@nic.in",
-            "vaishali": "dio-vsh@nic.in",
-            "west champaran": "dio-psc@nic.in"
+            "arwal": "dio-XXXX@nic.in",
+            "araria": "dio-XXXX@nic.in",
+            "aurangabad": "dio-XXXX@nic.in",
+            "banka": "dio-XXXX@nic.in",
+            "begusarai": "dio-XXXX@nic.in",
+            "kaimur": "dio-XXXX@nic.in",
+            "bhagalpur": "dio-XXXX@nic.in",
+            "bhojpur": "dio-XXXX@nic.in",
+            "buxar": "dio-XXXX@nic.in",
+            "darbhanga": "dio-XXXX@nic.in",
+            "east champaran": "dio-XXXX@nic.in",
+            "gaya": "dio-XXXX@nic.in",
+            "gopalganj": "dio-XXXX@nic.in",
+            "jamui": "dio-XXXX@nic.in",
+            "jehanabad": "dio-XXXX@nic.in",
+            "katihar": "dio-XXXX@nic.in",
+            "khagaria": "dio-XXXX@nic.in",
+            "kishanganj": "dio-XXXX@nic.in",
+            "lakhisarai": "dio-XXXX@nic.in",
+            "madhepura": "dio-XXXX@nic.in",
+            "madhubani": "dio-XXXX@nic.in",
+            "munger": "dio-XXXX@nic.in",
+            "muzaffarpur": "dio-XXXX@nic.in",
+            "nalanda": "dio-XXXX@nic.in",
+            "nawada": "dio-XXXX@nic.in",
+            "patna du": "dio-XXXX@nic.in",
+            "patna": "dio-XXXX@nic.in",
+            "purnia": "dio-XXXX@nic.in",
+            "rohtas": "dio-XXXX@nic.in",
+            "saharsa": "dio-XXXX@nic.in",
+            "samastipur": "dio-XXXX@nic.in",
+            "saran": "dio-XXXX@nic.in",
+            "sheikhpura": "dio-XXXX@nic.in",
+            "sheohar": "dio-XXXX@nic.in",
+            "sitamarhi": "dio-XXXX@nic.in",
+            "siwan": "dio-XXXX@nic.in",
+            "supaul": "dio-XXXX@nic.in",
+            "vaishali": "dio-XXXX@nic.in",
+            "west champaran": "dio-XXXX@nic.in"
         };
 
         function showDistrictDetails(districtKey, districtDisplayName) {
@@ -3874,7 +3874,7 @@
             const emailHtml = commonEmail ? `
                 <div class="dio-common-email-banner" style="background: rgba(15, 76, 129, 0.08); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
-                        <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 2px;">Official District DIO Email</span>
+                        <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 2px;">Official District DIO Email (Sanitized)</span>
                         <div style="display: flex; align-items: center; gap: 10px; margin-top: 2px;">
                             <a href="mailto:${commonEmail}" style="font-size: 1rem; color: var(--primary); font-weight: 600; text-decoration: none;"><i class="fas fa-envelope-open-text" style="margin-right: 6px;"></i> ${commonEmail}</a>
                             <button onclick="copyToClipboard('${commonEmail}', this)" style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-primary); padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; font-weight: 500;" title="Copy Email Address">
