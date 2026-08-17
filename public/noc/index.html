@@ -2660,7 +2660,7 @@
             </div>
             
             <p style="margin-bottom: 20px; font-size: 0.95rem; color: var(--text-secondary); position: relative; z-index: 1;">
-                Select your district below to lookup local SIO/FMS engineers, VoIP Extensions, and instantly access direct download links for the latest <a href="nic/index.php?dir=DISTRICT+AUDIT+-+2025" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">district audit reports</a> and <a href="nic/index.php?dir=MAC+Weekly+UP-Date" target="_blank" style="color: var(--primary); text-decoration: underline; font-weight: 600;">MAC weekly address sheets</a> hosted locally on the Patna NOC server.
+                Select your district below to lookup local DIO/FMS engineering teams, masked VoIP Extensions, and access district audit status telemetry across all 38 District Headquarters on the State NOC backbone.
             </p>
             
             <!-- Divisions Grid -->
@@ -3818,9 +3818,9 @@
             let docsHtml = '';
             if (auditPath) {
                 docsHtml += `
-                    <a href="nic/${auditPath}" class="doc-item-link" download>
+                    <a href="javascript:void(0)" onclick="alert('District Audit Report Telemetry is active. Internal node logs are sanitized for public view.');" class="doc-item-link">
                         <span><i class="far fa-file-excel text-success" style="margin-right: 8px; font-size: 1.1rem;"></i> District Audit Report (2025)</span>
-                        <i class="fas fa-arrow-alt-circle-down arrow"></i>
+                        <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
                     </a>
                 `;
             } else {
@@ -3833,9 +3833,9 @@
 
             if (macPath) {
                 docsHtml += `
-                    <a href="nic/${macPath}" class="doc-item-link" download>
+                    <a href="javascript:void(0)" onclick="alert('District MAC Address Telemetry is active. Raw physical addresses are sanitized for security.');" class="doc-item-link">
                         <span><i class="far fa-file-excel text-success" style="margin-right: 8px; font-size: 1.1rem;"></i> MAC Weekly Update Sheet</span>
-                        <i class="fas fa-arrow-alt-circle-down arrow"></i>
+                        <i class="fas fa-shield-alt" style="color: var(--primary);"></i>
                     </a>
                 `;
             }
