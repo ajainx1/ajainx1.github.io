@@ -18,9 +18,7 @@ import {
   Briefcase, 
   FileText,
   MapPin,
-  ExternalLink,
-  Menu,
-  X
+  ExternalLink
 } from "lucide-react";
 import Link from "next/link";
 import TiltWrapper from "@/components/3d/TiltWrapper";
@@ -39,23 +37,20 @@ const COMMANDS = {
     "aditya@secops:~$ cat whoami.json",
     "{",
     "  \"name\": \"Aditya Jain\",",
-    "  \"role\": \"Cybersecurity Engineer — Firewall & VAPT Specialist\",",
-    "  \"scope\": \"NGFW Architecture -> VAPT -> SIEM/EDR -> DFIR -> DCIM & Compliance\",",
-    "  \"exp\": \"3.5+ Years Enterprise Cybersecurity & IT Ops\",",
+    "  \"role\": \"SME Cybersecurity Engineer\",",
+    "  \"exp\": \"4+ Years Enterprise SecOps\",",
     "  \"location\": \"Patna, Bihar, India\",",
     "  \"current\": \"Security Administrator @ National Informatics Centre (NIC)\",",
-    "  \"clearance\": \"Vetted for CNI Access (NIC/MeitY & DAE/NFC)\"",
+    "  \"focus\": \"SecOps, Purple Teaming, Threat Hunting\"",
     "}"
   ],
   skills: [
     "aditya@secops:~$ list-skills --verbose",
-    "• Firewalls & NGFW: Check Point NGFW, Fortinet FortiGate (FCAC), Sophos, Default-Deny Policies, NAT/ACLs, VPNs",
-    "• VAPT & Offensive: Web App VAPT (OWASP Top 10), Infra Pentesting, Burp Suite Pro, Metasploit, Nmap, AD Exploitation",
     "• SIEM/EDR: Wazuh, Blu Sapphire, SentinelOne, Trend Micro, Kaspersky EDR",
-    "• DFIR & Forensics: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, RAM Dump Analysis",
-    "• Scripting & Tools: Python, PowerShell, Bash, Git, WinSCP, Ollama LLM RAG Chatbots",
-    "• DCIM & Infra: SDC Data Center Mgmt, PACs, Rodent Repellers, Racks & Patch Panels, Fire Suppression",
-    "• Compliance: CERT-In Guidelines, CDAC Standards, NIST CSF"
+    "• Offensive: Metasploit, Nmap, Burp Suite Pro, BloodHound, Impacket, Mimikatz",
+    "• Network: Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, OSPF",
+    "• Scripting: Python, PowerShell, Bash, Git",
+    "• Compliance: NIST CSF, OWASP Top 10, CERT-In, RAM Dump Analysis"
   ],
   exp: [
     "aditya@secops:~$ get-history",
@@ -70,7 +65,7 @@ const COMMANDS = {
   certs: [
     "aditya@secops:~$ list-certs",
     "[Completed]",
-    "• Fortinet Certified Associate in Cybersecurity (FCAC)",
+    "• Fortinet Certified Associate (FCA) in Cybersecurity",
     "• Red Hat Certified System Administrator (RHCSA)",
     "• In the Trenches: SOC - EC-Council",
     "• Autopsy Basics (Digital Forensics) - BasisTech",
@@ -93,7 +88,6 @@ export default function Home() {
   const [terminalInput, setTerminalInput] = useState("");
   const [visitorCount, setVisitorCount] = useState(2143);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const terminalEndRef = useRef<HTMLDivElement>(null);
 
   // Persistent client-side visitor tracker starting at 2143
@@ -189,15 +183,6 @@ export default function Home() {
             <a href="#contact" className="hover:text-[var(--fg)] transition-colors">Contact</a>
           </nav>
 
-          {/* Mobile Hamburger */}
-          <button
-            className="md:hidden p-2 rounded-lg border border-black/10 hover:bg-black/5 transition-colors"
-            aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-            onClick={() => setMobileMenuOpen(v => !v)}
-          >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-
           <div className="flex items-center gap-3">
             {walletAddress && (
               <div className="hidden md:flex items-center gap-1.5 px-4 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-50 text-emerald-700 shadow-sm text-xs font-semibold">
@@ -209,7 +194,7 @@ export default function Home() {
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
               <span>{visitorCount} visitors</span>
             </div>
-            <a
+            <a 
               href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" 
               download 
               className="px-5 py-2 text-xs font-bold rounded-full bg-slate-900 text-white hover:bg-slate-800 transition-all flex items-center gap-2 shadow-md hover:shadow-lg"
@@ -220,42 +205,6 @@ export default function Home() {
           </div>
         </div>
       </header>
-
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)}>
-          <nav
-            className="absolute top-0 left-0 h-full w-72 bg-white shadow-2xl flex flex-col pt-20 px-6 gap-2"
-            onClick={e => e.stopPropagation()}
-          >
-            {[
-              { href: '#about', label: 'About' },
-              { href: '#skills', label: 'Competencies' },
-              { href: '#experience', label: 'Experience' },
-              { href: '#projects', label: 'Projects' },
-              { href: '#certs', label: 'Credentials' },
-              { href: '#contact', label: 'Contact' },
-            ].map(link => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="py-3 px-4 rounded-xl text-slate-700 font-semibold text-base hover:bg-slate-50 hover:text-slate-900 transition-colors border-b border-slate-100 last:border-0"
-              >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf"
-              download
-              onClick={() => setMobileMenuOpen(false)}
-              className="mt-4 py-3 px-4 rounded-xl text-sm font-bold text-center bg-slate-900 text-white hover:bg-slate-800 transition-colors flex items-center justify-center gap-2"
-            >
-              <Download className="w-4 h-4" /> Download CV
-            </a>
-          </nav>
-        </div>
-      )}
 
       {/* Telemetry Indicator Row */}
       <div className="w-full border-b border-black/5 bg-slate-100/50 py-2 text-xs font-semibold text-slate-500 overflow-x-auto whitespace-nowrap backdrop-blur-md relative z-10">
@@ -273,7 +222,7 @@ export default function Home() {
           <div className="lg:col-span-6 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/5 bg-white/60 backdrop-blur-xl shadow-sm text-sm font-semibold text-slate-700">
               <Shield className="w-4 h-4 text-blue-600" />
-              <span>Firewall Engineering &bull; VAPT &amp; Pentesting &bull; SecOps &bull; Purple Teaming</span>
+              <span>SecOps • Purple Team • Threat Hunting</span>
             </div>
 
             <h1 className="text-5xl sm:text-7xl font-bold font-title tracking-tight text-slate-900 leading-tight">
@@ -281,16 +230,16 @@ export default function Home() {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed">
-              Cybersecurity Engineer specializing in <strong>NGFW Architecture</strong> (Check Point, Fortinet) and <strong>Vulnerability Assessment &amp; Penetration Testing</strong> with <strong>3.5+ years of enterprise experience</strong> across government infrastructure (NIC/MeitY) and Critical National Infrastructure SOC operations (DAE/NFC). CNI-vetted.
+              Versatile Cybersecurity Engineer with <strong>4+ years of enterprise experience</strong> in Security Operations, Threat Hunting, and Vulnerability Management across India’s national government IT infrastructure.
             </p>
 
             {/* Quick Action Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4">
               {[
-                { label: "Years Cyber", value: "3.5+" },
+                { label: "Years SecOps", value: "4+" },
                 { label: "Govt Endpoints", value: "750+" },
-                { label: "VAPT Assessments", value: "15+" },
-                { label: "Audit Effort Saved", value: "60%" }
+                { label: "Audits Automated", value: "120+" },
+                { label: "Effort Saved", value: "60%" }
               ].map((stat, i) => (
                 <div key={i} className="p-4 bg-white/60 border border-black/5 rounded-[20px] backdrop-blur-xl shadow-sm flex flex-col items-center justify-center text-center hover:bg-white/90 transition-colors">
                   <div className="text-2xl font-black text-slate-800">{stat.value}</div>
@@ -301,16 +250,16 @@ export default function Home() {
 
             {/* CTAs */}
             <div className="flex flex-wrap gap-4 pt-6">
-              <a href="/Aditya_Jain_Cybersecurity_Engineer_US.pdf" download className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                <Download className="w-4 h-4" />
-                <span>Download Resume</span>
+              <a href="https://jumpstreet.tech" target="_blank" rel="noopener noreferrer" className="group px-6 py-3.5 text-sm font-bold text-white bg-slate-900 rounded-full hover:bg-slate-800 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <span>JumpStreet Portal</span>
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
-              <a href="#experience" className="px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full hover:from-blue-500 hover:to-indigo-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
-                <Briefcase className="w-4 h-4" />
-                <span>View Experience</span>
+              <a href="https://cyberkarma.me" target="_blank" rel="noopener noreferrer" className="group px-6 py-3.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full hover:from-emerald-400 hover:to-teal-500 transition-all flex items-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <span className="text-lg">🎮</span>
+                <span>Play Charity Quiz</span>
               </a>
-              <a href="#contact" className="px-6 py-3.5 text-sm font-bold text-slate-700 bg-white/60 border border-black/10 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md backdrop-blur-xl">
-                Contact Me
+              <a href="#about" className="px-6 py-3.5 text-sm font-bold text-slate-700 bg-white/60 border border-black/10 rounded-full hover:bg-white transition-all shadow-sm hover:shadow-md backdrop-blur-xl">
+                View Portfolio
               </a>
             </div>
           </div>
@@ -374,13 +323,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <div className="lg:col-span-7 space-y-5 text-slate-600 leading-relaxed text-base sm:text-lg">
               <p>
-                <strong>Cybersecurity Engineer &amp; Firewall/VAPT Specialist</strong> with <strong>3.5+ years of hands-on enterprise experience</strong> in Next-Generation Firewall architecture, Web &amp; Infrastructure Penetration Testing, and SIEM/EDR threat hunting. Currently managing large-scale cybersecurity operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC, MeitY). Vetted for Critical National Infrastructure access (DAE/NFC).
+                Highly capable <strong>Cybersecurity Engineer &amp; SME</strong> with <strong>4+ years of hands-on enterprise experience</strong> architecting, tuning, and defending critical IT and e-governance systems. Currently managing large-scale SecOps operations at Ebix Technologies contracted directly to the National Informatics Centre (NIC).
               </p>
               <p>
-                Specializes in <strong>Check Point NGFW and Fortinet FortiGate</strong> perimeter security design (default-deny policies, NAT/ACL auditing, IPsec VPN tunnels) and conducting periodic <strong>VAPT assessments</strong> against government web portals, identifying and remediating OWASP Top 10 vulnerabilities with coordinated PoC exploit validation.
-              </p>
-              <p>
-                Equally adept at defensive SIEM/EDR engineering (SentinelOne, Wazuh, Blu Sapphire), DFIR triage (FTK Imager, Magnet RAM Capture, Disk2vhd), and physical Data Center Infrastructure Management (DCIM) including PACs, server racks, and VESDA fire safety systems.
+                Adept at offensive simulations (Active Directory exploitation, payload analysis, and sandbox malware replication) and defensive engineering (writing custom Wazuh/Snort IDS rules, tuning SIEM systems, and orchestrating EDR policies).
               </p>
               <p>
                 Proven ability to automate regulatory auditing through custom PowerShell and Python frameworks, reducing overall audit cycles by 60% and successfully responding to national CERT-In security advisories.
@@ -388,7 +334,7 @@ export default function Home() {
               <div className="p-4 rounded-2xl bg-blue-50 border border-blue-100 shadow-sm mt-4">
                 <p className="text-sm font-semibold text-blue-900 flex gap-2 items-start">
                   <span className="text-lg">🎯</span> 
-                  <span>Open to Firewall Engineering, VAPT/Pentesting, SOC Leadership, and Purple Team roles — PAN India relocation and international H-1B sponsorship opportunities.</span>
+                  <span>Open to U.S. Relocation / H-1B Sponsorship. Currently targeted locations: Washington D.C. Metro, Northern Virginia, Austin TX, Dallas TX, or Chicago IL.</span>
                 </p>
               </div>
             </div>
@@ -401,14 +347,13 @@ export default function Home() {
                 <pre className="text-[13px] font-mono text-slate-700 leading-relaxed overflow-x-auto whitespace-pre">
 {`{
   "name": "Aditya Jain",
-  "title": "Cybersecurity Engineer — Firewall & VAPT",
-  "exp": "3.5+ Years Enterprise SecOps & VAPT",
-  "focus": "NGFW • Web/Infra VAPT • SIEM/EDR • DFIR",
-  "clearance": "CNI Vetted (NIC/MeitY & DAE/NFC)",
+  "title": "Cybersecurity Engineer",
+  "exp": "4+ Years Enterprise SecOps",
+  "relocation": "U.S. Relocation / H-1B",
   "email": "adityasec32@gmail.com",
   "contact": "+91 740 058 8896",
   "studying": "MBA in Cybersecurity",
-  "pursuing": ["eJPT", "CEH v13", "CISSP"]
+  "pursuing": ["OSCP", "CISSP"]
 }`}
                 </pre>
               </TiltWrapper>
@@ -424,23 +369,31 @@ export default function Home() {
             <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                title: "NGFW & Firewall Engineering",
-                desc: "Check Point NGFW, Fortinet FortiGate (FCAC certified), Sophos, Cisco AnyConnect, Default-Deny rule design, NAT/PAT configuration, ACL auditing, IPsec/SSL VPN tunnels, TACACS+/RADIUS AAA, perimeter traffic inspection."
+                title: "SIEM / EDR",
+                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel."
               },
               {
-                title: "VAPT & Offensive Security",
-                desc: "Web Application VAPT (OWASP Top 10), Infrastructure Pentesting, Active Directory Security Assessments (Kerberoasting, Pass-the-Hash, DCSync, BloodHound, Impacket, Mimikatz), Burp Suite Pro, Metasploit, Nmap, PoC Exploit Development."
+                title: "Offensive Security",
+                desc: "Active Directory Exploitation (Kerberoasting, Pass-the-Hash, DCSync, Kerberos Delegation), Burp Suite Pro, BloodHound, Metasploit, Nmap, Impacket, Mimikatz."
               },
               {
-                title: "SIEM/EDR, DFIR & SOC Operations",
-                desc: "Wazuh SIEM, Blu Sapphire, SentinelOne EDR, Trend Micro Deep Security, Kaspersky EDR, Splunk (familiar), Microsoft Sentinel, Snort IDS, 24x7 CNI SOC. DFIR: FTK Imager, Magnet RAM Capture, Disk2vhd, Autopsy, CERT-In IR."
+                title: "Network Security & VPNs",
+                desc: "Check Point NGFW, Fortinet FortiGate, Sophos, Cisco AnyConnect, AAA (TACACS+/RADIUS), OSPF Routing, Wireshark packet capture & triage."
               },
               {
-                title: "Infrastructure, Automation & Compliance",
-                desc: "KACE UEM (750+ endpoints), PXE Boot imaging, State Data Centre DCIM (PACs, racks, patch panels, VESDA fire safety, rodent repellers), Python/PowerShell/CMD/Bash automation (120+ checks), WinSCP, Git, Ollama RAG LLM chatbots, CERT-In/CDAC/NIST CSF compliance."
+                title: "Scripting & AI Automation",
+                desc: "Python, PowerShell, Bash, Git. Developing customized automated compliance scripting, network log parsers, and AI telemetry helpers."
+              },
+              {
+                title: "Compliance & Incident Response",
+                desc: "NIST CSF, OWASP Top 10 remediation, CERT-In compliance guidelines, RAM dump forensics, threat intelligence feed integration, Snort signature engineering."
+              },
+              {
+                title: "Endpoint & Infrastructure",
+                desc: "KACE UEM (750+ nodes), USB policy enforcement, unified security baselines, Linux server hardening, DHCP/PXE deployment, automated patching."
               }
             ].map((skill, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl shadow-sm flex flex-col justify-between hover:shadow-lg hover:bg-white/60 hover:-translate-y-1 transition-all duration-300">
@@ -471,39 +424,26 @@ export default function Home() {
               {
                 period: "Feb 2024 – Present",
                 role: "Security Administrator",
-                company: "Ebix Technologies (Contracted to National Informatics Centre - NIC, MeitY)",
+                company: "Ebix Technologies (Contracted to National Informatics Centre - NIC)",
                 location: "Patna, Bihar, India",
-                tags: ["Check Point NGFW", "Web & Infra VAPT", "EDR / 750+ Offices", "60% Audit Automated", "CERT-In IR"],
+                tags: ["EDR Deployment", "Incidents & Forensics", "60% Audit Effort Saved", "750+ Offices"],
                 bullets: [
-                  "Firewall Architecture & Perimeter Hardening: Designed and enforced default-deny security policies on Check Point NGFW across Bihar SDC and NKN offices; configured NAT/PAT rules, audited ACLs, and managed IPsec VPN tunnels for secure inter-district government communications.",
-                  "Web Application & Infrastructure VAPT: Conducted 15+ vulnerability assessments and penetration tests against government-facing web portals; identified and remediated 50+ critical/high OWASP Top 10 vulnerabilities (Open Redirect, XSS, SQLi); validated closures via PoC exploits coordinated with NIC-CERT.",
-                  "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, tuning behavioral detection policies to neutralize emerging ransomware and fileless attack vectors.",
-                  "Air-Gapped Enterprise AI & NOC Gateway: Independently designed and deployed an AI-assisted organization-wide NOC gateway on the air-gapped intranet, integrating an offline RAG LLM Chatbot (Ollama), custom tool hyperlink directory, district router telemetry, and automated outage alerts.",
-                  "DFIR & CERT-In Incident Response: Primary CERT-In responder; performed live memory triage (Magnet RAM Capture, FTK Imager, Disk2vhd), host forensics, and authored PoC exploits to validate vulnerability closures. Achieved 100% closure rate on CERT-In advisories within SLA.",
-                  "Compliance Automation: Built PowerShell and Python frameworks automating 120+ CDAC/CERT-In regulatory checks across 750+ endpoints via KACE UEM — cutting audit effort by 60%.",
-                  "Data Center Infrastructure Management (DCIM): Oversaw State Data Centre (SDC) physical security and environmental controls including Precision Air Conditioning (PACs), server rack optimization, patch panel routing, ultrasonic rodent repeller systems, and VESDA fire safety compliance."
-                ]
-              },
-              {
-                period: "Aug 2023 – Jan 2024",
-                role: "Self-Directed Security Research & MBA Prep",
-                company: "Independent Study & Chitkara University Enrollment",
-                location: "Patna, Bihar, India",
-                tags: ["Hack The Box", "AD Labs", "MBA Prep", "Offensive Security Practice"],
-                bullets: [
-                  "Enrolled in MBA in Cybersecurity (Chitkara University) while completing intensive self-directed offensive security lab practice on Hack The Box (Active Directory exploitation, Pro Hacker rank) and VulnLab (multi-forest AD pivots, Domain Controller compromise).",
-                  "Deepened expertise in Active Directory attack chains (Kerberoasting, Pass-the-Hash, DCSync, Unconstrained Delegation) and VAPT methodologies in preparation for eJPT certification."
+                  "Enterprise EDR Deployment: Architected and managed SentinelOne and Trend Micro Deep Security across 750+ regional offices, monitoring threat telemetry and tuning detection rules to neutralize emerging vectors.",
+                  "Incident Response & Forensics: Primary responder to CERT-In security advisories; performed host forensics, RAM dump analysis, IP reputation triage, and authored PoC exploits to validate vulnerability closures.",
+                  "Compliance Automation: Built PowerShell and Python frameworks executing 120+ regulatory checks (NIST/ISO 27001 aligned) across 750+ endpoints — reducing manual cycles by 60%.",
+                  "Vulnerability Management: Coordinated disclosure and patching with government development teams to remediate OWASP Top 10 vulnerabilities.",
+                  "Endpoint & Network Hardening: Enforced default-deny policies on Check Point NGFW, deployed USB blocks, and conducted public IP exposure audits."
                 ]
               },
               {
                 period: "Dec 2022 – Jul 2023",
                 role: "SOC Analyst — Threat Hunter",
-                company: "RRG Engineering Technologies (Contracted to Nuclear Fuel Complex - NFC, DAE)",
+                company: "RRG Engineering Technologies (Contracted to Nuclear Fuel Complex - NFC)",
                 location: "Kota, Rajasthan, India",
                 tags: ["24x7 CNI SOC", "Blu Sapphire SIEM", "+35% Detection Boost", "Malware Sandboxing"],
                 bullets: [
-                  "CNI SOC Operations: SME for threat hunting and incident response in a 24x7 nuclear-sector SOC (Department of Atomic Energy — DOE-equivalent sensitivity), monitoring enterprise telemetry via Blu Sapphire SIEM.",
-                  "Sandbox & Malware Analysis: Reproduced adversary exploit signatures in isolated lab environments; performed behavioral malware analysis with Kaspersky EDR to reverse-engineer TTPs.",
+                  "CNI SOC Operations: Threat hunting and incident response SME in a 24x7 critical nuclear infrastructure SOC (DOE-equivalent sensitivity), monitoring telemetry via Blu Sapphire SIEM.",
+                  "Sandbox Analysis: Reproduced adversary exploit signatures in isolated lab environments; performed behavioral malware analysis with Kaspersky EDR to reverse-engineer TTPs.",
                   "Detection Engineering: Tuned SIEM correlation rules and EDR behavioral rules, yielding a 35% improvement in true-positive detection rates while eliminating alert fatigue."
                 ]
               },
@@ -511,22 +451,22 @@ export default function Home() {
                 period: "Aug 2022 – Oct 2022",
                 role: "SOC Analyst — IDS & Signature Development",
                 company: "E2E Networks Limited",
-                location: "Delhi NCR, India (Remote)",
+                location: "Vellore, Tamil Nadu, India",
                 tags: ["Snort IDS", "Wazuh SIEM", "Perimeter Blocklist"],
                 bullets: [
-                  "IDS Engineering: Authored and deployed custom Snort and Wazuh IDS signatures to capture novel attack patterns in a 24x7 SOC environment.",
-                  "Threat Intelligence: Automated AbuseIPDB threat feed ingestion for real-time perimeter firewall IP blocklisting.",
+                  "IDS Engineering: Authored and deployed custom Snort and Wazuh IDS signatures to capture novel attack patterns.",
+                  "Threat Intelligence: Automated AbuseIPDB threat feed ingestion to enforce real-time perimeter firewall IP blocklisting.",
                   "Telemetry Analysis: Analyzed bandwidth and network traffic logs to identify routing loops and anomalies."
                 ]
               },
               {
                 period: "Dec 2021 – May 2022",
-                role: "Technical Support Executive (Microsoft Account)",
+                role: "Technical Support Executive",
                 company: "Teleperformance",
                 location: "Jaipur, Rajasthan, India",
-                tags: ["Earlier Career"],
+                tags: ["Enterprise Support", "Microsoft Suite", "SLA Compliance"],
                 bullets: [
-                  "Delivered Tier-2 Microsoft enterprise support; maintained SLA compliance and documented internal security knowledge bases."
+                  "Delivered Tier-2 Microsoft enterprise support via the Rave ticketing platform, maintaining SLA compliance and documenting security knowledge bases."
                 ]
               }
             ].map((exp, idx) => (
@@ -576,48 +516,39 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {[
               {
-                title: "CDAC & CERT-In Compliance Auditor Framework",
-                status: "Enterprise SecOps (Sanitized)",
-                desc: "Engineered an automated PowerShell & Python compliance framework executing 120+ regulatory security controls mapped to NIST CSF standards across 750+ enterprise nodes via KACE UEM.",
-                tags: ["PowerShell", "Python", "KACE UEM", "NIST CSF", "Automated Hardening"],
+                title: "CDAC/CERT-In Compliance Engine",
+                status: "NIC Production (Classified)",
+                desc: "Engineered a PowerShell & Python framework executing 120+ automated system configuration checks mapped to NIST standards across 750+ government nodes via KACE UEM.",
+                tags: ["PowerShell", "Python", "KACE UEM", "NIST CSF"],
                 badge: "Enterprise",
                 color: "bg-blue-50 text-blue-700 border-blue-200"
               },
               {
-                title: "Air-Gapped Enterprise AI & NOC Gateway",
-                status: "Air-Gapped Intranet Production",
-                desc: "Sole architect of a full-stack air-gapped intranet NOC gateway. Features an integrated offline RAG Cybersecurity Chatbot (Ollama LLM), custom tool hyperlink directory, 38-district live router telemetry, and automated outage alerting.",
-                tags: ["Air-Gapped SecOps", "Sole Architect", "AI RAG Chatbot", "Ollama LLM", "PHP REST API"],
-                badge: "Enterprise Intranet",
+                title: "Government NOC Admin Portal",
+                status: "Live Deployment",
+                desc: "A dashboard monitoring 38 district-level router nodes with real-time traceroute telemetry and a voice-input enabled RAG cybersecurity chatbot running locally (Ollama/LLM).",
+                tags: ["React/Next.js", "Ollama LLM", "PHP API", "RAG"],
+                badge: "Govt Deployment",
                 link: "/noc/",
                 color: "bg-indigo-50 text-indigo-700 border-indigo-200"
               },
               {
-                title: "Real-Time Enterprise Network Telemetry & Alert Dashboard",
+                title: "Real-Time Network Alert Dashboard",
                 status: "Live Deployment",
-                desc: "Solely engineered real-time ping monitoring and packet loss analysis dashboard for enterprise core routing units. Integrates custom outage alerting, noise filters, and live telemetry log feeds.",
-                tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets", "Telemetry"],
+                desc: "Automated ping monitoring and packet loss analysis dashboard for enterprise core routing units. Integrates custom outage alerting, noise filters, and live telemetry log feeds.",
+                tags: ["JavaScript", "CSS Grid", "Fetch API", "WebSockets"],
                 badge: "Live Gateway",
                 link: "/alert/",
                 color: "bg-violet-50 text-violet-700 border-violet-200"
               },
               {
-                title: "CyberKarma Philanthropic AI Platform",
-                status: "Production App",
-                desc: "Interactive education and food donation platform featuring a stunning macOS-inspired UI, 3D physics, real-time dynamic counters, and 1-tap Google authentication.",
-                tags: ["Next.js 16", "Framer Motion", "Supabase Auth", "3D Physics", "Tailwind CSS"],
-                badge: "Live Platform",
-                link: "https://cyberkarma.me",
+                title: "Cyber Free Rice Initiative",
+                status: "Charity Quiz",
+                desc: "Interactive education platform featuring a stunning macOS-inspired UI. User quiz scores are simulated to feed directly into food charity initiatives (FreeRice concept).",
+                tags: ["Next.js", "Framer Motion", "Supabase", "Tailwind CSS"],
+                badge: "Community",
+                link: "/charity-quiz",
                 color: "bg-emerald-50 text-emerald-700 border-emerald-200"
-              },
-              {
-                title: "JumpStreet Low-Latency Trading Infrastructure",
-                status: "Production",
-                desc: "Engineered low-latency algorithmic trading infrastructure providing sub-millisecond cloud VMs and high-availability 5G redundancy nodes for quantitative traders.",
-                tags: ["Cloud Infra", "Low Latency", "5G Redundancy", "Windows Server"],
-                badge: "Enterprise",
-                link: "https://jumpstreet.tech",
-                color: "bg-rose-50 text-rose-700 border-rose-200"
               }
             ].map((project, idx) => (
               <TiltWrapper key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between hover:bg-white/60 hover:shadow-xl transition-all duration-300 relative overflow-hidden group">
@@ -676,7 +607,7 @@ export default function Home() {
               <h3 className="text-xl font-title font-bold text-slate-800 flex items-center gap-3"><Award className="w-6 h-6 text-blue-600" /> Completed Credentials</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
-                  "Fortinet Certified Associate in Cybersecurity (FCAC)",
+                  "Fortinet Certified Associate (FCA) in Cybersecurity",
                   "Red Hat Certified System Administrator (RHCSA)",
                   "In the Trenches: SOC - EC-Council",
                   "Autopsy Basics (Digital Forensics) - BasisTech",
@@ -727,7 +658,7 @@ export default function Home() {
             <div className="flex-1 h-px bg-gradient-to-r from-black/10 to-transparent"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
               {
                 degree: "Master of Business Administration (MBA) in Cybersecurity",
@@ -738,11 +669,6 @@ export default function Home() {
                 degree: "B.Tech in Computer Science & Engineering",
                 school: "Manipal University Jaipur, India",
                 period: "Graduated 2022"
-              },
-              {
-                degree: "Diploma in Computer Science & Engineering",
-                school: "Hindu College of Engineering, India",
-                period: "2013 – 2018"
               }
             ].map((edu, idx) => (
               <div key={idx} className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
@@ -770,7 +696,7 @@ export default function Home() {
               <TiltWrapper className="p-8 rounded-[24px] border border-white/60 bg-white/40 backdrop-blur-xl space-y-6 shadow-sm">
                 <h3 className="text-2xl font-bold font-title text-slate-900">Get in Touch</h3>
                 <p className="text-sm text-slate-600 leading-relaxed font-medium">
-                  Open to Firewall Engineering, VAPT/Pentesting, SOC Leadership, and Purple Team roles — PAN India relocation and international opportunities.
+                  Open to enterprise SecOps, Purple Teaming, Detection Engineering, or Red Team roles — worldwide remote and relocation opportunities.
                 </p>
                 
                 <div className="space-y-4 font-mono text-sm font-bold text-slate-600">
