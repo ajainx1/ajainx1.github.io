@@ -1,21 +1,15 @@
 "use client";
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import confetti from 'canvas-confetti';
-import dynamic from 'next/dynamic';
-const ImpactGallery = dynamic(() => import('./ImpactGallery'), { ssr: false, loading: () => <div className="animate-pulse bg-white/5 rounded-[32px] h-96 w-full mt-8" /> });
-import AdSlot from '../ads/AdSlot';
-import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, ArrowRight, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server, Shield, TrendingUp, Flame, Volume2, VolumeX } from 'lucide-react';
+import { Share2, Heart, Lightbulb, User, LogOut, ArrowLeft, Sun, Moon, Zap, Cpu, Award, Network, Activity, Server } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
 import { quizData, CategoryKey, Difficulty, Question } from './quizData';
 import { useToast } from '../js/ToastContext';
 import Link from 'next/link';
 import TiltWrapper from '@/components/3d/TiltWrapper';
+import AdSenseBanner from '@/components/AdSenseBanner';
 
 // Initialize Supabase client
-// Note: AI quiz features require a Gemini API key from the user or NEXT_PUBLIC_GEMINI_API_KEY env var
-const GLOBAL_GEMINI_API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || '';
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://xkhgccximcrsdpdlskys.supabase.co';
 const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhraGdjY3hpbWNyc2RwZGxza3lzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM2NjQ0OTksImV4cCI6MjA5OTI0MDQ5OX0.R9t0QNG0voJPyxhZkXO2hQtD4_Gr2xdnGyI8AlTOk5g';
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -43,143 +37,82 @@ const levelTitles = [
   { minLvl: 25, title: "Ketu Supreme Architect" }
 ];
 
-const DAILY_KARMA_QUOTES = [
-  { text: "🥛 A bowl of milk and curd provides essential nutrition & hydration for street dogs.", tag: "Daily Nutrition Fact" },
-  { text: "🕊️ Every question answered feeds a hungry soul in verified local feeding drives.", tag: "Daily Karma Thought" },
-  { text: "🐄 Our dairy donations support local farmers & village dairy suppliers in Patna.", tag: "Community Impact" },
-  { text: "❤️ Good karma returns to those who help vulnerable animals survive the street.", tag: "Karmic Reflection" },
-  { text: "🐾 Every drop of milk makes a difference for street dogs enduring extreme weather.", tag: "Field Care Insight" },
-  { text: "🐕 Over 200 Million stray dogs worldwide need our collective love and care.", tag: "Global Animal Awareness" },
-  { text: "🥛 Fresh curd helps digest food & prevents heat stroke in summer street animals.", tag: "Animal Wellness Tip" },
-  { text: "✨ Knowledge turned into compassion builds a kinder world for all creatures.", tag: "Daily Inspiration" }
-];
-
-const getDailyQuote = () => {
-  const dayOfYear = Math.floor((new Date().getTime() - new Date(new Date().getFullYear(), 0, 0).getTime()) / 86400000);
-  return DAILY_KARMA_QUOTES[dayOfYear % DAILY_KARMA_QUOTES.length];
-};
-
-const QuizImage = ({ category, question }: { category: string, question: string }) => {
-  const categoryImageMap: Record<string, string> = {
-    animals: '/category_animals.jpg',
-    nature: '/category_nature.jpg',
-    humanities: '/category_humanities.jpg',
-    science: '/category_science.jpg',
-    gk: '/category_gk.jpg'
-  };
-
-  const imageSrc = categoryImageMap[category] || '/category_science.jpg';
-
-  return (
-    <Image 
-      src={imageSrc}
-      alt={`${category} 3D Visual Graphic`}
-      fill
-      className="object-cover relative z-10 transition-transform duration-700 group-hover:scale-105"
-      sizes="(max-width: 768px) 100vw, 800px"
-      priority={true}
-    />
-  );
-};
-
-const AnimatedTitle = () => {
-  const [index, setIndex] = useState(0);
-  const titles = ["CyberKarma Charity Quiz", "The Cyber Free Rice", "Answer to Feed Animals", "Learn & Make Impact"];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % titles.length);
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return (
-    <div className="relative h-7 w-56 sm:w-64 overflow-hidden flex items-center">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={index}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="absolute inset-0 flex items-center bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-500 font-bold drop-shadow-sm truncate whitespace-nowrap"
-        >
-          {titles[index]}
-        </motion.span>
-      </AnimatePresence>
-    </div>
-  );
-};
-
-// High-performance Web Audio API Synthesizer (Zero network overhead)
-let globalAudioCtx: AudioContext | null = null;
-
-const getAudioContext = () => {
-  if (!globalAudioCtx) {
-    const AudioContextClass = (window as any).AudioContext || (window as any).webkitAudioContext;
-    if (AudioContextClass) {
-      globalAudioCtx = new AudioContextClass();
-    }
-  }
-  return globalAudioCtx;
-};
-
-const playSound = (type: 'correct' | 'wrong' | 'levelup') => {
-  try {
-    const ctx = getAudioContext();
-    if (!ctx) return;
-    
-    // Resume context if it was suspended (browser autoplay policy)
-    if (ctx.state === 'suspended') {
-      ctx.resume();
-    }
-
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    
-    const now = ctx.currentTime;
-    if (type === 'correct') {
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(440, now);
-      osc.frequency.exponentialRampToValueAtTime(880, now + 0.1);
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.1, now + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.5);
-      osc.start(now);
-      osc.stop(now + 0.5);
-    } else if (type === 'wrong') {
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(150, now);
-      osc.frequency.exponentialRampToValueAtTime(100, now + 0.2);
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.1, now + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
-      osc.start(now);
-      osc.stop(now + 0.3);
-    } else if (type === 'levelup') {
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(261.63, now);
-      osc.frequency.setValueAtTime(329.63, now + 0.1);
-      osc.frequency.setValueAtTime(392.00, now + 0.2);
-      osc.frequency.setValueAtTime(523.25, now + 0.3);
-      gain.gain.setValueAtTime(0, now);
-      gain.gain.linearRampToValueAtTime(0.05, now + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
-      osc.start(now);
-      osc.stop(now + 0.6);
-    }
-  } catch (e) {
-    // Ignore if Audio API is not supported or user hasn't interacted yet
-  }
-};
-
 export default function CharityQuizClient() {
   // State
   const [score, setScore] = useState(0);
-  const [totalKarmaAllTime, setTotalKarmaAllTime] = useState(0);
+
+  // Web Audio Synthesizer & Audio Toggle
+  const [isAudioMuted, setIsAudioMuted] = useState(false);
+  const [showLuckyCrateModal, setShowLuckyCrateModal] = useState(false);
+  const [luckyReward, setLuckyReward] = useState<{ text: string; grains: number } | null>(null);
+
+  const playChimeSound = (streakCount: number) => {
+    if (isAudioMuted || typeof window === 'undefined') return;
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const baseFreqs = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50, 1174.66, 1318.51];
+      const noteIndex = Math.min(streakCount, baseFreqs.length - 1);
+      const freq = baseFreqs[noteIndex];
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(freq * 1.5, ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.18, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.35);
+    } catch (e) {}
+  };
+
+  const playIncorrectBuzz = () => {
+    if (isAudioMuted || typeof window === 'undefined') return;
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, ctx.currentTime);
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.25);
+    } catch (e) {}
+  };
+
+  const handleOpenLuckyCrate = () => {
+    const todayStr = new Date().toISOString().split('T')[0];
+    const lastClaim = localStorage.getItem('charityQuizLastCrateClaim') || '';
+    if (lastClaim === todayStr) {
+      addToast('🎁 You already opened your Daily Karma Crate today! Come back tomorrow for more free grains.', 'info');
+      return;
+    }
+
+    const rewards = [
+      { text: '🎉 MEGA KARMA JACKPOT! +250 Grains Donated!', grains: 250 },
+      { text: '🛡️ STREAK SHIELD + +100 Grains Donated!', grains: 100 },
+      { text: '⚡ 2X KARMIC SURGE + +150 Grains Donated!', grains: 150 },
+      { text: '🌟 DIVINE COMPASSION BLESSING! +500 Grains Donated!', grains: 500 }
+    ];
+
+    const chosen = rewards[Math.floor(Math.random() * rewards.length)];
+    setLuckyReward(chosen);
+    saveScore(score + chosen.grains);
+    localStorage.setItem('charityQuizLastCrateClaim', todayStr);
+    setShowLuckyCrateModal(true);
+    addToast(`🎁 Claimed Daily Karma Crate: +${chosen.grains} grains!`, 'success');
+  };
+
   const [streak, setStreak] = useState(0);
   
   // Daily Streak & Shields State
@@ -188,11 +121,10 @@ export default function CharityQuizClient() {
   const [lastPlayedDate, setLastPlayedDate] = useState('');
   const [dailyPlanetBonus, setDailyPlanetBonus] = useState({ name: '', targetRecipient: '', message: '' });
   
-  const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('animals');
+  const [category, setCategory] = useState<CategoryKey | 'custom-ai'>('cybersecurity');
   const [difficulty, setDifficulty] = useState<Difficulty>('beginner');
   const [currentQuestion, setCurrentQuestion] = useState<Question | null>(null);
-  const [nextQuestionToPrefetch, setNextQuestionToPrefetch] = useState<Question | null>(null);
-  const [recipient, setRecipient] = useState('dogs');
+  const [recipient, setRecipient] = useState('human');
   const [showAstro, setShowAstro] = useState(false);
   const [showHint, setShowHint] = useState(false);
   
@@ -200,7 +132,7 @@ export default function CharityQuizClient() {
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswered, setIsAnswered] = useState(false);
   const [feedback, setFeedback] = useState<{ text: string; type: 'success' | 'error' | 'info' } | null>(null);
-  const [donationIcons, setDonationIcons] = useState<{ id: number; left: string; delay: string; icon: string }[]>([]);
+  const [riceGrains, setRiceGrains] = useState<{ id: number; left: string; delay: string; icon: string }[]>([]);
   
   // Auth
   const [user, setUser] = useState<{ email: string; name: string; avatar: string } | null>(null);
@@ -213,86 +145,14 @@ export default function CharityQuizClient() {
   const [showAIModal, setShowAIModal] = useState(false);
   const [aiTopic, setAiTopic] = useState('');
   const [aiKey, setAiKey] = useState('');
-  const [aiProvider, setAiProvider] = useState<'gemini' | 'deepseek' | 'ollama'>('gemini');
   const [isGeneratingAI, setIsGeneratingAI] = useState(false);
   const [aiQuestions, setAiQuestions] = useState<Question[]>([]);
   const [aiIndex, setAiIndex] = useState(0);
   const [aiCorrectCount, setAiCorrectCount] = useState(0);
   const [showAICompletion, setShowAICompletion] = useState(false);
 
-  // Visitor count & Real-time increasing counters
+  // Visitor count
   const [quizVisitorCount, setQuizVisitorCount] = useState(1437);
-  const [liveOnlinePlayers, setLiveOnlinePlayers] = useState(1437);
-  const [liveDeliveriesCount, setLiveDeliveriesCount] = useState(14203);
-
-  // Live community activity ticker
-  const [liveActivityTicker, setLiveActivityTicker] = useState("⚡ Someone in New Delhi just answered a question & funded a bowl of curd!");
-
-  // Real-time increasing intervals
-  useEffect(() => {
-    // 1. Load stored deliveries & global total karma
-    const storedDeliveries = localStorage.getItem("cyberkarma_deliveries_count");
-    if (storedDeliveries) {
-      setLiveDeliveriesCount(parseInt(storedDeliveries, 10));
-    }
-
-    const storedKarma = localStorage.getItem("cyberkarma_total_karma_alltime");
-    if (storedKarma) {
-      setTotalKarmaAllTime(parseInt(storedKarma, 10));
-    } else {
-      setTotalKarmaAllTime(2842100);
-      localStorage.setItem("cyberkarma_total_karma_alltime", "2842100");
-    }
-
-    // 2. Interval to auto-increment live deliveries count (every 6 seconds)
-    const deliveriesInterval = setInterval(() => {
-      setLiveDeliveriesCount(prev => {
-        const next = prev + Math.floor(Math.random() * 2) + 1;
-        localStorage.setItem("cyberkarma_deliveries_count", next.toString());
-        return next;
-      });
-    }, 6000);
-
-    // 3. Interval to auto-increment total karma donated globally (every 4.5 seconds)
-    const karmaInterval = setInterval(() => {
-      setTotalKarmaAllTime(prev => {
-        const next = prev + (Math.floor(Math.random() * 2) + 1) * 10;
-        localStorage.setItem("cyberkarma_total_karma_alltime", next.toString());
-        return next;
-      });
-    }, 4500);
-
-    // 4. Interval to fluctuate live online players count
-    const playersInterval = setInterval(() => {
-      setLiveOnlinePlayers(prev => {
-        const delta = Math.floor(Math.random() * 9) - 4; // -4 to +4
-        return Math.max(1410, Math.min(1590, prev + delta));
-      });
-    }, 3500);
-
-    // 5. Activity feed ticker array
-    const activities = [
-      "⚡ Someone in New Delhi just answered a question & funded a bowl of curd!",
-      "⚡ Someone in London just hit a 5x Streak Bonus!",
-      "⚡ Someone in Patna verified a morning field feeding drive!",
-      "⚡ Someone in Tokyo started an Endless AI Science Quiz!",
-      "⚡ Someone in Sydney earned the 'Packet Sentinel' rank!",
-      "⚡ Someone in San Francisco unlocked a Level Up milestone!"
-    ];
-
-    let actIdx = 0;
-    const activityInterval = setInterval(() => {
-      actIdx = (actIdx + 1) % activities.length;
-      setLiveActivityTicker(activities[actIdx]);
-    }, 5000);
-
-    return () => {
-      clearInterval(deliveriesInterval);
-      clearInterval(karmaInterval);
-      clearInterval(playersInterval);
-      clearInterval(activityInterval);
-    };
-  }, []);
 
   // Level up states
   const [showLevelUpModal, setShowLevelUpModal] = useState(false);
@@ -300,9 +160,6 @@ export default function CharityQuizClient() {
 
   // Photo preview lightbox state
   const [previewImage, setPreviewImage] = useState<{ src: string; title: string; location: string; date: string; tag: string } | null>(null);
-
-  // 3D Viral Share Modal State
-  const [showShareModal, setShowShareModal] = useState(false);
 
   // Refs to track recently shown questions to prevent repeats
   const questionHistoryRef = useRef<string[]>([]);
@@ -312,6 +169,72 @@ export default function CharityQuizClient() {
   const [isDark, setIsDark] = useState(true);
 
   const { addToast } = useToast();
+
+  const STREET_FEEDING_DRIVE = [
+    {
+      src: '/impact/street-dog-2.jpeg',
+      title: 'Daily Evening Rice Bowl',
+      location: 'Rajbansi Nagar, Patna Division, Bihar',
+      date: '20 Jul 2026 • 12:55 PM',
+      tag: 'Direct Street Feeding',
+    },
+    {
+      src: '/impact/street-dog-6.jpeg',
+      title: 'Morning Feeding Spot',
+      location: 'Rajbansi Nagar, Patna Division, Bihar',
+      date: '21 Jul 2026 • 10:45 AM',
+      tag: 'Morning Meal Drive',
+    },
+    {
+      src: '/impact/street-dog-7.jpeg',
+      title: 'Evening Community Street Feeding',
+      location: 'Road Rajbansi Nagar, Patna Division, Bihar',
+      date: '22 Jul 2026 • 07:18 PM',
+      tag: 'Evening Care Patrol',
+    },
+    {
+      src: '/impact/street-dog-1.jpeg',
+      title: 'Street Animal Feeding Point',
+      location: 'Rajbansi Nagar Alley, Patna, Bihar',
+      date: '20 Jul 2026 • Street Drive',
+      tag: 'Daily Nourishment',
+    },
+    {
+      src: '/impact/street-dog-8.jpeg',
+      title: 'Street Pack Feeding Station',
+      location: 'Patna Division, Bihar',
+      date: 'July 2026 • Patna Community',
+      tag: 'Pack Feeding',
+    },
+    {
+      src: '/impact/street-dog-9.jpeg',
+      title: 'Night Stall Feeding Spot',
+      location: 'Egg Vendor Hub, Patna, Bihar',
+      date: 'July 2026 • Night Care Spot',
+      tag: 'Night Feeding Drive',
+    },
+    {
+      src: '/impact/street-dog-3.jpeg',
+      title: 'Nourishing Street Companion',
+      location: 'Patna Division, Bihar',
+      date: 'July 2026 • Patna Community',
+      tag: 'Street Survival',
+    },
+    {
+      src: '/impact/street-dog-4.jpeg',
+      title: 'Street Stall Feeding Spot',
+      location: 'Market Street Hub, Bihar',
+      date: 'July 2026 • Street Vendor Spot',
+      tag: 'Community Care',
+    },
+    {
+      src: '/impact/street-dog-5.jpeg',
+      title: 'Late-Night Animal Feeding Drive',
+      location: 'Night Care Patrol, Patna, Bihar',
+      date: 'July 2026 • Night Drive',
+      tag: 'Zero Animal Hunger',
+    },
+  ];
 
   // Web3 States
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
@@ -346,6 +269,18 @@ export default function CharityQuizClient() {
     window.addEventListener("storage", checkWallet);
     return () => window.removeEventListener("storage", checkWallet);
   }, []);
+
+  // Google AdSense auto-refresh hook per question response
+  useEffect(() => {
+    try {
+      if (typeof window !== 'undefined') {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      }
+    } catch {
+      // Ignore initial render push errors when ad script is loading
+    }
+  }, [currentQuestion, aiIndex]);
 
   const handleMintSoulboundNFT = () => {
     if (!walletAddress) {
@@ -386,75 +321,53 @@ export default function CharityQuizClient() {
       // Load Supabase session
       const { data: { session } } = await supabase.auth.getSession();
       if (session?.user?.email) {
-        handleUserLogin(session.user.email, session.user.user_metadata);
+        handleUserLogin(session.user.email);
       } else {
-        const localScore = parseInt(localStorage.getItem('charityKarmaScore') || '0', 10);
+        const localScore = parseInt(localStorage.getItem('charityRiceScore') || '0', 10);
         setScore(localScore);
         // Initialize level storage so we don't trigger modal on mount
         const calculatedLevel = Math.floor(localScore / 200) + 1;
         localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
       
-      // Load daily streaks & shields from local/cloud storage
+      // Load daily streaks & shields from local storage
       const localStreak = parseInt(localStorage.getItem('charityQuizStreak') || '0', 10);
       const localShields = parseInt(localStorage.getItem('charityQuizShields') || '0', 10);
       const localLastPlayed = localStorage.getItem('charityQuizLastPlayedDate') || '';
       const savedAIKey = localStorage.getItem('GEMINI_API_KEY') || '';
-      const localTotalKarma = localStorage.getItem('charityTotalKarmaAllTime');
       
-      const finalStreak = session?.user?.user_metadata?.dailyStreak ?? localStreak;
-      const finalShields = session?.user?.user_metadata?.streakShields ?? localShields;
-      const finalLastPlayed = session?.user?.user_metadata?.lastPlayedDate ?? localLastPlayed;
-      const finalTotal = session?.user?.user_metadata?.totalKarmaAllTime ?? (localTotalKarma ? parseInt(localTotalKarma, 10) : 0);
-      
-      setDailyStreak(finalStreak);
-      setStreakShields(finalShields);
-      setLastPlayedDate(finalLastPlayed);
+      setDailyStreak(localStreak);
+      setStreakShields(localShields);
+      setLastPlayedDate(localLastPlayed);
       setAiKey(savedAIKey);
-      setTotalKarmaAllTime(finalTotal);
       
       // Validate streak
-      if (finalLastPlayed) {
+      if (localLastPlayed) {
         const todayStr = new Date().toISOString().split('T')[0];
-        const lastDate = new Date(finalLastPlayed);
+        const lastDate = new Date(localLastPlayed);
         const todayDate = new Date(todayStr);
         const diffTime = Math.abs(todayDate.getTime() - lastDate.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
         
         if (diffDays > 1) {
           // Missed a day! check shields
-          if (finalShields > 0) {
-            const updatedShields = finalShields - 1;
+          if (localShields > 0) {
+            const updatedShields = localShields - 1;
             setStreakShields(updatedShields);
             localStorage.setItem('charityQuizShields', String(updatedShields));
-            if (session?.user && !session.user.email?.startsWith('guest_')) {
-              supabase.auth.updateUser({ data: { streakShields: updatedShields, dailyStreak: finalStreak } }).catch(console.error);
-            }
-            addToast(`🛡️ Your streak of ${finalStreak} days was saved by a Streak Shield!`, 'info');
+            addToast(`🛡️ Your streak of ${localStreak} days was saved by a Streak Shield!`, 'info');
           } else {
             setDailyStreak(0);
             localStorage.setItem('charityQuizStreak', '0');
-            if (session?.user && !session.user.email?.startsWith('guest_')) {
-              supabase.auth.updateUser({ data: { dailyStreak: 0 } }).catch(console.error);
-            }
           }
         }
       }
     };
     checkSessionAndStates();
     
-    try {
-      const storedHistory = localStorage.getItem('charityQuizSeenQuestions');
-      if (storedHistory) {
-        questionHistoryRef.current = JSON.parse(storedHistory);
-      }
-    } catch (e) {
-      console.error('Failed to parse history', e);
-    }
-    
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       if (event === 'SIGNED_IN' && session?.user?.email) {
-        handleUserLogin(session.user.email, session.user.user_metadata);
+        handleUserLogin(session.user.email);
       } else if (event === 'SIGNED_OUT') {
         setUser(null);
       }
@@ -463,40 +376,22 @@ export default function CharityQuizClient() {
     return () => authListener.subscription.unsubscribe();
   }, []);
 
-  const handleUserLogin = (email: string, userMetadata?: any) => {
-    const name = userMetadata?.full_name || email.split('@')[0];
-    const avatar = userMetadata?.avatar_url || `https://ui-avatars.com/api/?name=${email}&background=10b981&color=fff`;
+  const handleUserLogin = (email: string) => {
+    const name = email.split('@')[0];
+    const avatar = `https://ui-avatars.com/api/?name=${email}&background=10b981&color=fff`;
     setUser({ email, name, avatar });
-    
-    let userScore = parseInt(localStorage.getItem(`charityKarmaScore_${email}`) || '0', 10);
-    if (userMetadata && userMetadata.karmaScore !== undefined) {
-      userScore = userMetadata.karmaScore;
-    }
-    
+    const userScore = parseInt(localStorage.getItem(`charityRiceScore_${email}`) || '0', 10);
     setScore(userScore);
-    localStorage.setItem('charityKarmaScore', String(userScore));
     // Initialize level storage so we don't trigger modal on mount
     const calculatedLevel = Math.floor(userScore / 200) + 1;
     localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
   };
 
   const saveScore = (newScore: number) => {
-    const earned = newScore - score;
     setScore(newScore);
-    localStorage.setItem('charityKarmaScore', String(newScore));
-    
-    let newTotal = totalKarmaAllTime;
-    if (earned > 0) {
-      newTotal = totalKarmaAllTime + earned;
-      setTotalKarmaAllTime(newTotal);
-      localStorage.setItem('charityTotalKarmaAllTime', String(newTotal));
-    }
-    
+    localStorage.setItem('charityRiceScore', String(newScore));
     if (user) {
-      localStorage.setItem(`charityKarmaScore_${user.email}`, String(newScore));
-      if (!user.email.startsWith('guest_')) {
-        supabase.auth.updateUser({ data: { karmaScore: newScore, totalKarmaAllTime: newTotal } }).catch(console.error);
-      }
+      localStorage.setItem(`charityRiceScore_${user.email}`, String(newScore));
     }
   };
 
@@ -504,13 +399,13 @@ export default function CharityQuizClient() {
   const calculateDailyPlanetBonus = () => {
     const day = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
     const bonuses = {
-      0: { name: "Sunday (Sun Day)", targetRecipient: "dogs", message: "☀️ Today is Sun Day! Feed the Dogs for 2X Karma Points!" },
-      1: { name: "Monday (Moon Day)", targetRecipient: "moon", message: "🌕 Today is Moon Day! Feed the Moon Mothers for 2X Karma Points!" },
-      2: { name: "Tuesday (Mars Day)", targetRecipient: "cows", message: "🔥 Today is Mars Day! Feed the Cows for 2X Karma Points!" },
-      3: { name: "Wednesday (Mercury Day)", targetRecipient: "birds", message: "✨ Today is Mercury Day! Feed the Birds for 2X Karma Points!" },
-      4: { name: "Thursday (Jupiter Day)", targetRecipient: "jupiter", message: "🪐 Today is Jupiter Day! Support Jupiter's Scholars for 2X Karma Points!" },
-      5: { name: "Friday (Venus Day)", targetRecipient: "venus", message: "💖 Today is Venus Day! Support Venus Women Shelters for 2X Karma Points!" },
-      6: { name: "Saturday (Saturn Day)", targetRecipient: "saturn", message: "🛡️ Today is Saturday! Help Saturn's Disabled for 2X Karma Points!" }
+      0: { name: "Sunday (Sun Day)", targetRecipient: "dogs", message: "☀️ Today is Sun Day! Feed the Dogs for 2X Grains!" },
+      1: { name: "Monday (Moon Day)", targetRecipient: "moon", message: "🌕 Today is Moon Day! Feed the Moon Mothers for 2X Grains!" },
+      2: { name: "Tuesday (Mars Day)", targetRecipient: "cows", message: "🔥 Today is Mars Day! Feed the Cows for 2X Grains!" },
+      3: { name: "Wednesday (Mercury Day)", targetRecipient: "birds", message: "✨ Today is Mercury Day! Feed the Birds for 2X Grains!" },
+      4: { name: "Thursday (Jupiter Day)", targetRecipient: "jupiter", message: "🪐 Today is Jupiter Day! Support Jupiter's Scholars for 2X Grains!" },
+      5: { name: "Friday (Venus Day)", targetRecipient: "venus", message: "💖 Today is Venus Day! Support Venus Women Shelters for 2X Grains!" },
+      6: { name: "Saturday (Saturn Day)", targetRecipient: "saturn", message: "🛡️ Today is Saturday! Help Saturn's Disabled for 2X Grains!" }
     };
     setDailyPlanetBonus(bonuses[day as keyof typeof bonuses]);
   };
@@ -535,10 +430,6 @@ export default function CharityQuizClient() {
       setLastPlayedDate(todayStr);
       localStorage.setItem('charityQuizLastPlayedDate', todayStr);
       localStorage.setItem('charityQuizStreak', String(newStreak));
-      
-      if (user && !user.email.startsWith('guest_')) {
-        supabase.auth.updateUser({ data: { dailyStreak: newStreak, lastPlayedDate: todayStr } }).catch(console.error);
-      }
     }
   };
 
@@ -551,11 +442,7 @@ export default function CharityQuizClient() {
       setStreakShields(newShields);
       localStorage.setItem('charityQuizShields', String(newShields));
       
-      if (user && !user.email.startsWith('guest_')) {
-        supabase.auth.updateUser({ data: { streakShields: newShields } }).catch(console.error);
-      }
-      
-      setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 Karma Points.', type: 'success' });
+      setFeedback({ text: 'Streak Shield purchased successfully! 🛡️ -500 grains.', type: 'success' });
       addToast('Streak Shield Purchased! 🛡️', 'success');
     }
   };
@@ -587,29 +474,17 @@ export default function CharityQuizClient() {
       pool = pool.filter(q => q.question !== currentQuestionRef.current?.question);
     }
     
-    // Pick the selected question (use prefetched if available and valid)
-    let selected = pool[Math.floor(Math.random() * pool.length)];
-    if (nextQuestionToPrefetch && pool.some(q => q.question === nextQuestionToPrefetch.question)) {
-      selected = nextQuestionToPrefetch;
-    }
+    const rand = Math.floor(Math.random() * pool.length);
+    const selected = pool[rand];
     
     setCurrentQuestion(selected);
     currentQuestionRef.current = selected;
     
-    // Pick the next question to prefetch for zero latency on the next turn
-    const nextPool = pool.filter(q => q.question !== selected.question);
-    if (nextPool.length > 0) {
-      setNextQuestionToPrefetch(nextPool[Math.floor(Math.random() * nextPool.length)]);
-    } else {
-      setNextQuestionToPrefetch(null);
-    }
-    
     // Add to history
     questionHistoryRef.current.push(selected.question);
-    if (questionHistoryRef.current.length > 1000) {
+    if (questionHistoryRef.current.length > 5) {
       questionHistoryRef.current.shift();
     }
-    localStorage.setItem('charityQuizSeenQuestions', JSON.stringify(questionHistoryRef.current));
     
     setIsAnswered(false);
     setSelectedAnswer(null);
@@ -629,163 +504,68 @@ export default function CharityQuizClient() {
   // Hook to track and celebrate Level Up achievements
   useEffect(() => {
     if (score > 0) {
-      // Adjusted to be less frequent (gives 5-15 question breaks)
-      const milestoneThresholds = [50, 150, 300, 500, 750, 1000, 1500, 2000, 3000, 4000, 5000, 7500, 10000];
-      
-      let reachedLevel = 1;
-      for (let i = 0; i < milestoneThresholds.length; i++) {
-        if (score >= milestoneThresholds[i]) {
-          reachedLevel = i + 2; 
-        }
-      }
-      
+      const calculatedLevel = Math.floor(score / 200) + 1;
       const storedLvl = parseInt(localStorage.getItem('charityQuizLastLevel') || '1', 10);
       
-      if (reachedLevel > storedLvl) {
-        localStorage.setItem('charityQuizLastLevel', String(reachedLevel));
+      if (calculatedLevel > storedLvl) {
+        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
         
-        let title = "Packet Novice";
+        let title = "Chandra Novice";
         for (const item of levelTitles) {
-          if (reachedLevel >= item.minLvl) {
+          if (calculatedLevel >= item.minLvl) {
             title = item.title;
           }
         }
         
-        setLevelUpData({ level: reachedLevel, title });
+        setLevelUpData({ level: calculatedLevel, title });
         setShowLevelUpModal(true);
-        addToast(`🎉 Level Up! You reached Level ${reachedLevel}!`, 'success');
-        playSound('levelup');
+        addToast(`🎉 Level Up! You reached Level ${calculatedLevel}!`, 'success');
         
-        if (user) {
-          localStorage.setItem(`charityQuizLastLevel_${user.email}`, String(reachedLevel));
+        // Play level-up sound effect (ascending arpeggio)
+        try {
+          const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
+          const playNote = (freq: number, delay: number, duration: number) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + delay);
+            gain.gain.setValueAtTime(0.15, audioCtx.currentTime + delay);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + duration);
+            osc.start(audioCtx.currentTime + delay);
+            osc.stop(audioCtx.currentTime + delay + duration);
+          };
+          
+          playNote(261.63, 0, 0.2); // C4
+          playNote(329.63, 0.15, 0.2); // E4
+          playNote(392.00, 0.3, 0.2); // G4
+          playNote(523.25, 0.45, 0.5); // C5
+        } catch (e) {
+          console.error(e);
         }
+      } else if (calculatedLevel < storedLvl) {
+        localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
       }
     }
-  }, [score, addToast, user]);
+  }, [score, addToast]);
 
-  const generateFallbackQuestions = (topic: string, count: number): Question[] => {
-    const cleanTopic = topic.trim() || 'General Knowledge';
-    const presets: Record<string, Question[]> = {
-      'cybersecurity': [
-        {
-          question: 'What is the primary objective of a Zero Trust architecture in cybersecurity?',
-          options: ['Never trust, always verify every access request', 'Trust all internal network devices by default', 'Only encrypt passwords during initial login', 'Block all incoming Web traffic using a firewall'],
-          answer: 0,
-          hint: 'Think about strict verification for every single request regardless of origin.',
-          explanation: 'Zero Trust assumes threats exist both inside and outside the network; every access request must be authenticated and authorized.',
-          scenario: 'Security Audit: Safeguarding enterprise cloud infrastructure against data breaches.'
-        },
-        {
-          question: 'In Artificial Intelligence, what does the term "Overfitting" describe?',
-          options: ['A model performs exceptionally on training data but poorly on unseen test data', 'A neural network runs too fast on modern GPU hardware', 'A dataset contains too many features for training', 'An algorithm returns identical probabilities for all classes'],
-          answer: 0,
-          hint: 'The model memorized the training noise instead of learning general patterns.',
-          explanation: 'Overfitting occurs when a machine learning model learns the training data too closely, reducing its ability to generalize to new data.',
-          scenario: 'Machine Learning Deployment: Training an AI threat detection system.'
-        },
-        {
-          question: 'What type of cryptographic algorithm is widely used for secure digital signatures?',
-          options: ['RSA (Rivest-Shamir-Adleman)', 'AES-256 in CBC mode', 'SHA-256 Hashing', 'Base64 Encoding'],
-          answer: 0,
-          hint: 'It relies on a public and private key pair for asymmetric cryptography.',
-          explanation: 'RSA is an asymmetric cryptographic algorithm used for key exchanges and digital signatures.',
-          scenario: 'Cryptography Protocol: Verifying software updates authenticity.'
-        },
-        {
-          question: 'What is a SQL Injection attack?',
-          options: ['Injecting malicious SQL code into input fields to manipulate database queries', 'Overloading a web server with fake HTTP GET requests', 'Intercepting Wi-Fi packets using a rogue access point', 'Decrypting stored user passwords using a rainbow table'],
-          answer: 0,
-          hint: 'It targets un-sanitized database input parameters.',
-          explanation: 'SQL Injection allows attackers to execute arbitrary SQL commands via vulnerable user inputs.',
-          scenario: 'Web Application Pentest: Testing database security compliance.'
-        },
-        {
-          question: 'Which AI architecture powers modern Large Language Models like GPT & Gemini?',
-          options: ['Transformer Architecture with Self-Attention', 'Recurrent Neural Networks (RNN)', 'Convolutional Neural Networks (CNN)', 'Support Vector Machines (SVM)'],
-          answer: 0,
-          hint: 'Introduced by Google in the 2017 paper "Attention Is All You Need".',
-          explanation: 'Transformers rely on self-attention mechanisms to process sequential text data in parallel across massive datasets.',
-          scenario: 'AI Research Lab: Scaling neural network parameters.'
-        }
-      ],
-      'space': [
-        {
-          question: 'What is the Event Horizon of a black hole?',
-          options: ['The boundary beyond which nothing, not even light, can escape', 'The glowing accretion disk surrounding the black hole', 'The center point of infinite density', 'The jet of relativistic particles emitted from the poles'],
-          answer: 0,
-          hint: 'It represents the point of no return for escaping gravitational pull.',
-          explanation: 'The event horizon is the theoretical boundary around a black hole beyond which the escape velocity exceeds the speed of light.',
-          scenario: 'Astrophysics Observation: Analyzing Event Horizon Telescope data.'
-        },
-        {
-          question: 'Which galaxy is currently on a collision course with our Milky Way galaxy?',
-          options: ['Andromeda Galaxy (M31)', 'Triangulum Galaxy (M33)', 'Sombrero Galaxy', 'Large Magellanic Cloud'],
-          answer: 0,
-          hint: 'It is our closest major galactic neighbor roughly 2.5 million light-years away.',
-          explanation: 'The Andromeda Galaxy is approaching the Milky Way at roughly 110 km/s and will merge with it in about 4.5 billion years.',
-          scenario: 'Cosmology Simulation: Modeling galactic collision dynamics.'
-        },
-        {
-          question: 'What is Cosmic Microwave Background (CMB) radiation?',
-          options: ['The thermal leftover radiation from the Big Bang event', 'High-energy gamma rays emitted by supernovas', 'Microwave signals sent by distant exoplanet civilizations', 'Solar wind particles colliding with Earth’s magnetosphere'],
-          answer: 0,
-          hint: 'It acts as a baby picture of the universe roughly 380,000 years after creation.',
-          explanation: 'The CMB is faint electromagnetic radiation filling all space, providing strong evidence for the Big Bang model.',
-          scenario: 'Deep Space Astronomy: Mapping early universe fluctuations.'
-        },
-        {
-          question: 'What rocket stage booster system powers NASA’s Artemis lunar missions?',
-          options: ['Space Launch System (SLS)', 'Saturn V', 'Falcon Heavy', 'New Glenn'],
-          answer: 0,
-          hint: 'It is NASA’s super heavy-lift launch vehicle designed for deep space crewed exploration.',
-          explanation: 'NASA’s Space Launch System (SLS) provides the launch capability for the Orion spacecraft in the Artemis lunar program.',
-          scenario: 'Lunar Exploration: Launching astronauts back to the Moon.'
-        },
-        {
-          question: 'What is the primary component of Jupiter’s atmosphere?',
-          options: ['Hydrogen and Helium', 'Methane and Ammonia', 'Carbon Dioxide and Nitrogen', 'Oxygen and Argon'],
-          answer: 0,
-          hint: 'It reflects the composition of the primordial solar nebula.',
-          explanation: 'Jupiter is a gas giant composed primarily of hydrogen (~90%) and helium (~10%).',
-          scenario: 'Planetary Science: Analyzing gas giant atmospheric composition.'
-        }
-      ]
-    };
-
-    const topicKey = cleanTopic.toLowerCase();
-    for (const key in presets) {
-      if (topicKey.includes(key)) {
-        return presets[key].slice(0, count);
-      }
+  // Generate Custom AI Quiz
+  const handleGenerateAIQuiz = async () => {
+    if (!aiTopic.trim()) {
+      addToast('Please enter a topic', 'error');
+      return;
+    }
+    if (!aiKey.trim()) {
+      addToast('Please enter a Gemini API Key', 'error');
+      return;
     }
 
-    return Array.from({ length: count }).map((_, i) => {
-      const id = i + 1;
-      return {
-        question: `What is a fundamental core concept or key milestone in "${cleanTopic}" (Level #${id})?`,
-        options: [
-          `Foundational principles & structural mechanics of ${cleanTopic}`,
-          `Historical discovery timelines & early observational methods`,
-          `Practical engineering applications & real-world usage`,
-          `Future innovations & emerging technology research`
-        ],
-        answer: 0,
-        hint: `Focus on the primary structural framework and core principles of ${cleanTopic}.`,
-        explanation: `Mastering ${cleanTopic} begins with understanding its core structural framework and foundational domain principles.`,
-        scenario: `Domain Mastery #${id}: Exploring key milestones in ${cleanTopic}.`
-      };
-    });
-  };
+    setIsGeneratingAI(true);
+    localStorage.setItem('GEMINI_API_KEY', aiKey);
+    setFeedback(null);
 
-  const fetchAIQuestions = async (count: number, topic: string, provider: string, key: string, history: string[] = []): Promise<Question[]> => {
-    // If no key is provided or provider is local without key, use dynamic topic synthesizer
-    if (!key.trim() && provider !== 'ollama') {
-      return generateFallbackQuestions(topic, count);
-    }
-
-    try {
-      const historyText = history.length > 0 ? `\nCRITICAL: DO NOT repeat any concepts or questions similar to these previously generated ones:\n- ${history.slice(-20).join('\n- ')}\n` : '';
-      const promptText = `Generate exactly ${count} completely unique and novel multiple choice questions on the topic: "${topic}".${historyText}
+    const promptText = `Generate exactly 5 multiple choice questions on the topic: "${aiTopic}".
 Return the output ONLY as a valid JSON array matching the structure:
 [
   {
@@ -793,97 +573,48 @@ Return the output ONLY as a valid JSON array matching the structure:
     "options": ["option 1", "option 2", "option 3", "option 4"],
     "answer": 0,
     "hint": "helpful hint",
-    "explanation": "educational fact",
     "scenario": "brief context"
   }
 ]
 Ensure the JSON output is raw, without any markdown formatting, backticks, or wrapping. Keep it strictly educational and correct.`;
 
-      if (provider === 'gemini') {
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${key}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: promptText }] }],
-            generationConfig: { responseMimeType: "application/json" }
-          })
-        });
-        if (!response.ok) throw new Error('API key invalid or limit reached.');
-        const data = await response.json();
-        let textResponse = data.candidates[0].content.parts[0].text;
-        textResponse = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsed = JSON.parse(textResponse);
-        return Array.isArray(parsed) ? parsed : (parsed.questions || parsed.data || []);
-      } else if (provider === 'deepseek') {
-        const response = await fetch('https://api.deepseek.com/chat/completions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${key}` },
-          body: JSON.stringify({
-            model: "deepseek-chat",
-            messages: [{ role: "user", content: promptText }],
-            response_format: { type: "json_object" }
-          })
-        });
-        if (!response.ok) throw new Error('API key invalid.');
-        const data = await response.json();
-        let textResponse = data.choices[0].message.content;
-        textResponse = textResponse.replace(/```json/g, '').replace(/```/g, '').trim();
-        const parsed = JSON.parse(textResponse);
-        return Array.isArray(parsed) ? parsed : (parsed.questions || parsed.data || []);
-      }
-    } catch (e) {
-      console.warn('API call fallback to internal synthesizer:', e);
-    }
-
-    return generateFallbackQuestions(topic, count);
-  };
-
-  // Generate Custom AI Quiz (Fail-Safe Instant Launch)
-  const handleGenerateAIQuiz = async (customTopic?: string) => {
-    const targetTopic = (typeof customTopic === 'string' && customTopic.trim()) 
-      ? customTopic.trim() 
-      : (aiTopic.trim() || "Cybersecurity & Artificial Intelligence");
-      
-    if (!aiTopic.trim()) {
-      setAiTopic(targetTopic);
-    }
-    
-    const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
-
-    setIsGeneratingAI(true);
-    setFeedback(null);
-
     try {
-      const questions = await fetchAIQuestions(5, targetTopic, aiProvider, finalKey);
-      
-      const finalQuestions = (questions && questions.length > 0) 
-        ? questions 
-        : generateFallbackQuestions(targetTopic, 5);
+      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${aiKey}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: promptText }] }],
+          generationConfig: {
+            responseMimeType: "application/json"
+          }
+        })
+      });
 
-      setAiQuestions(finalQuestions);
+      if (!response.ok) {
+        throw new Error('API key is invalid or request blocked.');
+      }
+
+      const data = await response.json();
+      const textResponse = data.candidates[0].content.parts[0].text;
+      const parsedQuestions = JSON.parse(textResponse) as Question[];
+
+      if (parsedQuestions.length === 0) {
+        throw new Error('No questions returned.');
+      }
+
+      setAiQuestions(parsedQuestions);
       setAiIndex(0);
       setAiCorrectCount(0);
       setCategory('custom-ai');
-      setCurrentQuestion(finalQuestions[0]);
+      setCurrentQuestion(parsedQuestions[0]);
       setIsAnswered(false);
       setSelectedAnswer(null);
       setShowHint(false);
       setShowAIModal(false);
       setShowAICompletion(false);
-      addToast(`🚀 Custom AI Quiz Started: "${targetTopic}"!`, 'success');
+      addToast('AI Quiz Generated!', 'success');
     } catch (err: any) {
-      const fallbackQs = generateFallbackQuestions(targetTopic, 5);
-      setAiQuestions(fallbackQs);
-      setAiIndex(0);
-      setAiCorrectCount(0);
-      setCategory('custom-ai');
-      setCurrentQuestion(fallbackQs[0]);
-      setIsAnswered(false);
-      setSelectedAnswer(null);
-      setShowHint(false);
-      setShowAIModal(false);
-      setShowAICompletion(false);
-      addToast(`🚀 Custom AI Quiz Started: "${targetTopic}"!`, 'success');
+      addToast(`AI Generation Failed: ${err.message || err}`, 'error');
     } finally {
       setIsGeneratingAI(false);
     }
@@ -896,10 +627,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     document.body.classList.toggle('light-mode', !newDark);
   };
 
-  const playSound = (name: 'correct' | 'wrong' | 'levelup' | 'bowlFunded') => {
-    playChime(name);
-  };
-
   const handleAnswer = (index: number) => {
     if (isAnswered || !currentQuestion) return;
     setIsAnswered(true);
@@ -908,38 +635,20 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     const isCorrect = (index === currentQuestion.answer);
 
     if (isCorrect) {
-      playSound('correct');
       // Correct
       const isPlanetBonus = (recipient === dailyPlanetBonus.targetRecipient);
       let basePoints = isPlanetBonus ? 20 : 10;
       
       // Combo Streak Multiplier
-      const newStreak = streak + 1;
       let multiplier = 1;
-      if (newStreak >= 10) {
-        multiplier = 5; // 5x Super Karma for 10 streak
-      } else if (newStreak >= 5) {
-        multiplier = 3; // 3x multiplier for 5 streak
-      } else if (newStreak >= 3) {
-        multiplier = 2; // 2x multiplier for 3 streak
+      if (streak >= 2) {
+        multiplier = 2; // 2x points for 3 or more correct answers in a row!
       }
       
       const points = basePoints * multiplier;
-      const newScore = score + points;
       
-      // Check if a new bowl of milk & curd was funded!
-      if (Math.floor(newScore / 200) > Math.floor(score / 200)) {
-        playSound('bowlFunded');
-        confetti({
-          particleCount: 120,
-          spread: 80,
-          origin: { y: 0.6 }
-        });
-        addToast(`🎉 BOWL OF MILK & CURD FUNDED! You just saved a street dog! 🥣🐕`, 'success');
-      }
-
-      saveScore(newScore);
-      setStreak(newStreak);
+      saveScore(score + points);
+      setStreak(s => s + 1);
       setStakingNodes(prev => prev.map((node, idx) => {
         if (idx === 0) return { ...node, staked: node.staked + points };
         return node;
@@ -950,108 +659,68 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       recordDailyActivity();
       
       if (multiplier > 1) {
-        setFeedback({ text: `🔥 ${multiplier}X STREAK MULTIPLIER! +${points} Karma Points donated!`, type: 'success' });
+        setFeedback({ text: `🔥 COMBO STREAK! 2X MULTIPLIER! +${points} grains donated!`, type: 'success' });
       } else if (isPlanetBonus) {
-        setFeedback({ text: `Correct! +${points} Karma Points donated (PLANET BONUS 2X!).`, type: 'success' });
+        setFeedback({ text: `Correct! +${points} grains of rice donated (PLANET BONUS 2X!).`, type: 'success' });
       } else {
-        setFeedback({ text: `Correct! +${points} Karma Points donated.`, type: 'success' });
+        setFeedback({ text: `Correct! +${points} grains of rice donated.`, type: 'success' });
       }
       
-      triggerDonationAnimation();
+      triggerRiceAnimation();
       
       if ('vibrate' in navigator) navigator.vibrate(50);
     } else {
       // Incorrect
-      playSound('wrong');
       setStreak(0);
       setFeedback({ text: 'Incorrect. Try the next one!', type: 'error' });
       if ('vibrate' in navigator) navigator.vibrate([50, 100, 50]);
     }
 
-    // No more auto-advance here! The user must read the explanation and click "Next"
-  };
-
-  const handleNextQuestion = () => {
-    // Smoothly scroll to position question & all 4 options perfectly on mobile & desktop screens
-    const quizSection = document.getElementById('quiz-section');
-    if (quizSection) {
-      setTimeout(() => {
-        const rect = quizSection.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const isMobile = window.innerWidth < 640;
-        const offset = isMobile ? 65 : 80;
-        window.scrollTo({
-          top: rect.top + scrollTop - offset,
-          behavior: 'smooth'
-        });
-      }, 50);
-    }
-
-    if (category === 'custom-ai') {
-      // Endless AI Mode: Pre-fetch more questions if we are nearing the end of the queue
-      if (category === 'custom-ai' && aiIndex >= aiQuestions.length - 2) {
-        const finalKey = aiKey.trim() || GLOBAL_GEMINI_API_KEY;
-        fetchAIQuestions(3, aiTopic, aiProvider, finalKey, aiQuestions.map(q => q.question))
-          .then(newQuestions => {
-            if (newQuestions && newQuestions.length > 0) {
-              setAiQuestions(prev => {
-                const existingQs = new Set(prev.map(q => q.question.toLowerCase().trim()));
-                const uniqueNewQs = newQuestions.filter(q => !existingQs.has(q.question.toLowerCase().trim()));
-                
-                if (uniqueNewQs.length > 0) {
-                  addToast('AI quietly generated more unique questions!', 'info');
-                  return [...prev, ...uniqueNewQs];
-                }
-                return prev;
-              });
-            }
-          })
-          .catch(console.error);
-      }
-
-      const nextIndex = aiIndex + 1;
-
-      if (nextIndex < aiQuestions.length) {
-        setAiIndex(nextIndex);
-        setCurrentQuestion(aiQuestions[nextIndex]);
-        setIsAnswered(false);
-        setSelectedAnswer(null);
-        setFeedback(null);
-        setShowHint(false);
+    setTimeout(() => {
+      if (category === 'custom-ai') {
+        const nextIndex = aiIndex + 1;
+        if (nextIndex < aiQuestions.length) {
+          setAiIndex(nextIndex);
+          setCurrentQuestion(aiQuestions[nextIndex]);
+          setIsAnswered(false);
+          setSelectedAnswer(null);
+          setFeedback(null);
+          setShowHint(false);
+        } else {
+          // Finished AI Quiz
+          setShowAICompletion(true);
+          setCurrentQuestion(null);
+        }
       } else {
-        // Fallback if endless fetch failed or didn't trigger in time
-        setShowAICompletion(true);
-        setCurrentQuestion(null);
+        loadNextQuestion();
       }
-    } else {
-      loadNextQuestion();
-    }
+    }, 2500);
   };
 
-  const triggerDonationAnimation = () => {
-    const points = Array.from({ length: 6 }).map((_, i) => ({
+  const triggerRiceAnimation = () => {
+    const grains = Array.from({ length: 6 }).map((_, i) => ({
       id: Date.now() + i,
       left: `calc(50% + ${(Math.random() - 0.5) * 80}px)`,
       delay: `${Math.random() * 0.2}s`,
-      icon: Math.random() > 0.5 ? '🥛' : '🥣'
+      icon: recipientIcons[recipient].float === '✨' ? '🌾' : '🍚'
     }));
-    setDonationIcons(points);
-    setTimeout(() => setDonationIcons([]), 1500);
+    setRiceGrains(grains);
+    setTimeout(() => setRiceGrains([]), 1500);
   };
 
   const handleUseHint = () => {
     if (score >= 5 && currentQuestion?.hint && !showHint) {
       saveScore(score - 5);
       setShowHint(true);
-      setFeedback({ text: 'Hint revealed! -5 Karma Points.', type: 'info' });
+      setFeedback({ text: 'Hint revealed! -5 grains.', type: 'info' });
     } else if (score < 5) {
-      setFeedback({ text: 'Not enough Karma Points! You need 5 to use a hint.', type: 'error' });
+      setFeedback({ text: 'Not enough grains! You need 5 to use a hint.', type: 'error' });
     }
   };
 
   const sendMagicLink = async () => {
     if (!emailInput || !emailInput.includes('@')) {
-      addToast('Please enter a valid email.', 'error');
+      addToast('Please enter a valid email', 'error');
       return;
     }
     setIsSendingMagicLink(true);
@@ -1067,27 +736,27 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
     setIsSendingMagicLink(false);
   };
 
-  const handleGoogleLogin = () => {
-    const googleEmail = `google_user_${Math.floor(Math.random() * 9000 + 1000)}@gmail.com`;
-    handleUserLogin(googleEmail, { full_name: "Google Karma Champion" });
-    setShowEmailModal(false);
-    addToast('🎉 Signed in with Google successfully!', 'success');
-  };
-
   const handleLogout = async () => {
-    try { await supabase.auth.signOut(); } catch (e) { /* ignore */ }
-    setUser(null);
+    await supabase.auth.signOut();
     addToast('Logged out successfully', 'info');
   };
 
   const handleShare = () => {
-    setShowShareModal(true);
-    playSound('levelup');
+    const text = `🌾 I just generated ${score} grains of karmic impact on Cyber Free Rice! Test your cybersecurity knowledge & feed global causes:`;
+    const shareUrl = "https://adityasec32.systems/charity-quiz";
+    if (navigator.share) {
+      navigator.share({ title: 'Cyber Free Rice', text, url: shareUrl }).catch(console.error);
+    } else {
+      const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text + " " + shareUrl)}`;
+      window.open(whatsappUrl, '_blank');
+      navigator.clipboard.writeText(`${text} ${shareUrl}`);
+      addToast('Copied share link & opening WhatsApp!', 'success');
+    }
   };
 
   // Share AI Custom Quiz Accomplishment (Viral Booster)
   const handleShareAIResult = () => {
-    const text = `🧠 I just scored ${aiCorrectCount}/5 in a custom AI-generated quiz on "${aiTopic}" on Cyber FreeRice, donating ${aiCorrectCount * 10} Karma Points! Try any topic here:`;
+    const text = `🧠 I just scored ${aiCorrectCount}/5 in a custom AI-generated quiz on "${aiTopic}" on Cyber FreeRice, donating ${aiCorrectCount * 10} grains of rice! Try any topic here:`;
     if (navigator.share) {
       navigator.share({ title: 'Cyber FreeRice AI Quiz', text, url: window.location.href }).catch(console.error);
     } else {
@@ -1101,7 +770,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
   const progressPct = Math.min((milestone / 500) * 100, 100);
   
   const level = Math.floor(score / 200) + 1;
-  let currentLevelTitle = "Packet Novice";
+  let currentLevelTitle = "Chandra Novice";
   for (const item of levelTitles) {
     if (level >= item.minLvl) {
       currentLevelTitle = item.title;
@@ -1143,167 +812,211 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
       </div>
 
       {/* Header */}
-      <header className={`sticky top-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
-        {/* Professional Live Indicator */}
-        <div className="flex-1 flex justify-start">
-          <div className={`hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full border shadow-sm backdrop-blur-md ${isDark ? 'bg-emerald-500/10 border-emerald-500/20' : 'bg-emerald-50 border-emerald-200'}`}>
-            <div className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </div>
-            <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400 font-mono">
-              🟢 {liveOnlinePlayers.toLocaleString()} Active Players Answering Live
-            </span>
-          </div>
-        </div>
+      <header className={`sticky top-0 z-50 px-4 sm:px-6 py-4 flex items-center justify-between transition-all duration-300 ${isDark ? 'bg-black/20 border-b border-white/10' : 'bg-white/30 border-b border-white/40'} backdrop-blur-2xl shadow-sm`}>
+        <Link href="/" className="flex items-center gap-2 text-sm font-medium hover:opacity-70 transition-opacity">
+          <ArrowLeft size={16} /> Dashboard
+        </Link>
         
-        <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center gap-2 font-semibold text-base sm:text-lg tracking-tight whitespace-nowrap z-10 pointer-events-none">
-          <img src="/icon.png" alt="CyberKarma Logo" className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-cover shadow-md border border-white/20 pointer-events-auto" />
-          <AnimatedTitle />
+        <div className="flex items-center gap-2 font-semibold text-lg tracking-tight">
+          <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white flex items-center justify-center text-sm shadow-md">C</div>
+          <span>Charity Quiz</span>
         </div>
 
-        <div className="flex-1 flex items-center justify-end gap-2 sm:gap-3 z-20">
+        <div className="flex items-center gap-3">
           {dailyStreak > 0 && (
             <div className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
               🔥 {dailyStreak}
             </div>
           )}
 
-          <button onClick={toggleTheme} aria-label="Toggle Theme" className="p-2 rounded-full bg-white/20 border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all shadow-sm">
+          <button onClick={toggleTheme} className="p-2 rounded-full bg-white/20 border border-white/30 backdrop-blur-md hover:bg-white/30 transition-all shadow-sm">
             {isDark ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
           {user ? (
-            <div className="flex items-center gap-2 sm:gap-3 px-2 sm:px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
+            <div className="flex items-center gap-3 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 backdrop-blur-md shadow-sm">
               <img src={user.avatar} alt="User" className="w-6 h-6 rounded-full shadow-sm" />
-              <span className="text-xs font-semibold hidden sm:block max-w-[140px] truncate">{user.name}</span>
-              <button onClick={handleLogout} aria-label="Sign Out" className="text-rose-500 hover:text-rose-400 p-1"><LogOut size={14} /></button>
+              <span className="text-xs font-semibold hidden sm:block">{user.name}</span>
+              <button onClick={handleLogout} className="text-rose-500 hover:text-rose-400"><LogOut size={14} /></button>
             </div>
           ) : (
-            <button onClick={() => setShowEmailModal(true)} className="flex items-center justify-center gap-2 px-3 sm:px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-800 hover:bg-gray-50 transition-all shadow-md">
-              <User size={16} /> <span className="hidden sm:inline">Sign In</span>
+            <button onClick={() => setShowEmailModal(true)} className="flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold bg-white text-slate-800 hover:bg-gray-50 transition-all shadow-md">
+              <User size={16} /> Sign In
             </button>
           )}
         </div>
       </header>
 
-      {/* Live Fact Ticker */}
-      <div className={`w-full overflow-hidden whitespace-nowrap border-b py-2 text-xs font-semibold tracking-wide shadow-sm z-40 relative backdrop-blur-md ${isDark ? 'bg-black/40 border-white/10 text-emerald-400' : 'bg-white/60 border-black/10 text-emerald-700'}`}>
-        <motion.div 
-          className="inline-block"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{ ease: "linear", duration: 30, repeat: Infinity }}
-        >
-          <span className="mx-4">🐾 Every drop of milk makes a difference for street dogs.</span>
-          <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
-          <span className="mx-4">🥛 A bowl of milk and curd provides essential nutrition.</span>
-          <span className="mx-4">🕊️ Every question answered feeds a hungry soul.</span>
-          <span className="mx-4">🐄 Our dairy donations support local farmers too.</span>
-          <span className="mx-4">❤️ Good karma returns to those who help animals.</span>
-          {/* Duplicate for seamless infinite loop */}
-          <span className="mx-4">🐾 Every drop of milk makes a difference for street dogs.</span>
-          <span className="mx-4">🐕 200M stray dogs worldwide need our help.</span>
-          <span className="mx-4">🥛 A bowl of milk and curd provides essential nutrition.</span>
-          <span className="mx-4">🕊️ Every question answered feeds a hungry soul.</span>
-          <span className="mx-4">🐄 Our dairy donations support local farmers too.</span>
-          <span className="mx-4">❤️ Good karma returns to those who help animals.</span>
-        </motion.div>
-      </div>
-
       {/* Main Content */}
-      <main id="main-content" className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 relative z-10 flex flex-col gap-8">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8 relative z-10 flex flex-col gap-6">
         
-        {/* Single Sleek Dual-Feature Live Impact Bar */}
-        <div className={`w-full p-4 sm:p-5 rounded-[28px] border backdrop-blur-2xl shadow-xl flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 ${isDark ? 'bg-gradient-to-r from-emerald-950/40 via-slate-950/80 to-amber-950/40 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-white to-amber-50 border-emerald-200'}`}>
-          {/* Left: Daily Featured Compassionate Thought */}
-          <div className="flex-1 flex items-center gap-3">
-            <span className="p-2.5 rounded-2xl bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xl shrink-0">
-              📅
-            </span>
-            <div>
-              <div className="flex items-center gap-2 mb-0.5">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-amber-400">
-                  {getDailyQuote().tag} • Today's Featured Thought
-                </span>
-                <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping" />
-              </div>
-              <p className={`text-xs sm:text-sm font-semibold leading-snug ${isDark ? 'text-slate-200' : 'text-slate-800'}`}>
-                "{getDailyQuote().text}"
-              </p>
-            </div>
-          </div>
-
-          {/* Vertical Divider on Desktop */}
-          <div className="hidden lg:block w-px h-10 bg-white/10 shrink-0" />
-
-          {/* Right: Live Community Activity Ticker */}
-          <div className="flex-1 flex items-center gap-2.5 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono font-bold text-emerald-300 shadow-inner">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <motion.span key={liveActivityTicker} initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }} className="truncate">
-              {liveActivityTicker}
-            </motion.span>
-          </div>
-        </div>
-
         {/* Highlighted Supreme Intro Banner */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }} 
           animate={{ opacity: 1, y: 0 }} 
-          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/90 via-black/80 to-slate-950/90 border-emerald-500/30' : 'bg-gradient-to-b from-emerald-50/80 via-white/90 to-cyan-50/80 border-emerald-200'}`}
+          className={`w-full p-8 sm:p-10 rounded-[32px] text-center overflow-hidden relative shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-3xl border transition-all ${isDark ? 'bg-gradient-to-b from-rose-950/40 via-black/40 to-slate-950/60 border-rose-500/20' : 'bg-gradient-to-b from-rose-50/80 via-white/90 to-amber-50/80 border-rose-200'}`}
         >
-          {/* Professional 3D Hero Visual Banner */}
-          <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <img src="/hero_banner.jpg" alt="CyberKarma 3D Showcase" className="w-full h-full object-cover" />
-            <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-slate-950/90 via-slate-950/60 to-slate-950' : 'bg-gradient-to-b from-white/90 via-white/70 to-white'}`} />
-          </div>
-
-          <div className="relative z-10">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-emerald-500/20 blur-[80px] rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-rose-500/10 blur-3xl rounded-full pointer-events-none" />
 
           {/* Emotional Headline */}
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 font-title leading-tight">
-            <span className={`bg-clip-text text-transparent drop-shadow-md ${isDark ? 'bg-gradient-to-r from-emerald-400 via-cyan-300 to-blue-500' : 'bg-gradient-to-r from-emerald-600 via-cyan-600 to-blue-700'}`}>
+            <span className={`bg-clip-text text-transparent drop-shadow-md ${isDark ? 'bg-gradient-to-r from-rose-400 via-amber-300 to-emerald-400' : 'bg-gradient-to-r from-rose-600 via-amber-600 to-emerald-600'}`}>
               Every Answer Saves a Life.
             </span>
           </h1>
 
-          <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-300 font-medium' : 'text-slate-800 font-bold'}`}>
-            Play fun, educational quizzes. Every correct answer donates{' '}
-            <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30 shadow-[0_0_10px_rgba(16,185,129,0.2)]' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
-              10 Karma Points
+          <p className={`text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed mb-6 ${isDark ? 'text-slate-200 font-medium' : 'text-slate-800 font-bold'}`}>
+            Play daily to transform a life. For every correct answer, we donate{' '}
+            <span className={`px-2.5 py-0.5 rounded-lg font-bold border ${isDark ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30' : 'bg-emerald-100 text-emerald-800 border-emerald-300'}`}>
+              10 grains of rice
             </span>{' '}
-            to provide <strong className={isDark ? 'text-cyan-300 font-bold' : 'text-cyan-700 font-extrabold'}>milk and curd</strong> to <strong className={isDark ? 'text-blue-300 font-bold' : 'text-blue-700 font-extrabold'}>street dogs</strong>. Your time creates real-world miracles.
+            to feed <strong className={isDark ? 'text-rose-300 font-bold' : 'text-rose-700 font-extrabold'}>rescue animals</strong> and <strong className={isDark ? 'text-amber-300 font-bold' : 'text-amber-700 font-extrabold'}>vulnerable families</strong> globally. Your knowledge creates real-world miracles.
           </p>
 
-          {/* Highlight Badges */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 text-[10px] sm:text-xs font-mono font-bold uppercase tracking-wider">
-            <span className={`px-3 sm:px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300 backdrop-blur-md' : 'bg-emerald-50 border-emerald-200 text-emerald-700'}`}>
-              ❤️ 10 Karma Points / Answer
-            </span>
-            <span className={`px-3 sm:px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-slate-800/50 border-slate-700/50 text-slate-300 backdrop-blur-md' : 'bg-slate-100/80 border-slate-200 text-slate-600'}`}>
-              🕊️ 100% Free &amp; Ad-Funded
-            </span>
-            <span className={`px-3 sm:px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-blue-900/20 border-blue-800/30 text-blue-300 backdrop-blur-md' : 'bg-blue-50/80 border-blue-200 text-blue-700'}`}>
-              🌍 Field-verified in Patna
-            </span>
+          
+        {/* Real-World Stray Animal Meal Impact HUD */}
+        <div className={`w-full p-6 rounded-3xl border backdrop-blur-2xl shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 transition-all ${isDark ? 'bg-gradient-to-r from-emerald-950/40 via-slate-900/60 to-rose-950/40 border-emerald-500/20' : 'bg-gradient-to-r from-emerald-50/90 via-white/90 to-rose-50/90 border-emerald-200'}`}>
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-500 text-slate-950 flex items-center justify-center text-2xl shadow-lg shadow-emerald-500/20 flex-shrink-0 animate-bounce">
+              🐕
+            </div>
+            <div>
+              <div className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                Live Animal Feeding Impact • Patna Division
+              </div>
+              <h3 className="text-xl sm:text-2xl font-black font-title text-white">
+                {`${Math.floor(score / 50)} Warm Street Meals Funded`}
+              </h3>
+              <p className="text-xs text-slate-300">
+                {`Every 50 grains of rice unlocks 1 full bowl of nutritious food for rescue dogs in Patna.`}
+              </p>
+            </div>
           </div>
 
-          <div className={`mt-6 px-4 sm:px-6 py-3 rounded-full text-[10px] sm:text-sm font-bold tracking-widest uppercase border transition-all text-center ${isDark ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-400' : 'bg-emerald-50 border-emerald-300 text-emerald-700'}`}>
-            {(24500 + totalKarmaAllTime).toLocaleString()} KARMA POINTS DONATED → ≈ {Math.floor((24500 + totalKarmaAllTime) / 200)} BOWLS OF MILK & CURD
+          <div className="w-full md:w-72 flex flex-col gap-2">
+            <div className="flex justify-between text-xs font-mono font-bold">
+              <span className="text-slate-300">Next Street Meal:</span>
+              <span className="text-emerald-400">{`${score % 50} / 50 Grains` }</span>
+            </div>
+            <div className="w-full h-3.5 bg-black/40 rounded-full overflow-hidden border border-white/10 p-0.5">
+              <div 
+                className="h-full bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 rounded-full transition-all duration-500 shadow-[0_0_12px_rgba(16,185,129,0.5)]"
+                style={{ width: `${Math.min(100, Math.round(((score % 50) / 50) * 100))}%` }}
+              />
+            </div>
+            <div className="flex justify-between items-center pt-1">
+              <button 
+                onClick={handleOpenLuckyCrate}
+                className="text-[11px] font-mono font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1.5 underline"
+              >
+                🎁 Open Daily Karma Crate
+              </button>
+              <button 
+                onClick={handleShare}
+                className="text-[11px] font-mono font-bold text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+              >
+                <Share2 size={12} /> Share Impact
+              </button>
+            </div>
           </div>
+        </div>
+
+        {/* High-CTR AdSense Sponsor Banner */}
+        <AdSenseBanner isDark={isDark} adSlot="1234567890" />
+
+
+          {/* Highlight Badges */}
+          <div className="flex flex-wrap justify-center gap-3 text-xs font-mono font-bold uppercase tracking-wider">
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-rose-500/10 border-rose-500/20 text-rose-300' : 'bg-rose-100 border-rose-200 text-rose-800'}`}>
+              ❤️ 10 Grains Pledged / Answer
+            </span>
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-amber-500/10 border-amber-500/20 text-amber-300' : 'bg-amber-100 border-amber-200 text-amber-800'}`}>
+              🕊️ 100% Free &amp; Ad-Funded
+            </span>
+            <span className={`px-4 py-1.5 rounded-full shadow-sm flex items-center gap-1.5 border ${isDark ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-emerald-100 border-emerald-200 text-emerald-800'}`}>
+              🌍 Verified Global Impact
+            </span>
           </div>
         </motion.div>
 
-        {/* Dynamic Grid Layout (Mobile 1 Col, Tablet & Desktop 2 Col) */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8 items-start">
+        {/* Dynamic Grid Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           
-          {/* Active Quiz Panel */}
-          <div className="md:col-span-7 lg:col-span-8 space-y-8">
+          {/* Left Column: Active Quiz Panel */}
+          <div className="lg:col-span-8 space-y-6">
             
+            {/* Categories & Difficulty Container */}
+            <div className={`p-3 rounded-[28px] backdrop-blur-3xl shadow-xl border flex flex-col sm:flex-row gap-3 justify-between items-center ${isDark ? 'bg-black/40 border-white/10' : 'bg-white/90 border-slate-200 shadow-md'}`}>
+                <div className={`flex flex-wrap gap-1.5 w-full sm:w-auto p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                  {(Object.keys(quizData) as CategoryKey[]).map(cat => (
+                    <button
+                      key={cat}
+                      onClick={() => setCategory(cat)}
+                      className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${category === cat ? 'bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 shadow-md scale-[1.02]' : isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => {
+                      const keys = Object.keys(quizData) as CategoryKey[];
+                      setCategory(keys[Math.floor(Math.random() * keys.length)]);
+                    }}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold capitalize transition-all ${isDark ? 'opacity-70 hover:opacity-100 hover:bg-white/10 text-white' : 'text-slate-700 hover:bg-slate-200'}`}
+                  >
+                    🎲 Random
+                  </button>
+                  <button
+                    onClick={() => setShowAIModal(true)}
+                    className={`px-4 py-2 rounded-[16px] text-xs font-bold transition-all flex items-center gap-1.5 ${category === 'custom-ai' ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-md' : isDark ? 'opacity-80 hover:opacity-100 hover:bg-white/10 text-white' : 'text-purple-700 bg-purple-50 hover:bg-purple-100'}`}
+                  >
+                    <Cpu size={14} /> AI Quiz
+                  </button>
+                </div>
 
+                {category !== 'custom-ai' && (
+                  <div className={`flex gap-1.5 p-1.5 rounded-[22px] ${isDark ? 'bg-black/20' : 'bg-slate-100'}`}>
+                    {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
+                      <button
+                        key={diff}
+                        onClick={() => setDifficulty(diff)}
+                        className={`px-3 py-1.5 rounded-[14px] text-xs font-bold capitalize transition-all ${difficulty === diff ? 'bg-blue-600 text-white shadow-md' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600 hover:text-slate-900'}`}
+                      >
+                        {diff}
+                      </button>
+                    ))}
+                  </div>
+                )}
+            </div>
+
+            {/* Corporate Sponsorship Banner */}
+            <div className={`p-4 sm:p-5 rounded-[24px] border backdrop-blur-2xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4 relative overflow-hidden group ${isDark ? 'bg-gradient-to-r from-emerald-950/60 via-slate-900/80 to-teal-950/60 border-emerald-500/30' : 'bg-gradient-to-r from-emerald-50 via-emerald-100/60 to-teal-50 border-emerald-300 shadow-md'}`}>
+              <div className="flex items-center gap-3.5 z-10">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center flex-shrink-0 text-emerald-400 font-black text-lg shadow-inner">
+                  🐋
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full border ${isDark ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' : 'bg-emerald-200 text-emerald-800 border-emerald-400'}`}>Official Sponsor</span>
+                    <span className={`text-xs font-mono font-bold ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>Orca6™ HFT</span>
+                  </div>
+                  <h4 className={`text-sm font-black uppercase tracking-wider mt-1 ${isDark ? 'text-white' : 'text-slate-900'}`}>Automate Trading with Sub-Millisecond AI</h4>
+                  <p className={`text-xs font-semibold mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-700'}`}>Pre-funded demo account credentials delivered instantly • Zero personal capital risk.</p>
+                </div>
+              </div>
+              <Link
+                href="https://jumpstreet.tech"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto px-6 py-3 rounded-full text-xs font-black uppercase tracking-widest bg-emerald-600 text-white hover:bg-emerald-500 transition-all shadow-md hover:shadow-lg whitespace-nowrap flex items-center justify-center gap-2 z-10"
+              >
+                <span>Explore Orca6™</span>
+                <Zap size={14} />
+              </Link>
+            </div>
 
             {/* Quiz Area */}
-            <div id="quiz-section" className="w-full scroll-mt-24 sm:scroll-mt-32">
+            <div className="w-full">
               <AnimatePresence mode="wait">
                 {showAICompletion && (
                   <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className={`w-full p-10 rounded-[32px] text-center shadow-xl backdrop-blur-2xl border ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
@@ -1312,7 +1025,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     </div>
                     <h3 className="text-2xl font-bold mb-3">Quiz Completed!</h3>
                     <p className="text-base opacity-80 mb-8">
-                      You answered {aiCorrectCount} of 5 questions correctly on <strong>{aiTopic}</strong>. <br/>You generated <strong>{aiCorrectCount * 10} Karma Points</strong> of rice!
+                      You answered {aiCorrectCount} of 5 questions correctly on <strong>{aiTopic}</strong>. <br/>You generated <strong>{aiCorrectCount * 10} grains</strong> of rice!
                     </p>
                     <div className="flex justify-center gap-4">
                       <button onClick={handleShareAIResult} className="px-6 py-3 rounded-full font-semibold bg-white text-slate-800 shadow-md hover:scale-105 transition-transform flex items-center gap-2">
@@ -1345,49 +1058,16 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                         </div>
                       )}
                       
-                      {/* Zero-Latency Prefetcher for Next Image */}
-                      {(category === 'custom-ai' ? aiQuestions[aiIndex + 1] : nextQuestionToPrefetch) && (
-                        <link 
-                          rel="preload" 
-                          as="image" 
-                          href={`https://image.pollinations.ai/prompt/${encodeURIComponent(((category === 'custom-ai' ? aiQuestions[aiIndex + 1]?.question : nextQuestionToPrefetch?.question) || ''))}?width=800&height=800&nologo=true`} 
-                        />
-                      )}
-                      
-                      <div className="w-full aspect-[21/9] sm:aspect-[16/10] max-h-[170px] sm:max-h-[280px] mb-4 sm:mb-5 rounded-[20px] overflow-hidden relative shadow-lg group border border-white/10 bg-black/20">
-                        {/* Loading Skeleton */}
-                        <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-white/5 via-white/10 to-white/5" />
-                        
-                        {/* High Speed Image Prefetching for the NEXT question */}
-                        {nextQuestionToPrefetch && (
-                          <div className="hidden">
-                            <Image 
-                              src={`https://image.pollinations.ai/prompt/${encodeURIComponent(category + ' ' + nextQuestionToPrefetch.question)}?width=800&height=800&nologo=true`}
-                              alt="prefetch"
-                              width={800}
-                              height={800}
-                              priority={true}
-                            />
-                          </div>
-                        )}
-
-                        {/* The Image */}
-                        <QuizImage key={currentQuestion.question} category={category} question={currentQuestion.question} />
-                        
-                        {/* Gradient overlay for text readability */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-20 pointer-events-none" />
-                      </div>
-                      
-                      <h3 className="text-base sm:text-lg font-bold mb-6 leading-relaxed font-title">
+                      <h3 className="text-lg sm:text-xl font-semibold mb-8 leading-relaxed">
                         {currentQuestion.question}
                       </h3>
                       
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="grid grid-cols-1 gap-3">
                         {currentQuestion.options.map((opt, i) => {
-                          let btnClass = `w-full text-left p-3.5 sm:p-4 rounded-[20px] text-xs sm:text-sm font-semibold transition-all flex items-center shadow-sm border active:scale-[0.98] select-none min-h-[52px] `;
+                          let btnClass = `w-full text-left p-4 rounded-[20px] text-sm sm:text-base font-medium transition-all flex items-center shadow-sm border `;
                            if (isAnswered) {
                             if (i === currentQuestion.answer) {
-                              btnClass += `bg-emerald-500 text-slate-950 font-black border-emerald-400 shadow-lg z-10 scale-[1.01] `;
+                              btnClass += `bg-emerald-500 text-slate-950 font-bold border-emerald-400 shadow-lg z-10 scale-[1.02] `;
                             } else if (i === selectedAnswer) {
                               btnClass += `bg-red-500/20 border-red-500/40 text-red-400 opacity-90 `;
                             } else {
@@ -1399,31 +1079,24 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               : `bg-white/70 border-white/90 hover:bg-white hover:border-emerald-400 hover:scale-[1.01] cursor-pointer hover:shadow-md text-slate-900`;
                           }
 
-                          const resultIcon = isAnswered
-                            ? i === currentQuestion.answer
-                              ? <span aria-label="Correct" className="ml-auto text-sm font-black shrink-0">✓</span>
-                              : i === selectedAnswer
-                                ? <span aria-label="Incorrect" className="ml-auto text-sm font-black shrink-0">✗</span>
-                                : null
-                            : null;
-
                           return (
                             <button
                               key={i}
                               disabled={isAnswered}
                               onClick={() => handleAnswer(i)}
-                              aria-pressed={isAnswered && i === selectedAnswer}
                               className={btnClass}
                             >
-                              <div className={`w-7 h-7 rounded-full flex items-center justify-center mr-3 shrink-0 text-xs font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : 'bg-slate-200')}`}>
+                              <div className={`w-8 h-8 rounded-full flex items-center justify-center mr-4 shrink-0 text-sm font-bold ${isAnswered && i === currentQuestion.answer ? 'bg-white/20' : (isDark ? 'bg-white/10' : 'bg-black/5')}`}>
                                 {String.fromCharCode(65 + i)}
                               </div>
-                              <span className="leading-snug">{opt}</span>
-                              {resultIcon}
+                              {opt}
                             </button>
                           );
                         })}
                       </div>
+
+                      {/* Google AdSense / Display Ad Unit */}
+                      <AdSenseBanner refreshKey={`${currentQuestion?.question || score}`} isDark={isDark} />
 
                       <div className="mt-8 flex justify-between items-center min-h-[40px]">
                         <AnimatePresence>
@@ -1442,51 +1115,12 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                               </motion.div>
                             ) : (
                               <button onClick={handleUseHint} disabled={score < 5} className={`px-5 py-2.5 rounded-full text-xs font-semibold shadow-sm transition-colors ${score >= 5 ? (isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50') : 'opacity-40 cursor-not-allowed'}`}>
-                                <Lightbulb size={14} className="inline mr-1" /> Use Hint (-5 Karma Points)
+                                <Lightbulb size={14} className="inline mr-1" /> Use Hint (-5 Grains)
                               </button>
                             )}
                           </div>
                         )}
                       </div>
-
-                      {/* Phase 2: Educational Micro-Learning Layer */}
-                      <AnimatePresence>
-                        {isAnswered && currentQuestion.explanation && (
-                          <motion.div 
-                            onClick={handleNextQuestion}
-                            initial={{ opacity: 0, height: 0, y: 20 }} 
-                            animate={{ opacity: 1, height: 'auto', y: 0 }} 
-                            className={`mt-6 p-6 rounded-[24px] border cursor-pointer group transition-all hover:scale-[1.01] hover:shadow-md ${isDark ? 'bg-blue-500/10 border-blue-500/20 hover:border-blue-500/40' : 'bg-blue-50 border-blue-200 hover:border-blue-300'}`}
-                          >
-                            <div>
-                              <h4 className={`text-sm font-black uppercase tracking-widest mb-2 flex justify-between items-center ${isDark ? 'text-blue-400' : 'text-blue-700'}`}>
-                                Did You Know?
-                                <span className="text-xs opacity-60 group-hover:opacity-100 flex items-center gap-1 transition-opacity">Click to continue <ArrowRight size={14} /></span>
-                              </h4>
-                              <p className={`text-base leading-relaxed font-medium ${isDark ? 'text-slate-300' : 'text-slate-700'}`}>
-                                {currentQuestion.explanation}
-                              </p>
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-
-                      <AnimatePresence>
-                        {isAnswered && (
-                          <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="mt-6"
-                          >
-                            <button 
-                              onClick={handleNextQuestion}
-                              className={`w-full py-4 rounded-full text-sm font-black uppercase tracking-widest transition-all hover:scale-[1.02] active:scale-[0.98] ${isDark ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-900 shadow-[0_0_20px_rgba(52,211,153,0.3)]' : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'}`}
-                            >
-                              Next Question →
-                            </button>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
                     </motion.div>
                 ) : (
                   !showAICompletion && (
@@ -1499,436 +1133,262 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </div>
           </div>
 
-          {/* Right Column: Staking Stats & Widgets (Responsive Tablet Sidebar) */}
-          <div className="md:col-span-5 lg:col-span-4 space-y-6 sm:space-y-8">
+          {/* Right Column: Staking Stats & Widgets */}
+          <div className="lg:col-span-4 space-y-6">
             
-
-
-            {/* Categories & Difficulty Container (Sidebar 3D Layout) */}
-            <TiltWrapper tiltDeg={4}>
-              <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-[0_15px_35px_rgba(0,0,0,0.3)] border flex flex-col gap-5 relative overflow-hidden transition-all ${isDark ? 'bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 border-emerald-500/30 shadow-emerald-950/30' : 'bg-gradient-to-br from-white/90 via-emerald-50/30 to-white border-emerald-200 shadow-xl'}`}>
-                {/* Background Ambient Radial Glow */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-[60px] rounded-full pointer-events-none" />
-
-                <div className="flex items-center justify-between px-1 relative z-10">
-                  <h2 className="text-sm font-black uppercase tracking-wider text-emerald-400 font-title flex items-center gap-2">
-                    <span className="p-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/30">🎯</span>
-                    Quiz Settings & Categories
-                  </h2>
-                  <span className="text-[10px] font-mono text-emerald-400/80 font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                    Live Topics
-                  </span>
-                </div>
-
-                <div className={`flex flex-col gap-2.5 p-3 rounded-[24px] relative z-10 ${isDark ? 'bg-black/40 border border-white/10' : 'bg-slate-100/80 border border-slate-200'}`}>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                    {(Object.keys(quizData) as CategoryKey[]).map(cat => {
-                      const imgMap: Record<string, string> = {
-                        animals: '/category_animals.jpg',
-                        nature: '/category_nature.jpg',
-                        humanities: '/category_humanities.jpg',
-                        science: '/category_science.jpg',
-                        gk: '/category_gk.jpg'
-                      };
-                      return (
-                        <button
-                          key={cat}
-                          onClick={() => setCategory(cat)}
-                          className={`p-2 rounded-[20px] text-[11px] font-black capitalize transition-all duration-300 flex flex-col items-center gap-1.5 active:scale-[0.98] border relative overflow-hidden group ${category === cat ? 'bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-950 shadow-[0_0_20px_rgba(52,211,153,0.4)] scale-[1.03] border-emerald-300' : isDark ? 'bg-black/40 border-white/10 hover:border-emerald-500/40 text-white' : 'bg-white border-slate-200 text-slate-700 hover:bg-emerald-50 hover:border-emerald-300 shadow-sm'}`}
-                        >
-                          <div className="w-full h-16 rounded-[14px] overflow-hidden relative shadow-inner border border-white/20">
-                            <img src={imgMap[cat]} alt={cat} className="w-full h-full object-cover group-hover:scale-110 transition-transform" />
-                          </div>
-                          <span className="flex items-center gap-1 text-[11px]">
-                            <span>{cat === 'gk' ? '🧠' : cat === 'animals' ? '🐶' : cat === 'nature' ? '🌿' : cat === 'science' ? '⚛️' : '📚'}</span>
-                            {cat === 'gk' ? 'GK' : cat}
-                          </span>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  
-                  <div className="flex flex-col gap-2 mt-1">
-                    <button
-                      onClick={() => {
-                        const keys = Object.keys(quizData) as CategoryKey[];
-                        setCategory(keys[Math.floor(Math.random() * keys.length)]);
-                      }}
-                      className={`w-full px-4 py-2.5 rounded-[18px] text-[11px] font-black transition-all flex items-center justify-center gap-2 border active:scale-[0.98] ${isDark ? 'bg-white/5 hover:bg-white/10 text-white border-white/10 hover:border-white/20' : 'text-slate-700 bg-slate-200/60 hover:bg-slate-200 border-slate-300'}`}
-                    >
-                      🎲 Play Random Category
-                    </button>
-                    <button
-                      onClick={() => setShowAIModal(true)}
-                      className={`w-full px-4 py-3 rounded-[18px] text-[12px] font-black transition-all duration-300 flex justify-center items-center gap-2 border active:scale-[0.98] ${category === 'custom-ai' ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 shadow-[0_0_20px_rgba(245,158,11,0.4)] border-amber-300' : isDark ? 'bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 hover:border-amber-400 hover:bg-gradient-to-r hover:from-amber-500/30 hover:to-orange-500/30 text-amber-300 hover:text-amber-100 shadow-lg' : 'bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-300 text-amber-900 hover:border-amber-500 shadow-sm'}`}
-                    >
-                      <Cpu size={16} /> Choose Any Topic
-                    </button>
-                  </div>
-                </div>
-
-                <div className={`flex gap-1.5 p-2 rounded-[22px] border relative z-10 ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100/80 border-slate-200'}`}>
-                  {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
-                    <button
-                      key={diff}
-                      onClick={() => setDifficulty(diff)}
-                      className={`flex-1 px-2.5 py-2.5 rounded-[16px] text-[11px] font-black transition-all active:scale-[0.98] ${difficulty === diff ? 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white shadow-[0_0_15px_rgba(59,130,246,0.4)] border border-blue-400' : isDark ? 'opacity-60 hover:opacity-100 text-slate-300 hover:bg-white/5' : 'text-slate-600 hover:text-slate-900 hover:bg-white'}`}
-                    >
-                      {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
-                    </button>
-                  ))}
-                </div>
+            {/* Main Score Widget */}
+            <motion.div layout className={`w-full rounded-[32px] border p-8 text-center relative overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.1)] backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/50 border-white/60'}`}>
+              
+              <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-500 shadow-inner">
+                Level {level}: {currentLevelTitle}
               </div>
-            </TiltWrapper>
-
-            {/* 🔥 Most Played Custom AI Quizzes Widget */}
-            <TiltWrapper tiltDeg={4}>
-              <div className={`p-6 rounded-[32px] backdrop-blur-3xl shadow-[0_15px_35px_rgba(0,0,0,0.3)] border flex flex-col gap-4 relative overflow-hidden transition-all ${isDark ? 'bg-gradient-to-br from-slate-900/90 via-slate-950 to-slate-900/90 border-amber-500/30 shadow-amber-950/30' : 'bg-gradient-to-br from-white/90 via-amber-50/30 to-white border-amber-200 shadow-xl'}`}>
-                {/* Background Ambient Glow */}
-                <div className="absolute top-0 right-0 w-48 h-48 bg-amber-500/10 blur-[60px] rounded-full pointer-events-none" />
-
-                <div className="flex items-center justify-between px-1 relative z-10">
-                  <h3 className="text-sm font-black uppercase tracking-wider text-amber-400 font-title flex items-center gap-2">
-                    <Flame size={18} className="text-amber-400 animate-pulse fill-amber-400" />
-                    Most Played AI Quizzes
-                  </h3>
-                  <span className="text-[10px] font-mono text-amber-400/80 font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
-                    Trending
-                  </span>
-                </div>
-
-                <div className="flex flex-col gap-2.5 relative z-10">
-                  {[
-                    { topic: 'Space & Quantum Physics', icon: '🚀', plays: '4.8k', karma: '48.2k', value: 'Space Exploration & Quantum Physics' },
-                    { topic: 'Cybersecurity & AI Hacking', icon: '🔐', plays: '3.9k', karma: '39.4k', value: 'Cybersecurity, Hacking & Artificial Intelligence' },
-                    { topic: 'Street Dog Psychology', icon: '🐕', plays: '3.5k', karma: '35.1k', value: 'Animal Welfare & Canine Behavior' },
-                    { topic: 'Lost Ancient Civilizations', icon: '🏛️', plays: '2.8k', karma: '28.9k', value: 'Ancient World Civilizations & Archaeology' },
-                    { topic: 'World History & Philosophy', icon: '📜', plays: '2.4k', karma: '24.6k', value: 'World History & Philosophical Thought' }
-                  ].map((item, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => {
-                        setAiTopic(item.value);
-                        setShowAIModal(true);
-                      }}
-                      className={`w-full p-3.5 rounded-[20px] text-left transition-all duration-300 flex items-center justify-between border group active:scale-[0.98] ${isDark ? 'bg-black/40 border-white/10 hover:border-amber-400/50 hover:bg-amber-500/10 text-white' : 'bg-white border-slate-200 hover:border-amber-400 hover:bg-amber-50 text-slate-900 shadow-sm'}`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl p-2 rounded-xl bg-amber-500/20 border border-amber-500/30 group-hover:scale-110 transition-transform">
-                          {item.icon}
-                        </span>
-                        <div>
-                          <h4 className="text-xs font-extrabold group-hover:text-amber-400 transition-colors font-title">
-                            {item.topic}
-                          </h4>
-                          <span className="text-[10px] text-slate-400 font-mono font-medium block mt-0.5">
-                            🔥 {item.plays} Plays • {item.karma} Karma
-                          </span>
-                        </div>
-                      </div>
-
-                      <span className="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors">
-                        Play →
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </TiltWrapper>
-            
-            {/* Main Score Widget (Sidebar 3D Layout) */}
-            <TiltWrapper tiltDeg={4}>
-              <motion.div layout className={`w-full rounded-[32px] border p-6 text-center relative overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.3)] backdrop-blur-3xl transition-all ${isDark ? 'bg-gradient-to-b from-[#0a1128]/90 via-slate-950 to-slate-950 border-cyan-500/30 shadow-cyan-950/30' : 'bg-gradient-to-b from-cyan-50/80 via-white/90 to-emerald-50/80 border-cyan-200 shadow-xl'}`}>
-                {/* Background Glow */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-64 h-32 bg-cyan-500/10 blur-[50px] rounded-full pointer-events-none" />
-
-                <div className="relative z-10">
-                  <div className="mb-6 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-black text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.2)] font-mono">
-                    Level {level}: {currentLevelTitle}
+              
+              <div className="flex flex-col items-center justify-center gap-2 mb-6">
+                <motion.span 
+                  key={score}
+                  initial={{ scale: 1.1 }}
+                  animate={{ scale: 1 }}
+                  className="text-6xl font-bold tracking-tight"
+                >
+                  {score.toLocaleString()}
+                </motion.span>
+                <span className="text-xs font-semibold uppercase tracking-widest opacity-60">Grains Donated</span>
+                
+                {score >= 500 && (
+                  <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400 font-bold text-sm shadow-sm">
+                    <Heart size={16} className="fill-emerald-500" />
+                    You've funded {Math.floor(score / 500)} full meal{Math.floor(score / 500) > 1 ? 's' : ''}!
                   </div>
-                  
-                  <div className="flex flex-col items-center justify-center gap-2 mb-6">
-                    <motion.span 
-                      key={score}
-                      initial={{ scale: 1.1 }}
-                      animate={{ scale: 1 }}
-                      className="text-6xl font-black tracking-tight font-title bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-300 drop-shadow-md"
+                )}
+              </div>
+
+              <div className="relative h-24 flex flex-col items-center justify-center">
+                <AnimatePresence>
+                  {riceGrains.map(grain => (
+                    <motion.span
+                      key={grain.id}
+                      initial={{ opacity: 0, y: -40, scale: 0.5 }}
+                      animate={{ opacity: 1, y: 20, scale: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.8, ease: 'easeOut' }}
+                      className="absolute text-3xl z-10"
+                      style={{ left: grain.left, animationDelay: grain.delay }}
                     >
-                      {score.toLocaleString()}
+                      {grain.icon}
                     </motion.span>
-                    <span className="text-xs font-bold uppercase tracking-widest text-emerald-400 font-mono">Karma Points Donated</span>
-                    
-                    {score >= 200 && (
-                      <div className="mt-2 inline-flex items-center gap-2 px-5 py-2.5 rounded-[20px] bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/40 text-emerald-300 font-extrabold text-sm shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-                        <Heart size={16} className="fill-emerald-400 text-emerald-400" />
-                        You've funded {Math.floor(score / 200)} bowl{Math.floor(score / 200) > 1 ? 's' : ''} of milk & curd!
-                      </div>
-                    )}
-                  </div>
+                  ))}
+                </AnimatePresence>
+                <motion.div animate={riceGrains.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20">
+                  {recipientIcons[recipient].base}
+                </motion.div>
+              </div>
 
-                  <div className="relative h-24 flex flex-col items-center justify-center">
-                    <AnimatePresence>
-                      {donationIcons.map(grain => (
-                        <motion.span
-                          key={grain.id}
-                          initial={{ opacity: 0, y: -40, scale: 0.5 }}
-                          animate={{ opacity: 1, y: 20, scale: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.8, ease: 'easeOut' }}
-                          className="absolute text-3xl z-10"
-                          style={{ left: grain.left, animationDelay: grain.delay }}
-                        >
-                          {grain.icon}
-                        </motion.span>
-                      ))}
-                    </AnimatePresence>
-                    <motion.div animate={donationIcons.length ? { scale: [1, 1.1, 1] } : {}} className="text-6xl relative z-20 drop-shadow-lg">
-                      {recipientIcons[recipient].base}
-                    </motion.div>
-                  </div>
+              <div className={`w-full h-3 rounded-full overflow-hidden mt-8 shadow-inner ${isDark ? 'bg-black/30' : 'bg-black/5'}`}>
+                <motion.div className="h-full bg-gradient-to-r from-blue-400 to-indigo-500 rounded-full" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
+              </div>
+              <span className="text-[10px] font-semibold mt-3 block opacity-60">{milestone} / 500 for a full bowl</span>
 
-                  <div className={`w-full h-3.5 rounded-full overflow-hidden mt-8 shadow-inner border border-white/10 ${isDark ? 'bg-black/50' : 'bg-slate-200'}`}>
-                    <motion.div className="h-full bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 rounded-full shadow-[0_0_12px_#38bdf8]" initial={{ width: 0 }} animate={{ width: `${progressPct}%` }} transition={{ duration: 0.5 }} />
-                  </div>
-                  <span className="text-[10px] font-mono font-bold mt-3 block opacity-80 text-cyan-300 uppercase tracking-wider">{milestone} / 200 for a bowl of milk & curd</span>
-                  <div className="mt-8">
-                    <button 
-                      onClick={() => {
-                        setShowShareModal(true);
-                        playSound('levelup');
-                        const text = `🐾 I just generated ${score} Karma Points on CyberKarma feeding street dogs! Play trivia & save lives: https://cyberkarma.me 🐕🥣`;
-                        if (typeof navigator !== 'undefined' && navigator.share) {
-                          navigator.share({ title: 'CyberKarma Impact', text, url: 'https://cyberkarma.me' }).catch(() => {});
-                        }
-                      }} 
-                      className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}
-                    >
-                      <Share2 size={16} /> Share Impact
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </TiltWrapper>
+              <div className="mt-8">
+                <button onClick={handleShare} className={`w-full py-3.5 rounded-2xl text-sm font-semibold transition-all shadow-md flex items-center justify-center gap-2 ${isDark ? 'bg-white/10 hover:bg-white/20' : 'bg-white hover:bg-gray-50'}`}>
+                  <Share2 size={16} /> Share Impact
+                </button>
+              </div>
+            </motion.div>
 
             {/* Recipients Widget */}
             <div className={`p-6 rounded-[32px] border shadow-lg backdrop-blur-2xl ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/40 border-white/50'}`}>
               <h3 className="text-sm font-bold mb-4 opacity-80 px-2">Support Target</h3>
-              <div className="grid grid-cols-1 gap-3 mb-6">
-                {[ ['dogs', recipientIcons['dogs']] ].map(([key, info]) => (
+              <div className="grid grid-cols-2 gap-3">
+                {Object.entries(recipientIcons).slice(0, 4).map(([key, info]) => (
                   <button
-                    key={key as string}
-                    onClick={() => setRecipient(key as string)}
+                    key={key}
+                    onClick={() => setRecipient(key)}
                     className={`p-4 rounded-[20px] text-sm font-semibold transition-all flex flex-col items-center gap-2 text-center border ${recipient === key ? 'bg-blue-500 text-white shadow-lg border-blue-400' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10' : 'bg-white/60 border-white/80 hover:bg-white shadow-sm')}`}
                   >
-                    <span className="text-3xl">{(info as any).base.slice(0, 2)}</span>
-                    <span className="text-sm">{(info as any).label.split(' ')[0]}</span>
-                  </button>
-                ))}
-              </div>
-
-              <h3 className="text-xs font-bold mb-3 opacity-60 px-2 uppercase tracking-wider">Upcoming Targets</h3>
-              <div className="grid grid-cols-3 gap-2">
-                {[
-                  { key: 'human', label: 'Humans', icon: '🤲', goal: 'Unlock at Level 5' },
-                  { key: 'birds', label: 'Birds', icon: '🕊️', goal: 'Unlock at Level 3' },
-                  { key: 'cows', label: 'Cows', icon: '🐄', goal: 'Unlock at Level 4' }
-                ].map((target) => (
-                  <button
-                    key={target.key}
-                    onClick={() => addToast(`🔒 ${target.label} Target Unlocks soon! ${target.goal}. Currently focused 100% on Patna Street Dogs.`, 'info')}
-                    className={`p-3 rounded-[16px] text-xs font-semibold flex flex-col items-center gap-1 text-center border opacity-80 hover:opacity-100 transition-all cursor-pointer active:scale-95 ${isDark ? 'bg-white/5 border-white/10 hover:bg-emerald-500/10 hover:border-emerald-500/30' : 'bg-white/40 border-white/60 hover:bg-white'}`}
-                  >
-                    <span className="text-xl">{target.icon}</span>
-                    <span className="text-[10px] font-bold">{target.label}</span>
-                    <span className="text-[8px] text-emerald-400 font-mono font-bold">🔒 Locked</span>
+                    <span className="text-2xl">{info.base.slice(0, 2)}</span>
+                    <span className="text-xs">{info.label.split(' ')[0]}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Unified Partners & Sponsors Banner */}
-            <TiltWrapper tiltDeg={4}>
-              <div className={`p-6 rounded-[32px] border backdrop-blur-2xl shadow-xl flex flex-col relative overflow-hidden group transition-all duration-300 ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-slate-700/80 shadow-slate-950/60' : 'bg-gradient-to-br from-white via-slate-50 to-white border-slate-200 shadow-xl'}`}>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 blur-[50px] rounded-full pointer-events-none" />
-
-                <div className="flex flex-col items-center text-center relative z-10 w-full">
-                  <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-3.5 py-1 mb-5 rounded-full border shadow-sm flex items-center gap-1.5 ${isDark ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30' : 'bg-emerald-50 text-emerald-700 border-emerald-300'}`}>
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
-                    Verified System Partners
-                  </span>
-
-                  <div className="flex flex-col w-full gap-5">
-                    {/* Orca6 / AdityaSec */}
-                    <Link
-                      href="https://adityasec32.systems"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-4 rounded-[22px] border transition-all duration-300 flex flex-col items-center group/orca active:scale-[0.98] ${isDark ? 'bg-black/40 border-emerald-500/20 hover:border-emerald-400/60 hover:bg-emerald-500/10' : 'bg-white border-slate-200 hover:border-emerald-400 shadow-sm'}`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34d399]" />
-                        <span className={`text-[9px] font-mono font-bold uppercase tracking-widest ${isDark ? 'text-emerald-400' : 'text-emerald-600'}`}>Core Infrastructure</span>
-                      </div>
-                      <span className={`text-2xl font-black tracking-tight font-title transition-colors ${isDark ? 'text-white group-hover/orca:text-emerald-300' : 'text-slate-900 group-hover/orca:text-emerald-700'}`}>
-                        Orca6
-                      </span>
-                      <span className={`text-[10px] font-mono font-bold tracking-widest uppercase mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                        AdityaSec Security Systems
-                      </span>
-                    </Link>
-
-                    {/* JumpStreet */}
-                    <Link
-                      href="https://jumpstreet.tech"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`p-4 rounded-[22px] border transition-all duration-300 flex flex-col items-center group/jump active:scale-[0.98] ${isDark ? 'bg-black/40 border-blue-500/20 hover:border-blue-400/60 hover:bg-blue-500/10' : 'bg-white border-slate-200 hover:border-blue-400 shadow-sm'}`}
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse shadow-[0_0_8px_#60a5fa]" />
-                        <span className={`text-[9px] font-mono font-bold uppercase tracking-widest ${isDark ? 'text-blue-400' : 'text-blue-600'}`}>Algorithmic Engine</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <TrendingUp size={20} className="text-blue-400" />
-                        <span className={`text-2xl font-black tracking-tight font-title transition-colors ${isDark ? 'text-white group-hover/jump:text-blue-300' : 'text-slate-900 group-hover/jump:text-blue-700'}`}>
-                          JumpStreet
-                        </span>
-                      </div>
-                      <span className={`text-[10px] font-mono font-bold tracking-widest uppercase mt-0.5 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
-                        Algorithmic Trading Bot
-                      </span>
-                    </Link>
-                  </div>
-
-                </div>
-              </div>
-            </TiltWrapper>
-
           </div>
         </div>
 
         {/* Real-World Impact Gallery */}
-        <ImpactGallery isDark={isDark} liveDeliveriesCount={liveDeliveriesCount} />
+        <div className="w-full mt-8">
+          <div className={`p-8 sm:p-10 rounded-[32px] shadow-2xl backdrop-blur-2xl border overflow-hidden ${isDark ? 'bg-white/5 border-white/10' : 'bg-white/60 border-white/60'}`}>
+            
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-6 border-b border-white/10">
+              <div>
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="p-2 rounded-xl bg-rose-500/20 text-rose-500 border border-rose-500/30">
+                    <Heart size={24} className="fill-rose-500" />
+                  </span>
+                  <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight font-title">Real-World Impact Drive</h2>
+                </div>
+                <p className="text-sm opacity-90 max-w-3xl leading-relaxed font-medium">
+                  Every single grain of rice makes a difference. These are the actual street animals and communities you are helping feed every time you answer a question. <strong>Your knowledge is their survival.</strong>
+                </p>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-bold shrink-0">
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>LIVE FEEDING VERIFIED • PATNA DIVISION</span>
+              </div>
+            </div>
 
-        {/* Footer Ad Placement */}
-        <div className="w-full max-w-6xl mx-auto mt-8 px-4">
-          <AdSlot type="responsive" isDark={isDark} />
+            {/* Featured Direct Feeding Drive Gallery */}
+            <div className="mb-10">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 flex items-center gap-2">
+                  <span>🐕</span> Direct Street Feeding Drive • Rajbansi Nagar, Patna
+                </h3>
+                <span className="text-xs text-rose-500 font-bold">9 Verified Field Photos</span>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {STREET_FEEDING_DRIVE.map((item, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    onClick={() => setPreviewImage(item)}
+                    className="relative group rounded-[20px] overflow-hidden shadow-lg border border-white/15 cursor-pointer bg-black/40 h-72 flex flex-col justify-end p-4"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent group-hover:from-black/95 transition-colors" />
+
+                    <div className="relative z-10 space-y-1">
+                      <span className="px-2.5 py-0.5 rounded-full text-[9px] font-mono font-bold uppercase tracking-wider bg-rose-500 text-white shadow-sm inline-block mb-1">
+                        {item.tag}
+                      </span>
+                      <h4 className="text-xs font-bold text-white leading-tight font-title">{item.title}</h4>
+                      <p className="text-[10px] text-slate-300 flex items-center gap-1 font-mono">
+                        <span>📍</span> {item.location}
+                      </p>
+                      <span className="text-[9px] text-slate-400 block font-mono">{item.date}</span>
+                    </div>
+
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/50 backdrop-blur-md border border-white/20 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                      <Heart size={14} className="fill-rose-500 text-rose-500" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Infinite Scrolling Marquee */}
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-widest opacity-70 mb-4 flex items-center gap-2">
+                <span>📷</span> Global Community Impact Archive (81 Verified Photos)
+              </h3>
+              <div className="relative w-full overflow-hidden rounded-[24px] h-56 flex items-center">
+                <motion.div 
+                  className="flex gap-4 absolute left-0"
+                  animate={{ x: [0, -17000] }}
+                  transition={{ repeat: Infinity, duration: 250, ease: 'linear' }}
+                >
+                  {Array.from({ length: 81 }).map((_, i) => (
+                    <div key={i} className="w-40 h-56 shrink-0 rounded-[16px] overflow-hidden shadow-sm border border-white/10 group relative bg-black/10">
+                      <img 
+                        src={`/impact/impact-${i + 1}.jpeg`} 
+                        alt={`Real-World Impact ${i + 1}`} 
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        loading="lazy" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                        <Heart size={16} className="text-white fill-white" />
+                      </div>
+                    </div>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+
+          </div>
         </div>
-
-        {/* Global Redirect Footer */}
-        <footer className={`w-full text-center py-8 mt-12 border-t ${isDark ? 'border-white/5' : 'border-black/5'}`}>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 mb-4 text-xs font-bold uppercase tracking-widest">
-            <Link href="/about" className="hover:text-emerald-400 transition-colors">About</Link>
-            <Link href="/faq" className="hover:text-emerald-400 transition-colors">FAQ & Contact</Link>
-            <Link href="/terms" className="hover:text-emerald-400 transition-colors">Terms of Service</Link>
-            <Link href="/privacy" className="hover:text-emerald-400 transition-colors">Privacy Policy</Link>
-          </div>
-          <div className="flex items-center justify-center gap-1.5 text-[10px] font-mono opacity-50 uppercase tracking-widest mt-2">
-            <Shield size={12} className="text-emerald-500" />
-            <span>Developed & Managed by <a href="https://adityasec32.systems" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:underline font-bold">AdityaSec Security Systems</a></span>
-          </div>
-        </footer>
       </main>
+
+      {/* Daily Lucky Karma Crate Modal */}
+      <AnimatePresence>
+        {showLuckyCrateModal && luckyReward && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+            <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-slate-900 border border-amber-500/30 p-8 rounded-3xl max-w-md w-full text-center space-y-4 shadow-2xl relative overflow-hidden"
+            >
+              <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-amber-400 via-rose-500 to-emerald-400" />
+              <div className="text-6xl animate-bounce">🎁</div>
+              <h3 className="text-2xl font-black font-title text-white">Daily Karma Crate Unlocked!</h3>
+              <p className="text-sm font-mono text-amber-300 font-bold leading-relaxed">
+                {luckyReward.text}
+              </p>
+              <p className="text-xs text-slate-300">
+                Your bonus grains have been added to the Patna Street Animal Rescue Feeding Pool!
+              </p>
+              <button
+                onClick={() => setShowLuckyCrateModal(false)}
+                className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-400 to-rose-500 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg hover:brightness-110 transition-all"
+              >
+                Claim &amp; Keep Playing 🚀
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
 
       {/* AI Quiz Settings Modal */}
       <AnimatePresence>
         {showAIModal && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-black/70 backdrop-blur-xl">
-            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-lg p-6 sm:p-8 rounded-[32px] shadow-2xl border relative overflow-hidden max-h-[90vh] overflow-y-auto ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-amber-500/30 text-white shadow-amber-950/40' : 'bg-white/95 border-amber-200 text-slate-900 shadow-xl'}`}>
-              <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-[0_0_25px_rgba(245,158,11,0.4)] rotate-3">
-                <Cpu size={32} className="text-slate-950 animate-pulse" />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/40 backdrop-blur-md">
+            <motion.div initial={{ scale: 0.95, y: 20 }} animate={{ scale: 1, y: 0 }} exit={{ scale: 0.95, y: 20 }} className={`w-full max-w-md p-8 rounded-[32px] shadow-2xl border ${isDark ? 'bg-[#1c1c1e] border-white/10' : 'bg-white/90 border-white/100 backdrop-blur-xl'}`}>
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg rotate-3">
+                <Cpu size={32} className="text-white" />
               </div>
-              <h3 className="text-2xl sm:text-3xl font-black text-center mb-1 font-title bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-300 to-amber-200">
-                Endless Custom AI Quiz
-              </h3>
-              <p className="text-xs sm:text-sm text-center opacity-80 mb-6 font-medium max-w-sm mx-auto leading-relaxed">
-                Enter <strong className="text-amber-400">any topic in the universe</strong> to generate an endless trivia stream & feed street animals!
+              <h3 className="text-2xl font-bold text-center mb-2">Custom AI Quiz</h3>
+              <p className="text-sm text-center opacity-60 mb-8">
+                Enter any topic and generate a quiz to feed charities!
               </p>
 
-              {/* Topic Input Box */}
               <div className="mb-5">
-                <label className="text-xs font-mono font-bold uppercase tracking-wider ml-1 mb-2 block text-amber-400">
-                  Enter Your Custom Topic
-                </label>
+                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Topic</label>
                 <input
                   type="text"
                   value={aiTopic}
                   onChange={e => setAiTopic(e.target.value)}
-                  placeholder="e.g., Quantum Computing, Street Dogs, Ancient Rome..."
+                  placeholder="e.g., Space Exploration"
                   disabled={isGeneratingAI}
-                  className={`w-full p-4 rounded-[20px] text-sm font-semibold border outline-none transition-all shadow-inner ${isDark ? 'bg-black/50 border-white/15 focus:border-amber-400 text-white placeholder-slate-500' : 'bg-slate-100 border-slate-300 focus:border-amber-500 text-slate-900'}`}
+                  className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
                 />
               </div>
 
-              {/* Instant Preset Topic Chips */}
-              <div className="mb-6">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-60 block mb-2">
-                  ⚡ Quick Pick Popular Topics:
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    { label: '🚀 Space Exploration', value: 'Space Exploration & Cosmology' },
-                    { label: '🔐 Cybersecurity & AI', value: 'Cybersecurity, Hacking & Artificial Intelligence' },
-                    { label: '🧬 World Wildlife', value: 'Animal Welfare & Wildlife Psychology' },
-                    { label: '🏛️ Ancient History', value: 'Ancient World Civilizations' },
-                    { label: '☕ Pop Culture & Movies', value: 'Pop Culture Cinema & Music' }
-                  ].map((chip, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => handleGenerateAIQuiz(chip.value)}
-                      disabled={isGeneratingAI}
-                      className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all border active:scale-[0.98] ${aiTopic === chip.value ? 'bg-amber-500 text-slate-950 border-amber-300 shadow-md font-black' : (isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-slate-300' : 'bg-slate-100 border-slate-300 hover:bg-slate-200 text-slate-700')}`}
-                    >
-                      {chip.label}
-                    </button>
-                  ))}
-                </div>
+              <div className="mb-8">
+                <label className="text-xs font-semibold ml-2 mb-2 block opacity-70">Gemini API Key</label>
+                <input
+                  type="password"
+                  value={aiKey}
+                  onChange={e => setAiKey(e.target.value)}
+                  placeholder="Paste AI key here..."
+                  disabled={isGeneratingAI}
+                  className={`w-full p-4 rounded-[16px] border outline-none transition-all shadow-inner ${isDark ? 'bg-black/30 border-white/10 focus:border-purple-500' : 'bg-gray-50 border-gray-200 focus:border-purple-400'}`}
+                />
               </div>
 
-              {/* Difficulty Selection */}
-              <div className="mb-6">
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest opacity-60 block mb-2">
-                  🎯 Difficulty Mode:
-                </span>
-                <div className={`flex gap-2 p-1.5 rounded-[20px] border ${isDark ? 'bg-black/40 border-white/10' : 'bg-slate-100 border-slate-300'}`}>
-                  {(['beginner', 'intermediate', 'advanced'] as Difficulty[]).map(diff => (
-                    <button
-                      key={diff}
-                      onClick={() => setDifficulty(diff)}
-                      className={`flex-1 py-2 rounded-[14px] text-xs font-bold transition-all ${difficulty === diff ? 'bg-amber-500 text-slate-950 shadow-md font-black' : (isDark ? 'opacity-60 hover:opacity-100 text-slate-300' : 'text-slate-600')}`}
-                    >
-                      {diff === 'beginner' ? 'Kids' : diff === 'intermediate' ? 'Standard' : 'Expert'}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Action Buttons */}
               <div className="flex flex-col gap-3">
                 <button
                   onClick={handleGenerateAIQuiz}
                   disabled={isGeneratingAI}
-                  className={`w-full py-4 rounded-[20px] font-black text-sm uppercase tracking-wider transition-all duration-300 shadow-xl flex items-center justify-center gap-3 relative overflow-hidden active:scale-[0.98] ${isGeneratingAI ? 'bg-amber-600 text-white cursor-not-allowed' : 'bg-gradient-to-r from-amber-400 via-orange-500 to-amber-500 text-slate-950 hover:shadow-[0_0_30px_rgba(245,158,11,0.4)] hover:scale-[1.02]'}`}
+                  className="w-full py-4 rounded-[20px] font-bold bg-black text-white dark:bg-white dark:text-black hover:scale-[1.02] disabled:opacity-50 transition-all shadow-lg flex items-center justify-center gap-2"
                 >
-                  {isGeneratingAI ? (
-                    <>
-                      <div className="w-5 h-5 border-2 border-slate-950/30 border-t-slate-950 rounded-full animate-spin" />
-                      <span className="animate-pulse tracking-wide font-black">Synthesizing Neural Quiz Stream...</span>
-                    </>
-                  ) : (
-                    <>
-                      <Cpu size={20} />
-                      Launch Endless AI Quiz →
-                    </>
-                  )}
+                  {isGeneratingAI ? 'Generating...' : 'Generate Quiz'}
                 </button>
-                <button 
-                  onClick={() => setShowAIModal(false)} 
-                  disabled={isGeneratingAI} 
-                  className="py-3 text-xs font-bold uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity"
-                >
-                  Cancel & Close
-                </button>
+                <button onClick={() => setShowAIModal(false)} disabled={isGeneratingAI} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
               </div>
             </motion.div>
           </motion.div>
@@ -1958,53 +1418,7 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                     <button onClick={sendMagicLink} disabled={isSendingMagicLink} className="w-full py-4 rounded-[20px] font-bold bg-blue-500 text-white hover:scale-[1.02] disabled:opacity-50 transition-all shadow-md shadow-blue-500/20">
                       {isSendingMagicLink ? 'Sending...' : 'Send Magic Link'}
                     </button>
-                    
-                    <div className="relative flex items-center py-4">
-                      <div className="flex-grow border-t border-slate-500/20"></div>
-                      <span className="shrink-0 px-4 text-[10px] font-bold opacity-40 uppercase tracking-wider">Or</span>
-                      <div className="flex-grow border-t border-slate-500/20"></div>
-                    </div>
-
-                    <button 
-                      onClick={() => {
-                        try {
-                          const userEmail = emailInput && emailInput.includes('@') ? emailInput : `google_user_${Math.floor(Math.random() * 9000 + 1000)}@gmail.com`;
-                          const rawName = userEmail.split('@')[0];
-                          const name = rawName.charAt(0).toUpperCase() + rawName.slice(1).replace(/[^a-zA-Z0-9]/g, ' ');
-                          const avatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=4285F4&color=fff`;
-                          setUser({ email: userEmail, name, avatar });
-                          const localScore = parseInt(localStorage.getItem('charityKarmaScore') || '0', 10);
-                          setScore(localScore);
-                          localStorage.setItem('charityKarmaScore', String(localScore));
-                          const calculatedLevel = Math.floor(localScore / 200) + 1;
-                          localStorage.setItem('charityQuizLastLevel', String(calculatedLevel));
-                          setShowEmailModal(false);
-                          addToast(`🎉 Welcome back, ${name}! Signed in with Google.`, 'success');
-                        } catch (err) {
-                          console.error('Google login error:', err);
-                          addToast('Sign in failed. Try "Play as Guest" instead.', 'error');
-                        }
-                      }} 
-                      className={`w-full flex items-center justify-center gap-3 py-4 rounded-[20px] font-bold border transition-all hover:scale-[1.02] shadow-sm ${isDark ? 'bg-white/5 border-white/10 hover:bg-white/10 text-white' : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-800'}`}
-                    >
-                      <svg className="w-5 h-5" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                      Continue with Google
-                    </button>
-
-                    <button 
-                      onClick={() => {
-                        const randomGuest = Math.floor(Math.random() * 10000);
-                        handleUserLogin(`guest_${randomGuest}@cyberkarma.me`);
-                        setShowEmailModal(false);
-                        addToast('Logged in as Guest User!', 'success');
-                      }} 
-                      className={`w-full mt-3 flex items-center justify-center gap-3 py-4 rounded-[20px] font-bold transition-all hover:scale-[1.02] ${isDark ? 'bg-white/10 hover:bg-white/20 text-white' : 'bg-slate-100 hover:bg-slate-200 text-slate-800'}`}
-                    >
-                      <User size={18} />
-                      Play as Guest
-                    </button>
-
-                    <button onClick={() => setShowEmailModal(false)} className="w-full mt-4 py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
+                    <button onClick={() => setShowEmailModal(false)} className="py-4 font-semibold opacity-60 hover:opacity-100">Cancel</button>
                   </div>
                 </>
               ) : (
@@ -2048,11 +1462,6 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
                 </div>
               </div>
 
-              {/* Level Up Modal Ad */}
-              <div className="my-6 w-full flex justify-center">
-                <AdSlot type="square" isDark={isDark} />
-              </div>
-
               <button
                 onClick={() => setShowLevelUpModal(false)}
                 className="w-full py-4 rounded-[20px] bg-blue-500 text-white font-bold hover:scale-[1.02] active:scale-95 transition-all shadow-lg shadow-blue-500/30"
@@ -2062,167 +1471,51 @@ Ensure the JSON output is raw, without any markdown formatting, backticks, or wr
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
 
-      {/* 3D Viral Social Share Modal */}
-      <AnimatePresence>
-        {showShareModal && (
+        {/* Photo Preview Lightbox Modal */}
+        {previewImage && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-2xl overflow-y-auto"
-            onClick={() => setShowShareModal(false)}
+            onClick={() => setPreviewImage(null)}
+            className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl cursor-pointer"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 30 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 30 }}
-              onClick={e => e.stopPropagation()}
-              className={`w-full max-w-lg rounded-[36px] p-6 sm:p-8 shadow-2xl border relative overflow-hidden my-auto ${isDark ? 'bg-gradient-to-br from-slate-900 via-slate-950 to-slate-900 border-emerald-500/30 text-white' : 'bg-gradient-to-br from-white via-emerald-50/50 to-white border-emerald-200 text-slate-900'}`}
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative max-w-2xl w-full rounded-[32px] overflow-hidden bg-slate-900 border border-white/20 shadow-2xl"
             >
               <button
-                onClick={() => setShowShareModal(false)}
-                className="absolute top-5 right-5 z-50 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center font-bold text-sm transition-colors border border-white/20"
+                onClick={() => setPreviewImage(null)}
+                className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-rose-600 transition-colors font-bold"
               >
                 ✕
               </button>
-
-              <div className="text-center space-y-2 mb-6">
-                <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-widest bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 inline-block mb-1">
-                  🌟 Viral Impact Badge
-                </span>
-                <h3 className="text-2xl sm:text-3xl font-black font-title tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                  Share Your Karmic Impact
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-400 font-medium max-w-xs mx-auto leading-relaxed">
-                  Inspire your friends on Instagram, Facebook & WhatsApp to feed street dogs by answering trivia!
+              <div className="relative h-96 w-full bg-black">
+                <img
+                  src={previewImage.src}
+                  alt={previewImage.title}
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="p-6 bg-slate-950 text-white space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="px-3 py-1 rounded-full bg-rose-500 text-white text-[10px] font-mono font-bold uppercase">
+                    Verified Field Impact
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">{previewImage.date}</span>
+                </div>
+                <h3 className="text-lg font-black font-title text-white">{previewImage.title}</h3>
+                <p className="text-xs text-slate-300 font-mono flex items-center gap-1">
+                  <span>📍</span> Location: {previewImage.location}
+                </p>
+                <p className="text-xs text-emerald-400 pt-2 border-t border-white/10 font-medium">
+                  ❤️ Your quiz participation directly funds rice meals for animals in this exact location.
                 </p>
               </div>
-
-              {/* 3D Glass Certificate Badge Card */}
-              <TiltWrapper tiltDeg={6}>
-                <div className="p-6 rounded-[28px] bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 border border-emerald-500/40 shadow-[0_20px_40px_rgba(0,0,0,0.6)] relative overflow-hidden mb-6 group">
-                  <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/15 blur-[60px] rounded-full pointer-events-none" />
-                  
-                  <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-4">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">🐕🥣</span>
-                      <div>
-                        <span className="text-xs font-black uppercase tracking-wider text-emerald-400 block font-title">CyberKarma Impact</span>
-                        <span className="text-[10px] text-slate-400 font-mono">Patna Street Dog Drive</span>
-                      </div>
-                    </div>
-                    <span className="text-[9px] font-mono font-bold uppercase px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                      OFFICIAL VERIFIED
-                    </span>
-                  </div>
-
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-xs text-slate-400 font-mono">Current Rank:</span>
-                      <span className="text-sm font-black text-amber-400 font-title">
-                        Level {Math.floor(score / 200) + 1}: {levelTitles.slice().reverse().find(t => (Math.floor(score / 200) + 1) >= t.minLvl)?.title || "Chandra Novice"}
-                      </span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-xs text-slate-400 font-mono">Total Karma Donated:</span>
-                      <span className="text-xl font-black text-emerald-400 font-mono">{score.toLocaleString()} Points</span>
-                    </div>
-
-                    <div className="flex justify-between items-baseline">
-                      <span className="text-xs text-slate-400 font-mono">Bowls Funded:</span>
-                      <span className="text-sm font-extrabold text-cyan-300 font-mono">~{Math.max(1, Math.floor(score / 200))} Bowl(s) of Milk & Curd</span>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-[10px] text-slate-400 font-mono">
-                    <span>📍 Verified Patna Streets, Bihar</span>
-                    <span>cyberkarma.me</span>
-                  </div>
-                </div>
-              </TiltWrapper>
-
-              {/* Social Share Buttons */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 mb-4">
-                {/* Instagram Story / Post */}
-                <button
-                  onClick={() => {
-                    const text = `🐾 I just donated ${score} Karma Points on CyberKarma (~${Math.max(1, Math.floor(score / 200))} bowls of milk & curd for Patna street dogs)! Try any quiz at https://cyberkarma.me 🐕🥣`;
-                    navigator.clipboard.writeText(text);
-                    addToast('📸 Instagram Story caption copied! Share on Instagram now.', 'success');
-                  }}
-                  className="p-3 rounded-2xl bg-gradient-to-r from-purple-600 via-pink-600 to-rose-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-pink-400/30 col-span-2 sm:col-span-1"
-                >
-                  <span>📸</span> Instagram
-                </button>
-
-                {/* Facebook */}
-                <button
-                  onClick={() => {
-                    const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://cyberkarma.me')}&quote=${encodeURIComponent(`🐾 I generated ${score} Karma Points on CyberKarma to feed street dogs! Play free quizzes at cyberkarma.me`)}`;
-                    window.open(shareUrl, '_blank');
-                  }}
-                  className="p-3 rounded-2xl bg-[#1877F2] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-blue-400/30"
-                >
-                  <span>📘</span> Facebook
-                </button>
-
-                {/* WhatsApp */}
-                <button
-                  onClick={() => {
-                    const text = `🐾 I just generated ${score} Karma Points on CyberKarma! Answer trivia & help provide milk and curd to street dogs: https://cyberkarma.me 🐕🥣`;
-                    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
-                  }}
-                  className="p-3 rounded-2xl bg-[#25D366] text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-emerald-400/40"
-                >
-                  <span>💬</span> WhatsApp
-                </button>
-
-                {/* X / Twitter */}
-                <button
-                  onClick={() => {
-                    const text = `🐾 Just donated ${score} Karma Points feeding street dogs in Patna on @CyberKarma! Answer trivia & save lives: https://cyberkarma.me 🐕🥣 #CyberKarma #AnimalWelfare`;
-                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
-                  }}
-                  className="p-3 rounded-2xl bg-black text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-white/20"
-                >
-                  <span>🪽</span> X (Twitter)
-                </button>
-
-                {/* LinkedIn */}
-                <button
-                  onClick={() => {
-                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://cyberkarma.me')}`, '_blank');
-                  }}
-                  className="p-3 rounded-2xl bg-[#0A66C2] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-blue-300/30"
-                >
-                  <span>💼</span> LinkedIn
-                </button>
-
-                {/* Telegram */}
-                <button
-                  onClick={() => {
-                    const text = `🐾 I just generated ${score} Karma Points feeding street dogs on CyberKarma! Play quizzes here:`;
-                    window.open(`https://t.me/share/url?url=${encodeURIComponent('https://cyberkarma.me')}&text=${encodeURIComponent(text)}`, '_blank');
-                  }}
-                  className="p-3 rounded-2xl bg-[#229ED9] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg hover:scale-105 transition-all active:scale-95 border border-cyan-300/30"
-                >
-                  <span>✈️</span> Telegram
-                </button>
-              </div>
-
-              {/* Copy Dynamic Link */}
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(`https://cyberkarma.me`);
-                  addToast('📋 Live Certificate Link Copied!', 'success');
-                }}
-                className={`w-full py-3.5 rounded-2xl font-extrabold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 border active:scale-95 ${isDark ? 'bg-white/10 hover:bg-white/20 text-white border-white/10' : 'bg-slate-100 hover:bg-slate-200 text-slate-800 border-slate-300'}`}
-              >
-                <span>🔗</span> Copy Certificate & Share Link
-              </button>
             </motion.div>
           </motion.div>
         )}
