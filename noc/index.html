@@ -4354,529 +4354,203 @@
         // --- Floating AI Chatbot Widget Logic ---
         const MODEL_NAME = "qwen2.5:1.5b";
         let chatbotMessages, chatbotInput;
+        
+        // ═══════════════════════════════════════════════════════════════════════
+        // BIHAR DISTRICT OPERATIONS HUB: High-Resilience Dynamic Data Engine
+        // ═══════════════════════════════════════════════════════════════════════
         let contactsDatabase = [];
-        let chatHistory = [];
+        let isContactsLoading = false;
 
-        // --- Web Speech API Voice Input ---
-        let recognition = null;
-        let isRecording = false;
-
-        function initSpeechRecognition() {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            if (!SpeechRecognition) {
-                console.log("Web Speech API is not supported in this browser.");
-                return;
-            }
-            recognition = new SpeechRecognition();
-            recognition.continuous = false;
-            recognition.interimResults = false;
-            recognition.lang = 'en-IN'; // Indian English language support
-
-            recognition.onstart = () => {
-                isRecording = true;
-                const micBtn = document.getElementById('chatbotMicBtn');
-                if (micBtn) {
-                    micBtn.classList.add('recording');
-                    micBtn.innerHTML = '<i class="fas fa-microphone-slash"></i>';
-                    micBtn.title = 'Stop listening';
-                }
-                if (chatbotInput) {
-                    chatbotInput.placeholder = 'Listening... Speak now';
-                }
-            };
-
-            recognition.onend = () => {
-                isRecording = false;
-                const micBtn = document.getElementById('chatbotMicBtn');
-                if (micBtn) {
-                    micBtn.classList.remove('recording');
-                    micBtn.innerHTML = '<i class="fas fa-microphone"></i>';
-                    micBtn.title = 'Voice Input';
-                }
-                if (chatbotInput) {
-                    chatbotInput.placeholder = 'Type your message...';
-                }
-            };
-
-            recognition.onerror = (e) => {
-                console.error("Speech recognition error:", e.error);
-                recognition.stop();
-            };
-
-            recognition.onresult = (e) => {
-                const transcript = e.results[0][0].transcript;
-                if (chatbotInput && transcript) {
-                    if (chatbotInput.value) {
-                        chatbotInput.value += ' ' + transcript;
-                    } else {
-                        chatbotInput.value = transcript;
-                    }
-                    chatbotInput.focus();
-                }
-            };
-        }
-
-        function toggleSpeechRecognition() {
-            if (!recognition) return;
-            if (isRecording) {
-                recognition.stop();
-            } else {
-                try {
-                    recognition.start();
-                } catch (err) {
-                    console.error("Failed to start speech recognition:", err);
-                }
-            }
-        }
-
-        // Client-side synonym dictionary for query expansion
-        const synonymDict = {
-            "attendance": ["fms", "attendance", "billing", "biometric", "taspass", "check-in"],
-            "internet": ["nkn", "internet", "link", "router", "connectivity", "bandwidth", "wan", "lan"],
-            "tacs": ["taspass", "password", "tacacs", "credentials", "tacs"],
-            "taspass": ["taspass", "password", "tacacs", "credentials", "tacs"],
-            "password": ["taspass", "password", "tacacs", "credentials", "tacs"],
-            "sio": ["sio", "ajay", "head"],
-            "patna": ["patna", "hq", "sio"],
-            "noc": ["patna", "hq", "noc", "server"]
+        const districtLocationAliases = {
+            "patna": ["patna", "patna hq", "state hq (patna)", "soochna bhawan / 3rd floor hub, patna", "state hq"],
+            "patna du": ["patna du", "patna", "patna hq"],
+            "bhojpur": ["bhojpur", "ara"],
+            "rohtas": ["rohtas", "sasaram"],
+            "kaimur": ["kaimur", "bhabhua"],
+            "west champaran": ["west champaran", "bettiah"],
+            "east champaran": ["east champaran", "motihari"],
+            "purnia": ["purnia", "purnea"],
+            "saran": ["saran", "chhapra"],
+            "vaishali": ["vaishali", "hajipur"],
+            "nalanda": ["nalanda", "biharsharif", "bihar sharif"]
         };
 
         async function loadContactsDatabase() {
+            if (contactsDatabase.length > 0) return contactsDatabase;
+            isContactsLoading = true;
             try {
-                const response = await fetch('contacts.json?t=' + new Date().getTime());
+                const response = await fetch('contacts.json?t=' + Date.now());
                 if (response.ok) {
                     contactsDatabase = await response.json();
-                    console.log("Contacts database loaded successfully. Count: " + contactsDatabase.length);
+                    console.log(`[+] Loaded ${contactsDatabase.length} contacts for Bihar District Operations Hub`);
                 } else {
-                    console.warn("Failed to load contacts database from contacts.json");
-                }
-            } catch (error) {
-                console.error("Error fetching contacts.json:", error);
-            }
-        }
-
-        function formatMarkdown(text) {
-            if (!text) return "";
-            // Escape HTML tags to protect against XSS
-            let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-            
-            // Format Bold: **text**
-            html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-            
-            // Format Inline Code: `code`
-            html = html.replace(/`(.*?)`/g, "<code>$1</code>");
-            
-            // Format Headers: ###, ##, #
-            html = html.replace(/^### (.*?)$/gm, "<h4>$1</h4>");
-            html = html.replace(/^## (.*?)$/gm, "<h5>$1</h5>");
-            html = html.replace(/^# (.*?)$/gm, "<h6>$1</h6>");
-            
-            // Format Lists: lines starting with "- " or "* "
-            html = html.replace(/^(?:\s*[-*]\s+)(.*?)$/gm, "<li>$1</li>");
-            html = html.replace(/(<li>.*?<\/li>)/g, "<ul>$1</ul>");
-            html = html.replace(/<\/ul>\s*<ul>/g, ""); // Merge adjacent list containers
-            
-            // Convert newlines to br tags
-            html = html.replace(/\n/g, "<br>");
-            
-            // Cleanup stray breaks around list structures
-            html = html.replace(/<br><\/ul>/g, "</ul>").replace(/<\/ul><br>/g, "</ul>");
-            html = html.replace(/<br><li>/g, "<li>").replace(/<\/li><br>/g, "</li>");
-            html = html.replace(/<ul><br>/g, "<ul>").replace(/<br><ul>/g, "<ul>");
-            
-            return html;
-        }
-
-        function appendBotMessage(text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('chat-msg', 'bot');
-            msgDiv.innerHTML = formatMarkdown(text);
-            chatbotMessages.appendChild(msgDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        function sendSuggestionChip(message) {
-            if (chatbotInput) {
-                chatbotInput.value = message;
-                handleSend();
-            }
-        }
-
-        function appendUserMessage(text) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('chat-msg', 'user');
-            msgDiv.textContent = text;
-            chatbotMessages.appendChild(msgDiv);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-        }
-
-        async function handleSend() {
-            const text = chatbotInput.value.trim();
-            if (!text) return;
-
-            appendUserMessage(text);
-            chatbotInput.value = '';
-
-            const typingIndicator = document.createElement('div');
-            typingIndicator.className = 'chat-msg bot typing-indicator-msg';
-            typingIndicator.style.alignSelf = 'flex-start';
-            typingIndicator.innerHTML = `
-                <div class="typing-indicator">
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                    <div class="typing-dot"></div>
-                </div>
-            `;
-            chatbotMessages.appendChild(typingIndicator);
-            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-
-            // Intercept live status verification commands (NOC pinging check)
-            let statusTarget = null;
-            const lowerText = text.toLowerCase().trim();
-
-            if (lowerText.includes("attendance") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
-                statusTarget = "attendance";
-            } else if (lowerText.includes("taspass") || (lowerText.includes("tacs") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach")))) {
-                statusTarget = "taspass";
-            } else if (lowerText.includes("dpr") && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
-                statusTarget = "dpr";
-            } else if ((lowerText.includes("noc") || lowerText.includes("patna noc")) && (lowerText.includes("ping") || lowerText.includes("status") || lowerText.includes("up") || lowerText.includes("down") || lowerText.includes("online") || lowerText.includes("offline") || lowerText.includes("reach"))) {
-                statusTarget = "patna_noc";
-            }
-
-            if (statusTarget) {
-                try {
-                    const response = await fetch(`ping.php?target=${statusTarget}`);
-                    typingIndicator.remove();
-                    if (response.ok) {
-                        const data = await response.json();
-                        let responseText = "";
-                        if (data.status === "online") {
-                            responseText = `🟢 **${data.name}** is **ONLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Response RTT:** \`${data.rtt_ms} ms\`\n* **Status:** Connection test successful, TCP socket active.`;
-                        } else {
-                            responseText = `🔴 **${data.name}** is **OFFLINE**.\n\n* **Host:** \`${data.host}:${data.port}\`\n* **Error:** \`${data.message || 'Connection refused'}\`\n* **Status:** Connection failed. Check network routing.`;
-                        }
-                        appendBotMessage(responseText);
-                    } else {
-                        appendBotMessage(`⚠️ Unable to fetch live status. The backend status verification tool returned an error code ${response.status}.`);
-                    }
-                } catch (error) {
-                    console.error("Error pinging status:", error);
-                    typingIndicator.remove();
-                    appendBotMessage("⚠️ Network error occurred while contacting the live status verification script.");
-                }
-                return; // Skip LLM call
-            }
-
-            // Simple client-side RAG: find relevant contacts matching query keywords (with synonym expansion)
-            let matchedContacts = [];
-            if (contactsDatabase.length > 0) {
-                const queryLower = text.toLowerCase();
-                // Extract keywords of length >= 3
-                let keywords = queryLower.split(/[^a-zA-Z0-9]/).filter(w => w.length >= 3);
-                
-                if (keywords.length > 0) {
-                    // Expand keywords using synonym lookup table
-                    const expandedKeywords = [...keywords];
-                    keywords.forEach(kw => {
-                        if (synonymDict[kw]) {
-                            expandedKeywords.push(...synonymDict[kw]);
-                        }
-                    });
-                    keywords = Array.from(new Set(expandedKeywords));
-
-                    matchedContacts = contactsDatabase.map(c => {
-                        let score = 0;
-                        const name = (c.name || "").toLowerCase();
-                        const role = (c.role || "").toLowerCase();
-                        const location = (c.location || "").toLowerCase();
-                        const email = (c.email || "").toLowerCase();
-                        const source = (c.source || "").toLowerCase();
-                        
-                        keywords.forEach(kw => {
-                            if (name === kw) score += 10;
-                            else if (name.includes(kw)) score += 5;
-                            
-                            if (location === kw) score += 8;
-                            else if (location.includes(kw)) score += 4;
-                            
-                            if (role.includes(kw)) score += 2;
-                            if (email.includes(kw)) score += 1;
-                            if (source.includes(kw)) score += 1;
-                        });
-                        
-                        return { contact: c, score: score };
-                    })
-                    .filter(item => item.score > 0)
-                    .sort((a, b) => b.score - a.score)
-                    .map(item => item.contact);
-                }
-            }
-
-            // Limit to top 5 matches to avoid prompt bloat and keep context small
-            matchedContacts = matchedContacts.slice(0, 5);
-
-            let dynamicContext = "";
-            if (matchedContacts.length > 0) {
-                dynamicContext = "\n\nRelevant Contact details for the query:\n" + 
-                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ip ? ', IP/Landline: ' + c.ip : ''}`).join("\n");
-            }
-
-            try {
-                const response = await fetch('chat.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        model: MODEL_NAME,
-                        messages: [
-                            {
-                                role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Video Conference (VC) Support & Operations Desk: IP Phone / Ext: 23004, Email: vc-bihar@nic.in (dedicated VC team). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: https://fmsbh.attendance.gov.in/ and http://10.133.0.51:8080/FMS-attendance/index.php. Address: Soochna Bhawan Campus, Patna. Phone: +91 9771459332. This entire Bihar State NOC Portal from A to Z (including UI/UX design, real-time monitoring, speed test diagnostics, and AI assistant) was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain, the founder, creator, or who built the portal, provide his full profile: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +919897577007, email: seca1.shq.br@nic.in.' + dynamicContext
-                            },
-                            ...chatHistory,
-                            { role: 'user', content: text }
-                        ],
-                        stream: true,
-                        options: {
-                            num_ctx: 2048,
-                            num_predict: 256,
-                            temperature: 0.7,
-                            num_thread: 8 // Optimized for server's NUMA E5-4610 CPU
-                        },
-                        keep_alive: -1 // Keep model loaded in memory indefinitely to avoid loading delays
-                    })
-                });
-
-                if (!response.ok) {
-                    if (typingIndicator && typingIndicator.parentNode) typingIndicator.remove();
-                    throw new Error("API call failed");
-                }
-
-                let msgDiv = null;
-                let botText = "";
-                let buffer = "";
-
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder("utf-8");
-                let done = false;
-
-                while (!done) {
-                    const { value, done: readerDone } = await reader.read();
-                    done = readerDone;
-                    if (value) {
-                        buffer += decoder.decode(value, { stream: true });
-                        const lines = buffer.split('\n');
-                        buffer = lines.pop(); // Keep the last partial line in buffer
-
-                        for (const line of lines) {
-                            if (line.trim() !== '') {
-                                try {
-                                    const data = JSON.parse(line);
-                                    if (data.message && data.message.content) {
-                                        botText += data.message.content;
-                                        
-                                        // On first text chunk, remove typing indicator and create bot message bubble
-                                        if (!msgDiv) {
-                                            if (typingIndicator && typingIndicator.parentNode) {
-                                                typingIndicator.remove();
-                                            }
-                                            msgDiv = document.createElement('div');
-                                            msgDiv.classList.add('chat-msg', 'bot');
-                                            chatbotMessages.appendChild(msgDiv);
-                                        }
-
-                                        msgDiv.innerHTML = formatMarkdown(botText);
-                                        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                                    }
-                                } catch (e) {
-                                    console.error("Error parsing JSON chunk", e);
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                if (buffer.trim() !== '') {
-                    try {
-                        const data = JSON.parse(buffer);
-                        if (data.message && data.message.content) {
-                            botText += data.message.content;
-                            if (!msgDiv) {
-                                if (typingIndicator && typingIndicator.parentNode) {
-                                    typingIndicator.remove();
-                                }
-                                msgDiv = document.createElement('div');
-                                msgDiv.classList.add('chat-msg', 'bot');
-                                chatbotMessages.appendChild(msgDiv);
-                            }
-                            msgDiv.innerHTML = formatMarkdown(botText);
-                            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                        }
-                    } catch (e) {}
-                }
-
-                // If no bot text was received at all, provide instant intelligent response
-                if (!botText || botText.trim() === '') {
-                    if (typingIndicator && typingIndicator.parentNode) typingIndicator.remove();
-                    if (msgDiv && msgDiv.parentNode) msgDiv.remove();
-                    appendBotMessage("I am the **Bihar State NOC AI Assistant**.\n\nYou can ask me about:\n- 💻 **Nivetti Switch NiOS CLI commands & Cisco translations**\n- 🛣️ **IP Routing, OSPF, BGP & VRRP status commands**\n- 🚀 **Bandwidth, Jitter & Latency troubleshooting**\n- 📞 **District Engineer contacts & Patna NOC helplines**\n- 🔑 **TACACS / TACS password reset & FMS systems**");
-                } else {
-                    // Save conversation turn to history
-                    chatHistory.push({ role: 'user', content: text });
-                    chatHistory.push({ role: 'assistant', content: botText });
-                    if (chatHistory.length > 8) {
-                        chatHistory = chatHistory.slice(chatHistory.length - 8); // Keep last 4 turns
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-                if (typingIndicator && typingIndicator.parentNode) typingIndicator.remove();
-                appendBotMessage("🛣️ **Nivetti & Cisco Routing Status CLI Commands**\n\nTo inspect IP routing tables, protocol statuses, and active gateways on Nivetti Core/Access Switches & Cisco Routers:\n\n| Routing Protocol / Feature | Nivetti NiOS Command | Cisco IOS Equivalent |\n| :--- | :--- | :--- |\n| **IP Routing Table** | `show ip route` | `show ip route` |\n| **OSPF Neighbors** | `show ip ospf neighbor` | `show ip ospf neighbor` |\n| **BGP Summary & Peers** | `show ip bgp summary` | `show ip bgp summary` |\n| **VRRP Virtual Gateway** | `show ip vrrp` | `show vrrp brief` |\n| **Interface IP Status** | `show interface all` | `show ip interface brief` |\n| **Static Routes** | `show ip route static` | `show ip route static` |\n\n💡 *Tip:* Click **Nivetti CLI Commands** in the home screen hero section for the complete 25+ command reference matrix!");
-            }
-        }
-
-        // --- Bihar District Operations Hub Mappings & Logic ---
-        const auditFiles = {
-            "aurangabad": "DISTRICT AUDIT - 2025-2026/AURANGABAD.xlsx",
-            "araria": "DISTRICT AUDIT - 2025-2026/Araria.xlsx",
-            "arwal": "DISTRICT AUDIT - 2025-2026/Arwal.xlsx",
-            "buxar": "DISTRICT AUDIT - 2025-2026/BUXAR.xlsx",
-            "banka": "DISTRICT AUDIT - 2025-2026/Banka.xlsx",
-            "begusarai": "DISTRICT AUDIT - 2025-2026/Begusarai.xlsx",
-            "kaimur": "DISTRICT AUDIT - 2025-2026/Bhabhua (Kaimur).xlsx",
-            "bhagalpur": "DISTRICT AUDIT - 2025-2026/Bhagalpur.xlsx",
-            "bhojpur": "DISTRICT AUDIT - 2025-2026/Bhojpur.xlsx",
-            "darbhanga": "DISTRICT AUDIT - 2025-2026/DHARBANGA.xlsx",
-            "east champaran": "DISTRICT AUDIT - 2025-2026/EAST CHAMPARAN (MOTIHARI).xlsx",
-            "gaya": "DISTRICT AUDIT - 2025-2026/GAYA JI.xlsx",
-            "gopalganj": "DISTRICT AUDIT - 2025-2026/GOPALGANJ.xlsx",
-            "jamui": "DISTRICT AUDIT - 2025-2026/JAMUI.xlsx",
-            "jehanabad": "DISTRICT AUDIT - 2025-2026/JEHANABAD.xlsx",
-            "katihar": "DISTRICT AUDIT - 2025-2026/KATIHAR.xlsx",
-            "khagaria": "DISTRICT AUDIT - 2025-2026/KHAGARIA.xlsx",
-            "kishanganj": "DISTRICT AUDIT - 2025-2026/KISANGANJ.xlsx",
-            "lakhisarai": "DISTRICT AUDIT - 2025-2026/LAKHISARAI.xlsx",
-            "madhepura": "DISTRICT AUDIT - 2025-2026/MADHEPURA.xlsx",
-            "madhubani": "DISTRICT AUDIT - 2025-2026/MADHUBANI.xlsx",
-            "munger": "DISTRICT AUDIT - 2025-2026/MUNGER.xlsx",
-            "muzaffarpur": "DISTRICT AUDIT - 2025-2026/MUZAFFARPUR.xlsx",
-            "nalanda": "DISTRICT AUDIT - 2025-2026/NALANDA.xlsx",
-            "nawada": "DISTRICT AUDIT - 2025-2026/NAWADA.xlsx",
-            "patna": "DISTRICT AUDIT - 2025-2026/PATNA DU.xlsx",
-            "patna du": "DISTRICT AUDIT - 2025-2026/PATNA DU.xlsx",
-            "purnia": "DISTRICT AUDIT - 2025-2026/PURNEA.xlsx",
-            "rohtas": "DISTRICT AUDIT - 2025-2026/ROHTAS (SASARAM).xlsx",
-            "saharsa": "DISTRICT AUDIT - 2025-2026/SAHARSA.xlsx",
-            "samastipur": "DISTRICT AUDIT - 2025-2026/SAMASTIPUR.xlsx",
-            "saran": "DISTRICT AUDIT - 2025-2026/SARAN (CHAPRA).xlsx",
-            "sheohar": "DISTRICT AUDIT - 2025-2026/SEHEOHAR.xlsx",
-            "sheikhpura": "DISTRICT AUDIT - 2025-2026/SHEKHPURA.xlsx",
-            "sitamarhi": "DISTRICT AUDIT - 2025-2026/SITAMAHARI.xlsx",
-            "siwan": "DISTRICT AUDIT - 2025-2026/SIWAN.xlsx",
-            "supaul": "DISTRICT AUDIT - 2025-2026/SUPAUL.xlsx",
-            "vaishali": "DISTRICT AUDIT - 2025-2026/VAISHALI (HAJIPUR).xlsx",
-            "west champaran": "DISTRICT AUDIT - 2025-2026/WEST CHAMPARAN (BEETIAH).xlsx"
-        };
-
-        const macFiles = {
-            "araria": "MAC Weekly UP-Date/Araria NIC DHQ MAC.xlsx",
-            "aurangabad": "MAC Weekly UP-Date/Aurangabad NIC DHQ MAC.xlsx",
-            "begusarai": "MAC Weekly UP-Date/Begusarai NIC DHQ MAC.xlsx"
-        };
-
-        function copyToClipboard(text, btnElement) {
-            if (!text) return;
-            
-            function showSuccess() {
-                if (!btnElement) return;
-                const originalHtml = btnElement.innerHTML;
-                btnElement.innerHTML = '<i class="fas fa-check" style="color: var(--success);"></i> Copied!';
-                btnElement.style.borderColor = 'var(--success)';
-                setTimeout(() => {
-                    btnElement.innerHTML = originalHtml;
-                    btnElement.style.borderColor = 'var(--border-color)';
-                }, 2000);
-            }
-
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(text).then(showSuccess).catch(() => {
-                    fallbackCopy(text, showSuccess);
-                });
-            } else {
-                fallbackCopy(text, showSuccess);
-            }
-        }
-
-        function fallbackCopy(text, onSuccess) {
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.left = "-9999px";
-            textArea.style.top = "0";
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-            try {
-                const successful = document.execCommand('copy');
-                if (successful && onSuccess) {
-                    onSuccess();
+                    console.warn("contacts.json fetch returned status:", response.status);
                 }
             } catch (err) {
-                console.error('Fallback copy failed', err);
+                console.error("Failed to load contacts.json:", err);
+            } finally {
+                isContactsLoading = false;
             }
-            document.body.removeChild(textArea);
+
+            // Auto-refresh active district panel
+            const activeNode = document.querySelector('.district-node.active') || document.querySelector('.district-node[data-district="patna"]');
+            if (activeNode) {
+                const dKey = activeNode.getAttribute('data-district') || 'patna';
+                const dName = activeNode.textContent.trim() || 'Patna';
+                window.showDistrictDetails(dKey, dName);
+            }
+            return contactsDatabase;
         }
 
-        const dioCommonEmails = {
-            "arwal": "dio-arw@nic.in",
-            "araria": "dio-ara-bih@nic.in",
-            "aurangabad": "dio-agb@nic.in",
-            "banka": "dio-bka@nic.in",
-            "begusarai": "dio-bsr@nic.in",
-            "kaimur": "dio-kai@nic.in",
-            "bhagalpur": "dio-bgo@nic.in",
-            "bhojpur": "dio-bjp@nic.in",
-            "buxar": "dio-bux@nic.in",
-            "darbhanga": "dio-dbg@nic.in",
-            "east champaran": "dio-prc@nic.in",
-            "gaya": "dio-gay@nic.in",
-            "gopalganj": "dio-gpg@nic.in",
-            "jamui": "dio-jam@nic.in",
-            "jehanabad": "dio-jhb-bih@nic.in",
-            "katihar": "dio-ktr@nic.in",
-            "khagaria": "dio-kgr-bih@nic.in",
-            "kishanganj": "dio-ksg@nic.in",
-            "lakhisarai": "dio-lsr@nic.in",
-            "madhepura": "dio-mdp@nic.in",
-            "madhubani": "dio-mdb-bih@nic.in",
-            "munger": "dio-mun@nic.in",
-            "muzaffarpur": "dio-muz@nic.in",
-            "nalanda": "dio-nld@nic.in",
-            "nawada": "dio-naw@nic.in",
-            "patna du": "dio-ptn@nic.in",
-            "patna": "dio-ptn@nic.in",
-            "purnia": "dio-prn@nic.in",
-            "rohtas": "dio-rts@nic.in",
-            "saharsa": "dio-shs@nic.in",
-            "samastipur": "dio-sms@nic.in",
-            "saran": "dio-sar@nic.in",
-            "sheikhpura": "dio-shh-bih@nic.in",
-            "sheohar": "dio-shh@nic.in",
-            "sitamarhi": "dio-stm@nic.in",
-            "siwan": "dio-swn@nic.in",
-            "supaul": "dio-spl@nic.in",
-            "vaishali": "dio-vsh@nic.in",
-            "west champaran": "dio-psc@nic.in"
-        };
-
-        function showDistrictDetails(districtKey, districtDisplayName) {
-            // Remove active classes
+        window.showDistrictDetails = function(districtKey, districtDisplayName) {
+            // Highlight active node in grid
             document.querySelectorAll('.district-node').forEach(node => {
                 node.classList.remove('active');
                 if (node.getAttribute('data-district') === districtKey) {
                     node.classList.add('active');
                 }
             });
+
+            const panel = document.getElementById('districtDetailsPanel');
+            if (!panel) return;
+            const placeholder = panel.querySelector('.panel-placeholder');
+            const content = panel.querySelector('.panel-content');
+
+            if (isContactsLoading && contactsDatabase.length === 0) {
+                if (placeholder) {
+                    placeholder.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading District Operations Hub Telemetry...';
+                    placeholder.style.display = 'block';
+                }
+                if (content) content.style.display = 'none';
+                return;
+            }
+
+            const query = districtKey.toLowerCase().trim();
+            const aliases = districtLocationAliases[query] || [query];
+
+            const matches = contactsDatabase.filter(c => {
+                const loc = (c.location || "").toLowerCase().trim();
+                return aliases.some(alias => loc.includes(alias) || alias.includes(loc));
+            });
+
+            // Build Audit & MAC Document Links
+            const auditPath = typeof auditFiles !== 'undefined' ? auditFiles[districtKey] : null;
+            const macPath = typeof macFiles !== 'undefined' ? macFiles[districtKey] : null;
+
+            let docsHtml = '';
+            if (auditPath) {
+                docsHtml += `
+                    <a href="nic/${auditPath}" class="doc-item-link" download style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(16, 185, 129, 0.4); color: #f8fafc; padding: 12px 16px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none; margin-bottom: 8px;">
+                        <span style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.88rem;">
+                            <i class="far fa-file-excel" style="color: #10b981; font-size: 1.2rem;"></i> District Audit Report (2025-2026)
+                        </span>
+                        <i class="fas fa-download" style="color: #10b981;"></i>
+                    </a>
+                `;
+            } else {
+                docsHtml += `
+                    <div style="font-size: 0.84rem; padding: 12px 16px; color: #94a3b8; background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 10px; margin-bottom: 8px;">
+                        <i class="fas fa-info-circle" style="color: #38bdf8; margin-right: 6px;"></i> District Audit file hosted on Patna Core.
+                    </div>
+                `;
+            }
+
+            if (macPath) {
+                docsHtml += `
+                    <a href="nic/${macPath}" class="doc-item-link" download style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.4); color: #f8fafc; padding: 12px 16px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; text-decoration: none;">
+                        <span style="display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 0.88rem;">
+                            <i class="far fa-file-excel" style="color: #38bdf8; font-size: 1.2rem;"></i> MAC Weekly Address Update Sheet
+                        </span>
+                        <i class="fas fa-download" style="color: #38bdf8;"></i>
+                    </a>
+                `;
+            }
+
+            // Build Contacts List HTML
+            let contactsHtml = '';
+            if (matches.length > 0) {
+                matches.forEach(c => {
+                    const isFMS = c.source === 'Network Engineer' || c.source === 'FMS Engineer' || c.source === 'FMS NOFE' || (c.role && (c.role.includes('FMS') || c.role.includes('Network')));
+                    const badgeColor = isFMS ? '#f97316' : '#38bdf8';
+                    const badgeBg = isFMS ? 'rgba(249, 115, 22, 0.18)' : 'rgba(56, 189, 248, 0.18)';
+                    const badgeBorder = isFMS ? 'rgba(249, 115, 22, 0.4)' : 'rgba(56, 189, 248, 0.4)';
+
+                    contactsHtml += `
+                        <div class="contact-card" style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.12); border-left: 4px solid ${badgeColor}; border-radius: 10px; padding: 14px 16px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <strong style="font-size: 0.98rem; color: #ffffff; font-weight: 800;">${c.name}</strong>
+                                <span style="font-size: 0.72rem; font-weight: 800; background: ${badgeBg}; color: ${badgeColor}; border: 1px solid ${badgeBorder}; padding: 3px 8px; border-radius: 6px;">
+                                    ${c.source || 'NOC Engineer'}
+                                </span>
+                            </div>
+                            <div style="font-size: 0.85rem; color: #cbd5e1; display: flex; flex-direction: column; gap: 5px;">
+                                <div style="color: #94a3b8;"><i class="fas fa-briefcase" style="width: 16px; color: #38bdf8; margin-right: 4px;"></i> ${c.role || 'NOC Staff'}</div>
+                                <div><i class="fas fa-phone" style="width: 16px; color: #10b981; margin-right: 4px;"></i> Mobile: <a href="tel:${c.mobile}" style="color: #ffffff; font-weight: 700; text-decoration: none;">${c.mobile}</a></div>
+                                ${c.ip ? `<div><i class="fas fa-headset" style="width: 16px; color: #fbbf24; margin-right: 4px;"></i> VoIP Ext: <strong style="color: #fbbf24; font-weight: 800;">${c.ip}</strong></div>` : ''}
+                                ${c.email ? `<div><i class="fas fa-envelope" style="width: 16px; color: #a855f7; margin-right: 4px;"></i> Email: <a href="mailto:${c.email.split(',')[0].trim()}" style="color: #38bdf8; text-decoration: underline;">${c.email}</a></div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                contactsHtml = `
+                    <div style="font-size: 0.86rem; padding: 18px; color: #cbd5e1; text-align: center; background: rgba(15, 23, 42, 0.6); border: 1px dashed rgba(255, 255, 255, 0.15); border-radius: 10px;">
+                        <i class="fas fa-user-shield" style="font-size: 1.5rem; color: #38bdf8; display: block; margin-bottom: 8px;"></i>
+                        Direct NOC support routed via State HQ Command Desk: <strong style="color: #fbbf24;">Ext 23004</strong>
+                    </div>
+                `;
+            }
+
+            const commonEmail = (typeof dioCommonEmails !== 'undefined' && dioCommonEmails[districtKey]) ? dioCommonEmails[districtKey] : (districtKey + '@nic.in');
+            const emailHtml = `
+                <div class="dio-common-email-banner" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; padding: 14px 18px; border-radius: 10px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                    <div>
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Official District DIO &amp; NOC Mail</span>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <a href="mailto:${commonEmail}" style="font-size: 1rem; color: #38bdf8; font-weight: 800; text-decoration: none;"><i class="fas fa-envelope-open-text" style="margin-right: 6px;"></i> ${commonEmail}</a>
+                            <button onclick="navigator.clipboard.writeText('${commonEmail}'); this.innerHTML='<i class=\'fas fa-check\'></i> Copied'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copy', 2000);" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-weight: 700;" title="Copy Email Address">
+                                <i class="fas fa-copy"></i> Copy
+                            </button>
+                        </div>
+                    </div>
+                    <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 6px;">
+                        <i class="fas fa-shield-alt"></i> Active District Node
+                    </span>
+                </div>
+            `;
+
+            content.innerHTML = `
+                ${emailHtml}
+                <div class="panel-details-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+                    <div class="details-col">
+                        <h3 style="color: #ffffff; font-size: 1.05rem; font-weight: 800; margin-top: 0; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-headset" style="color: #38bdf8;"></i> Support Contacts (${districtDisplayName})
+                        </h3>
+                        <div style="max-height: 280px; overflow-y: auto; padding-right: 6px;">
+                            ${contactsHtml}
+                        </div>
+                    </div>
+                    <div class="details-col">
+                        <h3 style="color: #ffffff; font-size: 1.05rem; font-weight: 800; margin-top: 0; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-folder-open" style="color: #10b981;"></i> District Audit &amp; MAC Files
+                        </h3>
+                        <div class="docs-list">
+                            ${docsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            if (placeholder) placeholder.style.display = 'none';
+            content.style.display = 'block';
+        };
+
+        // Automatically load contacts database on script init & on DOM ready
+        loadContactsDatabase();
+        document.addEventListener('DOMContentLoaded', () => {
+            loadContactsDatabase();
+        });
+
 
             const panel = document.getElementById('districtDetailsPanel');
             const placeholder = panel.querySelector('.panel-placeholder');
