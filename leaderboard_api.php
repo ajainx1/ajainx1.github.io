@@ -561,7 +561,7 @@ foreach ($bihar_districts as &$d) {
     $d['total_nodes'] = $hw['total_nodes'] ?? 1;
     $d['up_nodes'] = $hw['up_nodes'] ?? ($d['network_status'] === 'UP' ? 1 : 0);
     $d['down_nodes'] = $hw['down_nodes'] ?? ($d['network_status'] === 'UP' ? 0 : 1);
-    $d['monitored_devices'] = $hw['devices'] ?? [];
+    $d['devices_monitored_count'] = count($hw['devices'] ?? []);
     if ($hw && $hw['total_nodes'] > 0) {
         $d['uptime'] = round(($hw['up_nodes'] / $hw['total_nodes']) * 100, 1) . '%';
     }
@@ -817,14 +817,12 @@ $payload = [
     'rising_star' => $rising_star,
     'division_standings' => $division_standings,
     'top_3' => $top_3,
-    'standings_4_to_15' => $standings_4_to_15,
-    'standings_16_to_38' => $standings_16_to_38,
     'all_rankings' => $bihar_districts,
-    'recent_telemetry_events' => array_slice($events, 0, 10),
+    'recent_telemetry_events' => array_slice($events, 0, 8),
     'total_live_events_count' => count($events)
 ];
 
 // Write cached copy safely with atomic file lock
 file_put_contents($cache_file, json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT), LOCK_EX);
 
-echo json_encode($payload, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+echo json_encode($payload, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
