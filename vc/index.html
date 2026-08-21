@@ -6,37 +6,73 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <meta name="description" content="Bihar 38-District Panasonic KX-VC1300 HDVC Video Conference QoS Monitor — Real-Time NOC Command Center. Live latency, jitter, packet loss and SLA telemetry for all Bihar SWAN district VC studios.">
+    <meta name="description" content="Bihar 38-District Panasonic KX-VC1300 HDVC Video Conference QoS Monitor â Real-Time NOC Command Center. Live latency, jitter, packet loss and SLA telemetry for all Bihar SWAN district VC studios.">
     <title>Bihar 38-District VC Monitor | NOC Command Center</title>
-    <link rel="icon" type="image/png" href="../NIC_Preview-1.png">
+    <link rel="icon" type="image/png" href="/NIC_Preview-1.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2•family=Inter:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg:       #020810;
-            --panel:    rgba(8, 18, 38, 0.82);
-            --border:   rgba(56, 189, 248, 0.18);
-            --cyan:     #38bdf8;
-            --blue:     #0ea5e9;
-            --emerald:  #10b981;
-            --amber:    #fbbf24;
-            --rose:     #f43f5e;
-            --violet:   #a78bfa;
-            --text:     #f0f6ff;
-            --muted:    #64748b;
-            --card-bg:  rgba(10, 22, 46, 0.75);
+            --bg:             #030712;
+            --panel:          #0b132b;
+            --card-bg:        #0d1836;
+            --border:         rgba(56, 189, 248, 0.35);
+            --border-subtle:  rgba(255, 255, 255, 0.1);
+            --text:           #f8fafc;
+            --text-heading:   #ffffff;
+            --muted:          #94a3b8;
+            --cyan:           #38bdf8;
+            --blue:           #0ea5e9;
+            --emerald:        #10b981;
+            --amber:          #fbbf24;
+            --rose:           #f43f5e;
+            --violet:         #c084fc;
+            --input-bg:       #030712;
+            --box-shadow:     0 8px 32px rgba(0, 0, 0, 0.5);
+            --hud-val-online: #34d399;
+            --hud-val-offline:#fb7185;
+            --hud-val-lat:    #38bdf8;
+            --hud-val-jit:    #c084fc;
+            --hud-val-sla:    #34d399;
+            --kbd-bg:         rgba(56, 189, 248, 0.15);
+            --kbd-border:     rgba(56, 189, 248, 0.6);
+            --kbd-text:       #38bdf8;
+            --ip-box-bg:      #030712;
+            --ip-box-border:  rgba(255, 255, 255, 0.08);
+            --spark-bg:       #030712;
         }
+
         body.lm {
-            --bg:      #eef3fb;
-            --panel:   rgba(255,255,255,0.9);
-            --border:  rgba(14,76,129,0.18);
-            --cyan:    #0f4c81;
-            --text:    #0b1220;
-            --muted:   #475569;
-            --card-bg: rgba(255,255,255,0.85);
+            --bg:             #f1f5f9;
+            --panel:          #ffffff;
+            --card-bg:        #ffffff;
+            --border:         #cbd5e1;
+            --border-subtle:  #e2e8f0;
+            --text:           #0f172a;
+            --text-heading:   #020617;
+            --muted:          #475569;
+            --cyan:           #0284c7;
+            --blue:           #0369a1;
+            --emerald:        #059669;
+            --amber:          #d97706;
+            --rose:           #dc2626;
+            --violet:         #7c3aed;
+            --input-bg:       #ffffff;
+            --box-shadow:     0 4px 20px rgba(0, 0, 0, 0.08);
+            --hud-val-online: #059669;
+            --hud-val-offline:#dc2626;
+            --hud-val-lat:    #0284c7;
+            --hud-val-jit:    #7c3aed;
+            --hud-val-sla:    #059669;
+            --kbd-bg:         #e2e8f0;
+            --kbd-border:     #94a3b8;
+            --kbd-text:       #0f172a;
+            --ip-box-bg:      #f1f5f9;
+            --ip-box-border:  #e2e8f0;
+            --spark-bg:       #f8fafc;
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -48,6 +84,7 @@
             min-height: 100vh;
             padding: 20px;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         /* ââ TOAST NOTIFICATIONS âââââââââââââââââââââââ */
@@ -67,24 +104,26 @@
             padding: 14px 18px;
             border-radius: 12px;
             backdrop-filter: blur(18px);
-            border: 1px solid rgba(255,255,255,0.12);
-            min-width: 300px;
-            max-width: 380px;
+            min-width: 320px;
+            max-width: 400px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.5);
             animation: toastIn 0.35s cubic-bezier(0.16,1,0.3,1) forwards;
             pointer-events: auto;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
+            background: var(--panel);
+            color: var(--text);
+            border: 1.5px solid var(--border);
         }
         .toast.hide { animation: toastOut 0.3s ease forwards; }
-        .toast.t-critical { background: rgba(244,63,94,0.15); border-color: rgba(244,63,94,0.5); }
-        .toast.t-warning  { background: rgba(251,191,36,0.12); border-color: rgba(251,191,36,0.45); }
-        .toast.t-info     { background: rgba(56,189,248,0.1);  border-color: rgba(56,189,248,0.35); }
-        .toast-icon { font-size: 1.3rem; margin-top: 1px; }
+        .toast.t-critical { background: var(--panel); border-color: var(--rose); border-left: 5px solid var(--rose); }
+        .toast.t-warning  { background: var(--panel); border-color: var(--amber); border-left: 5px solid var(--amber); }
+        .toast.t-info     { background: var(--panel); border-color: var(--cyan); border-left: 5px solid var(--cyan); }
+        .toast-icon { font-size: 1.35rem; margin-top: 1px; flex-shrink: 0; }
         .toast.t-critical .toast-icon { color: var(--rose); }
         .toast.t-warning  .toast-icon { color: var(--amber); }
         .toast.t-info     .toast-icon { color: var(--cyan); }
-        .toast-body strong { display: block; font-weight: 800; margin-bottom: 3px; }
-        .toast-body small  { color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+        .toast-body strong { display: block; font-weight: 900; margin-bottom: 3px; color: var(--text-heading); font-size: 0.9rem; }
+        .toast-body small  { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 0.76rem; font-weight: 600; }
         @keyframes toastIn  { from { opacity:0; transform:translateX(40px) scale(0.95); } to { opacity:1; transform:translateX(0) scale(1); } }
         @keyframes toastOut { to   { opacity:0; transform:translateX(40px) scale(0.9); } }
 
@@ -96,7 +135,7 @@
         .card-scanning::after {
             content:'';
             position:absolute; inset:0; pointer-events:none; z-index:2;
-            background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.12) 50%, transparent 100%);
+            background: linear-gradient(90deg, transparent 0%, rgba(56,189,248,0.2) 50%, transparent 100%);
             background-size: 60% 100%;
             animation: scan-sweep 0.6s ease-in-out;
             border-radius: inherit;
@@ -123,73 +162,138 @@
             padding: 14px 22px;
             background: var(--panel);
             backdrop-filter: blur(24px);
-            border: 1px solid var(--border);
+            border: 1.5px solid var(--border);
             border-radius: 16px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            box-shadow: var(--box-shadow);
         }
         .brand-box { display: flex; align-items: center; gap: 14px; }
         .brand-icon {
-            width: 46px; height: 46px; border-radius: 12px;
+            width: 48px; height: 48px; border-radius: 12px;
             background: linear-gradient(135deg, rgba(14,165,233,0.25), rgba(56,189,248,0.1));
-            border: 1px solid rgba(56,189,248,0.5);
+            border: 1.5px solid var(--cyan);
             display: flex; align-items: center; justify-content: center;
             font-size: 1.4rem; color: var(--cyan);
             box-shadow: 0 0 20px rgba(14,165,233,0.3);
         }
         .brand-text h1 {
-            font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 900;
-            color: var(--text); letter-spacing: 0.3px;
+            font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 900;
+            color: var(--text-heading); letter-spacing: 0.3px;
         }
-        .brand-text p { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.5px; margin-top: 2px; }
+        .brand-text p { font-size: 0.74rem; color: var(--muted); letter-spacing: 0.5px; margin-top: 3px; font-weight: 600; }
 
         .nav-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
+        .vc-desk-badge {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(16, 185, 129, 0.15));
+            border: 1.5px solid var(--cyan);
+            color: var(--cyan);
+            display: inline-flex; align-items: center; gap: 8px;
+            font-weight: 800; font-size: 0.78rem;
+            text-decoration: none; padding: 7px 13px; border-radius: 8px;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.2);
+            transition: all 0.2s;
+        }
+        body.lm .vc-desk-badge {
+            background: #e0f2fe; border-color: #0284c7; color: #0369a1;
+        }
+        .vc-desk-badge strong { color: var(--text-heading); font-weight: 900; }
+
         .clock-widget {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem; font-weight: 700;
-            color: var(--text);
-            border-right: 1px solid var(--border);
+            font-size: 0.92rem; font-weight: 800;
+            color: var(--text-heading);
+            border-right: 1.5px solid var(--border);
             padding-right: 14px; margin-right: 4px;
-            display: flex; align-items: center; gap: 6px;
+            display: flex; align-items: center; gap: 7px;
         }
-        .clock-date { font-size: 0.65rem; color: var(--muted); font-weight: 400; }
+        .clock-date { font-size: 0.68rem; color: var(--muted); font-weight: 600; }
 
         .btn-nav {
             display: inline-flex; align-items: center; gap: 7px;
-            padding: 7px 14px; border-radius: 8px;
-            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
-            color: var(--muted); font-size: 0.78rem; font-weight: 700;
+            padding: 8px 14px; border-radius: 8px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            color: var(--muted); font-size: 0.8rem; font-weight: 700;
             text-decoration: none; transition: all 0.2s; cursor: pointer;
         }
-        .btn-nav:hover { background: rgba(56,189,248,0.1); border-color: var(--cyan); color: var(--cyan); }
-        .btn-nav.icon-only { width: 36px; height: 36px; padding: 0; justify-content: center; }
+        body.lm .btn-nav {
+            background: #f8fafc; border-color: #cbd5e1; color: #334155;
+        }
+        .btn-nav:hover { background: rgba(56,189,248,0.15); border-color: var(--cyan); color: var(--cyan); }
+        .btn-nav.icon-only { width: 38px; height: 38px; padding: 0; justify-content: center; font-size: 0.95rem; }
 
         /* ââ GLOBAL SUMMARY HUD âââââââââââââââââââââââ */
         .hud-strip {
             max-width: 1500px; margin: 0 auto 20px auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
         }
         .hud-card {
             background: var(--panel); backdrop-filter: blur(20px);
-            border: 1px solid var(--border); border-radius: 14px;
-            padding: 16px 18px;
+            border: 1.5px solid var(--border); border-radius: 14px;
+            padding: 16px 20px;
             display: flex; align-items: center; justify-content: space-between;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+            box-shadow: var(--box-shadow);
             transition: transform 0.2s, box-shadow 0.2s;
             cursor: default;
         }
         .hud-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,0,0,0.5); }
-        .hud-label { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 5px; }
+        .hud-label { font-size: 0.72rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px; }
         .hud-val {
-            font-family: 'Outfit', sans-serif; font-size: 1.8rem; font-weight: 900;
-            line-height: 1; color: var(--text);
+            font-family: 'Outfit', sans-serif; font-size: 1.9rem; font-weight: 900;
+            line-height: 1; color: var(--text-heading);
             transition: color 0.4s;
         }
+        .hud-val.v-online  { color: var(--hud-val-online) !important; }
+        .hud-val.v-offline { color: var(--hud-val-offline) !important; }
+        .hud-val.v-lat     { color: var(--hud-val-lat) !important; }
+        .hud-val.v-jit     { color: var(--hud-val-jit) !important; }
+        .hud-val.v-sla     { color: var(--hud-val-sla) !important; }
         .hud-icon {
-            width: 44px; height: 44px; border-radius: 10px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            width: 46px; height: 46px; border-radius: 10px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.25rem;
+        }
+
+        /* ââ AUTONOMOUS AUDIT BANNER âââââââââââââââââââ */
+        .auto-audit-banner {
+            max-width: 1500px; margin: 0 auto 16px auto;
+            background: var(--panel);
+            border: 1.5px solid var(--border);
+            border-radius: 14px; padding: 14px 20px;
+            backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+            box-shadow: var(--box-shadow);
+        }
+        .auto-audit-title {
+            font-size: 0.95rem; font-weight: 900; color: var(--text-heading);
+            letter-spacing: 0.5px; font-family: 'Outfit', sans-serif;
+        }
+        .auto-audit-desc {
+            font-size: 0.76rem; color: var(--muted); font-family: 'JetBrains Mono', monospace;
+            margin-top: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 600;
+        }
+        .auto-audit-desc strong { color: var(--text-heading); font-weight: 800; }
+        .auto-audit-desc .accent-cyan { color: var(--cyan) !important; font-weight: 800; }
+        .auto-audit-desc .accent-green { color: var(--emerald) !important; font-weight: 800; }
+
+        /* ââ KEYBOARD SHORTCUTS BAR âââââââââââââââââââ */
+        .shortcut-bar {
+            max-width: 1500px; margin: 0 auto 16px auto;
+            background: var(--panel);
+            border: 1.5px solid var(--border);
+            border-radius: 12px; padding: 10px 18px;
+            backdrop-filter: blur(16px);
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+            box-shadow: var(--box-shadow);
+        }
+        .shortcut-title {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; font-weight: 800; color: var(--cyan);
+            text-transform: uppercase; letter-spacing: 0.8px;
+        }
+        .shortcut-list {
+            display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+            font-size: 0.78rem; color: var(--text); font-weight: 600;
         }
 
         /* ââ TOOLBAR ââââââââââââââââââââââââââââââââââ */
@@ -197,30 +301,42 @@
             max-width: 1500px; margin: 0 auto 16px auto;
             display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
             padding: 12px 16px;
-            background: rgba(8,18,38,0.6); border: 1px solid rgba(255,255,255,0.07);
+            background: var(--panel); border: 1.5px solid var(--border);
             border-radius: 12px; backdrop-filter: blur(16px);
+            box-shadow: var(--box-shadow);
         }
-        .toolbar-left { display: flex; align-items: center; gap: 10px; }
+        .toolbar-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
         .toolbar-right { display: flex; align-items: center; gap: 10px; }
 
         .search-box {
             display: flex; align-items: center; gap: 8px;
-            background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1);
+            background: var(--input-bg); border: 1.5px solid var(--border);
             border-radius: 8px; padding: 8px 14px; width: 290px; max-width: 100%;
             transition: border-color 0.2s;
         }
-        .search-box:focus-within { border-color: var(--cyan); }
-        .search-box input { background:transparent; border:none; outline:none; color:var(--text); font-size:0.83rem; width:100%; }
+        .search-box:focus-within { border-color: var(--cyan); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        .search-box input {
+            background: transparent; border: none; outline: none;
+            color: var(--text-heading); font-size: 0.85rem; width: 100%; font-weight: 600;
+        }
+        .search-box input::placeholder { color: var(--muted); font-weight: 500; }
 
         .filter-btn {
             display: inline-flex; align-items: center; gap: 6px;
-            padding: 7px 12px; border-radius: 7px; font-size: 0.75rem; font-weight: 700;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04);
+            padding: 8px 14px; border-radius: 8px; font-size: 0.78rem; font-weight: 800;
+            border: 1.5px solid var(--border); background: var(--input-bg);
             color: var(--muted); cursor: pointer; transition: all 0.2s;
         }
-        .filter-btn:hover, .filter-btn.active { background: rgba(56,189,248,0.12); border-color: var(--cyan); color: var(--cyan); }
-        .filter-btn.active.f-warn  { background: rgba(251,191,36,0.1); border-color: var(--amber); color: var(--amber); }
-        .filter-btn.active.f-crit  { background: rgba(244,63,94,0.1); border-color: var(--rose); color: var(--rose); }
+        .filter-btn:hover, .filter-btn.active {
+            background: rgba(56,189,248,0.18); border-color: var(--cyan); color: var(--cyan);
+        }
+        body.lm .filter-btn.active {
+            background: #0284c7; color: #ffffff; border-color: #0284c7;
+        }
+        .filter-btn.active.f-warn  { background: rgba(251,191,36,0.2); border-color: var(--amber); color: var(--amber); }
+        body.lm .filter-btn.active.f-warn { background: #d97706; color: #ffffff; border-color: #d97706; }
+        .filter-btn.active.f-crit  { background: rgba(244,63,94,0.2); border-color: var(--rose); color: var(--rose); }
+        body.lm .filter-btn.active.f-crit { background: #dc2626; color: #ffffff; border-color: #dc2626; }
 
         .btn-action {
             display: inline-flex; align-items: center; gap: 8px;
@@ -230,72 +346,80 @@
         }
         .btn-audit {
             background: linear-gradient(135deg, #0ea5e9, #0284c7);
-            border-color: rgba(56,189,248,0.8); color: #fff;
+            border-color: var(--cyan); color: #fff;
             box-shadow: 0 4px 18px rgba(14,165,233,0.4);
         }
         .btn-audit:hover { box-shadow: 0 6px 24px rgba(14,165,233,0.7); transform: translateY(-1px); }
         .btn-audit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
-        .btn-monitor {
-            background: rgba(167,139,250,0.12);
-            border-color: rgba(167,139,250,0.4); color: var(--violet);
+        .btn-secondary-action {
+            background: var(--input-bg);
+            border: 1.5px solid var(--border);
+            color: var(--text);
+            font-size: 0.78rem; font-weight: 700; padding: 8px 16px; border-radius: 8px;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+            transition: all 0.2s;
         }
-        .btn-monitor:hover { background: rgba(167,139,250,0.22); }
-        .btn-monitor.active {
-            background: rgba(16,185,129,0.12);
-            border-color: rgba(16,185,129,0.5); color: var(--emerald);
-        }
+        .btn-secondary-action:hover { border-color: var(--cyan); color: var(--cyan); }
 
         /* ââ SHORTCUT HINTS âââââââââââââââââââââââââââ */
         .kbd {
             display: inline-flex; align-items: center; justify-content: center;
-            background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
-            border-radius: 4px; padding: 1px 5px; font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem; color: var(--muted); line-height: 1.4;
+            background: var(--kbd-bg); border: 1px solid var(--kbd-border);
+            border-radius: 5px; padding: 2px 7px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; color: var(--kbd-text); line-height: 1.4; font-weight: 800;
         }
 
-        /* ââ EVENT LOG ââââââââââââââââââââââââââââââââ */
+        /* ââ EVENT LOG CONSOLE (ALWAYS DEEP HIGH-CONTRAST TERMINAL) ââââââââââ */
         .log-panel {
             max-width: 1500px; margin: 0 auto 18px auto;
-            background: var(--card-bg); border: 1px solid var(--border);
+            background: #030712; border: 1.5px solid var(--border);
             border-radius: 12px; overflow: hidden;
             display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         }
         .log-header {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 9px 16px;
-            background: rgba(0,0,0,0.35);
-            border-bottom: 1px solid var(--border);
+            padding: 10px 18px;
+            background: var(--panel);
+            border-bottom: 1.5px solid var(--border);
             cursor: pointer; user-select: none;
         }
-        .log-header .log-title { font-size: 0.73rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+        .log-header .log-title {
+            font-size: 0.78rem; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 1px; color: var(--cyan); display: flex; align-items: center; gap: 9px;
+        }
         .log-counters { display: flex; gap: 8px; }
         .log-badge {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem; font-weight: 700;
-            padding: 2px 8px; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 800;
+            padding: 3px 9px; border-radius: 5px;
         }
-        .lb-crit  { background: rgba(244,63,94,0.15); color: var(--rose); border: 1px solid rgba(244,63,94,0.4); }
-        .lb-warn  { background: rgba(251,191,36,0.15); color: var(--amber); border: 1px solid rgba(251,191,36,0.4); }
-        .lb-info  { background: rgba(56,189,248,0.1); color: var(--cyan); border: 1px solid rgba(56,189,248,0.3); }
-        .log-body { max-height: 220px; overflow-y: auto; padding: 8px 16px; }
-        .log-body::-webkit-scrollbar { width: 5px; }
-        .log-body::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 4px; }
+        .lb-crit  { background: rgba(244,63,94,0.2); color: #fb7185; border: 1.5px solid #f43f5e; }
+        .lb-warn  { background: rgba(251,191,36,0.2); color: #fde047; border: 1.5px solid #fbbf24; }
+        .lb-info  { background: rgba(56,189,248,0.18); color: #38bdf8; border: 1.5px solid #38bdf8; }
+        .log-body {
+            max-height: 240px; overflow-y: auto; padding: 12px 18px;
+            background: #020617;
+        }
+        .log-body::-webkit-scrollbar { width: 6px; }
+        .log-body::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.4); border-radius: 4px; }
         .log-entry {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.73rem; padding: 5px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            display: flex; gap: 12px; align-items: baseline;
+            font-size: 0.78rem; padding: 6px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            display: flex; gap: 14px; align-items: baseline;
+            line-height: 1.4;
         }
-        .log-entry .ts { color: var(--muted); white-space: nowrap; }
-        .log-entry.lc { color: var(--rose); }
-        .log-entry.lw { color: var(--amber); }
-        .log-entry.li { color: var(--cyan); }
-        .log-entry .ok { color: var(--emerald); }
+        .log-entry .ts { color: #94a3b8; white-space: nowrap; font-weight: 700; }
+        .log-entry.lc { color: #ff4d6d; font-weight: 700; }
+        .log-entry.lw { color: #ffd166; font-weight: 700; }
+        .log-entry.li { color: #38bdf8; font-weight: 600; }
+        .log-entry .ok { color: #4ade80; font-weight: 700; }
 
         /* ââ PROGRESS BAR âââââââââââââââââââââââââââââ */
         .audit-progress-bar {
             max-width: 1500px; margin: 0 auto 16px auto;
-            height: 3px; background: rgba(255,255,255,0.06);
+            height: 4px; background: rgba(255,255,255,0.1);
             border-radius: 999px; overflow: hidden;
             display: none;
         }
@@ -304,153 +428,161 @@
             background: linear-gradient(90deg, var(--cyan), var(--violet));
             border-radius: 999px;
             transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(56,189,248,0.6);
+            box-shadow: 0 0 12px var(--cyan);
         }
 
         /* ââ SECTION TITLES âââââââââââââââââââââââââââ */
         .section-title {
-            font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 800;
-            display: flex; align-items: center; gap: 8px;
-            margin-bottom: 12px; letter-spacing: 0.3px;
+            font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 900;
+            display: flex; align-items: center; gap: 9px;
+            margin-bottom: 14px; letter-spacing: 0.3px;
         }
         .section-title.gold { color: var(--amber); }
         .section-title.blue { color: var(--cyan); }
 
         /* ââ GRIDS ââââââââââââââââââââââââââââââââââââ */
-        .vip-section    { max-width: 1500px; margin: 0 auto 20px auto; }
+        .vip-section      { max-width: 1500px; margin: 0 auto 24px auto; }
         .district-section { max-width: 1500px; margin: 0 auto 40px auto; }
 
-        .vip-grid      { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px,1fr)); gap: 14px; }
-        .district-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px,1fr)); gap: 14px; }
+        .vip-grid      { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px,1fr)); gap: 16px; }
+        .district-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap: 16px; }
 
         /* ââ STUDIO CARD âââââââââââââââââââââââââââââââ */
         .studio-card {
             background: var(--card-bg);
             backdrop-filter: blur(18px);
-            border: 1px solid var(--border);
+            border: 1.5px solid var(--border);
             border-radius: 16px;
-            padding: 16px;
+            padding: 18px;
             position: relative; overflow: hidden;
             transition: transform 0.25s cubic-bezier(0.16,1,0.3,1), box-shadow 0.25s, border-color 0.25s;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: var(--box-shadow);
         }
         .studio-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(56,189,248,0.55);
-            box-shadow: 0 14px 38px rgba(0,0,0,0.5), 0 0 24px rgba(56,189,248,0.12);
+            border-color: var(--cyan);
+            box-shadow: 0 14px 38px rgba(0,0,0,0.5), 0 0 24px rgba(56,189,248,0.2);
         }
         .studio-card.vip {
-            border-color: rgba(251,191,36,0.45);
-            background: linear-gradient(135deg, rgba(245,158,11,0.07) 0%, var(--card-bg) 100%);
+            border-color: rgba(251,191,36,0.6);
+            background: linear-gradient(135deg, rgba(245,158,11,0.08) 0%, var(--card-bg) 100%);
             animation: ring-vip 3s ease-in-out infinite;
         }
-        .studio-card.s-critical { animation: ring-critical 1.5s ease-in-out infinite; border-color: rgba(244,63,94,0.6) !important; }
+        .studio-card.s-critical { animation: ring-critical 1.5s ease-in-out infinite; border-color: var(--rose) !important; }
 
         /* Card inner layout */
         .card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 12px; }
         .card-name {
-            font-family: 'Outfit', sans-serif; font-size: 1.05rem; font-weight: 900;
-            color: var(--text); display: flex; align-items: center; gap: 7px; flex-wrap: wrap;
+            font-family: 'Outfit', sans-serif; font-size: 1.1rem; font-weight: 900;
+            color: var(--text-heading); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
         }
         .dot {
-            width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
-            background: var(--emerald); box-shadow: 0 0 8px var(--emerald);
+            width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+            background: var(--emerald); box-shadow: 0 0 10px var(--emerald);
             transition: background 0.4s, box-shadow 0.4s;
         }
-        .dot.offline { background: var(--rose); box-shadow: 0 0 8px var(--rose); animation: dot-pulse-red 1.2s infinite; }
-        .dot.warn    { background: var(--amber); box-shadow: 0 0 8px var(--amber); }
+        .dot.offline { background: var(--rose); box-shadow: 0 0 10px var(--rose); animation: dot-pulse-red 1.2s infinite; }
+        .dot.warn    { background: var(--amber); box-shadow: 0 0 10px var(--amber); }
         .dot.standby { background: var(--muted); box-shadow: none; }
 
-        .card-meta { font-size: 0.68rem; color: var(--muted); margin-top: 3px; }
+        .card-meta { font-size: 0.72rem; color: var(--muted); margin-top: 4px; font-weight: 600; }
         .card-tech {
-            font-size: 0.63rem; color: var(--cyan); margin-top: 5px;
-            display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+            font-size: 0.68rem; color: var(--cyan); margin-top: 6px;
+            display: flex; gap: 9px; align-items: center; flex-wrap: wrap; font-weight: 700;
         }
         .card-tech span { display: flex; align-items: center; gap: 4px; }
 
         /* Status badge */
         .badge {
-            font-size: 0.63rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px;
-            padding: 3px 9px; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
+            font-size: 0.68rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.6px;
+            padding: 4px 10px; border-radius: 6px; white-space: nowrap; flex-shrink: 0;
         }
-        .b-standby  { background: rgba(100,116,139,0.2); color: #94a3b8; border: 1px solid rgba(100,116,139,0.4); }
-        .b-optimal  { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.5); }
-        .b-warning  { background: rgba(251,191,36,0.15); color: var(--amber); border: 1px solid rgba(251,191,36,0.5); }
-        .b-critical { background: rgba(244,63,94,0.15);  color: var(--rose); border: 1px solid rgba(244,63,94,0.5); }
-        .b-testing  { background: rgba(56,189,248,0.1);  color: var(--cyan); border: 1px solid rgba(56,189,248,0.3); }
+        .b-standby  { background: rgba(100,116,139,0.2); color: var(--muted); border: 1.5px solid rgba(100,116,139,0.5); }
+        .b-optimal  { background: rgba(16,185,129,0.18); color: var(--emerald); border: 1.5px solid var(--emerald); }
+        .b-warning  { background: rgba(251,191,36,0.18); color: var(--amber); border: 1.5px solid var(--amber); }
+        .b-critical { background: rgba(244,63,94,0.2);  color: var(--rose); border: 1.5px solid var(--rose); }
+        .b-testing  { background: rgba(56,189,248,0.15);  color: var(--cyan); border: 1.5px solid var(--cyan); }
+
+        body.lm .b-optimal  { background: #dcfce7; color: #15803d; border-color: #86efac; }
+        body.lm .b-warning  { background: #fef3c7; color: #b45309; border-color: #fde68a; }
+        body.lm .b-critical { background: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+        body.lm .b-testing  { background: #e0f2fe; color: #0369a1; border-color: #7dd3fc; }
 
         /* IP spec row */
         .ip-row {
             display: grid; grid-template-columns: 1fr 1fr;
-            gap: 8px; font-size: 0.72rem;
-            background: rgba(0,0,0,0.35); padding: 8px 12px;
-            border-radius: 8px; border: 1px solid rgba(255,255,255,0.05);
-            margin-bottom: 11px;
+            gap: 8px; font-size: 0.74rem;
+            background: var(--ip-box-bg); padding: 9px 12px;
+            border-radius: 8px; border: 1px solid var(--ip-box-border);
+            margin-bottom: 12px;
         }
-        .ip-lbl { font-size: 0.6rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
-        .ip-val { font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700; color: var(--cyan); margin-top: 1px; }
+        .ip-lbl { font-size: 0.65rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; }
+        .ip-val { font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; font-weight: 800; color: var(--cyan); margin-top: 2px; }
 
         /* QoS metrics row */
         .qos-row {
             display: flex; justify-content: space-between; align-items: center;
-            font-size: 0.7rem; color: var(--muted);
+            font-size: 0.74rem; color: var(--muted); font-weight: 600;
             padding-bottom: 10px; margin-bottom: 10px;
-            border-bottom: 1px dashed rgba(255,255,255,0.07);
+            border-bottom: 1px dashed var(--border-subtle);
         }
-        .qos-item { display: flex; align-items: center; gap: 5px; }
-        .qos-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--text); font-size: 0.78rem; }
+        .qos-item { display: flex; align-items: center; gap: 6px; }
+        .qos-val { font-family: 'JetBrains Mono', monospace; font-weight: 800; color: var(--text-heading); font-size: 0.82rem; }
 
         /* Sparkline canvas */
         .sparkline-wrap {
             margin-bottom: 10px;
-            background: rgba(0,0,0,0.25); border-radius: 6px;
-            padding: 4px 6px 2px;
+            background: var(--spark-bg); border-radius: 6px;
+            border: 1px solid var(--border-subtle);
+            padding: 5px 8px 3px;
             position: relative;
         }
         .sparkline-label {
-            font-size: 0.58rem; font-weight: 700; color: var(--muted);
-            text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px;
+            font-size: 0.62rem; font-weight: 800; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;
         }
         canvas.sparkline { width: 100%; height: 36px; display: block; }
 
         /* Packet loss bar */
-        .loss-bar-wrap { margin-bottom: 11px; }
-        .loss-bar-label { display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin-bottom: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-        .loss-bar-track { height: 4px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+        .loss-bar-wrap { margin-bottom: 12px; }
+        .loss-bar-label { display: flex; justify-content: space-between; font-size: 0.66rem; color: var(--muted); margin-bottom: 5px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; }
+        .loss-bar-track { height: 5px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+        body.lm .loss-bar-track { background: #e2e8f0; }
         .loss-bar-fill { height: 100%; width: 0%; border-radius: 4px; transition: width 0.6s ease, background 0.4s; background: var(--emerald); box-shadow: 0 0 8px var(--emerald); }
 
         /* Uptime badge */
         .uptime-row {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem; color: var(--muted); margin-bottom: 10px;
+            font-size: 0.68rem; color: var(--muted); margin-bottom: 12px; font-weight: 700;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .uptime-val { color: var(--emerald); font-weight: 700; }
+        .uptime-val { color: var(--emerald); font-weight: 800; }
 
         /* Card actions */
-        .card-actions { display: flex; gap: 7px; }
+        .card-actions { display: flex; gap: 8px; }
         .btn-card {
-            flex: 1; padding: 6px 10px; border-radius: 7px;
-            font-size: 0.7rem; font-weight: 700;
+            flex: 1; padding: 7px 12px; border-radius: 8px;
+            font-size: 0.74rem; font-weight: 800;
             cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; justify-content: center; gap: 5px;
-            transition: all 0.18s; border: 1px solid;
+            display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+            transition: all 0.2s; border: 1px solid;
         }
         .btn-ping {
-            background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); color: var(--muted);
+            background: var(--input-bg); border-color: var(--border); color: var(--text);
         }
-        .btn-ping:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+        .btn-ping:hover { background: rgba(56,189,248,0.15); border-color: var(--cyan); color: var(--cyan); }
         .btn-web {
-            background: rgba(56,189,248,0.1); border-color: rgba(56,189,248,0.3); color: var(--cyan);
+            background: linear-gradient(135deg, #0ea5e9, #0284c7); border-color: var(--cyan); color: #ffffff;
+            box-shadow: 0 2px 10px rgba(14,165,233,0.3);
         }
-        .btn-web:hover { background: rgba(56,189,248,0.2); }
+        .btn-web:hover { box-shadow: 0 4px 16px rgba(14,165,233,0.5); }
 
         /* ââ OFFLINE OVERLAY ââââââââââââââââââââââââââ */
         .offline-overlay {
             display: none; position: absolute; inset: 0;
             background: rgba(244,63,94,0.06);
             border-radius: 16px; z-index: 1;
-            border: 2px solid rgba(244,63,94,0.35);
+            border: 2px solid rgba(244,63,94,0.45);
             pointer-events: none;
         }
         .studio-card.s-critical .offline-overlay { display: block; }
@@ -458,6 +590,30 @@
         /* ââ SOUND TOGGLE âââââââââââââââââââââââââââââ */
         .sound-on  { color: var(--emerald) !important; }
         .sound-off { color: var(--muted) !important; }
+
+        /* ââ TECH & PLAYBOOK CARDS âââââââââââââââââââ */
+        .tech-panel-card {
+            background: rgba(0,0,0,0.35);
+            border: 1px solid var(--border-subtle);
+            border-radius: 10px;
+            padding: 14px;
+        }
+        body.lm .tech-panel-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .playbook-card {
+            background: rgba(255,255,255,0.02);
+            padding: 10px 12px;
+            border-radius: 8px;
+            border-left: 3.5px solid var(--rose);
+        }
+        body.lm .playbook-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left-width: 3.5px;
+        }
 
         /* ââ FLOATING AI CHATBOT WIDGET STYLES ââââââââââââââ */
         .ai-chatbot-widget {
@@ -724,121 +880,60 @@
             font-weight: 500;
         }
 
-        /* Responsive */
+        /* Mobile Responsiveness & Touch Optimization for VC Command Center */
         @media (max-width: 768px) {
-            .district-grid { grid-template-columns: 1fr; }
-            .search-box { width: 100%; }
-            .chatbot-panel { width: 310px; right: -10px; }
-        }
-    
-        /* ========================================================= */
-        /* UNIVERSAL MOBILE RESPONSIVENESS (VC DASHBOARD) */
-        /* ========================================================= */
-        @media (max-width: 768px) {
-            body {
+            html, body {
                 zoom: 1.0 !important;
                 overflow-x: hidden !important;
-                font-size: 14px;
-                -webkit-text-size-adjust: 100%;
+                width: 100% !important;
             }
-            .header-content {
+            .header-bar {
                 flex-direction: column !important;
-                align-items: stretch !important;
+                padding: 12px 10px !important;
                 gap: 12px !important;
-                padding: 12px 16px !important;
+                align-items: stretch !important;
             }
-            .h-left {
-                align-items: center !important;
+            .brand-box {
+                flex-wrap: wrap !important;
+                justify-content: center !important;
+                text-align: center !important;
             }
-            .h-title {
-                font-size: 1.15rem !important;
+            .brand-text h1 {
+                font-size: 1.25rem !important;
             }
-            .h-actions {
-                display: flex !important;
+            .nav-actions {
+                width: 100% !important;
+                justify-content: center !important;
                 flex-wrap: wrap !important;
                 gap: 8px !important;
-                width: 100% !important;
             }
-            .h-actions .btn-h, .h-actions a {
-                flex: 1 1 calc(50% - 4px) !important;
+            .nav-btn, .action-btn {
+                min-height: 44px !important;
+                padding: 10px 14px !important;
+                flex: 1 1 calc(50% - 10px) !important;
                 justify-content: center !important;
-                min-height: 38px !important;
-                font-size: 0.75rem !important;
             }
-            .controls-panel {
-                padding: 14px !important;
-            }
-            .controls-row {
-                flex-direction: column !important;
-                align-items: stretch !important;
-                gap: 12px !important;
-            }
-            .stats-strip {
-                display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
-                gap: 8px !important;
-                width: 100% !important;
-            }
-            .stat-chip {
-                justify-content: center !important;
-                padding: 8px 10px !important;
-            }
-            .search-box {
-                width: 100% !important;
-            }
-            .filter-group {
-                display: flex !important;
-                overflow-x: auto !important;
-                -webkit-overflow-scrolling: touch !important;
-                gap: 6px !important;
-                padding-bottom: 4px !important;
-                width: 100% !important;
-            }
-            .btn-f {
-                white-space: nowrap !important;
-                flex-shrink: 0 !important;
-                padding: 6px 12px !important;
-                font-size: 0.72rem !important;
-            }
-            .vip-grid, .district-grid {
+            .district-grid {
                 grid-template-columns: 1fr !important;
                 gap: 12px !important;
             }
-            .studio-card {
+            .codec-card {
                 padding: 14px !important;
+                border-radius: 12px !important;
             }
-            .card-actions {
-                flex-direction: column !important;
-                gap: 8px !important;
+            a, button {
+                touch-action: manipulation !important;
+                -webkit-tap-highlight-color: rgba(56, 189, 248, 0.25) !important;
             }
-            .btn-card {
-                width: 100% !important;
-                justify-content: center !important;
-                min-height: 40px !important;
-            }
-            .qos-row {
-                grid-template-columns: 1fr !important;
-                gap: 6px !important;
-            }
-            .ai-chatbot-widget {
-                bottom: 16px !important;
-                right: 16px !important;
-            }
-            .chatbot-panel {
-                position: fixed !important;
-                bottom: 80px !important;
-                right: 12px !important;
-                left: 12px !important;
-                width: auto !important;
-                max-width: calc(100vw - 24px) !important;
-                height: 75vh !important;
-                max-height: 520px !important;
+            a:active, button:active, .codec-card:active {
+                transform: scale(0.96) !important;
             }
         }
-
     </style>
 </head>
 <body>
+<!-- ââ TOP TRICOLOR BANNER âââââââââââââââââââââââââââ -->
+<div class="gov-banner" style="background: linear-gradient(90deg, #FF9933 0%, #FF9933 28%, #FFFFFF 46%, #000080 50%, #FFFFFF 54%, #128807 72%, #128807 100%) !important; background-size: 250% 100% !important; height: 6px !important; width: 100% !important; animation: tiranga-banner-flow 6s linear infinite !important; box-shadow: 0 0 15px rgba(255, 153, 51, 0.6), 0 0 15px rgba(18, 136, 7, 0.6) !important;"></div>
 
 <!-- ââ TOAST RACK ââââââââââââââââââââââââââââââââââââ -->
 <div id="toast-rack"></div>
@@ -851,8 +946,8 @@
 <!-- ââ HEADER âââââââââââââââââââââââââââââââââââââââ -->
 <header class="header-bar">
     <div class="brand-box" style="display: flex; align-items: center; gap: 14px;">
-        <a href="http://10.X.X.0/" title="National Informatics Centre, Bihar State Centre" style="display: flex; align-items: center; text-decoration: none;">
-            <img src="../NIC_Preview-1.png" alt="NIC Bihar Logo" style="height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); transition: transform 0.25s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
+        <a href="/noc/" title="National Informatics Centre, Bihar State Centre" style="display: flex; align-items: center; text-decoration: none;">
+            <img src="/NIC_Preview-1.png" alt="NIC Bihar Logo" style="height: 44px; width: auto; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); transition: transform 0.25s ease;" onmouseover="this.style.transform='scale(1.06)'" onmouseout="this.style.transform='scale(1)'">
         </a>
         <div class="brand-icon"><i class="fas fa-satellite-dish"></i></div>
         <div class="brand-text">
@@ -861,18 +956,22 @@
         </div>
     </div>
     <div class="nav-actions">
+        <a href="mailto:vc-bihar@nic.in" class="btn-nav vc-desk-badge" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.18), rgba(16, 185, 129, 0.18)); border: 1px solid rgba(56, 189, 248, 0.45); color: #38bdf8; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; padding: 7px 12px; border-radius: 8px; box-shadow: 0 0 15px rgba(14, 165, 233, 0.25);" title="State VC Operations Desk: Ext 23004 | Email: vc-bihar@nic.in">
+            <i class="fas fa-headset" style="color: #10b981;"></i>
+            <span>VC Desk: <strong style="color: #ffffff;">Ext 23004</strong> <span style="opacity: 0.5;">|</span> <span style="color: #38bdf8;">vc-bihar@nic.in</span></span>
+        </a>
         <div class="clock-widget">
             <i class="far fa-clock"></i>
             <div>
                 <div id="clockTime">00:00:00</div>
-                <div class="clock-date" id="clockDate">—</div>
+                <div class="clock-date" id="clockDate">â</div>
             </div>
         </div>
         <button class="btn-nav icon-only" id="soundToggleBtn" title="Toggle Alert Sounds (S)"><i class="fas fa-volume-up sound-on" id="soundIcon"></i></button>
         <button class="btn-nav icon-only" id="themeToggleBtn" title="Toggle Light/Dark (T)"><i class="fas fa-sun" id="themeIcon"></i></button>
-        <a href="http://10.X.X.0/" class="btn-nav"><i class="fas fa-home"></i> Main Portal</a>
-        <a href="http://10.X.X.0/alert/" class="btn-nav"><i class="fas fa-bell"></i> Alerts</a>
-        <a href="http://10.X.X.0/speed/" class="btn-nav"><i class="fas fa-tachometer-alt"></i> Speed</a>
+        <a href="/noc/" class="btn-nav"><i class="fas fa-home"></i> Main Portal</a>
+        <a href="/alert/" class="btn-nav"><i class="fas fa-bell"></i> Alerts</a>
+        <a href="/speed/" class="btn-nav"><i class="fas fa-tachometer-alt"></i> Speed</a>
     </div>
 </header>
 
@@ -883,66 +982,94 @@
             <div class="hud-label">Total Endpoints</div>
             <div class="hud-val" id="h-total">41</div>
         </div>
-        <div class="hud-icon" style="background:rgba(14,165,233,0.12);color:#38bdf8"><i class="fas fa-satellite-dish"></i></div>
+        <div class="hud-icon" style="background:rgba(14,165,233,0.15);color:var(--cyan)"><i class="fas fa-satellite-dish"></i></div>
     </div>
     <div class="hud-card">
         <div>
-            <div class="hud-label">Online</div>
-            <div class="hud-val" id="h-online" style="color:#10b981">—</div>
+            <div class="hud-label">Online Studios</div>
+            <div class="hud-val v-online" id="h-online">â</div>
         </div>
-        <div class="hud-icon" style="background:rgba(16,185,129,0.12);color:#10b981"><i class="fas fa-check-circle"></i></div>
+        <div class="hud-icon" style="background:rgba(16,185,129,0.15);color:var(--emerald)"><i class="fas fa-check-circle"></i></div>
     </div>
     <div class="hud-card">
         <div>
             <div class="hud-label">Offline / Unreachable</div>
-            <div class="hud-val" id="h-offline" style="color:#94a3b8">—</div>
+            <div class="hud-val v-offline" id="h-offline">â</div>
         </div>
-        <div class="hud-icon" style="background:rgba(244,63,94,0.1);color:#f43f5e"><i class="fas fa-times-circle"></i></div>
+        <div class="hud-icon" style="background:rgba(244,63,94,0.15);color:var(--rose)"><i class="fas fa-times-circle"></i></div>
     </div>
     <div class="hud-card">
         <div>
             <div class="hud-label">Avg SWAN Latency</div>
-            <div class="hud-val" id="h-latency" style="color:#38bdf8">— ms</div>
+            <div class="hud-val v-lat" id="h-latency">â ms</div>
         </div>
-        <div class="hud-icon" style="background:rgba(245,158,11,0.12);color:#fbbf24"><i class="fas fa-stopwatch"></i></div>
+        <div class="hud-icon" style="background:rgba(245,158,11,0.15);color:var(--amber)"><i class="fas fa-stopwatch"></i></div>
     </div>
     <div class="hud-card">
         <div>
             <div class="hud-label">Avg Jitter</div>
-            <div class="hud-val" id="h-jitter" style="color:#a78bfa">— ms</div>
+            <div class="hud-val v-jit" id="h-jitter">â ms</div>
         </div>
-        <div class="hud-icon" style="background:rgba(167,139,250,0.12);color:#a78bfa"><i class="fas fa-bolt"></i></div>
+        <div class="hud-icon" style="background:rgba(167,139,250,0.15);color:var(--violet)"><i class="fas fa-bolt"></i></div>
     </div>
     <div class="hud-card">
         <div>
             <div class="hud-label">SLA Integrity</div>
-            <div class="hud-val" id="h-sla" style="color:#10b981">—</div>
+            <div class="hud-val v-sla" id="h-sla">â</div>
         </div>
-        <div class="hud-icon" style="background:rgba(16,185,129,0.12);color:#10b981"><i class="fas fa-shield-alt"></i></div>
+        <div class="hud-icon" style="background:rgba(16,185,129,0.15);color:var(--emerald)"><i class="fas fa-shield-alt"></i></div>
     </div>
 </section>
 
-<!-- ââ KEYBOARD SHORTCUTS BAR âââââââââââââââââââââââ -->
-<div style="max-width:1500px; margin:0 auto 16px auto; background:rgba(15,23,42,0.75); border:1px solid rgba(56,189,248,0.25); border-radius:12px; padding:10px 18px; backdrop-filter:blur(16px); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; box-shadow:0 4px 16px rgba(0,0,0,0.3);">
-    <div style="display:flex; align-items:center; gap:8px; font-size:0.78rem; font-weight:800; color:var(--cyan); text-transform:uppercase; letter-spacing:0.8px;">
-        <i class="fas fa-keyboard"></i> Quick NOC Keyboard Shortcuts:
+<!-- ââ AUTONOMOUS AUDITING RADAR BANNER âââââââââââââââââ -->
+<div class="auto-audit-banner">
+    <div style="display: flex; align-items: center; gap: 14px;">
+        <div style="width: 44px; height: 44px; background: rgba(16, 185, 129, 0.18); border: 2px solid var(--emerald); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--emerald); font-size: 1.15rem; box-shadow: 0 0 15px rgba(16,185,129,0.35);">
+            <i class="fas fa-radar fa-spin" id="radarRingIcon" style="animation-duration: 4s;"></i>
+        </div>
+        <div>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                <span class="auto-audit-title">AUTONOMOUS CONTINUOUS AUDIT & QoS TELEMETRY</span>
+                <span class="badge b-optimal" id="autoAuditBadge" style="font-size: 0.72rem; padding: 4px 10px; font-weight: 900; border-radius: 6px;">ð¢ ACTIVE</span>
+            </div>
+            <div class="auto-audit-desc">
+                <span>Auto-probing all 41 Bihar studios</span>
+                <span style="opacity: 0.5;">â¢</span>
+                <span>Next live cycle: <strong id="autoAuditCountdown" class="accent-cyan">20s</strong></span>
+                <span style="opacity: 0.5;">â¢</span>
+                <span>VC Ops Hotline: <strong>Ext 23004</strong> (<span class="accent-green">vc-bihar@nic.in</span>)</span>
+            </div>
+        </div>
     </div>
-    <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap; font-size:0.75rem; color:var(--text);">
-        <span><span class="kbd">Space</span> Run Audit</span>
-        <span style="color:var(--muted)">•</span>
-        <span><span class="kbd">M</span> Toggle Monitor</span>
-        <span style="color:var(--muted)">•</span>
-        <span><span class="kbd">S</span> Sound Alerts</span>
-        <span style="color:var(--muted)">•</span>
-        <span><span class="kbd">T</span> Theme</span>
-        <span style="color:var(--muted)">•</span>
-        <span><span class="kbd">L</span> Alert Log</span>
-        <span style="color:var(--muted)">•</span>
-        <span><span class="kbd">1</span>-<span class="kbd">4</span> Filters (All / Online / Warn / Crit)</span>
+    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <button onclick="instantAuditSweep()" class="btn-action btn-audit" style="font-size: 0.8rem; padding: 8px 16px;">
+            <i class="fas fa-bolt"></i> SWEEP NOW (SPACE)
+        </button>
+        <button id="autoAuditToggleBtn" onclick="toggleAutoAudit()" class="btn-secondary-action">
+            <i class="fas fa-pause"></i> Pause Loop
+        </button>
     </div>
 </div>
 
-
+<!-- ââ KEYBOARD SHORTCUTS BAR âââââââââââââââââââââââ -->
+<div class="shortcut-bar">
+    <div class="shortcut-title">
+        <i class="fas fa-keyboard"></i> Quick NOC Keyboard Shortcuts:
+    </div>
+    <div class="shortcut-list">
+        <span><span class="kbd">Space</span> Sweep Now</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">M</span> Toggle Loop</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">S</span> Sound Alerts</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">T</span> Theme</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">L</span> Alert Log</span>
+        <span style="color:var(--muted)">â¢</span>
+        <span><span class="kbd">1</span>-<span class="kbd">4</span> Filters (All / Online / Warn / Crit)</span>
+    </div>
+</div>
 
 <!-- ââ TOOLBAR âââââââââââââââââââââââââââââââââââââââ -->
 <div class="toolbar">
@@ -951,18 +1078,15 @@
             <i class="fas fa-search" style="color:var(--cyan)"></i>
             <input type="text" id="searchInput" oninput="filterStudios()" placeholder="Search district, IP, SIO...">
         </div>
-        <button class="filter-btn" id="fAll" onclick="setFilter('all')" title="Show All">All</button>
+        <button class="filter-btn active" id="fAll" onclick="setFilter('all')" title="Show All">All (41)</button>
         <button class="filter-btn" id="fOnline" onclick="setFilter('online')"><i class="fas fa-check-circle"></i> Online</button>
         <button class="filter-btn f-warn" id="fWarn" onclick="setFilter('warn')"><i class="fas fa-exclamation-triangle"></i> Warning</button>
         <button class="filter-btn f-crit" id="fCrit" onclick="setFilter('critical')"><i class="fas fa-skull-crossbones"></i> Critical</button>
     </div>
     <div class="toolbar-right">
-        <span id="auditStatus" style="font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--muted)"></span>
-        <button class="btn-action btn-monitor" id="btnMonitor" onclick="toggleAutoMonitor()" title="Auto-Monitor every 20s (M)">
-            <i class="fas fa-satellite-dish"></i> AUTO-MONITOR <span class="kbd">M</span>
-        </button>
-        <button class="btn-action btn-audit" id="btnAudit" onclick="runFullAudit()" title="Run full audit (Space)">
-            <i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd">Space</span>
+        <span id="auditStatus" style="font-family:'JetBrains Mono',monospace;font-size:0.78rem;color:var(--muted);font-weight:700;"></span>
+        <button class="btn-action btn-audit" id="btnAudit" onclick="instantAuditSweep()" title="Run full audit (Space)">
+            <i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd" style="background:rgba(255,255,255,0.2);color:#fff;border-color:rgba(255,255,255,0.4)">Space</span>
         </button>
     </div>
 </div>
@@ -977,7 +1101,7 @@
             <span class="log-badge lb-info" id="lcInfo">0 INFO</span>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
-            <button onclick="event.stopPropagation();clearLog()" style="background:rgba(244,63,94,0.1);border:1px solid rgba(244,63,94,0.3);color:var(--rose);border-radius:5px;padding:3px 9px;font-size:0.68rem;font-weight:700;cursor:pointer">Clear</button>
+            <button onclick="event.stopPropagation();clearLog()" style="background:rgba(244,63,94,0.15);border:1px solid rgba(244,63,94,0.4);color:var(--rose);border-radius:6px;padding:4px 10px;font-size:0.72rem;font-weight:800;cursor:pointer">Clear</button>
             <i class="fas fa-chevron-down" id="logChevron" style="color:var(--muted);transition:transform 0.2s"></i>
         </div>
     </div>
@@ -986,7 +1110,7 @@
 
 <!-- ââ TECHNICAL DATA & TROUBLESHOOTING PLAYBOOK ââââââââ -->
 <section style="max-width:1500px; margin:0 auto 24px auto; background:var(--panel); border:1px solid var(--border); border-radius:14px; padding:18px 22px; backdrop-filter:blur(20px); box-shadow:0 8px 32px rgba(0,0,0,0.4);">
-    <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;" onclick="const el=document.getElementById('techDocBody'); el.style.display = el.style.display==='none'?'block':'none';">
+    <div style="display:flex; align-items:center; justify-content:space-between; cursor:pointer; user-select:none;" onclick="const el=document.getElementById('techDocBody'); el.style.display = el.style.display==='none'•'block':'none';">
         <div style="font-family:'Outfit',sans-serif; font-size:1.05rem; font-weight:800; color:var(--cyan); display:flex; align-items:center; gap:10px;">
             <i class="fas fa-microchip" style="color:var(--amber)"></i>
             TECHNICAL SPECIFICATIONS & NOC TROUBLESHOOTING PLAYBOOK
@@ -997,32 +1121,32 @@
         </div>
     </div>
 
-    <div id="techDocBody" style="margin-top:16px; pt-16px; border-top:1px solid rgba(255,255,255,0.08); display:none;">
+    <div id="techDocBody" style="margin-top:16px; pt-16px; border-top:1px solid var(--border-subtle); display:none;">
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:18px;">
             
             <!-- Specs & Network Architecture -->
-            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
-                <div style="font-size:0.82rem; font-weight:800; color:var(--amber); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+            <div class="tech-panel-card">
+                <div style="font-size:0.85rem; font-weight:800; color:var(--amber); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
                     <i class="fas fa-network-wired"></i> Network Port & Protocol Architecture
                 </div>
-                <div style="font-family:'JetBrains Mono',monospace; font-size:0.73rem; color:var(--text); line-height:1.7;">
-                    <div>• <strong>SIP Control Signalling:</strong> UDP/TCP Port 5060</div>
-                    <div>• <strong>H.323 Call Control:</strong> TCP Port 1720 / H.245 Dynamic</div>
-                    <div>• <strong>RTP Media Streams:</strong> UDP Ports 16000 - 20000</div>
-                    <div>• <strong>Web Management Interface:</strong> HTTP Port 80 / HTTPS 443</div>
-                    <div>• <strong>QoS Tagging:</strong> DSCP EF (Expedited Forwarding - 46)</div>
-                    <div>• <strong>Max Intranet MTU:</strong> 1420 bytes (prevent IPSec fragmentation)</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--text); line-height:1.7;">
+                    <div>â¢ <strong>SIP Control Signalling:</strong> UDP/TCP Port 5060</div>
+                    <div>â¢ <strong>H.323 Call Control:</strong> TCP Port 1720 / H.245 Dynamic</div>
+                    <div>â¢ <strong>RTP Media Streams:</strong> UDP Ports 16000 - 20000</div>
+                    <div>â¢ <strong>Web Management Interface:</strong> HTTP Port 80 / HTTPS 443</div>
+                    <div>â¢ <strong>QoS Tagging:</strong> DSCP EF (Expedited Forwarding - 46)</div>
+                    <div>â¢ <strong>Max Intranet MTU:</strong> 1420 bytes (prevent IPSec fragmentation)</div>
                 </div>
             </div>
 
             <!-- ITU-T G.114 SLA Standards -->
-            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px;">
-                <div style="font-size:0.82rem; font-weight:800; color:var(--emerald); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+            <div class="tech-panel-card">
+                <div style="font-size:0.85rem; font-weight:800; color:var(--emerald); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
                     <i class="fas fa-tachometer-alt"></i> ITU-T G.114 QoS Broadcast Benchmarks
                 </div>
-                <table style="width:100%; font-size:0.72rem; font-family:'JetBrains Mono',monospace; border-collapse:collapse; color:var(--text);">
+                <table style="width:100%; font-size:0.75rem; font-family:'JetBrains Mono',monospace; border-collapse:collapse; color:var(--text);">
                     <thead>
-                        <tr style="border-bottom:1px solid rgba(255,255,255,0.1); color:var(--muted); text-align:left;">
+                        <tr style="border-bottom:1px solid var(--border-subtle); color:var(--muted); text-align:left;">
                             <th style="padding:4px;">Metric</th>
                             <th style="padding:4px; color:var(--emerald);">Optimal</th>
                             <th style="padding:4px; color:var(--amber);">Warning</th>
@@ -1030,45 +1154,45 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr style="border-bottom:1px dashed rgba(255,255,255,0.05);">
+                        <tr style="border-bottom:1px dashed var(--border-subtle);">
                             <td style="padding:4px; font-weight:700;">Latency</td>
-                            <td style="padding:4px; color:var(--emerald);">&lt; 35ms</td>
-                            <td style="padding:4px; color:var(--amber);">35 - 60ms</td>
-                            <td style="padding:4px; color:var(--rose);">&gt; 60ms</td>
+                            <td style="padding:4px; color:var(--emerald); font-weight:800;">&lt; 35ms</td>
+                            <td style="padding:4px; color:var(--amber); font-weight:800;">35 - 60ms</td>
+                            <td style="padding:4px; color:var(--rose); font-weight:800;">&gt; 60ms</td>
                         </tr>
-                        <tr style="border-bottom:1px dashed rgba(255,255,255,0.05);">
+                        <tr style="border-bottom:1px dashed var(--border-subtle);">
                             <td style="padding:4px; font-weight:700;">Jitter</td>
-                            <td style="padding:4px; color:var(--emerald);">&lt; 5ms</td>
-                            <td style="padding:4px; color:var(--amber);">5 - 15ms</td>
-                            <td style="padding:4px; color:var(--rose);">&gt; 15ms</td>
+                            <td style="padding:4px; color:var(--emerald); font-weight:800;">&lt; 5ms</td>
+                            <td style="padding:4px; color:var(--amber); font-weight:800;">5 - 15ms</td>
+                            <td style="padding:4px; color:var(--rose); font-weight:800;">&gt; 15ms</td>
                         </tr>
                         <tr>
                             <td style="padding:4px; font-weight:700;">Packet Loss</td>
-                            <td style="padding:4px; color:var(--emerald);">0.0%</td>
-                            <td style="padding:4px; color:var(--amber);">&lt; 0.5%</td>
-                            <td style="padding:4px; color:var(--rose);">&gt; 0.5%</td>
+                            <td style="padding:4px; color:var(--emerald); font-weight:800;">0.0%</td>
+                            <td style="padding:4px; color:var(--amber); font-weight:800;">&lt; 0.5%</td>
+                            <td style="padding:4px; color:var(--rose); font-weight:800;">&gt; 0.5%</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
 
             <!-- Troubleshooting Matrix Playbook -->
-            <div style="background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.06); border-radius:10px; padding:14px; grid-column: 1 / -1;">
-                <div style="font-size:0.82rem; font-weight:800; color:var(--cyan); margin-bottom:10px; display:flex; align-items:center; gap:8px;">
+            <div class="tech-panel-card" style="grid-column: 1 / -1;">
+                <div style="font-size:0.85rem; font-weight:800; color:var(--cyan); margin-bottom:12px; display:flex; align-items:center; gap:8px;">
                     <i class="fas fa-tools"></i> NOC Engineer Troubleshooting Matrix & Incident Playbook
                 </div>
-                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; font-size:0.73rem; color:var(--text);">
-                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--rose);">
-                        <strong style="color:var(--rose); display:block; margin-bottom:4px;">1. Codec Status OFFLINE / Unreachable</strong>
-                        <div style="color:var(--muted);">Check physical power & RJ-45 LED on Panasonic KX-VC1300. Ping SWAN Gateway IP <code>10.X.X.0</code>. Verify switch port VLAN 100 access and 1000Mbps Full Duplex link status.</div>
+                <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:12px; font-size:0.75rem; color:var(--text);">
+                    <div class="playbook-card" style="border-left-color: var(--rose);">
+                        <strong style="color:var(--rose); display:block; margin-bottom:4px; font-size:0.8rem;">1. Codec Status OFFLINE / Unreachable</strong>
+                        <div style="color:var(--muted); line-height:1.5;">Check physical power & RJ-45 LED on Panasonic KX-VC1300. Ping SWAN Gateway IP <code>10.140.X.254</code>. Verify switch port VLAN 100 access and 1000Mbps Full Duplex link status.</div>
                     </div>
-                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--amber);">
-                        <strong style="color:var(--amber); display:block; margin-bottom:4px;">2. High Jitter (&gt;15ms) or Video Stutter</strong>
-                        <div style="color:var(--muted);">Inspect SWAN Router interface Queue drops. Verify Expedited Forwarding (EF/46) QoS profile on SWAN edge node. Ensure MTU is clamped at 1420 to prevent packet slicing over VPN tunnels.</div>
+                    <div class="playbook-card" style="border-left-color: var(--amber);">
+                        <strong style="color:var(--amber); display:block; margin-bottom:4px; font-size:0.8rem;">2. High Jitter (&gt;15ms) or Video Stutter</strong>
+                        <div style="color:var(--muted); line-height:1.5;">Inspect SWAN Router interface Queue drops. Verify Expedited Forwarding (EF/46) QoS profile on SWAN edge node. Ensure MTU is clamped at 1420 to prevent packet slicing over VPN tunnels.</div>
                     </div>
-                    <div style="background:rgba(255,255,255,0.02); padding:10px; border-radius:8px; border-left:3px solid var(--cyan);">
-                        <strong style="color:var(--cyan); display:block; margin-bottom:4px;">3. One-Way Audio or Black Screen Video</strong>
-                        <div style="color:var(--muted);">Check firewall UDP ACLs for RTP port range <code>16000-20000</code>. Verify NAT Traversal / STUN / TURN configuration on State Hub Core Switch. Re-register SIP session via Codec Web UI.</div>
+                    <div class="playbook-card" style="border-left-color: var(--cyan);">
+                        <strong style="color:var(--cyan); display:block; margin-bottom:4px; font-size:0.8rem;">3. One-Way Audio or Black Screen Video</strong>
+                        <div style="color:var(--muted); line-height:1.5;">Check firewall UDP ACLs for RTP port range <code>16000-20000</code>. Verify NAT Traversal / STUN / TURN configuration on State Hub Core Switch. Re-register SIP session via Codec Web UI.</div>
                     </div>
                 </div>
             </div>
@@ -1142,7 +1266,7 @@ function showToast(title, body, type = 'info') {
     rack.appendChild(el);
     if (type === 'critical') beepAlert('critical');
     if (type === 'warning')  beepAlert('warning');
-    setTimeout(() => { el.classList.add('hide'); setTimeout(() => el.remove(), 320); }, type==='critical'?6000:4000);
+    setTimeout(() => { el.classList.add('hide'); setTimeout(() => el.remove(), 320); }, type==='critical'•6000:4000);
 }
 
 /* âââ EVENT LOG ââââââââââââââââââââââââââââââââââââ */
@@ -1150,13 +1274,13 @@ function log(msg, type='info', district='') {
     const body = document.getElementById('logBody');
     const panel = document.getElementById('logPanel');
     panel.style.display = 'block';
-    logCounts[type==='critical'?'crit':type==='warning'?'warn':'info']++;
+    logCounts[type==='critical'•'crit':type==='warning'•'warn':'info']++;
     document.getElementById('lcCrit').textContent = logCounts.crit + ' CRIT';
     document.getElementById('lcWarn').textContent = logCounts.warn + ' WARN';
     document.getElementById('lcInfo').textContent = logCounts.info + ' INFO';
     const ts = new Date().toLocaleTimeString('en-IN', { hour12:false });
     const el = document.createElement('div');
-    el.className = `log-entry l${type==='critical'?'c':type==='warning'?'w':'i'}`;
+    el.className = `log-entry l${type==='critical'•'c':type==='warning'•'w':'i'}`;
     el.innerHTML = `<span class="ts">${ts}</span><span>${msg}</span>`;
     body.prepend(el);
     if (body.children.length > 80) body.removeChild(body.lastChild);
@@ -1172,8 +1296,8 @@ function toggleLog() {
     const body = document.getElementById('logBody');
     const chev = document.getElementById('logChevron');
     logExpanded = !logExpanded;
-    body.style.display = logExpanded ? 'block' : 'none';
-    chev.style.transform = logExpanded ? 'rotate(0deg)' : 'rotate(-90deg)';
+    body.style.display = logExpanded • 'block' : 'none';
+    chev.style.transform = logExpanded • 'rotate(0deg)' : 'rotate(-90deg)';
 }
 
 /* âââ SPARKLINE DRAWING ââââââââââââââââââââââââââââ */
@@ -1207,7 +1331,7 @@ function drawSparkline(canvas, data, color, max) {
     pts.forEach((v, i) => {
         const x = padding + i * step;
         const y = H - padding - ((v / realMax) * (H - padding*2));
-        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+        i === 0 • ctx.moveTo(x, y) : ctx.lineTo(x, y);
     });
     ctx.strokeStyle = color; ctx.lineWidth = 1.8 * dpr;
     ctx.lineJoin = 'round'; ctx.lineCap = 'round';
@@ -1237,7 +1361,7 @@ function getUptimePct(code) {
 }
 function getSessionTime(code) {
     const d = uptimeData[code];
-    if (!d) return '—';
+    if (!d) return 'â';
     const secs = Math.floor((Date.now() - d.firstSeen) / 1000);
     const m = Math.floor(secs / 60); const s = secs % 60;
     return `${m}m ${s}s`;
@@ -1250,7 +1374,7 @@ function createCard(s, isVip) {
     initUptime(s.code);
 
     const div = document.createElement('div');
-    div.className = `studio-card ${isVip ? 'vip' : ''}`;
+    div.className = `studio-card ${isVip • 'vip' : ''}`;
     div.id = `card-${s.code}`;
     div.dataset.tier = s.tier;
     div.dataset.name = s.name.toLowerCase();
@@ -1264,7 +1388,7 @@ function createCard(s, isVip) {
                 <div class="card-name">
                     <span class="dot standby" id="dot-${s.code}"></span>
                     ${s.name}
-                    ${isVip ? '<span style="font-size:0.65rem;color:var(--amber);background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);padding:2px 6px;border-radius:5px;font-family:JetBrains Mono,monospace">VIP</span>' : ''}
+                    ${isVip • '<span style="font-size:0.65rem;color:var(--amber);background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.3);padding:2px 6px;border-radius:5px;font-family:JetBrains Mono,monospace">VIP</span>' : ''}
                 </div>
                 <div class="card-meta">${s.sio} &nbsp;Â·&nbsp; <i class="fas fa-phone-alt" style="font-size:0.65rem"></i> ${s.phone}</div>
                 <div class="card-tech">
@@ -1284,9 +1408,9 @@ function createCard(s, isVip) {
         </div>
 
         <div class="qos-row">
-            <div class="qos-item"><i class="fas fa-stopwatch" style="color:var(--amber)"></i> Latency: <span class="qos-val" id="lat-${s.code}">— ms</span></div>
-            <div class="qos-item"><i class="fas fa-bolt" style="color:var(--violet)"></i> Jitter: <span class="qos-val" id="jit-${s.code}">— ms</span></div>
-            <div class="qos-item"><i class="fas fa-chart-line" style="color:var(--emerald)"></i> Loss: <span class="qos-val" id="loss-${s.code}">—%</span></div>
+            <div class="qos-item"><i class="fas fa-stopwatch" style="color:var(--amber)"></i> Latency: <span class="qos-val" id="lat-${s.code}">â ms</span></div>
+            <div class="qos-item"><i class="fas fa-bolt" style="color:var(--violet)"></i> Jitter: <span class="qos-val" id="jit-${s.code}">â ms</span></div>
+            <div class="qos-item"><i class="fas fa-chart-line" style="color:var(--emerald)"></i> Loss: <span class="qos-val" id="loss-${s.code}">â%</span></div>
         </div>
 
         <div class="sparkline-wrap">
@@ -1304,7 +1428,7 @@ function createCard(s, isVip) {
 
         <div class="uptime-row">
             <span>Session Uptime</span>
-            <span class="uptime-val" id="uptime-${s.code}">—</span>
+            <span class="uptime-val" id="uptime-${s.code}">â</span>
         </div>
 
         <div class="card-actions">
@@ -1322,12 +1446,14 @@ function createCard(s, isVip) {
 /* âââ LOAD STUDIOS âââââââââââââââââââââââââââââââââ */
 async function loadStudios() {
     try {
-        const r = await fetch('../vc_api.php?action=list&t=' + Date.now());
+        const r = await fetch('/vc_api.php•action=list&t=' + Date.now());
         const d = await r.json();
         if (d.status === 'success' && d.studios) {
             allStudios = d.studios;
             renderStudios(allStudios);
             document.getElementById('h-total').textContent = allStudios.length;
+            // Instantly start autonomous pinging & continuous auditing loop
+            startAutoAuditEngine();
         }
     } catch(e) { console.error('Load error:', e); }
 }
@@ -1349,7 +1475,7 @@ function refreshUptimes() {
         const pct = getUptimePct(s.code);
         if (el && pct !== null) {
             el.textContent = pct + '% (' + getSessionTime(s.code) + ')';
-            el.style.color = pct >= 99 ? 'var(--emerald)' : pct >= 90 ? 'var(--amber)' : 'var(--rose)';
+            el.style.color = pct >= 99 • 'var(--emerald)' : pct >= 90 • 'var(--amber)' : 'var(--rose)';
         }
     });
 }
@@ -1371,10 +1497,10 @@ async function pingOne(code, vcIp, gwIp) {
     if (card)  card.classList.add('card-scanning');
 
     const s = allStudios.find(x => x.code === code);
-    const name = s ? s.name : code.toUpperCase();
+    const name = s • s.name : code.toUpperCase();
 
     try {
-        const r = await fetch(`../vc_api.php?action=ping&ip=${vcIp}&t=${Date.now()}`);
+        const r = await fetch(`/vc_api.php•action=ping&ip=${vcIp}&t=${Date.now()}`);
         const d = await r.json();
 
         if (d.status === 'success') {
@@ -1397,21 +1523,21 @@ async function pingOne(code, vcIp, gwIp) {
             }
 
             const spk = document.getElementById(`spark-${code}`);
-            const sparkColor = offline ? '#f43f5e' : quality==='optimal' ? '#38bdf8' : quality==='warning' ? '#fbbf24' : '#f43f5e';
+            const sparkColor = offline • '#f43f5e' : quality==='optimal' • '#38bdf8' : quality==='warning' • '#fbbf24' : '#f43f5e';
             drawSparkline(spk, latencyHistory[code], sparkColor, 100);
 
             // QoS values
-            if (latEl) { latEl.textContent = offline ? 'TIMEOUT' : (lat+'ms'); latEl.style.color = offline?'#f43f5e':lat>60?'#f43f5e':lat>35?'#fbbf24':'#38bdf8'; }
-            if (jitEl) { jitEl.textContent = offline ? 'TIMEOUT' : (jit!==null?jit+'ms':'0ms'); jitEl.style.color = offline?'#f43f5e':jit>15?'#f43f5e':jit>5?'#fbbf24':'#a78bfa'; }
-            if (lossEl){ lossEl.textContent = pct+'%';  lossEl.style.color = pct>0?'#f43f5e':'#34d399'; }
+            if (latEl) { latEl.textContent = offline • 'TIMEOUT' : (lat+'ms'); latEl.style.color = offline•'#f43f5e':lat>60•'#f43f5e':lat>35•'#fbbf24':'#38bdf8'; }
+            if (jitEl) { jitEl.textContent = offline • 'TIMEOUT' : (jit!==null•jit+'ms':'0ms'); jitEl.style.color = offline•'#f43f5e':jit>15•'#f43f5e':jit>5•'#fbbf24':'#a78bfa'; }
+            if (lossEl){ lossEl.textContent = pct+'%';  lossEl.style.color = pct>0•'#f43f5e':'#34d399'; }
 
             // Loss bar
             if (bar) {
                 bar.style.width = Math.min(pct*5, 100)+'%';
-                bar.style.background = pct>5?'#f43f5e':pct>0?'#fbbf24':'#10b981';
-                bar.style.boxShadow = `0 0 8px ${pct>5?'#f43f5e':pct>0?'#fbbf24':'#10b981'}`;
+                bar.style.background = pct>5•'#f43f5e':pct>0•'#fbbf24':'#10b981';
+                bar.style.boxShadow = `0 0 8px ${pct>5•'#f43f5e':pct>0•'#fbbf24':'#10b981'}`;
             }
-            if (barPct) { barPct.textContent = pct+'%'; barPct.style.color = pct>0?'#f43f5e':'#34d399'; }
+            if (barPct) { barPct.textContent = pct+'%'; barPct.style.color = pct>0•'#f43f5e':'#34d399'; }
 
             // Badge + dot + card class
             if (offline) {
@@ -1434,16 +1560,16 @@ async function pingOne(code, vcIp, gwIp) {
 
             // Log + Toast on bad events
             if (offline) {
-                log(`â  [${name}] OFFLINE — VC Codec ${vcIp} unreachable`, 'critical');
+                log(`â  [${name}] OFFLINE â VC Codec ${vcIp} unreachable`, 'critical');
                 showToast(`${name} OFFLINE`, `VC Codec ${vcIp} is unreachable`, 'critical');
             } else if (quality==='critical' || pct>0) {
-                log(`🔴  [${name}] QoS DEGRADED — Loss:${pct}%  Jitter:${jit}ms  Lat:${lat}ms`, 'critical');
+                log(`ð´  [${name}] QoS DEGRADED â Loss:${pct}%  Jitter:${jit}ms  Lat:${lat}ms`, 'critical');
                 showToast(`${name} QoS DEGRADED`, `Loss: ${pct}%  Jitter: ${jit}ms`, 'critical');
             } else if (quality==='warning') {
-                log(`⚠️  [${name}] Network degradation — Lat:${lat}ms  Jitter:${jit}ms`, 'warning');
+                log(`â ï¸  [${name}] Network degradation â Lat:${lat}ms  Jitter:${jit}ms`, 'warning');
             } else {
                 if (isMonitoring && latencyHistory[code].length === 1) {
-                    log(`â  [${name}] Online — Lat:${lat}ms  Jit:${jit}ms  Loss:${pct}%`, 'info');
+                    log(`â  [${name}] Online â Lat:${lat}ms  Jit:${jit}ms  Loss:${pct}%`, 'info');
                 }
             }
         } else {
@@ -1469,37 +1595,113 @@ async function pingOne(code, vcIp, gwIp) {
 /* âââ REFRESH GLOBAL HUD âââââââââââââââââââââââââââ */
 function refreshHUD() {
     let online=0, offline=0, lats=[], jits=[];
-    const auditedAll = allStudios.filter(s => uptimeData[s.code]?.checks > 0);
+    const auditedAll = allStudios.filter(s => uptimeData[s.code]•.checks > 0);
     
     auditedAll.forEach(s => {
         const d = uptimeData[s.code];
         if (d.lastOnline) {
             online++;
-            if (latencyHistory[s.code]?.length) lats.push(latencyHistory[s.code].at(-1));
-            if (jitterHistory[s.code]?.length)  jits.push(jitterHistory[s.code].at(-1));
+            if (latencyHistory[s.code]•.length) lats.push(latencyHistory[s.code].at(-1));
+            if (jitterHistory[s.code]•.length)  jits.push(jitterHistory[s.code].at(-1));
         } else {
             offline++;
         }
     });
 
-    const avg = arr => arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : '—';
+    const avg = arr => arr.length • (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(1) : 'â';
     
-    document.getElementById('h-online').textContent = auditedAll.length ? `${online}` : '—';
-    document.getElementById('h-offline').textContent = auditedAll.length ? `${offline}` : '—';
-    document.getElementById('h-offline').style.color = offline > 0 ? 'var(--rose)' : 'var(--muted)';
+    document.getElementById('h-online').textContent = auditedAll.length • `${online}` : 'â';
+    document.getElementById('h-offline').textContent = auditedAll.length • `${offline}` : 'â';
+    document.getElementById('h-offline').style.color = offline > 0 • 'var(--rose)' : 'var(--muted)';
     
-    document.getElementById('h-latency').textContent = lats.length ? avg(lats)+' ms' : '— ms';
-    document.getElementById('h-latency').style.color = parseFloat(avg(lats))>60?'var(--rose)':parseFloat(avg(lats))>35?'var(--amber)':'#38bdf8';
+    document.getElementById('h-latency').textContent = lats.length • avg(lats)+' ms' : 'â ms';
+    document.getElementById('h-latency').style.color = parseFloat(avg(lats))>60•'var(--rose)':parseFloat(avg(lats))>35•'var(--amber)':'#38bdf8';
     
-    document.getElementById('h-jitter').textContent = jits.length ? avg(jits)+' ms' : '— ms';
-    document.getElementById('h-jitter').style.color = parseFloat(avg(jits))>15?'var(--rose)':parseFloat(avg(jits))>5?'var(--amber)':'#a78bfa';
+    document.getElementById('h-jitter').textContent = jits.length • avg(jits)+' ms' : 'â ms';
+    document.getElementById('h-jitter').style.color = parseFloat(avg(jits))>15•'var(--rose)':parseFloat(avg(jits))>5•'var(--amber)':'#a78bfa';
 
-    const sla = auditedAll.length ? ((online / auditedAll.length) * 100).toFixed(1)+'%' : '—';
+    const sla = auditedAll.length • ((online / auditedAll.length) * 100).toFixed(1)+'%' : 'â';
     document.getElementById('h-sla').textContent = sla;
-    document.getElementById('h-sla').style.color = parseFloat(sla)<95?'var(--rose)':parseFloat(sla)<99?'var(--amber)':'var(--emerald)';
+    document.getElementById('h-sla').style.color = parseFloat(sla)<95•'var(--rose)':parseFloat(sla)<99•'var(--amber)':'var(--emerald)';
 }
 
-/* âââ FULL AUDIT (FAST BATCHED CONCURRENT PROBING) ââ */
+/* âââ AUTONOMOUS CONTINUOUS AUDIT & MONITORING ENGINE ââ */
+let autoAuditEnabled = true;
+let autoAuditCountdown = 20;
+let autoAuditTimerId = null;
+
+function startAutoAuditEngine() {
+    autoAuditEnabled = true;
+    autoAuditCountdown = 20;
+    updateAutoAuditUI();
+    
+    if (autoAuditTimerId) clearInterval(autoAuditTimerId);
+    
+    // Initial immediate full audit
+    runFullAudit();
+    
+    // Continuous 1-second countdown ticker
+    autoAuditTimerId = setInterval(() => {
+        if (!autoAuditEnabled) return;
+        
+        if (isAuditing) {
+            const cdEl = document.getElementById('autoAuditCountdown');
+            if (cdEl) cdEl.textContent = 'Auditing...';
+            return;
+        }
+        
+        autoAuditCountdown--;
+        const cdEl = document.getElementById('autoAuditCountdown');
+        if (cdEl) cdEl.textContent = autoAuditCountdown + 's';
+        
+        if (autoAuditCountdown <= 0) {
+            autoAuditCountdown = 20;
+            runFullAudit();
+        }
+    }, 1000);
+}
+
+function toggleAutoAudit() {
+    autoAuditEnabled = !autoAuditEnabled;
+    updateAutoAuditUI();
+    if (autoAuditEnabled) {
+        log('ð¢ Autonomous VC Continuous Audit Loop Resumed', 'info');
+        showToast('Auto-Audit Resumed', 'Continuous 20s network sweep active', 'info');
+        autoAuditCountdown = 20;
+    } else {
+        log('â¸ï¸ Autonomous VC Audit Paused by Operator', 'warning');
+        showToast('Auto-Audit Paused', 'Automated sweeps paused', 'warning');
+    }
+}
+
+function updateAutoAuditUI() {
+    const badge = document.getElementById('autoAuditBadge');
+    const toggleBtn = document.getElementById('autoAuditToggleBtn');
+    const cdEl = document.getElementById('autoAuditCountdown');
+    const ringIcon = document.getElementById('radarRingIcon');
+    
+    if (autoAuditEnabled) {
+        if (badge) { badge.className = 'badge b-optimal'; badge.textContent = 'ð¢ ACTIVE'; }
+        if (toggleBtn) { toggleBtn.innerHTML = '<i class="fas fa-pause"></i> Pause Loop'; toggleBtn.style.color = '#cbd5e1'; }
+        if (ringIcon) ringIcon.className = 'fas fa-radar fa-spin';
+    } else {
+        if (badge) { badge.className = 'badge b-warning'; badge.textContent = 'â¸ï¸ PAUSED'; }
+        if (toggleBtn) { toggleBtn.innerHTML = '<i class="fas fa-play"></i> Resume Loop'; toggleBtn.style.color = '#38bdf8'; }
+        if (cdEl) cdEl.textContent = 'Paused';
+        if (ringIcon) ringIcon.className = 'fas fa-radar';
+    }
+}
+
+function instantAuditSweep() {
+    autoAuditCountdown = 20;
+    runFullAudit();
+}
+
+function toggleAutoMonitor() {
+    toggleAutoAudit();
+}
+
+/* âââ FULL AUDIT (HIGH-SPEED CONCURRENT PROBING) ââââ */
 async function runFullAudit() {
     if (isAuditing) return;
     isAuditing = true;
@@ -1507,11 +1709,13 @@ async function runFullAudit() {
     const status = document.getElementById('auditStatus');
     const bar = document.getElementById('auditProgressBar');
     const fill = document.getElementById('auditProgressFill');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUDITINGâ¦';
-    bar.style.display = 'block';
-    fill.style.width = '0%';
-    log('🚀  Pre-VC Audit initiated across all ' + allStudios.length + ' endpoints', 'info');
+    if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUDITINGâ¦';
+    }
+    if (bar) bar.style.display = 'block';
+    if (fill) fill.style.width = '0%';
+    log('ð  Pre-VC Audit sweep initiated across all ' + allStudios.length + ' endpoints', 'info');
 
     // Audit VIP studios FIRST, then districts
     const sortedStudios = [...allStudios].sort((a,b) => {
@@ -1520,62 +1724,45 @@ async function runFullAudit() {
         return 0;
     });
 
-    // Run in parallel batches of 6 endpoints
-    const BATCH_SIZE = 6;
+    // Run in parallel batches of 8 endpoints for fast response
+    const BATCH_SIZE = 8;
     let done = 0;
     for (let i = 0; i < sortedStudios.length; i += BATCH_SIZE) {
         const batch = sortedStudios.slice(i, i + BATCH_SIZE);
-        status.textContent = `[${Math.min(i + BATCH_SIZE, sortedStudios.length)}/${sortedStudios.length}] Probing endpoints...`;
+        if (status) status.textContent = `[${Math.min(i + BATCH_SIZE, sortedStudios.length)}/${sortedStudios.length}] Probing endpoints...`;
         await Promise.all(batch.map(s => pingOne(s.code, s.vc_ip, s.gw_ip)));
         done += batch.length;
-        fill.style.width = Math.round((done / sortedStudios.length) * 100) + '%';
-        await new Promise(r => setTimeout(r, 60));
+        if (fill) fill.style.width = Math.round((done / sortedStudios.length) * 100) + '%';
+        await new Promise(r => setTimeout(r, 40));
     }
 
-    status.textContent = '';
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd">Space</span>';
-    bar.style.display = 'none';
-    fill.style.width = '0%';
+    if (status) status.textContent = '';
+    if (btn) {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-bolt"></i> RUN AUDIT <span class="kbd">Space</span>';
+    }
+    if (bar) bar.style.display = 'none';
+    if (fill) fill.style.width = '0%';
     isAuditing = false;
 
-    // Summary toast
-    const offCount = allStudios.filter(s => uptimeData[s.code]?.checks > 0 && !uptimeData[s.code]?.lastOnline).length;
-    const onCount = allStudios.filter(s => uptimeData[s.code]?.checks > 0 && uptimeData[s.code]?.lastOnline).length;
+    // Summary calculation
+    const offCount = allStudios.filter(s => uptimeData[s.code]•.checks > 0 && !uptimeData[s.code]•.lastOnline).length;
+    const onCount = allStudios.filter(s => uptimeData[s.code]•.checks > 0 && uptimeData[s.code]•.lastOnline).length;
     if (offCount > 0) {
-        showToast(`Audit Complete — ${offCount} Offline`, `${onCount}/${allStudios.length} endpoints 1080p ready`, 'critical');
-        log(`⚡  Audit done: ${offCount} offline, ${onCount} healthy`, 'critical');
+        showToast(`Audit Sweep Complete â ${offCount} Offline`, `${onCount}/${allStudios.length} endpoints 1080p ready`, 'critical');
+        log(`â¡  Audit sweep done: ${offCount} offline, ${onCount} healthy`, 'critical');
     } else {
-        showToast('Audit Complete — All Clear', `${onCount}/${allStudios.length} endpoints 1080p ready`, 'info');
-        log(`â  Audit complete — all ${allStudios.length} endpoints healthy`, 'info');
-    }
-}
-
-/* âââ AUTO MONITOR âââââââââââââââââââââââââââââââââ */
-function toggleAutoMonitor() {
-    const btn = document.getElementById('btnMonitor');
-    if (isMonitoring) {
-        isMonitoring = false;
-        clearInterval(monitorInterval);
-        btn.classList.remove('active');
-        btn.innerHTML = '<i class="fas fa-satellite-dish"></i> AUTO-MONITOR <span class="kbd">M</span>';
-        log('ð¡  Auto-Monitor paused', 'info');
-    } else {
-        isMonitoring = true;
-        btn.classList.add('active');
-        btn.innerHTML = '<i class="fas fa-satellite-dish fa-spin"></i> MONITORING <span class="kbd">M</span>';
-        log('ð¡  Auto-Monitor engaged — sweeping every 20 seconds', 'info');
-        runFullAudit();
-        monitorInterval = setInterval(() => { if (!isAuditing) runFullAudit(); }, 20000);
+        showToast('Audit Sweep Complete â All Clear', `${onCount}/${allStudios.length} endpoints 1080p ready`, 'info');
+        log(`â  Audit sweep complete â all ${allStudios.length} endpoints healthy`, 'info');
     }
 }
 
 /* âââ FILTER âââââââââââââââââââââââââââââââââââââââ */
 function setFilter(f) {
     currentFilter = f;
-    ['fAll','fOnline','fWarn','fCrit'].forEach(id => document.getElementById(id)?.classList.remove('active'));
+    ['fAll','fOnline','fWarn','fCrit'].forEach(id => document.getElementById(id)•.classList.remove('active'));
     const map = {all:'fAll', online:'fOnline', warn:'fWarn', critical:'fCrit'};
-    document.getElementById(map[f])?.classList.add('active');
+    document.getElementById(map[f])•.classList.add('active');
     filterStudios();
 }
 
@@ -1586,21 +1773,21 @@ function filterStudios() {
         const ip   = card.dataset.ip   || '';
         const sio  = card.dataset.sio  || '';
         const code = card.id.replace('card-','');
-        const badge = document.getElementById(`badge-${code}`)?.textContent?.toLowerCase() || '';
+        const badge = document.getElementById(`badge-${code}`)•.textContent•.toLowerCase() || '';
 
         let show = (name.includes(q) || ip.includes(q) || sio.includes(q));
         if (show && currentFilter === 'online')   show = badge.includes('ready') || badge.includes('warning');
         if (show && currentFilter === 'warn')     show = badge.includes('warning');
         if (show && currentFilter === 'critical') show = badge.includes('offline') || badge.includes('degraded') || badge.includes('unreachable');
-        card.style.display = show ? '' : 'none';
+        card.style.display = show • '' : 'none';
     });
 }
 
 /* âââ KEYBOARD SHORTCUTS âââââââââââââââââââââââââââ */
 document.addEventListener('keydown', e => {
     if (e.target.tagName === 'INPUT') return;
-    if (e.code === 'Space') { e.preventDefault(); runFullAudit(); }
-    if (e.code === 'KeyM')  toggleAutoMonitor();
+    if (e.code === 'Space') { e.preventDefault(); instantAuditSweep(); }
+    if (e.code === 'KeyM')  toggleAutoAudit();
     if (e.code === 'KeyS')  toggleSound();
     if (e.code === 'KeyT')  toggleTheme();
     if (e.code === 'KeyL')  toggleLog();
@@ -1614,7 +1801,7 @@ document.addEventListener('keydown', e => {
 function toggleSound() {
     soundEnabled = !soundEnabled;
     const icon = document.getElementById('soundIcon');
-    icon.className = soundEnabled ? 'fas fa-volume-up sound-on' : 'fas fa-volume-mute sound-off';
+    icon.className = soundEnabled • 'fas fa-volume-up sound-on' : 'fas fa-volume-mute sound-off';
 }
 document.getElementById('soundToggleBtn').addEventListener('click', toggleSound);
 
@@ -1652,7 +1839,7 @@ const synonymDict = { "patna": ["hq", "sio"], "noc": ["server", "patna"] };
 
 async function loadContactsDatabase() {
     try {
-        const response = await fetch('../contacts.json?t=' + Date.now());
+        const response = await fetch('/contacts.json•t=' + Date.now());
         if (response.ok) contactsDatabase = await response.json();
     } catch (e) {}
 }
@@ -1686,8 +1873,8 @@ function appendBotMessage(text) {
 function formatMarkdown(text) {
     if (!text) return "";
     let html = text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-    html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
-    html = html.replace(/\*(.*?)\*/g, "<em>$1</em>");
+    html = html.replace(/\*\*(.*•)\*\*/g, "<strong>$1</strong>");
+    html = html.replace(/\*(.*•)\*/g, "<em>$1</em>");
     html = html.replace(/`([^`]+)`/g, "<code style='background:rgba(56,189,248,0.12);color:#38bdf8;padding:1px 5px;border-radius:4px;font-family:JetBrains Mono,monospace;'>$1</code>");
     html = html.replace(/\n/g, "<br>");
     return html;
@@ -1714,18 +1901,18 @@ async function handleChatSend() {
     const matchedStudio = allStudios.find(s => lowerText.includes(s.name.toLowerCase()) || lowerText.includes(s.code));
     if (matchedStudio && (lowerText.includes('ip') || lowerText.includes('phone') || lowerText.includes('status') || lowerText.includes('ping') || lowerText.includes('reach'))) {
         try {
-            const r = await fetch(`../vc_api.php?action=ping&ip=${matchedStudio.vc_ip}&t=${Date.now()}`);
+            const r = await fetch(`/vc_api.php•action=ping&ip=${matchedStudio.vc_ip}&t=${Date.now()}`);
             const data = await r.json();
             typingIndicator.remove();
             
-            let statusText = data.online ? `🟢 **ONLINE (1080p Ready)**` : `🔴 **OFFLINE / UNREACHABLE**`;
+            let statusText = data.online • `ð¢ **ONLINE (1080p Ready)**` : `ð´ **OFFLINE / UNREACHABLE**`;
             let msg = `ð¹ **${matchedStudio.name} VC Studio Status**:\n\n` +
                       `* **Status:** ${statusText}\n` +
                       `* **VC Codec IP:** \`${matchedStudio.vc_ip}\`\n` +
                       `* **SWAN Gateway:** \`${matchedStudio.gw_ip}\`\n` +
-                      `* **VoIP IP Extension:** 📞 \`${matchedStudio.phone}\`\n` +
+                      `* **VoIP IP Extension:** ð \`${matchedStudio.phone}\`\n` +
                       `* **DIO/SIO In-Charge:** ${matchedStudio.sio}\n` +
-                      `* **Latency:** \`${data.latency_ms !== null ? data.latency_ms + 'ms' : 'TIMEOUT'}\` | **Jitter:** \`${data.jitter_ms !== null ? data.jitter_ms + 'ms' : 'TIMEOUT'}\` | **Loss:** \`${data.packet_loss}%\``;
+                      `* **Latency:** \`${data.latency_ms !== null • data.latency_ms + 'ms' : 'TIMEOUT'}\` | **Jitter:** \`${data.jitter_ms !== null • data.jitter_ms + 'ms' : 'TIMEOUT'}\` | **Loss:** \`${data.packet_loss}%\``;
             appendBotMessage(msg);
             return;
         } catch(e) {}
@@ -1757,7 +1944,7 @@ async function handleChatSend() {
     }
 
     try {
-        const response = await fetch('../chat.php', {
+        const response = await fetch('/chat.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -1765,7 +1952,7 @@ async function handleChatSend() {
                 messages: [
                     {
                         role: 'system',
-                        content: 'You are the Bihar State VC & NOC AI Assistant. Be concise, direct, and professional. Answer questions about Panasonic KX-VC1300 HDVC codecs, SIP 5060, H.323 1720, RTP 16000-20000, MTU 1420, DSCP EF (46) QoS, district IP phones, and live video conference operations in Bihar. This NOC Portal was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain or the founder, state: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +919897577007, email: seca1.shq.br@nic.in.' + dynamicContext
+                        content: 'You are the Bihar State VC & NOC AI Assistant. Be concise, direct, and professional. Answer questions about Panasonic KX-VC1300 HDVC codecs, SIP 5060, H.323 1720, RTP 16000-20000, MTU 1420, DSCP EF (46) QoS, district IP phones, and live video conference operations in Bihar. The State Video Conference (VC) Coordination & Helpdesk Team can be reached directly via Email: vc-bihar@nic.in or IP-PBX Extension / Hotline: 23004 (Location: Soochna Bhawan / 3rd Floor Hub, Patna). This NOC Portal was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain or the founder, state: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +919897577007, email: seca1.shq.br@nic.in.' + dynamicContext
                     },
                     { role: 'user', content: text }
                 ],
@@ -1776,7 +1963,7 @@ async function handleChatSend() {
 
         if (!response.ok) {
             typingIndicator.remove();
-            appendBotMessage("⚠️ Unable to reach AI backend. Please verify network connection.");
+            appendBotMessage("â ï¸ Unable to reach AI backend. Please verify network connection.");
             return;
         }
 
@@ -1815,7 +2002,7 @@ async function handleChatSend() {
         }
     } catch (e) {
         typingIndicator.remove();
-        appendBotMessage("⚠️ AI Assistant encounter an error. Please try again.");
+        appendBotMessage("â ï¸ AI Assistant encounter an error. Please try again.");
     }
 }
 
@@ -1824,7 +2011,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadStudios();
     setFilter('all');
     loadContactsDatabase();
-    log('ð¡  Bihar VC NOC Command Center online — Press [Space] to run audit, [M] to auto-monitor', 'info');
+    log('ð¡  Bihar VC NOC Command Center online â Press [Space] to run audit, [M] to auto-monitor', 'info');
 
     // Chatbot Event Listeners
     const chatbotToggleBtn = document.getElementById('chatbotToggleBtn');
@@ -1862,7 +2049,7 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- ââ FLOATING AI CHATBOT WIDGET HTML ââââââââââââââââ -->
 <div class="ai-chatbot-widget">
     <div class="chatbot-attention-tooltip" id="chatbotTooltip">
-        🤖 Bihar VC & NOC AI is online! Ask me anything.
+        ð¤ Bihar VC & NOC AI is online! Ask me anything.
     </div>
     <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar VC & NOC AI Assistant">
         <i class="fas fa-robot"></i>
@@ -1891,8 +2078,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <!-- Suggestion Chips -->
         <div class="chatbot-chips">
             <button onclick="sendSuggestionChip('VC Codec Specs')" class="chatbot-chip-btn">ð¹ VC Codec Specs</button>
-            <button onclick="sendSuggestionChip('District IP Phones')" class="chatbot-chip-btn">📞 District IP Phones</button>
-            <button onclick="sendSuggestionChip('Jitter & Loss Benchmarks')" class="chatbot-chip-btn">📊 QoS Benchmarks</button>
+            <button onclick="sendSuggestionChip('District IP Phones')" class="chatbot-chip-btn">ð District IP Phones</button>
+            <button onclick="sendSuggestionChip('Jitter & Loss Benchmarks')" class="chatbot-chip-btn">ð QoS Benchmarks</button>
             <button onclick="sendSuggestionChip('SIP Port Rules')" class="chatbot-chip-btn">ð SIP & H.323 Ports</button>
         </div>
         <div class="chatbot-input-area">
@@ -1903,7 +2090,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="chatbot-footer">
             <span>Bihar NOC Command Center</span>
-            <span>Built with ❤️ for Engineers</span>
+            <span>Built with â¤ï¸ for Engineers</span>
         </div>
     </div>
 </div>
@@ -1919,8 +2106,8 @@ window.addEventListener('DOMContentLoaded', () => {
             el: '#vanta-bg',
             mouseControls: true, touchControls: true, gyroControls: false,
             minHeight: 200, minWidth: 200, scale: 1,
-            color: isLight ? 0x0f4c81 : 0x38bdf8,
-            backgroundColor: isLight ? 0xeef3fb : 0x020810,
+            color: isLight • 0x0f4c81 : 0x38bdf8,
+            backgroundColor: isLight • 0xeef3fb : 0x020810,
             points: 14, maxDistance: 24, spacing: 17, showDots: true
         });
     } catch(e) { console.error('Vanta init failed:', e); }

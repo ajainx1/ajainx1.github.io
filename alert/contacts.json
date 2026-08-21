@@ -1,1847 +1,1073 @@
-[
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX100",
-    "ip": "2310X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F & SIO",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX101",
-    "ip": "2311X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Ara"
-  },
-  {
-    "name": "Somesh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX102",
-    "ip": "2312X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "G. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX103",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Ara"
-  },
-  {
-    "name": "S. Husain",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX104",
-    "ip": "2314X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "D. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX105",
-    "ip": "2315X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Araria"
-  },
-  {
-    "name": "R. Kr. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX106",
-    "ip": "2316X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kumar Divakar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX107",
-    "ip": "2317X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Arwal"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX108",
-    "ip": "2318X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX109",
-    "ip": "2319X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Aurangabad"
-  },
-  {
-    "name": "U. Mitra",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX110",
-    "ip": "2320X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX111",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Aurangabad"
-  },
-  {
-    "name": "A. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX112",
-    "ip": "2322X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Kr. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX113",
-    "ip": "2323X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Banka"
-  },
-  {
-    "name": "S. Mishra",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX114",
-    "ip": "2324X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Mishra",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX115",
-    "ip": "2325X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Begusarai"
-  },
-  {
-    "name": "M. J. Manzar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX116",
-    "ip": "2326X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Mishra",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX117",
-    "ip": "2327X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Bettiah"
-  },
-  {
-    "name": "N. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX118",
-    "ip": "2328X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-F",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Anand",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX119",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Bettiah"
-  },
-  {
-    "name": "R. Kr. Jha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX120",
-    "ip": "2330X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "V. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX121",
-    "ip": "2331X",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Bhabhua"
-  },
-  {
-    "name": "A. Kr. Gupta",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX122",
-    "ip": "2332X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "K. Neelesh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX123",
-    "ip": "2333X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Bhagalpur"
-  },
-  {
-    "name": "T. Prasad",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX124",
-    "ip": "2334X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX125",
-    "ip": "2335X",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Buxar"
-  },
-  {
-    "name": "S. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX126",
-    "ip": "2336X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX127",
-    "ip": "2337X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Darbhanga"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX128",
-    "ip": "2338X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kumari",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX129",
-    "ip": "2339X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Darbhanga"
-  },
-  {
-    "name": "R. Kr.",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX130",
-    "ip": "2340X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "V. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX131",
-    "ip": "2341X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Gaya"
-  },
-  {
-    "name": "P. Jha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX132",
-    "ip": "2342X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "H. Raj",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX133",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Gaya"
-  },
-  {
-    "name": "N. Tiwary",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX134",
-    "ip": "2344X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX135",
-    "ip": "2345X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Gopalganj"
-  },
-  {
-    "name": "S. Kumar Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX136",
-    "ip": "2346X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-E",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Kumar Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX137",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Gopalganj"
-  },
-  {
-    "name": "N. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX138",
-    "ip": "2348X",
-    "email": "dio-XXXX@nic.in",
-    "role": "DGM",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "D. Patel",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX139",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Jamui"
-  },
-  {
-    "name": "A. Pal",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX140",
-    "ip": "2350X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX141",
-    "ip": "2351X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Jamui"
-  },
-  {
-    "name": "R. Ranjan",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX142",
-    "ip": "2352X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "D. Kumar Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX143",
-    "ip": "2353X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Jehanabad"
-  },
-  {
-    "name": "P. Nayak",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX144",
-    "ip": "2354X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX145",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Jehanabad"
-  },
-  {
-    "name": "M. Asif",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX146",
-    "ip": "2356X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "U. Yadav",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX147",
-    "ip": "2357X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Director(IT)",
-    "location": "Katihar"
-  },
-  {
-    "name": "R. Ranjan",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX148",
-    "ip": "2358X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "Abhimanyu",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX149",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Katihar"
-  },
-  {
-    "name": "P. Kr.",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX150",
-    "ip": "2360X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Kumar Mandal",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX151",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Katihar"
-  },
-  {
-    "name": "R. Shyam",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX152",
-    "ip": "2362X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX153",
-    "ip": "2363X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Khagaria"
-  },
-  {
-    "name": "R. Kr. Sharma",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX154",
-    "ip": "2364X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Hassan",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX155",
-    "ip": "2365X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Kishanganj"
-  },
-  {
-    "name": "S. Kr. Das",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX156",
-    "ip": "2366X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "V. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX157",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Kishanganj"
-  },
-  {
-    "name": "B. Lal Gupta",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX158",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX159",
-    "ip": "2369X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Lakhisarai"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX160",
-    "ip": "2370X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "Akanksha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX161",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Lakhisarai"
-  },
-  {
-    "name": "A. Kr. Sherpa",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX162",
-    "ip": "2372X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "C. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX163",
-    "ip": "2373X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Madhepura"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX164",
-    "ip": "2374X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "Vivekanand",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX165",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Madhepura"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX166",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Nandan Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX167",
-    "ip": "2377X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Madhubani"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX168",
-    "ip": "2378X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "V. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX169",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Madhubani"
-  },
-  {
-    "name": "A. kumari",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX170",
-    "ip": "2380X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX171",
-    "ip": "2381X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Motihari"
-  },
-  {
-    "name": "R. Mishra",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX172",
-    "ip": "2382X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "C. Sakshi",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX173",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Munger"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX174",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kr. Yadav",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX175",
-    "ip": "2385X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Munger"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX176",
-    "ip": "2386X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX177",
-    "ip": "2387X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Muzaffarpur"
-  },
-  {
-    "name": "M. Naushad Yunus",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX178",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX179",
-    "ip": "2389X",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Nalanda"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX180",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX181",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Nalanda"
-  },
-  {
-    "name": "V. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX182",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX183",
-    "ip": "2393X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Nawada"
-  },
-  {
-    "name": "P. Sharma",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX184",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Verma",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX185",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Nawada"
-  },
-  {
-    "name": "A. Lal",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX186",
-    "ip": "2396X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX187",
-    "ip": "2397X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Patna"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX188",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX189",
-    "ip": "2399X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Patna"
-  },
-  {
-    "name": "N. Parween",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX190",
-    "ip": "2310X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Sinha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX191",
-    "ip": "2311X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-D",
-    "location": "Purnea"
-  },
-  {
-    "name": "A. Ranjan",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX192",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "T. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX193",
-    "ip": "2313X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-B",
-    "location": "Saran"
-  },
-  {
-    "name": "P. Rani",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX194",
-    "ip": "2314X",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX195",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Saran"
-  },
-  {
-    "name": "R. Yadav",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX196",
-    "ip": "2316X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Personal Assistant",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Anand",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX197",
-    "ip": "2317X",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Saharsa"
-  },
-  {
-    "name": "M. Kr.",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX198",
-    "ip": "2318X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Asst. Section Officer",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Krishna",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX199",
-    "ip": "2319X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Samastipur"
-  },
-  {
-    "name": "U. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX200",
-    "ip": "2320X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Asst. Section Officer",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "K. Mahood",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX201",
-    "ip": "2321X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Sasaram"
-  },
-  {
-    "name": "S. Sah",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX202",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Sr. Secretariat Asst.",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "C. Kumar Sinha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX203",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Sasaram"
-  },
-  {
-    "name": "S. Prabhat",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX204",
-    "ip": "2324X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Sr. Secretariat Asst.",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Raj",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX205",
-    "ip": "2325X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Sheikhpura"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX206",
-    "ip": "2326X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Jr. Secretariat Asst.",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "R. Shankar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX207",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Sheikhpura"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX208",
-    "ip": "2328X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Jr. Secretariat Asst.",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "A. Patel",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX209",
-    "ip": "2329X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Sheohar"
-  },
-  {
-    "name": "B. Kumar Ram",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX210",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Staff Car Driver",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "N. Ranjan",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX211",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Sheohar"
-  },
-  {
-    "name": "R. Ram",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX212",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "MTS",
-    "location": "Patna HQ"
-  },
-  {
-    "name": "M. Kumar Jha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX213",
-    "ip": "2333X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Sitamarhi"
-  },
-  {
-    "name": "R. Kr. Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX214",
-    "ip": "2334X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Siwan"
-  },
-  {
-    "name": "S. Kumari Sinha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX215",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Siwan"
-  },
-  {
-    "name": "J. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX216",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "SOE-SB",
-    "location": "Supaul"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX217",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-A",
-    "location": "Supaul"
-  },
-  {
-    "name": "G. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX218",
-    "ip": "2338X",
-    "email": "dio-XXXX@nic.in",
-    "role": "Scientist-C",
-    "location": "Vaishali"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX219",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "STA-B",
-    "location": "Vaishali"
-  },
-  {
-    "name": "R. Yadav",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX220",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Araria"
-  },
-  {
-    "name": "H. Anand",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX221",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Aurangabad"
-  },
-  {
-    "name": "S. Prabha",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX222",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Banka"
-  },
-  {
-    "name": "R. Shekhar",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX223",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Begusarai"
-  },
-  {
-    "name": "A. Kumari",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX224",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Kaimur"
-  },
-  {
-    "name": "A. Nadan Singh",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX225",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Darbhanga"
-  },
-  {
-    "name": "C. Rani",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX226",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Khagaria"
-  },
-  {
-    "name": "S. Kumari",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX227",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Purnea"
-  },
-  {
-    "name": "R. Chand",
-    "source": "NIC Employee",
-    "mobile": "+91 98XXX-XX228",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "DIO/ADIO",
-    "location": "Sitamarhi"
-  },
-  {
-    "name": "R. Shankar Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX229",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Araria"
-  },
-  {
-    "name": "G. Prabhat",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX230",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Araria"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX231",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Arwal"
-  },
-  {
-    "name": "G. Raj",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX232",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Arwal"
-  },
-  {
-    "name": "J. Paul",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX233",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Aurangabad"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX234",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Aurangabad"
-  },
-  {
-    "name": "N. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX235",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Banka"
-  },
-  {
-    "name": "S. Jamuar Jamuar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX236",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Banka"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX237",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Begusarai"
-  },
-  {
-    "name": "C. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX238",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Begusarai"
-  },
-  {
-    "name": "C. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX239",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Bhagalpur"
-  },
-  {
-    "name": "R. Chandra",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX240",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Bhagalpur"
-  },
-  {
-    "name": "N. Kant",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX241",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Bhojpur"
-  },
-  {
-    "name": "K. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX242",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Bhojpur"
-  },
-  {
-    "name": "M. Raj",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX243",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Buxar"
-  },
-  {
-    "name": "A. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX244",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Buxar"
-  },
-  {
-    "name": "P. Thakur",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX245",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Darbhanga"
-  },
-  {
-    "name": "R. Anand",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX246",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Darbhanga"
-  },
-  {
-    "name": "D. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX247",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "East Champaran"
-  },
-  {
-    "name": "V. Pasawan",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX248",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "East Champaran"
-  },
-  {
-    "name": "V. Chandra Sinha",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX249",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Gaya"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX250",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Gaya"
-  },
-  {
-    "name": "A. Pathak",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX251",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Gopalganj"
-  },
-  {
-    "name": "M. Mukul",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX252",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Gopalganj"
-  },
-  {
-    "name": "N. Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX253",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Jamui"
-  },
-  {
-    "name": "M. Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX254",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Jamui"
-  },
-  {
-    "name": "S. Alam",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX255",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Jehanabad"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX256",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Jehanabad"
-  },
-  {
-    "name": "P. Kishor Suman",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX257",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Kaimur"
-  },
-  {
-    "name": "R. Yadav",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX258",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Kaimur"
-  },
-  {
-    "name": "B. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX259",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Katihar"
-  },
-  {
-    "name": "M. Shekhar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX260",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Katihar"
-  },
-  {
-    "name": "A. Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX261",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Khagaria"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX262",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Khagaria"
-  },
-  {
-    "name": "M. Kishor Lal",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX263",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Kishanganj"
-  },
-  {
-    "name": "M. Alam",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX264",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Kishanganj"
-  },
-  {
-    "name": "Nikhil",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX265",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Lakhisarai"
-  },
-  {
-    "name": "M. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX266",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Lakhisarai"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX267",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Madhepura"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX268",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Madhepura"
-  },
-  {
-    "name": "K. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX269",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Madhubani"
-  },
-  {
-    "name": "C. Kumar Jha",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX270",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Madhubani"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX271",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Munger"
-  },
-  {
-    "name": "A. Kr. Thakur",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX272",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Munger"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX273",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Muzaffarpur"
-  },
-  {
-    "name": "N. Kumar Jha",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX274",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Muzaffarpur"
-  },
-  {
-    "name": "N. Kumar Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX275",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Nalanda"
-  },
-  {
-    "name": "A. Ranjan",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX276",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Nalanda"
-  },
-  {
-    "name": "A. Prakash",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX277",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Nawada"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX278",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Nawada"
-  },
-  {
-    "name": "N. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX279",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Patna"
-  },
-  {
-    "name": "A. Anand",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX280",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Patna"
-  },
-  {
-    "name": "S. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX281",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Purnea"
-  },
-  {
-    "name": "A. Prince",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX282",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Purnea"
-  },
-  {
-    "name": "M. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX283",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Rohtas"
-  },
-  {
-    "name": "R. Ranjan",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX284",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Rohtas"
-  },
-  {
-    "name": "C. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX285",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Saharsa"
-  },
-  {
-    "name": "N. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX286",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Saharsa"
-  },
-  {
-    "name": "A. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX287",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Samastipur"
-  },
-  {
-    "name": "R. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX288",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Samastipur"
-  },
-  {
-    "name": "A. Anand",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX289",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Saran"
-  },
-  {
-    "name": "M. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX290",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Saran"
-  },
-  {
-    "name": "A. Anand",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX291",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sheikhpura"
-  },
-  {
-    "name": "M. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX292",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sheikhpura"
-  },
-  {
-    "name": "B. kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX293",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sheohar"
-  },
-  {
-    "name": "M. Mustakin",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX294",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sheohar"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX295",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sitamarhi"
-  },
-  {
-    "name": "R. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX296",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Sitamarhi"
-  },
-  {
-    "name": "H. Prakash",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX297",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Siwan"
-  },
-  {
-    "name": "G. Kumar Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX298",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Siwan"
-  },
-  {
-    "name": "P. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX299",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Supaul"
-  },
-  {
-    "name": "A. Kumar Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX300",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Supaul"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX301",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Vaishali"
-  },
-  {
-    "name": "M. Kumar Rawat",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX302",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "Vaishali"
-  },
-  {
-    "name": "K. Shubham Singh",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX303",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "West Champaran"
-  },
-  {
-    "name": "S. Kumar",
-    "source": "Network Engineer",
-    "mobile": "+91 98XXX-XX304",
-    "ip": "",
-    "email": "dio-XXXX@nic.in",
-    "role": "Network Engineer",
-    "location": "West Champaran"
-  }
+﻿[
+    {
+        "name":  "State Video Conference Operations Desk",
+        "source":  "State Operations Command",
+        "role":  "State Video Conference Operations \u0026 Technical Support Desk",
+        "ip":  "23004",
+        "email":  "vc-bihar@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "State HQ (Patna)"
+    },
+    {
+        "name":  "VIP \u0026 38-District VC Studio Hub",
+        "source":  "State Operations Command",
+        "role":  "State VC Studio Operations \u0026 Live Codec Monitoring Control Room",
+        "ip":  "23004",
+        "email":  "vc-bihar@nic.in",
+        "mobile":  "0612-2215096",
+        "location":  "Soochna Bhawan, Patna"
+    },
+    {
+        "name":  "State Informatics Officer (SIO Executive Desk)",
+        "source":  "State Operations Command",
+        "role":  "Scientist-F \u0026 SIO Secretariat",
+        "ip":  "23001",
+        "email":  "sio-bih@nic.in",
+        "mobile":  "0612-2547198",
+        "location":  "State HQ (Patna)"
+    },
+    {
+        "name":  "State Network Operations Center (NOC Helpdesk)",
+        "source":  "State Operations Command",
+        "role":  "24×7 State Network Operations \u0026 Link Monitoring Cell",
+        "ip":  "23000",
+        "email":  "seca1.shq.br@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "State HQ (Patna)"
+    },
+    {
+        "name":  "State Cyber Security \u0026 EDR Response Desk",
+        "source":  "State Operations Command",
+        "role":  "State Cyber Security Operations \u0026 CERT-In Compliance Cell",
+        "ip":  "23040",
+        "email":  "seca1.shq.br@nic.in",
+        "mobile":  "0612-2547198",
+        "location":  "State HQ (Patna)"
+    },
+    {
+        "name":  "District Informatics Officer (Patna)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23001",
+        "email":  "dio-pat@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Patna DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Patna)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23001A",
+        "email":  "adio-pat@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Patna DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Patna)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23001N",
+        "email":  "fms-pat@nic.in, dio-pat@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Patna District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Gaya)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23002",
+        "email":  "dio-gay@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gaya DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Gaya)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23002A",
+        "email":  "adio-gay@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gaya DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Gaya)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23002N",
+        "email":  "fms-gay@nic.in, dio-gay@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gaya District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Muzaffarpur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23003",
+        "email":  "dio-muz@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Muzaffarpur DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Muzaffarpur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23003A",
+        "email":  "adio-muz@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Muzaffarpur DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Muzaffarpur)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23003N",
+        "email":  "fms-muz@nic.in, dio-muz@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Muzaffarpur District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Bhagalpur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23004",
+        "email":  "dio-bgp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhagalpur DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Bhagalpur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23004A",
+        "email":  "adio-bgp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhagalpur DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Bhagalpur)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23004N",
+        "email":  "fms-bgp@nic.in, dio-bgp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhagalpur District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Darbhanga)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23005",
+        "email":  "dio-dbg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Darbhanga DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Darbhanga)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23005A",
+        "email":  "adio-dbg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Darbhanga DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Darbhanga)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23005N",
+        "email":  "fms-dbg@nic.in, dio-dbg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Darbhanga District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Purnia)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23006",
+        "email":  "dio-pur@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Purnia DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Purnia)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23006A",
+        "email":  "adio-pur@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Purnia DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Purnia)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23006N",
+        "email":  "fms-pur@nic.in, dio-pur@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Purnia District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Begusarai)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23007",
+        "email":  "dio-bgs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Begusarai DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Begusarai)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23007A",
+        "email":  "adio-bgs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Begusarai DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Begusarai)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23007N",
+        "email":  "fms-bgs@nic.in, dio-bgs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Begusarai District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Bhojpur (Ara))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23008",
+        "email":  "dio-ara@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhojpur (Ara) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Bhojpur (Ara))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23008A",
+        "email":  "adio-ara@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhojpur (Ara) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Bhojpur (Ara))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23008N",
+        "email":  "fms-ara@nic.in, dio-ara@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Bhojpur (Ara) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Nalanda (Biharsharif))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23009",
+        "email":  "dio-nln@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nalanda (Biharsharif) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Nalanda (Biharsharif))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23009A",
+        "email":  "adio-nln@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nalanda (Biharsharif) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Nalanda (Biharsharif))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23009N",
+        "email":  "fms-nln@nic.in, dio-nln@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nalanda (Biharsharif) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Saran (Chhapra))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23010",
+        "email":  "dio-srn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saran (Chhapra) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Saran (Chhapra))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23010A",
+        "email":  "adio-srn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saran (Chhapra) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Saran (Chhapra))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23010N",
+        "email":  "fms-srn@nic.in, dio-srn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saran (Chhapra) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Samastipur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23011",
+        "email":  "dio-smp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Samastipur DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Samastipur)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23011A",
+        "email":  "adio-smp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Samastipur DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Samastipur)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23011N",
+        "email":  "fms-smp@nic.in, dio-smp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Samastipur District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Vaishali (Hajipur))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23012",
+        "email":  "dio-vsh@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Vaishali (Hajipur) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Vaishali (Hajipur))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23012A",
+        "email":  "adio-vsh@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Vaishali (Hajipur) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Vaishali (Hajipur))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23012N",
+        "email":  "fms-vsh@nic.in, dio-vsh@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Vaishali (Hajipur) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Siwan)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23013",
+        "email":  "dio-swn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Siwan DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Siwan)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23013A",
+        "email":  "adio-swn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Siwan DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Siwan)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23013N",
+        "email":  "fms-swn@nic.in, dio-swn@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Siwan District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Gopalganj)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23014",
+        "email":  "dio-gpg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gopalganj DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Gopalganj)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23014A",
+        "email":  "adio-gpg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gopalganj DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Gopalganj)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23014N",
+        "email":  "fms-gpg@nic.in, dio-gpg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Gopalganj District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Rohtas (Sasaram))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23015",
+        "email":  "dio-rht@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Rohtas (Sasaram) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Rohtas (Sasaram))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23015A",
+        "email":  "adio-rht@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Rohtas (Sasaram) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Rohtas (Sasaram))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23015N",
+        "email":  "fms-rht@nic.in, dio-rht@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Rohtas (Sasaram) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Buxar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23016",
+        "email":  "dio-bxr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Buxar DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Buxar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23016A",
+        "email":  "adio-bxr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Buxar DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Buxar)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23016N",
+        "email":  "fms-bxr@nic.in, dio-bxr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Buxar District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Kaimur (Bhabhua))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23017",
+        "email":  "dio-kmr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kaimur (Bhabhua) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Kaimur (Bhabhua))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23017A",
+        "email":  "adio-kmr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kaimur (Bhabhua) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Kaimur (Bhabhua))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23017N",
+        "email":  "fms-kmr@nic.in, dio-kmr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kaimur (Bhabhua) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Jehanabad)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23018",
+        "email":  "dio-jhd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jehanabad DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Jehanabad)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23018A",
+        "email":  "adio-jhd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jehanabad DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Jehanabad)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23018N",
+        "email":  "fms-jhd@nic.in, dio-jhd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jehanabad District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Arwal)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23019",
+        "email":  "dio-arw@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Arwal DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Arwal)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23019A",
+        "email":  "adio-arw@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Arwal DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Arwal)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23019N",
+        "email":  "fms-arw@nic.in, dio-arw@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Arwal District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Aurangabad)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23020",
+        "email":  "dio-agb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Aurangabad DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Aurangabad)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23020A",
+        "email":  "adio-agb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Aurangabad DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Aurangabad)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23020N",
+        "email":  "fms-agb@nic.in, dio-agb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Aurangabad District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Nawada)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23021",
+        "email":  "dio-nwd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nawada DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Nawada)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23021A",
+        "email":  "adio-nwd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nawada DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Nawada)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23021N",
+        "email":  "fms-nwd@nic.in, dio-nwd@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Nawada District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (East Champaran (Motihari))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23022",
+        "email":  "dio-mth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "East Champaran (Motihari) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (East Champaran (Motihari))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23022A",
+        "email":  "adio-mth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "East Champaran (Motihari) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (East Champaran (Motihari))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23022N",
+        "email":  "fms-mth@nic.in, dio-mth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "East Champaran (Motihari) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (West Champaran (Bettiah))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23023",
+        "email":  "dio-bth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "West Champaran (Bettiah) DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (West Champaran (Bettiah))",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23023A",
+        "email":  "adio-bth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "West Champaran (Bettiah) DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (West Champaran (Bettiah))",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23023N",
+        "email":  "fms-bth@nic.in, dio-bth@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "West Champaran (Bettiah) District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Sitamarhi)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23024",
+        "email":  "dio-stm@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sitamarhi DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Sitamarhi)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23024A",
+        "email":  "adio-stm@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sitamarhi DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Sitamarhi)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23024N",
+        "email":  "fms-stm@nic.in, dio-stm@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sitamarhi District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Sheohar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23025",
+        "email":  "dio-shr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheohar DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Sheohar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23025A",
+        "email":  "adio-shr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheohar DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Sheohar)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23025N",
+        "email":  "fms-shr@nic.in, dio-shr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheohar District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Madhubani)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23026",
+        "email":  "dio-mdb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhubani DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Madhubani)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23026A",
+        "email":  "adio-mdb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhubani DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Madhubani)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23026N",
+        "email":  "fms-mdb@nic.in, dio-mdb@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhubani District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Saharsa)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23027",
+        "email":  "dio-shs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saharsa DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Saharsa)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23027A",
+        "email":  "adio-shs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saharsa DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Saharsa)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23027N",
+        "email":  "fms-shs@nic.in, dio-shs@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Saharsa District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Supaul)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23028",
+        "email":  "dio-spl@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Supaul DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Supaul)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23028A",
+        "email":  "adio-spl@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Supaul DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Supaul)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23028N",
+        "email":  "fms-spl@nic.in, dio-spl@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Supaul District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Madhepura)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23029",
+        "email":  "dio-mdp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhepura DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Madhepura)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23029A",
+        "email":  "adio-mdp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhepura DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Madhepura)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23029N",
+        "email":  "fms-mdp@nic.in, dio-mdp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Madhepura District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Katihar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23030",
+        "email":  "dio-ktr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Katihar DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Katihar)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23030A",
+        "email":  "adio-ktr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Katihar DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Katihar)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23030N",
+        "email":  "fms-ktr@nic.in, dio-ktr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Katihar District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Araria)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23031",
+        "email":  "dio-arr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Araria DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Araria)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23031A",
+        "email":  "adio-arr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Araria DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Araria)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23031N",
+        "email":  "fms-arr@nic.in, dio-arr@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Araria District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Kishanganj)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23032",
+        "email":  "dio-ksg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kishanganj DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Kishanganj)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23032A",
+        "email":  "adio-ksg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kishanganj DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Kishanganj)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23032N",
+        "email":  "fms-ksg@nic.in, dio-ksg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Kishanganj District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Munger)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23033",
+        "email":  "dio-mng@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Munger DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Munger)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23033A",
+        "email":  "adio-mng@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Munger DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Munger)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23033N",
+        "email":  "fms-mng@nic.in, dio-mng@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Munger District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Jamui)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23034",
+        "email":  "dio-jmu@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jamui DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Jamui)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23034A",
+        "email":  "adio-jmu@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jamui DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Jamui)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23034N",
+        "email":  "fms-jmu@nic.in, dio-jmu@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Jamui District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Khagaria)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23035",
+        "email":  "dio-kgg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Khagaria DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Khagaria)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23035A",
+        "email":  "adio-kgg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Khagaria DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Khagaria)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23035N",
+        "email":  "fms-kgg@nic.in, dio-kgg@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Khagaria District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Lakhisarai)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23036",
+        "email":  "dio-lks@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Lakhisarai DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Lakhisarai)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23036A",
+        "email":  "adio-lks@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Lakhisarai DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Lakhisarai)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23036N",
+        "email":  "fms-lks@nic.in, dio-lks@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Lakhisarai District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Sheikhpura)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23037",
+        "email":  "dio-skp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheikhpura DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Sheikhpura)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23037A",
+        "email":  "adio-skp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheikhpura DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Sheikhpura)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23037N",
+        "email":  "fms-skp@nic.in, dio-skp@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Sheikhpura District Collectorate"
+    },
+    {
+        "name":  "District Informatics Officer (Banka)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / District Informatics Officer (DIO Desk)",
+        "ip":  "23038",
+        "email":  "dio-bnk@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Banka DHQ"
+    },
+    {
+        "name":  "Additional District Informatics Officer (Banka)",
+        "source":  "District Informatics Cell",
+        "role":  "Scientist / ADIO Technical Support Desk",
+        "ip":  "23038A",
+        "email":  "adio-bnk@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Banka DHQ"
+    },
+    {
+        "name":  "District Network \u0026 FMS Operations (Banka)",
+        "source":  "District Network Support",
+        "role":  "District Network Support \u0026 Facility Management Engineer",
+        "ip":  "23038N",
+        "email":  "fms-bnk@nic.in, dio-bnk@nic.in",
+        "mobile":  "0612-2547906",
+        "location":  "Banka District Collectorate"
+    }
 ]

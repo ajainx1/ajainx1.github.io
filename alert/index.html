@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,11 +14,11 @@
     <link rel="apple-touch-icon" href="../Emblem_of_India.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2•family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&display=swap">
     
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="static/style.css?v=1786601814">
-    <link rel="stylesheet" href="static/chatbot.css?v=1786601814">
+    <link rel="stylesheet" href="static/style.css•v=1786601814">
+    <link rel="stylesheet" href="static/chatbot.css•v=1786601814">
     <script>
         function adjustZoom() {
             const width = window.innerWidth;
@@ -81,19 +81,123 @@
         font-family: 'JetBrains Mono', monospace !important;
         font-weight: 900 !important;
     }
+
+    /* =========================================================
+       MOBILE DEVICE RESPONSIVENESS & TOUCH OPTIMIZATION (ALERT PORTAL)
+       ========================================================= */
+    @media (max-width: 768px) {
+        html, body {
+            zoom: 1.0 !important;
+            overflow-x: hidden !important;
+            width: 100% !important;
+        }
+
+        .app-container {
+            padding: 10px 8px !important;
+            margin: 0 !important;
+            width: 100% !important;
+        }
+
+        .app-header {
+            flex-direction: column !important;
+            gap: 12px !important;
+            padding: 12px 10px !important;
+            align-items: stretch !important;
+        }
+
+        .logo-area {
+            justify-content: center !important;
+        }
+
+        .logo-title h1 {
+            font-size: 1.2rem !important;
+        }
+
+        .logo-title p {
+            font-size: 0.7rem !important;
+        }
+
+        .header-right {
+            flex-wrap: wrap !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            width: 100% !important;
+        }
+
+        .home-portal-btn {
+            flex: 1 1 calc(50% - 10px) !important;
+            min-height: 42px !important;
+            font-size: 0.72rem !important;
+            justify-content: center !important;
+            margin-right: 0 !important;
+        }
+
+        .digital-clock {
+            width: 100% !important;
+            text-align: center !important;
+            margin-top: 4px !important;
+        }
+
+        /* Stat Grid Scaling for Smartphones */
+        .stats-grid, .summary-cards {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+        }
+
+        .stat-card {
+            padding: 14px 12px !important;
+            border-radius: 12px !important;
+        }
+
+        .stat-value {
+            font-size: 1.6rem !important;
+        }
+
+        /* Host Grid & Category Filters Mobile Touch */
+        .host-grid, .category-grid {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
+        }
+
+        .category-tab, .filter-chip {
+            min-height: 42px !important;
+            padding: 10px 14px !important;
+            font-size: 0.85rem !important;
+        }
+
+        /* Mobile Touch Active Feedback */
+        .home-portal-btn:active, .stat-card:active, .category-tab:active {
+            transform: scale(0.96) !important;
+        }
+
+        /* Mobile Hyperlink Touch Optimization */
+        a {
+            touch-action: manipulation !important;
+            -webkit-tap-highlight-color: rgba(56, 189, 248, 0.25) !important;
+            word-break: break-word !important;
+        }
+
+        .home-portal-btn, .logo-link {
+            min-height: 44px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+    }
 </style>
 </head>
 <body>
     <div id="vanta-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.85;"></div>
     
-    
+    <!-- Top Gov Tricolor Bar -->
+    <div class="gov-banner" style="background: linear-gradient(90deg, #FF9933 0%, #FF9933 28%, #FFFFFF 46%, #000080 50%, #FFFFFF 54%, #128807 72%, #128807 100%) !important; background-size: 250% 100% !important; height: 6px !important; width: 100% !important; animation: tiranga-banner-flow 6s linear infinite !important; box-shadow: 0 0 15px rgba(255, 153, 51, 0.6), 0 0 15px rgba(18, 136, 7, 0.6) !important;"></div>
 
     <div class="app-container">
         <!-- Header -->
         <header class="app-header" style="position: relative; z-index: 9999;">
             <div class="logo-area">
-                <a href="/noc/" class="logo-link" title="Go to Main Bihar State NOC Portal" style="display: flex; align-items: center;">
-                    <img src="./NIC_Preview-1.png" alt="NIC Logo" class="nic-logo-img" style="height: 38px; width: auto; max-width: 180px; object-fit: contain; display: block;" onerror="this.src='../NIC_Preview-1.png'">
+                <a href="/noc/" class="logo-link" title="Go to Main Portal Home" style="display: flex; align-items: center;">
+                    <img src="../NIC_Preview-1.png" alt="NIC Logo" class="nic-logo-img" style="height: 38px; width: auto; max-width: 180px; object-fit: contain; display: block;">
                 </a>
                 <div class="logo-divider" style="width: 1px; height: 32px; background: var(--border-color); margin: 0 4px;"></div>
                 <div class="logo-title">
@@ -102,17 +206,17 @@
                 </div>
             </div>
             <div class="header-right">
-                <a href="/vc/" class="home-portal-btn" title="38-District Video Conference (VC) QoS & Studio Codec Monitor" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(3, 105, 161, 0.3)); border: 1.5px solid #38bdf8; border-radius: 20px; color: #38bdf8; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box; margin-right: 6px; box-shadow: 0 0 15px rgba(14, 165, 233, 0.35);">
-                    <i class="fas fa-video"></i> 🎥 VC Studio Monitor
+                <a href="/vc/" class="home-portal-btn" title="38-District Video Conference (VC) QoS & Studio Codec Monitor" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(3, 105, 161, 0.3)); border: 1.5px solid #38bdf8; border-radius: 20px; color: #38bdf8; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box; margin-right: 6px; box-shadow: 0 0 15px rgba(14, 165, 233, 0.35);" target="_blank">
+                    <i class="fas fa-video"></i> ð¥ VC Studio Monitor
                 </a>
                 <button onclick="openViralShareModal();" class="home-portal-btn" title="Share NOC Uptime & Health Impact Card" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.3)); border: 1px solid rgba(249, 115, 22, 0.5); border-radius: 20px; color: #f97316; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box; margin-right: 6px; box-shadow: 0 0 15px rgba(249, 115, 22, 0.25);">
                     <i class="fas fa-share-alt" style="color: #f97316;"></i> Share Impact
                 </button>
-                <a href="/speed/" class="home-portal-btn" title="Run Live Bandwidth & Speed Test" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box; margin-right: 6px;">
+                <button onclick="openBandwidthModal();"  class="home-portal-btn" title="Run Live Bandwidth & Speed Test" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; color: var(--accent); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box; margin-right: 6px;">
                     <i class="fas fa-tachometer-alt"></i> Bandwidth Test
-                </a>
-                <a href="/" class="home-portal-btn" title="Back to Cybersecurity Portfolio Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
-                    <i class="fas fa-home"></i> Portfolio Home
+                </button>
+                <a href="/noc/" class="home-portal-btn"  title="Back to Main Portal Home" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 8px 16px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); border-radius: 20px; color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap; height: 36px; box-sizing: border-box;">
+                    <i class="fas fa-home"></i> Home Portal
                 </a>
                 <div class="digital-clock" id="digital-clock">--:--:--</div>
                 
@@ -286,7 +390,7 @@
                 <i class="fas fa-satellite-dish" style="margin-right: 6px;"></i> LIVE
             </div>
             <marquee behavior="scroll" direction="left" scrollamount="6" style="flex: 1; color: #10b981; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">
-                🟢 NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; ⚡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; 🔄 LATENCY AVG: 12ms &nbsp;&nbsp;|&nbsp;&nbsp; 🛡️ FIREWALL DROP RATE: 0.01%
+                ð¢ NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; ð¢ STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; ð¢ 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; â¡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; ð LATENCY AVG: 12ms &nbsp;&nbsp;|&nbsp;&nbsp; ð¡ï¸ FIREWALL DROP RATE: 0.01%
             </marquee>
         </div>
 
@@ -385,10 +489,10 @@
                 <button onclick="triggerImmediateAudit();" class="pro-row-btn" title="Run Immediate Parallel Network Re-Sync" style="background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; padding: 7px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
                     <i class="fas fa-sync-alt" id="audit-sync-icon"></i> Instant Network Audit
                 </button>
-                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" target="_blank" rel="noopener noreferrer" class="pro-row-btn" title="Open TACACS Device Authentication Portal" style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); color: #a855f7; padding: 7px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action•portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" target="_blank" rel="noopener noreferrer" class="pro-row-btn" title="Open TACACS Device Authentication Portal" style="background: rgba(168, 85, 247, 0.12); border: 1px solid rgba(168, 85, 247, 0.35); color: #a855f7; padding: 7px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
                     <i class="fas fa-key"></i> TACACS Portal
                 </a>
-                <a href="http://10.X.X.0:8080/FMS-attendance/index.php" target="_blank" rel="noopener noreferrer" class="pro-row-btn" title="Open FMS Attendance & Billing System" style="background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.35); color: #f97316; padding: 7px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
+                <a href="https://attendance.gov.in" target="_blank" rel="noopener noreferrer" class="pro-row-btn" title="Open FMS Attendance & Billing System" style="background: rgba(249, 115, 22, 0.12); border: 1px solid rgba(249, 115, 22, 0.35); color: #f97316; padding: 7px 14px; border-radius: 10px; font-size: 0.78rem; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease;">
                     <i class="fas fa-user-clock"></i> FMS System
                 </a>
             </div>
@@ -879,10 +983,10 @@
             </div>
             <!-- Suggestion Chips -->
             <div class="chatbot-chips">
-                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
-                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📋 Doc Submission</button>
-                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">📊 Service Status</button>
-                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">🔐 Network Info</button>
+                <button onclick="sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">ð Support Numbers</button>
+                <button onclick="sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">ð Doc Submission</button>
+                <button onclick="sendSuggestionChip('Service Status')" class="chatbot-chip-btn">ð Service Status</button>
+                <button onclick="sendSuggestionChip('Network Info')" class="chatbot-chip-btn">ð Network Info</button>
             </div>
             <div class="chatbot-input-area">
                 <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Type your message..." autocomplete="off">
@@ -900,12 +1004,12 @@
             <!-- Footer -->
             <div class="chatbot-footer">
                 <span>For internal use only.</span>
-                <span>Built with ❤️ for the team.</span>
+                <span>Built with â¤ï¸ for the team.</span>
             </div>
         </div>
     </div>
 
-    <script src="static/chatbot.js?v=1786601814"></script>
+    <script src="static/chatbot.js•v=1786601814"></script>
 
 
 
@@ -928,8 +1032,8 @@
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-    <script src="static/script.js?v=1786601814"></script>
-    <script src="static/dnd-engine.js?v=1.0"></script>
+    <script src="static/script.js•v=1786601814"></script>
+    <script src="static/dnd-engine.js•v=1.0"></script>
 
 
 
@@ -1159,9 +1263,9 @@ window.runLiveBandwidthTest = async function() {
     consoleBox.innerHTML = '<span style="color:#f59e0b;">> INITIALIZING DIRECT TCP/ICMP TUNNEL...</span>';
 
     var hostOrigin = window.location.origin || (window.location.protocol + '//' + window.location.host);
-    var urlPing = hostOrigin + '/alert/bandwidth.php?action=ping';
-    var urlDl = hostOrigin + '/alert/bandwidth.php?action=download';
-    var urlUl = hostOrigin + '/alert/bandwidth.php?action=upload';
+    var urlPing = hostOrigin + '/alert/bandwidth.php•action=ping';
+    var urlDl = hostOrigin + '/alert/bandwidth.php•action=download';
+    var urlUl = hostOrigin + '/alert/bandwidth.php•action=upload';
 
     try {
         logToConsole('TRANSMITTING 4-BURST ICMP ECHO (64 bytes) TO CORE EDGE...', '#38bdf8');

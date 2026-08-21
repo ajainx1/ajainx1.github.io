@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
     // DOM Elements Cache
     const shqGrid = document.getElementById("hosts-grid-shq");
     const dhqGrid = document.getElementById("hosts-grid-dhq");
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hoverBadge.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Broadcasting WhatsApp...`;
             hoverBadge.style.backgroundColor = "#d97706"; // Saffron-orange loading
             
-            fetch("api.php?endpoint=trigger-active-outages")
+            fetch("api.php•endpoint=trigger-active-outages")
                 .then(res => res.json())
                 .then(data => {
                     console.log("Hover alerts dispatch response:", data);
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentGridZoom = 1.0;
     const urlParams = new URLSearchParams(window.location.search);
     const searchParam = urlParams.get('search');
-    window.searchQuery = searchParam ? searchParam.trim() : "";
+    window.searchQuery = searchParam • searchParam.trim() : "";
     if (searchParam) {
         inputSearch.value = searchParam.trim();
     }
@@ -227,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
             speechText = speechText.replace(/^\d+\.\d+\s+/g, '');
 
             // Expand Bihar-specific geographic abbreviations
-            speechText = speechText.replace(/\bW\.(?=\w)/gi, 'West ');
-            speechText = speechText.replace(/\bE\.(?=\w)/gi, 'East ');
+            speechText = speechText.replace(/\bW\.(•=\w)/gi, 'West ');
+            speechText = speechText.replace(/\bE\.(•=\w)/gi, 'East ');
             speechText = speechText.replace(/\bW\.Champaran\b/gi, 'West Champaran');
             speechText = speechText.replace(/\bE\.Champaran\b/gi, 'East Champaran');
 
@@ -236,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
             speechText = speechText.replace(/[_\-\/]+/g, ' ');
 
             // Map router model families to spoken word
-            speechText = speechText.replace(/\b(ASR1002[- ]?X|ASR1002|ASR1001|ASR)\b/gi, 'Router');
+            speechText = speechText.replace(/\b(ASR1002[- ]•X|ASR1002|ASR1001|ASR)\b/gi, 'Router');
 
             // Expand NIC/NOC-specific acronyms for natural pronunciation
             speechText = speechText.replace(/\bNKN\b/g, 'N.K.N.');
@@ -291,7 +291,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const femalePatterns = ['heera', 'neerja', 'kalpana', 'veena', 'swara', 'madhur', 'zira', 'female', 'woman', 'susan', 'hazel', 'linda', 'samantha', 'victoria', 'karen', 'moira', 'fiona', 'google us english', 'google uk english female'];
         const malePatterns = ['ravi', 'hemant', 'rishi', 'harsh', 'david', 'male', 'man', 'mark', 'james', 'daniel', 'richard', 'alex', 'fred', 'google uk english male'];
 
-        const patterns = gender === 'female' ? femalePatterns : malePatterns;
+        const patterns = gender === 'female' • femalePatterns : malePatterns;
 
         // 1. Try to find en-IN (Indian English) or hi-IN (Hindi) voice matching the gender patterns first
         // This gives the absolute best pronunciation for Indian district names (like Madhubani, Buxar, etc.)
@@ -360,7 +360,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function updateSpeedUI() {
-        voiceBtnSpeed.textContent = selectedSpeed.toFixed(2) === '0.85' ? '0.8x' : selectedSpeed.toFixed(1) + 'x';
+        voiceBtnSpeed.textContent = selectedSpeed.toFixed(2) === '0.85' • '0.8x' : selectedSpeed.toFixed(1) + 'x';
         voiceBtnSpeed.title = `Voice Speed: ${selectedSpeed.toFixed(2)}x (Click to cycle)`;
     }
 
@@ -375,14 +375,14 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (voiceAlertsEnabled) {
             speakAlert('Voice alerts activated. You will now hear real-time link status announcements.');
-            showToast('🔊 Voice Alerts Enabled', 'success');
+            showToast('ð Voice Alerts Enabled', 'success');
         } else {
             window.speechSynthesis.cancel();
             speechQueue.length = 0;
             speechQueueSet.clear();
             currentSpeechText = '';
             isSpeaking = false;
-            showToast('🔇 Voice Alerts Disabled', 'info');
+            showToast('ð Voice Alerts Disabled', 'info');
         }
     });
 
@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('voiceGender', 'female');
         updateGenderUI();
         speakAlert('Female voice selected.');
-        showToast('♀ Female Voice Selected', 'info');
+        showToast('â Female Voice Selected', 'info');
     });
 
     voiceBtnMale.addEventListener('click', () => {
@@ -402,7 +402,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('voiceGender', 'male');
         updateGenderUI();
         speakAlert('Male voice selected.');
-        showToast('♂ Male Voice Selected', 'info');
+        showToast('â Male Voice Selected', 'info');
     });
 
     // Speed toggle click handler
@@ -414,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem('voiceSpeed', selectedSpeed);
         updateSpeedUI();
         speakAlert(`Speed set to ${selectedSpeed}x`);
-        showToast(`⚡ Voice Speed: ${selectedSpeed}x`, 'info');
+        showToast(`â¡ Voice Speed: ${selectedSpeed}x`, 'info');
     });
 
     let currentSpeechText = '';
@@ -472,7 +472,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (voice) {
             utterance.voice = voice;
         }
-        utterance.pitch = selectedGender === 'female' ? 1.1 : 0.85;
+        utterance.pitch = selectedGender === 'female' • 1.1 : 0.85;
 
         utterance.onend = () => {
             isSpeaking = false;
@@ -549,7 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (isOnBattery) {
                             titleElem.textContent = `CRITICAL: ${host.description.toUpperCase()} ON BATTERY`;
                             if (subElem) {
-                                const rtText = host.runtime ? ` Estimated runtime: ${host.runtime} minutes.` : "";
+                                const rtText = host.runtime • ` Estimated runtime: ${host.runtime} minutes.` : "";
                                 subElem.textContent = `Utility power failure detected!${rtText}`;
                             }
                         } else {
@@ -576,7 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         const isOnBattery = (host.on_battery === true || host.on_battery === 1 || host.on_battery === "true");
                         let ttsMsg = `CRITICAL ALERT! ${host.description} HAS FAILED. DATACENTER POWER IS AT RISK!`;
                         if (isOnBattery) {
-                            const rtText = host.runtime ? `, with ${host.runtime} minutes remaining` : "";
+                            const rtText = host.runtime • `, with ${host.runtime} minutes remaining` : "";
                             ttsMsg = `CRITICAL ALERT! ${host.description} is running on battery power! Utility power failure detected${rtText}.`;
                         }
                         const criticalUtterance = new SpeechSynthesisUtterance(ttsMsg);
@@ -700,7 +700,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             } else {
                 if (voiceLabel) {
-                    voiceLabel.textContent = voiceAlertsEnabled ? "Voice Alerts ON" : "Voice Alerts OFF";
+                    voiceLabel.textContent = voiceAlertsEnabled • "Voice Alerts ON" : "Voice Alerts OFF";
                     voiceLabel.style.color = '';
                 }
             }
@@ -784,7 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
         lineEl.className = "terminal-line";
         
         // Extract time and level: 2026-06-30 12:00:00 - INFO - Message
-        const match = line.match(/^(\d{4}-\d{2}-\d{2}\s+)?(\d{2}:\d{2}:\d{2})\s*-\s*([A-Za-z]+)\s*-\s*(.*)$/);
+        const match = line.match(/^(\d{4}-\d{2}-\d{2}\s+)•(\d{2}:\d{2}:\d{2})\s*-\s*([A-Za-z]+)\s*-\s*(.*)$/);
         
         if (match) {
             const time = match[2];
@@ -823,8 +823,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (h.status === "UP" && h.temp !== undefined && h.temp !== null && h.temp !== "N/A") {
                     let tempNum = parseFloat(h.temp);
                     if (!isNaN(tempNum)) {
-                        if ((h.category || "") === "UPS") upsTemps.push(`${tempNum}°C`);
-                        if ((h.category || "") === "PAC") pacTemps.push(`${tempNum}°C`);
+                        if ((h.category || "") === "UPS") upsTemps.push(`${tempNum}Â°C`);
+                        if ((h.category || "") === "PAC") pacTemps.push(`${tempNum}Â°C`);
                     }
                 }
                 if (h.battery_status !== undefined && h.battery_status !== null) {
@@ -832,9 +832,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Legrand</span>";
                     else if (h.ip === "10.X.X.0") label = "<span style='color:var(--text-muted); font-weight: 600; font-size: 10px; display: inline-block; width: 55px;'>Delta</span>";
                     
-                    let batText = label + (h.battery_status == 2 ? "<span style='color:var(--color-up);'>Normal</span>" : 
-                                  h.battery_status == 3 ? "<span style='color:var(--color-warning);'>Low</span>" : 
-                                  h.battery_status == 4 ? "<span style='color:var(--color-down);'>Depleted</span>" : "<span style='color:var(--text-muted);'>Unknown</span>");
+                    let batText = label + (h.battery_status == 2 • "<span style='color:var(--color-up);'>Normal</span>" : 
+                                  h.battery_status == 3 • "<span style='color:var(--color-warning);'>Low</span>" : 
+                                  h.battery_status == 4 • "<span style='color:var(--color-down);'>Depleted</span>" : "<span style='color:var(--text-muted);'>Unknown</span>");
                     batteryStatuses.push(batText);
                 }
             });
@@ -889,12 +889,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
             html += '</div>';
-            statTemp.innerHTML = (camTempStr !== "" || upsTemps.length > 0 || pacTemps.length > 0 || batteryStatuses.length > 0) ? html : "--";
+            statTemp.innerHTML = (camTempStr !== "" || upsTemps.length > 0 || pacTemps.length > 0 || batteryStatuses.length > 0) • html : "--";
             
             // Update inline env bar
-            if (inlineEnvRoom) inlineEnvRoom.innerHTML = camTempStr !== "" ? `${camTempStr}&deg;C` : "--&deg;C";
-            if (inlineEnvUps) inlineEnvUps.textContent = upsTemps.length > 0 ? upsTemps.join(', ') : "--";
-            if (inlineEnvPac) inlineEnvPac.textContent = pacTemps.length > 0 ? pacTemps.join(', ') : "--";
+            if (inlineEnvRoom) inlineEnvRoom.innerHTML = camTempStr !== "" • `${camTempStr}&deg;C` : "--&deg;C";
+            if (inlineEnvUps) inlineEnvUps.textContent = upsTemps.length > 0 • upsTemps.join(', ') : "--";
+            if (inlineEnvPac) inlineEnvPac.textContent = pacTemps.length > 0 • pacTemps.join(', ') : "--";
         }
     }
 
@@ -910,15 +910,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const sideLabel = document.getElementById("side-ticker-label");
 
         if (downHosts.length > 0) {
-            const outageStr = downHosts.map(h => `${h.description} (${h.ip})`).join("  •  ");
-            tickerContent.innerHTML = `<span style="color: #f43f5e; font-weight: 700;">🚨 CRITICAL OUTAGE ALERT:</span> ${outageStr}  •  Please check affected devices and verify connectivity immediately.`;
+            const outageStr = downHosts.map(h => `${h.description} (${h.ip})`).join("  â¢  ");
+            tickerContent.innerHTML = `<span style="color: #f43f5e; font-weight: 700;">ð¨ CRITICAL OUTAGE ALERT:</span> ${outageStr}  â¢  Please check affected devices and verify connectivity immediately.`;
             tickerBadge.style.backgroundColor = "#e11d48";
             tickerBadge.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Outage Alerts`;
             tickerBannerBar.style.display = "flex";
 
             // Update Sidebar Card
             sideLabel.style.backgroundColor = "#e11d48";
-            sideSummary.textContent = `${downHosts.length} Active Outage${downHosts.length > 1 ? 's' : ''}`;
+            sideSummary.textContent = `${downHosts.length} Active Outage${downHosts.length > 1 • 's' : ''}`;
             sideSummary.style.color = "var(--color-down)";
             
             sideList.innerHTML = downHosts.map(h => `
@@ -933,7 +933,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             `).join('');
         } else {
-            tickerContent.innerHTML = `<span style="color: #10b981; font-weight: 700;">🟢 ALL SYSTEMS OPERATIONAL:</span> Monitoring 117 Bihar NOC network nodes in real-time. No active outages detected.`;
+            tickerContent.innerHTML = `<span style="color: #10b981; font-weight: 700;">ð¢ ALL SYSTEMS OPERATIONAL:</span> Monitoring 117 Bihar NOC network nodes in real-time. No active outages detected.`;
             tickerBadge.style.backgroundColor = "var(--accent-saffron)";
             tickerBadge.innerHTML = `<i class="fas fa-bullhorn"></i> Advisory Alerts`;
             tickerBannerBar.style.display = "none";
@@ -963,7 +963,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modalTitleIp.textContent = host.ip;
         
         // Status Badge
-        modalStatusBadge.textContent = host.status === "UP" ? "Online" : "Offline";
+        modalStatusBadge.textContent = host.status === "UP" • "Online" : "Offline";
         modalStatusBadge.className = `modal-badge-status ${host.status.toLowerCase()}`;
         if (host.muted) {
             modalStatusBadge.textContent = "Muted";
@@ -971,11 +971,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Stats Box Info
-        modalStatLatency.textContent = host.status === "UP" ? `${host.latency !== null ? host.latency + ' ms' : '< 1 ms'}` : "--";
-        modalStatLatency.style.color = host.status === "UP" ? "var(--color-up)" : "var(--color-down)";
+        modalStatLatency.textContent = host.status === "UP" • `${host.latency !== null • host.latency + ' ms' : '< 1 ms'}` : "--";
+        modalStatLatency.style.color = host.status === "UP" • "var(--color-up)" : "var(--color-down)";
         modalStatLastPing.textContent = host.last_ping_time.split(" ")[1] || "--:--:--";
-        modalStatMonitoring.textContent = host.muted ? "Muted" : "Active";
-        modalStatMonitoring.className = `box-val ${host.muted ? 'text-warning' : 'text-success'}`;
+        modalStatMonitoring.textContent = host.muted • "Muted" : "Active";
+        modalStatMonitoring.className = `box-val ${host.muted • 'text-warning' : 'text-success'}`;
 
         // Mute button highlight
         if (host.muted) {
@@ -999,7 +999,7 @@ document.addEventListener("DOMContentLoaded", () => {
         history.forEach(state => {
             const spark = document.createElement("div");
             spark.className = `sparkline-dot-item ${state.toLowerCase()}`;
-            spark.title = state === "UP" ? "Ping Successful" : "Ping Timeout / Failed";
+            spark.title = state === "UP" • "Ping Successful" : "Ping Timeout / Failed";
             modalSparklineHistory.appendChild(spark);
         });
 
@@ -1025,29 +1025,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 const isOnBattery = (host.on_battery === true || host.on_battery === 1 || host.on_battery === "true");
                 let statusText = "UNKNOWN";
-                let statusDot = "⚫";
+                let statusDot = "â«";
                 let statusColor = "var(--text-muted)";
                 
                 if (isOnBattery) {
                     statusText = "ON BATTERY";
-                    statusDot = "🔴";
+                    statusDot = "ð´";
                     statusColor = "#ff3366";
                 } else if (host.battery_status == 2) {
                     statusText = "UPS STATUS OK";
-                    statusDot = "🟢";
+                    statusDot = "ð¢";
                     statusColor = "#10b981";
                 } else if (host.battery_status == 3) {
                     statusText = "BATTERY LOW";
-                    statusDot = "🟡";
+                    statusDot = "ð¡";
                     statusColor = "#fbbf24";
                 } else if (host.battery_status == 4) {
                     statusText = "BATTERY DEPLETED";
-                    statusDot = "🔴";
+                    statusDot = "ð´";
                     statusColor = "#ef4444";
                 }
                 
-                const runtimeVal = host.runtime !== undefined && host.runtime !== null ? `${host.runtime} minutes` : "N/A";
-                const tempVal = host.temp !== undefined && host.temp !== null ? `${host.temp} &deg;C` : "N/A";
+                const runtimeVal = host.runtime !== undefined && host.runtime !== null • `${host.runtime} minutes` : "N/A";
+                const tempVal = host.temp !== undefined && host.temp !== null • `${host.temp} &deg;C` : "N/A";
                 
                 upsDetailsDiv.innerHTML = `
                     <h4 style="margin-top: 0; margin-bottom: 12px; font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.5px;">UPS Telemetry Details</h4>
@@ -1100,7 +1100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         
         // Clean up router/switch model suffixes and bandwidth specs
-        clean = clean.replace(/_ASR\s*1002x?/i, "");
+        clean = clean.replace(/_ASR\s*1002x•/i, "");
         clean = clean.replace(/_7206VXR/i, "");
         clean = clean.replace(/_CISCO\d+/i, "");
         clean = clean.replace(/\/BSNL/i, "");
@@ -1118,7 +1118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function createHostCard(host) {
         const card = document.createElement("div");
         card.id = `host-card-${host.ip.replace(/\./g, "-")}`;
-        card.className = `host-card ${host.status === "UP" ? "up-state" : "down-state"} ${host.muted ? 'muted-state' : ''}`;
+        card.className = `host-card ${host.status === "UP" • "up-state" : "down-state"} ${host.muted • 'muted-state' : ''}`;
         
         let sparksHtml = "";
         const history = host.ping_history || [];
@@ -1129,13 +1129,13 @@ document.addEventListener("DOMContentLoaded", () => {
         let tempHtml = "";
         let batteryHtml = "";
         if (host.status === "UP" && (host.category === "UPS" || host.category === "PAC") && host.temp !== undefined && host.temp !== null && host.temp !== "N/A") {
-            const tempColor = host.temp >= 35 ? "color: #f43f5e;" : "color: #f59e0b;";
+            const tempColor = host.temp >= 35 • "color: #f43f5e;" : "color: #f59e0b;";
             tempHtml = `<div class="card-temp-badge" style="font-size: 11px; margin-left: 8px; ${tempColor}"><i class="fas fa-thermometer-half"></i> ${host.temp} &deg;C</div>`;
         }
 
         if (host.category === "UPS" && host.status === "UP") {
             if (host.on_battery === true || host.on_battery === 1 || host.on_battery === "true") {
-                const rtText = host.runtime ? ` (${host.runtime}m)` : "";
+                const rtText = host.runtime • ` (${host.runtime}m)` : "";
                 batteryHtml = `<div class="card-battery-badge on-battery-pulse" style="font-size: 10px; margin-left: 8px; color: #ff3366; font-weight: 800; background: rgba(255, 51, 102, 0.15); padding: 3px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; border: 1px solid rgba(255, 51, 102, 0.35); text-transform: uppercase; letter-spacing: 0.3px;"><i class="fas fa-exclamation-triangle"></i> ON BATTERY${rtText}</div>`;
             } else if (host.battery_status !== undefined && host.battery_status !== null) {
                 batteryHtml = `<div class="card-battery-badge" style="font-size: 10px; margin-left: 8px; color: #10b981; font-weight: 600; background: rgba(16, 185, 129, 0.1); padding: 3px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px; border: 1px solid rgba(16, 185, 129, 0.2); text-transform: uppercase; letter-spacing: 0.3px;"><i class="fas fa-plug"></i> UTILITY OK</div>`;
@@ -1145,7 +1145,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const safeDesc = (host.description || "").replace(/'/g, "\\'");
 
         card.innerHTML = `
-            ${host.muted ? '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
+            ${host.muted • '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
             <div class="card-top-row">
                 <div class="card-title-area">
                     <div class="card-ip-wrapper">
@@ -1167,7 +1167,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div style="display:flex; align-items:center; gap: 4px;">
                     <div class="card-latency-badge">
                         <i class="fas fa-bolt"></i>
-                        <span class="latency-value">${host.status === "UP" ? (host.latency !== null ? host.latency + ' ms' : '< 1 ms') : '--'}</span>
+                        <span class="latency-value">${host.status === "UP" • (host.latency !== null • host.latency + ' ms' : '< 1 ms') : '--'}</span>
                     </div>
                     ${tempHtml}
                     ${batteryHtml}
@@ -1195,13 +1195,13 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateSectionBadges(shqHosts, dhqHosts, intdHosts, intsHosts, upsHosts, apHosts, ssbHosts, pacHosts, nknHosts, nivettiHosts) {
         const shqOnline = shqHosts.filter(h => h.status === "UP").length;
         const dhqOnline = dhqHosts.filter(h => h.status === "UP").length;
-        const intdOnline = intdHosts ? intdHosts.filter(h => h.status === "UP").length : 0;
-        const intsOnline = intsHosts ? intsHosts.filter(h => h.status === "UP").length : 0;
-        const upsOnline = upsHosts ? upsHosts.filter(h => h.status === "UP").length : 0;
-        const apOnline = apHosts ? apHosts.filter(h => h.status === "UP").length : 0;
-        const ssbOnline = ssbHosts ? ssbHosts.filter(h => h.status === "UP").length : 0;
-        const pacOnline = pacHosts ? pacHosts.filter(h => h.status === "UP").length : 0;
-        const nknOnline = nknHosts ? nknHosts.filter(h => h.status === "UP").length : 0;
+        const intdOnline = intdHosts • intdHosts.filter(h => h.status === "UP").length : 0;
+        const intsOnline = intsHosts • intsHosts.filter(h => h.status === "UP").length : 0;
+        const upsOnline = upsHosts • upsHosts.filter(h => h.status === "UP").length : 0;
+        const apOnline = apHosts • apHosts.filter(h => h.status === "UP").length : 0;
+        const ssbOnline = ssbHosts • ssbHosts.filter(h => h.status === "UP").length : 0;
+        const pacOnline = pacHosts • pacHosts.filter(h => h.status === "UP").length : 0;
+        const nknOnline = nknHosts • nknHosts.filter(h => h.status === "UP").length : 0;
         
         const shqBadge = document.getElementById("shq-badge");
         const dhqBadge = document.getElementById("dhq-badge");
@@ -1216,7 +1216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (shqBadge) shqBadge.textContent = `${shqOnline} / ${shqHosts.length} Online`;
         if (dhqBadge) dhqBadge.textContent = `${dhqOnline} / ${dhqHosts.length} Online`;
         const nivettiBadge = document.getElementById("nivetti-badge");
-        const nivettiOnline = nivettiHosts ? nivettiHosts.filter(h => h.status === "UP").length : 0;
+        const nivettiOnline = nivettiHosts • nivettiHosts.filter(h => h.status === "UP").length : 0;
         if (nivettiBadge && nivettiHosts) nivettiBadge.textContent = `${nivettiOnline} / ${nivettiHosts.length} Online`;
         if (intdBadge && intdHosts) intdBadge.textContent = `${intdOnline} / ${intdHosts.length} Online`;
         if (intsBadge && intsHosts) intsBadge.textContent = `${intsOnline} / ${intsHosts.length} Online`;
@@ -1293,15 +1293,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const nknHosts = sortHosts(hosts.filter(h => (h.category || "") === "NKN"));
 
         // If card count differs or first load, rebuild DOM
-        const shqCountMatches = shqGrid ? shqGrid.querySelectorAll(".host-card").length === shqHosts.length : false;
-        const dhqCountMatches = dhqGrid ? dhqGrid.querySelectorAll(".host-card").length === dhqHosts.length : false;
-        const intdCountMatches = intdGrid ? intdGrid.querySelectorAll(".host-card").length === intdHosts.length : false;
-        const intsCountMatches = intsGrid ? intsGrid.querySelectorAll(".host-card").length === intsHosts.length : false;
-        const upsCountMatches = upsGrid ? upsGrid.querySelectorAll(".host-card").length === upsHosts.length : false;
-        const apCountMatches = apGrid ? apGrid.querySelectorAll(".host-card").length === apHosts.length : false;
-        const ssbCountMatches = ssbGrid ? ssbGrid.querySelectorAll(".host-card").length === ssbHosts.length : false;
-        const pacCountMatches = pacGrid ? pacGrid.querySelectorAll(".host-card").length === pacHosts.length : false;
-        const nknCountMatches = nknGrid ? nknGrid.querySelectorAll(".host-card").length === nknHosts.length : false;
+        const shqCountMatches = shqGrid • shqGrid.querySelectorAll(".host-card").length === shqHosts.length : false;
+        const dhqCountMatches = dhqGrid • dhqGrid.querySelectorAll(".host-card").length === dhqHosts.length : false;
+        const intdCountMatches = intdGrid • intdGrid.querySelectorAll(".host-card").length === intdHosts.length : false;
+        const intsCountMatches = intsGrid • intsGrid.querySelectorAll(".host-card").length === intsHosts.length : false;
+        const upsCountMatches = upsGrid • upsGrid.querySelectorAll(".host-card").length === upsHosts.length : false;
+        const apCountMatches = apGrid • apGrid.querySelectorAll(".host-card").length === apHosts.length : false;
+        const ssbCountMatches = ssbGrid • ssbGrid.querySelectorAll(".host-card").length === ssbHosts.length : false;
+        const pacCountMatches = pacGrid • pacGrid.querySelectorAll(".host-card").length === pacHosts.length : false;
+        const nknCountMatches = nknGrid • nknGrid.querySelectorAll(".host-card").length === nknHosts.length : false;
 
         if (!shqCountMatches || !dhqCountMatches || !intdCountMatches || !intsCountMatches || !upsCountMatches || !apCountMatches || !ssbCountMatches || !pacCountMatches || !nknCountMatches) {
             if (shqGrid) shqGrid.innerHTML = "";
@@ -1406,7 +1406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Update card content if state variables changed
             if (prev.status !== host.status || prev.latency !== host.latency || prev.muted !== host.muted || prev.temp !== host.temp) {
-                card.className = `host-card ${host.status === "UP" ? "up-state" : "down-state"} ${host.muted ? 'muted-state' : ''}`;
+                card.className = `host-card ${host.status === "UP" • "up-state" : "down-state"} ${host.muted • 'muted-state' : ''}`;
                 
                 let sparksHtml = "";
                 const history = host.ping_history || [];
@@ -1416,14 +1416,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 let tempHtml = "";
                 if ((host.category === "UPS" || host.category === "PAC") && host.temp !== undefined && host.temp !== null) {
-                    const tempColor = host.temp >= 35 ? "color: #f43f5e;" : "color: #f59e0b;";
+                    const tempColor = host.temp >= 35 • "color: #f43f5e;" : "color: #f59e0b;";
                     tempHtml = `<div class="card-temp-badge" style="font-size: 11px; margin-left: 8px; ${tempColor}"><i class="fas fa-thermometer-half"></i> ${host.temp} &deg;C</div>`;
                 }
 
                 const safeDesc = (host.description || "").replace(/'/g, "\\'");
 
                 card.innerHTML = `
-                    ${host.muted ? '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
+                    ${host.muted • '<span class="mute-card-tag"><i class="fas fa-bell-slash"></i> Muted</span>' : ''}
                     <div class="card-top-row">
                         <div class="card-title-area">
                             <div class="card-ip-wrapper">
@@ -1445,7 +1445,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div style="display:flex; align-items:center;">
                             <div class="card-latency-badge">
                                 <i class="fas fa-bolt"></i>
-                                <span class="latency-value">${host.status === "UP" ? (host.latency !== null ? host.latency + ' ms' : '< 1 ms') : '--'}</span>
+                                <span class="latency-value">${host.status === "UP" • (host.latency !== null • host.latency + ' ms' : '< 1 ms') : '--'}</span>
                             </div>
                             ${tempHtml}
                         </div>
@@ -1602,156 +1602,91 @@ document.addEventListener("DOMContentLoaded", () => {
         return `<span style="color: #e2e8f0;">${line}</span>`;
     }
 
-    // Global In-Memory Telemetry Fallback Cache
-    let cachedMonitorData = null;
-    let fallbackCycleCount = 0;
-
-    async function getFallbackMonitorData() {
-        if (!cachedMonitorData) {
-            try {
-                const res = await fetch("monitor_data.json?v=" + Date.now());
-                if (res.ok) {
-                    cachedMonitorData = await res.json();
-                }
-            } catch (e) {
-                console.warn("Could not fetch monitor_data.json, checking backup", e);
-            }
-        }
-        
-        if (!cachedMonitorData || !cachedMonitorData.hosts) {
-            return null;
-        }
-
-        fallbackCycleCount++;
-        const now = new Date();
-        const timeStr = now.toTimeString().split(" ")[0];
-        
-        // Clone dataset so we don't alter original file structure
-        const clone = JSON.parse(JSON.stringify(cachedMonitorData));
-        clone.timestamp = timeStr;
-        
-        // Realistic dynamic telemetry jitter for live feel
-        clone.hosts.forEach((h, idx) => {
-            if (h.status === "UP") {
-                // Apply slight jitter (1ms - 8ms)
-                const jitter = (idx % 5 === (fallbackCycleCount % 5)) ? Math.floor(Math.random() * 4) + 1 : (h.latency || 1);
-                h.latency = jitter;
-            }
-        });
-
-        const total = clone.hosts.length;
-        const upCount = clone.hosts.filter(h => h.status === "UP").length;
-        const downCount = total - upCount;
-        const ratio = Math.round((upCount / total) * 100) + "%";
-
-        clone.stats = {
-            total: total,
-            up: upCount,
-            down: downCount,
-            uptime_ratio: ratio
-        };
-
-        clone.active_viewers = {
-            count: 4,
-            ips: ["10.X.X.0 (NOC Lead)", "10.X.X.0 (SIO Console)", "10.X.X.0 (Server)"]
-        };
-
-        if (!clone.logs || clone.logs.length === 0) {
-            clone.logs = [
-                `[${timeStr}] INFO: Real-time ICMP sweep active across ${total} state nodes (${upCount} UP, ${downCount} DOWN).`,
-                `[${timeStr}] INFO: 38 District Headquarters BGP loopback peers verified.`,
-                `[${timeStr}] INFO: NKN Core Gigabit Gateway telemetry: 100% throughput operational.`
-            ];
-        }
-
-        return clone;
-    }
-
-    function processStatusData(data) {
-        lastCheckedTime.textContent = `Last Checked: ${data.timestamp}`;
-        const _showErr = (fn, e) => { console.error(fn, e); };
-        try { updateStats(data.stats, data.hosts); } catch(e) { _showErr("updateStats", e); }
-        try { updateOutagesPanels(data.hosts); } catch(e) { _showErr("updateOutagesPanels", e); }
-        try { detectStateTransitions(data.hosts); } catch(e) { _showErr("detectStateTransitions", e); }
-        try { renderHostsGrid(data.hosts); } catch(e) { _showErr("renderHostsGrid", e); }
-        try { renderLogs(data.logs, data.whatsapp_logs); } catch(e) { _showErr("renderLogs", e); }
-        try { updateChart(data.stats_history); } catch(e) { _showErr("updateChart", e); }
-        
-        const activeViewersCount = document.getElementById("active-viewers-count");
-        const activeViewersIps = document.getElementById("active-viewers-ips");
-        
-        if (data.active_viewers !== undefined) {
-            const count = data.active_viewers.count !== undefined ? data.active_viewers.count : data.active_viewers;
-            if (activeViewersCount) activeViewersCount.textContent = count;
-            if (activeViewersIps && data.active_viewers.ips && data.active_viewers.ips.length > 0) {
-                activeViewersIps.innerHTML = data.active_viewers.ips.map(ip => `<div class="active-connection-item"><i class="fas fa-plug"></i> ${ip}</div>`).join("");
-                activeViewersIps.style.display = "flex";
-            } else if (activeViewersIps) {
-                activeViewersIps.style.display = "none";
-            }
-        }
-
-        if (data.config) {
-            const sender = data.config.twilio_sender || "+14155238886";
-            const joinMsg = data.config.twilio_join_msg || "join at-cath";
-            const qrImg = document.getElementById("enrollment-qr-img");
-            const msgText = document.getElementById("enrollment-msg-text");
-            const phoneText = document.getElementById("enrollment-phone-text");
-            if (msgText) msgText.textContent = joinMsg;
-            if (phoneText) phoneText.textContent = sender;
-            if (qrImg) qrImg.src = "static/twilio_enroll_qr.png";
-        }
-        
-        if (isFirstLoad) {
-            isFirstLoad = false;
-            if (window.searchQuery) {
-                const matches = data.hosts.filter(h => 
-                    h.ip === window.searchQuery || 
-                    (h.description && h.description.toLowerCase().includes(window.searchQuery.toLowerCase()))
-                );
-                if (matches.length === 1) {
-                    openHostModal(matches[0].ip);
-                }
-            }
-        }
-    }
-
-    // Fetch Dashboard API Status with Static Telemetry Fallback
+    // Fetch Dashboard API Status
     function fetchStatus() {
         const cb = new Date().getTime();
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 1800);
-
-        fetch("api.php?endpoint=status&tab_id=" + tabId + "&cb=" + cb, { signal: controller.signal })
+        fetch("api.php•endpoint=status&tab_id=" + tabId + "&cb=" + cb)
             .then(res => {
-                clearTimeout(timeoutId);
                 if (!res.ok) throw new Error(`HTTP error ${res.status}`);
                 return res.json();
             })
             .then(data => {
-                if (data && data.status === "success") {
-                    processStatusData(data);
-                } else {
-                    throw new Error("Invalid API payload");
-                }
-            })
-            .catch(async () => {
-                clearTimeout(timeoutId);
-                const fallbackData = await getFallbackMonitorData();
-                if (fallbackData) {
-                    processStatusData(fallbackData);
-                    const statusBadge = document.getElementById("service-status");
-                    if (statusBadge) {
-                        statusBadge.innerHTML = '<span style="background-color: #10b981" class="host-indicator"></span><span>NOC LIVE MONITORING (293 NODES)</span>';
-                        statusBadge.className = "status-badge active-state";
-                        statusBadge.style.color = "#10b981";
-                        statusBadge.style.borderColor = "rgba(16, 185, 129, 0.3)";
+                if (data.status === "success") {
+                    lastCheckedTime.textContent = `Last Checked: ${data.timestamp}`;
+                    const _showErr = (fn, e) => { document.title = fn + ': ' + e.message; console.error(fn, e); };
+                    try { updateStats(data.stats, data.hosts); } catch(e) { _showErr("updateStats", e); }
+                    try { updateOutagesPanels(data.hosts); } catch(e) { _showErr("updateOutagesPanels", e); }
+                    try { detectStateTransitions(data.hosts); } catch(e) { _showErr("detectStateTransitions", e); }
+                    try { renderHostsGrid(data.hosts); } catch(e) { _showErr("renderHostsGrid", e); }
+                    try { renderLogs(data.logs, data.whatsapp_logs); } catch(e) { _showErr("renderLogs", e); }
+                    try { updateChart(data.stats_history); } catch(e) { _showErr("updateChart", e); }
+                    
+                    // Update active viewers counter dynamically
+                    const activeViewersCount = document.getElementById("active-viewers-count");
+                    const activeViewersIps = document.getElementById("active-viewers-ips");
+                    
+                    if (data.active_viewers !== undefined) {
+                        // Handle new array payload or legacy integer fallback
+                        const count = data.active_viewers.count !== undefined • data.active_viewers.count : data.active_viewers;
+                        
+                        if (activeViewersCount) {
+                            activeViewersCount.textContent = count;
+                        }
+                        
+                        if (activeViewersIps && data.active_viewers.ips && data.active_viewers.ips.length > 0) {
+                            activeViewersIps.innerHTML = data.active_viewers.ips.map(ip => `<div class="active-connection-item"><i class="fas fa-plug"></i> ${ip}</div>`).join("");
+                            activeViewersIps.style.display = "flex";
+                        } else if (activeViewersIps) {
+                            activeViewersIps.style.display = "none";
+                        }
+                    }
+
+                    // Update WhatsApp Twilio Sign-up details dynamically
+                    if (data.config) {
+                        const sender = data.config.twilio_sender || "+14155238886";
+                        const joinMsg = data.config.twilio_join_msg || "join at-cath";
+                        
+                        const qrImg = document.getElementById("enrollment-qr-img");
+                        const msgText = document.getElementById("enrollment-msg-text");
+                        const phoneText = document.getElementById("enrollment-phone-text");
+                        
+                        if (msgText) msgText.textContent = joinMsg;
+                        if (phoneText) phoneText.textContent = sender;
+                        
+                        if (qrImg) {
+                            const localQrUrl = "static/twilio_enroll_qr.png";
+                            if (qrImg.getAttribute('src') !== localQrUrl) {
+                                qrImg.src = localQrUrl;
+                            }
+                        }
+                    }
+                    
+                    // Auto-open modal on first load if search matches exactly one host
+                    if (isFirstLoad) {
+                        isFirstLoad = false;
+                        if (searchQuery) {
+                            const matches = data.hosts.filter(h => 
+                                h.ip === searchQuery || 
+                                h.description.toLowerCase().includes(searchQuery.toLowerCase())
+                            );
+                            if (matches.length === 1) {
+                                openHostModal(matches[0].ip);
+                            }
+                        }
                     }
                 }
+            })
+            .catch(err => {
+                console.error("Fetch API error:", err);
+                const statusBadge = document.getElementById("service-status");
+                statusBadge.innerHTML = '<span style="background-color: var(--color-down)" class="host-indicator"></span><span>NOC DISCONNECTED</span>';
+                statusBadge.className = "status-badge active-state";
+                statusBadge.style.color = "var(--color-down)";
+                statusBadge.style.borderColor = "rgba(244, 63, 94, 0.25)";
             });
     }
 
-    // Modal Actions: Ping Now (Resilient)
+    // Modal Actions: Ping Now
     modalBtnPing.addEventListener("click", () => {
         if (!activeHostIp) return;
         
@@ -1759,94 +1694,62 @@ document.addEventListener("DOMContentLoaded", () => {
         const origText = modalBtnPing.innerHTML;
         modalBtnPing.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Pinging...`;
         
-        const host = allHostsData.find(h => h.ip === activeHostIp);
-        const desc = host ? host.description : "Host";
-
-        fetch("api.php?endpoint=hosts/ping", {
+        fetch("api.php•endpoint=hosts/ping", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ip: activeHostIp })
         })
-        .then(res => {
-            if (!res.ok) throw new Error("API not available");
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
             if (data.status === "success") {
-                showToast(`Ping completed for ${activeHostIp}: ${data.device_status} (${data.latency ? data.latency + 'ms' : '< 1ms'})`, "success");
+                showToast(`Ping completed for ${activeHostIp}: ${data.device_status} (${data.latency • data.latency + 'ms' : '< 1ms'})`, "success");
+                // Force state update immediately in modal
                 openHostModal(activeHostIp);
             } else {
                 showToast(`Ping failed: ${data.message}`, "error");
             }
         })
-        .catch(() => {
-            setTimeout(() => {
-                const isOnline = host ? (host.status === "UP") : true;
-                const rtt = Math.floor(Math.random() * 4) + 1;
-                
-                if (isOnline) {
-                    const pingOutput = `Pinging ${activeHostIp} with 32 bytes of data:\nReply from ${activeHostIp}: bytes=32 time=${rtt}ms TTL=64\nReply from ${activeHostIp}: bytes=32 time=${rtt+1}ms TTL=64\nReply from ${activeHostIp}: bytes=32 time=${rtt}ms TTL=64\nReply from ${activeHostIp}: bytes=32 time=${rtt}ms TTL=64\n\nPing statistics for ${activeHostIp}:\n    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),\nApproximate round trip times in milli-seconds:\n    Minimum = ${rtt}ms, Maximum = ${rtt+1}ms, Average = ${rtt}ms\n`;
-                    if (host) {
-                        host.last_stdout = pingOutput;
-                        host.latency = rtt;
-                    }
-                    modalConsoleStdout.textContent = pingOutput;
-                    showToast(`Ping successful for ${desc} (${activeHostIp}): 0% packet loss (${rtt}ms)`, "success");
-                } else {
-                    const pingOutput = `Pinging ${activeHostIp} with 32 bytes of data:\nRequest timed out.\nRequest timed out.\nRequest timed out.\nRequest timed out.\n\nPing statistics for ${activeHostIp}:\n    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss)\n`;
-                    if (host) host.last_stdout = pingOutput;
-                    modalConsoleStdout.textContent = pingOutput;
-                    showToast(`Ping timeout for ${desc} (${activeHostIp}): Host unreachable`, "error");
-                }
-                openHostModal(activeHostIp);
-            }, 300);
+        .catch(err => {
+            console.error(err);
+            showToast("Server error during ping execution.", "error");
         })
         .finally(() => {
-            setTimeout(() => {
-                modalBtnPing.disabled = false;
-                modalBtnPing.innerHTML = origText;
-            }, 300);
+            modalBtnPing.disabled = false;
+            modalBtnPing.innerHTML = origText;
         });
     });
 
-    // Modal Actions: Mute Alerts (Resilient)
+    // Modal Actions: Mute Alerts
     modalBtnMute.addEventListener("click", () => {
         if (!activeHostIp) return;
         
         modalBtnMute.disabled = true;
-        const host = allHostsData.find(h => h.ip === activeHostIp);
         
-        fetch("api.php?endpoint=hosts/mute", {
+        fetch("api.php•endpoint=hosts/mute", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ ip: activeHostIp })
         })
-        .then(res => {
-            if (!res.ok) throw new Error("API not available");
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
             if (data.status === "success") {
-                const mutedText = data.muted ? "MUTED" : "UNMUTED";
-                showToast(`Alert notifications ${mutedText} for ${activeHostIp}.`, data.muted ? "warning" : "success");
+                const mutedText = data.muted • "MUTED" : "UNMUTED";
+                showToast(`Alert notifications ${mutedText} for ${activeHostIp}.`, data.muted • "warning" : "success");
                 openHostModal(activeHostIp);
+            } else {
+                showToast(`Failed to mute device: ${data.message}`, "error");
             }
         })
-        .catch(() => {
-            if (host) {
-                host.muted = !host.muted;
-                const mutedText = host.muted ? "MUTED" : "UNMUTED";
-                showToast(`Alert notifications ${mutedText} for ${activeHostIp}.`, host.muted ? "warning" : "success");
-                renderHostsGrid(allHostsData);
-                openHostModal(activeHostIp);
-            }
+        .catch(err => {
+            console.error(err);
+            showToast("Server error during mute execution.", "error");
         })
         .finally(() => {
             modalBtnMute.disabled = false;
         });
     });
 
-    // Modal Actions: Trace Route Path (Resilient)
+    // Modal Actions: Trace Route Path
     modalBtnTracert.addEventListener("click", () => {
         if (!activeHostIp) return;
         
@@ -1854,16 +1757,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const origText = modalBtnTracert.innerHTML;
         modalBtnTracert.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Tracing...`;
         
-        modalConsoleStdout.textContent = `Tracing network route path to ${activeHostIp} (Max 15 hops, ICMP echo)...\nAnalyzing latency hops...\n\n`;
-
-        const host = allHostsData.find(h => h.ip === activeHostIp);
-        const desc = host ? host.description : "District Node";
-
-        fetch(`api.php?endpoint=diagnostics/tracert&ip=${activeHostIp}`)
-        .then(res => {
-            if (!res.ok) throw new Error("API not available");
-            return res.json();
-        })
+        modalConsoleStdout.textContent = `Tracing network route path to ${activeHostIp} (Max 10 hops, no DNS reverse lookup)...\nThis may take up to 10 seconds. Please wait...\n\n`;
+        
+        fetch(`api.php•endpoint=diagnostics/tracert&ip=${activeHostIp}`)
+        .then(res => res.json())
         .then(data => {
             if (data.status === "success") {
                 modalConsoleStdout.textContent += data.stdout;
@@ -1873,23 +1770,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 showToast(`Diagnostics failed: ${data.message}`, "error");
             }
         })
-        .catch(() => {
-            setTimeout(() => {
-                const hop1 = "<1 ms";
-                const hop2 = (Math.floor(Math.random() * 2) + 1) + " ms";
-                const hop3 = (Math.floor(Math.random() * 4) + 2) + " ms";
-                
-                const traceOutput = `Tracing route to ${activeHostIp} [${desc}]\nover a maximum of 15 hops:\n\n  1    ${hop1}    ${hop1}    ${hop1}  10.X.X.0 [NIC Bihar Core Layer-3 Gateway]\n  2    ${hop2}    ${hop2}    ${hop2}  10.X.X.0 [State HQ Aggregation Switch]\n  3    ${hop3}    ${hop3}    ${hop3}  ${activeHostIp} [${desc}]\n\nTrace complete. 0% packet loss along route path.`;
-                modalConsoleStdout.textContent = traceOutput;
-                showToast(`Traceroute path analysis complete for ${activeHostIp}.`, "success");
-            }, 400);
+        .catch(err => {
+            console.error(err);
+            modalConsoleStdout.textContent += "Connection timeout error during route analysis.";
+            showToast("Server connection error during traceroute.", "error");
         })
         .finally(() => {
-            setTimeout(() => {
-                modalBtnTracert.disabled = false;
-                modalBtnTracert.innerHTML = origText;
-                modalConsoleStdout.scrollTop = modalConsoleStdout.scrollHeight;
-            }, 400);
+            modalBtnTracert.disabled = false;
+            modalBtnTracert.innerHTML = origText;
+            modalConsoleStdout.scrollTop = modalConsoleStdout.scrollHeight;
         });
     });
 
@@ -1927,8 +1816,8 @@ document.addEventListener("DOMContentLoaded", () => {
         applyAlertTheme(savedTheme);
 
         themeToggle.addEventListener("change", () => {
-            applyAlertTheme(themeToggle.checked ? "light" : "dark");
-            showToast(themeToggle.checked ? "Switched to Light Mode." : "Switched to Dark Mode.", "info");
+            applyAlertTheme(themeToggle.checked • "light" : "dark");
+            showToast(themeToggle.checked • "Switched to Light Mode." : "Switched to Dark Mode.", "info");
         });
     }
 
@@ -1955,8 +1844,8 @@ function initNetworkBackground() {
       minWidth: 200.00,
       scale: 1.00,
       scaleMobile: 1.00,
-      color: isLight ? 0x0f4c81 : 0x38bdf8,
-      backgroundColor: isLight ? 0xf8fafc : 0x090d16,
+      color: isLight • 0x0f4c81 : 0x38bdf8,
+      backgroundColor: isLight • 0xf8fafc : 0x090d16,
       points: 8.00, // Reduced points for performance on Dashboard
       maxDistance: 24.00,
       spacing: 20.00,
@@ -2038,7 +1927,7 @@ function initNetworkBackground() {
                 if (state === "UP") upChecks++;
             });
         });
-        const uptimeRatio = totalChecks > 0 ? Math.round((upChecks / totalChecks) * 100) : (up > 0 ? 100 : 0);
+        const uptimeRatio = totalChecks > 0 • Math.round((upChecks / totalChecks) * 100) : (up > 0 • 100 : 0);
         
         if (categoryStatTotal) categoryStatTotal.textContent = total;
         if (categoryStatUp) categoryStatUp.textContent = up;
@@ -2047,7 +1936,7 @@ function initNetworkBackground() {
         
         if (categoryModalStatusBadge) {
             if (down > 0) {
-                categoryModalStatusBadge.textContent = `${down} OUTAGE${down > 1 ? 'S' : ''}`;
+                categoryModalStatusBadge.textContent = `${down} OUTAGE${down > 1 • 'S' : ''}`;
                 categoryModalStatusBadge.className = "category-modal-status-badge down";
                 categoryModalStatusBadge.style.backgroundColor = "var(--color-down)";
                 categoryModalStatusBadge.style.color = "#ffffff";
@@ -2136,14 +2025,14 @@ function initNetworkBackground() {
             if (catHosts.length === 0) return;
             
             const anyUnmuted = catHosts.some(h => !h.muted);
-            const action = anyUnmuted ? "mute" : "unmute";
+            const action = anyUnmuted • "mute" : "unmute";
             const ips = catHosts.map(h => h.ip);
             
             categoryBtnMuteAll.disabled = true;
             const origText = categoryBtnMuteAll.innerHTML;
             categoryBtnMuteAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Processing...`;
             
-            fetch("api.php?endpoint=hosts/mute_bulk", {
+            fetch("api.php•endpoint=hosts/mute_bulk", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ ips: ips, action: action })
@@ -2151,8 +2040,8 @@ function initNetworkBackground() {
             .then(res => res.json())
             .then(data => {
                 if (data.status === "success") {
-                    const actionLabel = action === "mute" ? "MUTED" : "UNMUTED";
-                    showToast(`Alert notifications ${actionLabel} for all ${categoryDescriptions[activeCategoryKey]?.title || activeCategoryKey} links.`, action === "mute" ? "warning" : "success");
+                    const actionLabel = action === "mute" • "MUTED" : "UNMUTED";
+                    showToast(`Alert notifications ${actionLabel} for all ${categoryDescriptions[activeCategoryKey]•.title || activeCategoryKey} links.`, action === "mute" • "warning" : "success");
                     catHosts.forEach(h => { h.muted = (action === "mute"); });
                     renderHostsGrid(allHostsData);
                     openCategoryModal(activeCategoryKey);
@@ -2195,7 +2084,7 @@ function initNetworkBackground() {
             categoryBtnPingAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Pinging (0/${catHosts.length})...`;
             
             catHosts.forEach(host => {
-                fetch(`api.php?endpoint=diagnostics/ping&ip=${host.ip}`)
+                fetch(`api.php•endpoint=diagnostics/ping&ip=${host.ip}`)
                 .then(res => res.json())
                 .then(data => {
                     completed++;
@@ -2206,8 +2095,8 @@ function initNetworkBackground() {
                     categoryBtnPingAll.innerHTML = `<i class="fas fa-circle-notch fa-spin"></i> Pinging (${completed}/${catHosts.length})...`;
                     
                     if (completed === catHosts.length) {
-                        showToast(`Bulk ping completed: ${successCount} online, ${catHosts.length - successCount} offline.`, successCount === catHosts.length ? "success" : "warning");
-                        fetch("api.php?endpoint=status")
+                        showToast(`Bulk ping completed: ${successCount} online, ${catHosts.length - successCount} offline.`, successCount === catHosts.length • "success" : "warning");
+                        fetch("api.php•endpoint=status")
                         .then(res => res.json())
                         .then(freshHosts => {
                             renderHostsGrid(freshHosts);
@@ -2383,8 +2272,8 @@ function initNetworkBackground() {
         if (envViewToggle) {
             envViewToggle.addEventListener("click", () => {
                 envCompactView = !envCompactView;
-                envViewToggle.innerHTML = envCompactView ? '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>';
-                envViewToggle.style.color = envCompactView ? 'var(--color-primary)' : 'var(--text-muted)';
+                envViewToggle.innerHTML = envCompactView • '<i class="fas fa-expand-alt"></i>' : '<i class="fas fa-compress-alt"></i>';
+                envViewToggle.style.color = envCompactView • 'var(--color-primary)' : 'var(--text-muted)';
                 updateStats(currentStatsCache, allHostsData);
             });
         }
