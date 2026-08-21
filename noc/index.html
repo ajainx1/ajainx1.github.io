@@ -4192,7 +4192,173 @@
             }, 6000);
         }
 
-        // --- Document Explorer / Dynamic List Loader ---
+        
+        // ═══════════════════════════════════════════════════════════════════════
+        // DOCUMENT EXPLORER: Instant Multi-Directory Repository Engine
+        // ═══════════════════════════════════════════════════════════════════════
+        let uploadedFilesData = [];
+
+        function formatBytes(bytes, decimals = 1) {
+            if (!+bytes) return '0 B';
+            const k = 1024;
+            const dm = decimals < 0 ? 0 : decimals;
+            const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+        }
+
+        function getFileIconClass(ext) {
+            if (ext === 'pdf') return 'far fa-file-pdf file-icon pdf';
+            if (['doc', 'docx'].includes(ext)) return 'far fa-file-word file-icon word';
+            if (['xls', 'xlsx', 'csv'].includes(ext)) return 'far fa-file-excel file-icon excel';
+            if (['jpg', 'jpeg', 'png', 'gif', 'svg'].includes(ext)) return 'far fa-file-image file-icon image';
+            if (['zip', 'rar', 'tar', 'gz', '7z'].includes(ext)) return 'far fa-file-archive file-icon zip';
+            if (['pptx', 'ppt'].includes(ext)) return 'far fa-file-powerpoint file-icon powerpoint';
+            if (['txt', 'log', 'md'].includes(ext)) return 'far fa-file-alt file-icon text';
+            if (['exe', 'msi', 'bat', 'sh'].includes(ext)) return 'fas fa-cogs file-icon exe';
+            return 'far fa-file file-icon fallback';
+        }
+
+        async function fetchUploadedFiles() {
+            const tableBody = document.getElementById('filesTableBody');
+            try {
+                const response = await fetch('get_files.php?t=' + Date.now());
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                
+                const data = await response.json();
+                uploadedFilesData = Array.isArray(data) ? data : [];
+                console.log(`[+] Document Explorer loaded ${uploadedFilesData.length} indexed files.`);
+                
+                populateDistrictFilter(uploadedFilesData);
+                renderFilesTable(uploadedFilesData);
+            } catch (err) {
+                console.error('Error fetching file list:', err);
+                if (tableBody) {
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="4" class="no-files-found" style="color: #fca5a5; padding: 25px; text-align: center;">
+                                <i class="fas fa-exclamation-triangle" style="font-size: 1.5rem; margin-bottom: 8px; color: #ef4444; display: block;"></i>
+                                Failed to load repository index. Check server connection.
+                            </td>
+                        </tr>
+                    `;
+                }
+            }
+        }
+
+        function populateDistrictFilter(files) {
+            const filterEl = document.getElementById('districtFilter');
+            if (!filterEl) return;
+
+            const categories = new Set();
+            files.forEach(file => {
+                if (file.district) categories.add(file.district);
+            });
+
+            filterEl.innerHTML = '<option value="">All Categories & Districts (' + files.length + ')</option>';
+            Array.from(categories).sort().forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                const count = files.filter(f => f.district === cat).length;
+                opt.textContent = `${cat} (${count})`;
+                filterEl.appendChild(opt);
+            });
+        }
+
+        function renderFilesTable(files) {
+            const tableBody = document.getElementById('filesTableBody');
+            if (!tableBody) return;
+
+            if (!files || files.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="no-files-found" style="padding: 30px; text-align: center; color: #94a3b8;">
+                            <i class="far fa-folder-open" style="font-size: 1.8rem; margin-bottom: 10px; display: block; color: #38bdf8;"></i>
+                            No documents found matching your filter.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tableBody.innerHTML = '';
+            files.forEach(file => {
+                const tr = document.createElement('tr');
+                tr.style.transition = 'all 0.2s ease';
+                
+                // 1. File Name & Icon
+                const tdInfo = document.createElement('td');
+                tdInfo.className = 'file-info-col';
+                tdInfo.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="${getFileIconClass(file.extension)}" style="font-size: 1.25rem;"></i>
+                        <div>
+                            <span class="file-name-txt" style="font-weight: 700; color: #ffffff; display: block;" title="${file.name}">${file.name}</span>
+                            <span style="font-size: 0.72rem; color: #94a3b8;"><i class="far fa-clock"></i> ${file.date || 'Active'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                // 2. District / Category
+                const tdDistrict = document.createElement('td');
+                tdDistrict.innerHTML = `
+                    <span style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.35); color: #38bdf8; font-size: 0.76rem; font-weight: 800; padding: 3px 10px; border-radius: 6px; display: inline-block;">
+                        ${file.district || 'General'}
+                    </span>
+                `;
+                
+                // 3. File Size
+                const tdSize = document.createElement('td');
+                tdSize.style.color = '#cbd5e1';
+                tdSize.style.fontWeight = '600';
+                tdSize.style.fontSize = '0.85rem';
+                tdSize.textContent = formatBytes(file.size);
+                
+                // 4. Actions (Download & Direct Link)
+                const tdActions = document.createElement('td');
+                tdActions.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <a href="${encodeURI(file.path)}" download="${file.name}" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: #fff; text-decoration: none; padding: 5px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 2px 6px rgba(0,0,0,0.3);" title="Download File">
+                            <i class="fas fa-download"></i> Download
+                        </a>
+                    </div>
+                `;
+                
+                tr.appendChild(tdInfo);
+                tr.appendChild(tdDistrict);
+                tr.appendChild(tdSize);
+                tr.appendChild(tdActions);
+                
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function filterFiles() {
+            const searchInput = document.getElementById('fileSearch');
+            const filterEl = document.getElementById('districtFilter');
+            
+            const searchTerm = (searchInput ? searchInput.value : '').toLowerCase().trim();
+            const selectedDistrict = filterEl ? filterEl.value : '';
+            
+            const filtered = uploadedFilesData.filter(file => {
+                const matchesSearch = !searchTerm || file.name.toLowerCase().includes(searchTerm) || (file.district && file.district.toLowerCase().includes(searchTerm));
+                const matchesDistrict = !selectedDistrict || file.district === selectedDistrict;
+                return matchesSearch && matchesDistrict;
+            });
+            
+            renderFilesTable(filtered);
+        }
+
+        // Initialize immediately and bind search events
+        fetchUploadedFiles();
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchUploadedFiles();
+            const searchInput = document.getElementById('fileSearch');
+            const filterEl = document.getElementById('districtFilter');
+            if (searchInput) searchInput.addEventListener('input', filterFiles);
+            if (filterEl) filterEl.addEventListener('change', filterFiles);
+        });
+
         let uploadedFilesData = [];
         const filesTableBody = document.getElementById('filesTableBody');
         const fileSearch = document.getElementById('fileSearch');
