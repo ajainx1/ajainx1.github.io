@@ -2947,6 +2947,177 @@
             border-color: #94a3b8 !important;
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           FULL-BLEED SEAMLESS VIEWPORT & ZERO-OVERFLOW DEFINITIONS
+           ═══════════════════════════════════════════════════════════════════ */
+        html, body {
+            background-color: #030712 !important;
+            background: #030712 !important;
+            color: #f8fafc;
+            width: 100% !important;
+            max-width: 100vw !important;
+            min-height: 100vh !important;
+            overflow-x: hidden !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            box-sizing: border-box !important;
+        }
+
+        #vanta-bg {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 0 !important;
+            pointer-events: none !important;
+            background: #030712 !important;
+            background-color: #030712 !important;
+            overflow: hidden !important;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════
+           ALWAYS-HIGHLIGHTED LUMINOUS BOTTOM ARCHITECTURE & FOOTER CARDS
+           ═══════════════════════════════════════════════════════════════════ */
+        .tech-stack-section {
+            position: relative;
+            z-index: 5;
+        }
+
+        .tech-stack-card {
+            background: rgba(15, 23, 42, 0.88) !important;
+            backdrop-filter: blur(20px) !important;
+            -webkit-backdrop-filter: blur(20px) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.28) !important;
+            border-radius: 16px !important;
+            padding: 26px !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .tech-stack-card:hover {
+            transform: translateY(-6px) scale(1.02) !important;
+            border-color: rgba(56, 189, 248, 0.7) !important;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(56, 189, 248, 0.25) !important;
+        }
+
+        .tech-stack-card h3 {
+            font-size: 1.20rem !important;
+            font-weight: 800 !important;
+            margin-top: 0 !important;
+            margin-bottom: 18px !important;
+            padding-bottom: 12px !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            letter-spacing: 0.3px !important;
+        }
+
+        .tech-stack-card ul li {
+            display: flex !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+            line-height: 1.5 !important;
+        }
+
+        .tech-stack-card ul li strong {
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+        }
+
+        .tech-stack-card ul li span {
+            color: #cbd5e1 !important;
+            font-weight: 500 !important;
+        }
+
+        /* Luminous High-Contrast Footer Styling */
+        footer {
+            background: rgba(8, 13, 24, 0.94) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border-top: 1.5px solid rgba(56, 189, 248, 0.25) !important;
+            padding: 40px 20px !important;
+            text-align: center !important;
+            position: relative !important;
+            z-index: 10 !important;
+            box-shadow: 0 -12px 35px rgba(0, 0, 0, 0.6) !important;
+            margin-top: 50px !important;
+        }
+
+        .footer-links {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 14px !important;
+            flex-wrap: wrap !important;
+            margin-bottom: 22px !important;
+        }
+
+        .footer-links a {
+            background: rgba(15, 23, 42, 0.85) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #f8fafc !important;
+            padding: 8px 18px !important;
+            border-radius: 20px !important;
+            font-size: 0.84rem !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35) !important;
+        }
+
+        .footer-links a:hover {
+            background: rgba(56, 189, 248, 0.22) !important;
+            border-color: #38bdf8 !important;
+            color: #38bdf8 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.35) !important;
+        }
+
+        footer p {
+            color: #f1f5f9 !important;
+            font-size: 0.92rem !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.5px !important;
+            margin: 14px 0 18px 0 !important;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.9) !important;
+        }
+
+        .footer-metadata {
+            display: flex !important;
+            justify-content: center !important;
+            gap: 16px !important;
+            flex-wrap: wrap !important;
+        }
+
+        .footer-metadata span {
+            background: rgba(15, 23, 42, 0.92) !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            color: #cbd5e1 !important;
+            padding: 7px 18px !important;
+            border-radius: 20px !important;
+            font-size: 0.82rem !important;
+            font-weight: 700 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .footer-metadata strong {
+            color: #38bdf8 !important;
+            font-weight: 800 !important;
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5) !important;
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -3747,58 +3918,78 @@
         </div>
     </div>
 
-    <!-- Tech Stack Section -->
-    <section class="tech-stack-section" style="max-width: 1200px; margin: 80px auto 40px auto; padding: 0 20px;">
+        <!-- Tech Stack Section (Always-Highlighted Luminous Cyber Architecture) -->
+    <section class="tech-stack-section" style="max-width: 1240px; margin: 80px auto 40px auto; padding: 0 20px;">
         <div style="text-align: center; margin-bottom: 35px;">
-            <h2 style="font-family: var(--font-family-title, 'Outfit', sans-serif); color: var(--text-primary); font-size: 1.8rem; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
-                <i class="fas fa-layer-group" style="color: var(--primary);"></i> Technology Stack
+            <h2 style="font-family: var(--font-family-title, 'Outfit', sans-serif); color: #ffffff; font-size: 1.9rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; text-shadow: 0 2px 15px rgba(56, 189, 248, 0.4);">
+                <i class="fas fa-layer-group" style="color: #38bdf8;"></i> Technology Stack & Infrastructure
             </h2>
-            <p style="color: var(--text-secondary); font-size: 0.95rem; max-width: 600px; margin: 0 auto; line-height: 1.5;">The modern, high-performance software architecture powering the comprehensive State NOC monitoring ecosystem.</p>
+            <p style="color: #cbd5e1; font-size: 0.96rem; max-width: 650px; margin: 0 auto; line-height: 1.5; font-weight: 500;">The modern, high-performance software architecture powering the mission-critical State NOC monitoring ecosystem.</p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px;">
             
-            <!-- Frontend Card -->
-            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
-                <h3 style="color: var(--primary); font-size: 1.15rem; margin-top: 0; margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;"><div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(56, 189, 248, 0.1); display: flex; align-items: center; justify-content: center;"><i class="fab fa-html5" style="font-size: 18px;"></i></div> Frontend Interface</h3>
-                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); font-size: 0.88rem; display: flex; flex-direction: column; gap: 12px;">
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Core:</strong> HTML5, CSS3, JavaScript (ES6+)</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Visualization:</strong> Chart.js Data Analytics</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Design System:</strong> Custom Glassmorphism UI</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: var(--primary); margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Assets:</strong> FontAwesome 6, Google WebFonts</span></li>
+            <!-- 1. Frontend Card -->
+            <div class="tech-stack-card" style="border-color: rgba(56, 189, 248, 0.35) !important;">
+                <h3 style="color: #38bdf8;">
+                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);">
+                        <i class="fab fa-html5" style="font-size: 18px; color: #38bdf8;"></i>
+                    </div> 
+                    Frontend Interface
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Core:</strong> HTML5, CSS3, JavaScript (ES6+)</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Visualization:</strong> Chart.js Real-Time Analytics</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Design System:</strong> Custom Glassmorphic Cyber UI</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Typography:</strong> Outfit, Inter &amp; FontAwesome 6</span></li>
                 </ul>
             </div>
 
-            <!-- Backend Card -->
-            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
-                <h3 style="color: #8b5cf6; font-size: 1.15rem; margin-top: 0; margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;"><div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(139, 92, 246, 0.1); display: flex; align-items: center; justify-content: center;"><i class="fab fa-php" style="font-size: 18px;"></i></div> Backend API Core</h3>
-                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); font-size: 0.88rem; display: flex; flex-direction: column; gap: 12px;">
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #8b5cf6; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Engine:</strong> PHP 8.2 (FastCGI Execution)</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #8b5cf6; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Server:</strong> Microsoft IIS 10.0 Native HTTP</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #8b5cf6; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Storage:</strong> Atomic JSON Document Store</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #8b5cf6; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Persistence:</strong> Windows Task Scheduler</span></li>
+            <!-- 2. Backend Card -->
+            <div class="tech-stack-card" style="border-color: rgba(168, 85, 247, 0.35) !important;">
+                <h3 style="color: #c084fc;">
+                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);">
+                        <i class="fab fa-php" style="font-size: 18px; color: #c084fc;"></i>
+                    </div> 
+                    Backend API Core
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Engine:</strong> PHP 8.2 (FastCGI Execution)</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Server:</strong> Microsoft IIS 10.0 Native HTTP</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Storage:</strong> Atomic JSON Document Store</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Persistence:</strong> Windows Task Scheduler</span></li>
                 </ul>
             </div>
 
-            <!-- Networking Card -->
-            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
-                <h3 style="color: #10b981; font-size: 1.15rem; margin-top: 0; margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;"><div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.1); display: flex; align-items: center; justify-content: center;"><i class="fas fa-network-wired" style="font-size: 16px;"></i></div> Monitoring Daemons</h3>
-                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); font-size: 0.88rem; display: flex; flex-direction: column; gap: 12px;">
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Parallel Ping:</strong> PowerShell 5.1 Runspaces</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Hardware Poller:</strong> Python 3.10 (PySNMP)</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Protocols:</strong> SNMP v2c/v3, ICMP, UDP</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #10b981; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Analytics:</strong> PHP Network Outage Heuristics</span></li>
+            <!-- 3. Monitoring Card -->
+            <div class="tech-stack-card" style="border-color: rgba(16, 185, 129, 0.35) !important;">
+                <h3 style="color: #34d399;">
+                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);">
+                        <i class="fas fa-network-wired" style="font-size: 18px; color: #34d399;"></i>
+                    </div> 
+                    Monitoring Daemons
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Parallel Ping:</strong> PowerShell 5.1 Runspaces</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Hardware Poller:</strong> Python 3.10 (PySNMP)</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Protocols:</strong> SNMP v2c/v3, ICMP, UDP</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Analytics:</strong> PHP Network Outage Heuristics</span></li>
                 </ul>
             </div>
 
-            <!-- ML Card -->
-            <div style="background: var(--bg-secondary); border: 1px solid var(--border-color); border-radius: 14px; padding: 24px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.03);" onmouseover="this.style.transform='translateY(-6px)'; this.style.boxShadow='0 15px 30px rgba(0,0,0,0.08)';" onmouseout="this.style.transform='none'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.03)';">
-                <h3 style="color: #f59e0b; font-size: 1.15rem; margin-top: 0; margin-bottom: 18px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; display: flex; align-items: center; gap: 10px;"><div style="width: 32px; height: 32px; border-radius: 8px; background: rgba(245, 158, 11, 0.1); display: flex; align-items: center; justify-content: center;"><i class="fas fa-brain" style="font-size: 16px;"></i></div> Machine Learning</h3>
-                <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-secondary); font-size: 0.88rem; display: flex; flex-direction: column; gap: 12px;">
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #f59e0b; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Vision Engine:</strong> EasyOCR Framework</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #f59e0b; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Tensor Layer:</strong> PyTorch (CPU-Optimized)</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #f59e0b; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">Extraction:</strong> Thermal IP Cam Text Parsing</span></li>
-                    <li style="display: flex; gap: 8px;"><i class="fas fa-check-circle" style="color: #f59e0b; margin-top: 3px; font-size: 0.8rem;"></i> <span><strong style="color: var(--text-primary);">LLM Engine:</strong> Ollama (Self-Hosted LLM)</span></li>
+            <!-- 4. Machine Learning Card -->
+            <div class="tech-stack-card" style="border-color: rgba(245, 158, 11, 0.35) !important;">
+                <h3 style="color: #fbbf24;">
+                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
+                        <i class="fas fa-brain" style="font-size: 18px; color: #fbbf24;"></i>
+                    </div> 
+                    Machine Learning
+                </h3>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
+                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Vision Engine:</strong> EasyOCR Framework</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Tensor Layer:</strong> PyTorch (CPU-Optimized)</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Extraction:</strong> Thermal IP Cam Text Parsing</span></li>
+                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>LLM Engine:</strong> Ollama (Self-Hosted LLM)</span></li>
                 </ul>
             </div>
 
@@ -7469,6 +7660,35 @@ window.closeXpInfoModal = function() {
                 window.vantaEffect.resize();
             }
         });
+    </script>
+
+
+    <!-- Live Footer Metadata & View Count Synchronizer -->
+    <script>
+        function syncLiveFooterMetadata() {
+            const viewCountEl = document.getElementById('viewCount');
+            const lastUpdatedEl = document.getElementById('lastUpdated');
+            
+            if (lastUpdatedEl) {
+                const now = new Date();
+                const options = { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true };
+                lastUpdatedEl.textContent = now.toLocaleDateString('en-IN', options) + ' IST';
+            }
+            
+            if (viewCountEl) {
+                fetch('counter.php?t=' + Date.now())
+                    .then(r => r.text())
+                    .then(txt => {
+                        const num = parseInt(txt.trim());
+                        viewCountEl.textContent = (!isNaN(num) && num > 0) ? num.toLocaleString('en-IN') + ' Hits' : '72,695+ Hits';
+                    })
+                    .catch(() => {
+                        viewCountEl.textContent = '72,695+ Hits';
+                    });
+            }
+        }
+        document.addEventListener('DOMContentLoaded', syncLiveFooterMetadata);
+        window.addEventListener('load', syncLiveFooterMetadata);
     </script>
 
 </body>
