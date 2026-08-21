@@ -5454,6 +5454,7 @@
         // --- ð Dynamic Bihar 38-District Live Leaderboard Engine (Live Auto Sync & Gamification) ---
         window.leaderboardData = null;
         window.leaderboardViewMode = 'top12';
+        window.leaderboardSortMode = 'rank';
         window.leaderboardSelectedDivision = 'all';
 
         // Synthesize celebratory Audio Tone on XP Boost using Web Audio API
@@ -5648,6 +5649,38 @@
             }
         }
 
+                function setLeaderboardSort(sortMode) {
+            window.leaderboardSortMode = sortMode;
+            const btnRank = document.getElementById('btnSortRank');
+            const btnActive = document.getElementById('btnSortActive');
+
+            if (sortMode === 'last_active') {
+                if (btnActive) {
+                    btnActive.style.background = '#38bdf8';
+                    btnActive.style.color = '#000';
+                    btnActive.style.boxShadow = '0 2px 8px rgba(56, 189, 248, 0.35)';
+                }
+                if (btnRank) {
+                    btnRank.style.background = 'transparent';
+                    btnRank.style.color = '#94a3b8';
+                    btnRank.style.boxShadow = 'none';
+                }
+            } else {
+                if (btnRank) {
+                    btnRank.style.background = '#38bdf8';
+                    btnRank.style.color = '#000';
+                    btnRank.style.boxShadow = '0 2px 8px rgba(56, 189, 248, 0.35)';
+                }
+                if (btnActive) {
+                    btnActive.style.background = 'transparent';
+                    btnActive.style.color = '#94a3b8';
+                    btnActive.style.boxShadow = 'none';
+                }
+            }
+
+            renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')?.value || '');
+        }
+
         function setLeaderboardView(mode) {
             window.leaderboardViewMode = mode;
             const btnTop12 = document.getElementById('btnTop12');
@@ -5671,7 +5704,7 @@
             const countBadge = document.getElementById('standingsCountBadge');
             if (!standingsContainer || !window.leaderboardData) return;
 
-            let list = window.leaderboardData.all_rankings || [];
+            let list = [...(window.leaderboardData.all_rankings || [])];
             const q = searchQuery.toLowerCase().trim();
 
             // Filter by Division
@@ -5687,10 +5720,33 @@
                     (d.division && d.division.toLowerCase().includes(q)) ||
                     ((d.officers || []).some(o => (o.name || '').toLowerCase().includes(q)))
                 );
-            } else if (window.leaderboardViewMode === 'top12' && window.leaderboardSelectedDivision === 'all') {
-                list = list.slice(3, 15); // Ranks 4 to 15
-            } else if (window.leaderboardSelectedDivision === 'all') {
-                list = list.slice(3); // All remaining
+            }
+
+            // Apply Active Sort Mode
+            if (window.leaderboardSortMode === 'last_active') {
+                list.sort((a, b) => {
+                    const aActive = (a.checked_in_today ? 10000000000 : 0) + (a.last_active_ts || 0);
+                    const bActive = (b.checked_in_today ? 10000000000 : 0) + (b.last_active_ts || 0);
+                    if (bActive !== aActive) return bActive - aActive;
+                    return (b.hits || 0) - (a.hits || 0);
+                });
+
+                if (!q && window.leaderboardSelectedDivision === 'all') {
+                    if (window.leaderboardViewMode === 'top12') {
+                        list = list.slice(0, 12);
+                    }
+                }
+            } else {
+                // Default Sort by Rank (Hits/XP)
+                list.sort((a, b) => (a.rank || 1) - (b.rank || 1));
+
+                if (!q && window.leaderboardSelectedDivision === 'all') {
+                    if (window.leaderboardViewMode === 'top12') {
+                        list = list.slice(3, 15); // Ranks 4 to 15
+                    } else {
+                        list = list.slice(3); // Ranks 4 to 38
+                    }
+                }
             }
 
             if (countBadge) {
