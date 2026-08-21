@@ -246,9 +246,14 @@ foreach ($alert_hosts as $h) {
     }
 }
 
-// Read interactive boost points logged by engineers
-$boosts = file_exists($boost_log_file) ? json_decode(file_get_contents($boost_log_file), true) : [];
-if (!is_array($boosts)) $boosts = [];
+// Read interactive boost points logged by engineers (Supporting Lifetime & Daily Buckets)
+$raw_boosts = file_exists($boost_log_file) ? json_decode(file_get_contents($boost_log_file), true) : [];
+if (!is_array($raw_boosts)) $raw_boosts = [];
+
+// Normalize boost storage structure
+$lifetime_boosts = isset($raw_boosts['lifetime']) && is_array($raw_boosts['lifetime']) ? $raw_boosts['lifetime'] : (isset($raw_boosts['darbhanga']) || isset($raw_boosts['banka']) ? $raw_boosts : []);
+$daily_boosts = isset($raw_boosts['daily']) && is_array($raw_boosts['daily']) ? $raw_boosts['daily'] : [];
+$today_district_boosts = $daily_boosts[$today] ?? [];
 
 // Event Telemetry File
 $events_file = __DIR__ . DIRECTORY_SEPARATOR . 'telemetry_events.json';
@@ -261,16 +266,23 @@ $all_checkins = file_exists($checkins_file) ? json_decode(file_get_contents($che
 if (!is_array($all_checkins)) $all_checkins = [];
 $today_checkins = $all_checkins[$today] ?? [];
 
-// Rate Limiting / Anti-Cheat Cache File
+// Rate Limiting / Anti-Cheat & Velocity Control Cache File
 $ratelimit_file = __DIR__ . DIRECTORY_SEPARATOR . 'leaderboard_ratelimit.json';
 $ratelimits = file_exists($ratelimit_file) ? json_decode(file_get_contents($ratelimit_file), true) : [];
 if (!is_array($ratelimits)) $ratelimits = [];
 
-// Clean expired rate limit records (older than 60 seconds)
 $now_time = time();
-foreach ($ratelimits as $ip => $last_ts) {
-    if ($now_time - $last_ts > 60) {
-        unset($ratelimits[$ip]);
+// Clean expired rate limit records (older than 3600 seconds / 1 hour)
+foreach ($ratelimits as $ip_key => $history) {
+    if (is_array($history)) {
+        $ratelimits[$ip_key] = array_values(array_filter($history, function($ts) use ($now_time) {
+            return ($now_time - $ts) < 3600;
+        }));
+        if (empty($ratelimits[$ip_key])) {
+            unset($ratelimits[$ip_key]);
+        }
+    } elseif ($now_time - intval($history) > 3600) {
+        unset($ratelimits[$ip_key]);
     }
 }
 
@@ -389,26 +401,60 @@ if (isset($_GET['boost'])) {
     $action_type = $action_meta['label'];
     $xp = $action_meta['xp']; // Strictly server dictated
     
-    // 3. Strict Anti-Cheat IP Rate Limiting & Cooldown (2 seconds minimum between clicks)
-    $cooldown_req = 2; // Fast, responsive 2-second cooldown
-    $last_action_ts = intval($ratelimits[$user_ip] ?? 0);
-    if ($last_action_ts > $now_time) {
-        $last_action_ts = 0; // Fix clock drift
-    }
+    // 3. Multi-Layer Anti-Bot & Fair Play Enforcement
+    $cooldown_req = 10; // 10-second anti-script cooldown
+    $max_actions_per_hour = 15; // Max 15 diagnostics per IP per hour
+    $max_district_daily_bonus_xp = 2500; // Max 2,500 bonus XP per district per day
+
+    $ip_history = is_array($ratelimits[$user_ip] ?? null) ? $ratelimits[$user_ip] : (isset($ratelimits[$user_ip]) ? [intval($ratelimits[$user_ip])] : []);
+    $last_action_ts = !empty($ip_history) ? max($ip_history) : 0;
+
+    // A. 10-second per-IP cooldown
     if ($last_action_ts > 0 && ($now_time - $last_action_ts) < $cooldown_req) {
         $wait_sec = max(1, $cooldown_req - ($now_time - $last_action_ts));
+        http_response_code(429);
         echo json_encode([
             'status' => 'rate_limited',
-            'message' => "⏳ Security Cooldown: Please wait {$wait_sec}s before recording another telemetry activity.",
+            'message' => "⏳ Anti-Script Cooldown: Please wait {$wait_sec}s before recording another telemetry activity.",
             'cooldown_seconds' => $wait_sec
         ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
         exit;
     }
-    
+
+    // B. Hourly Velocity Cap (Max 15 requests/hour from same IP)
+    $recent_ip_actions = array_filter($ip_history, function($ts) use ($now_time) {
+        return ($now_time - $ts) < 3600;
+    });
+    if (count($recent_ip_actions) >= $max_actions_per_hour) {
+        http_response_code(429);
+        echo json_encode([
+            'status' => 'velocity_limit',
+            'message' => "🛑 Hourly Workstation Quota: Maximum {$max_actions_per_hour} activities per hour reached. Please resume diagnostics later.",
+            'cooldown_seconds' => 60
+        ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+        exit;
+    }
+
+    // C. District Daily Bonus XP Ceiling (Max 2,500 XP per calendar day)
+    $today_dist_xp = intval($today_district_boosts[$target] ?? 0);
+    if ($today_dist_xp >= $max_district_daily_bonus_xp) {
+        echo json_encode([
+            'status' => 'daily_limit_reached',
+            'district' => $target,
+            'today_bonus_xp' => $today_dist_xp,
+            'message' => "🏆 Daily District Goal Complete: " . ucfirst($target) . " has reached today's max 2,500 bonus XP! Resets at midnight IST."
+        ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+        exit;
+    }
+
+    // Determine safe XP to award (clamped to daily cap)
+    $actual_xp = min($xp, $max_district_daily_bonus_xp - $today_dist_xp);
+
     // Record rate limit timestamp
-    $ratelimits[$user_ip] = $now_time;
+    $recent_ip_actions[] = $now_time;
+    $ratelimits[$user_ip] = array_values($recent_ip_actions);
     file_put_contents($ratelimit_file, json_encode($ratelimits), LOCK_EX);
-    
+
     // 4. Daily Check-in Persistence (Once per day per district)
     if ($action_key === 'checkin') {
         $today_checkins[$target] = [
@@ -419,7 +465,7 @@ if (isset($_GET['boost'])) {
         ];
         $all_checkins[$today] = $today_checkins;
         file_put_contents($checkins_file, json_encode($all_checkins, JSON_PRETTY_PRINT), LOCK_EX);
-        
+
         $district_activity[$target] = [
             'last_seen_date' => $today,
             'last_seen_time' => date('H:i:s'),
@@ -429,40 +475,48 @@ if (isset($_GET['boost'])) {
         ];
         file_put_contents($activity_file, json_encode($district_activity, JSON_PRETTY_PRINT), LOCK_EX);
     }
-    
-    // 5. Dynamic Cumulative District XP Engine: Persist all authenticated actions
-    $current_district_boost = intval($boosts[$target] ?? 0);
-    $boosts[$target] = $current_district_boost + $xp;
-    file_put_contents($boost_log_file, json_encode($boosts, JSON_PRETTY_PRINT), LOCK_EX);
-    
+
+    // 5. Update Lifetime and Daily Boost Stores
+    $lifetime_boosts[$target] = intval($lifetime_boosts[$target] ?? 0) + $actual_xp;
+    $today_district_boosts[$target] = $today_dist_xp + $actual_xp;
+    $daily_boosts[$today] = $today_district_boosts;
+
+    $boosts_payload = [
+        'lifetime' => $lifetime_boosts,
+        'daily' => $daily_boosts
+    ];
+    file_put_contents($boost_log_file, json_encode($boosts_payload, JSON_PRETTY_PRINT), LOCK_EX);
+
     // 6. Record Immutable Telemetry Audit Event
     $new_event = [
         'id' => 'TEL-' . strtoupper(substr(md5(uniqid((string)rand(), true)), 0, 8)),
         'timestamp' => $now_formatted,
         'district' => $target,
         'action' => $action_type,
-        'xp_awarded' => $xp,
+        'xp_awarded' => $actual_xp,
         'ip' => $user_ip,
         'user_agent' => $user_agent
     ];
     array_unshift($events, $new_event);
-    if (count($events) > 300) {
-        $events = array_slice($events, 0, 300);
+    if (count($events) > 100) {
+        $events = array_slice($events, 0, 100);
     }
     file_put_contents($events_file, json_encode($events, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES), LOCK_EX);
-    
+
     // Return Clean JSON Response
     if (isset($_GET['ajax']) || isset($_GET['boost'])) {
         echo json_encode([
             'status' => 'boosted',
             'district' => $target,
-            'xp_added' => $xp,
+            'xp_added' => $actual_xp,
+            'today_bonus_xp' => $today_district_boosts[$target],
+            'daily_cap' => $max_district_daily_bonus_xp,
             'action' => $action_type,
             'client_ip' => $user_ip,
             'timestamp' => $now_formatted,
             'event_id' => $new_event['id'],
             'checked_in_today' => isset($today_checkins[$target]),
-            'message' => "⚡ +{$xp} XP authenticated for " . ucfirst($target) . "! Real-time district standings updated."
+            'message' => "⚡ +{$actual_xp} XP authenticated for " . ucfirst($target) . "! Real-time district standings updated."
         ], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_UNESCAPED_SLASHES);
         exit;
     }
@@ -483,7 +537,7 @@ $iis_log_is_today = (($iis_data['today_date'] ?? '') === $today);
 foreach ($bihar_districts as &$d) {
     $code = $d['code'];
     $div = $d['division'];
-    $boost_val = intval($boosts[$code] ?? 0);
+    $boost_val = intval($lifetime_boosts[$code] ?? 0);
     $iis_info = $iis_districts[$code] ?? null;
     $real_hits = $iis_log_is_today ? intval($iis_info['hits_today'] ?? 0) : 0;
     $total_iis_hits = intval($iis_info['total_hits'] ?? 0);
