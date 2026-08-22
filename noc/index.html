@@ -4830,78 +4830,96 @@
     </main>
 
         <!-- Tech Stack Section (Always-Highlighted Luminous Cyber Architecture) -->
-    <section class="tech-stack-section" style="max-width: 1240px; margin: 80px auto 40px auto; padding: 0 20px;">
+        <!-- Technology Stack & Infrastructure (Aligned Multi-Pillar Architecture) -->
+    <section class="tech-stack-section" style="max-width: 1400px; width: 100%; margin: 60px auto 40px auto; padding: 0 30px; box-sizing: border-box;">
         <div style="text-align: center; margin-bottom: 35px;">
-            <h2 style="font-family: var(--font-family-title, 'Outfit', sans-serif); color: #ffffff; font-size: 1.9rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px; text-shadow: 0 2px 15px rgba(56, 189, 248, 0.4);">
-                <i class="fas fa-layer-group" style="color: #38bdf8;"></i> Technology Stack & Infrastructure
+            <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.12); border: 1.5px solid rgba(56, 189, 248, 0.35); padding: 4px 16px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 12px;">
+                <i class="fas fa-microchip"></i> System Architecture &amp; Stack
+            </div>
+            <h2 style="font-family: var(--font-family-title, 'Outfit', sans-serif); font-size: 1.9rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 8px;">
+                <i class="fas fa-layer-group" style="color: var(--primary);"></i> Technology Stack &amp; Infrastructure
             </h2>
-            <p style="color: #cbd5e1; font-size: 0.96rem; max-width: 650px; margin: 0 auto; line-height: 1.5; font-weight: 500;">The modern, high-performance software architecture powering the mission-critical State NOC monitoring ecosystem.</p>
+            <p style="color: var(--text-secondary); font-size: 0.96rem; max-width: 700px; margin: 0 auto; line-height: 1.5; font-weight: 500;">
+                The modern, high-performance software architecture powering the mission-critical Bihar State NOC monitoring ecosystem.
+            </p>
         </div>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 24px;">
             
-            <!-- 1. Frontend Card -->
-            <div class="tech-stack-card" style="border-color: rgba(56, 189, 248, 0.35) !important;">
-                <h3 style="color: #38bdf8;">
-                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);">
-                        <i class="fab fa-html5" style="font-size: 18px; color: #38bdf8;"></i>
-                    </div> 
-                    Frontend Interface
-                </h3>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
-                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Core:</strong> HTML5, CSS3, JavaScript (ES6+)</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Visualization:</strong> Chart.js Real-Time Analytics</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Design System:</strong> Custom Glassmorphic Cyber UI</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #38bdf8; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Typography:</strong> Outfit, Inter &amp; FontAwesome 6</span></li>
-                </ul>
+            <!-- 1. Frontend & 3D WebGL Card -->
+            <div class="tech-stack-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(56, 189, 248, 0.35) !important;">
+                <div>
+                    <h3 style="color: #0284c7; display: flex; align-items: center; gap: 12px; font-size: 1.18rem; font-weight: 800; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(56, 189, 248, 0.25); flex-shrink: 0;">
+                            <i class="fab fa-html5" style="font-size: 20px; color: #0284c7;"></i>
+                        </div> 
+                        <span>Frontend &amp; 3D UI</span>
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #0284c7; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Core:</strong> HTML5, CSS3, JavaScript (ES6+)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #0284c7; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>3D Engine:</strong> Vanta.NET &amp; Three.js WebGL</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #0284c7; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Visualization:</strong> Chart.js Real-Time Analytics</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #0284c7; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Design System:</strong> Glassmorphic Cyber UI &amp; Tilt.js</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #0284c7; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Typography:</strong> Outfit, Inter &amp; JetBrains Mono</span></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- 2. Backend Card -->
-            <div class="tech-stack-card" style="border-color: rgba(168, 85, 247, 0.35) !important;">
-                <h3 style="color: #c084fc;">
-                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.3);">
-                        <i class="fab fa-php" style="font-size: 18px; color: #c084fc;"></i>
-                    </div> 
-                    Backend API Core
-                </h3>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
-                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Engine:</strong> PHP 8.2 (FastCGI Execution)</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Server:</strong> Microsoft IIS 10.0 Native HTTP</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Storage:</strong> Atomic JSON Document Store</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #c084fc; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Persistence:</strong> Windows Task Scheduler</span></li>
-                </ul>
+            <!-- 2. Backend & Server Core Card -->
+            <div class="tech-stack-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(168, 85, 247, 0.35) !important;">
+                <div>
+                    <h3 style="color: #9333ea; display: flex; align-items: center; gap: 12px; font-size: 1.18rem; font-weight: 800; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(168, 85, 247, 0.18); border: 1px solid rgba(168, 85, 247, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(168, 85, 247, 0.25); flex-shrink: 0;">
+                            <i class="fab fa-php" style="font-size: 20px; color: #9333ea;"></i>
+                        </div> 
+                        <span>Backend API Core</span>
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #9333ea; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Engine:</strong> PHP 8.2 (FastCGI Execution)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #9333ea; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Web Server:</strong> Microsoft IIS 10.0 Native HTTP</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #9333ea; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Storage:</strong> Atomic JSON Document Store</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #9333ea; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Automation:</strong> Windows Task Scheduler Daemons</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #9333ea; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Architecture:</strong> Zero-Dependency Lightweight REST</span></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- 3. Monitoring Card -->
-            <div class="tech-stack-card" style="border-color: rgba(16, 185, 129, 0.35) !important;">
-                <h3 style="color: #34d399;">
-                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);">
-                        <i class="fas fa-network-wired" style="font-size: 18px; color: #34d399;"></i>
-                    </div> 
-                    Monitoring Daemons
-                </h3>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
-                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Parallel Ping:</strong> PowerShell 5.1 Runspaces</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Hardware Poller:</strong> Python 3.10 (PySNMP)</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Protocols:</strong> SNMP v2c/v3, ICMP, UDP</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #34d399; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Analytics:</strong> PHP Network Outage Heuristics</span></li>
-                </ul>
+            <!-- 3. Monitoring Daemons Card -->
+            <div class="tech-stack-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(16, 185, 129, 0.35) !important;">
+                <div>
+                    <h3 style="color: #059669; display: flex; align-items: center; gap: 12px; font-size: 1.18rem; font-weight: 800; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(16, 185, 129, 0.18); border: 1px solid rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(16, 185, 129, 0.25); flex-shrink: 0;">
+                            <i class="fas fa-network-wired" style="font-size: 20px; color: #059669;"></i>
+                        </div> 
+                        <span>Monitoring Daemons</span>
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #059669; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Parallel Ping:</strong> PowerShell 5.1 Runspaces (294 Hosts)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #059669; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Hardware Poller:</strong> Python 3.10 (PySNMP v2c/v3)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #059669; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Protocols:</strong> SNMP, ICMP Ping, UDP, WMI</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #059669; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Analytics:</strong> PHP Network Outage Heuristics</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #059669; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Telemetry:</strong> 38-District Real-Time Fiber Ping (ms)</span></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- 4. Machine Learning Card -->
-            <div class="tech-stack-card" style="border-color: rgba(245, 158, 11, 0.35) !important;">
-                <h3 style="color: #fbbf24;">
-                    <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(245, 158, 11, 0.3);">
-                        <i class="fas fa-brain" style="font-size: 18px; color: #fbbf24;"></i>
-                    </div> 
-                    Machine Learning
-                </h3>
-                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px;">
-                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Vision Engine:</strong> EasyOCR Framework</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Tensor Layer:</strong> PyTorch (CPU-Optimized)</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>Extraction:</strong> Thermal IP Cam Text Parsing</span></li>
-                    <li><i class="fas fa-check-circle" style="color: #fbbf24; margin-top: 4px; font-size: 0.85rem;"></i> <span><strong>LLM Engine:</strong> Ollama (Self-Hosted LLM)</span></li>
-                </ul>
+            <!-- 4. Machine Learning & AI Card -->
+            <div class="tech-stack-card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: rgba(245, 158, 11, 0.35) !important;">
+                <div>
+                    <h3 style="color: #d97706; display: flex; align-items: center; gap: 12px; font-size: 1.18rem; font-weight: 800; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                        <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(245, 158, 11, 0.18); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(245, 158, 11, 0.25); flex-shrink: 0;">
+                            <i class="fas fa-brain" style="font-size: 20px; color: #d97706;"></i>
+                        </div> 
+                        <span>AI &amp; Computer Vision</span>
+                    </h3>
+                    <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #d97706; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Vision Engine:</strong> EasyOCR Framework</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #d97706; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Tensor Layer:</strong> PyTorch (CPU-Optimized)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #d97706; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Extraction:</strong> Thermal IP Cam Text Parsing</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #d97706; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>LLM Engine:</strong> Ollama (Self-Hosted Local LLM)</span></li>
+                        <li style="display: flex; align-items: flex-start; gap: 10px; line-height: 1.5;"><i class="fas fa-check-circle" style="color: #d97706; margin-top: 4px; font-size: 0.88rem; flex-shrink: 0;"></i> <span><strong>Intelligence:</strong> RAG NOC Directory &amp; Knowledge Base</span></li>
+                    </ul>
+                </div>
             </div>
 
         </div>
