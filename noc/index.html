@@ -4131,6 +4131,28 @@
         body.dark-mode .standings-ip-text { color: #38bdf8 !important; }
         body.light-mode .standings-ip-text { color: #0284c7 !important; }
 
+    
+        /* Header Grid Alignment with Main Site Container */
+        .top-header {
+            width: 100% !important;
+            padding: 10px 0 !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .header-inner-container {
+            max-width: 1400px !important;
+            margin: 0 auto !important;
+            padding: 0 30px !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -4142,22 +4164,24 @@
 
     <!-- Sticky Navigation / Header -->
     <header class="top-header">
-        <a href="http://10.133.22.8/" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
-            <div class="emblem-container">
-                <img src="Emblem_of_India.png" alt="Emblem of India">
-                <div class="emblem-text">
-                    <span class="gov-title">Government of India | भारत सरकार</span><br>
-                    <span class="gov-subtitle">Ministry of Electronics & Information Technology</span>
+        <div class="header-inner-container">
+            <a href="http://10.133.22.8/" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
+                <div class="emblem-container" style="display: flex; align-items: center; gap: 14px;">
+                    <img src="Emblem_of_India.png" alt="Emblem of India" style="height: 48px; object-fit: contain;">
+                    <div class="emblem-text">
+                        <span class="gov-title" style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.08rem; letter-spacing: -0.01em; display: block; line-height: 1.25;">Government of India | भारत सरकार</span>
+                        <span class="gov-subtitle" style="font-size: 0.82rem; font-weight: 600; line-height: 1.25;">Ministry of Electronics &amp; Information Technology</span>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
-            <a href="http://10.133.22.8/alert/" class="header-portal-btn btn-noc-alerts" target="_blank" title="Live NOC Alerts Console">
-                <i class="fas fa-bell"></i> <span>NOC Alerts</span>
             </a>
-            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
-                <i class="fas fa-moon" id="themeIcon"></i>
-            </button>
+            <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+                <a href="http://10.133.22.8/alert/" class="header-portal-btn btn-noc-alerts" target="_blank" title="Live NOC Alerts Console">
+                    <i class="fas fa-bell"></i> <span>NOC Alerts</span>
+                </a>
+                <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </div>
         </div>
     </header>
 
