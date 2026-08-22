@@ -4253,9 +4253,9 @@
                 </div>
             </a>
             <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
-                <button onclick="window.openBandwidthModal();" class="header-portal-btn btn-speedtest-top" title="Measure Real-Time Bandwidth, Latency &amp; Speed to State NOC Backbone">
+                <a href="http://10.133.22.8/speed/" class="header-portal-btn btn-speedtest-top" target="_blank" title="Check Network Speed (Live Speedtest Portal)">
                     <i class="fas fa-tachometer-alt" style="color: #f59e0b;"></i> <span>Check Network Speed</span>
-                </button>
+                </a>
                 <a href="http://10.133.22.8/alert/" class="header-portal-btn btn-noc-alerts" target="_blank" title="Live NOC Alerts Console">
                     <i class="fas fa-bell"></i> <span>NOC Alerts</span>
                 </a>
@@ -6127,7 +6127,7 @@
                     • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
                     • <strong>Patna State HQ Latency:</strong> &lt;2ms<br><br>
                     <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                        <button onclick="window.openBandwidthModal();" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">⚡ Run Bandwidth Speedtest</button>
+                        <a href="http://10.133.22.8/speed/" target="_blank" style="background: #0284c7; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;"><i class="fas fa-tachometer-alt"></i> Check Network Speed</a>
                         <a href="http://10.133.22.8/alert/" target="_blank" style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">🚨 Open Alert Console</a>
                     </div>`;
             }
@@ -9049,12 +9049,7 @@ function logToConsole(msg, color) {
 }
 
 window.openBandwidthModal = function() {
-    var modal = document.getElementById('bandwidthModal');
-    if (modal) {
-        if (modal.parentNode !== document.body) { document.body.appendChild(modal); }
-        modal.style.display = 'flex';
-        setTimeout(startHypnoticCanvas, 100);
-    }
+    window.open('http://10.133.22.8/speed/', '_blank');
 };
 
 window.closeBandwidthModal = function() {
