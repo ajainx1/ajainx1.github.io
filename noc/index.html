@@ -4253,6 +4253,11 @@
                 </div>
             </a>
             <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+                                <!-- Spotlight Command Palette Trigger -->
+                <button onclick="window.openCommandPalette();" class="header-portal-btn btn-command-palette-top" title="Open Global Command Palette &amp; District Search (Ctrl + K)">
+                    <i class="fas fa-search" style="color: #38bdf8;"></i> <span>Search / Quick Actions</span>
+                    <kbd style="background: rgba(255,255,255,0.15); font-size: 0.68rem; padding: 2px 5px; border-radius: 4px; font-family: monospace; margin-left: 4px;">Ctrl K</kbd>
+                </button>
                 <a href="http://10.133.22.8/speed/" class="header-portal-btn btn-speedtest-top" target="_blank" title="Check Network Speed (Live Speedtest Portal)">
                     <i class="fas fa-tachometer-alt" style="color: #f59e0b;"></i> <span>Check Network Speed</span>
                 </a>
@@ -5029,6 +5034,32 @@
         <!-- ================================================================= -->
     <!-- Bihar NOC AI Copilot & Intelligent Assistant (Executive Edition)  -->
     <!-- ================================================================= -->
+        <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <!-- GLOBAL COMMAND PALETTE & DISTRICT SPOTLIGHT (Ctrl + K)             -->
+    <!-- ═══════════════════════════════════════════════════════════════════ -->
+    <div id="commandPaletteModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.82); backdrop-filter: blur(16px); z-index: 1000000; align-items: flex-start; justify-content: center; padding-top: 10vh;">
+        <div style="background: var(--bg-secondary); border: 1.5px solid var(--border-color); border-radius: 20px; width: 640px; max-width: 92vw; box-shadow: 0 25px 80px rgba(0, 0, 0, 0.8); overflow: hidden; animation: modalPop 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);">
+            
+            <!-- Search Input Header -->
+            <div style="padding: 16px 20px; border-bottom: 1.5px solid var(--border-color); display: flex; align-items: center; gap: 14px; background: var(--bg-tertiary);">
+                <i class="fas fa-search" style="color: var(--primary); font-size: 1.2rem;"></i>
+                <input type="text" id="commandPaletteInput" placeholder="Search 38 districts, subnets, CLI commands, speedtest, tools..." autocomplete="off" style="flex: 1; background: transparent; border: none; outline: none; font-size: 1.05rem; font-weight: 600; color: var(--text-primary); font-family: 'Outfit', sans-serif;">
+                <kbd style="background: var(--bg-secondary); border: 1px solid var(--border-color); color: var(--text-muted); padding: 4px 8px; border-radius: 6px; font-size: 0.72rem; font-weight: 800; font-family: monospace;">ESC</kbd>
+            </div>
+
+            <!-- Command Results Container -->
+            <div id="commandPaletteResults" style="max-height: 380px; overflow-y: auto; padding: 12px; display: flex; flex-direction: column; gap: 6px;">
+                <!-- Populated dynamically via JS -->
+            </div>
+
+            <!-- Footer Hints -->
+            <div style="padding: 10px 18px; border-top: 1px solid var(--border-color); background: var(--bg-tertiary); display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: var(--text-muted); font-weight: 600;">
+                <span><kbd>↑</kbd> <kbd>↓</kbd> to navigate &bull; <kbd>↵</kbd> to select</span>
+                <span>Bihar State NOC Intelligent Spotlight</span>
+            </div>
+        </div>
+    </div>
+
     <div class="chatbot-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 999999;">
         
         <!-- Persistent Rotating Speech Bubble Tooltip (All Day Long) -->
@@ -9493,7 +9524,224 @@ window.closeXpInfoModal = function() {
         window.addEventListener('resize', ensureFullBleedVanta);
         window.addEventListener('DOMContentLoaded', ensureFullBleedVanta);
         window.addEventListener('load', ensureFullBleedVanta);
-</script>
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SPOTLIGHT COMMAND PALETTE & DISTRICT QUICK-SWITCHER (Ctrl + K)
+        // ═══════════════════════════════════════════════════════════════════
+        const QUICK_COMMANDS = [
+            { icon: 'fas fa-tachometer-alt', title: 'Check Network Speed (Live Portal)', category: 'Diagnostics', action: () => window.open('http://10.133.22.8/speed/', '_blank') },
+            { icon: 'fas fa-bell', title: 'Open Live NOC Alert Console', category: 'Monitoring', action: () => window.open('http://10.133.22.8/alert/', '_blank') },
+            { icon: 'fas fa-trophy', title: 'View 38-District Live Leaderboard', category: 'Gamification', action: () => { const el = document.getElementById('districtLeaderboardSection'); if(el) el.scrollIntoView({behavior:'smooth'}); } },
+            { icon: 'fas fa-desktop', title: 'Open Windows 11 Automated Network Boot Guide', category: 'Tools', action: () => openNetworkBootGuide() },
+            { icon: 'fas fa-terminal', title: 'Open Nivetti vs Cisco CLI Command Cheat Sheet', category: 'Tools', action: () => window.openCliCommandModal() },
+            { icon: 'fas fa-shield-alt', title: 'UEM & EDR Security Agent & Zip Password (Nic@004)', category: 'Security', action: () => { window.toggleChatbotPanel(); setTimeout(() => window.sendSuggestionChip('UEM Agent & Password'), 300); } },
+            { icon: 'fas fa-adjust', title: 'Toggle Theme (Dark / Light Mode)', category: 'Interface', action: () => { const btn = document.getElementById('themeToggleBtn'); if(btn) btn.click(); } },
+            { icon: 'fas fa-user-shield', title: 'Founder & System Architect (Aditya Jain)', category: 'Operations', action: () => { window.toggleChatbotPanel(); setTimeout(() => window.sendSuggestionChip('Who is your founder?'), 300); } }
+        ];
+
+        window.openCommandPalette = function() {
+            const modal = document.getElementById('commandPaletteModal');
+            const input = document.getElementById('commandPaletteInput');
+            if (!modal || !input) return;
+            modal.style.display = 'flex';
+            input.value = '';
+            renderCommandPaletteResults('');
+            setTimeout(() => input.focus(), 50);
+            playTriumphalSound(650, 0.05);
+        };
+
+        window.closeCommandPalette = function() {
+            const modal = document.getElementById('commandPaletteModal');
+            if (modal) modal.style.display = 'none';
+        };
+
+        function renderCommandPaletteResults(query) {
+            const container = document.getElementById('commandPaletteResults');
+            if (!container) return;
+            const q = (query || '').toLowerCase().trim();
+            container.innerHTML = '';
+
+            let results = [];
+
+            // Match Quick Commands
+            QUICK_COMMANDS.forEach(cmd => {
+                if (!q || cmd.title.toLowerCase().includes(q) || cmd.category.toLowerCase().includes(q)) {
+                    results.push({
+                        icon: cmd.icon,
+                        title: cmd.title,
+                        subtitle: cmd.category,
+                        badge: 'Action',
+                        badgeColor: '#38bdf8',
+                        action: cmd.action
+                    });
+                }
+            });
+
+            // Match Districts in BIHAR_DISTRICT_SUBNETS
+            if (typeof BIHAR_DISTRICT_SUBNETS !== 'undefined') {
+                Object.entries(BIHAR_DISTRICT_SUBNETS).forEach(([key, d]) => {
+                    if (!q || d.name.toLowerCase().includes(q) || d.div.toLowerCase().includes(q) || d.ip.includes(q) || (d.dio && d.dio.toLowerCase().includes(q))) {
+                        results.push({
+                            icon: 'fas fa-city',
+                            title: `${d.name} (${d.div} Division)`,
+                            subtitle: `DHQ: ${d.dhq} • Subnet: ${d.ip} • SLA: ${d.lat}`,
+                            badge: 'District',
+                            badgeColor: '#10b981',
+                            action: () => {
+                                window.closeCommandPalette();
+                                window.openDistrictIntelligenceModal(key.slice(0,3).toUpperCase());
+                            }
+                        });
+                    }
+                });
+            }
+
+            if (results.length === 0) {
+                container.innerHTML = `<div style="padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.9rem;">No matching districts or commands found for "${q}".</div>`;
+                return;
+            }
+
+            results.slice(0, 10).forEach((res, idx) => {
+                const item = document.createElement('div');
+                item.className = 'command-palette-item';
+                item.style.padding = '10px 14px';
+                item.style.borderRadius = '10px';
+                item.style.display = 'flex';
+                item.style.alignItems = 'center';
+                item.style.justifyContent = 'space-between';
+                item.style.cursor = 'pointer';
+                item.style.transition = 'all 0.15s ease';
+                item.style.background = idx === 0 ? 'rgba(56, 189, 248, 0.12)' : 'transparent';
+                item.style.border = idx === 0 ? '1px solid rgba(56, 189, 248, 0.3)' : '1px solid transparent';
+                
+                item.innerHTML = `
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 34px; height: 34px; border-radius: 8px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; color: ${res.badgeColor}; font-size: 0.95rem;">
+                            <i class="${res.icon}"></i>
+                        </div>
+                        <div>
+                            <div style="font-weight: 800; font-size: 0.9rem; color: var(--text-primary);">${res.title}</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">${res.subtitle}</div>
+                        </div>
+                    </div>
+                    <span style="background: rgba(255,255,255,0.08); color: ${res.badgeColor}; font-size: 0.7rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; text-transform: uppercase;">${res.badge}</span>
+                `;
+
+                item.onmouseenter = () => {
+                    item.style.background = 'rgba(56, 189, 248, 0.15)';
+                    item.style.borderColor = 'rgba(56, 189, 248, 0.4)';
+                };
+                item.onmouseleave = () => {
+                    item.style.background = 'transparent';
+                    item.style.borderColor = 'transparent';
+                };
+                item.onclick = () => {
+                    window.closeCommandPalette();
+                    res.action();
+                };
+
+                container.appendChild(item);
+            });
+        }
+
+        // Global Key Listener for Ctrl + K and Esc
+        document.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                const modal = document.getElementById('commandPaletteModal');
+                if (modal && modal.style.display === 'flex') {
+                    window.closeCommandPalette();
+                } else {
+                    window.openCommandPalette();
+                }
+            } else if (e.key === 'Escape') {
+                window.closeCommandPalette();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const palInput = document.getElementById('commandPaletteInput');
+            if (palInput) {
+                palInput.addEventListener('input', (e) => {
+                    renderCommandPaletteResults(e.target.value);
+                });
+            }
+            const modal = document.getElementById('commandPaletteModal');
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) window.closeCommandPalette();
+                });
+            }
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // CELEBRATORY TRIUMPHAL AUDIO & XP PARTICLE ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+        function playTriumphalSound(baseFreq = 520, duration = 0.1) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                [baseFreq, baseFreq * 1.25, baseFreq * 1.5].forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + (i * 0.04));
+                    gain.gain.setValueAtTime(0.05, ctx.currentTime + (i * 0.04));
+                    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + (i * 0.04) + duration);
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.start(ctx.currentTime + (i * 0.04));
+                    osc.stop(ctx.currentTime + (i * 0.04) + duration);
+                });
+            } catch (e) {}
+        }
+
+        // Floating XP Toast Particle Animation
+        window.spawnFloatingXpParticle = function(text = '+250 XP', color = '#fbbf24') {
+            const particle = document.createElement('div');
+            particle.innerText = text;
+            particle.style.position = 'fixed';
+            particle.style.top = '50%';
+            particle.style.left = '50%';
+            particle.style.transform = 'translate(-50%, -50%) scale(0.8)';
+            particle.style.background = 'linear-gradient(135deg, #0284c7, #0f4c81)';
+            particle.style.color = color;
+            particle.style.padding = '14px 28px';
+            particle.style.borderRadius = '30px';
+            particle.style.fontSize = '1.3rem';
+            particle.style.fontWeight = '900';
+            particle.style.fontFamily = "'Outfit', sans-serif";
+            particle.style.border = `2px solid ${color}`;
+            particle.style.boxShadow = `0 10px 40px rgba(0, 0, 0, 0.6), 0 0 25px ${color}`;
+            particle.style.zIndex = '9999999';
+            particle.style.pointerEvents = 'none';
+            particle.style.transition = 'all 0.85s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            
+            document.body.appendChild(particle);
+
+            setTimeout(() => {
+                particle.style.transform = 'translate(-50%, -160%) scale(1.15)';
+                particle.style.opacity = '0';
+            }, 50);
+
+            setTimeout(() => {
+                if (particle.parentNode) particle.parentNode.removeChild(particle);
+            }, 900);
+
+            playTriumphalSound(580, 0.15);
+
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 50,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#0284c7', '#10b981', '#f59e0b', '#a855f7']
+                });
+            }
+        };
+
+    </script>
 </body>
 
 </html>
