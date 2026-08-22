@@ -4908,6 +4908,71 @@
     </section>
 
     <!-- Footer -->
+    
+    <!-- ================================================================= -->
+    <!-- Bihar NOC AI Chatbot Assistant (Executive Floating Widget)       -->
+    <!-- ================================================================= -->
+    <div class="chatbot-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 999999;">
+        <!-- Attention Speech Tooltip -->
+        <div class="chatbot-attention-tooltip" id="chatbotTooltip" style="position: absolute; bottom: 75px; right: 0; background: linear-gradient(135deg, #ea580c, #f97316); color: #ffffff; padding: 8px 16px; border-radius: 12px; font-size: 0.84rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 18px rgba(234, 88, 12, 0.4); pointer-events: none; transition: opacity 0.3s ease;">
+            🤖 Bihar NOC AI is online! Ask me anything.
+        </div>
+
+        <!-- Floating Action Button -->
+        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" onclick="window.toggleChatbotPanel(event)" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant" style="width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, #0284c7 0%, #0f4c81 100%); border: 2px solid rgba(255, 255, 255, 0.25); color: #ffffff; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: transform 0.25s ease;">
+            <i class="fas fa-robot"></i>
+        </button>
+
+        <!-- AI Chatbot Panel Modal -->
+        <div class="chatbot-panel" id="chatbotPanel">
+            <div class="chatbot-header">
+                <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                    <div class="chatbot-header-title" style="display: flex; align-items: center; gap: 10px;">
+                        <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-robot" style="font-size: 1.1rem; color: #ffffff;"></i>
+                        </div>
+                        <div>
+                            <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #ffffff; font-family: 'Outfit', sans-serif;">Bihar NOC AI Assistant</h3>
+                            <span style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600;">24x7 Intelligent State NOC Operations</span>
+                        </div>
+                    </div>
+                    <button class="chatbot-header-close" id="chatbotCloseBtn" onclick="window.closeChatbotPanel(event)" aria-label="Close panel" style="background: rgba(255,255,255,0.15); border: none; color: #ffffff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Chat Messages Container -->
+            <div class="chatbot-messages" id="chatbotMessages" style="flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+                <div class="chat-msg bot">
+                    👋 <strong>Namaste!</strong> Welcome to the Bihar State NOC AI Assistant.<br>
+                    How can I assist you with district operations, network telemetry, or document submission today?
+                </div>
+            </div>
+
+            <!-- Quick Suggestion Chips -->
+            <div class="chatbot-suggestions" style="padding: 8px 14px; display: flex; gap: 8px; overflow-x: auto; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
+                <button onclick="window.sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
+                <button onclick="window.sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📂 Doc Submission</button>
+                <button onclick="window.sendSuggestionChip('Network Status')" class="chatbot-chip-btn">🌐 Network Status</button>
+                <button onclick="window.sendSuggestionChip('Windows 11 Boot')" class="chatbot-chip-btn">💻 Win 11 Boot</button>
+                <button onclick="window.sendSuggestionChip('Leaderboard XP')" class="chatbot-chip-btn">🏆 District XP</button>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chatbot-input-area" style="padding: 12px 14px; display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--border-color); background: var(--bg-secondary);">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask anything about Bihar NOC..." autocomplete="off" style="flex: 1; padding: 10px 14px; border-radius: 8px; font-size: 0.88rem; outline: none;">
+                <button class="chatbot-send-btn" id="chatbotSendBtn" onclick="window.sendChatbotMessage()" aria-label="Send message" style="background: #0284c7; color: #ffffff; border: none; width: 38px; height: 38px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+
+            <div class="chatbot-footer" style="padding: 6px 14px; font-size: 0.72rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-tertiary);">
+                NIC Bihar State Network Operations Centre &bull; AI Assistant
+            </div>
+        </div>
+    </div>
+
     <footer>
         <div class="footer-links">
             <a href="https://www.nic.in/policy/" target="_blank" rel="noopener noreferrer">Website Policies</a>
