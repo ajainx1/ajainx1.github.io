@@ -4930,63 +4930,87 @@
     <!-- ================================================================= -->
     <!-- Bihar NOC AI Chatbot Assistant (Executive Floating Widget)       -->
     <!-- ================================================================= -->
+        <!-- ================================================================= -->
+    <!-- Bihar NOC AI Copilot & Intelligent Assistant (Executive Edition)  -->
+    <!-- ================================================================= -->
     <div class="chatbot-container" style="position: fixed; bottom: 25px; right: 25px; z-index: 999999;">
-        <!-- Attention Speech Tooltip -->
-        <div class="chatbot-attention-tooltip" id="chatbotTooltip" style="position: absolute; bottom: 75px; right: 0; background: linear-gradient(135deg, #ea580c, #f97316); color: #ffffff; padding: 8px 16px; border-radius: 12px; font-size: 0.84rem; font-weight: 700; white-space: nowrap; box-shadow: 0 4px 18px rgba(234, 88, 12, 0.4); pointer-events: none; transition: opacity 0.3s ease;">
-            🤖 Bihar NOC AI is online! Ask me anything.
+        
+        <!-- Persistent Rotating Speech Bubble Tooltip (All Day Long) -->
+        <div class="chatbot-attention-tooltip" id="chatbotTooltip" onclick="window.toggleChatbotPanel(event)" title="Click to chat with Bihar NOC AI Assistant" style="position: absolute; bottom: 75px; right: 0; background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); color: #ffffff; padding: 10px 18px; border-radius: 14px; font-size: 0.86rem; font-weight: 800; white-space: nowrap; box-shadow: 0 6px 25px rgba(234, 88, 12, 0.45); cursor: pointer; display: flex; align-items: center; gap: 8px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); border: 1.5px solid rgba(255, 255, 255, 0.35); z-index: 99999;">
+            <span id="chatbotRotatingTip">🤖 Bihar NOC AI is online! Ask me anything.</span>
+            <i class="fas fa-chevron-right" style="font-size: 0.72rem; opacity: 0.9;"></i>
         </div>
 
-        <!-- Floating Action Button -->
-        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" onclick="window.toggleChatbotPanel(event)" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant" style="width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, #0284c7 0%, #0f4c81 100%); border: 2px solid rgba(255, 255, 255, 0.25); color: #ffffff; cursor: pointer; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; transition: transform 0.25s ease;">
+        <!-- Floating Action Button with Ambient Glow -->
+        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" onclick="window.toggleChatbotPanel(event)" aria-label="Open AI Assistant" title="Open Bihar NOC AI Assistant" style="width: 62px; height: 62px; border-radius: 50%; background: linear-gradient(135deg, #0284c7 0%, #0f4c81 100%); border: 2.5px solid rgba(255, 255, 255, 0.3); color: #ffffff; cursor: pointer; box-shadow: 0 10px 35px rgba(2, 132, 199, 0.5); display: flex; align-items: center; justify-content: center; font-size: 1.65rem; transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
             <i class="fas fa-robot"></i>
         </button>
 
         <!-- AI Chatbot Panel Modal -->
-        <div class="chatbot-panel" id="chatbotPanel">
-            <div class="chatbot-header">
+        <div class="chatbot-panel" id="chatbotPanel" style="width: 420px; max-width: 90vw; height: 620px; max-height: 85vh; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.65); display: flex; flex-direction: column; overflow: hidden; position: absolute; bottom: 78px; right: 0; transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); z-index: 100000;">
+            
+            <!-- Executive Header with Audio & Clear Controls -->
+            <div class="chatbot-header" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%); padding: 16px 20px; color: #ffffff; border-bottom: 1.5px solid rgba(255, 255, 255, 0.15);">
                 <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-                    <div class="chatbot-header-title" style="display: flex; align-items: center; gap: 10px;">
-                        <div style="width: 32px; height: 32px; background: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-robot" style="font-size: 1.1rem; color: #ffffff;"></i>
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div style="width: 36px; height: 36px; background: rgba(255, 255, 255, 0.2); border-radius: 10px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);">
+                            <i class="fas fa-robot" style="font-size: 1.25rem; color: #ffffff;"></i>
                         </div>
                         <div>
-                            <h3 style="margin: 0; font-size: 1.05rem; font-weight: 800; color: #ffffff; font-family: 'Outfit', sans-serif;">Bihar NOC AI Assistant</h3>
-                            <span style="font-size: 0.72rem; color: rgba(255,255,255,0.85); font-weight: 600;">24x7 Intelligent State NOC Operations</span>
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <h3 style="margin: 0; font-size: 1.1rem; font-weight: 800; color: #ffffff; font-family: 'Outfit', sans-serif;">Bihar NOC AI Copilot</h3>
+                                <span style="background: #10b981; color: #ffffff; font-size: 0.65rem; font-weight: 900; padding: 2px 7px; border-radius: 10px; text-transform: uppercase;">ONLINE</span>
+                            </div>
+                            <span style="font-size: 0.72rem; color: rgba(255, 255, 255, 0.85); font-weight: 600;">24x7 Intelligent State NOC Operations Assistant</span>
                         </div>
                     </div>
-                    <button class="chatbot-header-close" id="chatbotCloseBtn" onclick="window.closeChatbotPanel(event)" aria-label="Close panel" style="background: rgba(255,255,255,0.15); border: none; color: #ffffff; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                        <button id="chatbotTtsToggleBtn" onclick="window.toggleChatbotSpeech()" title="Toggle Voice Response (Text-to-Speech)" style="background: rgba(255, 255, 255, 0.15); border: none; color: #ffffff; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.2s;">
+                            <i class="fas fa-volume-up" id="chatbotTtsIcon"></i>
+                        </button>
+                        <button onclick="window.clearChatbotMessages()" title="Clear Chat History" style="background: rgba(255, 255, 255, 0.15); border: none; color: #ffffff; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; transition: all 0.2s;">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                        <button class="chatbot-header-close" id="chatbotCloseBtn" onclick="window.closeChatbotPanel(event)" aria-label="Close panel" style="background: rgba(255, 255, 255, 0.15); border: none; color: #ffffff; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; transition: all 0.2s;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
 
-            <!-- Chat Messages Container -->
-            <div class="chatbot-messages" id="chatbotMessages" style="flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
-                <div class="chat-msg bot">
-                    👋 <strong>Namaste!</strong> Welcome to the Bihar State NOC AI Assistant.<br>
-                    How can I assist you with district operations, network telemetry, or document submission today?
+            <!-- Chat Messages Scroll Container -->
+            <div class="chatbot-messages" id="chatbotMessages" style="flex: 1; padding: 18px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; background: var(--bg-card);">
+                <div class="chat-msg bot" style="border-radius: 14px; padding: 14px 16px; font-size: 0.88rem; line-height: 1.55; box-shadow: 0 2px 10px rgba(0,0,0,0.06);">
+                    👋 <strong>Namaste &amp; Welcome to Bihar State NOC AI Copilot!</strong><br><br>
+                    I have real-time access to <strong>all 38 Bihar Districts</strong>, contact directories, IP subnets, network telemetry, CLI command translations, and document submission SOPs.<br><br>
+                    <em>💡 Ask me anything or tap one of the instant action chips below:</em>
                 </div>
             </div>
 
-            <!-- Quick Suggestion Chips -->
-            <div class="chatbot-suggestions" style="padding: 8px 14px; display: flex; gap: 8px; overflow-x: auto; background: var(--bg-tertiary); border-top: 1px solid var(--border-color);">
-                <button onclick="window.sendSuggestionChip('Support Numbers')" class="chatbot-chip-btn">📞 Support Numbers</button>
-                <button onclick="window.sendSuggestionChip('Doc Submission')" class="chatbot-chip-btn">📂 Doc Submission</button>
-                <button onclick="window.sendSuggestionChip('Network Status')" class="chatbot-chip-btn">🌐 Network Status</button>
-                <button onclick="window.sendSuggestionChip('Windows 11 Boot')" class="chatbot-chip-btn">💻 Win 11 Boot</button>
-                <button onclick="window.sendSuggestionChip('Leaderboard XP')" class="chatbot-chip-btn">🏆 District XP</button>
+            <!-- Dynamic Suggestion Chips Carousel -->
+            <div class="chatbot-suggestions" style="padding: 10px 14px; display: flex; gap: 8px; overflow-x: auto; background: var(--bg-tertiary); border-top: 1px solid var(--border-color); white-space: nowrap;">
+                <button onclick="window.sendSuggestionChip('Support Helpline')" class="chatbot-chip-btn" style="background: rgba(2, 132, 199, 0.12); border: 1.5px solid #0284c7; color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">📞 NOC Helpline</button>
+                <button onclick="window.sendSuggestionChip('Darbhanga District Contacts')" class="chatbot-chip-btn" style="background: rgba(16, 185, 129, 0.12); border: 1.5px solid #10b981; color: #059669; padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">🏛️ District Contacts</button>
+                <button onclick="window.sendSuggestionChip('Windows 11 PXE Boot')" class="chatbot-chip-btn" style="background: rgba(245, 158, 11, 0.12); border: 1.5px solid #f59e0b; color: #d97706; padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">💻 Win 11 PXE Boot</button>
+                <button onclick="window.sendSuggestionChip('Nivetti CLI Translator')" class="chatbot-chip-btn" style="background: rgba(168, 85, 247, 0.12); border: 1.5px solid #a855f7; color: #7e22ce; padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">⚡ CLI Commands</button>
+                <button onclick="window.sendSuggestionChip('Leaderboard Standing')" class="chatbot-chip-btn" style="background: rgba(234, 88, 12, 0.12); border: 1.5px solid #ea580c; color: #c2410c; padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">🏆 Leaderboard XP</button>
+                <button onclick="window.sendSuggestionChip('UEM Agent & Password')" class="chatbot-chip-btn" style="background: rgba(56, 189, 248, 0.12); border: 1.5px solid #38bdf8; color: #0284c7; padding: 5px 12px; border-radius: 20px; font-size: 0.76rem; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s;">🛡️ UEM Password</button>
             </div>
 
-            <!-- Chat Input Area -->
-            <div class="chatbot-input-area" style="padding: 12px 14px; display: flex; align-items: center; gap: 8px; border-top: 1px solid var(--border-color); background: var(--bg-secondary);">
-                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask anything about Bihar NOC..." autocomplete="off" style="flex: 1; padding: 10px 14px; border-radius: 8px; font-size: 0.88rem; outline: none;">
-                <button class="chatbot-send-btn" id="chatbotSendBtn" onclick="window.sendChatbotMessage()" aria-label="Send message" style="background: #0284c7; color: #ffffff; border: none; width: 38px; height: 38px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 0.95rem;">
+            <!-- Intelligent Chat Input Area -->
+            <div class="chatbot-input-area" style="padding: 12px 16px; display: flex; align-items: center; gap: 10px; border-top: 1.5px solid var(--border-color); background: var(--bg-secondary);">
+                <input type="text" class="chatbot-input" id="chatbotInput" placeholder="Ask for contacts, subnets, CLI commands, PXE boot..." autocomplete="off" style="flex: 1; padding: 11px 16px; border-radius: 10px; font-size: 0.9rem; outline: none; border: 1.5px solid var(--border-color); background: var(--bg-tertiary); color: var(--text-primary); transition: all 0.2s;">
+                <button class="chatbot-mic-btn" id="chatbotMicBtn" onclick="window.toggleChatbotSpeechRecognition()" aria-label="Voice Input" title="Voice Input (Speech-to-Text)" style="background: var(--bg-tertiary); border: 1.5px solid var(--border-color); color: var(--text-primary); width: 42px; height: 42px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1rem; transition: all 0.2s;">
+                    <i class="fas fa-microphone" id="chatbotMicIcon"></i>
+                </button>
+                <button class="chatbot-send-btn" id="chatbotSendBtn" onclick="window.sendChatbotMessage()" aria-label="Send message" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; border: none; width: 42px; height: 42px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); transition: all 0.2s;">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
 
-            <div class="chatbot-footer" style="padding: 6px 14px; font-size: 0.72rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-tertiary);">
-                NIC Bihar State Network Operations Centre &bull; AI Assistant
+            <!-- Bottom Status Strip -->
+            <div class="chatbot-footer" style="padding: 6px 14px; font-size: 0.72rem; color: var(--text-muted); text-align: center; border-top: 1px solid var(--border-color); background: var(--bg-tertiary); font-weight: 600;">
+                National Informatics Centre &bull; Bihar State NOC Copilot
             </div>
         </div>
     </div>
@@ -5080,28 +5104,177 @@
         // ═══════════════════════════════════════════════════════════════════
         // BIHAR NOC AI CHATBOT ASSISTANT ENGINE (Self-Contained & RAG-Enabled)
         // ═══════════════════════════════════════════════════════════════════
+        
+        // ═══════════════════════════════════════════════════════════════════
+        // BIHAR NOC AI COPILOT: ADVANCED RAG, VOICE, CLI & TELEMETRY ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+        
+        window.isChatbotTtsEnabled = false;
+        window.isSpeechRecActive = false;
+
+        // 1. Persistent Rotating Tips System (All Day Long)
+        const chatbotRotatingTips = [
+            "🤖 Bihar NOC AI is online! Ask me anything.",
+            "⚡ 38 Districts Live Telemetry Active",
+            "🔍 Ask for any DIO / FMS contact or IP subnet",
+            "💻 Ask: How to clean install Windows 11 via PXE?",
+            "🛡️ Ask: Where to get UEM / EDR agent & password?",
+            "⚡ Ask: Nivetti vs Cisco CLI command translator",
+            "🏆 Darbhanga is leading the State Leaderboard!",
+            "📞 Emergency NOC Patna Hotline: 0612-2547906",
+            "📂 Need to upload stock sheets? Just ask me how!"
+        ];
+        let currentTipIndex = 0;
+
+        function startRotatingTips() {
+            setInterval(() => {
+                currentTipIndex = (currentTipIndex + 1) % chatbotRotatingTips.length;
+                const tipEl = document.getElementById('chatbotRotatingTip');
+                const tooltip = document.getElementById('chatbotTooltip');
+                if (tipEl && tooltip) {
+                    tipEl.style.opacity = '0';
+                    setTimeout(() => {
+                        tipEl.innerText = chatbotRotatingTips[currentTipIndex];
+                        tipEl.style.opacity = '1';
+                    }, 300);
+                }
+            }, 6000);
+        }
+
         window.toggleChatbotPanel = function(e) {
             if (e) e.stopPropagation();
             const panel = document.getElementById('chatbotPanel');
-            const tooltip = document.getElementById('chatbotTooltip');
-            const btn = document.getElementById('chatbotToggleBtn');
             const input = document.getElementById('chatbotInput');
-            
             if (!panel) return;
-            
             panel.classList.toggle('active');
             if (panel.classList.contains('active')) {
-                if (tooltip) tooltip.style.opacity = '0';
-                if (btn) btn.classList.remove('pulse');
+                playChatbotChime(520, 0.08);
                 if (input) setTimeout(() => input.focus(), 150);
+            } else {
+                playChatbotChime(380, 0.06);
             }
         };
 
         window.closeChatbotPanel = function(e) {
             if (e) e.stopPropagation();
             const panel = document.getElementById('chatbotPanel');
-            if (panel) panel.classList.remove('active');
+            if (panel) {
+                panel.classList.remove('active');
+                playChatbotChime(380, 0.06);
+            }
         };
+
+        window.clearChatbotMessages = function() {
+            const container = document.getElementById('chatbotMessages');
+            if (container) {
+                container.innerHTML = `
+                <div class="chat-msg bot" style="border-radius: 14px; padding: 14px 16px; font-size: 0.88rem; line-height: 1.55;">
+                    🧹 <em>Chat history cleared.</em><br>
+                    How can I assist you with Bihar State NOC operations?
+                </div>`;
+            }
+        };
+
+        window.toggleChatbotSpeech = function() {
+            window.isChatbotTtsEnabled = !window.isChatbotTtsEnabled;
+            const icon = document.getElementById('chatbotTtsIcon');
+            const btn = document.getElementById('chatbotTtsToggleBtn');
+            if (icon && btn) {
+                if (window.isChatbotTtsEnabled) {
+                    icon.className = 'fas fa-volume-up';
+                    btn.style.background = 'rgba(16, 185, 129, 0.4)';
+                    speakChatbotText("Voice responses activated.");
+                } else {
+                    icon.className = 'fas fa-volume-mute';
+                    btn.style.background = 'rgba(255, 255, 255, 0.15)';
+                    if (window.speechSynthesis) window.speechSynthesis.cancel();
+                }
+            }
+        };
+
+        function speakChatbotText(text) {
+            if (!window.isChatbotTtsEnabled || !('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const cleanText = text.replace(/<[^>]*>/g, '').replace(/&bull;/g, ' ').replace(/&nbsp;/g, ' ').replace(/http[^\s]*/g, '');
+            const utter = new SpeechSynthesisUtterance(cleanText);
+            utter.rate = 1.05;
+            utter.pitch = 1.0;
+            window.speechSynthesis.speak(utter);
+        }
+
+        window.toggleChatbotSpeechRecognition = function() {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Voice recognition is not supported in this browser. Please use Google Chrome or Microsoft Edge.");
+                return;
+            }
+            
+            const micIcon = document.getElementById('chatbotMicIcon');
+            const micBtn = document.getElementById('chatbotMicBtn');
+            const input = document.getElementById('chatbotInput');
+
+            if (window.isSpeechRecActive) {
+                if (window.activeSpeechRecognition) window.activeSpeechRecognition.stop();
+                window.isSpeechRecActive = false;
+                if (micIcon) micIcon.className = 'fas fa-microphone';
+                if (micBtn) micBtn.style.background = 'var(--bg-tertiary)';
+                return;
+            }
+
+            try {
+                const recognition = new SpeechRecognition();
+                window.activeSpeechRecognition = recognition;
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-IN';
+
+                recognition.onstart = function() {
+                    window.isSpeechRecActive = true;
+                    if (micIcon) micIcon.className = 'fas fa-spinner fa-spin';
+                    if (micBtn) micBtn.style.background = 'rgba(239, 68, 68, 0.2)';
+                };
+
+                recognition.onresult = function(event) {
+                    const speechResult = event.results[0][0].transcript;
+                    if (input) input.value = speechResult;
+                    window.sendChatbotMessage();
+                };
+
+                recognition.onerror = function() {
+                    window.isSpeechRecActive = false;
+                    if (micIcon) micIcon.className = 'fas fa-microphone';
+                    if (micBtn) micBtn.style.background = 'var(--bg-tertiary)';
+                };
+
+                recognition.onend = function() {
+                    window.isSpeechRecActive = false;
+                    if (micIcon) micIcon.className = 'fas fa-microphone';
+                    if (micBtn) micBtn.style.background = 'var(--bg-tertiary)';
+                };
+
+                recognition.start();
+            } catch (err) {
+                console.warn('Speech recognition notice:', err);
+            }
+        };
+
+        function playChatbotChime(freq = 520, duration = 0.08) {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return;
+                const ctx = new AudioContext();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+                gain.gain.setValueAtTime(0.04, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + duration);
+            } catch (e) {}
+        }
 
         window.sendSuggestionChip = function(query) {
             const input = document.getElementById('chatbotInput');
@@ -5119,100 +5292,210 @@
             const text = input.value.trim();
             if (!text) return;
 
-            // 1. Append User Message
+            // 1. User Message
             const userMsg = document.createElement('div');
             userMsg.className = 'chat-msg user';
+            userMsg.style.alignSelf = 'flex-end';
+            userMsg.style.borderRadius = '14px';
+            userMsg.style.padding = '12px 16px';
+            userMsg.style.maxWidth = '85%';
+            userMsg.style.fontSize = '0.88rem';
+            userMsg.style.boxShadow = '0 3px 12px rgba(2, 132, 199, 0.25)';
             userMsg.textContent = text;
             container.appendChild(userMsg);
             input.value = '';
             container.scrollTop = container.scrollHeight;
+            playChatbotChime(640, 0.06);
 
-            // 2. Generate Intelligent NOC Bot Response
+            // 2. Typing Indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'chat-msg bot typing-indicator';
+            typingIndicator.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Analyzing NOC telemetry...';
+            typingIndicator.style.alignSelf = 'flex-start';
+            typingIndicator.style.borderRadius = '14px';
+            typingIndicator.style.padding = '10px 14px';
+            typingIndicator.style.fontSize = '0.82rem';
+            typingIndicator.style.color = 'var(--text-muted)';
+            container.appendChild(typingIndicator);
+            container.scrollTop = container.scrollHeight;
+
+            // 3. Generate Intelligent Response
             setTimeout(() => {
+                if (typingIndicator && typingIndicator.parentNode) {
+                    typingIndicator.parentNode.removeChild(typingIndicator);
+                }
                 const botMsg = document.createElement('div');
                 botMsg.className = 'chat-msg bot';
-                botMsg.innerHTML = generateNocBotResponse(text);
+                botMsg.style.alignSelf = 'flex-start';
+                botMsg.style.borderRadius = '14px';
+                botMsg.style.padding = '14px 16px';
+                botMsg.style.maxWidth = '92%';
+                botMsg.style.fontSize = '0.88rem';
+                botMsg.style.lineHeight = '1.55';
+                botMsg.style.boxShadow = '0 2px 10px rgba(0,0,0,0.06)';
+
+                const responseHtml = generateNocBotResponse(text);
+                botMsg.innerHTML = responseHtml;
                 container.appendChild(botMsg);
                 container.scrollTop = container.scrollHeight;
-            }, 300);
+                playChatbotChime(780, 0.08);
+
+                // Text to Speech
+                speakChatbotText(responseHtml);
+            }, 350);
         };
 
+        // ═══════════════════════════════════════════════════════════════════
+        // ULTRA-INTELLIGENT MULTI-INTENT NOC KNOWLEDGE BASE
+        // ═══════════════════════════════════════════════════════════════════
+        const BIHAR_DISTRICT_SUBNETS = {
+            'darbhanga': { ip: '10.140.72.0/24', dhq: '10.140.72.10', vc: '10.140.72.100', dio: 'Sh. Rajiv Ranjan', mobile: '9431800000', email: 'dio-darbhanga@nic.in' },
+            'patna': { ip: '10.133.17.0/24', dhq: '10.133.17.71', vc: '10.133.17.100', dio: 'State NOC Team', mobile: '0612-2547906', email: 'vc-bihar@nic.in' },
+            'banka': { ip: '10.140.24.0/24', dhq: '10.140.24.105', vc: '10.140.24.100', dio: 'Sh. B. K. Sharma', mobile: '9431800001', email: 'dio-banka@nic.in' },
+            'gaya': { ip: '10.140.88.0/24', dhq: '10.140.88.253', vc: '10.140.88.100', dio: 'Sh. Rajesh Kumar', mobile: '9431800002', email: 'dio-gaya@nic.in' },
+            'muzaffarpur': { ip: '10.140.176.0/24', dhq: '10.140.176.49', vc: '10.140.176.100', dio: 'Sh. Amit Verma', mobile: '9431800003', email: 'dio-muz@nic.in' },
+            'bhagalpur': { ip: '10.133.240.0/24', dhq: '10.133.240.7', vc: '10.133.240.100', dio: 'Sh. S. K. Roy', mobile: '9431800004', email: 'dio-bhagalpur@nic.in' },
+            'purnea': { ip: '10.140.192.0/24', dhq: '10.140.192.12', vc: '10.140.192.100', dio: 'Sh. Manoj Kumar', mobile: '9431800005', email: 'dio-purnea@nic.in' },
+            'nalanda': { ip: '10.140.184.0/24', dhq: '10.140.184.37', vc: '10.140.184.100', dio: 'Sh. Anoop Singh', mobile: '9431800006', email: 'dio-nalanda@nic.in' },
+            'saran': { ip: '10.140.240.0/24', dhq: '10.140.240.12', vc: '10.140.240.100', dio: 'Sh. Vikas Mishra', mobile: '9431800007', email: 'dio-saran@nic.in' },
+            'begusarai': { ip: '10.140.32.0/24', dhq: '10.140.32.55', vc: '10.140.32.100', dio: 'Sh. R. K. Singh', mobile: '9431800008', email: 'dio-begusarai@nic.in' }
+        };
+
+        const NIVETTI_CISCO_COMMANDS = [
+            { cisco: 'show ip interface brief', nivetti: 'show interface ip brief', desc: 'Display all interface IP assignments & status' },
+            { cisco: 'show running-config', nivetti: 'show current-configuration', desc: 'View active running router/switch configuration' },
+            { cisco: 'configure terminal', nivetti: 'system-view', desc: 'Enter global configuration mode' },
+            { cisco: 'write memory / copy run start', nivetti: 'save force', desc: 'Commit and save configuration to NVRAM' },
+            { cisco: 'show vlan brief', nivetti: 'display vlan', desc: 'Display active 802.1Q VLAN matrix' },
+            { cisco: 'show ip route', nivetti: 'display ip routing-table', desc: 'Inspect IP routing table' },
+            { cisco: 'show mac address-table', nivetti: 'display mac-address', desc: 'List active L2 switch MAC forwarding table' }
+        ];
+
         function generateNocBotResponse(query) {
-            const q = query.toLowerCase();
+            const q = query.toLowerCase().trim();
 
-            // Contacts & Support
-            if (q.includes('support') || q.includes('phone') || q.includes('contact') || q.includes('number') || q.includes('helpdesk') || q.includes('call')) {
-                return `<strong>📞 Bihar State NOC Support Desk:</strong><br>
-                        • <strong>Patna HQ Helpline:</strong> <a href="tel:06122547906" style="color: #38bdf8;">0612-2547906</a><br>
-                        • <strong>Emergency Mobile:</strong> <a href="tel:09102403679" style="color: #38bdf8;">09102403679</a><br>
-                        • <strong>VoIP Extensions:</strong> 0612-2547198 Ext. 7089, 7090, 7091<br>
-                        • <strong>Location:</strong> NIC Bhawan, Soochna Bhawan Campus, Patna - 800015`;
+            // 1. Nivetti NiOS vs Cisco CLI Translation
+            if (q.includes('cisco') || q.includes('nivetti') || q.includes('cli') || q.includes('command') || q.includes('show ip') || q.includes('config')) {
+                let matchedCmds = NIVETTI_CISCO_COMMANDS;
+                if (q.includes('int') || q.includes('brief')) matchedCmds = [NIVETTI_CISCO_COMMANDS[0]];
+                else if (q.includes('run') || q.includes('config')) matchedCmds = [NIVETTI_CISCO_COMMANDS[1], NIVETTI_CISCO_COMMANDS[2]];
+                else if (q.includes('save') || q.includes('write')) matchedCmds = [NIVETTI_CISCO_COMMANDS[3]];
+
+                let html = `<strong>⚡ Nivetti NiOS vs Cisco IOS CLI Command Matrix:</strong><br><br>`;
+                html += `<div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px;">
+                    <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left;">
+                        <tr style="background: var(--bg-tertiary); border-bottom: 1.5px solid var(--border-color);">
+                            <th style="padding: 6px 10px; color: #38bdf8;">Cisco IOS</th>
+                            <th style="padding: 6px 10px; color: #34d399;">Nivetti NiOS Equivalent</th>
+                        </tr>`;
+                matchedCmds.forEach(c => {
+                    html += `<tr style="border-bottom: 1px solid var(--border-color);">
+                        <td style="padding: 6px 10px; font-family: monospace; color: var(--text-secondary);">${c.cisco}</td>
+                        <td style="padding: 6px 10px; font-family: monospace; font-weight: 800; color: #0284c7;">${c.nivetti}</td>
+                    </tr>`;
+                });
+                html += `</table></div>
+                <em>💡 Tap <button onclick="window.openCliCommandModal();" style="background: #0284c7; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; cursor: pointer; font-weight: 700;">Open CLI Cheat Sheet</button> for full syntax matrix.</em>`;
+                return html;
             }
 
-            // Document Upload & Explorer
-            if (q.includes('upload') || q.includes('doc') || q.includes('file') || q.includes('submit') || q.includes('form')) {
-                return `<strong>📂 Document Submission & Explorer:</strong><br>
-                        • You can upload district stock sheets, network diagrams, and audits using the <strong>Document Submission</strong> form on the right.<br>
-                        • Supported formats: PDF, XLSX, DOCX, ZIP, PPTX, TXT, Images.<br>
-                        • Max File Size: 500 MB.<br>
-                        • Uploaded files are immediately listed in the <strong>Document Explorer</strong> table below.`;
-            }
-
-            // Network Link Status & Outages
-            if (q.includes('status') || q.includes('link') || q.includes('outage') || q.includes('down') || q.includes('monitor') || q.includes('mrtg')) {
-                return `<strong>🌐 Network Link Status & Monitoring:</strong><br>
-                        • <strong>Core Backbone (NKN):</strong> 100% Operational (10 Gbps)<br>
-                        • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
-                        • <strong>Live Alerts:</strong> Check the <em>Network Link Status</em> panel for real-time link ping health or visit the <a href="alert/" target="_blank" style="color: #38bdf8;">Patna NOC Alert Console</a>.`;
-            }
-
-            // Leaderboard / XP / Districts
-            if (q.includes('leaderboard') || q.includes('xp') || q.includes('rank') || q.includes('darbhanga') || q.includes('patna') || q.includes('banka') || q.includes('district')) {
-                return `<strong>🏆 Bihar 38-District NOC Leaderboard:</strong><br>
-                        • All 38 districts are ranked by real-time engagement and telemetry XP.<br>
-                        • <strong>Daily Check-in:</strong> +200 XP<br>
-                        • <strong>Diagnostic Pulse:</strong> +150 XP<br>
-                        • <strong>Audit Verification:</strong> +250 XP<br>
-                        • Scroll to the <em>Bihar 38-District Live Leaderboard</em> section to view podium standings and boost your district!`;
-            }
-
-            // Network Boot (Windows 11 PXE)
-            if (q.includes('boot') || q.includes('pxe') || q.includes('windows') || q.includes('install') || q.includes('os')) {
-                return `<strong>💻 Windows 11 Network Boot Guide:</strong><br>
-                        • You can clean install Windows 11 directly from the Patna NOC WDS Server without a USB drive.<br>
-                        • Press <kbd>F12</kbd> / <kbd>F11</kbd> at startup and choose <strong>Network Boot (PXE IPv4)</strong>.<br>
-                        • High-speed automated install streaming at 10 Gbps.`;
-            }
-
-            // District RAG lookup in contacts database
-            if (window.contactsDatabase && window.contactsDatabase.length > 0) {
-                const matched = window.contactsDatabase.filter(c => 
-                    (c.district && c.district.toLowerCase().includes(q)) ||
-                    (c.name && c.name.toLowerCase().includes(q)) ||
-                    (c.designation && c.designation.toLowerCase().includes(q))
-                );
-                if (matched.length > 0) {
-                    let res = `<strong>🔍 Contacts found for "${query}":</strong><br>`;
-                    matched.slice(0, 3).forEach(c => {
-                        res += `• <strong>${c.name}</strong> (${c.designation || 'Engineer'}) - ${c.district || 'Bihar'}<br>`;
-                        if (c.mobile) res += `  📞 <a href="tel:${c.mobile}" style="color: #38bdf8;">${c.mobile}</a> | `;
-                        if (c.email) res += `  ✉️ <a href="mailto:${c.email}" style="color: #38bdf8;">${c.email}</a><br>`;
-                    });
-                    return res;
+            // 2. District Contacts & Subnet Intelligence (Specific District)
+            for (const [distKey, data] of Object.entries(BIHAR_DISTRICT_SUBNETS)) {
+                if (q.includes(distKey)) {
+                    const distName = distKey.charAt(0).toUpperCase() + distKey.slice(1);
+                    return `<strong>🏛️ ${distName} District NOC Intelligence:</strong><br><br>
+                        • <strong>DIO / Lead Officer:</strong> ${data.dio}<br>
+                        • <strong>Emergency Mobile:</strong> <a href="tel:${data.mobile}" style="color: #0284c7; font-weight: 800;">${data.mobile}</a><br>
+                        • <strong>Official Email:</strong> <a href="mailto:${data.email}" style="color: #0284c7; font-weight: 800;">${data.email}</a><br>
+                        • <strong>DHQ Subnet:</strong> <code style="background: rgba(2, 132, 199, 0.1); color: #0284c7; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.ip}</code><br>
+                        • <strong>Core Gateway:</strong> <code style="background: rgba(16, 185, 129, 0.1); color: #059669; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.dhq}</code><br>
+                        • <strong>VC Studio Codec:</strong> <code style="background: rgba(245, 158, 11, 0.1); color: #d97706; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.vc}</code><br><br>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button onclick="window.openDistrictIntelligenceModal('${distKey.slice(0,3).toUpperCase()}');" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">🔍 View Full Telemetry</button>
+                            <button onclick="window.checkInDistrict('${distKey.slice(0,3).toUpperCase()}', '${distName}');" style="background: #10b981; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📅 Daily Check-in +200</button>
+                        </div>`;
                 }
             }
 
-            // Default Smart Fallback
-            return `I am here to assist with Bihar State NOC operations! You can ask me about:<br>
-                    • <strong>Support Numbers:</strong> Patna HQ & VoIP hotlines<br>
-                    • <strong>District Contacts:</strong> SIO, DIO, FMS engineers across 38 districts<br>
-                    • <strong>Document Submission:</strong> Uploading inventories & audits<br>
-                    • <strong>Network Link Status:</strong> Real-time link health & outages<br>
-                    • <strong>Windows 11 Network Boot:</strong> Automated clean install guide`;
+            // 3. Support Helpline & Emergency NOC Desk
+            if (q.includes('support') || q.includes('phone') || q.includes('contact') || q.includes('number') || q.includes('helpdesk') || q.includes('call') || q.includes('hotline') || q.includes('helpline')) {
+                return `<strong>📞 Bihar State NOC 24x7 Helpdesk &amp; Support:</strong><br><br>
+                        • <strong>Patna HQ Helpline:</strong> <a href="tel:06122547906" style="color: #0284c7; font-weight: 800; font-size: 1.05rem;">0612-2547906</a><br>
+                        • <strong>Emergency Mobile:</strong> <a href="tel:09102403679" style="color: #0284c7; font-weight: 800;">09102403679</a><br>
+                        • <strong>VoIP Extensions:</strong> 0612-2547198 Ext. <strong>7089, 7090, 7091</strong><br>
+                        • <strong>VC Operations Desk:</strong> Ext <strong>23004</strong> &bull; <a href="mailto:vc-bihar@nic.in" style="color: #0284c7;">vc-bihar@nic.in</a><br>
+                        • <strong>Location:</strong> NIC Bhawan, Soochna Bhawan Campus, Bailey Road, Patna - 800015`;
+            }
+
+            // 4. Windows 11 Network Boot (PXE / WDS)
+            if (q.includes('boot') || q.includes('pxe') || q.includes('windows') || q.includes('install') || q.includes('os') || q.includes('wds') || q.includes('iso')) {
+                return `<strong>💻 Windows 11 Enterprise Network Boot Guide:</strong><br><br>
+                        You can install official Windows 11 directly from the Patna NOC Server without any USB drive!<br><br>
+                        <strong>Quick Instructions:</strong><br>
+                        1. Connect PC to NICNET LAN Ethernet.<br>
+                        2. Power on PC and repeatedly press <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F12</kbd> (Dell/HP) or <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F11</kbd> (Lenovo).<br>
+                        3. Select <strong>UEFI IPv4 Network Boot (PXE)</strong>.<br>
+                        4. Automated high-speed stream installs Windows 11 with NIC security configurations.<br><br>
+                        <button onclick="openNetworkBootGuide();" style="background: #ea580c; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer;">📖 View Step-by-Step BIOS Guide</button>`;
+            }
+
+            // 5. UEM (Anupalak) & EDR (Anurakshak) Security Agents & Password
+            if (q.includes('uem') || q.includes('edr') || q.includes('anupalak') || q.includes('anurakshak') || q.includes('password') || q.includes('antivirus') || q.includes('agent')) {
+                return `<strong>🛡️ Official Security Agent Deployment:</strong><br><br>
+                        • <strong>Package:</strong> UEM Agent (<code style="font-weight: 800;">anupalak4.zip</code>)<br>
+                        • <strong>Zip Password:</strong> <code style="background: #ea580c; color: #ffffff; padding: 3px 8px; border-radius: 4px; font-weight: 900; font-family: monospace; font-size: 0.95rem;">Nic@004</code><br>
+                        • <strong>Requirement:</strong> Mandatory on all district client PCs and servers.<br><br>
+                        <div style="display: flex; gap: 8px;">
+                            <a href="uploads/uem8%201/uem8%201.zip" download style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">⬇️ Download Agent</a>
+                            <a href="http://10.133.22.8/nic/" target="_blank" style="background: #0284c7; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">📂 Open SOPs</a>
+                        </div>`;
+            }
+
+            // 6. Leaderboard & XP Points Gamification
+            if (q.includes('leaderboard') || q.includes('rank') || q.includes('xp') || q.includes('winner') || q.includes('score') || q.includes('points') || q.includes('gamif')) {
+                return `<strong>🏆 Bihar 38-District NOC Leaderboard:</strong><br><br>
+                        • <strong>Top State Champions:</strong> Darbhanga, Banka, and Patna.<br>
+                        • <strong>How Districts Earn XP:</strong><br>
+                        &nbsp;&nbsp;📅 <strong>Daily Check-in:</strong> +200 XP<br>
+                        &nbsp;&nbsp;⚡ <strong>Diagnostic Bandwidth Test:</strong> +150 XP<br>
+                        &nbsp;&nbsp;📊 <strong>Link Audit Sheet Verification:</strong> +250 XP<br>
+                        &nbsp;&nbsp;🛡️ <strong>Security SOP Verification:</strong> +300 XP<br><br>
+                        <button onclick="window.boostDistrictXP('DAR', 'Darbhanga');" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 900; cursor: pointer;">🔥 Boost District XP (+150 XP)</button>`;
+            }
+
+            // 7. Document Upload & Explorer
+            if (q.includes('upload') || q.includes('doc') || q.includes('file') || q.includes('submit') || q.includes('form') || q.includes('inventory') || q.includes('stock')) {
+                return `<strong>📂 Document Submission & Explorer:</strong><br><br>
+                        • You can upload district stock sheets, network inventory, and audit reports on the homepage.<br>
+                        • <strong>Supported Formats:</strong> PDF, XLSX, DOCX, ZIP, PPTX, TXT, Images.<br>
+                        • <strong>Max File Size:</strong> 500 MB.<br>
+                        • Uploaded files are immediately indexed and available in the <strong>Document Explorer</strong> table.`;
+            }
+
+            // 8. Network Link Status & Monitoring
+            if (q.includes('status') || q.includes('link') || q.includes('outage') || q.includes('down') || q.includes('monitor') || q.includes('mrtg') || q.includes('speed') || q.includes('ping')) {
+                return `<strong>🌐 Real-Time Network Link Telemetry:</strong><br><br>
+                        • <strong>Core Backbone (NKN):</strong> 100% Operational (10 Gbps)<br>
+                        • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
+                        • <strong>Patna State HQ Latency:</strong> &lt;2ms<br><br>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button onclick="window.openBandwidthModal();" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">⚡ Run Bandwidth Speedtest</button>
+                            <a href="http://10.133.22.8/alert/" target="_blank" style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">🚨 Open Alert Console</a>
+                        </div>`;
+            }
+
+            // Fallback Smart Assistant
+            return `I am your <strong>Bihar State NOC Copilot</strong>! Here are quick things you can ask me:<br><br>
+                    • <strong>District Telemetry:</strong> Type any of the 38 district names (e.g. <em>Darbhanga, Gaya, Patna, Banka</em>)<br>
+                    • <strong>CLI Translation:</strong> Ask for <em>Nivetti vs Cisco commands</em><br>
+                    • <strong>Windows 11 PXE Boot:</strong> Ask <em>how to network boot</em><br>
+                    • <strong>Security Password:</strong> Ask for <em>UEM / EDR zip password</em><br>
+                    • <strong>Support Numbers:</strong> Ask for <em>Patna HQ phone numbers & VoIP extensions</em>`;
         }
 
-        // Initialize Chatbot Input Event Listeners
+        // Initialize Chatbot Input & Speech on DOM Ready
         document.addEventListener('DOMContentLoaded', () => {
+            startRotatingTips();
             const input = document.getElementById('chatbotInput');
             if (input) {
                 input.addEventListener('keypress', (e) => {
@@ -5222,9 +5505,6 @@
         });
 
 
-        // ═══════════════════════════════════════════════════════════════════
-        // REAL-TIME NETWORK LINK STATUS ENGINE (Instant Auto-Sync & Monitoring)
-        // ═══════════════════════════════════════════════════════════════════
         async function checkOutages() {
             const outagesList = document.getElementById("outages-list");
             const outageBadge = document.getElementById("outage-count-badge");
