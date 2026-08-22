@@ -3210,6 +3210,144 @@
             margin: 0 !important;
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           KEY NETWORK INFORMATION ACCORDION: HIGH-CONTRAST GLASSMORPHISM
+           ═══════════════════════════════════════════════════════════════════ */
+        .resources-accordion {
+            grid-column: 1 / -1;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+
+        .accordion-item {
+            background: rgba(11, 19, 38, 0.95) !important;
+            backdrop-filter: blur(25px) !important;
+            -webkit-backdrop-filter: blur(25px) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .accordion-item:hover {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 15px 40px rgba(56, 189, 248, 0.2) !important;
+        }
+
+        .accordion-trigger {
+            width: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.95) 100%) !important;
+            border: none;
+            padding: 20px 28px !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Outfit', var(--font-family-title), sans-serif !important;
+            font-size: 1.15rem !important;
+            font-weight: 800 !important;
+            color: #ffffff !important;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-trigger:hover {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.15) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+            color: #38bdf8 !important;
+        }
+
+        .accordion-trigger span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .accordion-trigger span i {
+            color: #38bdf8 !important;
+            font-size: 1.3rem !important;
+        }
+
+        .accordion-trigger i.chevron {
+            color: #38bdf8 !important;
+            font-size: 1.1rem !important;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion-item.active i.chevron {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(6, 11, 20, 0.98) !important;
+        }
+
+        .accordion-content-inner {
+            padding: 26px 28px !important;
+            border-top: 1.5px solid rgba(56, 189, 248, 0.25) !important;
+        }
+
+        .resource-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 22px;
+        }
+
+        .resource-card {
+            background: rgba(15, 23, 42, 0.92) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.12) !important;
+            border-radius: 12px !important;
+            padding: 22px !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-3px) !important;
+            border-color: #38bdf8 !important;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.2) !important;
+        }
+
+        .resource-card h3 {
+            font-size: 1.05rem !important;
+            font-weight: 800 !important;
+            margin-bottom: 10px !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ffffff !important;
+            letter-spacing: 0.2px;
+        }
+
+        .resource-card p {
+            font-size: 0.88rem !important;
+            color: #cbd5e1 !important;
+            margin-bottom: 14px !important;
+            line-height: 1.6 !important;
+        }
+
+        .resource-card a {
+            color: #38bdf8 !important;
+            text-decoration: none !important;
+            font-size: 0.88rem !important;
+            font-weight: 700 !important;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            transition: all 0.2s ease;
+        }
+
+        .resource-card a:hover {
+            color: #34d399 !important;
+            transform: translateX(4px);
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -4116,6 +4254,7 @@
         }
 
         // --- Accordion Logic ---
+        window.toggleAccordion = toggleAccordion;
         function toggleAccordion() {
             const accordion = document.getElementById('resourcesAccordion');
             const content = document.getElementById('accordionContent');
