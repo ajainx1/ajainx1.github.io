@@ -5912,6 +5912,22 @@
             }
         }
 
+        
+        // Explicitly attach all Leaderboard Engine methods to window
+        window.syncLiveLeaderboard = syncLiveLeaderboard;
+        window.switchLeaderboardMode = switchLeaderboardMode;
+        window.renderDivisionStandings = renderDivisionStandings;
+        window.renderRisingStarStandings = renderRisingStarStandings;
+        window.renderLeaderboardStandings = renderLeaderboardStandings;
+        window.setLeaderboardSort = setLeaderboardSort;
+        window.setLeaderboardView = setLeaderboardView;
+        window.filterLeaderboardDistricts = filterLeaderboardDistricts;
+        window.filterLeaderboardDivision = filterLeaderboardDivision;
+
+        // Auto-run immediately on script execution
+        syncLiveLeaderboard();
+
+
         // --- 🟢 Daily District Check-In Engine (+200 XP) ---
         window.checkInDistrict = async function(districtCode, districtName) {
             try {
