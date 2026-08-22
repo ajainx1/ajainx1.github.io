@@ -3462,6 +3462,332 @@
             border: 1px solid #cbd5e1 !important;
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           THEME-ADAPTIVE HEADER, TICKER & SECURITY DIRECTIVE SYSTEM
+           ═══════════════════════════════════════════════════════════════════ */
+        
+        /* Top Navigation Header */
+        .top-header {
+            padding: 14px 32px !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .top-header {
+            background-color: #0b0f19 !important;
+            border-bottom: 1.5px solid #1e293b !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.light-mode .top-header {
+            background-color: #ffffff !important;
+            border-bottom: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05) !important;
+        }
+
+        /* Emblem Typography */
+        body.dark-mode .gov-title { color: #ffffff !important; font-weight: 700; font-size: 1.05rem; }
+        body.dark-mode .gov-subtitle { color: #94a3b8 !important; font-size: 0.85rem; }
+        body.light-mode .gov-title { color: #0f4c81 !important; font-weight: 800; font-size: 1.05rem; }
+        body.light-mode .gov-subtitle { color: #475569 !important; font-size: 0.85rem; font-weight: 500; }
+
+        /* Header Portal Action Buttons */
+        .header-portal-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        body.dark-mode .btn-vc-desk {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2)) !important;
+            border: 1px solid rgba(56, 189, 248, 0.4) !important;
+            color: #38bdf8 !important;
+        }
+        body.dark-mode .btn-vc-desk strong { color: #ffffff !important; }
+
+        body.light-mode .btn-vc-desk {
+            background: #e0f2fe !important;
+            border: 1.5px solid #0284c7 !important;
+            color: #0369a1 !important;
+        }
+        body.light-mode .btn-vc-desk strong { color: #0f4c81 !important; }
+
+        body.dark-mode .btn-vc-monitor {
+            background: rgba(14, 165, 233, 0.15) !important;
+            border: 1px solid #38bdf8 !important;
+            color: #38bdf8 !important;
+        }
+        body.light-mode .btn-vc-monitor {
+            background: #eff6ff !important;
+            border: 1.5px solid #3b82f6 !important;
+            color: #1d4ed8 !important;
+        }
+
+        body.dark-mode .btn-noc-alerts {
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #ffffff !important;
+        }
+        body.light-mode .btn-noc-alerts {
+            background: #f8fafc !important;
+            border: 1.5px solid #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        body.dark-mode .btn-aebas {
+            background: rgba(16, 185, 129, 0.15) !important;
+            border: 1px solid rgba(16, 185, 129, 0.4) !important;
+            color: #34d399 !important;
+        }
+        body.light-mode .btn-aebas {
+            background: #ecfdf5 !important;
+            border: 1.5px solid #10b981 !important;
+            color: #047857 !important;
+        }
+
+        /* Live Marquee Ticker */
+        .alert-ticker {
+            width: 100%;
+            box-sizing: border-box;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            z-index: 999;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .alert-ticker {
+            background: #020617 !important;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.35) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6) !important;
+        }
+        body.light-mode .alert-ticker {
+            background: linear-gradient(90deg, #0f4c81 0%, #1e3a8a 100%) !important;
+            border-bottom: 2px solid #0a3860 !important;
+            box-shadow: 0 4px 12px rgba(15, 76, 129, 0.2) !important;
+        }
+
+        .ticker-label {
+            font-weight: 900;
+            padding: 0 18px;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            font-size: 0.82rem;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+        body.dark-mode .ticker-label {
+            background: #10b981 !important;
+            color: #ffffff !important;
+            box-shadow: 4px 0 15px rgba(16,185,129,0.5) !important;
+        }
+        body.light-mode .ticker-label {
+            background: #059669 !important;
+            color: #ffffff !important;
+            box-shadow: 4px 0 12px rgba(5,150,105,0.4) !important;
+        }
+
+        .ticker-marquee {
+            flex: 1;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.88rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            line-height: 42px;
+        }
+        body.dark-mode .ticker-marquee { color: #34d399 !important; }
+        body.light-mode .ticker-marquee { color: #ffffff !important; }
+        body.light-mode .ticker-marquee .ticker-highlight { color: #fde047 !important; }
+        body.light-mode .ticker-marquee .ticker-strong { color: #ffffff !important; font-weight: 800; }
+        body.light-mode .ticker-marquee .ticker-dot.emerald { background: #34d399; }
+
+        /* Security Directive Banner */
+        .edr-advisory-banner {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 24px;
+            position: relative;
+            z-index: 900;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .edr-advisory-banner {
+            background: rgba(15, 23, 42, 0.96) !important;
+            border-bottom: 1.5px solid rgba(234, 88, 12, 0.4) !important;
+            color: #ffffff !important;
+        }
+
+        body.light-mode .edr-advisory-banner {
+            background: rgba(255, 247, 237, 0.98) !important;
+            border-bottom: 2px solid #fed7aa !important;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.08) !important;
+            color: #7c2d12 !important;
+        }
+
+        .edr-banner-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .edr-banner-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .edr-icon-box {
+            width: 40px;
+            height: 40px;
+            background: rgba(234, 88, 12, 0.2);
+            border: 1.5px solid rgba(234, 88, 12, 0.5);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(234, 88, 12, 0.4);
+            color: #ea580c;
+            font-size: 1.25rem;
+        }
+
+        .edr-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 4px;
+            flex-wrap: wrap;
+        }
+
+        .edr-badge-active {
+            background: #10b981;
+            color: #ffffff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .edr-badge-pending {
+            background: rgba(245, 158, 11, 0.2);
+            color: #d97706;
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            font-size: 0.72rem;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+        body.dark-mode .edr-badge-pending { color: #fbbf24; }
+
+        body.dark-mode .edr-banner-heading { color: #ffffff !important; font-weight: 800; font-size: 0.88rem; }
+        body.light-mode .edr-banner-heading { color: #9a3412 !important; font-weight: 800; font-size: 0.88rem; }
+
+        body.dark-mode .edr-banner-text { color: #cbd5e1 !important; font-size: 0.82rem; }
+        body.light-mode .edr-banner-text { color: #431407 !important; font-size: 0.82rem; font-weight: 600; }
+
+        body.dark-mode .edr-text-highlight { color: #38bdf8 !important; }
+        body.light-mode .edr-text-highlight { color: #0284c7 !important; font-weight: 800; }
+
+        .edr-pwd-pill {
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 800;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
+        }
+        body.dark-mode .edr-pwd-pill { background: #ea580c; color: #ffffff; }
+        body.light-mode .edr-pwd-pill { background: #ffedd5; color: #9a3412; border: 1px solid #fdba74; }
+
+        .edr-banner-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-edr-download {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            color: #ffffff !important;
+            font-size: 0.78rem !important;
+            font-weight: 800 !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            transition: all 0.2s ease;
+        }
+
+        .btn-edr-sop {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+            color: #ffffff !important;
+            font-size: 0.78rem !important;
+            font-weight: 800 !important;
+            padding: 8px 16px !important;
+            border-radius: 8px !important;
+            text-decoration: none !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            transition: all 0.2s ease;
+        }
+
+        .btn-edr-dismiss {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+        body.dark-mode .btn-edr-dismiss {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #cbd5e1;
+        }
+        body.light-mode .btn-edr-dismiss {
+            background: #fee2e2;
+            border: 1px solid #fca5a5;
+            color: #991b1b;
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -3477,23 +3803,23 @@
             <div class="emblem-container">
                 <img src="Emblem_of_India.png" alt="Emblem of India">
                 <div class="emblem-text">
-                    <span>Government of India | भारत सरकार</span><br>
-                    Ministry of Electronics & Information Technology
+                    <span class="gov-title">Government of India | भारत सरकार</span><br>
+                    <span class="gov-subtitle">Ministry of Electronics & Information Technology</span>
                 </div>
             </div>
         </a>
         <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
-            <a href="mailto:vc-bihar@nic.in" class="header-portal-btn" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2)); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;" title="State VC Operations Desk: Ext 23004 | Email: vc-bihar@nic.in">
-                <i class="fas fa-headset" style="color: #10b981;"></i> <span style="font-weight: 700;">VC Desk: <strong style="color: #ffffff;">Ext 23004</strong> &bull; vc-bihar@nic.in</span>
+            <a href="mailto:vc-bihar@nic.in" class="header-portal-btn btn-vc-desk" title="State VC Operations Desk: Ext 23004 | Email: vc-bihar@nic.in">
+                <i class="fas fa-headset"></i> <span>VC Desk: <strong>Ext 23004</strong> &bull; vc-bihar@nic.in</span>
             </a>
-            <a href="http://10.133.22.8/vc/" class="header-portal-btn btn-vc-active" target="_blank" title="Video Conference Studio Monitoring">
-                <i class="fas fa-video"></i> VC Studio Monitor
+            <a href="http://10.133.22.8/vc/" class="header-portal-btn btn-vc-monitor" target="_blank" title="Video Conference Studio Monitoring">
+                <i class="fas fa-video"></i> <span>VC Studio Monitor</span>
             </a>
-            <a href="http://10.133.22.8/alert/" class="header-portal-btn" target="_blank" title="Live NOC Alerts">
-                <i class="fas fa-bell"></i> NOC Alerts
+            <a href="http://10.133.22.8/alert/" class="header-portal-btn btn-noc-alerts" target="_blank" title="Live NOC Alerts">
+                <i class="fas fa-bell"></i> <span>NOC Alerts</span>
             </a>
-            <a href="https://fmsbh.attendance.gov.in/" class="header-portal-btn" target="_blank" rel="noopener noreferrer" title="Bihar FMS AEBAS Attendance Portal (attendance.gov.in)">
-                <i class="fas fa-fingerprint" style="color: #10b981;"></i> AEBAS Attendance
+            <a href="https://fmsbh.attendance.gov.in/" class="header-portal-btn btn-aebas" target="_blank" rel="noopener noreferrer" title="Bihar FMS AEBAS Attendance Portal (attendance.gov.in)">
+                <i class="fas fa-fingerprint"></i> <span>AEBAS Attendance</span>
             </a>
             <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
                 <i class="fas fa-moon" id="themeIcon"></i>
@@ -3505,37 +3831,55 @@
     <div id="loginModalOverlay" style="display: none !important;"></div>
 
     <!-- Live Telemetry Ticker (Stock Market Style) -->
-    <div class="alert-ticker" style="width: 100%; box-sizing: border-box; background: #020617; border-bottom: 2px solid rgba(56, 189, 248, 0.35); height: 42px; display: flex; align-items: center; overflow: hidden; position: relative; z-index: 999; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);">
-        <div class="ticker-label" style="background: #10b981; color: #fff; font-weight: 900; padding: 0 18px; height: 100%; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 1.2px; font-size: 0.82rem; box-shadow: 4px 0 15px rgba(16,185,129,0.5); flex-shrink: 0; z-index: 2;">LIVE</div>
-        <marquee behavior="scroll" direction="left" scrollamount="6" style="flex: 1; color: #34d399; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px; line-height: 42px;">
-            📢 <strong>SECURITY NOTIFICATION:</strong> UEM (Anupalak) download link is <strong style="color: #38bdf8;">ACTIVE</strong> (<code style="background: #0f172a; color: #38bdf8; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.4);">farps.nic.in/UEM/anupalak4.zip</code> &bull; Zip Password: <code style="background: #0f172a; color: #fbbf24; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(245,158,11,0.4);">Nic0004</code>) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 <strong>VC TEAM HOTLINE:</strong> IP Phone / Ext: <strong>23004</strong> &bull; Email: <strong>vc-bihar@nic.in</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 38/38 DISTRICT VC STUDIOS (10.X.X.100): BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; ⚡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; 🔄 LATENCY AVG: 12ms
+    <div class="alert-ticker">
+        <div class="ticker-label">LIVE</div>
+        <marquee behavior="scroll" direction="left" scrollamount="6" class="ticker-marquee">
+            <span class="ticker-highlight">VC TEAM HOTLINE:</span> IP Phone / Ext: <strong class="ticker-strong">23004</strong> &bull; Email: <strong class="ticker-strong">vc-bihar@nic.in</strong> &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="ticker-dot emerald"></span> <span class="ticker-strong">NKN CORE:</span> OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="ticker-highlight">38/38 DISTRICT VC STUDIOS (10.X.X.100):</span> BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="ticker-dot emerald"></span> <span class="ticker-strong">STATE HQ:</span> OPTIMAL LATENCY (<strong class="ticker-strong">&lt;5ms</strong>) &nbsp;&nbsp;|&nbsp;&nbsp;
+            <span class="ticker-highlight">CYBER SECURITY:</span> EDR (Anurakshak) &amp; UEM (Anupalak) ACTIVE ACROSS STATE NODES
         </marquee>
     </div>
 
     <!-- Security Advisory Directive: UEM Active & EDR Verification -->
-    <div id="edrUemBanner" style="width: 100%; box-sizing: border-box; padding: 10px 24px; background: rgba(15, 23, 42, 0.96); border-bottom: 1.5px solid rgba(234, 88, 12, 0.4); position: relative; z-index: 900;">
-        <div style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
-            
+    <div id="edrUemBanner" class="edr-advisory-banner">
+        <div class="edr-banner-container">
             <!-- Left: Advisory Icon & Text -->
-            <div style="display: flex; align-items: center; gap: 14px; flex: 1; min-width: 320px;">
-                <div style="width: 40px; height: 40px; background: rgba(234, 88, 12, 0.2); border: 1.5px solid rgba(234, 88, 12, 0.5); border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 15px rgba(234, 88, 12, 0.4);">
-                    <i class="fas fa-shield-alt" style="color: #fb923c; font-size: 1.25rem;"></i>
+            <div class="edr-banner-left">
+                <div class="edr-icon-box">
+                    <i class="fas fa-shield-alt"></i>
                 </div>
                 <div>
-                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px; flex-wrap: wrap;">
-                        <span style="background: #10b981; color: #ffffff; font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px;">
+                    <div class="edr-badge-row">
+                        <span class="edr-badge-active">
                             <i class="fas fa-check-circle"></i> UEM (Anupalak) ACTIVE
                         </span>
-                        <span style="background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.5); font-size: 0.72rem; font-weight: 800; padding: 2px 8px; border-radius: 4px; display: inline-flex; align-items: center; gap: 4px;">
-                            <i class="fas fa-clock"></i> EDR (Anurakshak) Pending
+                        <span class="edr-badge-pending">
+                            <i class="fas fa-clock"></i> EDR (Anurakshak) Verification
                         </span>
-                        <strong style="color: #ffffff; font-size: 0.88rem; font-weight: 800; letter-spacing: 0.3px;">Mandatory Security Agent Deployment Update</strong>
+                        <span class="edr-banner-heading">Mandatory Security Agent Deployment Update</span>
                     </div>
-                    <div style="color: #cbd5e1; font-size: 0.84rem; line-height: 1.4;">
-                        Deploy official <strong>UEM (Anupalak)</strong> agent across all district endpoints. Zip Password: <code style="background: #b45309; color: #fff; padding: 1px 6px; border-radius: 4px; font-weight: 900;">Nic0004</code>
+                    <div class="edr-banner-text">
+                        Deploy official <strong class="edr-text-highlight">UEM (Anupalak)</strong> agent across all district endpoints. Zip Password: <code class="edr-pwd-pill">Nic@004</code>
                     </div>
                 </div>
             </div>
+
+            <!-- Right: Action Buttons -->
+            <div class="edr-banner-actions">
+                <a href="uploads/uem8%201/uem8%201.zip" download class="btn-edr-download" title="Download Official UEM Agent Package">
+                    <i class="fas fa-download"></i> Download UEM Agent (anupalak4.zip)
+                </a>
+                <a href="http://10.133.22.8/nic/" target="_blank" class="btn-edr-sop" title="Open Security Directives &amp; Installation SOPs">
+                    <i class="fas fa-folder-open"></i> Open EDR/UEM SOPs
+                </a>
+                <button onclick="document.getElementById('edrUemBanner').style.display='none';" class="btn-edr-dismiss" title="Dismiss Banner">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
             <!-- Right: Action Badges & Download Links -->
             <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
