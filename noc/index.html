@@ -6599,6 +6599,56 @@
         let contactsDatabase = [];
         let isContactsLoading = false;
 
+                const dioCommonEmails = {
+            "munger": "dio-mng@nic.in",
+            "patna": "dio-ptn@nic.in",
+            "darbhanga": "dio-dbg@nic.in",
+            "gaya": "dio-gay@nic.in",
+            "muzaffarpur": "dio-muz@nic.in",
+            "bhagalpur": "dio-bhg@nic.in",
+            "purnea": "dio-prn@nic.in",
+            "purnia": "dio-prn@nic.in",
+            "banka": "dio-bnk@nic.in",
+            "nalanda": "dio-nld@nic.in",
+            "biharsharif": "dio-nld@nic.in",
+            "bhojpur": "dio-bjp@nic.in",
+            "ara": "dio-bjp@nic.in",
+            "araria": "dio-ara-bih@nic.in",
+            "arwal": "dio-arw@nic.in",
+            "aurangabad": "dio-agb@nic.in",
+            "begusarai": "dio-bgs@nic.in",
+            "buxar": "dio-bxr@nic.in",
+            "east champaran": "dio-prc@nic.in",
+            "motihari": "dio-prc@nic.in",
+            "west champaran": "dio-wch@nic.in",
+            "bettiah": "dio-wch@nic.in",
+            "gopalganj": "dio-gpg@nic.in",
+            "jamui": "dio-jmu@nic.in",
+            "jehanabad": "dio-jhn@nic.in",
+            "kaimur": "dio-kmr@nic.in",
+            "bhabhua": "dio-kmr@nic.in",
+            "katihar": "dio-ktr@nic.in",
+            "khagaria": "dio-kgr-bih@nic.in",
+            "kishanganj": "dio-ksg@nic.in",
+            "lakhisarai": "dio-lsr@nic.in",
+            "madhepura": "dio-mdp@nic.in",
+            "madhubani": "dio-mdb-bih@nic.in",
+            "nawada": "dio-naw@nic.in",
+            "rohtas": "dio-rts@nic.in",
+            "sasaram": "dio-rts@nic.in",
+            "saharsa": "dio-shs@nic.in",
+            "samastipur": "dio-sms@nic.in",
+            "saran": "dio-sar@nic.in",
+            "chhapra": "dio-sar@nic.in",
+            "sheikhpura": "dio-shh@nic.in",
+            "sheohar": "dio-shh-bih@nic.in",
+            "sitamarhi": "dio-stm@nic.in",
+            "siwan": "dio-swn@nic.in",
+            "supaul": "dio-spl@nic.in",
+            "vaishali": "dio-vsh@nic.in",
+            "hajipur": "dio-vsh@nic.in"
+};
+
         const districtLocationAliases = {
             "patna": ["patna", "patna hq", "state hq (patna)", "soochna bhawan / 3rd floor hub, patna", "state hq"],
             "patna du": ["patna du", "patna", "patna hq"],
@@ -6739,21 +6789,24 @@
                 `;
             }
 
-            const commonEmail = (typeof dioCommonEmails !== 'undefined' && dioCommonEmails[districtKey]) ? dioCommonEmails[districtKey] : (districtKey + '@nic.in');
+            const cleanDistKey = districtKey ? districtKey.toLowerCase().trim() : '';
+            const commonEmail = (typeof dioCommonEmails !== 'undefined' && dioCommonEmails[cleanDistKey]) ? dioCommonEmails[cleanDistKey] : (`dio-${cleanDistKey}@nic.in`);
+            const nocEmail = 'seca1.shq.br@nic.in';
             const emailHtml = `
-                <div class="dio-common-email-banner" style="background: rgba(15, 23, 42, 0.9); border: 1px solid rgba(56, 189, 248, 0.35); border-left: 4px solid #38bdf8; padding: 14px 18px; border-radius: 10px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+                <div class="dio-common-email-banner" style="background: rgba(15, 23, 42, 0.95); border: 1.5px solid rgba(56, 189, 248, 0.35); border-left: 5px solid #38bdf8; padding: 14px 18px; border-radius: 12px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);">
                     <div>
-                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; font-weight: 700; display: block; margin-bottom: 4px;">Official District DIO &amp; NOC Mail</span>
-                        <div style="display: flex; align-items: center; gap: 12px;">
-                            <a href="mailto:${commonEmail}" style="font-size: 1rem; color: #38bdf8; font-weight: 800; text-decoration: none;"><i class="fas fa-envelope-open-text" style="margin-right: 6px;"></i> ${commonEmail}</a>
-                            <button onclick="navigator.clipboard.writeText('${commonEmail}'); this.innerHTML='<i class=\'fas fa-check\'></i> Copied'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copy', 2000);" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-weight: 700;" title="Copy Email Address">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; font-weight: 800; display: block; margin-bottom: 4px;">Official District DIO Mail</span>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <a href="mailto:${commonEmail}" style="font-size: 1.05rem; color: #38bdf8; font-weight: 800; text-decoration: none;"><i class="fas fa-envelope-open-text" style="margin-right: 6px;"></i> ${commonEmail}</a>
+                            <button onclick="navigator.clipboard.writeText('${commonEmail}'); this.innerHTML='<i class=\'fas fa-check\'></i> Copied'; setTimeout(() => this.innerHTML='<i class=\'fas fa-copy\'></i> Copy', 2000);" style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8; padding: 4px 10px; border-radius: 6px; font-size: 0.76rem; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-weight: 700;" title="Copy DIO Email">
                                 <i class="fas fa-copy"></i> Copy
                             </button>
                         </div>
                     </div>
-                    <span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 6px;">
-                        <i class="fas fa-shield-alt"></i> Active District Node
-                    </span>
+                    <div style="text-align: right;">
+                        <span style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.8px; color: #94a3b8; font-weight: 800; display: block; margin-bottom: 4px;">Official State NOC Mail</span>
+                        <a href="mailto:${nocEmail}" style="font-size: 0.95rem; color: #34d399; font-weight: 800; text-decoration: none;"><i class="fas fa-shield-alt" style="margin-right: 6px;"></i> ${nocEmail}</a>
+                    </div>
                 </div>
             `;
 
