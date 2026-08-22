@@ -3348,6 +3348,120 @@
             transform: translateX(4px);
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           EXECUTIVE HIGH-CONTRAST LIGHT MODE TYPOGRAPHY & CARD SYSTEM
+           ═══════════════════════════════════════════════════════════════════ */
+        body.light-mode {
+            background-color: #f1f5f9 !important;
+            color: #0f172a !important;
+        }
+
+        body.light-mode .glass-card,
+        body.light-mode .hud-card,
+        body.light-mode .hud-metric-card,
+        body.light-mode .status-item,
+        body.light-mode .resource-card,
+        body.light-mode .support-section-card,
+        body.light-mode .tech-stack-card,
+        body.light-mode .accordion-item,
+        body.light-mode .files-table-container,
+        body.light-mode .drag-drop-zone,
+        body.light-mode .district-panel {
+            background: rgba(255, 255, 255, 0.96) !important;
+            border: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 8px 30px rgba(15, 23, 42, 0.08) !important;
+            color: #0f172a !important;
+        }
+
+        body.light-mode h1, 
+        body.light-mode h2, 
+        body.light-mode h3, 
+        body.light-mode h4,
+        body.light-mode .card-header h2,
+        body.light-mode .status-item-name,
+        body.light-mode .drag-drop-text h4,
+        body.light-mode .resource-card h3,
+        body.light-mode .accordion-trigger,
+        body.light-mode strong,
+        body.light-mode .hero-title,
+        body.light-mode .metric-label,
+        body.light-mode .metric-value,
+        body.light-mode .leaderboard-title {
+            color: #0f172a !important;
+        }
+
+        body.light-mode p,
+        body.light-mode span:not(.badge):not(.status-badge):not(.btn),
+        body.light-mode .drag-drop-text p,
+        body.light-mode .resource-card p,
+        body.light-mode .text-muted,
+        body.light-mode .files-table td,
+        body.light-mode .files-table th,
+        body.light-mode .info-block span {
+            color: #334155 !important;
+        }
+
+        body.light-mode .files-table th {
+            background-color: #f8fafc !important;
+            color: #1e293b !important;
+            border-bottom: 2px solid #cbd5e1 !important;
+        }
+
+        body.light-mode .files-table tbody tr {
+            background-color: #ffffff !important;
+        }
+
+        body.light-mode .files-table tbody tr:hover {
+            background-color: #f1f5f9 !important;
+        }
+
+        body.light-mode .drag-drop-zone {
+            background: rgba(241, 245, 249, 0.7) !important;
+            border: 2px dashed #94a3b8 !important;
+        }
+
+        body.light-mode .drag-drop-zone:hover {
+            border-color: #0284c7 !important;
+            background: rgba(224, 242, 254, 0.5) !important;
+        }
+
+        body.light-mode .accordion-trigger {
+            background: #ffffff !important;
+            color: #0f172a !important;
+        }
+
+        body.light-mode .accordion-content {
+            background: #f8fafc !important;
+        }
+
+        body.light-mode .chatbot-panel {
+            background: rgba(255, 255, 255, 0.98) !important;
+            border: 1.5px solid #0284c7 !important;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.25) !important;
+        }
+
+        body.light-mode .chatbot-header {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+        }
+
+        body.light-mode .chat-msg.bot {
+            background: #f1f5f9 !important;
+            color: #0f172a !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
+        body.light-mode .chat-msg.user {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+            color: #ffffff !important;
+        }
+
+        body.light-mode .chatbot-input {
+            background: #f8fafc !important;
+            color: #0f172a !important;
+            border: 1px solid #cbd5e1 !important;
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -4091,7 +4205,9 @@
         <div class="chatbot-attention-tooltip" id="chatbotTooltip">
             🤖 Bihar NOC AI is online! Ask me anything.
         </div>
-        <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant">
+                <button class="chatbot-toggle-btn pulse" id="chatbotToggleBtn" onclick="toggleChatbotPanel(event)" aria-label="Open AI Assistant" title="Chat with Bihar NOC AI Assistant">
+            <i class="fas fa-robot"></i>
+        </button>
             <i class="fas fa-robot"></i>
         </button>
         <div class="chatbot-panel" id="chatbotPanel">
@@ -4101,7 +4217,7 @@
                         <i class="fas fa-robot"></i>
                         <h3>Bihar NOC Assistant</h3>
                     </div>
-                    <button class="chatbot-header-close" id="chatbotCloseBtn" aria-label="Close panel"><i class="fas fa-times"></i></button>
+                                        <button class="chatbot-header-close" id="chatbotCloseBtn" onclick="closeChatbotPanel(event)" aria-label="Close panel"><i class="fas fa-times"></i></button><i class="fas fa-times"></i></button>
                 </div>
                 <div style="font-size: 9.5px; opacity: 0.95; color: rgba(255, 255, 255, 0.95); font-weight: 600; letter-spacing: 0.2px; margin-left: 28px; line-height: 1.3; margin-top: 3px;">
                     Architected & Founded by <strong style="color: #ffd700;">Aditya Jain</strong> (Security Administrator, NIC Bihar HQ)
@@ -4127,7 +4243,9 @@
                 <button class="chatbot-mic-btn" id="chatbotMicBtn" aria-label="Voice Input" title="Voice Input" style="display: none;">
                     <i class="fas fa-microphone"></i>
                 </button>
-                <button class="chatbot-send-btn" id="chatbotSendBtn" aria-label="Send message">
+                                <button class="chatbot-send-btn" id="chatbotSendBtn" onclick="sendChatbotMessage()" aria-label="Send message">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </div>
@@ -4238,16 +4356,20 @@
         const themeToggleBtn = document.getElementById('themeToggleBtn');
         const themeIcon = document.getElementById('themeIcon');
         
-        function applyPortalTheme(themeName) {
+                function applyPortalTheme(themeName) {
+            const themeIcon = document.getElementById('themeIcon');
             if (themeName === 'light') {
                 document.body.classList.remove('dark-mode');
                 document.body.classList.add('light-mode');
                 if (themeIcon) themeIcon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'light');
-                if (window.vantaEffect) {
+                if (window.vantaEffect && typeof window.vantaEffect.setOptions === 'function') {
                     window.vantaEffect.setOptions({
-                        color: 0x0f4c81,
-                        backgroundColor: 0xf8fafc
+                        color: 0x0284c7,
+                        backgroundColor: 0xf1f5f9,
+                        points: 16.00,
+                        maxDistance: 28.00,
+                        spacing: 16.00
                     });
                 }
             } else {
@@ -4255,10 +4377,13 @@
                 document.body.classList.remove('light-mode');
                 if (themeIcon) themeIcon.className = 'fas fa-sun';
                 localStorage.setItem('theme', 'dark');
-                if (window.vantaEffect) {
+                if (window.vantaEffect && typeof window.vantaEffect.setOptions === 'function') {
                     window.vantaEffect.setOptions({
                         color: 0x38bdf8,
-                        backgroundColor: 0x030712
+                        backgroundColor: 0x030712,
+                        points: 15.00,
+                        maxDistance: 24.00,
+                        spacing: 18.00
                     });
                 }
             }
@@ -4295,6 +4420,151 @@
             }
         }
         window.toggleTechStackAccordion = toggleTechStackAccordion;
+
+        // ═══════════════════════════════════════════════════════════════════
+        // BIHAR NOC AI CHATBOT ASSISTANT ENGINE (Self-Contained & RAG-Enabled)
+        // ═══════════════════════════════════════════════════════════════════
+        window.toggleChatbotPanel = function(e) {
+            if (e) e.stopPropagation();
+            const panel = document.getElementById('chatbotPanel');
+            const tooltip = document.getElementById('chatbotTooltip');
+            const btn = document.getElementById('chatbotToggleBtn');
+            const input = document.getElementById('chatbotInput');
+            
+            if (!panel) return;
+            
+            panel.classList.toggle('active');
+            if (panel.classList.contains('active')) {
+                if (tooltip) tooltip.style.opacity = '0';
+                if (btn) btn.classList.remove('pulse');
+                if (input) setTimeout(() => input.focus(), 150);
+            }
+        };
+
+        window.closeChatbotPanel = function(e) {
+            if (e) e.stopPropagation();
+            const panel = document.getElementById('chatbotPanel');
+            if (panel) panel.classList.remove('active');
+        };
+
+        window.sendSuggestionChip = function(query) {
+            const input = document.getElementById('chatbotInput');
+            if (input) {
+                input.value = query;
+                window.sendChatbotMessage();
+            }
+        };
+
+        window.sendChatbotMessage = function() {
+            const input = document.getElementById('chatbotInput');
+            const container = document.getElementById('chatbotMessages');
+            if (!input || !container) return;
+
+            const text = input.value.trim();
+            if (!text) return;
+
+            // 1. Append User Message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = text;
+            container.appendChild(userMsg);
+            input.value = '';
+            container.scrollTop = container.scrollHeight;
+
+            // 2. Generate Intelligent NOC Bot Response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                botMsg.innerHTML = generateNocBotResponse(text);
+                container.appendChild(botMsg);
+                container.scrollTop = container.scrollHeight;
+            }, 300);
+        };
+
+        function generateNocBotResponse(query) {
+            const q = query.toLowerCase();
+
+            // Contacts & Support
+            if (q.includes('support') || q.includes('phone') || q.includes('contact') || q.includes('number') || q.includes('helpdesk') || q.includes('call')) {
+                return `<strong>📞 Bihar State NOC Support Desk:</strong><br>
+                        • <strong>Patna HQ Helpline:</strong> <a href="tel:06122547906" style="color: #38bdf8;">0612-2547906</a><br>
+                        • <strong>Emergency Mobile:</strong> <a href="tel:09102403679" style="color: #38bdf8;">09102403679</a><br>
+                        • <strong>VoIP Extensions:</strong> 0612-2547198 Ext. 7089, 7090, 7091<br>
+                        • <strong>Location:</strong> NIC Bhawan, Soochna Bhawan Campus, Patna - 800015`;
+            }
+
+            // Document Upload & Explorer
+            if (q.includes('upload') || q.includes('doc') || q.includes('file') || q.includes('submit') || q.includes('form')) {
+                return `<strong>📂 Document Submission & Explorer:</strong><br>
+                        • You can upload district stock sheets, network diagrams, and audits using the <strong>Document Submission</strong> form on the right.<br>
+                        • Supported formats: PDF, XLSX, DOCX, ZIP, PPTX, TXT, Images.<br>
+                        • Max File Size: 500 MB.<br>
+                        • Uploaded files are immediately listed in the <strong>Document Explorer</strong> table below.`;
+            }
+
+            // Network Link Status & Outages
+            if (q.includes('status') || q.includes('link') || q.includes('outage') || q.includes('down') || q.includes('monitor') || q.includes('mrtg')) {
+                return `<strong>🌐 Network Link Status & Monitoring:</strong><br>
+                        • <strong>Core Backbone (NKN):</strong> 100% Operational (10 Gbps)<br>
+                        • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
+                        • <strong>Live Alerts:</strong> Check the <em>Network Link Status</em> panel for real-time link ping health or visit the <a href="alert/" target="_blank" style="color: #38bdf8;">Patna NOC Alert Console</a>.`;
+            }
+
+            // Leaderboard / XP / Districts
+            if (q.includes('leaderboard') || q.includes('xp') || q.includes('rank') || q.includes('darbhanga') || q.includes('patna') || q.includes('banka') || q.includes('district')) {
+                return `<strong>🏆 Bihar 38-District NOC Leaderboard:</strong><br>
+                        • All 38 districts are ranked by real-time engagement and telemetry XP.<br>
+                        • <strong>Daily Check-in:</strong> +200 XP<br>
+                        • <strong>Diagnostic Pulse:</strong> +150 XP<br>
+                        • <strong>Audit Verification:</strong> +250 XP<br>
+                        • Scroll to the <em>Bihar 38-District Live Leaderboard</em> section to view podium standings and boost your district!`;
+            }
+
+            // Network Boot (Windows 11 PXE)
+            if (q.includes('boot') || q.includes('pxe') || q.includes('windows') || q.includes('install') || q.includes('os')) {
+                return `<strong>💻 Windows 11 Network Boot Guide:</strong><br>
+                        • You can clean install Windows 11 directly from the Patna NOC WDS Server without a USB drive.<br>
+                        • Press <kbd>F12</kbd> / <kbd>F11</kbd> at startup and choose <strong>Network Boot (PXE IPv4)</strong>.<br>
+                        • High-speed automated install streaming at 10 Gbps.`;
+            }
+
+            // District RAG lookup in contacts database
+            if (window.contactsDatabase && window.contactsDatabase.length > 0) {
+                const matched = window.contactsDatabase.filter(c => 
+                    (c.district && c.district.toLowerCase().includes(q)) ||
+                    (c.name && c.name.toLowerCase().includes(q)) ||
+                    (c.designation && c.designation.toLowerCase().includes(q))
+                );
+                if (matched.length > 0) {
+                    let res = `<strong>🔍 Contacts found for "${query}":</strong><br>`;
+                    matched.slice(0, 3).forEach(c => {
+                        res += `• <strong>${c.name}</strong> (${c.designation || 'Engineer'}) - ${c.district || 'Bihar'}<br>`;
+                        if (c.mobile) res += `  📞 <a href="tel:${c.mobile}" style="color: #38bdf8;">${c.mobile}</a> | `;
+                        if (c.email) res += `  ✉️ <a href="mailto:${c.email}" style="color: #38bdf8;">${c.email}</a><br>`;
+                    });
+                    return res;
+                }
+            }
+
+            // Default Smart Fallback
+            return `I am here to assist with Bihar State NOC operations! You can ask me about:<br>
+                    • <strong>Support Numbers:</strong> Patna HQ & VoIP hotlines<br>
+                    • <strong>District Contacts:</strong> SIO, DIO, FMS engineers across 38 districts<br>
+                    • <strong>Document Submission:</strong> Uploading inventories & audits<br>
+                    • <strong>Network Link Status:</strong> Real-time link health & outages<br>
+                    • <strong>Windows 11 Network Boot:</strong> Automated clean install guide`;
+        }
+
+        // Initialize Chatbot Input Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            const input = document.getElementById('chatbotInput');
+            if (input) {
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') window.sendChatbotMessage();
+                });
+            }
+        });
+
 
         // ═══════════════════════════════════════════════════════════════════
         // REAL-TIME NETWORK LINK STATUS ENGINE (Instant Auto-Sync & Monitoring)
@@ -7477,7 +7747,7 @@ window.closeXpInfoModal = function() {
     <script src="static/three.r134.min.js"></script>
     <script src="static/vanta.net.min.js"></script>
     <script>
-        function initVantaBackground() {
+                function initVantaBackground() {
             if (typeof VANTA === 'undefined' || typeof THREE === 'undefined') {
                 setTimeout(initVantaBackground, 100);
                 return;
@@ -7496,11 +7766,11 @@ window.closeXpInfoModal = function() {
                     minWidth: 200.00,
                     scale: 1.00,
                     scaleMobile: 1.00,
-                    color: isDarkMode ? 0x38bdf8 : 0x0f4c81,
-                    backgroundColor: isDarkMode ? 0x030712 : 0xf8fafc,
-                    points: 15.00,
-                    maxDistance: 24.00,
-                    spacing: 18.00,
+                    color: isDarkMode ? 0x38bdf8 : 0x0284c7,
+                    backgroundColor: isDarkMode ? 0x030712 : 0xf1f5f9,
+                    points: isDarkMode ? 15.00 : 16.00,
+                    maxDistance: isDarkMode ? 24.00 : 28.00,
+                    spacing: isDarkMode ? 18.00 : 16.00,
                     showDots: true
                 });
             } catch (err) {
