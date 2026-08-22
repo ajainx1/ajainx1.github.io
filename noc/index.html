@@ -118,8 +118,8 @@
         }
 
         body {
-            zoom: 0.91;
-            font-family: var(--font-family-sans);
+    zoom: 1.0;
+    font-family: var(--font-family-sans);
             background-color: transparent;
             color: var(--text-primary);
             transition: var(--transition);
@@ -3216,7 +3216,7 @@
 <body class="dark-mode" style="overflow-x: hidden !important;">
     <div id="vanta-bg" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; opacity: 0.85;"></div>
     <a class="skip-link" href="#upload-card">Skip to main content</a>
-    <!-- Top Gov Tricolor Bar -->
+        <!-- Top Gov Tricolor Bar -->
     <div class="gov-banner"></div>
 
     <!-- Sticky Navigation / Header -->
@@ -3253,18 +3253,15 @@
     <div id="loginModalOverlay" style="display: none !important;"></div>
 
     <!-- Live Telemetry Ticker (Stock Market Style) -->
-    <div class="alert-ticker" style="background: var(--ticker-bg); border-bottom: 1px solid var(--ticker-border); height: 38px; display: flex; align-items: center; transition: all 0.3s ease;">
-        <div class="ticker-label" style="background: #10b981; color: #fff; font-weight: 800; padding: 0 16px; height: 100%; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; box-shadow: 2px 0 10px rgba(16,185,129,0.3);">LIVE</div>
-        <marquee behavior="scroll" direction="left" scrollamount="6" style="flex: 1; color: var(--ticker-text); font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 0.5px;">
-            📢 <strong>SECURITY NOTIFICATION:</strong> UEM (Anupalak) download link has been shared and is <strong>ACTIVE</strong> (<code>farps.nic.in/UEM/anupalak4.zip</code> &bull; Zip Password: <code>Nic0004</code>) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 <strong>VC TEAM HOTLINE:</strong> IP Phone / Ext: <strong>23004</strong> &bull; Email: <strong>vc-bihar@nic.in</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 38/38 DISTRICT VC STUDIOS (10.X.X.100): BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; ⚡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; 🔄 LATENCY AVG: 12ms
+    <div class="alert-ticker" style="width: 100%; box-sizing: border-box; background: #020617; border-bottom: 2px solid rgba(56, 189, 248, 0.35); height: 42px; display: flex; align-items: center; overflow: hidden; position: relative; z-index: 999; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);">
+        <div class="ticker-label" style="background: #10b981; color: #fff; font-weight: 900; padding: 0 18px; height: 100%; display: flex; align-items: center; text-transform: uppercase; letter-spacing: 1.2px; font-size: 0.82rem; box-shadow: 4px 0 15px rgba(16,185,129,0.5); flex-shrink: 0; z-index: 2;">LIVE</div>
+        <marquee behavior="scroll" direction="left" scrollamount="6" style="flex: 1; color: #34d399; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.5px; line-height: 42px;">
+            📢 <strong>SECURITY NOTIFICATION:</strong> UEM (Anupalak) download link is <strong style="color: #38bdf8;">ACTIVE</strong> (<code style="background: #0f172a; color: #38bdf8; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.4);">farps.nic.in/UEM/anupalak4.zip</code> &bull; Zip Password: <code style="background: #0f172a; color: #fbbf24; padding: 2px 6px; border-radius: 4px; border: 1px solid rgba(245,158,11,0.4);">Nic0004</code>) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 <strong>VC TEAM HOTLINE:</strong> IP Phone / Ext: <strong>23004</strong> &bull; Email: <strong>vc-bihar@nic.in</strong> &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 NKN CORE: OPTIMAL (100% UPTIME) &nbsp;&nbsp;|&nbsp;&nbsp; 🎥 38/38 DISTRICT VC STUDIOS (10.X.X.100): BROADCAST HD READY &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 STATE HQ: OPTIMAL &nbsp;&nbsp;|&nbsp;&nbsp; 🟢 38/38 DISTRICT LOOPBACKS: ACTIVE &nbsp;&nbsp;|&nbsp;&nbsp; ⚡ NETWORK THREAT LEVEL: ZERO &nbsp;&nbsp;|&nbsp;&nbsp; 🔄 LATENCY AVG: 12ms
         </marquee>
     </div>
 
-    
-
-    <!-- Security Advisory Card: UEM Active & EDR Pending Broadcast -->
-        <!-- Security Advisory Directive: UEM Active & EDR Verification -->
-    <div id="edrUemBanner" style="width: 100%; box-sizing: border-box; padding: 8px 16px; background: rgba(15, 23, 42, 0.96); border-bottom: 1.5px solid rgba(234, 88, 12, 0.4);">
+    <!-- Security Advisory Directive: UEM Active & EDR Verification -->
+    <div id="edrUemBanner" style="width: 100%; box-sizing: border-box; padding: 10px 24px; background: rgba(15, 23, 42, 0.96); border-bottom: 1.5px solid rgba(234, 88, 12, 0.4); position: relative; z-index: 900;">
         <div style="max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
             
             <!-- Left: Advisory Icon & Text -->
@@ -3304,18 +3301,7 @@
         </div>
     </div>
 
-            <!-- Right: Action Button & Dismiss -->
-            <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-                <a href="http://10.133.22.8/nic/index.php?dir=EDR_UEM_MIGRATION_SOPS" target="_blank" rel="noopener noreferrer" class="btn-advisory-action" style="background: linear-gradient(135deg, #0284c7, #0369a1) !important;">
-                    <i class="fas fa-folder-open"></i> Open EDR/UEM SOPs <i class="fas fa-arrow-right" style="font-size: 0.72rem;"></i>
-                </a>
-                <button onclick="document.getElementById('edrUemBanner').style.display='none';" class="btn-advisory-dismiss" title="Dismiss Advisory">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
 
-        </div>
-    </div>
 
     <!-- Professional Hero Header Panel -->
     <section class="hero-dashboard">
