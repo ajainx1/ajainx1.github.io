@@ -4028,38 +4028,59 @@
             </div>
         </div>
 
-        <!-- Row 2 Grid spanning columns: Key Information -->
-        <div class="resources-accordion">
-            <div class="accordion-item" id="resourcesAccordion">
-                <button class="accordion-trigger" onclick="toggleAccordion()">
-                    <span><i class="fas fa-info-circle"></i> Key Network Information & Resources</span>
-                    <i class="fas fa-chevron-down chevron"></i>
-                </button>
-                <div class="accordion-content" id="accordionContent">
-                    <div class="accordion-content-inner">
-                        <div class="resource-links-grid">
-                            <div class="resource-card">
-                                <h3><i class="fas fa-map-marker-alt"></i> State Headquarters</h3>
-                                <p>National Informatics Centre Bihar State Centre, NIC Bhawan, Soochna Bhawan Campus, Nehru Path, Patna – 800015</p>
-                                <a href="tel:+919771459332"><i class="fas fa-phone-volume"></i> +91 9771459332</a>
-                            </div>
-                            <div class="resource-card">
-                                <h3><i class="fas fa-link"></i> Useful Portals</h3>
-                                <p>Access complaint logs, state portals, and direct tools hosted on the internal government servers.</p>
-                                <div style="display: flex; flex-direction: column; gap: 8px;">
-                                    <a href="https://servicedesk.nic.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Service Desk / Complaint Log</a>
-                                    <a href="https://bihar.s3waas.gov.in/" target="_blank"><i class="fas fa-external-link-alt"></i> Bihar S3WaaS Directory</a>
-                                    <a href="http://10.133.22.8/nic/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Tools & Security Audit Hub</a>
-                                </div>
-                            </div>
-                            <div class="resource-card">
-                                <h3><i class="fas fa-server"></i> NICNET & NKN Core</h3>
-                                <p>NICNET features 10 Gbps core routers with backup channels. NKN features 1000G global network links for high bandwidth government processes.</p>
-                            </div>
+                <!-- Key Network Information & Resources Section (Always Open & Accessible) -->
+        <div class="key-resources-section" style="grid-column: 1 / -1; margin-top: 15px; margin-bottom: 25px;">
+            <div class="glass-card" style="background: rgba(11, 19, 38, 0.95); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 24px; box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);">
+                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 14px;">
+                    <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(56, 189, 248, 0.18); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);">
+                        <i class="fas fa-info-circle" style="color: #38bdf8; font-size: 1.25rem;"></i>
+                    </div>
+                    <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.25rem; font-weight: 800; color: #ffffff; margin: 0; letter-spacing: 0.3px;">
+                        Key Network Information &amp; Resources
+                    </h2>
+                </div>
+                <div class="resource-links-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                    <div class="resource-card" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                            <i class="fas fa-map-marker-alt" style="color: #fbbf24;"></i> State Headquarters
+                        </h3>
+                        <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 14px; line-height: 1.6;">
+                            National Informatics Centre Bihar State Centre, NIC Bhawan, Soochna Bhawan Campus, Nehru Path, Patna &ndash; 800015
+                        </p>
+                        <a href="tel:+919771459332" style="color: #38bdf8; text-decoration: none; font-size: 0.88rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-phone-volume" style="color: #10b981;"></i> +91 9771459332
+                        </a>
+                    </div>
+                    <div class="resource-card" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                            <i class="fas fa-link" style="color: #38bdf8;"></i> Useful Portals
+                        </h3>
+                        <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 14px; line-height: 1.6;">
+                            Access complaint logs, state portals, and direct tools hosted on the internal government servers.
+                        </p>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <a href="https://servicedesk.nic.in/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-external-link-alt" style="color: #38bdf8;"></i> Service Desk / Complaint Log
+                            </a>
+                            <a href="https://bihar.s3waas.gov.in/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-external-link-alt" style="color: #38bdf8;"></i> Bihar S3WaaS Directory
+                            </a>
+                            <a href="http://10.133.22.8/nic/" target="_blank" rel="noopener noreferrer" style="color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+                                <i class="fas fa-external-link-alt" style="color: #10b981;"></i> Tools &amp; Security Audit Hub
+                            </a>
                         </div>
+                    </div>
+                    <div class="resource-card" style="background: rgba(15, 23, 42, 0.92); border: 1.5px solid rgba(255, 255, 255, 0.12); border-radius: 12px; padding: 22px; box-shadow: 0 6px 20px rgba(0,0,0,0.4);">
+                        <h3 style="font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; color: #ffffff;">
+                            <i class="fas fa-server" style="color: #10b981;"></i> NICNET &amp; NKN Core
+                        </h3>
+                        <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 0; line-height: 1.6;">
+                            NICNET features 10 Gbps core routers with redundant backup channels. NKN features 1000G global network links for high bandwidth government processes.
+                        </p>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
 
     </main>
@@ -4255,6 +4276,26 @@
 
         // --- Accordion Logic ---
         window.toggleAccordion = toggleAccordion;
+        
+        // --- Technology Stack Accordion Toggle Logic ---
+        function toggleTechStackAccordion() {
+            const accordion = document.getElementById('techStackAccordion');
+            const content = document.getElementById('techStackAccordionContent');
+            const chevron = document.getElementById('techStackChevron');
+            
+            if (!accordion || !content) return;
+            
+            accordion.classList.toggle('active');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                if (chevron) chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                if (chevron) chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+        window.toggleTechStackAccordion = toggleTechStackAccordion;
+
         function toggleAccordion() {
             const accordion = document.getElementById('resourcesAccordion');
             const content = document.getElementById('accordionContent');
