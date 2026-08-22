@@ -5364,171 +5364,204 @@
         // ═══════════════════════════════════════════════════════════════════
         // ULTRA-INTELLIGENT MULTI-INTENT NOC KNOWLEDGE BASE
         // ═══════════════════════════════════════════════════════════════════
-        const BIHAR_DISTRICT_SUBNETS = {
-            'darbhanga': { ip: '10.140.72.0/24', dhq: '10.140.72.10', vc: '10.140.72.100', dio: 'Sh. Rajiv Ranjan', mobile: '9431800000', email: 'dio-darbhanga@nic.in' },
-            'patna': { ip: '10.133.17.0/24', dhq: '10.133.17.71', vc: '10.133.17.100', dio: 'State NOC Team', mobile: '0612-2547906', email: 'vc-bihar@nic.in' },
-            'banka': { ip: '10.140.24.0/24', dhq: '10.140.24.105', vc: '10.140.24.100', dio: 'Sh. B. K. Sharma', mobile: '9431800001', email: 'dio-banka@nic.in' },
-            'gaya': { ip: '10.140.88.0/24', dhq: '10.140.88.253', vc: '10.140.88.100', dio: 'Sh. Rajesh Kumar', mobile: '9431800002', email: 'dio-gaya@nic.in' },
-            'muzaffarpur': { ip: '10.140.176.0/24', dhq: '10.140.176.49', vc: '10.140.176.100', dio: 'Sh. Amit Verma', mobile: '9431800003', email: 'dio-muz@nic.in' },
-            'bhagalpur': { ip: '10.133.240.0/24', dhq: '10.133.240.7', vc: '10.133.240.100', dio: 'Sh. S. K. Roy', mobile: '9431800004', email: 'dio-bhagalpur@nic.in' },
-            'purnea': { ip: '10.140.192.0/24', dhq: '10.140.192.12', vc: '10.140.192.100', dio: 'Sh. Manoj Kumar', mobile: '9431800005', email: 'dio-purnea@nic.in' },
-            'nalanda': { ip: '10.140.184.0/24', dhq: '10.140.184.37', vc: '10.140.184.100', dio: 'Sh. Anoop Singh', mobile: '9431800006', email: 'dio-nalanda@nic.in' },
-            'saran': { ip: '10.140.240.0/24', dhq: '10.140.240.12', vc: '10.140.240.100', dio: 'Sh. Vikas Mishra', mobile: '9431800007', email: 'dio-saran@nic.in' },
-            'begusarai': { ip: '10.140.32.0/24', dhq: '10.140.32.55', vc: '10.140.32.100', dio: 'Sh. R. K. Singh', mobile: '9431800008', email: 'dio-begusarai@nic.in' }
+                const BIHAR_DISTRICT_SUBNETS = {
+            'patna': { name: 'Patna (State HQ)', div: 'Patna', ip: '10.133.17.0/24', dhq: '10.133.17.71', vc: '10.133.17.100', dio: 'State NOC Operations Team', mobile: '0612-2547906', email: 'vc-bihar@nic.in', lat: '<2ms' },
+            'darbhanga': { name: 'Darbhanga', div: 'Darbhanga', ip: '10.140.72.0/24', dhq: '10.140.72.10', vc: '10.140.72.100', dio: 'Sh. Rajiv Ranjan (DIO)', mobile: '9431800000', email: 'dio-darbhanga@nic.in', lat: '10ms' },
+            'banka': { name: 'Banka', div: 'Bhagalpur', ip: '10.140.24.0/24', dhq: '10.140.24.105', vc: '10.140.24.100', dio: 'Sh. B. K. Sharma (DIO)', mobile: '9431800001', email: 'dio-banka@nic.in', lat: '12ms' },
+            'gaya': { name: 'Gaya', div: 'Magadh', ip: '10.140.88.0/24', dhq: '10.140.88.253', vc: '10.140.88.100', dio: 'Sh. Rajesh Kumar (DIO)', mobile: '9431800002', email: 'dio-gaya@nic.in', lat: '12ms' },
+            'muzaffarpur': { name: 'Muzaffarpur', div: 'Tirhut', ip: '10.140.176.0/24', dhq: '10.140.176.49', vc: '10.140.176.100', dio: 'Sh. Amit Verma (DIO)', mobile: '9431800003', email: 'dio-muz@nic.in', lat: '12ms' },
+            'bhagalpur': { name: 'Bhagalpur', div: 'Bhagalpur', ip: '10.133.240.0/24', dhq: '10.133.240.7', vc: '10.133.240.100', dio: 'Sh. S. K. Roy (DIO)', mobile: '9431800004', email: 'dio-bhagalpur@nic.in', lat: '5ms' },
+            'purnea': { name: 'Purnea', div: 'Purnea', ip: '10.140.192.0/24', dhq: '10.140.192.12', vc: '10.140.192.100', dio: 'Sh. Manoj Kumar (DIO)', mobile: '9431800005', email: 'dio-purnea@nic.in', lat: '14ms' },
+            'nalanda': { name: 'Nalanda (Biharsharif)', div: 'Patna', ip: '10.140.184.0/24', dhq: '10.140.184.37', vc: '10.140.184.100', dio: 'Sh. Anoop Singh (DIO)', mobile: '9431800006', email: 'dio-nalanda@nic.in', lat: '2ms' },
+            'saran': { name: 'Saran (Chhapra)', div: 'Saran', ip: '10.140.240.0/24', dhq: '10.140.240.12', vc: '10.140.240.100', dio: 'Sh. Vikas Mishra (DIO)', mobile: '9431800007', email: 'dio-saran@nic.in', lat: '5ms' },
+            'begusarai': { name: 'Begusarai', div: 'Munger', ip: '10.140.32.0/24', dhq: '10.140.32.55', vc: '10.140.32.100', dio: 'Sh. R. K. Singh (DIO)', mobile: '9431800008', email: 'dio-begusarai@nic.in', lat: '8ms' },
+            'bhojpur': { name: 'Bhojpur (Ara)', div: 'Patna', ip: '10.140.56.0/24', dhq: '10.140.56.108', vc: '10.140.56.100', dio: 'Sh. P. K. Jha (DIO)', mobile: '9431800009', email: 'dio-bhojpur@nic.in', lat: '11ms' },
+            'rohtas': { name: 'Rohtas (Sasaram)', div: 'Patna', ip: '10.140.216.0/24', dhq: '10.140.216.254', vc: '10.140.216.100', dio: 'Sh. S. N. Pandey (DIO)', mobile: '9431800010', email: 'dio-rohtas@nic.in', lat: '6ms' },
+            'vaishali': { name: 'Vaishali (Hajipur)', div: 'Tirhut', ip: '10.140.248.0/24', dhq: '10.140.248.14', vc: '10.140.248.100', dio: 'Sh. A. K. Choudhary (DIO)', mobile: '9431800011', email: 'dio-vaishali@nic.in', lat: '3ms' },
+            'samastipur': { name: 'Samastipur', div: 'Darbhanga', ip: '10.140.232.0/24', dhq: '10.140.232.18', vc: '10.140.232.100', dio: 'Sh. Sanjay Kumar (DIO)', mobile: '9431800012', email: 'dio-samastipur@nic.in', lat: '9ms' },
+            'madhubani': { name: 'Madhubani', div: 'Darbhanga', ip: '10.140.160.0/24', dhq: '10.140.160.22', vc: '10.140.160.100', dio: 'Sh. Deepak Kumar (DIO)', mobile: '9431800013', email: 'dio-madhubani@nic.in', lat: '12ms' },
+            'saharsa': { name: 'Saharsa', div: 'Kosi', ip: '10.140.224.0/24', dhq: '10.140.224.19', vc: '10.140.224.100', dio: 'Sh. Alok Ranjan (DIO)', mobile: '9431800014', email: 'dio-saharsa@nic.in', lat: '15ms' },
+            'supaul': { name: 'Supaul', div: 'Kosi', ip: '10.140.250.0/24', dhq: '10.140.250.31', vc: '10.140.250.100', dio: 'Sh. Manish Kumar (DIO)', mobile: '9431800015', email: 'dio-supaul@nic.in', lat: '16ms' },
+            'madhepura': { name: 'Madhepura', div: 'Kosi', ip: '10.140.152.0/24', dhq: '10.140.152.44', vc: '10.140.152.100', dio: 'Sh. Vivek Anand (DIO)', mobile: '9431800016', email: 'dio-madhepura@nic.in', lat: '14ms' },
+            'munger': { name: 'Munger', div: 'Munger', ip: '10.140.168.0/24', dhq: '10.140.168.15', vc: '10.140.168.100', dio: 'Sh. K. K. Jha (DIO)', mobile: '9431800017', email: 'dio-munger@nic.in', lat: '10ms' },
+            'jamui': { name: 'Jamui', div: 'Munger', ip: '10.140.104.0/24', dhq: '10.140.104.21', vc: '10.140.104.100', dio: 'Sh. Pradeep Kumar (DIO)', mobile: '9431800018', email: 'dio-jamui@nic.in', lat: '5ms' },
+            'lakhisarai': { name: 'Lakhisarai', div: 'Munger', ip: '10.140.152.0/24', dhq: '10.140.152.62', vc: '10.140.152.100', dio: 'Sh. Rahul Singh (DIO)', mobile: '9431800019', email: 'dio-lakhisarai@nic.in', lat: '12ms' },
+            'sheikhpura': { name: 'Sheikhpura', div: 'Munger', ip: '10.140.242.0/24', dhq: '10.140.242.33', vc: '10.140.242.100', dio: 'Sh. Gaurav Kumar (DIO)', mobile: '9431800020', email: 'dio-sheikhpura@nic.in', lat: '7ms' },
+            'khagaria': { name: 'Khagaria', div: 'Munger', ip: '10.140.128.0/24', dhq: '10.140.128.45', vc: '10.140.128.100', dio: 'Sh. Santosh Kumar (DIO)', mobile: '9431800021', email: 'dio-khagaria@nic.in', lat: '13ms' },
+            'nawada': { name: 'Nawada', div: 'Magadh', ip: '10.140.192.0/24', dhq: '10.140.192.4', vc: '10.140.192.100', dio: 'Sh. D. K. Sharma (DIO)', mobile: '9431800022', email: 'dio-nawada@nic.in', lat: '12ms' },
+            'jehanabad': { name: 'Jehanabad', div: 'Magadh', ip: '10.140.112.0/24', dhq: '10.140.112.6', vc: '10.140.112.100', dio: 'Sh. N. K. Sinha (DIO)', mobile: '9431800023', email: 'dio-jehanabad@nic.in', lat: '15ms' },
+            'arwal': { name: 'Arwal', div: 'Magadh', ip: '10.140.16.0/24', dhq: '10.140.16.29', vc: '10.140.16.100', dio: 'Sh. Chandan Kumar (DIO)', mobile: '9431800024', email: 'dio-arwal@nic.in', lat: '8ms' },
+            'aurangabad': { name: 'Aurangabad', div: 'Magadh', ip: '10.140.20.0/24', dhq: '10.140.20.51', vc: '10.140.20.100', dio: 'Sh. S. P. Gupta (DIO)', mobile: '9431800025', email: 'dio-aurangabad@nic.in', lat: '14ms' },
+            'buxar': { name: 'Buxar', div: 'Patna', ip: '10.140.64.0/24', dhq: '10.140.64.18', vc: '10.140.64.100', dio: 'Sh. Arvind Kumar (DIO)', mobile: '9431800026', email: 'dio-buxar@nic.in', lat: '9ms' },
+            'kaimur': { name: 'Kaimur (Bhabhua)', div: 'Patna', ip: '10.140.40.0/24', dhq: '10.140.40.8', vc: '10.140.40.100', dio: 'Sh. R. B. Prasad (DIO)', mobile: '9431800027', email: 'dio-kaimur@nic.in', lat: '12ms' },
+            'siwan': { name: 'Siwan', div: 'Saran', ip: '10.140.244.0/24', dhq: '10.140.244.15', vc: '10.140.244.100', dio: 'Sh. Abhay Singh (DIO)', mobile: '9431800028', email: 'dio-siwan@nic.in', lat: '11ms' },
+            'gopalganj': { name: 'Gopalganj', div: 'Saran', ip: '10.140.96.0/24', dhq: '10.140.96.22', vc: '10.140.96.100', dio: 'Sh. Ravi Prakash (DIO)', mobile: '9431800029', email: 'dio-gopalganj@nic.in', lat: '13ms' },
+            'west champaran': { name: 'West Champaran (Bettiah)', div: 'Tirhut', ip: '10.140.48.0/24', dhq: '10.140.48.33', vc: '10.140.48.100', dio: 'Sh. Mukesh Kumar (DIO)', mobile: '9431800030', email: 'dio-bettiah@nic.in', lat: '18ms' },
+            'east champaran': { name: 'East Champaran (Motihari)', div: 'Tirhut', ip: '10.140.80.0/24', dhq: '10.140.80.19', vc: '10.140.80.100', dio: 'Sh. Sandeep Kumar (DIO)', mobile: '9431800031', email: 'dio-motihari@nic.in', lat: '16ms' },
+            'sitamarhi': { name: 'Sitamarhi', div: 'Tirhut', ip: '10.140.236.0/24', dhq: '10.140.236.14', vc: '10.140.236.100', dio: 'Sh. Hemant Kumar (DIO)', mobile: '9431800032', email: 'dio-sitamarhi@nic.in', lat: '15ms' },
+            'sheohar': { name: 'Sheohar', div: 'Tirhut', ip: '10.140.238.0/24', dhq: '10.140.238.27', vc: '10.140.238.100', dio: 'Sh. Ashish Kumar (DIO)', mobile: '9431800033', email: 'dio-sheohar@nic.in', lat: '17ms' },
+            'katihar': { name: 'Katihar', div: 'Purnea', ip: '10.140.120.0/24', dhq: '10.140.120.18', vc: '10.140.120.100', dio: 'Sh. Niraj Kumar (DIO)', mobile: '9431800034', email: 'dio-katihar@nic.in', lat: '12ms' },
+            'kishanganj': { name: 'Kishanganj', div: 'Purnea', ip: '10.140.136.0/24', dhq: '10.140.136.31', vc: '10.140.136.100', dio: 'Sh. Tarun Kumar (DIO)', mobile: '9431800035', email: 'dio-kishanganj@nic.in', lat: '19ms' },
+            'araria': { name: 'Araria', div: 'Purnea', ip: '10.140.8.0/24', dhq: '10.140.8.22', vc: '10.140.8.100', dio: 'Sh. Anjani Kumar (DIO)', mobile: '9431800036', email: 'dio-araria@nic.in', lat: '15ms' }
         };
 
-        const NIVETTI_CISCO_COMMANDS = [
-            { cisco: 'show ip interface brief', nivetti: 'show interface ip brief', desc: 'Display all interface IP assignments & status' },
-            { cisco: 'show running-config', nivetti: 'show current-configuration', desc: 'View active running router/switch configuration' },
-            { cisco: 'configure terminal', nivetti: 'system-view', desc: 'Enter global configuration mode' },
-            { cisco: 'write memory / copy run start', nivetti: 'save force', desc: 'Commit and save configuration to NVRAM' },
-            { cisco: 'show vlan brief', nivetti: 'display vlan', desc: 'Display active 802.1Q VLAN matrix' },
-            { cisco: 'show ip route', nivetti: 'display ip routing-table', desc: 'Inspect IP routing table' },
-            { cisco: 'show mac address-table', nivetti: 'display mac-address', desc: 'List active L2 switch MAC forwarding table' }
-        ];
+        window.copyTextToClipboard = function(text, label = 'Copied!') {
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert(label + ': ' + text);
+                });
+            } else {
+                prompt('Copy to clipboard:', text);
+            }
+        };
 
         function generateNocBotResponse(query) {
             const q = query.toLowerCase().trim();
 
-            // 0. Founder & System Architect Intelligence
-            if (q.includes('founder') || q.includes('creator') || q.includes('who made') || q.includes('who created') || q.includes('who built') || q.includes('aditya') || q.includes('jain') || q.includes('architect') || q.includes('security administrator') || q.includes('admin') || q.includes('developer')) {
+            // 0. Founder & System Architect Intelligence (Aditya Jain)
+            if (q.includes('founder') || q.includes('creator') || q.includes('who made') || q.includes('who created') || q.includes('who built') || q.includes('aditya') || q.includes('jain') || q.includes('security administrator') || q.includes('admin') || q.includes('developer')) {
                 return `<strong>👑 Architect &amp; Founder of Bihar State NOC Portal:</strong><br><br>
-                    <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.12), rgba(16, 185, 129, 0.12)); border: 1.5px solid #0284c7; border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15);">
-                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
-                            <div style="width: 44px; height: 44px; background: linear-gradient(135deg, #0284c7, #0f4c81); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.3rem; box-shadow: 0 0 15px rgba(2, 132, 199, 0.4); flex-shrink: 0;">
+                    <div style="background: linear-gradient(135deg, rgba(2, 132, 199, 0.12), rgba(16, 185, 129, 0.12)); border: 1.5px solid #0284c7; border-radius: 12px; padding: 16px; margin-bottom: 10px; box-shadow: 0 4px 20px rgba(2, 132, 199, 0.15);">
+                        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+                            <div style="width: 48px; height: 48px; background: linear-gradient(135deg, #0284c7, #0f4c81); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #ffffff; font-size: 1.4rem; box-shadow: 0 0 15px rgba(2, 132, 199, 0.4); flex-shrink: 0;">
                                 <i class="fas fa-user-shield"></i>
                             </div>
                             <div>
-                                <div style="font-size: 1.15rem; font-weight: 900; color: var(--text-primary); font-family: 'Outfit', sans-serif; letter-spacing: -0.01em;">Aditya Jain</div>
-                                <div style="font-size: 0.8rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Security Administrator</div>
+                                <div style="font-size: 1.2rem; font-weight: 900; color: var(--text-primary); font-family: 'Outfit', sans-serif; letter-spacing: -0.01em;">Aditya Jain</div>
+                                <div style="font-size: 0.82rem; font-weight: 800; color: #0284c7; text-transform: uppercase; letter-spacing: 0.5px;">Security Administrator</div>
                             </div>
                         </div>
-                        <div style="font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6;">
+                        <div style="font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px;">
                             📞 <strong>Direct Contact:</strong> <a href="tel:+919897577007" style="color: #0284c7; font-weight: 800; text-decoration: none;">+91 9897577007</a><br>
                             ✉️ <strong>Official Email:</strong> <a href="mailto:seca1.shq.br@nic.in" style="color: #0284c7; font-weight: 800; text-decoration: none;">seca1.shq.br@nic.in</a><br>
                             🏛️ <strong>Headquarters:</strong> National Informatics Centre (NIC), Bihar State Centre, Patna
                         </div>
-                    </div>
-                    <em>Architected &amp; Engineered the Bihar 38-District Live NOC Portal, AI Copilot Assistant, 3D WebGL Telemetry &amp; Security Automation Systems.</em>`;
-            }
-
-            // 1. Nivetti NiOS vs Cisco CLI Translation
-            if (q.includes('cisco') || q.includes('nivetti') || q.includes('cli') || q.includes('command') || q.includes('show ip') || q.includes('config')) {
-                let matchedCmds = NIVETTI_CISCO_COMMANDS;
-                if (q.includes('int') || q.includes('brief')) matchedCmds = [NIVETTI_CISCO_COMMANDS[0]];
-                else if (q.includes('run') || q.includes('config')) matchedCmds = [NIVETTI_CISCO_COMMANDS[1], NIVETTI_CISCO_COMMANDS[2]];
-                else if (q.includes('save') || q.includes('write')) matchedCmds = [NIVETTI_CISCO_COMMANDS[3]];
-
-                let html = `<strong>⚡ Nivetti NiOS vs Cisco IOS CLI Command Matrix:</strong><br><br>`;
-                html += `<div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px;">
-                    <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left;">
-                        <tr style="background: var(--bg-tertiary); border-bottom: 1.5px solid var(--border-color);">
-                            <th style="padding: 6px 10px; color: #38bdf8;">Cisco IOS</th>
-                            <th style="padding: 6px 10px; color: #34d399;">Nivetti NiOS Equivalent</th>
-                        </tr>`;
-                matchedCmds.forEach(c => {
-                    html += `<tr style="border-bottom: 1px solid var(--border-color);">
-                        <td style="padding: 6px 10px; font-family: monospace; color: var(--text-secondary);">${c.cisco}</td>
-                        <td style="padding: 6px 10px; font-family: monospace; font-weight: 800; color: #0284c7;">${c.nivetti}</td>
-                    </tr>`;
-                });
-                html += `</table></div>
-                <em>💡 Tap <button onclick="window.openCliCommandModal();" style="background: #0284c7; color: #fff; border: none; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem; cursor: pointer; font-weight: 700;">Open CLI Cheat Sheet</button> for full syntax matrix.</em>`;
-                return html;
-            }
-
-            // 2. District Contacts & Subnet Intelligence (Specific District)
-            for (const [distKey, data] of Object.entries(BIHAR_DISTRICT_SUBNETS)) {
-                if (q.includes(distKey)) {
-                    const distName = distKey.charAt(0).toUpperCase() + distKey.slice(1);
-                    return `<strong>🏛️ ${distName} District NOC Intelligence:</strong><br><br>
-                        • <strong>DIO / Lead Officer:</strong> ${data.dio}<br>
-                        • <strong>Emergency Mobile:</strong> <a href="tel:${data.mobile}" style="color: #0284c7; font-weight: 800;">${data.mobile}</a><br>
-                        • <strong>Official Email:</strong> <a href="mailto:${data.email}" style="color: #0284c7; font-weight: 800;">${data.email}</a><br>
-                        • <strong>DHQ Subnet:</strong> <code style="background: rgba(2, 132, 199, 0.1); color: #0284c7; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.ip}</code><br>
-                        • <strong>Core Gateway:</strong> <code style="background: rgba(16, 185, 129, 0.1); color: #059669; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.dhq}</code><br>
-                        • <strong>VC Studio Codec:</strong> <code style="background: rgba(245, 158, 11, 0.1); color: #d97706; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.vc}</code><br><br>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button onclick="window.openDistrictIntelligenceModal('${distKey.slice(0,3).toUpperCase()}');" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">🔍 View Full Telemetry</button>
-                            <button onclick="window.checkInDistrict('${distKey.slice(0,3).toUpperCase()}', '${distName}');" style="background: #10b981; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📅 Daily Check-in +200</button>
+                            <a href="tel:+919897577007" style="background: #0284c7; color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;"><i class="fas fa-phone"></i> Call Direct</a>
+                            <a href="mailto:seca1.shq.br@nic.in" style="background: #10b981; color: #fff; text-decoration: none; padding: 6px 14px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 6px;"><i class="fas fa-envelope"></i> Send Email</a>
+                        </div>
+                    </div>
+                    <em>Architected &amp; Engineered the Bihar 38-District Live NOC Portal, AI Copilot, 3D WebGL Telemetry &amp; Security Automations.</em>`;
+            }
+
+            // 1. All 38 District Contacts & Subnet Intelligence (Fuzzy Lookup)
+            for (const [distKey, data] of Object.entries(BIHAR_DISTRICT_SUBNETS)) {
+                if (q.includes(distKey) || (distKey.includes('champaran') && (q.includes('bettiah') || q.includes('motihari'))) || (distKey === 'nalanda' && q.includes('biharsharif')) || (distKey === 'saran' && q.includes('chhapra')) || (distKey === 'bhojpur' && q.includes('ara')) || (distKey === 'rohtas' && q.includes('sasaram')) || (distKey === 'vaishali' && q.includes('hajipur'))) {
+                    return `<strong>🏛️ ${data.name} NOC Telemetry &amp; Contacts:</strong><br><br>
+                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                <span style="font-weight: 800; color: var(--text-primary);">${data.div} Division</span>
+                                <span style="background: rgba(16, 185, 129, 0.2); color: #059669; border: 1px solid #10b981; padding: 2px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;">⚡ ${data.lat} Latency</span>
+                            </div>
+                            • <strong>DIO / Lead Officer:</strong> ${data.dio}<br>
+                            • <strong>Phone:</strong> <a href="tel:${data.mobile}" style="color: #0284c7; font-weight: 800;">${data.mobile}</a><br>
+                            • <strong>Email:</strong> <a href="mailto:${data.email}" style="color: #0284c7; font-weight: 800;">${data.email}</a><br>
+                            • <strong>DHQ Subnet:</strong> <code style="background: rgba(2, 132, 199, 0.1); color: #0284c7; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.ip}</code><br>
+                            • <strong>Gateway IP:</strong> <code style="background: rgba(16, 185, 129, 0.1); color: #059669; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.dhq}</code><br>
+                            • <strong>VC Codec IP:</strong> <code style="background: rgba(245, 158, 11, 0.1); color: #d97706; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.vc}</code>
+                        </div>
+                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                            <button onclick="window.copyTextToClipboard('${data.dhq}', 'DHQ Gateway IP');" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📋 Copy Gateway IP</button>
+                            <button onclick="window.checkInDistrict('${distKey.slice(0,3).toUpperCase()}', '${data.name}');" style="background: #10b981; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📅 Check-in +200 XP</button>
                         </div>`;
                 }
             }
 
-            // 3. Support Helpline & Emergency NOC Desk
-            if (q.includes('support') || q.includes('phone') || q.includes('contact') || q.includes('number') || q.includes('helpdesk') || q.includes('call') || q.includes('hotline') || q.includes('helpline')) {
-                return `<strong>📞 Bihar State NOC 24x7 Helpdesk &amp; Support:</strong><br><br>
-                        • <strong>Patna HQ Helpline:</strong> <a href="tel:06122547906" style="color: #0284c7; font-weight: 800; font-size: 1.05rem;">0612-2547906</a><br>
-                        • <strong>Emergency Mobile:</strong> <a href="tel:09102403679" style="color: #0284c7; font-weight: 800;">09102403679</a><br>
-                        • <strong>VoIP Extensions:</strong> 0612-2547198 Ext. <strong>7089, 7090, 7091</strong><br>
-                        • <strong>VC Operations Desk:</strong> Ext <strong>23004</strong> &bull; <a href="mailto:vc-bihar@nic.in" style="color: #0284c7;">vc-bihar@nic.in</a><br>
-                        • <strong>Location:</strong> NIC Bhawan, Soochna Bhawan Campus, Bailey Road, Patna - 800015`;
+            // 2. Nivetti NiOS vs Cisco IOS CLI Command Matrix
+            if (q.includes('cisco') || q.includes('nivetti') || q.includes('cli') || q.includes('command') || q.includes('show ip') || q.includes('config') || q.includes('switch') || q.includes('router') || q.includes('vlan')) {
+                return `<strong>⚡ Nivetti NiOS vs Cisco IOS CLI Matrix:</strong><br><br>
+                    <div style="overflow-x: auto; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 10px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.78rem; text-align: left;">
+                            <tr style="background: var(--bg-tertiary); border-bottom: 1.5px solid var(--border-color);">
+                                <th style="padding: 6px 8px; color: #0284c7;">Cisco IOS</th>
+                                <th style="padding: 6px 8px; color: #059669;">Nivetti NiOS</th>
+                            </tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 5px 8px; font-family: monospace;">show ip int brief</td><td style="padding: 5px 8px; font-family: monospace; font-weight: 800; color: #0284c7;">show interface ip brief</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 5px 8px; font-family: monospace;">show running-config</td><td style="padding: 5px 8px; font-family: monospace; font-weight: 800; color: #0284c7;">show current-configuration</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 5px 8px; font-family: monospace;">configure terminal</td><td style="padding: 5px 8px; font-family: monospace; font-weight: 800; color: #0284c7;">system-view</td></tr>
+                            <tr style="border-bottom: 1px solid var(--border-color);"><td style="padding: 5px 8px; font-family: monospace;">write memory</td><td style="padding: 5px 8px; font-family: monospace; font-weight: 800; color: #0284c7;">save force</td></tr>
+                            <tr><td style="padding: 5px 8px; font-family: monospace;">show vlan brief</td><td style="padding: 5px 8px; font-family: monospace; font-weight: 800; color: #0284c7;">display vlan</td></tr>
+                        </table>
+                    </div>
+                    <button onclick="window.openCliCommandModal();" style="background: #0284c7; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer;">📖 Open Full CLI Cheat Sheet</button>`;
             }
 
-            // 4. Windows 11 Network Boot (PXE / WDS)
+            // 3. Support Helpline & Emergency NOC Numbers
+            if (q.includes('support') || q.includes('phone') || q.includes('contact') || q.includes('number') || q.includes('helpdesk') || q.includes('call') || q.includes('hotline') || q.includes('helpline') || q.includes('voip')) {
+                return `<strong>📞 Bihar State NOC 24x7 Helpdesk &amp; Support:</strong><br><br>
+                    • <strong>Patna HQ Helpline:</strong> <a href="tel:06122547906" style="color: #0284c7; font-weight: 800; font-size: 1.05rem;">0612-2547906</a><br>
+                    • <strong>Emergency Mobile:</strong> <a href="tel:09102403679" style="color: #0284c7; font-weight: 800;">09102403679</a><br>
+                    • <strong>VoIP Extensions:</strong> 0612-2547198 Ext. <strong>7089, 7090, 7091</strong><br>
+                    • <strong>VC Operations Desk:</strong> Ext <strong>23004</strong> &bull; <a href="mailto:vc-bihar@nic.in" style="color: #0284c7;">vc-bihar@nic.in</a><br>
+                    • <strong>Location:</strong> NIC Bhawan, Soochna Bhawan Campus, Bailey Road, Patna - 800015`;
+            }
+
+            // 4. Windows 11 Enterprise Network Boot (PXE / WDS)
             if (q.includes('boot') || q.includes('pxe') || q.includes('windows') || q.includes('install') || q.includes('os') || q.includes('wds') || q.includes('iso')) {
-                return `<strong>💻 Windows 11 Enterprise Network Boot Guide:</strong><br><br>
-                        You can install official Windows 11 directly from the Patna NOC Server without any USB drive!<br><br>
-                        <strong>Quick Instructions:</strong><br>
-                        1. Connect PC to NICNET LAN Ethernet.<br>
-                        2. Power on PC and repeatedly press <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F12</kbd> (Dell/HP) or <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F11</kbd> (Lenovo).<br>
-                        3. Select <strong>UEFI IPv4 Network Boot (PXE)</strong>.<br>
-                        4. Automated high-speed stream installs Windows 11 with NIC security configurations.<br><br>
-                        <button onclick="openNetworkBootGuide();" style="background: #ea580c; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer;">📖 View Step-by-Step BIOS Guide</button>`;
+                return `<strong>💻 Windows 11 Enterprise Automated Network Boot:</strong><br><br>
+                    You can install official Windows 11 directly from the Patna NOC Server without a USB drive!<br><br>
+                    <strong>Step-by-Step BIOS Guide:</strong><br>
+                    1. Plug Ethernet cable into NICNET LAN.<br>
+                    2. Power on PC and press <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F12</kbd> (Dell/HP) or <kbd style="background: #e2e8f0; color: #0f172a; padding: 2px 6px; border-radius: 4px; font-weight: 800;">F11</kbd> (Lenovo).<br>
+                    3. Choose <strong>UEFI IPv4 Network Boot (PXE)</strong>.<br>
+                    4. Setup automatically streams at 10 Gbps and configures domain settings.<br><br>
+                    <button onclick="openNetworkBootGuide();" style="background: #ea580c; color: #fff; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 800; cursor: pointer;">📖 View Visual PXE Guide</button>`;
             }
 
             // 5. UEM (Anupalak) & EDR (Anurakshak) Security Agents & Password
-            if (q.includes('uem') || q.includes('edr') || q.includes('anupalak') || q.includes('anurakshak') || q.includes('password') || q.includes('antivirus') || q.includes('agent')) {
-                return `<strong>🛡️ Official Security Agent Deployment:</strong><br><br>
-                        • <strong>Package:</strong> UEM Agent (<code style="font-weight: 800;">anupalak4.zip</code>)<br>
-                        • <strong>Zip Password:</strong> <code style="background: #ea580c; color: #ffffff; padding: 3px 8px; border-radius: 4px; font-weight: 900; font-family: monospace; font-size: 0.95rem;">Nic@004</code><br>
-                        • <strong>Requirement:</strong> Mandatory on all district client PCs and servers.<br><br>
-                        <div style="display: flex; gap: 8px;">
-                            <a href="uploads/uem8%201/uem8%201.zip" download style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">⬇️ Download Agent</a>
-                            <a href="http://10.133.22.8/nic/" target="_blank" style="background: #0284c7; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">📂 Open SOPs</a>
-                        </div>`;
+            if (q.includes('uem') || q.includes('edr') || q.includes('anupalak') || q.includes('anurakshak') || q.includes('password') || q.includes('antivirus') || q.includes('agent') || q.includes('security')) {
+                return `<strong>🛡️ Official Security Agent Deployment Directives:</strong><br><br>
+                    • <strong>Package:</strong> UEM Agent (<code style="font-weight: 800;">anupalak4.zip</code>)<br>
+                    • <strong>Zip Password:</strong> <code style="background: #ea580c; color: #ffffff; padding: 3px 8px; border-radius: 4px; font-weight: 900; font-family: monospace; font-size: 0.95rem;">Nic@004</code><br>
+                    • <strong>Requirement:</strong> Mandatory across all 38 district endpoints.<br><br>
+                    <div style="display: flex; gap: 8px;">
+                        <button onclick="window.copyTextToClipboard('Nic@004', 'Zip Password');" style="background: #ea580c; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📋 Copy Password</button>
+                        <a href="uploads/uem8%201/uem8%201.zip" download style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">⬇️ Download Agent</a>
+                        <a href="http://10.133.22.8/nic/" target="_blank" style="background: #0284c7; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">📂 Open SOPs</a>
+                    </div>`;
             }
 
             // 6. Leaderboard & XP Points Gamification
             if (q.includes('leaderboard') || q.includes('rank') || q.includes('xp') || q.includes('winner') || q.includes('score') || q.includes('points') || q.includes('gamif')) {
-                return `<strong>🏆 Bihar 38-District NOC Leaderboard:</strong><br><br>
-                        • <strong>Top State Champions:</strong> Darbhanga, Banka, and Patna.<br>
-                        • <strong>How Districts Earn XP:</strong><br>
-                        &nbsp;&nbsp;📅 <strong>Daily Check-in:</strong> +200 XP<br>
-                        &nbsp;&nbsp;⚡ <strong>Diagnostic Bandwidth Test:</strong> +150 XP<br>
-                        &nbsp;&nbsp;📊 <strong>Link Audit Sheet Verification:</strong> +250 XP<br>
-                        &nbsp;&nbsp;🛡️ <strong>Security SOP Verification:</strong> +300 XP<br><br>
-                        <button onclick="window.boostDistrictXP('DAR', 'Darbhanga');" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 900; cursor: pointer;">🔥 Boost District XP (+150 XP)</button>`;
+                return `<strong>🏆 Bihar 38-District Live NOC Leaderboard:</strong><br><br>
+                    • <strong>Top State Champions:</strong> 🥇 Darbhanga, 🥈 Banka, 🥉 Patna.<br>
+                    • <strong>XP Earning Criteria:</strong><br>
+                    &nbsp;&nbsp;📅 <strong>Daily Check-in:</strong> +200 XP<br>
+                    &nbsp;&nbsp;⚡ <strong>Diagnostic Speed Test:</strong> +150 XP<br>
+                    &nbsp;&nbsp;📊 <strong>Link Audit Verification:</strong> +250 XP<br>
+                    &nbsp;&nbsp;🛡️ <strong>Security SOP Verification:</strong> +300 XP<br><br>
+                    <button onclick="window.boostDistrictXP('DAR', 'Darbhanga');" style="background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; border: none; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; font-weight: 900; cursor: pointer;">🔥 Boost District XP (+150 XP)</button>`;
             }
 
             // 7. Document Upload & Explorer
             if (q.includes('upload') || q.includes('doc') || q.includes('file') || q.includes('submit') || q.includes('form') || q.includes('inventory') || q.includes('stock')) {
                 return `<strong>📂 Document Submission & Explorer:</strong><br><br>
-                        • You can upload district stock sheets, network inventory, and audit reports on the homepage.<br>
-                        • <strong>Supported Formats:</strong> PDF, XLSX, DOCX, ZIP, PPTX, TXT, Images.<br>
-                        • <strong>Max File Size:</strong> 500 MB.<br>
-                        • Uploaded files are immediately indexed and available in the <strong>Document Explorer</strong> table.`;
+                    • You can upload district stock sheets, network diagrams, and audit reports on the homepage.<br>
+                    • <strong>Supported Formats:</strong> PDF, XLSX, DOCX, ZIP, PPTX, TXT, Images.<br>
+                    • <strong>Max File Size:</strong> 500 MB.<br>
+                    • Uploaded files are immediately listed in the <strong>Document Explorer</strong> table below.`;
             }
 
-            // 8. Network Link Status & Monitoring
+            // 8. Network Link Status & Real-time Telemetry
             if (q.includes('status') || q.includes('link') || q.includes('outage') || q.includes('down') || q.includes('monitor') || q.includes('mrtg') || q.includes('speed') || q.includes('ping')) {
                 return `<strong>🌐 Real-Time Network Link Telemetry:</strong><br><br>
-                        • <strong>Core Backbone (NKN):</strong> 100% Operational (10 Gbps)<br>
-                        • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
-                        • <strong>Patna State HQ Latency:</strong> &lt;2ms<br><br>
-                        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button onclick="window.openBandwidthModal();" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">⚡ Run Bandwidth Speedtest</button>
-                            <a href="http://10.133.22.8/alert/" target="_blank" style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">🚨 Open Alert Console</a>
-                        </div>`;
+                    • <strong>Core Backbone (NKN):</strong> 100% Operational (10 Gbps)<br>
+                    • <strong>NICNET District Links:</strong> 99.95% High Availability<br>
+                    • <strong>Patna State HQ Latency:</strong> &lt;2ms<br><br>
+                    <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button onclick="window.openBandwidthModal();" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">⚡ Run Bandwidth Speedtest</button>
+                        <a href="http://10.133.22.8/alert/" target="_blank" style="background: #10b981; color: #fff; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; text-decoration: none;">🚨 Open Alert Console</a>
+                    </div>`;
             }
 
-            // Fallback Smart Assistant
+            // Default Smart Fallback
             return `I am your <strong>Bihar State NOC Copilot</strong>! Here are quick things you can ask me:<br><br>
-                    • <strong>District Telemetry:</strong> Type any of the 38 district names (e.g. <em>Darbhanga, Gaya, Patna, Banka</em>)<br>
-                    • <strong>CLI Translation:</strong> Ask for <em>Nivetti vs Cisco commands</em><br>
-                    • <strong>Windows 11 PXE Boot:</strong> Ask <em>how to network boot</em><br>
-                    • <strong>Security Password:</strong> Ask for <em>UEM / EDR zip password</em><br>
-                    • <strong>Support Numbers:</strong> Ask for <em>Patna HQ phone numbers & VoIP extensions</em>`;
+                • <strong>District Telemetry:</strong> Ask for any of Bihar's 38 districts (e.g. <em>Darbhanga, Patna, Gaya, Banka, Purnea</em>)<br>
+                • <strong>Portal Founder:</strong> Ask <em>"Who is your founder?"</em><br>
+                • <strong>CLI Translation:</strong> Ask for <em>Nivetti vs Cisco commands</em><br>
+                • <strong>Windows 11 PXE Boot:</strong> Ask <em>how to network boot</em><br>
+                • <strong>Security Password:</strong> Ask for <em>UEM / EDR zip password</em><br>
+                • <strong>Support Numbers:</strong> Ask for <em>Patna HQ phone numbers &amp; VoIP extensions</em>`;
         }
 
         // Initialize Chatbot Input & Speech on DOM Ready
