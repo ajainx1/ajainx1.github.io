@@ -5445,46 +5445,540 @@
         // ═══════════════════════════════════════════════════════════════════
         // ULTRA-INTELLIGENT MULTI-INTENT NOC KNOWLEDGE BASE
         // ═══════════════════════════════════════════════════════════════════
-                const BIHAR_DISTRICT_SUBNETS = {
-            'patna': { name: 'Patna (State HQ)', div: 'Patna', ip: '10.133.17.0/24', dhq: '10.133.17.71', vc: '10.133.17.100', dio: 'State NOC Operations Team', mobile: '0612-2547906', email: 'vc-bihar@nic.in', lat: '<2ms' },
-            'darbhanga': { name: 'Darbhanga', div: 'Darbhanga', ip: '10.140.72.0/24', dhq: '10.140.72.10', vc: '10.140.72.100', dio: 'Sh. Rajiv Ranjan (DIO)', mobile: '9431800000', email: 'dio-darbhanga@nic.in', lat: '10ms' },
-            'banka': { name: 'Banka', div: 'Bhagalpur', ip: '10.140.24.0/24', dhq: '10.140.24.105', vc: '10.140.24.100', dio: 'Sh. B. K. Sharma (DIO)', mobile: '9431800001', email: 'dio-banka@nic.in', lat: '12ms' },
-            'gaya': { name: 'Gaya', div: 'Magadh', ip: '10.140.88.0/24', dhq: '10.140.88.253', vc: '10.140.88.100', dio: 'Sh. Rajesh Kumar (DIO)', mobile: '9431800002', email: 'dio-gaya@nic.in', lat: '12ms' },
-            'muzaffarpur': { name: 'Muzaffarpur', div: 'Tirhut', ip: '10.140.176.0/24', dhq: '10.140.176.49', vc: '10.140.176.100', dio: 'Sh. Amit Verma (DIO)', mobile: '9431800003', email: 'dio-muz@nic.in', lat: '12ms' },
-            'bhagalpur': { name: 'Bhagalpur', div: 'Bhagalpur', ip: '10.133.240.0/24', dhq: '10.133.240.7', vc: '10.133.240.100', dio: 'Sh. S. K. Roy (DIO)', mobile: '9431800004', email: 'dio-bhagalpur@nic.in', lat: '5ms' },
-            'purnea': { name: 'Purnea', div: 'Purnea', ip: '10.140.192.0/24', dhq: '10.140.192.12', vc: '10.140.192.100', dio: 'Sh. Manoj Kumar (DIO)', mobile: '9431800005', email: 'dio-purnea@nic.in', lat: '14ms' },
-            'nalanda': { name: 'Nalanda (Biharsharif)', div: 'Patna', ip: '10.140.184.0/24', dhq: '10.140.184.37', vc: '10.140.184.100', dio: 'Sh. Anoop Singh (DIO)', mobile: '9431800006', email: 'dio-nalanda@nic.in', lat: '2ms' },
-            'saran': { name: 'Saran (Chhapra)', div: 'Saran', ip: '10.140.240.0/24', dhq: '10.140.240.12', vc: '10.140.240.100', dio: 'Sh. Vikas Mishra (DIO)', mobile: '9431800007', email: 'dio-saran@nic.in', lat: '5ms' },
-            'begusarai': { name: 'Begusarai', div: 'Munger', ip: '10.140.32.0/24', dhq: '10.140.32.55', vc: '10.140.32.100', dio: 'Sh. R. K. Singh (DIO)', mobile: '9431800008', email: 'dio-begusarai@nic.in', lat: '8ms' },
-            'bhojpur': { name: 'Bhojpur (Ara)', div: 'Patna', ip: '10.140.56.0/24', dhq: '10.140.56.108', vc: '10.140.56.100', dio: 'Sh. P. K. Jha (DIO)', mobile: '9431800009', email: 'dio-bhojpur@nic.in', lat: '11ms' },
-            'rohtas': { name: 'Rohtas (Sasaram)', div: 'Patna', ip: '10.140.216.0/24', dhq: '10.140.216.254', vc: '10.140.216.100', dio: 'Sh. S. N. Pandey (DIO)', mobile: '9431800010', email: 'dio-rohtas@nic.in', lat: '6ms' },
-            'vaishali': { name: 'Vaishali (Hajipur)', div: 'Tirhut', ip: '10.140.248.0/24', dhq: '10.140.248.14', vc: '10.140.248.100', dio: 'Sh. A. K. Choudhary (DIO)', mobile: '9431800011', email: 'dio-vaishali@nic.in', lat: '3ms' },
-            'samastipur': { name: 'Samastipur', div: 'Darbhanga', ip: '10.140.232.0/24', dhq: '10.140.232.18', vc: '10.140.232.100', dio: 'Sh. Sanjay Kumar (DIO)', mobile: '9431800012', email: 'dio-samastipur@nic.in', lat: '9ms' },
-            'madhubani': { name: 'Madhubani', div: 'Darbhanga', ip: '10.140.160.0/24', dhq: '10.140.160.22', vc: '10.140.160.100', dio: 'Sh. Deepak Kumar (DIO)', mobile: '9431800013', email: 'dio-madhubani@nic.in', lat: '12ms' },
-            'saharsa': { name: 'Saharsa', div: 'Kosi', ip: '10.140.224.0/24', dhq: '10.140.224.19', vc: '10.140.224.100', dio: 'Sh. Alok Ranjan (DIO)', mobile: '9431800014', email: 'dio-saharsa@nic.in', lat: '15ms' },
-            'supaul': { name: 'Supaul', div: 'Kosi', ip: '10.140.250.0/24', dhq: '10.140.250.31', vc: '10.140.250.100', dio: 'Sh. Manish Kumar (DIO)', mobile: '9431800015', email: 'dio-supaul@nic.in', lat: '16ms' },
-            'madhepura': { name: 'Madhepura', div: 'Kosi', ip: '10.140.152.0/24', dhq: '10.140.152.44', vc: '10.140.152.100', dio: 'Sh. Vivek Anand (DIO)', mobile: '9431800016', email: 'dio-madhepura@nic.in', lat: '14ms' },
-            'munger': { name: 'Munger', div: 'Munger', ip: '10.140.168.0/24', dhq: '10.140.168.15', vc: '10.140.168.100', dio: 'Sh. K. K. Jha (DIO)', mobile: '9431800017', email: 'dio-munger@nic.in', lat: '10ms' },
-            'jamui': { name: 'Jamui', div: 'Munger', ip: '10.140.104.0/24', dhq: '10.140.104.21', vc: '10.140.104.100', dio: 'Sh. Pradeep Kumar (DIO)', mobile: '9431800018', email: 'dio-jamui@nic.in', lat: '5ms' },
-            'lakhisarai': { name: 'Lakhisarai', div: 'Munger', ip: '10.140.152.0/24', dhq: '10.140.152.62', vc: '10.140.152.100', dio: 'Sh. Rahul Singh (DIO)', mobile: '9431800019', email: 'dio-lakhisarai@nic.in', lat: '12ms' },
-            'sheikhpura': { name: 'Sheikhpura', div: 'Munger', ip: '10.140.242.0/24', dhq: '10.140.242.33', vc: '10.140.242.100', dio: 'Sh. Gaurav Kumar (DIO)', mobile: '9431800020', email: 'dio-sheikhpura@nic.in', lat: '7ms' },
-            'khagaria': { name: 'Khagaria', div: 'Munger', ip: '10.140.128.0/24', dhq: '10.140.128.45', vc: '10.140.128.100', dio: 'Sh. Santosh Kumar (DIO)', mobile: '9431800021', email: 'dio-khagaria@nic.in', lat: '13ms' },
-            'nawada': { name: 'Nawada', div: 'Magadh', ip: '10.140.192.0/24', dhq: '10.140.192.4', vc: '10.140.192.100', dio: 'Sh. D. K. Sharma (DIO)', mobile: '9431800022', email: 'dio-nawada@nic.in', lat: '12ms' },
-            'jehanabad': { name: 'Jehanabad', div: 'Magadh', ip: '10.140.112.0/24', dhq: '10.140.112.6', vc: '10.140.112.100', dio: 'Sh. N. K. Sinha (DIO)', mobile: '9431800023', email: 'dio-jehanabad@nic.in', lat: '15ms' },
-            'arwal': { name: 'Arwal', div: 'Magadh', ip: '10.140.16.0/24', dhq: '10.140.16.29', vc: '10.140.16.100', dio: 'Sh. Chandan Kumar (DIO)', mobile: '9431800024', email: 'dio-arwal@nic.in', lat: '8ms' },
-            'aurangabad': { name: 'Aurangabad', div: 'Magadh', ip: '10.140.20.0/24', dhq: '10.140.20.51', vc: '10.140.20.100', dio: 'Sh. S. P. Gupta (DIO)', mobile: '9431800025', email: 'dio-aurangabad@nic.in', lat: '14ms' },
-            'buxar': { name: 'Buxar', div: 'Patna', ip: '10.140.64.0/24', dhq: '10.140.64.18', vc: '10.140.64.100', dio: 'Sh. Arvind Kumar (DIO)', mobile: '9431800026', email: 'dio-buxar@nic.in', lat: '9ms' },
-            'kaimur': { name: 'Kaimur (Bhabhua)', div: 'Patna', ip: '10.140.40.0/24', dhq: '10.140.40.8', vc: '10.140.40.100', dio: 'Sh. R. B. Prasad (DIO)', mobile: '9431800027', email: 'dio-kaimur@nic.in', lat: '12ms' },
-            'siwan': { name: 'Siwan', div: 'Saran', ip: '10.140.244.0/24', dhq: '10.140.244.15', vc: '10.140.244.100', dio: 'Sh. Abhay Singh (DIO)', mobile: '9431800028', email: 'dio-siwan@nic.in', lat: '11ms' },
-            'gopalganj': { name: 'Gopalganj', div: 'Saran', ip: '10.140.96.0/24', dhq: '10.140.96.22', vc: '10.140.96.100', dio: 'Sh. Ravi Prakash (DIO)', mobile: '9431800029', email: 'dio-gopalganj@nic.in', lat: '13ms' },
-            'west champaran': { name: 'West Champaran (Bettiah)', div: 'Tirhut', ip: '10.140.48.0/24', dhq: '10.140.48.33', vc: '10.140.48.100', dio: 'Sh. Mukesh Kumar (DIO)', mobile: '9431800030', email: 'dio-bettiah@nic.in', lat: '18ms' },
-            'east champaran': { name: 'East Champaran (Motihari)', div: 'Tirhut', ip: '10.140.80.0/24', dhq: '10.140.80.19', vc: '10.140.80.100', dio: 'Sh. Sandeep Kumar (DIO)', mobile: '9431800031', email: 'dio-motihari@nic.in', lat: '16ms' },
-            'sitamarhi': { name: 'Sitamarhi', div: 'Tirhut', ip: '10.140.236.0/24', dhq: '10.140.236.14', vc: '10.140.236.100', dio: 'Sh. Hemant Kumar (DIO)', mobile: '9431800032', email: 'dio-sitamarhi@nic.in', lat: '15ms' },
-            'sheohar': { name: 'Sheohar', div: 'Tirhut', ip: '10.140.238.0/24', dhq: '10.140.238.27', vc: '10.140.238.100', dio: 'Sh. Ashish Kumar (DIO)', mobile: '9431800033', email: 'dio-sheohar@nic.in', lat: '17ms' },
-            'katihar': { name: 'Katihar', div: 'Purnea', ip: '10.140.120.0/24', dhq: '10.140.120.18', vc: '10.140.120.100', dio: 'Sh. Niraj Kumar (DIO)', mobile: '9431800034', email: 'dio-katihar@nic.in', lat: '12ms' },
-            'kishanganj': { name: 'Kishanganj', div: 'Purnea', ip: '10.140.136.0/24', dhq: '10.140.136.31', vc: '10.140.136.100', dio: 'Sh. Tarun Kumar (DIO)', mobile: '9431800035', email: 'dio-kishanganj@nic.in', lat: '19ms' },
-            'araria': { name: 'Araria', div: 'Purnea', ip: '10.140.8.0/24', dhq: '10.140.8.22', vc: '10.140.8.100', dio: 'Sh. Anjani Kumar (DIO)', mobile: '9431800036', email: 'dio-araria@nic.in', lat: '15ms' }
-        };
+                        const BIHAR_DISTRICT_SUBNETS = {
+            "patna": {
+                        "name": "Patna (State HQ)",
+                        "div": "Patna",
+                        "ip": "10.133.17.0/24",
+                        "dhq": "10.133.17.71",
+                        "vc": "10.133.17.100",
+                        "dio": "Sh. Mrityunjay Kumar (DIO)",
+                        "mobile": "7602268029",
+                        "email": "dio-ptn@nic.in",
+                        "dio_email": "mrityunjay.k@nic.in, dio-ptn@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.pa.br@nic.in",
+                        "lat": "<2ms"
+            },
+            "darbhanga": {
+                        "name": "Darbhanga",
+                        "div": "Darbhanga",
+                        "ip": "10.140.72.0/24",
+                        "dhq": "10.140.72.10",
+                        "vc": "10.140.72.100",
+                        "dio": "Sh. Ashutosh Nadan Singh (DIO)",
+                        "mobile": "7992240712",
+                        "email": "dio-dbg@nic.in",
+                        "dio_email": "dio-dbg@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.dh.br@nic.in",
+                        "lat": "10ms"
+            },
+            "gaya": {
+                        "name": "Gaya",
+                        "div": "Magadh",
+                        "ip": "10.140.88.0/24",
+                        "dhq": "10.140.88.253",
+                        "vc": "10.140.88.100",
+                        "dio": "Sh. Somesh / Sh. Gautam Kumar (DIO)",
+                        "mobile": "9304014590",
+                        "email": "dio-gay@nic.in",
+                        "dio_email": "gautam.kumar18@nic.in, dio-gay@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ga.br@nic.in",
+                        "lat": "12ms"
+            },
+            "muzaffarpur": {
+                        "name": "Muzaffarpur",
+                        "div": "Tirhut",
+                        "ip": "10.140.176.0/24",
+                        "dhq": "10.140.176.49",
+                        "vc": "10.140.176.100",
+                        "dio": "Sh. Abhishek Kumar (DIO)",
+                        "mobile": "9122581991",
+                        "email": "dio-muz@nic.in",
+                        "dio_email": "abhishek.kr@nic.in, dio-muz@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.mz.br@nic.in",
+                        "lat": "12ms"
+            },
+            "bhagalpur": {
+                        "name": "Bhagalpur",
+                        "div": "Bhagalpur",
+                        "ip": "10.133.240.0/24",
+                        "dhq": "10.133.240.7",
+                        "vc": "10.133.240.100",
+                        "dio": "Sh. Chanchal Kumar / Sh. Ritesh Chandra (DIO)",
+                        "mobile": "8750394039",
+                        "email": "dio-bhg@nic.in",
+                        "dio_email": "dio-bhg@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.bg.br@nic.in",
+                        "lat": "5ms"
+            },
+            "purnea": {
+                        "name": "Purnea",
+                        "div": "Purnea",
+                        "ip": "10.140.192.0/24",
+                        "dhq": "10.140.192.12",
+                        "vc": "10.140.192.100",
+                        "dio": "Smt. Shalini Kumari (DIO)",
+                        "mobile": "9599870718",
+                        "email": "dio-prn@nic.in",
+                        "dio_email": "dio-prn@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.pu.br@nic.in",
+                        "lat": "14ms"
+            },
+            "banka": {
+                        "name": "Banka",
+                        "div": "Bhagalpur",
+                        "ip": "10.140.24.0/24",
+                        "dhq": "10.140.24.105",
+                        "vc": "10.140.24.100",
+                        "dio": "Sh. S.M. Husain (DIO)",
+                        "mobile": "9473192598",
+                        "email": "dio-bnk@nic.in",
+                        "dio_email": "sm.husain@nic.in, dio-bnk@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ba.br@nic.in",
+                        "lat": "12ms"
+            },
+            "nalanda": {
+                        "name": "Nalanda (Biharsharif)",
+                        "div": "Patna",
+                        "ip": "10.140.184.0/24",
+                        "dhq": "10.140.184.37",
+                        "vc": "10.140.184.100",
+                        "dio": "Sh. Ajit Kumar (DIO)",
+                        "mobile": "7587165655",
+                        "email": "dio-nld@nic.in",
+                        "dio_email": "ajit.kumar20@nic.in, dio-nld@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.nl.br@nic.in",
+                        "lat": "2ms"
+            },
+            "bhojpur": {
+                        "name": "Bhojpur (Ara)",
+                        "div": "Patna",
+                        "ip": "10.140.56.0/24",
+                        "dhq": "10.140.56.108",
+                        "vc": "10.140.56.100",
+                        "dio": "Sh. Sunil Kumar (DIO)",
+                        "mobile": "9431052508",
+                        "email": "dio-bjp@nic.in",
+                        "dio_email": "sunil.k@nic.in, dio-bjp@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.bj.br@nic.in",
+                        "lat": "11ms"
+            },
+            "araria": {
+                        "name": "Araria",
+                        "div": "Purnea",
+                        "ip": "10.140.8.0/24",
+                        "dhq": "10.140.8.22",
+                        "vc": "10.140.8.100",
+                        "dio": "Sh. Deepak Kumar (DIO)",
+                        "mobile": "8051209211",
+                        "email": "dio-ara-bih@nic.in",
+                        "dio_email": "deepak.poddar@nic.in, dio-ara-bih@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ar.br@nic.in",
+                        "lat": "15ms"
+            },
+            "arwal": {
+                        "name": "Arwal",
+                        "div": "Magadh",
+                        "ip": "10.140.16.0/24",
+                        "dhq": "10.140.16.29",
+                        "vc": "10.140.16.100",
+                        "dio": "Sh. Ratnesh Kumar Divakar (DIO)",
+                        "mobile": "7909001932",
+                        "email": "dio-arw@nic.in",
+                        "dio_email": "ratneshdivakar@nic.in, dio-arw@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.aw.br@nic.in",
+                        "lat": "8ms"
+            },
+            "aurangabad": {
+                        "name": "Aurangabad",
+                        "div": "Magadh",
+                        "ip": "10.140.20.0/24",
+                        "dhq": "10.140.20.51",
+                        "vc": "10.140.20.100",
+                        "dio": "Sh. Hrithik Anand (DIO)",
+                        "mobile": "9304846958",
+                        "email": "dio-agb@nic.in",
+                        "dio_email": "dio-agb@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.au.br@nic.in",
+                        "lat": "14ms"
+            },
+            "begusarai": {
+                        "name": "Begusarai",
+                        "div": "Munger",
+                        "ip": "10.140.32.0/24",
+                        "dhq": "10.140.32.55",
+                        "vc": "10.140.32.100",
+                        "dio": "Sh. A.K. Singh / Sh. Suman Kumar (DIO)",
+                        "mobile": "9304815322",
+                        "email": "dio-bgs@nic.in",
+                        "dio_email": "singh.ak@nic.in, dio-bgs@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.be.br@nic.in",
+                        "lat": "8ms"
+            },
+            "buxar": {
+                        "name": "Buxar",
+                        "div": "Patna",
+                        "ip": "10.140.64.0/24",
+                        "dhq": "10.140.64.18",
+                        "vc": "10.140.64.100",
+                        "dio": "Sh. Prashant Kumar / Sh. U.P. Mitra (DIO)",
+                        "mobile": "9470844365",
+                        "email": "dio-bxr@nic.in",
+                        "dio_email": "prashant.kr@nic.in, dio-bxr@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.bu.br@nic.in",
+                        "lat": "9ms"
+            },
+            "east champaran": {
+                        "name": "East Champaran (Motihari)",
+                        "div": "Tirhut",
+                        "ip": "10.140.80.0/24",
+                        "dhq": "10.140.80.19",
+                        "vc": "10.140.80.100",
+                        "dio": "Sh. Ravikesh Kumar (DIO)",
+                        "mobile": "8102730218",
+                        "email": "dio-prc@nic.in",
+                        "dio_email": "ravi.keshkumar@nic.in, dio-prc@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ec.br@nic.in",
+                        "lat": "16ms"
+            },
+            "west champaran": {
+                        "name": "West Champaran (Bettiah)",
+                        "div": "Tirhut",
+                        "ip": "10.140.48.0/24",
+                        "dhq": "10.140.48.33",
+                        "vc": "10.140.48.100",
+                        "dio": "Sh. S.B. Sinha (DIO)",
+                        "mobile": "9308672831",
+                        "email": "dio-wch@nic.in",
+                        "dio_email": "s.sinha@nic.in, dio-wch@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.wc.br@nic.in",
+                        "lat": "18ms"
+            },
+            "gopalganj": {
+                        "name": "Gopalganj",
+                        "div": "Saran",
+                        "ip": "10.140.96.0/24",
+                        "dhq": "10.140.96.22",
+                        "vc": "10.140.96.100",
+                        "dio": "Sh. Anshumani Pathak (DIO)",
+                        "mobile": "9852115623",
+                        "email": "dio-gpg@nic.in",
+                        "dio_email": "dio-gpg@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.go.br@nic.in",
+                        "lat": "13ms"
+            },
+            "jamui": {
+                        "name": "Jamui",
+                        "div": "Munger",
+                        "ip": "10.140.104.0/24",
+                        "dhq": "10.140.104.21",
+                        "vc": "10.140.104.100",
+                        "dio": "Sh. Narayan Singh (DIO)",
+                        "mobile": "7654757576",
+                        "email": "dio-jmu@nic.in",
+                        "dio_email": "dio-jmu@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ja.br@nic.in",
+                        "lat": "5ms"
+            },
+            "jehanabad": {
+                        "name": "Jehanabad",
+                        "div": "Magadh",
+                        "ip": "10.140.112.0/24",
+                        "dhq": "10.140.112.6",
+                        "vc": "10.140.112.100",
+                        "dio": "Sh. Shabbir Alam (DIO)",
+                        "mobile": "9162455160",
+                        "email": "dio-jhn@nic.in",
+                        "dio_email": "dio-jhn@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.je.br@nic.in",
+                        "lat": "15ms"
+            },
+            "kaimur": {
+                        "name": "Kaimur (Bhabhua)",
+                        "div": "Patna",
+                        "ip": "10.140.40.0/24",
+                        "dhq": "10.140.40.8",
+                        "vc": "10.140.40.100",
+                        "dio": "Sh. Pankaj Kishor Suman (DIO)",
+                        "mobile": "9771459387",
+                        "email": "dio-kmr@nic.in",
+                        "dio_email": "dio-kmr@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.km.br@nic.in",
+                        "lat": "12ms"
+            },
+            "katihar": {
+                        "name": "Katihar",
+                        "div": "Purnea",
+                        "ip": "10.140.120.0/24",
+                        "dhq": "10.140.120.18",
+                        "vc": "10.140.120.100",
+                        "dio": "Sh. Birendra Kumar (DIO)",
+                        "mobile": "8789824736",
+                        "email": "dio-ktr@nic.in",
+                        "dio_email": "dio-ktr@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.kt.br@nic.in",
+                        "lat": "12ms"
+            },
+            "khagaria": {
+                        "name": "Khagaria",
+                        "div": "Munger",
+                        "ip": "10.140.128.0/24",
+                        "dhq": "10.140.128.45",
+                        "vc": "10.140.128.100",
+                        "dio": "Sh. Santosh Kumar (DIO)",
+                        "mobile": "9572051197",
+                        "email": "dio-kgr-bih@nic.in",
+                        "dio_email": "santosh.suman@nic.in, dio-kgr-bih@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.kh.br@nic.in",
+                        "lat": "13ms"
+            },
+            "kishanganj": {
+                        "name": "Kishanganj",
+                        "div": "Purnea",
+                        "ip": "10.140.136.0/24",
+                        "dhq": "10.140.136.31",
+                        "vc": "10.140.136.100",
+                        "dio": "Sh. Sirajul Hassan (DIO)",
+                        "mobile": "9472641991",
+                        "email": "dio-ksg@nic.in",
+                        "dio_email": "sirajul.hassan@nic.in, dio-ksg@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.kl.br@nic.in",
+                        "lat": "19ms"
+            },
+            "lakhisarai": {
+                        "name": "Lakhisarai",
+                        "div": "Munger",
+                        "ip": "10.140.152.0/24",
+                        "dhq": "10.140.152.62",
+                        "vc": "10.140.152.100",
+                        "dio": "Sh. Pintu Kumar (DIO)",
+                        "mobile": "9162494824",
+                        "email": "dio-lsr@nic.in",
+                        "dio_email": "pintu.kumar@nic.in, dio-lsr@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.la.br@nic.in",
+                        "lat": "12ms"
+            },
+            "madhepura": {
+                        "name": "Madhepura",
+                        "div": "Kosi",
+                        "ip": "10.140.152.0/24",
+                        "dhq": "10.140.152.44",
+                        "vc": "10.140.152.100",
+                        "dio": "Sh. Chandan Kumar (DIO)",
+                        "mobile": "9654635097",
+                        "email": "dio-mdp@nic.in",
+                        "dio_email": "chandan.kumar29@nic.in, dio-mdp@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.mp.br@nic.in",
+                        "lat": "14ms"
+            },
+            "madhubani": {
+                        "name": "Madhubani",
+                        "div": "Darbhanga",
+                        "ip": "10.140.160.0/24",
+                        "dhq": "10.140.160.22",
+                        "vc": "10.140.160.100",
+                        "dio": "Sh. Ranjan Kr. Yadav (DIO)",
+                        "mobile": "8987495805",
+                        "email": "dio-mdb-bih@nic.in",
+                        "dio_email": "ranjan.kumaryadav89@nic.in, dio-mdb-bih@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.mb.br@nic.in",
+                        "lat": "12ms"
+            },
+            "munger": {
+                        "name": "Munger",
+                        "div": "Munger",
+                        "ip": "10.140.168.0/24",
+                        "dhq": "10.140.168.15",
+                        "vc": "10.140.168.100",
+                        "dio": "Sh. Sanjay Kumar / Sh. Alok Kr. Thakur (DIO)",
+                        "mobile": "7903696947",
+                        "email": "dio-mng@nic.in",
+                        "dio_email": "dio-mng@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.mg.br@nic.in",
+                        "lat": "10ms"
+            },
+            "nawada": {
+                        "name": "Nawada",
+                        "div": "Magadh",
+                        "ip": "10.140.192.0/24",
+                        "dhq": "10.140.192.4",
+                        "vc": "10.140.192.100",
+                        "dio": "Sh. Rajeev Kumar (DIO)",
+                        "mobile": "8986348636",
+                        "email": "dio-naw@nic.in",
+                        "dio_email": "rajeevk.sharma@nic.in, dio-naw@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.nw.br@nic.in",
+                        "lat": "12ms"
+            },
+            "rohtas": {
+                        "name": "Rohtas (Sasaram)",
+                        "div": "Patna",
+                        "ip": "10.140.216.0/24",
+                        "dhq": "10.140.216.254",
+                        "vc": "10.140.216.100",
+                        "dio": "Sh. Chandan Kumar Sinha (DIO)",
+                        "mobile": "8210692208",
+                        "email": "dio-rts@nic.in",
+                        "dio_email": "chandan.ksinha@nic.in, dio-rts@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.ro.br@nic.in",
+                        "lat": "6ms"
+            },
+            "saharsa": {
+                        "name": "Saharsa",
+                        "div": "Kosi",
+                        "ip": "10.140.224.0/24",
+                        "dhq": "10.140.224.19",
+                        "vc": "10.140.224.100",
+                        "dio": "Sh. Amit Anand (DIO)",
+                        "mobile": "8340206944",
+                        "email": "dio-shs@nic.in",
+                        "dio_email": "amit.anand88@nic.in, dio-shs@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.sh.br@nic.in",
+                        "lat": "15ms"
+            },
+            "samastipur": {
+                        "name": "Samastipur",
+                        "div": "Darbhanga",
+                        "ip": "10.140.232.0/24",
+                        "dhq": "10.140.232.18",
+                        "vc": "10.140.232.100",
+                        "dio": "Sh. Manish Krishna (DIO)",
+                        "mobile": "9473134753",
+                        "email": "dio-sms@nic.in",
+                        "dio_email": "manish.krishna@nic.in, dio-sms@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.sm.br@nic.in",
+                        "lat": "9ms"
+            },
+            "saran": {
+                        "name": "Saran (Chhapra)",
+                        "div": "Saran",
+                        "ip": "10.140.240.0/24",
+                        "dhq": "10.140.240.12",
+                        "vc": "10.140.240.100",
+                        "dio": "Sh. Tarani Kumar (DIO)",
+                        "mobile": "9436291284",
+                        "email": "dio-sar@nic.in",
+                        "dio_email": "tarani.kumar@nic.in, dio-sar@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.sr.br@nic.in",
+                        "lat": "5ms"
+            },
+            "sheikhpura": {
+                        "name": "Sheikhpura",
+                        "div": "Munger",
+                        "ip": "10.140.242.0/24",
+                        "dhq": "10.140.242.33",
+                        "vc": "10.140.242.100",
+                        "dio": "Sh. Aman Patel (DIO)",
+                        "mobile": "9934760039",
+                        "email": "dio-shh@nic.in",
+                        "dio_email": "aman.patel@nic.in, dio-shh@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.sp.br@nic.in",
+                        "lat": "7ms"
+            },
+            "sheohar": {
+                        "name": "Sheohar",
+                        "div": "Tirhut",
+                        "ip": "10.140.238.0/24",
+                        "dhq": "10.140.238.27",
+                        "vc": "10.140.238.100",
+                        "dio": "Sh. Alok Raj (DIO)",
+                        "mobile": "8936037954",
+                        "email": "dio-shh-bih@nic.in",
+                        "dio_email": "alok.raj@nic.in, dio-shh-bih@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.so.br@nic.in",
+                        "lat": "17ms"
+            },
+            "sitamarhi": {
+                        "name": "Sitamarhi",
+                        "div": "Tirhut",
+                        "ip": "10.140.236.0/24",
+                        "dhq": "10.140.236.14",
+                        "vc": "10.140.236.100",
+                        "dio": "Sh. Mukesh Kumar Jha (DIO)",
+                        "mobile": "8521132472",
+                        "email": "dio-stm@nic.in",
+                        "dio_email": "mukesh.jha@nic.in, dio-stm@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.st.br@nic.in",
+                        "lat": "15ms"
+            },
+            "siwan": {
+                        "name": "Siwan",
+                        "div": "Saran",
+                        "ip": "10.140.244.0/24",
+                        "dhq": "10.140.244.15",
+                        "vc": "10.140.244.100",
+                        "dio": "Sh. Rajeev Kr. Singh (DIO)",
+                        "mobile": "8084507029",
+                        "email": "dio-swn@nic.in",
+                        "dio_email": "k.rajeevsingh@nic.in, dio-swn@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.sw.br@nic.in",
+                        "lat": "11ms"
+            },
+            "supaul": {
+                        "name": "Supaul",
+                        "div": "Kosi",
+                        "ip": "10.140.250.0/24",
+                        "dhq": "10.140.250.31",
+                        "vc": "10.140.250.100",
+                        "dio": "Sh. Praveen Kumar (DIO)",
+                        "mobile": "9899395839",
+                        "email": "dio-spl@nic.in",
+                        "dio_email": "praveen.kumar10@nic.in, dio-spl@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.su.br@nic.in",
+                        "lat": "16ms"
+            },
+            "vaishali": {
+                        "name": "Vaishali (Hajipur)",
+                        "div": "Tirhut",
+                        "ip": "10.140.248.0/24",
+                        "dhq": "10.140.248.14",
+                        "vc": "10.140.248.100",
+                        "dio": "Sh. Gunjan Kumar (DIO)",
+                        "mobile": "9911146309",
+                        "email": "dio-vsh@nic.in",
+                        "dio_email": "gunjan.kumar@nic.in, dio-vsh@nic.in",
+                        "noc_mail": "seca1.shq.br@nic.in",
+                        "fms_mail": "nfo1.va.br@nic.in",
+                        "lat": "3ms"
+            }
+};
 
         window.copyTextToClipboard = function(text, label = 'Copied!') {
             if (navigator.clipboard) {
@@ -5525,24 +6019,27 @@
                     <em>Architected &amp; Engineered the Bihar 38-District Live NOC Portal, AI Copilot, 3D WebGL Telemetry &amp; Security Automations.</em>`;
             }
 
-            // 1. All 38 District Contacts & Subnet Intelligence (Fuzzy Lookup)
+                        // 1. All 38 District Contacts & Subnet Intelligence (Fuzzy Lookup)
             for (const [distKey, data] of Object.entries(BIHAR_DISTRICT_SUBNETS)) {
                 if (q.includes(distKey) || (distKey.includes('champaran') && (q.includes('bettiah') || q.includes('motihari'))) || (distKey === 'nalanda' && q.includes('biharsharif')) || (distKey === 'saran' && q.includes('chhapra')) || (distKey === 'bhojpur' && q.includes('ara')) || (distKey === 'rohtas' && q.includes('sasaram')) || (distKey === 'vaishali' && q.includes('hajipur'))) {
                     return `<strong>🏛️ ${data.name} NOC Telemetry &amp; Contacts:</strong><br><br>
-                        <div style="background: var(--bg-tertiary); border: 1px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 10px;">
+                        <div style="background: var(--bg-tertiary); border: 1.5px solid var(--border-color); border-radius: 12px; padding: 14px; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.06);">
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                <span style="font-weight: 800; color: var(--text-primary);">${data.div} Division</span>
-                                <span style="background: rgba(16, 185, 129, 0.2); color: #059669; border: 1px solid #10b981; padding: 2px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;">⚡ ${data.lat} Latency</span>
+                                <span style="font-weight: 800; color: var(--text-primary); font-size: 0.88rem;">${data.div} Division</span>
+                                <span style="background: rgba(16, 185, 129, 0.18); color: #059669; border: 1px solid #10b981; padding: 2px 8px; border-radius: 6px; font-size: 0.74rem; font-weight: 800;">⚡ ${data.lat} SLA</span>
                             </div>
-                            • <strong>DIO / Lead Officer:</strong> ${data.dio}<br>
-                            • <strong>Phone:</strong> <a href="tel:${data.mobile}" style="color: #0284c7; font-weight: 800;">${data.mobile}</a><br>
-                            • <strong>Email:</strong> <a href="mailto:${data.email}" style="color: #0284c7; font-weight: 800;">${data.email}</a><br>
+                            • <strong>District Officer:</strong> ${data.dio}<br>
+                            • <strong>Direct Phone:</strong> <a href="tel:${data.mobile}" style="color: #0284c7; font-weight: 800;">${data.mobile}</a><br>
+                            • <strong>Official DIO Mail:</strong> <a href="mailto:${data.email}" style="color: #0284c7; font-weight: 800;">${data.email}</a><br>
+                            • <strong>State NOC Mail:</strong> <a href="mailto:${data.noc_mail}" style="color: #059669; font-weight: 800;">${data.noc_mail}</a><br>
+                            • <strong>District FMS Mail:</strong> <code style="background: rgba(16, 185, 129, 0.1); color: #059669; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.fms_mail}</code><br>
                             • <strong>DHQ Subnet:</strong> <code style="background: rgba(2, 132, 199, 0.1); color: #0284c7; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.ip}</code><br>
                             • <strong>Gateway IP:</strong> <code style="background: rgba(16, 185, 129, 0.1); color: #059669; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.dhq}</code><br>
                             • <strong>VC Codec IP:</strong> <code style="background: rgba(245, 158, 11, 0.1); color: #d97706; padding: 2px 6px; border-radius: 4px; font-family: monospace;">${data.vc}</code>
                         </div>
                         <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                            <button onclick="window.copyTextToClipboard('${data.dhq}', 'DHQ Gateway IP');" style="background: #0284c7; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📋 Copy Gateway IP</button>
+                            <a href="mailto:${data.email}" style="background: #0284c7; color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-envelope"></i> Email DIO</a>
+                            <button onclick="window.copyTextToClipboard('${data.dhq}', 'DHQ Gateway IP');" style="background: #1e293b; color: #fff; border: 1px solid #334155; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📋 Copy IP</button>
                             <button onclick="window.checkInDistrict('${distKey.slice(0,3).toUpperCase()}', '${data.name}');" style="background: #10b981; color: #fff; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.76rem; font-weight: 800; cursor: pointer;">📅 Check-in +200 XP</button>
                         </div>`;
                 }
