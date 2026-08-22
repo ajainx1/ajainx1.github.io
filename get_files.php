@@ -3,7 +3,8 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 header('Cache-Control: no-cache, must-revalidate');
 
-$scan_directories = ['uploads', 'nic'];
+// Scan exclusively the uploads/ directory for user/district submitted documents
+$base_dir = 'uploads';
 
 $excluded_filenames = [
     'upload_log.txt', 'Thumbs.db', '.htaccess', 'web.config',
@@ -11,14 +12,11 @@ $excluded_filenames = [
     'auth.php', '.env', 'config.json', 'last_state.json'
 ];
 
-$excluded_extensions = ['php', 'config', 'env', 'json', 'bak', 'tmp', 'log', 'map', 'js', 'css'];
-$excluded_dir_names = ['assets', 'cache', 'node_modules', '.git', 'archive_maintenance'];
+$excluded_extensions = ['php', 'config', 'env', 'json', 'bak', 'tmp', 'log', 'map'];
 
 $files = [];
 
-foreach ($scan_directories as $base_dir) {
-    if (!is_dir($base_dir)) continue;
-
+if (is_dir($base_dir)) {
     try {
         $dir_iterator = new RecursiveDirectoryIterator($base_dir, RecursiveDirectoryIterator::SKIP_DOTS);
         $iterator = new RecursiveIteratorIterator($dir_iterator, RecursiveIteratorIterator::SELF_FIRST);
@@ -27,53 +25,43 @@ foreach ($scan_directories as $base_dir) {
             if ($file->isFile()) {
                 $filename = $file->getFilename();
                 $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-                $rawPath = $file->getPathname();
-                $path = str_replace('\\', '/', $rawPath);
                 
-                // Skip excluded directories
-                $skipDir = false;
-                foreach ($excluded_dir_names as $exDir) {
-                    if (strpos($path, '/' . $exDir . '/') !== false || strpos($path, $base_dir . '/' . $exDir) === 0) {
-                        $skipDir = true;
-                        break;
-                    }
-                }
-                if ($skipDir) continue;
-
-                // Skip excluded files and extensions
+                // Skip excluded files and logs
                 if (in_array($filename, $excluded_filenames) || substr($filename, 0, 1) === '.' || in_array($ext, $excluded_extensions)) {
                     continue;
                 }
 
-                // Determine Category / District / Purpose
+                $rawPath = $file->getPathname();
+                $path = str_replace('\\', '/', $rawPath);
+                
+                // Determine District / Submission Purpose from folder name
                 $parts = explode('/', $path);
-                $category = 'General';
+                $district_tag = 'General Submission';
                 
                 if (count($parts) >= 3) {
-                    $category = $parts[1];
-                } elseif (count($parts) == 2 && $base_dir === 'nic') {
-                    $category = 'State HQ / NIC';
+                    $district_tag = $parts[1]; // uploads/<folder_name>/<file>
                 }
 
-                $category = str_replace(['-', '_'], ' ', $category);
-                $category = ucwords(trim($category));
+                // Clean & format display category/district name
+                $district_tag = str_replace(['-', '_'], ' ', $district_tag);
+                $district_tag = ucwords(trim($district_tag));
 
                 $files[] = [
                     'name' => $filename,
                     'path' => $path,
                     'size' => $file->getSize(),
                     'date' => date('Y-m-d H:i:s', $file->getMTime()),
-                    'district' => $category,
+                    'district' => $district_tag,
                     'extension' => $ext
                 ];
             }
         }
     } catch (Exception $e) {
-        // Silently skip unreadable dirs
+        // Silently handle read exceptions
     }
 }
 
-// Sort newest first
+// Sort newest uploaded first
 usort($files, function($a, $b) {
     return strcmp($b['date'], $a['date']);
 });
