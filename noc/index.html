@@ -3976,6 +3976,161 @@
             font-weight: 900 !important;
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           LEADERBOARD: EXECUTIVE DUAL-THEME CONTRAST & VISIBILITY ENGINE
+           ═══════════════════════════════════════════════════════════════════ */
+        
+        /* Main Leaderboard Section Container */
+        .leaderboard-container {
+            grid-column: 1 / -1;
+            margin-bottom: 30px;
+            border-radius: 18px;
+            position: relative;
+            overflow: hidden;
+            padding: 26px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .leaderboard-container {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.96) 0%, rgba(17, 24, 39, 0.94) 100%) !important;
+            border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        }
+
+        body.light-mode .leaderboard-container {
+            background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%) !important;
+            border: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 10px 35px rgba(15, 23, 42, 0.08) !important;
+        }
+
+        /* Leaderboard Header Typography */
+        body.dark-mode .leaderboard-header-title { color: #fbbf24 !important; }
+        body.dark-mode .leaderboard-header-sub { color: #cbd5e1 !important; }
+        body.light-mode .leaderboard-header-title { color: #0f4c81 !important; }
+        body.light-mode .leaderboard-header-sub { color: #475569 !important; }
+
+        /* Standings Controls & Search */
+        body.dark-mode .standings-search-input {
+            background: rgba(15, 23, 42, 0.8) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3) !important;
+            color: #ffffff !important;
+        }
+        body.light-mode .standings-search-input {
+            background: #ffffff !important;
+            border: 1.5px solid #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+
+        /* Podium Cards (Top 3) */
+        .podium-card-glow {
+            border-radius: 18px !important;
+            padding: 24px !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.25s ease !important;
+        }
+        .podium-card-glow:hover {
+            transform: translateY(-4px) !important;
+        }
+
+        body.dark-mode .podium-card-glow.rank-1 {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+            border: 2px solid #fbbf24 !important;
+            box-shadow: 0 14px 40px rgba(245, 158, 11, 0.4) !important;
+        }
+        body.dark-mode .podium-card-glow.rank-2 {
+            background: linear-gradient(135deg, rgba(226, 232, 240, 0.2) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+            border: 2px solid #e2e8f0 !important;
+            box-shadow: 0 14px 40px rgba(226, 232, 240, 0.3) !important;
+        }
+        body.dark-mode .podium-card-glow.rank-3 {
+            background: linear-gradient(135deg, rgba(217, 119, 6, 0.22) 0%, rgba(15, 23, 42, 0.98) 100%) !important;
+            border: 2px solid #f59e0b !important;
+            box-shadow: 0 14px 40px rgba(217, 119, 6, 0.35) !important;
+        }
+
+        body.light-mode .podium-card-glow.rank-1 {
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%) !important;
+            border: 2px solid #f59e0b !important;
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25) !important;
+        }
+        body.light-mode .podium-card-glow.rank-2 {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+            border: 2px solid #94a3b8 !important;
+            box-shadow: 0 10px 30px rgba(148, 163, 184, 0.2) !important;
+        }
+        body.light-mode .podium-card-glow.rank-3 {
+            background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%) !important;
+            border: 2px solid #ea580c !important;
+            box-shadow: 0 10px 30px rgba(234, 88, 12, 0.2) !important;
+        }
+
+        body.dark-mode .podium-district-title { color: #ffffff !important; }
+        body.light-mode .podium-district-title { color: #0f172a !important; }
+
+        body.dark-mode .podium-xp-box {
+            background: rgba(8, 13, 24, 0.85) !important;
+            border: 1.5px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        body.light-mode .podium-xp-box {
+            background: #ffffff !important;
+            border: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05) !important;
+        }
+
+        /* Standings Cards (Ranks #4 to #38) */
+        .standings-card {
+            border-radius: 14px !important;
+            padding: 16px 18px !important;
+            cursor: pointer !important;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+        .standings-card:hover {
+            transform: translateY(-3px) !important;
+        }
+
+        body.dark-mode .standings-card {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.88) 100%) !important;
+            border: 1.5px solid rgba(56, 189, 248, 0.25) !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5) !important;
+        }
+        body.dark-mode .standings-card:hover {
+            border-color: #38bdf8 !important;
+            box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25) !important;
+        }
+
+        body.light-mode .standings-card {
+            background: #ffffff !important;
+            border: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.06) !important;
+        }
+        body.light-mode .standings-card:hover {
+            border-color: #0284c7 !important;
+            box-shadow: 0 8px 22px rgba(2, 132, 199, 0.15) !important;
+        }
+
+        body.dark-mode .standings-district-name { color: #ffffff !important; }
+        body.light-mode .standings-district-name { color: #0f172a !important; }
+
+        body.dark-mode .standings-xp-val { color: #fbbf24 !important; }
+        body.light-mode .standings-xp-val { color: #0284c7 !important; }
+
+        body.dark-mode .standings-footer-box {
+            background: rgba(8, 13, 24, 0.9) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        }
+        body.light-mode .standings-footer-box {
+            background: #f8fafc !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+
+        body.dark-mode .standings-ts-text { color: #ffffff !important; }
+        body.light-mode .standings-ts-text { color: #0f172a !important; }
+
+        body.dark-mode .standings-ip-text { color: #38bdf8 !important; }
+        body.light-mode .standings-ip-text { color: #0284c7 !important; }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -4455,10 +4610,10 @@
                         <i class="fas fa-trophy" style="color: #ffffff; font-size: 1.6rem;"></i>
                     </div>
                     <div>
-                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; color: #fbbf24; margin: 0 0 4px 0; letter-spacing: -0.02em; text-shadow: 0 2px 10px rgba(245, 158, 11, 0.25);">
+                        <h2 class="leaderboard-header-title" style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin: 0 0 4px 0; letter-spacing: -0.02em;">
                             Bihar 38-District Live NOC Engagement Leaderboard
                         </h2>
-                        <div style="font-size: 0.84rem; color: #94a3b8; font-weight: 600; letter-spacing: 0.2px;">
+                        <div class="leaderboard-header-sub" style="font-size: 0.84rem; font-weight: 600; letter-spacing: 0.2px;">
                             Real-Time Activity Telemetry • Live District Engineer Interactions • 24×7 Daily Rollover
                         </div>
                     </div>
@@ -6746,51 +6901,50 @@
                 return;
             }
 
-            standingsContainer.innerHTML = list.map(d => {
-                let rankColor = '#000000';
-                let rankBg = '#38bdf8';
-                let cardBorder = 'rgba(56, 189, 248, 0.35)';
-                if (d.rank <= 5) { rankColor = '#000000'; rankBg = '#38bdf8'; cardBorder = 'rgba(56, 189, 248, 0.5)'; }
-                else if (d.rank <= 10) { rankColor = '#000000'; rankBg = '#10b981'; cardBorder = 'rgba(16, 185, 129, 0.5)'; }
-                else { rankColor = '#ffffff'; rankBg = 'rgba(255, 255, 255, 0.18)'; cardBorder = 'rgba(255, 255, 255, 0.15)'; }
+                        standingsContainer.innerHTML = list.map(d => {
+                let rankColor = '#ffffff';
+                let rankBg = '#0284c7';
+                if (d.rank <= 5) { rankColor = '#ffffff'; rankBg = '#0284c7'; }
+                else if (d.rank <= 10) { rankColor = '#ffffff'; rankBg = '#059669'; }
+                else { rankColor = '#ffffff'; rankBg = '#64748b'; }
 
                 const checkinBadge = d.checked_in_today 
-                    ? `<span style="background: rgba(16, 185, 129, 0.25); color: #34d399; border: 1.5px solid #10b981; font-weight: 800; font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-check-circle"></i> Checked-In</span>`
+                    ? `<span style="background: rgba(16, 185, 129, 0.2); color: #059669; border: 1.5px solid #10b981; font-weight: 800; font-size: 0.74rem; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-check-circle"></i> Checked-In</span>`
                     : (d.checkin_status === 'Active Subnet' 
-                        ? `<span style="background: rgba(56, 189, 248, 0.25); color: #38bdf8; border: 1.5px solid #38bdf8; font-weight: 800; font-size: 0.74rem; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-bolt"></i> Active Subnet</span>`
-                        : `<button onclick="event.stopPropagation(); window.checkInDistrict('${d.code}', '${d.name.replace(/'/g, "\'")}');" style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10b981; color: #34d399; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-calendar-check"></i> Check-in +200</button>`);
+                        ? `<span style="background: rgba(56, 189, 248, 0.2); color: #0284c7; border: 1.5px solid #38bdf8; font-weight: 800; font-size: 0.74rem; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-bolt"></i> Active Subnet</span>`
+                        : `<button onclick="event.stopPropagation(); window.checkInDistrict('${d.code}', '${d.name.replace(/'/g, "\'")}');" style="background: rgba(16, 185, 129, 0.2); border: 1.5px solid #10b981; color: #059669; font-size: 0.74rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-calendar-check"></i> Check-in +200</button>`);
 
                 return `
-                <div class="standings-card" onclick="window.openDistrictIntelligenceModal('${d.code}')" title="Click to view full district telemetry & contacts" style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 41, 59, 0.88) 100%); border: 1.5px solid ${cardBorder}; border-radius: 14px; padding: 16px 18px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); transition: all 0.2s ease;">
+                <div class="standings-card" onclick="window.openDistrictIntelligenceModal('${d.code}')" title="Click to view full district telemetry & contacts">
                     <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px;">
                         <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-                            <span style="background: ${rankBg}; color: ${rankColor}; font-weight: 900; font-size: 0.82rem; padding: 3px 9px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">#${d.rank}</span>
-                            <strong style="color: #ffffff; font-size: 1.02rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Outfit', sans-serif;">${d.name}</strong>
+                            <span style="background: ${rankBg}; color: ${rankColor}; font-weight: 900; font-size: 0.82rem; padding: 3px 9px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">#${d.rank}</span>
+                            <strong class="standings-district-name" style="font-size: 1.02rem; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Outfit', sans-serif;">${d.name}</strong>
                         </div>
                         <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                            <span style="color: #fbbf24; font-weight: 900; font-family: 'JetBrains Mono', monospace; font-size: 0.94rem;">${Number(d.hits).toLocaleString()} <span style="font-size: 0.72rem; color: #cbd5e1; font-weight: 700;">XP</span></span>
-                            <button onclick="event.stopPropagation(); window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\'")} ', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.2); border: 1px solid rgba(37, 211, 102, 0.5); color: #25d366; padding: 5px 9px; border-radius: 6px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s;" title="Share on WhatsApp">
+                            <span class="standings-xp-val" style="font-weight: 900; font-family: 'JetBrains Mono', monospace; font-size: 0.94rem;">${Number(d.hits).toLocaleString()} <span style="font-size: 0.72rem; color: var(--text-secondary); font-weight: 700;">XP</span></span>
+                            <button onclick="event.stopPropagation(); window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\'")} ', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.2); border: 1px solid rgba(37, 211, 102, 0.5); color: #15803d; padding: 5px 9px; border-radius: 6px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s;" title="Share on WhatsApp">
                                 <i class="fab fa-whatsapp"></i>
                             </button>
                         </div>
                     </div>
                     
-                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #cbd5e1; margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 10px; flex-wrap: wrap; gap: 6px;">
                         <div style="display: flex; align-items: center; gap: 8px;">
-                            <span style="font-weight: 700; color: #e2e8f0;">${d.division || 'Bihar'}</span>
-                            <span style="color: #64748b;">•</span>
-                            <span style="color: #34d399; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 5px; border: 1px solid rgba(16, 185, 129, 0.3);">⚡ ${d.latency || '12ms'}</span>
-                            <span style="background: rgba(255,255,255,0.12); padding: 2px 8px; border-radius: 5px; font-size: 0.72rem; color: #ffffff; font-weight: 700;">Lv. ${d.xp_level || 1}</span>
+                            <span style="font-weight: 700; color: var(--text-primary);">${d.division || 'Bihar'}</span>
+                            <span style="color: var(--border-color);">•</span>
+                            <span style="color: #059669; font-weight: 800; background: rgba(16, 185, 129, 0.15); padding: 2px 8px; border-radius: 5px; border: 1px solid rgba(16, 185, 129, 0.3);">⚡ ${d.latency || '12ms'}</span>
+                            <span style="background: rgba(148, 163, 184, 0.2); padding: 2px 8px; border-radius: 5px; font-size: 0.72rem; color: var(--text-primary); font-weight: 700;">Lv. ${d.xp_level || 1}</span>
                         </div>
                         <div>${checkinBadge}</div>
                     </div>
                     
-                    <div style="background: rgba(8, 13, 24, 0.9); border-radius: 8px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem; border: 1px solid rgba(255,255,255,0.08);">
+                    <div class="standings-footer-box" style="border-radius: 8px; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem;">
                         <div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            <i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; font-size: 0.82rem;"></i>
-                            <span style="color: #cbd5e1;">${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#ffffff'}; font-weight: 800;">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
+                            <i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#0284c7'}; font-size: 0.82rem;"></i>
+                            <span style="color: var(--text-secondary);">${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong class="standings-ts-text" style="font-weight: 800;">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
                         </div>
-                        <span style="color: ${d.checked_in_today ? '#34d399' : '#38bdf8'}; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 700; margin-left: 8px; flex-shrink: 0;">${d.last_checked_in_ip || 'DHQ Net'}</span>
+                        <span class="standings-ip-text" style="font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 800; margin-left: 8px; flex-shrink: 0;">${d.last_checked_in_ip || 'DHQ Net'}</span>
                     </div>
                 </div>
                 `;
@@ -6812,60 +6966,61 @@
                     // Update Podium (Top 3 Cards)
                     const podiumContainer = document.getElementById('leaderboardPodium');
                     if (podiumContainer) {
-                                                const medals = ['🥇', '🥈', '🥉'];
+                                                                        const medals = ['🥇', '🥈', '🥉'];
                         const podiumTitles = ['👑 STATE CHAMPION #1', '🥈 PODIUM ELITE #2', '🥉 PODIUM ELITE #3'];
-                        const rankStyles = [
-                            { border: '2px solid #fbbf24', bg: 'linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(15, 23, 42, 0.98) 100%)', badgeBg: '#fbbf24', badgeColor: '#000000', shadow: 'rgba(245, 158, 11, 0.4)', titleColor: '#fbbf24', barGradient: 'linear-gradient(90deg, #f59e0b, #fbbf24)' },
-                            { border: '2px solid #e2e8f0', bg: 'linear-gradient(135deg, rgba(226, 232, 240, 0.2) 0%, rgba(15, 23, 42, 0.98) 100%)', badgeBg: '#e2e8f0', badgeColor: '#000000', shadow: 'rgba(226, 232, 240, 0.3)', titleColor: '#e2e8f0', barGradient: 'linear-gradient(90deg, #94a3b8, #cbd5e1)' },
-                            { border: '2px solid #f59e0b', bg: 'linear-gradient(135deg, rgba(217, 119, 6, 0.22) 0%, rgba(15, 23, 42, 0.98) 100%)', badgeBg: '#d97706', badgeColor: '#ffffff', shadow: 'rgba(217, 119, 6, 0.35)', titleColor: '#f59e0b', barGradient: 'linear-gradient(90deg, #d97706, #f59e0b)' }
+                        const rankClasses = ['rank-1', 'rank-2', 'rank-3'];
+                        const rankBadges = [
+                            { bg: '#fbbf24', color: '#000000', bar: 'linear-gradient(90deg, #f59e0b, #fbbf24)' },
+                            { bg: '#e2e8f0', color: '#000000', bar: 'linear-gradient(90deg, #94a3b8, #cbd5e1)' },
+                            { bg: '#d97706', color: '#ffffff', bar: 'linear-gradient(90deg, #d97706, #f59e0b)' }
                         ];
 
                         podiumContainer.innerHTML = data.top_3.map((d, idx) => {
                             const checkinStatusHtml = d.checkin_status === 'Checked-In' 
-                                ? '<span style="background: rgba(16, 185, 129, 0.25); color: #34d399; border: 1.5px solid #10b981; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-check-circle"></i> Checked-In</span>'
+                                ? '<span style="background: rgba(16, 185, 129, 0.25); color: #059669; border: 1.5px solid #10b981; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-check-circle"></i> Checked-In</span>'
                                 : (d.checkin_status === 'Active Subnet'
-                                    ? '<span style="background: rgba(56, 189, 248, 0.25); color: #38bdf8; border: 1.5px solid #38bdf8; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-bolt"></i> Active Subnet</span>'
-                                    : `<button onclick="event.stopPropagation(); window.checkInDistrict('${d.code}', '${d.name.replace(/'/g, "\'")}');" style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10b981; color: #34d399; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-calendar-check"></i> Check-in +200</button>`);
+                                    ? '<span style="background: rgba(56, 189, 248, 0.25); color: #0284c7; border: 1.5px solid #38bdf8; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-bolt"></i> Active Subnet</span>'
+                                    : `<button onclick="event.stopPropagation(); window.checkInDistrict('${d.code}', '${d.name.replace(/'/g, "\'")}');" style="background: rgba(16, 185, 129, 0.25); border: 1.5px solid #10b981; color: #059669; font-size: 0.74rem; font-weight: 800; padding: 4px 10px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-calendar-check"></i> Check-in +200</button>`);
 
                             return `
-                            <div class="podium-card-glow" style="background: ${rankStyles[idx].bg}; border: ${rankStyles[idx].border}; border-radius: 18px; padding: 24px; box-shadow: 0 14px 40px ${rankStyles[idx].shadow}; position: relative; overflow: hidden;">
+                            <div class="podium-card-glow ${rankClasses[idx]}">
                                 <div style="position: absolute; top: 12px; right: 14px; font-size: 3rem; opacity: 0.35; pointer-events: none;">${medals[idx]}</div>
                                 <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
-                                    <span style="background: ${rankStyles[idx].badgeBg}; color: ${rankStyles[idx].badgeColor}; font-weight: 900; font-size: 0.78rem; padding: 4px 12px; border-radius: 6px; letter-spacing: 0.5px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">${podiumTitles[idx]}</span>
-                                    <span style="font-size: 0.78rem; color: #ffffff; font-weight: 800; background: rgba(255,255,255,0.12); padding: 3px 10px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2);">${d.division || 'Bihar'}</span>
+                                    <span style="background: ${rankBadges[idx].bg}; color: ${rankBadges[idx].color}; font-weight: 900; font-size: 0.78rem; padding: 4px 12px; border-radius: 6px; letter-spacing: 0.5px; font-family: 'JetBrains Mono', monospace; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">${podiumTitles[idx]}</span>
+                                    <span style="font-size: 0.78rem; font-weight: 800; background: rgba(15, 76, 129, 0.12); color: var(--text-primary); padding: 3px 10px; border-radius: 6px; border: 1px solid var(--border-color);">${d.division || 'Bihar'}</span>
                                     ${checkinStatusHtml}
                                 </div>
-                                <strong style="color: #ffffff; font-size: 1.45rem; font-weight: 900; font-family: 'Outfit', sans-serif; display: block; margin-bottom: 10px; letter-spacing: -0.01em; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">${d.name} (DHQ)</strong>
+                                <strong class="podium-district-title" style="font-size: 1.45rem; font-weight: 900; font-family: 'Outfit', sans-serif; display: block; margin-bottom: 10px; letter-spacing: -0.01em;">${d.name} (DHQ)</strong>
                                 
                                 <!-- Real-time Telemetry Indicators -->
                                 <div style="display: flex; gap: 8px; margin-bottom: 14px; font-size: 0.82rem; flex-wrap: wrap;">
-                                    <span style="background: rgba(16, 185, 129, 0.25); color: #34d399; border: 1.5px solid #10b981; padding: 4px 12px; border-radius: 6px; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-bolt"></i> ${d.latency || '12ms'}</span>
-                                    <span style="background: rgba(56, 189, 248, 0.25); color: #38bdf8; border: 1.5px solid #38bdf8; padding: 4px 12px; border-radius: 6px; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-check"></i> ${d.uptime || '99.99%'}</span>
-                                    <span style="background: rgba(245, 158, 11, 0.25); color: #fbbf24; border: 1.5px solid #f59e0b; padding: 4px 12px; border-radius: 6px; font-weight: 800;">⭐ Level ${d.xp_level || 1}</span>
+                                    <span style="background: rgba(16, 185, 129, 0.2); color: #059669; border: 1.5px solid #10b981; padding: 4px 12px; border-radius: 6px; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-bolt"></i> ${d.latency || '12ms'}</span>
+                                    <span style="background: rgba(56, 189, 248, 0.2); color: #0284c7; border: 1.5px solid #38bdf8; padding: 4px 12px; border-radius: 6px; font-weight: 800; display: inline-flex; align-items: center; gap: 5px;"><i class="fas fa-check"></i> ${d.uptime || '99.99%'}</span>
+                                    <span style="background: rgba(245, 158, 11, 0.2); color: #d97706; border: 1.5px solid #f59e0b; padding: 4px 12px; border-radius: 6px; font-weight: 800;">⭐ Level ${d.xp_level || 1}</span>
                                 </div>
 
-                                <div style="background: rgba(8, 13, 24, 0.85); border-radius: 10px; padding: 12px 14px; margin-bottom: 16px; border: 1.5px solid rgba(255,255,255,0.1); box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; color: #ffffff;">
-                                        <span>⚡ <strong style="color: #fbbf24; font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 900;">${Number(d.hits).toLocaleString()}</strong> Live XP</span>
-                                        <span style="font-size: 0.78rem; color: #cbd5e1; font-weight: 700;">${d.up_nodes || 0}/${d.total_nodes || 0} Nodes UP</span>
+                                <div class="podium-xp-box" style="border-radius: 12px; padding: 12px 14px; margin-bottom: 16px;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;">
+                                        <span>⚡ <strong style="font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 900; color: #ea580c;">${Number(d.hits).toLocaleString()}</strong> Live XP</span>
+                                        <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-secondary);">${d.up_nodes || 0}/${d.total_nodes || 0} Nodes UP</span>
                                     </div>
-                                    <div style="background: rgba(255,255,255,0.12); height: 6px; border-radius: 3px; overflow: hidden; margin-top: 8px;">
-                                        <div style="background: ${rankStyles[idx].barGradient}; height: 100%; width: ${d.xp_progress_pct || 70}%;"></div>
+                                    <div style="background: rgba(148, 163, 184, 0.25); height: 6px; border-radius: 3px; overflow: hidden; margin-top: 8px;">
+                                        <div style="background: ${rankBadges[idx].bar}; height: 100%; width: ${d.xp_progress_pct || 70}%;"></div>
                                     </div>
-                                    <div style="font-size: 0.76rem; color: #cbd5e1; margin-top: 8px; display: flex; justify-content: space-between; align-items: center;">
-                                        <span><i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; margin-right: 5px;"></i> ${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#ffffff'}; font-weight: 800;">${d.last_checked_in_text || 'Live'}</strong></span>
-                                        <span style="color: ${d.checked_in_today ? '#34d399' : '#38bdf8'}; font-family: 'JetBrains Mono', monospace; font-weight: 800;">${d.last_checked_in_ip || 'DHQ Net'}</span>
+                                    <div style="font-size: 0.76rem; color: var(--text-secondary); margin-top: 8px; display: flex; justify-content: space-between; align-items: center;">
+                                        <span><i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#0284c7'}; margin-right: 5px;"></i> ${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#059669' : 'var(--text-primary)'}; font-weight: 800;">${d.last_checked_in_text || 'Live'}</strong></span>
+                                        <span style="font-family: 'JetBrains Mono', monospace; font-weight: 800; color: ${d.checked_in_today ? '#059669' : '#0284c7'};">${d.last_checked_in_ip || 'DHQ Net'}</span>
                                     </div>
                                 </div>
 
                                 <div style="display: flex; gap: 8px;">
-                                    <button onclick="window.openDistrictIntelligenceModal('${d.code}')" style="background: rgba(255, 255, 255, 0.12); border: 1.5px solid rgba(255, 255, 255, 0.25); color: #ffffff; font-size: 0.82rem; font-weight: 800; padding: 10px 16px; border-radius: 8px; cursor: pointer; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;" onmouseover="this.style.background='rgba(56, 189, 248, 0.3)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255, 255, 255, 0.12)'; this.style.borderColor='rgba(255, 255, 255, 0.25)';">
+                                    <button onclick="window.openDistrictIntelligenceModal('${d.code}')" style="background: rgba(14, 165, 233, 0.15); border: 1.5px solid rgba(14, 165, 233, 0.35); color: var(--text-primary); font-size: 0.82rem; font-weight: 800; padding: 10px 16px; border-radius: 8px; cursor: pointer; flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s;">
                                         <i class="fas fa-id-badge"></i> District Intel
                                     </button>
-                                    <button onclick="window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\'")} ', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.25); border: 1.5px solid rgba(37, 211, 102, 0.6); color: #25d366; padding: 10px 16px; border-radius: 8px; font-size: 0.92rem; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.background='rgba(37, 211, 102, 0.4)';" onmouseout="this.style.background='rgba(37, 211, 102, 0.25)';" title="Share on District WhatsApp">
+                                    <button onclick="window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\'")} ', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.25); border: 1.5px solid rgba(37, 211, 102, 0.6); color: #15803d; padding: 10px 16px; border-radius: 8px; font-size: 0.92rem; cursor: pointer; transition: all 0.2s;" title="Share on District WhatsApp">
                                         <i class="fab fa-whatsapp"></i>
                                     </button>
-                                    <button onclick="window.boostDistrictXP('${d.code}', '${d.name.replace(/'/g, "\'")} ')" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: #000000; font-size: 0.82rem; font-weight: 900; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.5); transition: all 0.2s;" onmouseover="this.style.transform='translateY(-1px)';" onmouseout="this.style.transform='none';" title="Boost District Activity Score">
+                                    <button onclick="window.boostDistrictXP('${d.code}', '${d.name.replace(/'/g, "\'")} ')" style="background: linear-gradient(135deg, #f59e0b, #d97706); border: none; color: #ffffff; font-size: 0.82rem; font-weight: 900; padding: 10px 18px; border-radius: 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4); transition: all 0.2s;" title="Boost District Activity Score">
                                         <i class="fas fa-fire"></i> +150 XP
                                     </button>
                                 </div>
