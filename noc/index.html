@@ -4153,6 +4153,84 @@
             box-sizing: border-box !important;
         }
 
+    
+        /* ═══════════════════════════════════════════════════════════════════
+           TOP HEADER: PERFECT 1400px CENTERED GRID ALIGNMENT & BUTTONS
+           ═══════════════════════════════════════════════════════════════════ */
+        .top-header {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 10px 0 !important;
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1000 !important;
+            transition: all 0.3s ease !important;
+        }
+
+        body.dark-mode .top-header {
+            background-color: #0b0f19 !important;
+            border-bottom: 1.5px solid #1e293b !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6) !important;
+        }
+
+        body.light-mode .top-header {
+            background-color: #ffffff !important;
+            border-bottom: 1.5px solid #cbd5e1 !important;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.05) !important;
+        }
+
+        .header-inner-container {
+            max-width: 1400px !important;
+            width: 100% !important;
+            margin: 0 auto !important;
+            padding: 0 30px !important;
+            display: flex !important;
+            justify-content: space-between !important;
+            align-items: center !important;
+            box-sizing: border-box !important;
+        }
+
+        /* Check Network Speed Button on Top */
+        .btn-speedtest-top {
+            cursor: pointer !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 7px 14px !important;
+            border-radius: 8px !important;
+            font-size: 0.82rem !important;
+            font-weight: 700 !important;
+            transition: all 0.2s ease !important;
+        }
+
+        body.dark-mode .btn-speedtest-top {
+            background: rgba(245, 158, 11, 0.12) !important;
+            border: 1.5px solid rgba(245, 158, 11, 0.4) !important;
+            color: #fbbf24 !important;
+        }
+        body.dark-mode .btn-speedtest-top:hover {
+            background: rgba(245, 158, 11, 0.25) !important;
+            border-color: #f59e0b !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3) !important;
+        }
+
+        body.light-mode .btn-speedtest-top {
+            background: #fffbeb !important;
+            border: 1.5px solid #f59e0b !important;
+            color: #b45309 !important;
+        }
+        body.light-mode .btn-speedtest-top:hover {
+            background: #fef3c7 !important;
+            border-color: #d97706 !important;
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2) !important;
+        }
+
     </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
@@ -4167,14 +4245,17 @@
         <div class="header-inner-container">
             <a href="http://10.133.22.8/" class="emblem-link" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 16px;">
                 <div class="emblem-container" style="display: flex; align-items: center; gap: 14px;">
-                    <img src="Emblem_of_India.png" alt="Emblem of India" style="height: 48px; object-fit: contain;">
+                    <img src="Emblem_of_India.png" alt="Emblem of India" style="height: 46px; object-fit: contain;">
                     <div class="emblem-text">
                         <span class="gov-title" style="font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.08rem; letter-spacing: -0.01em; display: block; line-height: 1.25;">Government of India | भारत सरकार</span>
                         <span class="gov-subtitle" style="font-size: 0.82rem; font-weight: 600; line-height: 1.25;">Ministry of Electronics &amp; Information Technology</span>
                     </div>
                 </div>
             </a>
-            <div class="header-actions" style="display: flex; align-items: center; gap: 12px;">
+            <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
+                <button onclick="window.openBandwidthModal();" class="header-portal-btn btn-speedtest-top" title="Measure Real-Time Bandwidth, Latency &amp; Speed to State NOC Backbone">
+                    <i class="fas fa-tachometer-alt" style="color: #f59e0b;"></i> <span>Check Network Speed</span>
+                </button>
                 <a href="http://10.133.22.8/alert/" class="header-portal-btn btn-noc-alerts" target="_blank" title="Live NOC Alerts Console">
                     <i class="fas fa-bell"></i> <span>NOC Alerts</span>
                 </a>
