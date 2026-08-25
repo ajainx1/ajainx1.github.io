@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://adityasec32.systems/</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/" />
+  </url>
+  <url>
+    <loc>https://adityasec32.systems/charity-quiz</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>always</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/charity-quiz" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/charity-quiz" />
+    <image:image>
+      <image:loc>https://adityasec32.systems/cyberkarma_banner.jpg</image:loc>
+      <image:title>Cyber Free Rice — Gamified Philanthropic Trivia Engine</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://adityasec32.systems/impact</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/impact" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/impact" />
+    <image:image>
+      <image:loc>https://adityasec32.systems/impact/aug-1.jpeg</image:loc>
+      <image:title>Patna Street Dog Daily Feeding Drive</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://adityasec32.systems/projects</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://adityasec32.systems/portfolio</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://adityasec32.systems/free-domains</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+  <!-- Dedicated CyberKarma Domain Entries -->
+  <url>
+    <loc>https://cyberkarma.me/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/" />
+    <image:image>
+      <image:loc>https://cyberkarma.me/cyberkarma_banner.jpg</image:loc>
+      <image:title>CyberKarma Free Rice Platform</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://cyberkarma.me/impact</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/impact" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/impact" />
   </url>
 </urlset>

@@ -1,4 +1,17 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /impact/
+Allow: /cyberkarma_banner.jpg
+Allow: /cyberkarma_og_3d.jpg
+Allow: /og_image.jpg
 
 Sitemap: https://adityasec32.systems/sitemap.xml
+Sitemap: https://cyberkarma.me/sitemap.xml
