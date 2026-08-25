@@ -2,75 +2,99 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Primary CyberKarma Portal (Root & Trivia Engine) -->
+  <url>
+    <loc>https://cyberkarma.me/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>always</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cyberkarma.me/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/?lang=hi" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://cyberkarma.me/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cyberkarma.me/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://cyberkarma.me/?lang=de" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://cyberkarma.me/?lang=bn" />
+    <xhtml:link rel="alternate" hreflang="ta" href="https://cyberkarma.me/?lang=ta" />
+    <xhtml:link rel="alternate" hreflang="te" href="https://cyberkarma.me/?lang=te" />
+    <xhtml:link rel="alternate" hreflang="ja" href="https://cyberkarma.me/?lang=ja" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://cyberkarma.me/?lang=ar" />
+    <image:image>
+      <image:loc>https://cyberkarma.me/cyberkarma_banner.jpg</image:loc>
+      <image:title>Cyber Free Rice — Play Free Trivia to Feed Real Stray Dogs in Patna</image:title>
+      <image:caption>Gamified Philanthropic Platform donating real bowls of rice and injured animal care in Patna, Bihar.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cyberkarma.me/charity_favicon.svg</image:loc>
+      <image:title>CyberKarma Rice Bowl & Paw Emblem</image:title>
+    </image:image>
+  </url>
+
+  <!-- Real-World Impact & Field Proof Ledger (110+ Photos) -->
+  <url>
+    <loc>https://cyberkarma.me/impact</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://cyberkarma.me/impact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/impact" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/impact?lang=hi" />
+    <image:image>
+      <image:loc>https://cyberkarma.me/impact/dog-feed-14.jpeg</image:loc>
+      <image:title>Sunset Rice Bowl Meal Drive & Injured Dog Paw First-Aid</image:title>
+      <image:caption>Field drive photo in Rajbansi Nagar Alley, Patna Division, Bihar.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cyberkarma.me/impact/dog-feed-13.jpeg</image:loc>
+      <image:title>Afternoon Street Puppy Meal and Litter Nutrition</image:title>
+      <image:caption>Rescuing 4 newborn puppies and lactating mother in Market Hub, Patna.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cyberkarma.me/impact/dog-feed-12.jpeg</image:loc>
+      <image:title>Senior Stray Dog Malnutrition Recovery</image:title>
+      <image:caption>Rehabilitating senior street dog with protein broth in Patna.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cyberkarma.me/impact/dog-feed-11.jpeg</image:loc>
+      <image:title>Night Feeding Patrol Station</image:title>
+      <image:caption>Late night feeding drive preventing plastic ingestion in Patna alleys.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Founder Portfolio & Technical Systems Hub -->
   <url>
     <loc>https://adityasec32.systems/</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/" />
-  </url>
-  <url>
-    <loc>https://adityasec32.systems/charity-quiz</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>always</changefreq>
-    <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/charity-quiz" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/charity-quiz" />
-    <image:image>
-      <image:loc>https://adityasec32.systems/cyberkarma_banner.jpg</image:loc>
-      <image:title>Cyber Free Rice — Gamified Philanthropic Trivia Engine</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://adityasec32.systems/impact</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/impact" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/impact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://adityasec32.systems/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://adityasec32.systems/" />
     <image:image>
-      <image:loc>https://adityasec32.systems/impact/aug-1.jpeg</image:loc>
-      <image:title>Patna Street Dog Daily Feeding Drive</image:title>
+      <image:loc>https://adityasec32.systems/og_image.png</image:loc>
+      <image:title>Aditya Jain — Cybersecurity Engineer & SecOps Architect</image:title>
     </image:image>
   </url>
+
+  <!-- Cybersecurity Portfolio Page -->
   <url>
-    <loc>https://adityasec32.systems/projects</loc>
-    <lastmod>2026-08-17</lastmod>
+    <loc>https://adityasec32.systems/portfolio</loc>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  <url>
-    <loc>https://adityasec32.systems/portfolio</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.80</priority>
-  </url>
+
+  <!-- Free Developer Subdomains Portal -->
   <url>
     <loc>https://adityasec32.systems/free-domains</loc>
-    <lastmod>2026-08-17</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.70</priority>
+    <priority>0.75</priority>
   </url>
-  <!-- Dedicated CyberKarma Domain Entries -->
-  <url>
-    <loc>https://cyberkarma.me/</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>always</changefreq>
-    <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/" />
-    <image:image>
-      <image:loc>https://cyberkarma.me/cyberkarma_banner.jpg</image:loc>
-      <image:title>CyberKarma Free Rice Platform</image:title>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://cyberkarma.me/impact</loc>
-    <lastmod>2026-08-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.95</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://cyberkarma.me/impact" />
-    <xhtml:link rel="alternate" hreflang="hi" href="https://cyberkarma.me/impact" />
-  </url>
+
 </urlset>

@@ -1,17 +1,30 @@
+# Advanced Robots.txt for CyberKarma & AdityaSec Systems
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_next/
-Disallow: /static/
+Disallow: /private/
 
+# Explicit Bot Directives
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /impact/
+Allow: /quiz/
 Allow: /cyberkarma_banner.jpg
-Allow: /cyberkarma_og_3d.jpg
-Allow: /og_image.jpg
+Allow: /charity_favicon.svg
+Allow: /favicon.svg
 
-Sitemap: https://adityasec32.systems/sitemap.xml
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Sitemaps
 Sitemap: https://cyberkarma.me/sitemap.xml
+Sitemap: https://adityasec32.systems/sitemap.xml
