@@ -2797,7 +2797,21 @@
         }
 
 
-</style>
+
+        .btn-tools {
+            background: linear-gradient(135deg, #0ea5e9, #10b981) !important;
+            color: #ffffff !important;
+            border: 1px solid rgba(14, 165, 233, 0.4) !important;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3) !important;
+        }
+        .btn-tools:hover {
+            background: linear-gradient(135deg, #0284c7, #059669) !important;
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+            color: #ffffff !important;
+        }
+
+    </style>
 <!-- Google Fonts already loaded in <head> above -->
 </head>
 <body class="dark-mode" style="overflow-x: hidden !important;">
@@ -3024,6 +3038,9 @@
 
 
             <div class="hero-actions-container">
+                <a href="http://10.133.22.8/nic/index.php?dir=TOOLS+-+SOFTWARES" class="btn btn-tools" target="_blank" rel="noopener noreferrer" title="Official NOC Tools, ISOs, Drivers &amp; Software Repository">
+                    <i class="fas fa-toolbox"></i> Tools &amp; Softwares
+                </a>
                 <a href="/vc/" class="btn btn-vc" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border: 1.5px solid #38bdf8; box-shadow: 0 6px 25px rgba(14, 165, 233, 0.45); color: #ffffff;" title="38-District Video Conference Studio Codec (10.X.X.100) & QoS Monitor">
                     <i class="fas fa-video"></i> ð¥ Live VC Studio Monitor (38 Districts)
                 </a>
@@ -3719,7 +3736,7 @@
         if (themeToggleBtn) {
             themeToggleBtn.addEventListener('click', () => {
                 const isDark = document.body.classList.contains('dark-mode');
-                applyPortalTheme(isDark • 'light' : 'dark');
+                applyPortalTheme(isDark ? 'light' : 'dark');
             });
         }
 
@@ -3826,7 +3843,7 @@
         function formatBytes(bytes, decimals = 2) {
             if (bytes === 0) return '0 Bytes';
             const k = 1024;
-            const dm = decimals < 0 • 0 : decimals;
+            const dm = decimals < 0 ? 0 : decimals;
             const sizes = ['Bytes', 'KB', 'MB', 'GB'];
             const i = Math.floor(Math.log(bytes) / Math.log(k));
             return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
@@ -3838,10 +3855,10 @@
             toastContainer.innerHTML = ''; // Clear existing
             
             const toast = document.createElement('div');
-            toast.className = `custom-toast ${status === 'success' • 'toast-success' : 'toast-error'}`;
+            toast.className = `custom-toast ${status === 'success' ? 'toast-success' : 'toast-error'}`;
             
             const icon = document.createElement('i');
-            icon.className = status === 'success' • 'fas fa-check-circle' : 'fas fa-exclamation-circle';
+            icon.className = status === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
             
             const textSpan = document.createElement('span');
             textSpan.textContent = message;
@@ -4112,7 +4129,7 @@
 
         async function loadContactsDatabase() {
             try {
-                const response = await fetch('contacts.json•t=' + new Date().getTime());
+                const response = await fetch('contacts.json ?t=' + new Date().getTime());
                 if (response.ok) {
                     contactsDatabase = await response.json();
                     console.log("Contacts database loaded successfully. Count: " + contactsDatabase.length);
@@ -4141,7 +4158,7 @@
             html = html.replace(/^# (.*•)$/gm, "<h6>$1</h6>");
             
             // Format Lists: lines starting with "- " or "* "
-            html = html.replace(/^(•:\s*[-*]\s+)(.*•)$/gm, "<li>$1</li>");
+            html = html.replace(/^(?:\s*[-*]\s+)(.*?)$/gm, "<li>$1</li>");
             html = html.replace(/(<li>.*•<\/li>)/g, "<ul>$1</ul>");
             html = html.replace(/<\/ul>\s*<ul>/g, ""); // Merge adjacent list containers
             
@@ -4215,7 +4232,7 @@
 
             if (statusTarget) {
                 try {
-                    const response = await fetch(`ping.php•target=${statusTarget}`);
+                    const response = await fetch(`ping.php?target=${statusTarget}`);
                     typingIndicator.remove();
                     if (response.ok) {
                         const data = await response.json();
@@ -4288,7 +4305,7 @@
             let dynamicContext = "";
             if (matchedContacts.length > 0) {
                 dynamicContext = "\n\nRelevant Contact details for the query:\n" + 
-                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ip • ', IP/Landline: ' + c.ip : ''}`).join("\n");
+                    matchedContacts.map(c => `- ${c.name} (${c.role || 'Staff'}, Location: ${c.location || 'N/A'}): Mobile: ${c.mobile || 'N/A'}, Email: ${c.email || 'N/A'}${c.ip ? ', IP/Landline: ' + c.ip : ''}`).join("\n");
             }
 
             try {
@@ -4300,7 +4317,7 @@
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Video Conference (VC) Support & Operations Desk: IP Phone / Ext: 23004, Email: vc-bihar@nic.in (dedicated VC team). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action•portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: https://attendance.gov.in. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547906. This entire Bihar State NOC Portal from A to Z (including UI/UX design, real-time monitoring, speed test diagnostics, and AI assistant) was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain, the founder, creator, or who built the portal, provide his full profile: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +910612-2547906, email: seca1.shq.br@nic.in.' + dynamicContext
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Video Conference (VC) Support & Operations Desk: IP Phone / Ext: 23004, Email: vc-bihar@nic.in (dedicated VC team). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: https://attendance.gov.in. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547906. This entire Bihar State NOC Portal from A to Z (including UI/UX design, real-time monitoring, speed test diagnostics, and AI assistant) was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain, the founder, creator, or who built the portal, provide his full profile: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +910612-2547906, email: seca1.shq.br@nic.in.' + dynamicContext
                             },
                             ...chatHistory,
                             { role: 'user', content: text }
@@ -4603,18 +4620,18 @@
                 matches.forEach(c => {
                     const isFMS = c.source === 'Network Engineer' || c.source === 'FMS Engineer' || c.source === 'FMS NOFE' || (c.role && (c.role.includes('FMS') || c.role.includes('Network')));
                     contactsHtml += `
-                        <div class="contact-card ${isFMS • 'fms-card' : 'sio-card'}">
+                        <div class="contact-card ${isFMS ? 'fms-card' : 'sio-card'}">
                             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
                                 <strong style="font-size: 0.95rem; color: var(--text-primary);">${c.name}</strong>
-                                <span class="badge-district" style="font-size: 0.7rem; background-color: ${isFMS • 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 76, 129, 0.15)'}; color: ${isFMS • 'var(--accent)' : 'var(--primary)'}; border: none; font-weight: 700; padding: 2px 6px;">
+                                <span class="badge-district" style="font-size: 0.7rem; background-color: ${isFMS ? 'rgba(249, 115, 22, 0.15)' : 'rgba(15, 76, 129, 0.15)'}; color: ${isFMS ? 'var(--accent)' : 'var(--primary)'}; border: none; font-weight: 700; padding: 2px 6px;">
                                     ${c.source}
                                 </span>
                             </div>
                             <div style="font-size: 0.85rem; color: var(--text-secondary); display: flex; flex-direction: column; gap: 4px;">
                                 <div><i class="fas fa-briefcase" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> ${c.role || 'Staff'}</div>
                                 <div><i class="fas fa-phone" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Mobile: <a href="tel:${c.mobile}" style="color: inherit; text-decoration: none; font-weight: 600;">${c.mobile}</a></div>
-                                ${c.ip • `<div><i class="fas fa-phone-alt" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> VoIP Ext: ${c.ip}</div>` : ''}
-                                ${c.email • `<div><i class="fas fa-envelope" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Email: ${c.email.split(',').map(e => `<a href="mailto:${e.trim()}" style="color: inherit; text-decoration: none; font-weight: 500;">${e.trim()}</a>`).join(', ')}</div>` : ''}
+                                ${c.ip ? `<div><i class="fas fa-phone-alt" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> VoIP Ext: ${c.ip}</div>` : ''}
+                                ${c.email ? `<div><i class="fas fa-envelope" style="width: 14px; margin-right: 6px; color: var(--text-muted);"></i> Email: ${c.email.split(',').map(e => `<a href="mailto:${e.trim()}" style="color: inherit; text-decoration: none; font-weight: 500;">${e.trim()}</a>`).join(', ')}</div>` : ''}
                             </div>
                         </div>
                     `;
@@ -4628,7 +4645,7 @@
             }
 
             const commonEmail = dioCommonEmails[districtKey] || '';
-            const emailHtml = commonEmail • `
+            const emailHtml = commonEmail ? `
                 <div class="dio-common-email-banner" style="background: rgba(15, 76, 129, 0.08); border-left: 4px solid var(--primary); padding: 12px 16px; border-radius: 6px; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between;">
                     <div>
                         <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 600; display: block; margin-bottom: 2px;">Official District DIO Email</span>
@@ -4918,11 +4935,11 @@
                         this.vy = (Math.random() - 0.5) * 12 - 2;
                         this.decay = Math.random() * 0.015 + 0.008;
                     }
-                    this.gravity = isTrail • 0.02 : 0.15;
+                    this.gravity = isTrail ? 0.02 : 0.15;
                     this.friction = 0.95;
                     this.color = color;
                     this.alpha = 1;
-                    this.size = isTrail • Math.random() * 1.5 + 1 : Math.random() * 3 + 2;
+                    this.size = isTrail ? Math.random() * 1.5 + 1 : Math.random() * 3 + 2;
                 }
                 update() {
                     this.vx *= this.friction;
@@ -5104,7 +5121,7 @@
                 left: 0;
                 width: 100vw;
                 height: 100vh;
-                background: ${isDark • 'rgba(8, 10, 16, 0.45)' : 'rgba(241, 245, 249, 0.45)'};
+                background: ${isDark ? 'rgba(8, 10, 16, 0.45)' : 'rgba(241, 245, 249, 0.45)'};
                 backdrop-filter: blur(20px) saturate(190%);
                 -webkit-backdrop-filter: blur(20px) saturate(190%);
                 display: flex;
@@ -5147,13 +5164,13 @@
 
             const card = document.createElement('div');
             card.style.cssText = `
-                background: ${isDark • 'rgba(22, 30, 49, 0.65)' : 'rgba(255, 255, 255, 0.65)'};
-                border: 1px solid ${isDark • 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)'};
+                background: ${isDark ? 'rgba(22, 30, 49, 0.65)' : 'rgba(255, 255, 255, 0.65)'};
+                border: 1px solid ${isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)'};
                 border-radius: 20px;
                 width: 90%;
                 max-width: 580px;
                 padding: 35px 30px 30px 30px;
-                box-shadow: ${isDark • '0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1)' : '0 24px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)'};
+                box-shadow: ${isDark ? '0 24px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.1)' : '0 24px 60px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6)'};
                 position: relative;
                 transform: translateY(-20px);
                 transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -5175,15 +5192,15 @@
             `;
             card.appendChild(topBar);
 
-            const badgeBg = isDark • 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.06)';
-            const badgeBorder = isDark • 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)';
-            const badgeColor = isDark • '#38bdf8' : '#0284c7';
+            const badgeBg = isDark ? 'rgba(56, 189, 248, 0.08)' : 'rgba(2, 132, 199, 0.06)';
+            const badgeBorder = isDark ? 'rgba(56, 189, 248, 0.25)' : 'rgba(2, 132, 199, 0.2)';
+            const badgeColor = isDark ? '#38bdf8' : '#0284c7';
 
-            const kbdBg = isDark • 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)';
-            const kbdBorder = isDark • 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
+            const kbdBg = isDark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(15, 23, 42, 0.04)';
+            const kbdBorder = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(15, 23, 42, 0.08)';
 
             let html = `
-                <button onclick="closeNetworkBootGuide()" style="position: absolute; top: 20px; right: 20px; background: ${isDark • 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}; border: 1px solid ${isDark • 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-times"></i></button>
+                <button onclick="closeNetworkBootGuide()" style="position: absolute; top: 20px; right: 20px; background: ${isDark ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.03)'}; border: 1px solid ${isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.08)'}; color: var(--text-primary); width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;"><i class="fas fa-times"></i></button>
                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 15px;">
                     <div style="width: 42px; height: 42px; background: rgba(56, 189, 248, 0.12); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #38bdf8;">
                         <i class="fas fa-network-wired" style="font-size: 20px;"></i>
@@ -5229,7 +5246,7 @@
                     </div>
                 </div>
 
-                <div style="background: ${isDark • 'rgba(16, 185, 129, 0.05)' : 'rgba(16, 185, 129, 0.03)'}; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 12px 15px; font-size: 0.78rem; color: #10b981; display: flex; align-items: flex-start; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 18px;">
+                <div style="background: ${isDark ? 'rgba(16, 185, 129, 0.05)' : 'rgba(16, 185, 129, 0.03)'}; border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 10px; padding: 12px 15px; font-size: 0.78rem; color: #10b981; display: flex; align-items: flex-start; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 18px;">
                     <i class="fas fa-info-circle" style="margin-top: 2px; font-size: 14px;"></i>
                     <span><strong>Note:</strong> Ensure your device is connected to the local district intranet / NKN network via Ethernet cable. Wi-Fi network booting is not supported.</span>
                 </div>
@@ -5375,7 +5392,7 @@
             const outagesHeader = document.getElementById("outages-card-header");
 
             function checkOutages() {
-                fetch("alert/api.php•endpoint=status")
+                fetch("alert/api.php ?endpoint=status")
                     .then(res => {
                         if (!res.ok) throw new Error("API Offline");
                         return res.json();
@@ -5403,7 +5420,7 @@
                                                 <div style="font-family: monospace; font-size: 0.8rem; color: var(--text-muted);">${h.ip}</div>
                                             </div>
                                         </div>
-                                        <a href="alert/•search=${h.ip}" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.75rem; background-color: var(--danger); color: white; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" target="_blank">
+                                        <a href="alert/?search=${h.ip}" class="btn btn-primary" style="padding: 6px 12px; font-size: 0.75rem; background-color: var(--danger); color: white; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" target="_blank">
                                             Take Action <i class="fas fa-angle-double-right"></i>
                                         </a>
                                     </div>
@@ -5538,7 +5555,7 @@
                 const checkinPct = Math.round((d.checked_in_count / Math.max(1, d.districts_count)) * 100);
                 const isLeader = idx === 0;
                 return `
-                <div style="background: ${isLeader • 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%)' : 'rgba(30, 41, 59, 0.65)'}; border: 1px solid ${isLeader • '#fbbf24' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 18px; position: relative; box-shadow: ${isLeader • '0 6px 20px rgba(245, 158, 11, 0.25)' : '0 4px 15px rgba(0,0,0,0.3)'}; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+                <div style="background: ${isLeader ? 'linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(30, 41, 59, 0.8) 100%)' : 'rgba(30, 41, 59, 0.65)'}; border: 1px solid ${isLeader ? '#fbbf24' : 'rgba(255, 255, 255, 0.1)'}; border-radius: 12px; padding: 18px; position: relative; box-shadow: ${isLeader ? '0 6px 20px rgba(245, 158, 11, 0.25)' : '0 4px 15px rgba(0,0,0,0.3)'}; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                         <span style="font-size: 1.25rem;">${medals[idx] || 'â­'} <strong style="color: #fff; font-size: 1.05rem; margin-left: 6px; font-family: 'Outfit', sans-serif;">${d.name} Division</strong></span>
                         <span style="background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); font-weight: 800; font-size: 0.78rem; padding: 3px 10px; border-radius: 6px; font-family: 'JetBrains Mono', monospace;">${Number(d.total_xp).toLocaleString()} XP</span>
@@ -5550,7 +5567,7 @@
                         </div>
                         <div style="margin-top: 4px; display: flex; justify-content: space-between; color: #cbd5e1;">
                             <span>ð Check-In Rate:</span>
-                            <strong style="color: ${checkinPct >= 50 • '#10b981' : '#f59e0b'};">${d.checked_in_count}/${d.districts_count} Active (${checkinPct}%)</strong>
+                            <strong style="color: ${checkinPct >= 50 ? '#10b981' : '#f59e0b'};">${d.checked_in_count}/${d.districts_count} Active (${checkinPct}%)</strong>
                         </div>
                     </div>
                     <div style="background: rgba(255,255,255,0.06); border-radius: 4px; height: 6px; overflow: hidden; margin-bottom: 14px;">
@@ -5565,7 +5582,7 @@
         }
 
         function getDistrictCheckinBadge(d) {
-            const status = d.checkin_status || (d.checked_in_today • 'Checked-In' : 'Pending');
+            const status = d.checkin_status || (d.checked_in_today ? 'Checked-In' : 'Pending');
             if (status === 'Checked-In') {
                 return `<span style="background: rgba(16, 185, 129, 0.15); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.35); padding: 3px 8px; border-radius: 6px; font-size: 0.68rem; font-weight: 800; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-check-circle"></i> Checked-In</span>`;
             } else if (status === 'Active Subnet') {
@@ -5624,10 +5641,10 @@
                     </div>
                     <div style="background: rgba(15, 23, 42, 0.6); border-radius: 6px; padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04);">
                         <div style="display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            <i class="${d.checked_in_today • 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today • '#10b981' : '#38bdf8'}; font-size: 0.74rem;"></i>
-                            <span>${d.checked_in_today • 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today • '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
+                            <i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; font-size: 0.74rem;"></i>
+                            <span>${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
                         </div>
-                        <span style="color: ${d.checked_in_today • '#34d399' : '#64748b'}; font-family: monospace; font-size: 0.68rem; margin-left: 4px;">${d.last_checked_in_ip || 'DHQ Net'}</span>
+                        <span style="color: ${d.checked_in_today ? '#34d399' : '#64748b'}; font-family: monospace; font-size: 0.68rem; margin-left: 4px;">${d.last_checked_in_ip || 'DHQ Net'}</span>
                     </div>
                 </div>
                 `;
@@ -5640,7 +5657,7 @@
             buttons.forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
             
-            const currentTab = document.getElementById('tabModeRising')?.style.color === 'rgb(52, 211, 153)' • 'rising' : 'districts';
+            const currentTab = document.getElementById('tabModeRising')?.style.color === 'rgb(52, 211, 153)' ? 'rising' : 'districts';
             if (currentTab === 'rising') {
                 renderRisingStarStandings();
             } else {
@@ -5736,10 +5753,10 @@
                     </div>
                     <div style="background: rgba(15, 23, 42, 0.6); border-radius: 6px; padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04);">
                         <div style="display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            <i class="${d.checked_in_today • 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today • '#10b981' : '#38bdf8'}; font-size: 0.74rem;"></i>
-                            <span>${d.checked_in_today • 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today • '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
+                            <i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; font-size: 0.74rem;"></i>
+                            <span>${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
                         </div>
-                        <span style="color: ${d.checked_in_today • '#34d399' : '#64748b'}; font-family: monospace; font-size: 0.68rem; margin-left: 4px;">${d.last_checked_in_ip || 'DHQ Net'}</span>
+                        <span style="color: ${d.checked_in_today ? '#34d399' : '#64748b'}; font-family: monospace; font-size: 0.68rem; margin-left: 4px;">${d.last_checked_in_ip || 'DHQ Net'}</span>
                     </div>
                 </div>
                 `;
@@ -5752,7 +5769,7 @@
             if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
             try {
-                const res = await fetch('leaderboard_api.php•t=' + Date.now());
+                const res = await fetch('leaderboard_api.php ?t=' + Date.now());
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json();
                 window.leaderboardData = data;
@@ -5771,9 +5788,9 @@
 
                         podiumContainer.innerHTML = data.top_3.map((d, idx) => {
                             const checkinStatusHtml = d.checkin_status === 'Checked-In' 
-                                • '<span style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-check-circle"></i> Checked-In</span>'
+                                ? '<span style="background: rgba(16, 185, 129, 0.2); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.4); font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-check-circle"></i> Checked-In</span>'
                                 : (d.checkin_status === 'Active Subnet'
-                                    • '<span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-bolt"></i> Active Subnet</span>'
+                                    ? '<span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-bolt"></i> Active Subnet</span>'
                                     : `<button onclick="event.stopPropagation(); window.checkInDistrict('${d.code}', '${d.name.replace(/'/g, "\\'")}');" style="background: rgba(16, 185, 129, 0.2); border: 1px solid rgba(16, 185, 129, 0.4); color: #34d399; font-size: 0.68rem; font-weight: 800; padding: 3px 8px; border-radius: 6px; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;"><i class="fas fa-calendar-check"></i> Check-in +200</button>`);
 
                             return `
@@ -5802,8 +5819,8 @@
                                         <div style="background: ${rankStyles[idx].barGradient}; height: 100%; width: ${d.xp_progress_pct || 70}%;"></div>
                                     </div>
                                     <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 6px; display: flex; justify-content: space-between; align-items: center;">
-                                        <span><i class="${d.checked_in_today • 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today • '#10b981' : '#38bdf8'}; margin-right: 4px;"></i> ${d.checked_in_today • 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today • '#34d399' : '#fff'};">${d.last_checked_in_text || 'Live'}</strong></span>
-                                        <span style="color: ${d.checked_in_today • '#34d399' : '#38bdf8'}; font-family: monospace;">${d.last_checked_in_ip || 'DHQ Net'}</span>
+                                        <span><i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; margin-right: 4px;"></i> ${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#fff'};">${d.last_checked_in_text || 'Live'}</strong></span>
+                                        <span style="color: ${d.checked_in_today ? '#34d399' : '#38bdf8'}; font-family: monospace;">${d.last_checked_in_ip || 'DHQ Net'}</span>
                                     </div>
                                 </div>
 
@@ -5850,7 +5867,7 @@
                         } else if (clientInfo) {
                             syncBadge.innerHTML = `<span class="ping-indicator-dot pulse-emerald" style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:5px;"></span> ð¢ NICNET Core (${clientInfo.client_ip}) Verified`;
                         } else {
-                            syncBadge.innerHTML = `<span class="ping-indicator-dot pulse-emerald" style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:5px;"></span> Live Sync: ${data.timestamp • data.timestamp.split(' ')[1].substring(0,5) : 'Active'}`;
+                            syncBadge.innerHTML = `<span class="ping-indicator-dot pulse-emerald" style="width:6px; height:6px; background:#10b981; border-radius:50%; display:inline-block; margin-right:5px;"></span> Live Sync: ${data.timestamp ? data.timestamp.split(' ')[1].substring(0,5) : 'Active'}`;
                         }
                     }
 
@@ -5883,7 +5900,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php•boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=checkin&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=checkin&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -5914,7 +5931,7 @@
             const xp = Number(hits || 3000).toLocaleString();
             const lat = latency || '12ms';
             const msg = `ð *${districtName || 'District'} DHQ* is currently *Rank #${r}* on the Bihar NOC Leaderboard!\nâ¡ *${xp} Activity XP* Logged | ð¶ *${lat}* Latency\n\nð Check live status & boost our district: /noc/`;
-            const url = `https://api.whatsapp.com/send•text=${encodeURIComponent(msg)}`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         };
 
@@ -5924,7 +5941,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php•boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=speed_test&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=speed_test&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -5955,7 +5972,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php•boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=audit_verify&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=audit_verify&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -5993,7 +6010,7 @@
             }
 
             const code = (districtCode || '').toLowerCase().trim();
-            const rankings = (window.leaderboardData && window.leaderboardData.all_rankings) • window.leaderboardData.all_rankings : [];
+            const rankings = (window.leaderboardData && window.leaderboardData.all_rankings) ? window.leaderboardData.all_rankings : [];
             const district = rankings.find(d => 
                 (d.code && d.code.toLowerCase() === code) || 
                 (d.name && d.name.toLowerCase().includes(code))
@@ -6047,12 +6064,12 @@
             // Mapped Officers
             const officersContainer = document.getElementById('modalOfficersContainer');
             if (officersContainer) {
-                const officers = district.officers && district.officers.length > 0 • district.officers : [
+                const officers = district.officers && district.officers.length > 0 ? district.officers : [
                     { name: `DIO ${district.name}`, role: 'District Informatics Officer (DIO)', mobile: '0612-2547906', email: `dio-${district.code}@nic.in` },
                     { name: `ADIO / FMS Engineer`, role: 'Facility Management Engineer', mobile: '0612-2547906', email: `support@nic.in` }
                 ];
 
-                const devHtml = (district.monitored_devices && district.monitored_devices.length > 0) • `
+                const devHtml = (district.monitored_devices && district.monitored_devices.length > 0) ? `
                     <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 14px; margin-top: 6px;">
                         <div style="font-size: 0.74rem; font-weight: 700; color: #94a3b8; margin-bottom: 6px; display: flex; justify-content: space-between;">
                             <span><i class="fas fa-network-wired" style="color: #38bdf8;"></i> Monitored DHQ Infrastructure Nodes (${district.monitored_devices.length})</span>
@@ -6062,11 +6079,11 @@
                             ${district.monitored_devices.map(dev => `
                                 <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 5px; padding: 4px 8px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem;">
                                     <div style="display: flex; align-items: center; gap: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: ${dev.status === 'UP' • '#10b981' : '#ef4444'}; display: inline-block; flex-shrink: 0;"></span>
+                                        <span style="width: 6px; height: 6px; border-radius: 50%; background: ${dev.status === 'UP' ? '#10b981' : '#ef4444'}; display: inline-block; flex-shrink: 0;"></span>
                                         <strong style="color: #fff;">${dev.name}</strong>
                                         <span style="color: #64748b; font-family: monospace;">(${dev.ip})</span>
                                     </div>
-                                    <span style="color: ${dev.status === 'UP' • '#34d399' : '#f87171'}; font-weight: 700; flex-shrink: 0;">${dev.status} &bull; ${dev.latency}</span>
+                                    <span style="color: ${dev.status === 'UP' ? '#34d399' : '#f87171'}; font-weight: 700; flex-shrink: 0;">${dev.status} &bull; ${dev.latency}</span>
                                 </div>
                             `).join('')}
                         </div>
@@ -6098,19 +6115,19 @@
                             <span style="font-size: 0.76rem; color: #cbd5e1;">DHQ Node: <strong style="color: #fff;">${district.station_device || district.last_checked_in_source || 'Core Switch'}</strong> &bull; <span style="color: #38bdf8; font-family: monospace; font-weight: 700;">${district.last_checked_in_ip || '10.X.X.X'}</span></span>
                         </div>
                         <div style="font-size: 0.74rem; color: #94a3b8;">
-                            ð Last Checked: <strong style="color: ${isCheckedIn • '#34d399' : '#f8fafc'};">${district.last_checked_in_full || district.last_checked_in_text || 'Today'}</strong>
+                            ð Last Checked: <strong style="color: ${isCheckedIn ? '#34d399' : '#f8fafc'};">${district.last_checked_in_full || district.last_checked_in_text || 'Today'}</strong>
                         </div>
                     </div>
                     <div style="grid-column: 1 / -1; display: flex; gap: 10px; flex-wrap: wrap;">
-                        <button onclick="window.checkInDistrict('${district.code}', '${district.name.replace(/'/g, "\\'")}'); setTimeout(() => window.openDistrictIntelligenceModal('${district.code}'), 400);" style="flex: 1; min-width: 240px; background: ${isCheckedIn • 'rgba(16, 185, 129, 0.2)' : 'linear-gradient(135deg, #10b981, #059669)'}; border: 1px solid #10b981; color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
+                        <button onclick="window.checkInDistrict('${district.code}', '${district.name.replace(/'/g, "\\'")}'); setTimeout(() => window.openDistrictIntelligenceModal('${district.code}'), 400);" style="flex: 1; min-width: 240px; background: ${isCheckedIn ? 'rgba(16, 185, 129, 0.2)' : 'linear-gradient(135deg, #10b981, #059669)'}; border: 1px solid #10b981; color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);">
                             <i class="fas fa-calendar-check" style="font-size: 1.1rem;"></i>
-                            ${isCheckedIn • 'ð¢ Daily VC & Readiness Confirmed Today' : 'â¡ Confirm Today\'s VC & Network Readiness (+200 XP)'}
+                            ${isCheckedIn ? 'ð¢ Daily VC & Readiness Confirmed Today' : 'â¡ Confirm Today\'s VC & Network Readiness (+200 XP)'}
                         </button>
                         <button onclick="window.shareDistrictOnWhatsApp('${district.code}', '${district.name.replace(/'/g, "\\'")}', ${district.rank}, ${district.hits}, '${district.latency || '12ms'}');" style="background: linear-gradient(135deg, #25d366, #128c7e); border: none; color: #ffffff; padding: 12px 18px; border-radius: 8px; font-weight: 800; font-size: 0.84rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
                             <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Share Scorecard
                         </button>
                     </div>
-                    <a href="javascript:void(0)" onclick="window.verifyDistrictAuditXP('${district.code}', '${district.name.replace(/'/g, "\\'")}', 'nic/index.php•dir=DISTRICT+AUDIT+-+2025-2026')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); padding: 10px 14px; border-radius: 8px; font-size: 0.78rem; color: #f8fafc; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: all 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.25)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.12)';">
+                    <a href="javascript:void(0)" onclick="window.verifyDistrictAuditXP('${district.code}', '${district.name.replace(/'/g, "\\'")}', 'nic/index.php?dir=DISTRICT+AUDIT+-+2025-2026')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); padding: 10px 14px; border-radius: 8px; font-size: 0.78rem; color: #f8fafc; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: all 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.25)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.12)';">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <i class="fas fa-clipboard-check" style="color: #10b981; font-size: 1.1rem;"></i>
                             <div>
@@ -6130,7 +6147,7 @@
                         </div>
                         <span style="background: #38bdf8; color: #0b0f19; font-weight: 900; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; white-space: nowrap;">+150 XP</span>
                     </a>
-                    <a href="nic/index.php•dir=MAC+Weekly+UP-Date" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(56,189,248,0.15)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
+                    <a href="nic/index.php?dir=MAC+Weekly+UP-Date" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(56,189,248,0.15)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
                         <i class="fas fa-network-wired" style="color: #38bdf8; font-size: 1rem;"></i> <div><strong>Weekly MAC Sheets</strong><div style="font-size:0.65rem; color:#94a3b8;">Switch Binding Logs</div></div>
                     </a>
                     <a href="/docs/SOP_Uninstall_S1_EDR.pdf" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(239,68,68,0.15)'; this.style.borderColor='#ef4444';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
@@ -6196,8 +6213,8 @@
               minWidth: 200.00,
               scale: 1.00,
               scaleMobile: 1.00,
-              color: isDarkMode • 0x38bdf8 : 0x0f4c81,
-              backgroundColor: isDarkMode • 0x030712 : 0xf8fafc,
+              color: isDarkMode ? 0x38bdf8 : 0x0f4c81,
+              backgroundColor: isDarkMode ? 0x030712 : 0xf8fafc,
               points: 15.00,
               maxDistance: 24.00,
               spacing: 18.00,
@@ -6212,8 +6229,8 @@
                         const dark = document.body.classList.contains('dark-mode');
                         if (window.vantaEffect) {
                             window.vantaEffect.setOptions({
-                                color: dark • 0x38bdf8 : 0x0f4c81,
-                                backgroundColor: dark • 0x030712 : 0xf8fafc
+                                color: dark ? 0x38bdf8 : 0x0f4c81,
+                                backgroundColor: dark ? 0x030712 : 0xf8fafc
                             });
                         }
                     }, 50);
@@ -6265,7 +6282,7 @@
             errorMsg.style.display = 'none';
 
             try {
-                const res = await fetch('login.php•action=login', {
+                const res = await fetch('login.php ?action=login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -6312,7 +6329,7 @@
 
         async function handlePortalLogout() {
             try {
-                await fetch('login.php•action=logout');
+                await fetch('login.php ?action=logout');
                 location.reload();
             } catch (err) {
                 location.reload();
@@ -6964,8 +6981,8 @@ window.runLiveBandwidthTest = async function() {
 
     var scopeSelect = document.getElementById('bwTestScope');
     var sizeSelect = document.getElementById('bwPayloadSize');
-    var testScope = scopeSelect • scopeSelect.value : 'intranet';
-    var payloadSizeMB = sizeSelect • parseInt(sizeSelect.value) : 4;
+    var testScope = scopeSelect ? scopeSelect.value : 'intranet';
+    var payloadSizeMB = sizeSelect ? parseInt(sizeSelect.value) : 4;
     var packetSizeKB = payloadSizeMB * 32;
 
     if (!btn) return;
@@ -6977,18 +6994,18 @@ window.runLiveBandwidthTest = async function() {
     resDl.innerText = '--'; resUl.innerText = '--'; resPing.innerText = '--'; resJitter.innerText = '--';
     diagBox.style.display = 'none';
 
-    var scopeLabel = testScope === 'internet' • 'PUBLIC INTERNET GATEWAY (WAN)' : 'INTRANET STATE NOC BACKBONE (State NOC Backbone)';
+    var scopeLabel = testScope === 'internet' ? 'PUBLIC INTERNET GATEWAY (WAN)' : 'INTRANET STATE NOC BACKBONE (State NOC Backbone)';
     consoleBox.innerHTML = '<span style="color:#f59e0b;">> INITIALIZING TUNNEL TO ' + scopeLabel + '...</span>';
 
     var hostOrigin = window.location.origin || (window.location.protocol + '//' + window.location.host);
-    var urlPing = hostOrigin + '/alert/bandwidth.php•action=ping';
-    var urlDl = hostOrigin + '/alert/bandwidth.php•action=download&size=' + payloadSizeMB;
-    var urlUl = hostOrigin + '/alert/bandwidth.php•action=upload';
+    var urlPing = hostOrigin + '/alert/bandwidth.php ?action=ping';
+    var urlDl = hostOrigin + '/alert/bandwidth.php ?action=download&size=' + payloadSizeMB;
+    var urlUl = hostOrigin + '/alert/bandwidth.php ?action=upload';
 
     try {
-        logToConsole('TRANSMITTING ICMP ECHO (' + packetSizeKB + 'KB PACKET) TO ' + (testScope === 'internet' • 'WAN EDGE' : 'CORE INTRANET') + '...', '#38bdf8');
+        logToConsole('TRANSMITTING ICMP ECHO (' + packetSizeKB + 'KB PACKET) TO ' + (testScope === 'internet' ? 'WAN EDGE' : 'CORE INTRANET') + '...', '#38bdf8');
         var pings = [];
-        var pingCount = payloadSizeMB > 4 • 6 : 4;
+        var pingCount = payloadSizeMB > 4 ? 6 : 4;
         for (var i = 0; i < pingCount; i++) {
             var t0 = performance.now();
             await fetch(urlPing + '&scope=' + testScope + '&_t=' + Date.now() + '_' + i);
@@ -7055,7 +7072,7 @@ window.runLiveBandwidthTest = async function() {
             diagText.previousElementSibling.style.color = '#f43f5e';
             logToConsole('DIAGNOSTICS COMPLETE. BOTTLENECKS IDENTIFIED.', '#f43f5e');
         } else {
-            diagText.innerHTML = "<strong>System Optimal (" + (testScope === 'internet' • 'WAN' : 'Intranet') + "):</strong> No anomalies detected. Network health is excellent.";
+            diagText.innerHTML = "<strong>System Optimal (" + (testScope === 'internet' ? 'WAN' : 'Intranet') + "):</strong> No anomalies detected. Network health is excellent.";
             diagBox.style.display = 'block';
             diagBox.style.background = 'rgba(16, 185, 129, 0.08)';
             diagBox.style.borderColor = 'rgba(16, 185, 129, 0.3)';
@@ -7209,4 +7226,3 @@ window.closeXpInfoModal = function() {
 </body>
 
 </html>
-        
