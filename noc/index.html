@@ -4328,15 +4328,22 @@
                     
                     <div style="width: 2px; height: 36px; background: rgba(255,255,255,0.1);"></div>
                     
-                    <!-- 2. Bihar 38 District Nodes -->
-                    <div style="display: flex; align-items: center; gap: 14px; transition: transform 0.3s; cursor: help;" title="All 38 Bihar District Headquarters connected to State SWAN backbone" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'">
-                        <div style="width: 44px; height: 44px; background: rgba(14, 165, 233, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(14, 165, 233, 0.4);">
+                    <!-- 2. Bihar 38 District Nodes with Real-Time Hover Telemetry Popover -->
+                    <div id="districtNodesStatCard" style="display: flex; align-items: center; gap: 14px; transition: transform 0.3s; cursor: pointer; position: relative;" title="All 38 Bihar District Headquarters connected to State SWAN backbone" onclick="window.open('alert/', '_blank')">
+                        <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); display: flex; align-items: center; justify-content: center; box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);">
                             <i class="fas fa-network-wired" style="color: #38bdf8; font-size: 1.3rem;"></i>
                         </div>
                         <div style="text-align: left;">
                             <div style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">District Nodes</div>
                             <div style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 900; color: #38bdf8; line-height: 1; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);">
                                 <span id="heroStatDistrictNodes">38 / 38</span> <span id="heroStatDistrictNodesBadge" style="font-size: 0.75rem; color: #10b981; font-weight: 800;">ONLINE</span>
+                            </div>
+                        </div>
+
+                        <!-- Real-Time Cyber Hover Popover -->
+                        <div id="districtNodesHoverPopover" style="display: none; position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%); width: 330px; background: rgba(15, 23, 42, 0.97); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 16px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85), 0 0 25px rgba(56, 189, 248, 0.25); z-index: 10000; text-align: left;">
+                            <div id="districtNodesPopoverContent">
+                                <!-- Populated dynamically by checkOutages() -->
                             </div>
                         </div>
                     </div>
@@ -6187,13 +6194,16 @@
         });
 
 
-                async function checkOutages() {
+                        async function checkOutages() {
             const outagesList = document.getElementById("outages-list");
             const outageBadge = document.getElementById("outage-count-badge");
             const outagesTitle = document.getElementById("outages-title");
             const outagesHeader = document.getElementById("outages-card-header");
             const heroDistEl = document.getElementById("heroStatDistrictNodes");
             const heroBadgeEl = document.getElementById("heroStatDistrictNodesBadge");
+            const statCard = document.getElementById("districtNodesStatCard");
+            const popover = document.getElementById("districtNodesHoverPopover");
+            const popoverContent = document.getElementById("districtNodesPopoverContent");
 
             try {
                 const res = await fetch("alert/api.php?endpoint=status&t=" + Date.now());
@@ -6205,50 +6215,141 @@
                     const upHosts = data.hosts.filter(h => h.status === "UP");
                     const totalCount = data.hosts.length;
 
-                    // Calculate Real-Time 38 District Online Status
-                    const biharDistrictsList = [
-                        'patna', 'darbhanga', 'gaya', 'muzaffarpur', 'bhagalpur', 'purnea', 'banka', 'nalanda',
-                        'bhojpur', 'araria', 'arwal', 'aurangabad', 'begusarai', 'buxar', 'east champaran',
-                        'west champaran', 'gopalganj', 'jamui', 'jehanabad', 'kaimur', 'katihar', 'khagaria',
-                        'kishanganj', 'lakhisarai', 'madhepura', 'madhubani', 'munger', 'nawada', 'rohtas',
-                        'saharsa', 'samastipur', 'saran', 'sheikhpura', 'sheohar', 'sitamarhi', 'siwan',
-                        'supaul', 'vaishali'
+                    // Authentic Bihar 38 Districts Dictionary
+                    const biharDistricts = [
+                        { name: 'Patna', keys: ['patna'] },
+                        { name: 'Darbhanga', keys: ['darbhanga'] },
+                        { name: 'Gaya', keys: ['gaya'] },
+                        { name: 'Muzaffarpur', keys: ['muzaffarpur'] },
+                        { name: 'Bhagalpur', keys: ['bhagalpur'] },
+                        { name: 'Purnea', keys: ['purnea'] },
+                        { name: 'Banka', keys: ['banka'] },
+                        { name: 'Nalanda', keys: ['nalanda', 'biharsharif'] },
+                        { name: 'Bhojpur', keys: ['bhojpur', 'ara'] },
+                        { name: 'Araria', keys: ['araria'] },
+                        { name: 'Arwal', keys: ['arwal'] },
+                        { name: 'Aurangabad', keys: ['aurangabad'] },
+                        { name: 'Begusarai', keys: ['begusarai'] },
+                        { name: 'Buxar', keys: ['buxar'] },
+                        { name: 'East Champaran', keys: ['east champaran', 'motihari', 'e.champaran'] },
+                        { name: 'West Champaran', keys: ['west champaran', 'bettiah', 'w.champaran'] },
+                        { name: 'Gopalganj', keys: ['gopalganj'] },
+                        { name: 'Jamui', keys: ['jamui'] },
+                        { name: 'Jehanabad', keys: ['jehanabad'] },
+                        { name: 'Kaimur', keys: ['kaimur', 'bhabhua'] },
+                        { name: 'Katihar', keys: ['katihar'] },
+                        { name: 'Khagaria', keys: ['khagaria'] },
+                        { name: 'Kishanganj', keys: ['kishanganj'] },
+                        { name: 'Lakhisarai', keys: ['lakhisarai'] },
+                        { name: 'Madhepura', keys: ['madhepura'] },
+                        { name: 'Madhubani', keys: ['madhubani'] },
+                        { name: 'Munger', keys: ['munger'] },
+                        { name: 'Nawada', keys: ['nawada'] },
+                        { name: 'Rohtas', keys: ['rohtas', 'sasaram'] },
+                        { name: 'Saharsa', keys: ['saharsa'] },
+                        { name: 'Samastipur', keys: ['samastipur'] },
+                        { name: 'Saran', keys: ['saran', 'chhapra'] },
+                        { name: 'Sheikhpura', keys: ['sheikhpura'] },
+                        { name: 'Sheohar', keys: ['sheohar'] },
+                        { name: 'Sitamarhi', keys: ['sitamarhi'] },
+                        { name: 'Siwan', keys: ['siwan'] },
+                        { name: 'Supaul', keys: ['supaul'] },
+                        { name: 'Vaishali', keys: ['vaishali', 'hajipur'] }
                     ];
 
-                    let onlineDistrictsCount = 0;
-                    biharDistrictsList.forEach(dist => {
+                    let onlineDistricts = [];
+                    let downDistricts = [];
+
+                    biharDistricts.forEach(d => {
                         const matched = data.hosts.filter(h => {
                             const desc = (h.description || '').toLowerCase();
-                            return desc.includes(dist) || 
-                                   (dist === 'east champaran' && (desc.includes('motihari') || desc.includes('e.champaran'))) || 
-                                   (dist === 'west champaran' && (desc.includes('bettiah') || desc.includes('w.champaran'))) || 
-                                   (dist === 'bhojpur' && desc.includes('ara')) || 
-                                   (dist === 'rohtas' && desc.includes('sasaram')) || 
-                                   (dist === 'kaimur' && desc.includes('bhabhua')) || 
-                                   (dist === 'nalanda' && desc.includes('biharsharif')) || 
-                                   (dist === 'saran' && desc.includes('chhapra')) || 
-                                   (dist === 'vaishali' && desc.includes('hajipur'));
+                            return d.keys.some(k => desc.includes(k));
                         });
 
                         const isUp = matched.length === 0 || matched.some(h => h.status === 'UP');
-                        if (isUp) onlineDistrictsCount++;
+                        if (isUp) {
+                            onlineDistricts.push(d.name);
+                        } else {
+                            downDistricts.push(d.name);
+                        }
                     });
 
-                    // Update Hero District Nodes Stat
+                    const onlineCount = onlineDistricts.length;
+                    const downCount = downDistricts.length;
+
+                    // Update Hero Counter
                     if (heroDistEl && heroBadgeEl) {
-                        heroDistEl.textContent = `${onlineDistrictsCount} / 38`;
-                        if (onlineDistrictsCount === 38) {
+                        heroDistEl.textContent = `${onlineCount} / 38`;
+                        if (downCount === 0) {
                             heroDistEl.style.color = '#38bdf8';
                             heroBadgeEl.textContent = 'ONLINE';
                             heroBadgeEl.style.color = '#10b981';
                         } else {
-                            heroDistEl.style.color = '#38bdf8';
-                            heroBadgeEl.textContent = `${onlineDistrictsCount} ONLINE`;
+                            heroDistEl.style.color = '#fbbf24';
+                            heroBadgeEl.textContent = `${onlineCount} ONLINE`;
                             heroBadgeEl.style.color = '#10b981';
                         }
                     }
 
-                    // Render Outage Card
+                    // Update Hover Tooltip and Popover Content
+                    if (statCard) {
+                        if (downCount > 0) {
+                            statCard.title = `⚠️ Link Outages in ${downCount} District(s): ${downDistricts.join(', ')}. Click to open Alert Console.`;
+                        } else {
+                            statCard.title = `✅ All 38 District Headquarters Operational (100% Link Availability). Click to open Alert Console.`;
+                        }
+                    }
+
+                    if (popoverContent) {
+                        if (downCount > 0) {
+                            popoverContent.innerHTML = `
+                                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(239, 68, 68, 0.3); padding-bottom: 10px; margin-bottom: 12px;">
+                                    <div style="font-weight: 800; font-size: 0.9rem; color: #f87171; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i> District Outages (${downCount})
+                                    </div>
+                                    <span style="background: rgba(239, 68, 68, 0.2); color: #fca5a5; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(239, 68, 68, 0.4);">ALERT</span>
+                                </div>
+                                <div style="font-size: 0.78rem; color: #94a3b8; margin-bottom: 10px; font-weight: 600;">
+                                    The following <strong style="color: #fca5a5;">${downCount} district link(s)</strong> are currently unreachable:
+                                </div>
+                                <div style="display: flex; flex-wrap: wrap; gap: 6px; max-height: 140px; overflow-y: auto; margin-bottom: 12px;">
+                                    ${downDistricts.map(name => `
+                                        <span style="background: rgba(239, 68, 68, 0.16); border: 1px solid rgba(239, 68, 68, 0.4); color: #fecaca; font-size: 0.75rem; font-weight: 800; padding: 3px 9px; border-radius: 6px; display: inline-flex; align-items: center; gap: 5px;">
+                                            <span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444; display: inline-block;"></span> ${name}
+                                        </span>
+                                    `).join('')}
+                                </div>
+                                <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.72rem; color: #38bdf8; font-weight: 700;">
+                                    <span>🟢 ${onlineCount} / 38 Operational</span>
+                                    <span>Click to Trace <i class="fas fa-arrow-right" style="font-size: 0.65rem;"></i></span>
+                                </div>
+                            `;
+                        } else {
+                            popoverContent.innerHTML = `
+                                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(16, 185, 129, 0.3); padding-bottom: 10px; margin-bottom: 10px;">
+                                    <div style="font-weight: 800; font-size: 0.9rem; color: #34d399; display: flex; align-items: center; gap: 8px;">
+                                        <i class="fas fa-check-circle" style="color: #10b981;"></i> 100% Operational
+                                    </div>
+                                    <span style="background: rgba(16, 185, 129, 0.2); color: #6ee7b7; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(16, 185, 129, 0.4);">ALL UP</span>
+                                </div>
+                                <div style="font-size: 0.78rem; color: #94a3b8; line-height: 1.4;">
+                                    All <strong style="color: #34d399;">38 Bihar District Headquarters</strong> are connected to the State SWAN &amp; NKN backbone with optimal latency and zero link dropouts.
+                                </div>
+                            `;
+                        }
+                    }
+
+                    // Attach Hover Event Handlers to Stat Card
+                    if (statCard && popover) {
+                        statCard.onmouseenter = () => {
+                            popover.style.display = 'block';
+                        };
+                        statCard.onmouseleave = () => {
+                            popover.style.display = 'none';
+                        };
+                    }
+
+                    // Render Outages List Card
                     if (outagesList) {
                         if (downHosts.length > 0) {
                             if (outagesHeader) {
