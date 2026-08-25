@@ -3067,7 +3067,7 @@
             </div>
 
             <!-- Dynamic Scroll Down Audience Attractor Animation -->
-            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 30px; cursor: pointer; opacity: 0.95; transition: all 0.3s;" onclick="document.getElementById('districtLeaderboardSection')•.scrollIntoView({ behavior: 'smooth' }) || document.querySelector('main').scrollIntoView({ behavior: 'smooth' });" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.04)';" onmouseout="this.style.opacity='0.95'; this.style.transform='scale(1)';">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 30px; cursor: pointer; opacity: 0.95; transition: all 0.3s;" onclick="document.getElementById('districtLeaderboardSection')?.scrollIntoView({ behavior: 'smooth' }) || document.querySelector('main').scrollIntoView({ behavior: 'smooth' });" onmouseover="this.style.opacity='1'; this.style.transform='scale(1.04)';" onmouseout="this.style.opacity='0.95'; this.style.transform='scale(1)';">
                 <span style="font-size: 0.74rem; text-transform: uppercase; font-weight: 900; letter-spacing: 1.5px; color: #fbbf24; margin-bottom: 8px; text-shadow: 0 0 12px rgba(245, 158, 11, 0.4); display: flex; align-items: center; gap: 6px;">
                     <i class="fas fa-trophy" style="color: #fbbf24; font-size: 0.82rem;"></i> Scroll Down to Explore Bihar 38-District Live NOC Leaderboard <i class="fas fa-chevron-down" style="color: #fbbf24;"></i>
                 </span>
@@ -5640,11 +5640,11 @@
             buttons.forEach(b => b.classList.remove('active'));
             if (btnEl) btnEl.classList.add('active');
             
-            const currentTab = document.getElementById('tabModeRising')•.style.color === 'rgb(52, 211, 153)' • 'rising' : 'districts';
+            const currentTab = document.getElementById('tabModeRising')?.style.color === 'rgb(52, 211, 153)' • 'rising' : 'districts';
             if (currentTab === 'rising') {
                 renderRisingStarStandings();
             } else {
-                renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')•.value || '');
+                renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')?.value || '');
             }
         }
 
@@ -5659,7 +5659,7 @@
                 if (btnAll38) { btnAll38.style.background = '#38bdf8'; btnAll38.style.color = '#000'; }
                 if (btnTop12) { btnTop12.style.background = 'rgba(255,255,255,0.06)'; btnTop12.style.color = '#cbd5e1'; }
             }
-            renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')•.value || '');
+            renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')?.value || '');
         }
 
         function filterLeaderboardDistricts(query) {
@@ -7209,3 +7209,4 @@ window.closeXpInfoModal = function() {
 </body>
 
 </html>
+        
