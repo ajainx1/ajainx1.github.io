@@ -1,13 +1,15 @@
 # Advanced Robots.txt for CyberKarma & AdityaSec Systems
 User-agent: *
 Allow: /
+Allow: /_next/static/
+Allow: /_next/
 Disallow: /api/
-Disallow: /_next/
 Disallow: /private/
 
 # Explicit Bot Directives
 User-agent: Googlebot
 Allow: /
+Allow: /_next/
 
 User-agent: Googlebot-Image
 Allow: /impact/
@@ -18,6 +20,7 @@ Allow: /favicon.svg
 
 User-agent: Bingbot
 Allow: /
+Allow: /_next/
 
 User-agent: Applebot
 Allow: /
