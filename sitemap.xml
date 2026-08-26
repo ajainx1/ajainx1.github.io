@@ -21,9 +21,15 @@
     <xhtml:link rel="alternate" hreflang="ja" href="https://cyberkarma.me/?lang=ja" />
     <xhtml:link rel="alternate" hreflang="ar" href="https://cyberkarma.me/?lang=ar" />
     <image:image>
-      <image:loc>https://cyberkarma.me/cyberkarma_banner.jpg</image:loc>
-      <image:title>Cyber Free Rice — Play Free Trivia to Feed Real Stray Dogs in Patna</image:title>
+      <image:loc>https://cyberkarma.me/og-image.jpg</image:loc>
+      <image:title>CyberKarma — Play Free Trivia, Feed Real Stray Dogs</image:title>
       <image:caption>Gamified Philanthropic Platform donating real bowls of rice and injured animal care in Patna, Bihar.</image:caption>
+      <image:geo_location>Patna, Bihar, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://cyberkarma.me/cyberkarma_hero_mascot.png</image:loc>
+      <image:title>CyberKarma Dog Mascot and 3D Golden Rice Coins</image:title>
+      <image:caption>Family-friendly mascot Karma welcoming players to donate rice by playing educational trivia.</image:caption>
       <image:geo_location>Patna, Bihar, India</image:geo_location>
     </image:image>
     <image:image>
