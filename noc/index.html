@@ -4776,7 +4776,7 @@
 
         // --- Celebration Firecrackers & Rocket System ---
         function triggerCelebration(visitorNumber) {
-            // 1. Create Modal HTML
+            // 1. Create Modal Backdrop HTML
             const modal = document.createElement('div');
             modal.id = 'celebrationModal';
             modal.style.cssText = `
@@ -4785,38 +4785,72 @@
                 left: 0;
                 width: 100%;
                 height: 100%;
-                background: rgba(11, 15, 25, 0.65);
-                backdrop-filter: blur(8px);
+                background: rgba(11, 15, 25, 0.78);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 z-index: 100000;
                 opacity: 0;
-                transition: opacity 0.5s ease;
+                transition: opacity 0.4s ease;
             `;
             
             const wrapper = document.createElement('div');
             wrapper.className = 'celebration-card-wrapper';
+            wrapper.style.cssText = `
+                transform: scale(0.85);
+                transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                max-width: 460px;
+                width: 90%;
+            `;
             
             const card = document.createElement('div');
             card.className = 'celebration-card';
+            card.style.cssText = `
+                background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.94));
+                border: 1.5px solid rgba(56, 189, 248, 0.4);
+                border-radius: 22px;
+                padding: 32px 26px;
+                text-align: center;
+                box-shadow: 0 25px 70px rgba(0, 0, 0, 0.75), 0 0 35px rgba(56, 189, 248, 0.22);
+                position: relative;
+                overflow: hidden;
+            `;
 
             card.innerHTML = `
-                <!-- Decorative absolute emojis popping out of card -->
-                <div style="position: absolute; left: -35px; top: 10%; font-size: 2.8rem; transform: rotate(-15deg); animation: float-balloon 3s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">ð</div>
-                <div style="position: absolute; right: -35px; bottom: 20%; font-size: 2.8rem; transform: rotate(15deg); animation: float-balloon 3s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">ð</div>
-                <div style="position: absolute; left: -30px; bottom: 12%; font-size: 2.2rem; transform: rotate(-10deg); animation: float-balloon 4s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">ð¥³</div>
-                <div style="position: absolute; right: -30px; top: 15%; font-size: 2.2rem; transform: rotate(10deg); animation: float-balloon 4s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">ð</div>
+                <!-- Ambient Background Glow -->
+                <div style="position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 240px; height: 240px; background: radial-gradient(circle, rgba(56, 189, 248, 0.25), transparent 70%); pointer-events: none;"></div>
+
+                <!-- Decorative corner emojis -->
+                <div style="position: absolute; left: 14px; top: 14px; font-size: 1.8rem; transform: rotate(-15deg); animation: float-balloon 3s infinite alternate ease-in-out; pointer-events: none; z-index: 10;">🎈</div>
+                <div style="position: absolute; right: 14px; top: 14px; font-size: 1.8rem; transform: rotate(15deg); animation: float-balloon 3s infinite alternate-reverse ease-in-out; pointer-events: none; z-index: 10;">✨</div>
                 
-                <div style="margin-bottom: 20px; position: relative; z-index: 2;">
-                    <span style="font-size: 3.8rem; animation: float-trophy 2s infinite alternate ease-in-out; display: inline-block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));">ð</span>
+                <div style="margin-bottom: 12px; position: relative; z-index: 2;">
+                    <span style="font-size: 3.8rem; animation: float-trophy 2.2s infinite alternate ease-in-out; display: inline-block; filter: drop-shadow(0 8px 16px rgba(245, 158, 11, 0.35));">🏆</span>
                 </div>
-                <h2 class="neon-text-glow" style="position: relative; z-index: 2;">Milestone Visitor!</h2>
-                <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; position: relative; z-index: 2;">
-                    Congratulations! You are visitor <strong style="color: var(--primary); font-size: 1.3rem; font-weight: 800; text-shadow: 0 0 5px rgba(15, 76, 129, 0.15);">#${visitorNumber.toLocaleString('en-IN')}</strong> to the Bihar NOC Support Portal.
+
+                <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); padding: 4px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; color: #fbbf24; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.8px;">
+                    🏅 Official State NOC Milestone
+                </div>
+
+                <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.85rem; font-weight: 900; color: #ffffff; margin: 0 0 14px 0; letter-spacing: -0.5px; text-shadow: 0 0 25px rgba(56, 189, 248, 0.4); position: relative; z-index: 2;">
+                    Milestone Visitor!
+                </h2>
+
+                <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 12px 18px; margin: 0 0 16px 0; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); position: relative; z-index: 2;">
+                    <div style="font-size: 0.7rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1.2px; color: #94a3b8; margin-bottom: 4px;">OFFICIAL VISITOR NUMBER</div>
+                    <div style="font-family: 'Outfit', 'JetBrains Mono', monospace; font-size: 2.2rem; font-weight: 900; color: #38bdf8; line-height: 1.1; text-shadow: 0 0 20px rgba(56, 189, 248, 0.6);">
+                        #${visitorNumber.toLocaleString('en-IN')}
+                    </div>
+                </div>
+
+                <p style="font-family: 'Inter', sans-serif; font-size: 0.92rem; color: #cbd5e1; line-height: 1.55; margin: 0 0 22px 0; position: relative; z-index: 2;">
+                    Congratulations! You have crossed a key milestone on the <strong style="color: #38bdf8; font-weight: 700;">Bihar State NOC &amp; NICNET</strong> Monitoring Ecosystem.
                 </p>
-                <button id="dismissCelebrationBtn" class="btn glow-btn" style="padding: 12px 24px; border-radius: 20px; font-weight: 700; width: 100%; cursor: pointer; position: relative; z-index: 2;">
-                    Continue to Portal
+
+                <button id="dismissCelebrationBtn" style="font-family: 'Outfit', sans-serif; font-size: 1.02rem; font-weight: 800; padding: 13px 26px; border-radius: 12px; width: 100%; cursor: pointer; background: linear-gradient(135deg, #0284c7, #10b981); color: #ffffff; border: 1.5px solid rgba(56, 189, 248, 0.5); box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45); transition: all 0.25s ease; position: relative; z-index: 2;">
+                    Continue to Portal &nbsp;<i class="fas fa-arrow-right" style="font-size: 0.85rem;"></i>
                 </button>
             `;
             
@@ -4830,7 +4864,7 @@
                 wrapper.style.transform = 'scale(1)';
             }, 10);
 
-            // 2. Create Canvas
+            // 2. Create Fireworks Canvas
             const canvas = document.createElement('canvas');
             canvas.style.cssText = `
                 position: fixed;
@@ -4858,16 +4892,10 @@
             const emojis = [];
             
             const colors = [
-                '#f97316', // Saffron
-                '#0f4c81', // Royal Blue
-                '#10b981', // Emerald Green
-                '#f59e0b', // Amber
-                '#38bdf8', // Sky Blue
-                '#ec4899', // Pink
-                '#8b5cf6'  // Purple
+                '#f97316', '#0f4c81', '#10b981', '#f59e0b', '#38bdf8', '#ec4899', '#8b5cf6'
             ];
 
-            const emojiList = ['ð', 'â¨', 'ð¥³', 'ð', 'ð¥', 'ð', 'ð', 'ð', 'ð'];
+            const emojiList = ['🎉', '✨', '🎈', '⭐', '🎊', '🚀', '🔥', '🏆', '💎'];
 
             class Rocket {
                 constructor() {
@@ -4884,7 +4912,6 @@
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    // ascending sparkles trail
                     if (Math.random() < 0.45) {
                         particles.push(new Particle(this.x, this.y, this.color, true));
                     }
@@ -4897,7 +4924,7 @@
                     return this.y <= this.ty || this.vy >= 0;
                 }
                 explode() {
-                    const count = Math.floor(Math.random() * 40) + 50; // denser bursts!
+                    const count = Math.floor(Math.random() * 40) + 50;
                     for (let i = 0; i < count; i++) {
                         particles.push(new Particle(this.x, this.y, this.color, false));
                     }
@@ -4911,10 +4938,10 @@
                     this.isTrail = isTrail;
                     if (isTrail) {
                         this.vx = (Math.random() - 0.5) * 2;
-                        this.vy = (Math.random() * 2); // drifts down slowly
+                        this.vy = (Math.random() * 2);
                         this.decay = Math.random() * 0.05 + 0.03;
                     } else {
-                        this.vx = (Math.random() - 0.5) * 12; // wider bursts!
+                        this.vx = (Math.random() - 0.5) * 12;
                         this.vy = (Math.random() - 0.5) * 12 - 2;
                         this.decay = Math.random() * 0.015 + 0.008;
                     }
@@ -5003,83 +5030,97 @@
             let animationFrameId;
             let launchTimer = 0;
             
-            function animate() {
+            function loop() {
                 ctx.clearRect(0, 0, width, height);
-                
+
                 launchTimer++;
-                // Higher rocket frequency!
-                if (launchTimer % 15 === 0 && rockets.length < 8) {
+                if (launchTimer % 22 === 0) {
                     rockets.push(new Rocket());
+                    if (Math.random() < 0.6) rockets.push(new Rocket());
                 }
-                
-                // Spawn confetti!
-                if (launchTimer % 5 === 0 && confetti.length < 100) {
+
+                if (launchTimer % 4 === 0) {
                     confetti.push(new ConfettiPiece());
                 }
 
-                // Spawn floating emojis!
-                if (launchTimer % 25 === 0 && emojis.length < 15) {
+                if (launchTimer % 18 === 0) {
                     emojis.push(new FloatingEmoji());
                 }
-                
+
                 for (let i = rockets.length - 1; i >= 0; i--) {
-                    rockets[i].update();
-                    if (rockets[i].shouldExplode()) {
-                        rockets[i].explode();
+                    const r = rockets[i];
+                    r.update();
+                    if (r.shouldExplode()) {
+                        r.explode();
                         rockets.splice(i, 1);
                     }
                 }
-                
+
                 for (let i = particles.length - 1; i >= 0; i--) {
-                    particles[i].update();
-                    if (particles[i].alpha <= 0) {
+                    const p = particles[i];
+                    p.update();
+                    p.draw();
+                    if (p.alpha <= 0) {
                         particles.splice(i, 1);
-                    } else {
-                        particles[i].draw();
                     }
                 }
 
                 for (let i = confetti.length - 1; i >= 0; i--) {
-                    confetti[i].update();
-                    if (confetti[i].y > height + 20) {
+                    const c = confetti[i];
+                    c.update();
+                    c.draw();
+                    if (c.y > height + 20) {
                         confetti.splice(i, 1);
-                    } else {
-                        confetti[i].draw();
                     }
                 }
 
                 for (let i = emojis.length - 1; i >= 0; i--) {
-                    emojis[i].update();
-                    if (emojis[i].y < -40 || emojis[i].alpha <= 0) {
+                    const e = emojis[i];
+                    e.update();
+                    e.draw();
+                    if (e.y < -40 || e.alpha <= 0) {
                         emojis.splice(i, 1);
-                    } else {
-                        emojis[i].draw();
                     }
                 }
-                
-                animationFrameId = requestAnimationFrame(animate);
-            }
-            
-            animate();
 
-            function dismiss() {
+                animationFrameId = requestAnimationFrame(loop);
+            }
+
+            loop();
+
+            // 4. Dismiss Action Handler
+            const dismissBtn = document.getElementById('dismissCelebrationBtn');
+            function closeCelebration() {
                 modal.style.opacity = '0';
-                wrapper.style.transform = 'scale(0.9)';
+                wrapper.style.transform = 'scale(0.85)';
+                canvas.style.opacity = '0';
+                canvas.style.transition = 'opacity 0.5s ease';
                 setTimeout(() => {
                     cancelAnimationFrame(animationFrameId);
-                    modal.remove();
-                    canvas.remove();
+                    if (modal.parentNode) modal.parentNode.removeChild(modal);
+                    if (canvas.parentNode) canvas.parentNode.removeChild(canvas);
                 }, 500);
             }
 
-            document.getElementById('dismissCelebrationBtn').addEventListener('click', dismiss);
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) dismiss();
-            });
-            setTimeout(dismiss, 12000); // dismiss after 12s of celebration
-        }
+            if (dismissBtn) {
+                dismissBtn.onclick = closeCelebration;
+                dismissBtn.onmouseenter = () => {
+                    dismissBtn.style.transform = 'translateY(-2px) scale(1.02)';
+                    dismissBtn.style.boxShadow = '0 12px 30px rgba(2, 132, 199, 0.6)';
+                };
+                dismissBtn.onmouseleave = () => {
+                    dismissBtn.style.transform = 'translateY(0) scale(1)';
+                    dismissBtn.style.boxShadow = '0 8px 25px rgba(2, 132, 199, 0.45)';
+                };
+            }
+            modal.onclick = (e) => {
+                if (e.target === modal) closeCelebration();
+            };
 
-        // --- Windows 11 Network Boot Guide Modal ---
+            // 5. Play Fanfare Audio
+            playFanfareAudio();
+        }
+        
         function openNetworkBootGuide() {
             if (document.getElementById('networkBootGuideModal')) return;
 
