@@ -4112,7 +4112,7 @@
 
         async function loadContactsDatabase() {
             try {
-                const response = await fetch('contacts.json ?t=' + new Date().getTime());
+                const response = await fetch('contacts.json?t=' + new Date().getTime());
                 if (response.ok) {
                     contactsDatabase = await response.json();
                     console.log("Contacts database loaded successfully. Count: " + contactsDatabase.length);
@@ -4215,7 +4215,7 @@
 
             if (statusTarget) {
                 try {
-                    const response = await fetch(`ping.php ?target=${statusTarget}`);
+                    const response = await fetch(`ping.php?target=${statusTarget}`);
                     typingIndicator.remove();
                     if (response.ok) {
                         const data = await response.json();
@@ -4300,7 +4300,7 @@
                         messages: [
                             {
                                 role: 'system',
-                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Video Conference (VC) Support & Operations Desk: IP Phone / Ext: 23004, Email: vc-bihar@nic.in (dedicated VC team). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action ?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: https://attendance.gov.in. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547906. This entire Bihar State NOC Portal from A to Z (including UI/UX design, real-time monitoring, speed test diagnostics, and AI assistant) was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain, the founder, creator, or who built the portal, provide his full profile: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +910612-2547906, email: seca1.shq.br@nic.in.' + dynamicContext
+                                content: 'You are the Bihar State NOC AI assistant. Be helpful, concise and direct. Answer questions about Bihar State NOC, support contacts, service statuses (Bihar NOC Patna: 99.98%, NKN Core: 100%, District links: 99.95%), upload limits (max 500MB). Video Conference (VC) Support & Operations Desk: IP Phone / Ext: 23004, Email: vc-bihar@nic.in (dedicated VC team). Engineers can change their TACACS/TACS password at the portal link: https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb and access the FMS Billing & Attendance System at: https://attendance.gov.in. Address: Soochna Bhawan Campus, Patna. Phone: 0612-2547906. This entire Bihar State NOC Portal from A to Z (including UI/UX design, real-time monitoring, speed test diagnostics, and AI assistant) was architected and founded by Aditya Jain, Security Administrator (NIC Bihar State HQ, Patna). If asked about Aditya Jain, the founder, creator, or who built the portal, provide his full profile: Security Administrator & Founder/Architect of the Bihar State NOC Portal & Bot, contact: +910612-2547906, email: seca1.shq.br@nic.in.' + dynamicContext
                             },
                             ...chatHistory,
                             { role: 'user', content: text }
@@ -5416,7 +5416,7 @@
             const outagesHeader = document.getElementById("outages-card-header");
 
             function checkOutages() {
-                fetch("alert/api.php ?endpoint=status")
+                fetch("alert/api.php?endpoint=status")
                     .then(res => {
                         if (!res.ok) throw new Error("API Offline");
                         return res.json();
@@ -5793,7 +5793,7 @@
             if (refreshIcon) refreshIcon.classList.add('fa-spin');
 
             try {
-                const res = await fetch('leaderboard_api.php ?t=' + Date.now());
+                const res = await fetch('leaderboard_api.php?t=' + Date.now());
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json();
                 window.leaderboardData = data;
@@ -5924,7 +5924,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php ?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=checkin&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=checkin&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -5955,7 +5955,7 @@
             const xp = Number(hits || 3000).toLocaleString();
             const lat = latency || '12ms';
             const msg = `ð *${districtName || 'District'} DHQ* is currently *Rank #${r}* on the Bihar NOC Leaderboard!\nâ¡ *${xp} Activity XP* Logged | ð¶ *${lat}* Latency\n\nð Check live status & boost our district: /noc/`;
-            const url = `https://api.whatsapp.com/send ?text=${encodeURIComponent(msg)}`;
+            const url = `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
             window.open(url, '_blank');
         };
 
@@ -5965,7 +5965,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php ?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=speed_test&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=speed_test&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -5996,7 +5996,7 @@
                 if (typeof playCelebrationTone === 'function') {
                     playCelebrationTone();
                 }
-                const res = await fetch(`leaderboard_api.php ?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=audit_verify&t=${Date.now()}`);
+                const res = await fetch(`leaderboard_api.php?boost=1&district=${encodeURIComponent(districtCode)}&ajax=1&action=audit_verify&t=${Date.now()}`);
                 const data = await res.json();
 
                 if (res.status === 429) {
@@ -6151,7 +6151,7 @@
                             <i class="fab fa-whatsapp" style="font-size: 1.1rem;"></i> Share Scorecard
                         </button>
                     </div>
-                    <a href="javascript:void(0)" onclick="window.verifyDistrictAuditXP('${district.code}', '${district.name.replace(/'/g, "\\'")}', 'nic/index.php ?dir=DISTRICT+AUDIT+-+2025-2026')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); padding: 10px 14px; border-radius: 8px; font-size: 0.78rem; color: #f8fafc; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: all 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.25)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.12)';">
+                    <a href="javascript:void(0)" onclick="window.verifyDistrictAuditXP('${district.code}', '${district.name.replace(/'/g, "\\'")}', 'nic/index.php?dir=DISTRICT+AUDIT+-+2025-2026')" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4); padding: 10px 14px; border-radius: 8px; font-size: 0.78rem; color: #f8fafc; text-decoration: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: all 0.2s;" onmouseover="this.style.background='rgba(16, 185, 129, 0.25)';" onmouseout="this.style.background='rgba(16, 185, 129, 0.12)';">
                         <div style="display: flex; align-items: center; gap: 8px;">
                             <i class="fas fa-clipboard-check" style="color: #10b981; font-size: 1.1rem;"></i>
                             <div>
@@ -6171,7 +6171,7 @@
                         </div>
                         <span style="background: #38bdf8; color: #0b0f19; font-weight: 900; font-size: 0.72rem; padding: 3px 8px; border-radius: 4px; white-space: nowrap;">+150 XP</span>
                     </a>
-                    <a href="nic/index.php ?dir=MAC+Weekly+UP-Date" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(56,189,248,0.15)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
+                    <a href="nic/index.php?dir=MAC+Weekly+UP-Date" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(56,189,248,0.15)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
                         <i class="fas fa-network-wired" style="color: #38bdf8; font-size: 1rem;"></i> <div><strong>Weekly MAC Sheets</strong><div style="font-size:0.65rem; color:#94a3b8;">Switch Binding Logs</div></div>
                     </a>
                     <a href="/docs/SOP_Uninstall_S1_EDR.pdf" target="_blank" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); padding: 8px 12px; border-radius: 8px; font-size: 0.76rem; color: #cbd5e1; text-decoration: none; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(239,68,68,0.15)'; this.style.borderColor='#ef4444';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.12)';">
@@ -6306,7 +6306,7 @@
             errorMsg.style.display = 'none';
 
             try {
-                const res = await fetch('login.php ?action=login', {
+                const res = await fetch('login.php?action=login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password })
@@ -6353,7 +6353,7 @@
 
         async function handlePortalLogout() {
             try {
-                await fetch('login.php ?action=logout');
+                await fetch('login.php?action=logout');
                 location.reload();
             } catch (err) {
                 location.reload();
@@ -7022,9 +7022,9 @@ window.runLiveBandwidthTest = async function() {
     consoleBox.innerHTML = '<span style="color:#f59e0b;">> INITIALIZING TUNNEL TO ' + scopeLabel + '...</span>';
 
     var hostOrigin = window.location.origin || (window.location.protocol + '//' + window.location.host);
-    var urlPing = hostOrigin + '/alert/bandwidth.php ?action=ping';
-    var urlDl = hostOrigin + '/alert/bandwidth.php ?action=download&size=' + payloadSizeMB;
-    var urlUl = hostOrigin + '/alert/bandwidth.php ?action=upload';
+    var urlPing = hostOrigin + '/alert/bandwidth.php?action=ping';
+    var urlDl = hostOrigin + '/alert/bandwidth.php?action=download&size=' + payloadSizeMB;
+    var urlUl = hostOrigin + '/alert/bandwidth.php?action=upload';
 
     try {
         logToConsole('TRANSMITTING ICMP ECHO (' + packetSizeKB + 'KB PACKET) TO ' + (testScope === 'internet' ? 'WAN EDGE' : 'CORE INTRANET') + '...', '#38bdf8');
