@@ -4475,8 +4475,8 @@
                         </div>
                         <div style="text-align: left;">
                             <div style="font-size: 0.65rem; color: #94a3b8; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">District Nodes</div>
-                            <div style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 900; color: #38bdf8; line-height: 1; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);">
-                                <span id="heroStatDistrictNodes">38 / 38</span> <span id="heroStatDistrictNodesBadge" style="font-size: 0.75rem; color: #10b981; font-weight: 800;">ONLINE</span>
+                            <div style="font-family: 'Outfit', sans-serif; font-size: 1.45rem; font-weight: 900; color: #38bdf8; line-height: 1; text-shadow: 0 0 15px rgba(56, 189, 248, 0.4); white-space: nowrap; display: flex; align-items: baseline; gap: 6px;">
+                                <span id="heroStatDistrictNodes">38 / 38</span><span id="heroStatDistrictNodesBadge" style="font-size: 0.75rem; color: #10b981; font-weight: 800; text-transform: uppercase;">ONLINE</span>
                             </div>
                         </div>
 
@@ -6429,7 +6429,7 @@
                             heroBadgeEl.style.color = '#10b981';
                         } else {
                             heroDistEl.style.color = '#fbbf24';
-                            heroBadgeEl.textContent = `${onlineCount} ONLINE`;
+                            heroBadgeEl.textContent = 'ONLINE';
                             heroBadgeEl.style.color = '#10b981';
                         }
                     }
