@@ -4844,6 +4844,45 @@
 
 
 
+        
+        /* VC Operations Desk High-Contrast Button */
+        .header-portal-btn.header-vcdesk-btn {
+            background: rgba(14, 165, 233, 0.12);
+            border: 1px solid rgba(14, 165, 233, 0.35);
+            color: #0284c7;
+            font-weight: 700;
+        }
+        .header-portal-btn.header-vcdesk-btn i {
+            color: #10b981;
+        }
+        .header-portal-btn.header-vcdesk-btn .vcdesk-ext {
+            color: #0369a1;
+            font-weight: 800;
+        }
+        body.dark-mode .header-portal-btn.header-vcdesk-btn {
+            background: rgba(14, 165, 233, 0.18);
+            border-color: rgba(56, 189, 248, 0.4);
+            color: #38bdf8;
+        }
+        body.dark-mode .header-portal-btn.header-vcdesk-btn i {
+            color: #34d399;
+        }
+        body.dark-mode .header-portal-btn.header-vcdesk-btn .vcdesk-ext {
+            color: #ffffff;
+        }
+        body.light-mode .header-portal-btn.header-vcdesk-btn {
+            background: #e0f2fe;
+            border-color: #38bdf8;
+            color: #0369a1;
+        }
+        body.light-mode .header-portal-btn.header-vcdesk-btn i {
+            color: #047857;
+        }
+        body.light-mode .header-portal-btn.header-vcdesk-btn .vcdesk-ext {
+            color: #0c4a6e;
+            font-weight: 900;
+        }
+
         .header-portal-btn {
 
             display: inline-flex;
@@ -5636,10 +5675,8 @@
 
         <div class="header-actions" style="display: flex; align-items: center; gap: 10px;">
 
-            <a href="mailto:vc-bihar@nic.in" class="header-portal-btn" style="background: linear-gradient(135deg, rgba(14, 165, 233, 0.2), rgba(16, 185, 129, 0.2)); border: 1px solid rgba(56, 189, 248, 0.4); color: #38bdf8;" title="State VC Operations Desk: Ext 23004 | Email: vc-bihar@nic.in">
-
-                <i class="fas fa-headset" style="color: #10b981;"></i> <span style="font-weight: 700;">VC Desk: <strong style="color: #ffffff;">Ext 23004</strong> &bull; vc-bihar@nic.in</span>
-
+            <a href="mailto:vc-bihar@nic.in" class="header-portal-btn header-vcdesk-btn" title="State VC Operations Desk: Ext 23004 | Email: vc-bihar@nic.in">
+                <i class="fas fa-headset"></i> <span>VC Desk: <strong class="vcdesk-ext">Ext 23004</strong> &bull; vc-bihar@nic.in</span>
             </a>
 
             <a href="/vc/" class="header-portal-btn btn-vc-active" target="_blank" title="Video Conference Studio Monitoring">
