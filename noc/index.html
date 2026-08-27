@@ -5635,7 +5635,148 @@
 
 
 
-</style>
+
+        /* ===================================================================
+           DISTINCT NON-REPEATING 10-COLOR HERO ACTION BUTTONS PALETTE
+           =================================================================== */
+        .hero-actions-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            align-items: center;
+            margin: 28px auto 35px auto;
+            max-width: 1400px;
+            padding: 0 15px;
+        }
+
+        .hero-actions-container .btn {
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 10px 18px !important;
+            border-radius: 12px !important;
+            font-family: 'Outfit', sans-serif !important;
+            font-size: 0.88rem !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            color: #ffffff !important;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            cursor: pointer !important;
+            border-width: 1.5px !important;
+            border-style: solid !important;
+            white-space: nowrap !important;
+        }
+
+        .hero-actions-container .btn:hover {
+            transform: translateY(-3px) scale(1.03) !important;
+            color: #ffffff !important;
+        }
+
+        /* 1. Tools & Softwares - 🌊 Ocean Cyan */
+        .btn-tools {
+            background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%) !important;
+            border-color: rgba(6, 182, 212, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(6, 182, 212, 0.4) !important;
+        }
+        .btn-tools:hover {
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.65) !important;
+        }
+
+        /* 2. Live VC Studio Monitor - 🔷 Royal Sapphire Blue */
+        .btn-vc {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+            border-color: rgba(96, 165, 250, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.4) !important;
+        }
+        .btn-vc:hover {
+            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.65) !important;
+        }
+
+        /* 3. Daily Progress Report (DPR) - 🍊 Sunset Tangerine Orange */
+        .btn-dpr {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%) !important;
+            border-color: rgba(251, 146, 60, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(249, 115, 22, 0.4) !important;
+        }
+        .btn-dpr:hover {
+            box-shadow: 0 8px 25px rgba(249, 115, 22, 0.65) !important;
+        }
+
+        /* 4. Access Intranet Portal - 🌌 Midnight Indigo */
+        .btn-portal {
+            background: linear-gradient(135deg, #4338ca 0%, #3730a3 100%) !important;
+            border-color: rgba(129, 140, 248, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(67, 56, 202, 0.4) !important;
+        }
+        .btn-portal:hover {
+            box-shadow: 0 8px 25px rgba(67, 56, 202, 0.65) !important;
+        }
+
+        /* 5. AEBAS Attendance - 🌿 Emerald Mint */
+        .btn-aebas {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+            border-color: rgba(52, 211, 153, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(16, 185, 129, 0.4) !important;
+            color: #ffffff !important;
+        }
+        .btn-aebas:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.65) !important;
+            color: #ffffff !important;
+        }
+
+        /* 6. Change TACS Password - 🌹 Crimson Scarlet */
+        .btn-tacs {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+            border-color: rgba(248, 113, 113, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(239, 68, 68, 0.4) !important;
+        }
+        .btn-tacs:hover {
+            box-shadow: 0 8px 25px rgba(239, 68, 68, 0.65) !important;
+        }
+
+        /* 7. FMS Billing System - 🔮 Electric Magenta Orchid */
+        .btn-fms {
+            background: linear-gradient(135deg, #c026d3 0%, #9333ea 100%) !important;
+            border-color: rgba(232, 121, 249, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(192, 38, 211, 0.4) !important;
+        }
+        .btn-fms:hover {
+            box-shadow: 0 8px 25px rgba(192, 38, 211, 0.65) !important;
+        }
+
+        /* 8. Live Bandwidth & Speed Test - ⚡ Amber Sun Gold */
+        .btn-speedtest {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+            border-color: rgba(252, 211, 77, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(245, 158, 11, 0.4) !important;
+        }
+        .btn-speedtest:hover {
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.65) !important;
+        }
+
+        /* 9. NIC Network Monitor - 💜 Amethyst Violet Purple */
+        .btn-monitor {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%) !important;
+            border-color: rgba(196, 181, 253, 0.7) !important;
+            box-shadow: 0 4px 18px rgba(139, 92, 246, 0.4) !important;
+        }
+        .btn-monitor:hover {
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.65) !important;
+        }
+
+        /* 10. Nivetti CLI Commands - 🛡️ Cyber Stealth Titanium */
+        .btn-cli {
+            background: linear-gradient(135deg, #334155 0%, #1e293b 100%) !important;
+            border-color: rgba(56, 189, 248, 0.6) !important;
+            box-shadow: 0 4px 18px rgba(15, 23, 42, 0.6) !important;
+        }
+        .btn-cli:hover {
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4) !important;
+            border-color: #38bdf8 !important;
+        }
+
+    </style>
 
 <!-- Google Fonts already loaded in <head> above -->
 
@@ -6069,90 +6210,37 @@
 
 
             <div class="hero-actions-container">
-
-                <a href="/vc/" class="btn btn-vc" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border: 1.5px solid #38bdf8; box-shadow: 0 6px 25px rgba(14, 165, 233, 0.45); color: #ffffff;" title="38-District Video Conference Studio Codec (10.X.X.100) & QoS Monitor">
-
-                    <i class="fas fa-video"></i> 🎥 Live VC Studio Monitor (38 Districts)
-
+                <a href="http://10.133.22.8/nic/index.php?dir=TOOLS+-+SOFTWARES" class="btn btn-tools" target="_blank" rel="noopener noreferrer" title="Official NOC Tools, ISOs, Drivers &amp; Software Repository">
+                    <i class="fas fa-toolbox"></i> Tools &amp; Softwares
                 </a>
-
-                <a href="https://servicedesk.nic.in/" class="btn btn-primary" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
-
+                <a href="http://10.133.22.8/vc/" class="btn btn-vc" target="_blank" rel="noopener noreferrer" title="38-District Video Conference Studio Codec (10.X.X.100) &amp; QoS Monitor">
+                    <i class="fas fa-video"></i> Live VC Studio Monitor (38 Districts)
+                </a>
+                <a href="http://10.133.0.51/ProgressReport/LoginPage.aspx" class="btn btn-dpr" target="_blank" rel="noopener noreferrer" title="DPR Daily Progress Report - must be submitted daily">
                     <i class="fas fa-file-invoice"></i> Daily Progress Report (DPR)
-
                 </a>
-
-                <a href="/noc/nic/" class="btn btn-portal" target="_blank">
-
+                <a href="http://10.133.22.8/nic/" class="btn btn-portal" target="_blank" title="Access Intranet Document Repository &amp; File Hub">
                     <i class="fas fa-globe"></i> Access Intranet Portal
-
                 </a>
-
-                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action•portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" class="btn btn-tacs" target="_blank" rel="noopener noreferrer">
-
+                <a href="https://fmsbh.attendance.gov.in/" class="btn btn-aebas" target="_blank" rel="noopener noreferrer" title="Bihar FMS AEBAS Attendance Portal - attendance.gov.in">
+                    <i class="fas fa-fingerprint"></i> AEBAS Attendance
+                </a>
+                <a href="https://taspass.nic.in:8443/mydevicesportal/PortalSetup.action?portal=29c6c87d-92c1-48d7-80f4-d49d36e5a1eb" class="btn btn-tacs" target="_blank" rel="noopener noreferrer" title="Change TACS Network Password">
                     <i class="fas fa-key"></i> Change TACS Password
-
                 </a>
-
-                <a href="https://attendance.gov.in" class="btn btn-fms" target="_blank" rel="noopener noreferrer">
-
-                    <i class="fas fa-user-check"></i> FMS Billing & Attendance System
-
+                <a href="http://10.133.0.51:8080/FMS-attendance/index.php" class="btn btn-fms" target="_blank" rel="noopener noreferrer" title="Internal FMS Billing &amp; Attendance System">
+                    <i class="fas fa-user-check"></i> FMS Billing &amp; Attendance System
                 </a>
-
-                <style>@keyframes pulse-speedtest { 0% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(14, 165, 233, 0); } 100% { box-shadow: 0 0 0 0 rgba(14, 165, 233, 0); } }
-
-        /* Elite 3D Hover Physics for Buttons */
-
-        .btn {
-
-            transform: perspective(500px) translateZ(0);
-
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-
-        }
-
-        .btn:hover {
-
-            transform: perspective(500px) translateZ(10px) scale(1.04) translateY(-3px) !important;
-
-        }
-
-        @keyframes pulse-emerald {
-
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-
-            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
-
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-
-        }
-
-
-
-</style>
-
-<button onclick="window.openBandwidthModal();" class="btn btn-speedtest" title="Measure real-time latency, throughput & jitter to State NOC Backbone" style="background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); color: #ffffff; border: 1px solid rgba(56, 189, 248, 0.5); box-shadow: 0 4px 15px rgba(14, 165, 233, 0.35); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; border-radius: 12px; padding: 12px 20px; transition: all 0.3s ease;; animation: pulse-speedtest 2s infinite;">
-
-                    <i class="fas fa-tachometer-alt"></i> Live Bandwidth & Speed Test
-
+                <button onclick="window.openBandwidthModal();" class="btn btn-speedtest" title="Measure real-time latency, throughput &amp; jitter to State NOC Backbone">
+                    <i class="fas fa-tachometer-alt"></i> Live Bandwidth &amp; Speed Test
                 </button>
-
-                <a href="/alert/" class="btn btn-gold" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches & Core Routers">
-
+                <a href="/alert/" class="btn btn-monitor" target="_blank" rel="noopener noreferrer" title="Real-time Ping Monitoring for Bihar Floor Switches &amp; Core Routers">
                     <i class="fas fa-network-wired"></i> NIC Network Monitor
-
                 </a>
-
-                <button onclick="window.openCliCommandModal();" class="btn btn-portal" title="View Nivetti NiOS vs Cisco Command Reference & CLI Cheat Sheet">
-
+                <button onclick="window.openCliCommandModal();" class="btn btn-cli" title="View Nivetti NiOS vs Cisco Command Reference &amp; CLI Cheat Sheet">
                     <i class="fas fa-terminal"></i> Nivetti CLI Commands
-
                 </button>
-
             </div>
-
-
 
             <!-- Dynamic Scroll Down Audience Attractor Animation -->
 
