@@ -6780,9 +6780,9 @@
 
                             <span style="font-size: 0.7rem; color: #94a3b8; font-weight: 800; padding: 0 4px 0 10px; text-transform: uppercase; letter-spacing: 0.4px;"><i class="fas fa-sort"></i></span>
 
-                            <button id="btnSortRank" onclick="setLeaderboardSort(\'rank\')" style="background: #38bdf8; color: #000; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.74rem; font-weight: 800; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35); display: inline-flex; align-items: center; gap: 5px;" title="Sort by Total XP Leaderboard Rank"><i class="fas fa-sort-numeric-down"></i> Rank</button>
+                            <button id="btnSortRank" onclick="setLeaderboardSort('rank')" style="background: #38bdf8; color: #000; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.74rem; font-weight: 800; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.35); display: inline-flex; align-items: center; gap: 5px;" title="Sort by Total XP Leaderboard Rank"><i class="fas fa-sort-numeric-down"></i> Rank</button>
 
-                            <button id="btnSortActive" onclick="setLeaderboardSort(\'last_active\')" style="background: transparent; color: #94a3b8; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;" title="Sort by Most Recent Active Interaction"><i class="far fa-clock"></i> Last Active</button>
+                            <button id="btnSortActive" onclick="setLeaderboardSort('last_active')" style="background: transparent; color: #94a3b8; border: none; padding: 6px 12px; border-radius: 16px; font-size: 0.74rem; font-weight: 700; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 5px;" title="Sort by Most Recent Active Interaction"><i class="far fa-clock"></i> Last Active</button>
 
                         </div>
 
@@ -11314,194 +11314,172 @@
 
 
 
+        window.leaderboardSortKey = 'rank';
+        window.leaderboardViewMode = 'top12';
+        window.leaderboardSelectedDivision = 'all';
+
+        function setLeaderboardSort(sortKey) {
+            window.leaderboardSortKey = sortKey;
+            const btnSortRank = document.getElementById('btnSortRank');
+            const btnSortActive = document.getElementById('btnSortActive');
+
+            if (sortKey === 'rank') {
+                if (btnSortRank) {
+                    btnSortRank.style.background = '#38bdf8';
+                    btnSortRank.style.color = '#000';
+                    btnSortRank.style.fontWeight = '800';
+                    btnSortRank.style.boxShadow = '0 2px 8px rgba(56, 189, 248, 0.35)';
+                }
+                if (btnSortActive) {
+                    btnSortActive.style.background = 'transparent';
+                    btnSortActive.style.color = '#94a3b8';
+                    btnSortActive.style.fontWeight = '700';
+                    btnSortActive.style.boxShadow = 'none';
+                }
+            } else if (sortKey === 'last_active') {
+                if (btnSortActive) {
+                    btnSortActive.style.background = '#38bdf8';
+                    btnSortActive.style.color = '#000';
+                    btnSortActive.style.fontWeight = '800';
+                    btnSortActive.style.boxShadow = '0 2px 8px rgba(56, 189, 248, 0.35)';
+                }
+                if (btnSortRank) {
+                    btnSortRank.style.background = 'transparent';
+                    btnSortRank.style.color = '#94a3b8';
+                    btnSortRank.style.fontWeight = '700';
+                    btnSortRank.style.boxShadow = 'none';
+                }
+            }
+            renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')?.value || '');
+        }
+
         function setLeaderboardView(mode) {
-
             window.leaderboardViewMode = mode;
-
             const btnTop12 = document.getElementById('btnTop12');
-
             const btnAll38 = document.getElementById('btnAll38');
 
             if (mode === 'top12') {
-
-                if (btnTop12) { btnTop12.style.background = '#38bdf8'; btnTop12.style.color = '#000'; }
-
-                if (btnAll38) { btnAll38.style.background = 'rgba(255,255,255,0.06)'; btnAll38.style.color = '#cbd5e1'; }
-
+                if (btnTop12) {
+                    btnTop12.style.background = '#38bdf8';
+                    btnTop12.style.color = '#000';
+                    btnTop12.style.fontWeight = '800';
+                }
+                if (btnAll38) {
+                    btnAll38.style.background = 'rgba(255,255,255,0.06)';
+                    btnAll38.style.color = '#cbd5e1';
+                    btnAll38.style.fontWeight = '700';
+                }
             } else {
-
-                if (btnAll38) { btnAll38.style.background = '#38bdf8'; btnAll38.style.color = '#000'; }
-
-                if (btnTop12) { btnTop12.style.background = 'rgba(255,255,255,0.06)'; btnTop12.style.color = '#cbd5e1'; }
-
+                if (btnAll38) {
+                    btnAll38.style.background = '#38bdf8';
+                    btnAll38.style.color = '#000';
+                    btnAll38.style.fontWeight = '800';
+                }
+                if (btnTop12) {
+                    btnTop12.style.background = 'rgba(255,255,255,0.06)';
+                    btnTop12.style.color = '#cbd5e1';
+                    btnTop12.style.fontWeight = '700';
+                }
             }
-
             renderLeaderboardStandings(document.getElementById('leaderboardSearchInput')?.value || '');
-
         }
-
-
 
         function filterLeaderboardDistricts(query) {
-
             renderLeaderboardStandings(query);
-
         }
 
-
-
         function renderLeaderboardStandings(searchQuery = '') {
-
             const standingsContainer = document.getElementById('leaderboardStandingsGrid');
-
             const countBadge = document.getElementById('standingsCountBadge');
-
             if (!standingsContainer || !window.leaderboardData) return;
 
-
-
-            let list = window.leaderboardData.all_rankings || [];
-
+            let list = [...(window.leaderboardData.all_rankings || [])];
             const q = searchQuery.toLowerCase().trim();
 
+            // 1. Sort according to sort key
+            if (window.leaderboardSortKey === 'last_active') {
+                list.sort((a, b) => {
+                    const timeA = a.last_checked_in_timestamp || (a.checked_in_today ? 9999999999 : 0);
+                    const timeB = b.last_checked_in_timestamp || (b.checked_in_today ? 9999999999 : 0);
+                    return timeB - timeA;
+                });
+            } else {
+                list.sort((a, b) => (a.rank || 0) - (b.rank || 0));
+            }
 
-
-            // Filter by Division
-
-            if (window.leaderboardSelectedDivision !== 'all') {
-
+            // 2. Filter by Division
+            if (window.leaderboardSelectedDivision && window.leaderboardSelectedDivision !== 'all') {
                 list = list.filter(d => (d.division || '').toLowerCase() === window.leaderboardSelectedDivision.toLowerCase());
-
             }
 
-
-
-            // Filter by Search Query
-
+            // 3. Filter by Search Query
             if (q) {
-
                 list = list.filter(d => 
-
                     (d.name && d.name.toLowerCase().includes(q)) ||
-
                     (d.code && d.code.toLowerCase().includes(q)) ||
-
                     (d.division && d.division.toLowerCase().includes(q)) ||
-
                     ((d.officers || []).some(o => (o.name || '').toLowerCase().includes(q)))
-
                 );
-
-            } else if (window.leaderboardViewMode === 'top12' && window.leaderboardSelectedDivision === 'all') {
-
-                list = list.slice(3, 15); // Ranks 4 to 15
-
-            } else if (window.leaderboardSelectedDivision === 'all') {
-
-                list = list.slice(3); // All remaining
-
+            } else if (window.leaderboardViewMode === 'top12' && window.leaderboardSelectedDivision === 'all' && window.leaderboardSortKey === 'rank') {
+                list = list.slice(3, 15); // Ranks 4 to 15 (12 districts)
+            } else if (window.leaderboardViewMode === 'top12' && window.leaderboardSortKey === 'last_active') {
+                list = list.slice(0, 12); // Top 12 active
+            } else if (window.leaderboardSelectedDivision === 'all' && window.leaderboardSortKey === 'rank') {
+                list = list.slice(3); // All 35 remaining after podium
             }
-
-
 
             if (countBadge) {
-
                 countBadge.innerText = `${list.length} Districts Shown`;
-
             }
-
-
 
             if (list.length === 0) {
-
-                standingsContainer.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 24px; font-size: 0.88rem;"><i class="fas fa-search" style="font-size: 1.6rem; color: #38bdf8; display: block; margin-bottom: 8px;"></i> No matching districts found in selected division.</div>`;
-
+                standingsContainer.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 24px; font-size: 0.88rem;"><i class="fas fa-search" style="font-size: 1.6rem; color: #38bdf8; display: block; margin-bottom: 8px;"></i> No matching districts found.</div>`;
                 return;
-
             }
 
-
-
             standingsContainer.innerHTML = list.map(d => {
-
                 let rankColor = '#38bdf8';
-
                 let rankBg = 'rgba(56, 189, 248, 0.15)';
-
-                if (d.rank <= 5) { rankColor = '#38bdf8'; rankBg = 'rgba(56, 189, 248, 0.2)'; }
-
+                if (d.rank <= 3) { rankColor = '#fbbf24'; rankBg = 'rgba(245, 158, 11, 0.2)'; }
+                else if (d.rank <= 5) { rankColor = '#38bdf8'; rankBg = 'rgba(56, 189, 248, 0.2)'; }
                 else if (d.rank <= 10) { rankColor = '#10b981'; rankBg = 'rgba(16, 185, 129, 0.2)'; }
-
                 else { rankColor = '#94a3b8'; rankBg = 'rgba(255, 255, 255, 0.08)'; }
-
-
 
                 const checkinBadge = getDistrictCheckinBadge(d);
 
-
-
                 return `
-
-                <div class="standings-card" onclick="window.openDistrictIntelligenceModal('${d.code}')" title="Click to view full district telemetry & contacts" style="background: rgba(30, 41, 59, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 16px;">
-
+                <div class="standings-card" onclick="window.openDistrictIntelligenceModal('${d.code}')" title="Click to view full district telemetry & contacts" style="background: rgba(30, 41, 59, 0.55); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 14px 16px; cursor: pointer; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
                     <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-
                         <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
-
                             <span style="background: ${rankBg}; color: ${rankColor}; font-weight: 900; font-size: 0.78rem; padding: 2px 8px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;">#${d.rank}</span>
-
                             <strong style="color: #ffffff; font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: 'Outfit', sans-serif;">${d.name}</strong>
-
                         </div>
-
                         <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
-
                             <span style="color: #fbbf24; font-weight: 800; font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;">${Number(d.hits).toLocaleString()} <span style="font-size: 0.68rem; color: #94a3b8;">XP</span></span>
-
-                            <button onclick="event.stopPropagation(); window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\\'")}', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #25d366; padding: 4px 8px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;" title="Share on WhatsApp">
-
+                            <button onclick="event.stopPropagation(); window.shareDistrictOnWhatsApp('${d.code}', '${d.name.replace(/'/g, "\'")}', ${d.rank}, ${d.hits}, '${d.latency || '12ms'}');" style="background: rgba(37, 211, 102, 0.15); border: 1px solid rgba(37, 211, 102, 0.4); color: #25d366; padding: 4px 8px; border-radius: 6px; font-size: 0.76rem; cursor: pointer;" title="Share on WhatsApp">
                                 <i class="fab fa-whatsapp"></i>
-
                             </button>
-
                         </div>
-
                     </div>
-
-                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: #94a3b8;">
-
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: #94a3b8; margin-top: 10px;">
                         <div style="display: flex; align-items: center; gap: 6px;">
-
-                            <span>${d.division || 'Bihar'}</span><span style="opacity: 0.4;">•</span><span style="color: #10b981; font-weight: 700; display: inline-flex; align-items: center; gap: 3px;"><i class="fas fa-bolt" style="font-size: 0.65rem;"></i> ${d.latency || '12ms'}</span>
-
+                            <span>${d.division || 'Bihar'}</span>
+                            <span style="opacity: 0.4;">•</span>
+                            <span style="color: #10b981; font-weight: 700; display: inline-flex; align-items: center; gap: 3px;"><i class="fas fa-bolt" style="font-size: 0.65rem;"></i> ${d.latency || '12ms'}</span>
                             <span style="background: rgba(255,255,255,0.06); padding: 1px 6px; border-radius: 4px; font-size: 0.65rem; color: #cbd5e1;">Lv. ${d.xp_level || 1}</span>
-
                         </div>
-
                         <div>${checkinBadge}</div>
-
                     </div>
-
-                    <div style="background: rgba(15, 23, 42, 0.6); border-radius: 6px; padding: 5px 10px; display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04);">
-
-                        <div style="display: flex; align-items: center; gap: 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-
-                            <i class="${d.checked_in_today ? 'fas fa-check-circle' : 'far fa-clock'}" style="color: ${d.checked_in_today ? '#10b981' : '#38bdf8'}; font-size: 0.74rem;"></i>
-
-                            <span>${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
-
+                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #64748b; margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.04);">
+                        <div style="display: flex; align-items: center; gap: 4px;">
+                            <i class="far fa-clock" style="color: ${d.checked_in_today ? '#10b981' : '#64748b'}; font-size: 0.65rem;"></i>
+                            <span style="color: #94a3b8;">${d.checked_in_today ? 'Checked-In:' : 'Last Active:'} <strong style="color: ${d.checked_in_today ? '#34d399' : '#e2e8f0'};">${d.last_checked_in_text || 'Live Session Active'}</strong></span>
                         </div>
-
                         <span style="color: ${d.checked_in_today ? '#34d399' : '#64748b'}; font-family: monospace; font-size: 0.68rem; margin-left: 4px;">${d.last_checked_in_ip || 'DHQ Net'}</span>
-
                     </div>
-
                 </div>
-
                 `;
-
             }).join('');
-
         }
 
 
